@@ -5,6 +5,7 @@
 
 import csv
 import json
+import os
 from json import JSONDecodeError
 from datetime import datetime
 from pathlib import Path
@@ -31,14 +32,14 @@ def save_adaptive_debug_to_csv(data: Any, filename: Optional[str] = None, direct
         # Crear directorio si no existe
         log_dir = Path(directory)
         log_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Generar nombre de archivo si no se proporciona
         if filename is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"debug_data_{timestamp}.csv"
-        
+
         filepath = log_dir / filename
-        
+
         # Convertir datos a formato CSV si es necesario
         if isinstance(data, dict):
             # Convertir dict a lista de filas
@@ -52,7 +53,7 @@ def save_adaptive_debug_to_csv(data: Any, filename: Optional[str] = None, direct
         else:
             # Convertir otros tipos a formato simple
             data = [{"data": str(data), "timestamp": datetime.now().isoformat()}]
-        
+
         # Escribir CSV
         if data:
             fieldnames = data[0].keys()
@@ -60,9 +61,9 @@ def save_adaptive_debug_to_csv(data: Any, filename: Optional[str] = None, direct
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(data)
-        
+
         return True
-        
+
     except (JSONDecodeError, ValueError) as e:
         print(f"Error guardando debug CSV: {e}")
         return False
@@ -75,18 +76,18 @@ def log_critical_error(error_message: str) -> bool:
         # Crear directorio de logs críticos
         log_dir = Path("../data/logs/critical")
         log_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Preparar datos del error
         error_data = {
             "timestamp": datetime.now().isoformat(),
             "error": error_message,
             "level": "CRITICAL"
         }
-        
+
         # Guardar en JSON
         timestamp = datetime.now().strftime("%Y%m%d")
         log_file = log_dir / f"critical_errors_{timestamp}.json"
-        
+
         # Leer errores existentes si el archivo existe
         existing_errors = []
         if log_file.exists():
@@ -95,17 +96,17 @@ def log_critical_error(error_message: str) -> bool:
                     existing_errors = json.load(f)
             except (FileNotFoundError, JSONDecodeError, UnicodeDecodeError):
                 existing_errors = []
-        
+
         # Agregar nuevo error
         existing_errors.append(error_data)
-        
+
         # Guardar todos los errores
         with open(log_file, 'w', encoding='utf-8') as f:
             json.dump(existing_errors, f, indent=2, ensure_ascii=False)
-        
+
         print(f"❌ ERROR CRÍTICO REGISTRADO: {error_message}")
         return True
-        
+
     except (JSONDecodeError, ValueError) as e:
         print(f"Error registrando error crítico: {e}")
         return False
@@ -117,27 +118,27 @@ def save_poi_analysis_log(pois: List[Dict], filename: Optional[str] = None) -> b
     try:
         if not pois:
             return True
-            
+
         log_dir = Path("../data/logs/poi")
         log_dir.mkdir(parents=True, exist_ok=True)
-        
+
         if filename is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"poi_analysis_{timestamp}.json"
-        
+
         filepath = log_dir / filename
-        
+
         log_data = {
             "timestamp": datetime.now().isoformat(),
             "total_pois": len(pois),
             "pois": pois
         }
-        
+
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(log_data, f, indent=2, ensure_ascii=False)
-        
+
         return True
-        
+
     except (JSONDecodeError, ValueError) as e:
         print(f"Error guardando log POI: {e}")
         return False
@@ -150,10 +151,10 @@ def get_latest_debug_logs(log_type: str = "debug", limit: int = 10) -> List[Dict
         log_dir = Path(f"../../data/logs/{log_type}")
         if not log_dir.exists():
             return []
-        
+
         # Buscar archivos de log más recientes
         log_files = sorted(log_dir.glob("*.json"), key=lambda x: x.stat().st_mtime, reverse=True)
-        
+
         all_logs = []
         for log_file in log_files[:limit]:
             try:
@@ -165,9 +166,9 @@ def get_latest_debug_logs(log_type: str = "debug", limit: int = 10) -> List[Dict
                         all_logs.append(data)
             except (FileNotFoundError, JSONDecodeError, UnicodeDecodeError):
                 continue
-        
+
         return all_logs[:limit]
-        
+
     except (JSONDecodeError, ValueError) as e:
         print(f"Error obteniendo logs: {e}")
         return []
@@ -184,8 +185,7 @@ def get_terminal_logs() -> List[Text]:
 
 def clear_terminal_logs():
     """Limpia el buffer de logs del terminal"""
-    global terminal_logs
-    terminal_logs = []
+    terminal_logs.clear()
 
 
 def get_max_terminal_logs() -> int:
@@ -195,8 +195,8 @@ def get_max_terminal_logs() -> int:
 
 def set_max_terminal_logs(max_logs: int):
     """Establece el máximo número de logs a mantener"""
-    global MAX_TERMINAL_LOGS
-#     MAX_TERMINAL_LOGS = max_logs  # Constant redefinition
+    # Note: MAX_TERMINAL_LOGS es una constante módulo, no se modifica en runtime
+    pass  # Funcionalidad deshabilitada para evitar modificación de constante
 
 
 # =============================================================================
@@ -217,15 +217,15 @@ def json_serializer(obj):
 def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
     """
     Sistema de logging inteligente universal para TODOS los componentes.
-    
+
     Componentes soportados:
     - poi_analysis, pois_detection, poi_multi_analysis (POI)
-    - m15_dual_structure, h4_bias_analysis (ICT)  
+    - m15_dual_structure, h4_bias_analysis (ICT)
     - fractal_analysis (Fractales)
     - version_analysis (Sistema)
     - dashboard_analytics (Dashboard)
     - Cualquier componente futuro
-    
+
     Args:
         component_name: Tipo de análisis/componente
         analysis_data: Datos del análisis
@@ -233,16 +233,15 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
     try:
         # Importar el sistema universal inteligente
         import sys
-        import os
         import importlib.util
-        
+
         # Calcular la ruta al archivo universal_intelligent_logger.py
         current_file = Path(__file__)  # logging_utils.py
         sentinel_utils = current_file.parent  # SENTINEL_GRID_SYSTEM/utils/
         sentinel_root = sentinel_utils.parent  # SENTINEL_GRID_SYSTEM/
         project_root = sentinel_root.parent  # Directorio raíz del proyecto
         logger_file = project_root / 'utils' / 'universal_intelligent_logger.py'
-        
+
         # Importar el módulo dinámicamente
         if logger_file.exists():
             spec = importlib.util.spec_from_file_location("universal_intelligent_logger", logger_file)
@@ -254,11 +253,11 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
                 raise ImportError("No se pudo cargar el spec del módulo")
         else:
             raise ImportError(f"Archivo no encontrado: {logger_file}")
-        
+
         # Mapear nombres de componentes a tipos de análisis
         component_mapping = {
             'poi_analysis': 'poi',
-            'pois_detection': 'poi', 
+            'pois_detection': 'poi',
             'poi_multi_analysis': 'poi',
             'm15_dual_structure': 'm15_structure',
             'h4_bias_analysis': 'h4_bias',
@@ -268,15 +267,15 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
             'ict_analysis': 'ict',
             'institutional_analysis': 'ict'
         }
-        
+
         analysis_type = component_mapping.get(component_name, component_name)
-        
+
         logged = universal_logger.log_analysis(analysis_data, analysis_type)
-        
+
         if logged:
             print(f"📊 {component_name}: Cambio significativo logueado")
         # No mostrar mensaje para logs omitidos para evitar spam
-            
+
     except (JSONDecodeError, ValueError) as e:
         print(f"⚠️ Error en logging inteligente {component_name}: {e}")
         # Fallback al sistema tradicional solo en caso de error crítico
@@ -285,15 +284,15 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
 def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> None:
     """Sistema de fallback tradicional solo para emergencias"""
     try:
-        
+
         # Crear directorio de logs si no existe
-        logs_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs', 'analysis')
-        os.makedirs(logs_dir, exist_ok=True)
-        
+        logs_dir = Path(__file__).parent.parent / 'data' / 'logs' / 'analysis'
+        logs_dir.mkdir(parents=True, exist_ok=True)
+
         # Nombre del archivo basado en la fecha
         date_str = datetime.now().strftime('%Y%m%d')
-        log_file = os.path.join(logs_dir, f"{component_name}_{date_str}_fallback.json")
-        
+        log_file = logs_dir / f"{component_name}_{date_str}_fallback.json"
+
         # Log de emergencia simplificado
         log_entry = {
             'timestamp': datetime.now().isoformat(),
@@ -301,13 +300,13 @@ def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> N
             'data': analysis_data,
             'note': 'Fallback logging - Sistema inteligente falló'
         }
-        
+
         # Escribir solo la entrada actual (sin acumular)
         with open(log_file, 'w', encoding='utf-8') as f:
             json.dump(log_entry, f, indent=2, ensure_ascii=False, default=json_serializer)
-            
+
         print(f"⚠️ Fallback logging para {component_name}")
-        
+
     except (JSONDecodeError, ValueError) as fallback_error:
         print(f"❌ Error crítico en fallback logging {component_name}: {fallback_error}")
 
@@ -329,19 +328,21 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
     """Log cuando una orden es ejecutada exitosamente"""
     try:
+        from sistema.logging_config import get_specialized_logger
         trading_logger = get_specialized_logger('trading')
         trading_logger.info("ORDER_FILLED: %s %s @ %s | Volume: %s", order_type, symbol, price, volume)
         return True
-    except (JSONDecodeError, ValueError) as e:
+    except (JSONDecodeError, ValueError, ImportError) as e:
         print(f"Error en log_order_filled: {e}")
         return False
 
 def log_order_rejected(order_type: str, symbol: str, reason: str):
     """Log cuando una orden es rechazada"""
     try:
+        from sistema.logging_config import get_specialized_logger
         trading_logger = get_specialized_logger('trading')
         trading_logger.warning("ORDER_REJECTED: %s %s | Reason: %s", order_type, symbol, reason)
         return True
-    except (JSONDecodeError, ValueError) as e:
+    except (JSONDecodeError, ValueError, ImportError) as e:
         print(f"Error en log_order_rejected: {e}")
         return False

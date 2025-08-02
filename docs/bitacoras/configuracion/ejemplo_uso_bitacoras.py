@@ -35,7 +35,7 @@ try:
         log_poi_detected,
         SeverityLevel
     )
-    from docs.logs.system_monitor import (
+    from sistema.system_monitor import (
         system_monitor,
         start_system_monitoring,
         get_system_status,
@@ -53,24 +53,24 @@ def simular_inicializacion_sistema():
     """Simula la inicialización del sistema ICT"""
     print("\n🚀 SIMULACIÓN: Inicialización del Sistema ICT Engine")
     print("-" * 55)
-    
+
     # Registrar inicio del sistema
     log_system_startup()
     print("✅ Sistema ICT Engine iniciado")
-    
+
     # Iniciar monitoreo
     start_system_monitoring()
     print("✅ Monitoreo del sistema activado")
-    
+
     # Registrar inicialización de componentes
     componentes = [
-        "pattern_analyzer", 
-        "poi_detector", 
+        "pattern_analyzer",
+        "poi_detector",
         "confidence_engine",
         "risk_manager",
         "dashboard"
     ]
-    
+
     for componente in componentes:
         bitacora_manager.log_system_event(
             severity=SeverityLevel.INFO,
@@ -87,7 +87,7 @@ def simular_deteccion_pois():
     """Simula la detección de POIs en el mercado"""
     print("\n🎯 SIMULACIÓN: Detección de POIs")
     print("-" * 35)
-    
+
     pois_ejemplos = [
         {
             "tipo": "ORDER_BLOCK_BULLISH",
@@ -100,7 +100,7 @@ def simular_deteccion_pois():
         {
             "tipo": "FAIR_VALUE_GAP",
             "precio": 1.09185,
-            "fuerza": "MEDIUM", 
+            "fuerza": "MEDIUM",
             "timeframe": "M5",
             "gap_size": "0.0012",
             "sesion": "LONDON"
@@ -114,7 +114,7 @@ def simular_deteccion_pois():
             "sesion": "OVERLAP"
         }
     ]
-    
+
     for poi in pois_ejemplos:
         log_poi_detected(
             poi_type=poi["tipo"],
@@ -132,7 +132,7 @@ def simular_analisis_patrones():
     """Simula el análisis y detección de patrones ICT"""
     print("\n🧠 SIMULACIÓN: Análisis de Patrones ICT")
     print("-" * 40)
-    
+
     # Simular análisis de estructura
     bitacora_manager.log_pattern_detection(
         pattern_type="MARKET_STRUCTURE_ANALYSIS",
@@ -154,7 +154,7 @@ def simular_analisis_patrones():
     )
     print("🧠 Análisis de estructura de mercado completado")
     time.sleep(1)
-    
+
     # Simular detección de Silver Bullet
     bitacora_manager.log_pattern_detection(
         pattern_type="SILVER_BULLET",
@@ -184,7 +184,7 @@ def simular_decisiones_trading():
     """Simula decisiones de trading basadas en análisis"""
     print("\n💹 SIMULACIÓN: Decisiones de Trading")
     print("-" * 38)
-    
+
     # Decisión Silver Bullet
     log_trading_signal(
         pattern="SILVER_BULLET",
@@ -198,11 +198,11 @@ def simular_decisiones_trading():
     )
     print("📈 SEÑAL: BUY Silver Bullet @ 1.09225 (R:R 2.5)")
     time.sleep(1.5)
-    
+
     # Decisión Judas Swing
     log_trading_signal(
         pattern="JUDAS_SWING",
-        direction="SELL", 
+        direction="SELL",
         strength=78.5,
         entry_price=1.09380,
         targets=[1.09120, 1.08950],
@@ -212,7 +212,7 @@ def simular_decisiones_trading():
     )
     print("📉 SEÑAL: SELL Judas Swing @ 1.09380 (R:R 2.2)")
     time.sleep(1.5)
-    
+
     # Gestión de riesgo
     bitacora_manager.log_risk_management(
         action="POSITION_SIZE_CALCULATED",
@@ -232,7 +232,7 @@ def simular_eventos_sistema():
     """Simula varios eventos del sistema"""
     print("\n⚙️ SIMULACIÓN: Eventos del Sistema")
     print("-" * 36)
-    
+
     # Evento de rendimiento
     bitacora_manager.log_performance_metrics({
         "cpu_usage": 45.2,
@@ -246,7 +246,7 @@ def simular_eventos_sistema():
     })
     print("📊 Métricas de rendimiento registradas")
     time.sleep(0.8)
-    
+
     # Simulación de warning
     bitacora_manager.log_system_event(
         severity=SeverityLevel.WARNING,
@@ -257,7 +257,7 @@ def simular_eventos_sistema():
     )
     print("⚠️ Alerta: Uso de CPU elevado (85.3%)")
     time.sleep(0.8)
-    
+
     # Análisis de sesión
     bitacora_manager.log_session_analysis(
         session_type="LONDON",
@@ -279,14 +279,14 @@ def mostrar_resumen_sistema():
     """Muestra resumen del estado actual del sistema"""
     print("\n📋 RESUMEN DEL SISTEMA")
     print("=" * 25)
-    
+
     # Estado de bitácoras
     session_summary = bitacora_manager.get_session_summary()
     print(f"🔍 Sesión ID: {session_summary['session_id'][:20]}...")
     print(f"📊 Total eventos: {session_summary['total_events']}")
     print(f"📋 Tipos de bitácora: {session_summary['bitacora_types']}")
     print(f"✅ Estado: {session_summary['status']}")
-    
+
     # Estado del monitor
     if system_monitor:
         time.sleep(2)  # Esperar a que el monitor recopile datos
@@ -294,7 +294,7 @@ def mostrar_resumen_sistema():
         print(f"\n🖥️ Estado general: {system_status['overall_status']}")
         print(f"⚠️ Alertas activas: {system_status['alerts']['active']}")
         print(f"🔴 Alertas críticas: {system_status['alerts']['critical']}")
-        
+
         # Mostrar métricas de sistema
         if 'system_metrics' in system_status:
             metrics = system_status['system_metrics']
@@ -307,29 +307,29 @@ def generar_reporte_final():
     """Genera reporte final de la simulación"""
     print("\n📄 GENERANDO REPORTE FINAL")
     print("-" * 28)
-    
+
     try:
         # Reporte de bitácoras
         daily_report = bitacora_manager.generate_daily_report()
         print("📋 Reporte diario de bitácoras generado")
-        
+
         # Mostrar estadísticas
         print("\n📊 ESTADÍSTICAS DE LA SIMULACIÓN:")
         for bitacora_type, count in daily_report["summary"].items():
             if count > 0:
                 print(f"  • {bitacora_type}: {count} eventos")
-        
+
         if daily_report["critical_events"]:
             print(f"\n🔴 Eventos críticos: {len(daily_report['critical_events'])}")
-        
+
         # Reporte de salud del sistema
         if system_monitor:
             health_report = get_health_report()
             print("\n🏥 Reporte de salud del sistema generado")
-            
+
             # Guardar reportes en archivos
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            
+
             # Guardar reporte de bitácoras
             bitacora_file = root_dir / "docs" / "reports" / f"simulation_bitacoras_{timestamp}.txt"
             with open(bitacora_file, 'w', encoding='utf-8') as f:
@@ -340,16 +340,16 @@ def generar_reporte_final():
                 f.write("ESTADÍSTICAS POR TIPO:\n")
                 for bitacora_type, count in daily_report["summary"].items():
                     f.write(f"  {bitacora_type}: {count}\n")
-            
+
             print(f"💾 Reporte guardado: {bitacora_file.name}")
-            
+
             # Guardar reporte de salud
             health_file = root_dir / "docs" / "reports" / f"simulation_health_{timestamp}.txt"
             with open(health_file, 'w', encoding='utf-8') as f:
                 f.write(health_report)
-            
+
             print(f"💾 Reporte de salud guardado: {health_file.name}")
-    
+
     except Exception as e:
         print(f"❌ Error generando reportes: {e}")
 
@@ -360,49 +360,49 @@ def main():
     print("=" * 62)
     print("Esta simulación demuestra todas las capacidades del sistema")
     print("de bitácoras y monitoreo del ICT Engine.\n")
-    
+
     if not IMPORTS_OK:
         print("❌ No se pueden importar los módulos necesarios")
         print("🔧 Ejecuta: python docs/init_documentation_system.py")
         return 1
-    
+
     try:
         # Paso 1: Inicialización
         simular_inicializacion_sistema()
         time.sleep(2)
-        
+
         # Paso 2: Detección de POIs
         simular_deteccion_pois()
         time.sleep(2)
-        
+
         # Paso 3: Análisis de patrones
         simular_analisis_patrones()
         time.sleep(2)
-        
+
         # Paso 4: Decisiones de trading
         simular_decisiones_trading()
         time.sleep(2)
-        
+
         # Paso 5: Eventos del sistema
         simular_eventos_sistema()
         time.sleep(2)
-        
+
         # Paso 6: Resumen del sistema
         mostrar_resumen_sistema()
         time.sleep(2)
-        
+
         # Paso 7: Reporte final
         generar_reporte_final()
-        
+
         print(f"\n🎉 SIMULACIÓN COMPLETADA EXITOSAMENTE")
         print("=" * 38)
         print("📋 Consulta las bitácoras en: docs/bitacoras/")
         print("📊 Revisa los logs en: docs/logs/")
         print("📄 Ve los reportes en: docs/reports/")
         print("📖 Lee el manual en: docs/MANUAL_BITACORAS.md")
-        
+
         return 0
-        
+
     except KeyboardInterrupt:
         print("\n⏹️ Simulación interrumpida por el usuario")
         return 1

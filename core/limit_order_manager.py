@@ -23,16 +23,25 @@ from sistema.logging_config import get_specialized_logger
 from core.risk_management.riskbot_mt5 import RiskBot
 
 # MT5 Connector - Import condicional
+mt5_connector_available = False
 try:
-    from sistema.mt5_connector import inicializar_mt5, MT5Connector
-    MT5_CONNECTOR_AVAILABLE = True
+    # Intentar import del conector personalizado
+    from sistema.mt5_connector import inicializar_mt5, MT5Connector  # type: ignore
+    mt5_connector_available = True
 except ImportError:
-    MT5_CONNECTOR_AVAILABLE = False
     enviar_senal_log("WARNING", "mt5_connector no disponible - Funcionalidad limitada", __name__, "mt5")
+    MT5Connector = None
 
     def inicializar_mt5():
         """Fallback function when MT5 connector is not available"""
-        return mt5.initialize() if mt5 else False
+        try:
+            # Usar método correcto de MetaTrader5
+            if mt5:
+                return mt5.initialize()  # type: ignore
+            return False
+        except (AttributeError, Exception):
+            # mt5.initialize() puede no estar disponible o fallar
+            return False
 
 # 🔧 Silenciar advertencias MT5 del linter (falsos positivos)
 # pylint: disable=no-member
