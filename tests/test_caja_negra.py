@@ -15,8 +15,11 @@ def test_sistema_caja_negra():
 
     # 1. Test de imports
     try:
-        from poi_black_box_diagnostics import POIBlackBoxDiagnostics, integrar_multi_poi_con_diagnosticos
-        print("✅ Imports de caja negra: OK")
+        import sys
+        import os
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from utils.system_diagnostics import POIBlackBoxDiagnostics, integrar_multi_poi_con_diagnosticos
+        print("✅ Imports de sistema de diagnósticos simplificado: OK")
     except Exception as e:
         print(f"❌ Error en imports: {e}")
         return False

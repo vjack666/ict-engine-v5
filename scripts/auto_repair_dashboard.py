@@ -19,6 +19,11 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
+# Agregar path del proyecto al sys.path
+current_dir = Path(__file__).parent
+project_root = current_dir.parent
+sys.path.insert(0, str(project_root))
+
 def main():
     """
     🚀 REPARACIÓN AUTOMÁTICA COMPLETA
@@ -30,14 +35,14 @@ def main():
     print()
 
     try:
-        # 1. IMPORTAR SISTEMA DE DIAGNÓSTICOS
+        # 1. IMPORTAR SISTEMA DE DIAGNÓSTICOS SIMPLIFICADO
         print("📦 CARGANDO SISTEMA DE DIAGNÓSTICOS...")
         try:
-            from core.poi_system.poi_black_box_diagnostics import (
+            from utils.system_diagnostics import (
                 POIBlackBoxDiagnostics,
                 integrar_multi_poi_con_diagnosticos
             )
-            print("   ✅ Sistema de diagnósticos cargado")
+            print("   ✅ Sistema de diagnósticos simplificado cargado")
         except ImportError as e:
             print(f"   ❌ Error importando diagnósticos: {e}")
             return False
@@ -71,6 +76,9 @@ def main():
 
         print(f"   📊 Issues detectados: {len(issues)}")
         print(f"   🔧 Soluciones disponibles: {len(solutions)}")
+
+        # Inicializar solution_results para evitar errores
+        solution_results = {'dashboard_status': 'NO_SOLUTIONS_APPLIED'}
 
         # 4. MOSTRAR PROBLEMAS DETECTADOS
         if issues:

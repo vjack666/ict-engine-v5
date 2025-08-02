@@ -9,8 +9,10 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Añadir el directorio base al path
-sys.path.insert(0, str(Path(__file__).parent))
+# Añadir el directorio raíz del proyecto al path
+current_dir = Path(__file__).parent
+project_root = current_dir.parent
+sys.path.insert(0, str(project_root))
 
 def main():
     print("🔍 DIAGNÓSTICO DE PROBLEMAS - CAJA NEGRA")
@@ -41,11 +43,11 @@ def main():
             print(f"   ❌ {archivo} - NO ENCONTRADO")
 
     print()
-    print("🔍 INTENTANDO IMPORTAR CAJA NEGRA:")
+    print("🔍 INTENTANDO IMPORTAR SISTEMA DE DIAGNÓSTICOS:")
 
     try:
-        from poi_black_box_diagnostics import POIBlackBoxDiagnostics
-        print("   ✅ Import exitoso")
+        from utils.system_diagnostics import POIBlackBoxDiagnostics
+        print("   ✅ Import exitoso - Sistema simplificado cargado")
 
         # Crear instancia
         diagnostics = POIBlackBoxDiagnostics()

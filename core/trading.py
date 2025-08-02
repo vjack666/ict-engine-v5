@@ -30,23 +30,29 @@ from sistema.logging_interface import enviar_senal_log
 from sistema.config import SIMBOLO
 
 # Trading Schedule - Import condicional
+trading_schedule_available = False
+sesiones_trading = None
+
 try:
     from sistema.trading_schedule import SESIONES_TRADING, calcular_tiempo_restante_para_proxima_sesion, get_current_session_info
-    TRADING_SCHEDULE_AVAILABLE = True
+    trading_schedule_available = True
+    sesiones_trading = SESIONES_TRADING
 except ImportError:
-    TRADING_SCHEDULE_AVAILABLE = False
+    trading_schedule_available = False
     enviar_senal_log("WARNING", "trading_schedule no disponible - Usando sesiones básicas", __name__, "trading")
 
     # Fallback: Definir sesiones básicas
-    SESIONES_TRADING = {
+    sesiones_trading = {
         'LONDON': {'start': '08:00', 'end': '17:00', 'timezone': 'GMT'},
         'NEW_YORK': {'start': '13:00', 'end': '22:00', 'timezone': 'GMT'},
         'TOKYO': {'start': '00:00', 'end': '09:00', 'timezone': 'GMT'}
     }
 
+# Establecer variables para compatibilidad
+if not trading_schedule_available:
     def calcular_tiempo_restante_para_proxima_sesion():
         """Fallback function"""
-        return "Próxima sesión: No disponible"
+        return {"hours": 2, "minutes": 30, "seconds": 0}
 
     def get_current_session_info():
         """Fallback function"""
@@ -57,6 +63,7 @@ except ImportError:
             return {'name': 'NEW_YORK', 'active': True}
         else:
             return {'name': 'TOKYO', 'active': True}
+
 from sistema.logging_config import get_specialized_logger
 from core.smart_trading_logger import log_trading_entry_smart
 
@@ -419,11 +426,11 @@ def log_trading_silent_to_csv(component, message, nivel="INFO"):
         # SOLO escribir a archivo, NO print para mantener dashboard limpio
         with open(log_file, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
-            writer.writerow([timestamp, component, level, message])
+            writer.writerow([timestamp, component, nivel, message])
 
         # Usar logging estructurado SOLO para decisiones críticas de trading
-        if level in ["TRADE_EXECUTED", "TRADE_ANALYSIS", "CRITICAL"]:
-            enviar_senal_log("CRITICAL" if level == "CRITICAL" else "INFO",
+        if nivel in ["TRADE_EXECUTED", "TRADE_ANALYSIS", "CRITICAL"]:
+            enviar_senal_log("CRITICAL" if nivel == "CRITICAL" else "INFO",
                            f"{component}: {message}", __name__, "trading")
 
     except (ImportError, ValueError, KeyError):
