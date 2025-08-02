@@ -1,8 +1,8 @@
-# 📚 ÍNDICE DE BITÁCORAS ICT ENGINE v5.0 ✅ MIGRACIÓN COMPLETA
+# 📚 ÍNDICE DE BITÁCORAS ICT ENGINE v5.0 ✅ TCT PIPELINE + DEBUGGING COMPLETADO
 
-**Fecha de Organización:** 01 Agosto 2025 - 17:45 hrs
-**Estado:** ✅ **COMPLETAMENTE ORGANIZADO + MIGRADO**
-**Migración:** ✅ **ESTRUCTURA ANTERIOR INTEGRADA**
+**Fecha de Actualización:** 02 Agosto 2025 - 19:30 hrs
+**Estado:** ✅ **TCT INTEGRATION + LIVE DEBUGGING COMPLETADO**
+**Última Actualización:** ✅ **TCT REAL TAB + WEEKEND TESTING + HOT-FIX SCRIPTS**
 
 ---
 
@@ -17,7 +17,10 @@ Documentos de estado final y resultados de implementaciones:
 - ✅ `REPORTE_POI_TEST_SUITE_*.md` - Serie completa de tests
 - ✅ `REPORTE_TEST_SUITE_COMPLETO.md`
 - ✅ `IMPLEMENTACION_COMPLETADA.md` - **ORGANIZADA**
-- ✅ `dashboard_tct_integration_completed.md` - **NUEVA - TCT Pipeline Dashboard Integration**
+- ✅ `dashboard_tct_integration_completed.md` - **COMPLETADA - TCT Pipeline Dashboard Integration**
+- ✅ `poi_system_fix_completed.md` - **COMPLETADA - POI System Fix & Optimization**
+- ✅ `tct_debugging_weekend_testing_completed.md` - **NUEVA - TCT Debugging + Weekend Testing Scripts**
+- ✅ `proyecto_estado_actual.md` - **NUEVA - Estado General del Proyecto + Próximos Pasos**
 
 ### 🧪 **TESTS** (`/tests/`)
 Documentación de pruebas y validaciones:
