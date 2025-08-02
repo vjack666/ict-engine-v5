@@ -1,0 +1,1 @@
+{"timestamp": "2025-08-01T14:23:45.123456", "bitacora_type": "system_status", "component": "ICT_ENGINE", "status": "HEALTHY", "health_score": 98.5, "response_time_ms": 156.7, "memory_usage_mb": 256.8, "cpu_usage_percent": 23.4, "uptime_hours": 72.5}
