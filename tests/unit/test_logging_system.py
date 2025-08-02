@@ -8,14 +8,15 @@ import unittest
 import sys
 from pathlib import Path
 import os
+from datetime import datetime
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 try:
     from sistema.logging_interface import enviar_senal_log
-    from sistema.emoji_logger import EmojiLogger
-    from sistema.logging_config import LoggingConfig
+    from sistema.emoji_logger import EmojiLogger  # type: ignore
+    from sistema.logging_config import LoggingConfig  # type: ignore
 except ImportError as e:
     print(f"⚠️ Import warning en test_logging_system: {e}")
     enviar_senal_log = None
