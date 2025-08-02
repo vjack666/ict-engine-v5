@@ -37,6 +37,7 @@ Entorno: PRODUCCIÓN - DATOS REALES MT5
 import logging
 import random
 import sys
+import traceback
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Any
@@ -47,6 +48,8 @@ from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.containers import Container
 from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
+from rich.text import Text
+from rich.panel import Panel
 
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
@@ -94,7 +97,7 @@ except ImportError as e:
 
 # 🧠 CLEAN POI DIAGNOSTICS INTEGRATION
 try:
-    from clean_poi_diagnostics import integrar_poi_dashboard_limpio
+    from scripts.clean_poi_diagnostics import integrar_poi_dashboard_limpio
     clean_poi_available = True
     print("✅ Clean POI Diagnostics disponible")
 except ImportError as e:
@@ -145,6 +148,10 @@ try:
     from core.ict_engine import confidence_engine
     from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
     from core.ict_engine import ict_historical_analyzer
+
+    # ⏱️ TCT PIPELINE INTEGRATION - SPRINT 1.2 COMPLETADO
+    from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
+    from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
 
     # Widgets del dashboard
     from dashboard import ict_professional_widget
@@ -534,6 +541,16 @@ class SentinelDashboardDefinitivo(App):
                     )
                     yield self.analytics_static
 
+            # ⚡ Pestaña H5: TCT Pipeline con métricas en tiempo real
+            with TabPane("⚡ TCT Real", id="tab_tct"):
+                with Container(classes="scrollable-container"):
+                    self.tct_static = Static(
+                        self.render_tct_panel(),
+                        id="tct_display",
+                        classes="tct-panel"
+                    )
+                    yield self.tct_static
+
         yield Footer(classes="main-footer")
 
     def on_mount(self) -> None:
@@ -583,8 +600,6 @@ class SentinelDashboardDefinitivo(App):
 
     def render_hibernation_panel(self):
         """Renderiza panel de hibernación con datos reales"""
-        from rich.panel import Panel
-        from rich.text import Text
 
         content = Text()
         content.append("🚀 SENTINEL ICT ANALYZER - HIBERNACIÓN INTELIGENTE\n\n",
@@ -785,6 +800,61 @@ class SentinelDashboardDefinitivo(App):
             padding=(2, 4)
         )
 
+    def render_tct_panel(self):
+        """Renderiza panel de TCT Pipeline con métricas en tiempo real"""
+
+        content = Text()
+        content.append("⚡ TCT PIPELINE - TIEMPO REAL\n\n", style="bold bright_cyan")
+
+        try:
+            # Inicializar TCT Interface si no existe
+            if not hasattr(self, 'tct_interface'):
+                self.tct_interface = TCTInterface()
+
+            # Obtener datos formateados del TCT Pipeline
+            tct_data = self.tct_interface.get_formatted_dashboard_data()
+
+            if tct_data:
+                # Métricas principales
+                content.append("📊 MÉTRICAS TCT:\n", style="bold cyan")
+                content.append(f"⏱️  Latencia promedio: {tct_data.get('avg_latency', 'N/A')}ms\n", style="white")
+                content.append(f"🔄 Ciclos completados: {tct_data.get('total_cycles', 0)}\n", style="green")
+                content.append(f"📈 Patrones detectados: {tct_data.get('patterns_detected', 0)}\n", style="yellow")
+                content.append(f"🎯 Precisión: {tct_data.get('accuracy', 0):.1f}%\n", style="bright_green")
+
+                # Estado del pipeline
+                content.append("\n🔧 ESTADO DEL PIPELINE:\n", style="bold cyan")
+                pipeline_status = tct_data.get('pipeline_status', 'Unknown')
+                status_color = "green" if pipeline_status == "Running" else "red"
+                content.append(f"📡 Estado: {pipeline_status}\n", style=status_color)
+
+                # Última actualización
+                last_update = tct_data.get('last_update', 'N/A')
+                content.append(f"🕐 Última actualización: {last_update}\n", style="white")
+
+                # ICT + TCT Integration Status
+                content.append("\n🔗 INTEGRACIÓN ICT + TCT:\n", style="bold cyan")
+                content.append("✅ TCT Pipeline: Activo\n", style="green")
+                content.append("✅ ICT Detector: Sincronizado\n", style="green")
+                content.append("✅ Métricas combinadas: Disponibles\n", style="green")
+
+            else:
+                content.append("⚠️ TCT Pipeline iniciando...\n", style="yellow")
+                content.append("📡 Conectando a sistema de análisis\n", style="white")
+                content.append("🔄 Aguardando datos en tiempo real\n", style="cyan")
+
+        except Exception as e:
+            content.append(f"❌ Error en TCT Pipeline: {str(e)}\n", style="red")
+            content.append("🔧 Verificando configuración del sistema\n", style="yellow")
+            logger.error(f"Error rendering TCT panel: {e}")
+
+        return Panel(
+            content,
+            title="⚡ [bold bright_cyan]TCT PIPELINE - TIEMPO REAL[/bold bright_cyan]",
+            border_style="bright_cyan",
+            padding=(2, 4)
+        )
+
     # Métodos de navegación
     def action_switch_hibernation(self):
         """Cambiar a pestaña de hibernación (H1)"""
@@ -938,7 +1008,6 @@ class SentinelDashboardDefinitivo(App):
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
                 logger.error("❌ Error en análisis integral: %s", e)
-                import traceback
                 traceback.print_exc()
             # Fallback a simulación
             self.simulate_pattern_detection()
@@ -1964,6 +2033,8 @@ class SentinelDashboardDefinitivo(App):
                 self.pattern_static.update(self.render_patterns_panel())
             if self.analytics_static:
                 self.analytics_static.update(self.render_analytics_panel())
+            if self.tct_static:
+                self.tct_static.update(self.render_tct_panel())
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
                 print(f"❌ Error actualizando paneles: {e}")

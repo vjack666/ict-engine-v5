@@ -28,6 +28,19 @@ from pathlib import Path
 
 # --- Sistema de logging centralizado ---
 from sistema.logging_config import get_specialized_logger
+
+# --- Import de funciones POI para integración ---
+try:
+    from core.poi_system.poi_detector import (
+        detectar_order_blocks,
+        detectar_fair_value_gaps,
+        detectar_breaker_blocks,
+        detectar_imbalances
+    )
+    poi_functions_available = True
+except ImportError as e:
+    enviar_senal_log("WARNING", f"Funciones POI no disponibles: {e}", __name__, "init")
+    poi_functions_available = False
 logger = get_specialized_logger('ict')
 
 # =============================================================================
@@ -1828,26 +1841,203 @@ class ICTDetector:
     # POI methods simplificados
     def _find_order_block_pois_advanced(self, candles, current_price) -> List[Dict[str, Any]]:
         """Encuentra POIs basados en Order Blocks avanzados"""
-        return []
+        if not poi_functions_available:
+            return []
+
+        try:
+            # Usar la función real del poi_detector
+            order_blocks = detectar_order_blocks(candles, 'M15')
+
+            # Convertir a formato ICTDetector POI
+            pois = []
+            for ob in order_blocks:
+                poi = {
+                    'type': f"OB_{ob['type']}",
+                    'price_level': ob['price'],
+                    'confidence': ob.get('score', 50) / 100.0,
+                    'strength': min(100, ob.get('score', 50)),
+                    'timeframe': ob.get('timeframe', 'M15'),
+                    'source': 'ORDER_BLOCKS',
+                    'distance_from_current': abs(current_price - ob['price']),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': ob
+                }
+                pois.append(poi)
+
+            enviar_senal_log("DEBUG", f"Order Blocks POIs encontrados: {len(pois)}", __name__, "poi")
+            return pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Order Block POIs: {e}", __name__, "poi")
+            return []
 
     def _find_liquidity_pois_advanced(self, candles, current_price) -> List[Dict[str, Any]]:
         """Encuentra POIs basados en liquidez"""
-        return []
+        if not poi_functions_available:
+            return []
+
+        try:
+            # Usar Fair Value Gaps como proxy de liquidez
+            fvgs = detectar_fair_value_gaps(candles, 'M15')
+
+            pois = []
+            for fvg in fvgs:
+                poi = {
+                    'type': f"LIQUIDITY_{fvg['type']}",
+                    'price_level': fvg['price'],
+                    'confidence': fvg.get('score', 45) / 100.0,
+                    'strength': min(100, fvg.get('score', 45)),
+                    'timeframe': fvg.get('timeframe', 'M15'),
+                    'source': 'LIQUIDITY_ZONES',
+                    'distance_from_current': abs(current_price - fvg['price']),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': fvg
+                }
+                pois.append(poi)
+
+            enviar_senal_log("DEBUG", f"Liquidity POIs encontrados: {len(pois)}", __name__, "poi")
+            return pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Liquidity POIs: {e}", __name__, "poi")
+            return []
 
     def _find_support_resistance_pois_advanced(self, candles, current_price) -> List[Dict[str, Any]]:
         """Encuentra POIs de soporte/resistencia"""
-        return []
+        if not poi_functions_available:
+            return []
+
+        try:
+            # Usar Breaker Blocks como S/R dinámicos
+            breakers = detectar_breaker_blocks(candles, 'M15')
+
+            pois = []
+            for breaker in breakers:
+                poi = {
+                    'type': f"SR_{breaker['type']}",
+                    'price_level': breaker['price'],
+                    'confidence': breaker.get('score', 40) / 100.0,
+                    'strength': min(100, breaker.get('score', 40)),
+                    'timeframe': breaker.get('timeframe', 'M15'),
+                    'source': 'SUPPORT_RESISTANCE',
+                    'distance_from_current': abs(current_price - breaker['price']),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': breaker
+                }
+                pois.append(poi)
+
+            enviar_senal_log("DEBUG", f"Support/Resistance POIs encontrados: {len(pois)}", __name__, "poi")
+            return pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando S/R POIs: {e}", __name__, "poi")
+            return []
 
     def _find_fvg_pois_advanced(self, candles, current_price) -> List[Dict[str, Any]]:
         """Encuentra POIs basados en FVGs"""
-        return []
+        if not poi_functions_available:
+            return []
+
+        try:
+            # Usar función directa de FVG
+            fvgs = detectar_fair_value_gaps(candles, 'M15')
+
+            pois = []
+            for fvg in fvgs:
+                poi = {
+                    'type': f"FVG_{fvg['type']}",
+                    'price_level': fvg['price'],
+                    'confidence': fvg.get('score', 50) / 100.0,
+                    'strength': min(100, fvg.get('score', 50)),
+                    'timeframe': fvg.get('timeframe', 'M15'),
+                    'source': 'FAIR_VALUE_GAPS',
+                    'distance_from_current': abs(current_price - fvg['price']),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': fvg
+                }
+                pois.append(poi)
+
+            enviar_senal_log("DEBUG", f"FVG POIs encontrados: {len(pois)}", __name__, "poi")
+            return pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando FVG POIs: {e}", __name__, "poi")
+            return []
 
     def _find_hod_lod_pois(self, candles, current_price) -> List[Dict[str, Any]]:
         """Encuentra POIs de High/Low of Day"""
-        return []
+        try:
+            if candles is None or len(candles) == 0:
+                return []
+
+            # Encontrar high y low del día actual
+            today_high = float(candles['high'].max())
+            today_low = float(candles['low'].min())
+
+            pois = []
+
+            # POI para High of Day
+            if today_high > current_price:
+                hod_poi = {
+                    'type': 'HOD_RESISTANCE',
+                    'price_level': today_high,
+                    'confidence': 0.7,
+                    'strength': 65,
+                    'timeframe': 'DAILY',
+                    'source': 'HIGH_LOW_OF_DAY',
+                    'distance_from_current': abs(current_price - today_high),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': {'level_type': 'high_of_day', 'price': today_high}
+                }
+                pois.append(hod_poi)
+
+            # POI para Low of Day
+            if today_low < current_price:
+                lod_poi = {
+                    'type': 'LOD_SUPPORT',
+                    'price_level': today_low,
+                    'confidence': 0.7,
+                    'strength': 65,
+                    'timeframe': 'DAILY',
+                    'source': 'HIGH_LOW_OF_DAY',
+                    'distance_from_current': abs(current_price - today_low),
+                    'created_at': datetime.now().isoformat(),
+                    'metadata': {'level_type': 'low_of_day', 'price': today_low}
+                }
+                pois.append(lod_poi)
+
+            enviar_senal_log("DEBUG", f"HOD/LOD POIs encontrados: {len(pois)}", __name__, "poi")
+            return pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando HOD/LOD POIs: {e}", __name__, "poi")
+            return []
 
     def _filter_and_optimize_pois(self, all_pois, current_price) -> List[Dict[str, Any]]:
         """Filtra y optimiza POIs"""
+        try:
+            if not all_pois:
+                return []
+
+            # Filtrar POIs por distancia (no muy lejos del precio actual)
+            max_distance = 0.005  # 50 pips para FOREX
+            filtered_pois = [
+                poi for poi in all_pois
+                if poi.get('distance_from_current', float('inf')) <= max_distance
+            ]
+
+            # Ordenar por strength y confidence
+            filtered_pois.sort(key=lambda x: (x.get('strength', 0), x.get('confidence', 0)), reverse=True)
+
+            # Limitar a los mejores 15 POIs
+            optimized_pois = filtered_pois[:15]
+
+            enviar_senal_log("DEBUG", f"POIs filtrados y optimizados: {len(optimized_pois)} de {len(all_pois)}", __name__, "poi")
+            return optimized_pois
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error filtrando POIs: {e}", __name__, "poi")
+            return all_pois[:10]  # Fallback básico
         return all_pois[:10]  # Limitar a 10 por ahora
 
     # Métodos de confianza

@@ -17,6 +17,7 @@ Documentos de estado final y resultados de implementaciones:
 - ✅ `REPORTE_POI_TEST_SUITE_*.md` - Serie completa de tests
 - ✅ `REPORTE_TEST_SUITE_COMPLETO.md`
 - ✅ `IMPLEMENTACION_COMPLETADA.md` - **ORGANIZADA**
+- ✅ `dashboard_tct_integration_completed.md` - **NUEVA - TCT Pipeline Dashboard Integration**
 
 ### 🧪 **TESTS** (`/tests/`)
 Documentación de pruebas y validaciones:
