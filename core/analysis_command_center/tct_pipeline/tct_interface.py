@@ -496,14 +496,14 @@ class TCTInterface:
         try:
             # 🧠 CREAR CONTEXTO REAL usando MarketContext con estructura correcta
             market_context = MarketContext()
-            
+
             # 🚀 ASIGNAR PRECIO REAL (este atributo sí existe)
             market_context.current_price = self._get_real_current_price(symbol)
-            
+
             # � CONFIGURAR CONTEXTO BÁSICO usando atributos reales
             market_context.current_session = self._get_current_session()
             market_context.market_phase = "RANGING"  # Valor por defecto
-            
+
             # 🧬 METADATA para tracking (no parte del MarketContext pero útil para logging)
             context_metadata = {
                 'symbol': symbol,
@@ -543,16 +543,16 @@ class TCTInterface:
             # Por ahora, usar precios realistas por símbolo
             symbol_prices = {
                 'EURUSD': 1.17500,
-                'GBPUSD': 1.35200, 
+                'GBPUSD': 1.35200,
                 'USDJPY': 110.850,
                 'USDCHF': 0.92150,
                 'AUDUSD': 0.73400,
                 'NZDUSD': 0.68900,
                 'USDCAD': 1.25600
             }
-            
+
             return symbol_prices.get(symbol.upper(), 1.17500)  # Default EURUSD
-            
+
         except Exception as e:
             enviar_senal_log(
                 level='WARNING',
@@ -566,10 +566,10 @@ class TCTInterface:
         """Obtiene la sesión de mercado actual basada en hora UTC"""
         try:
             from datetime import datetime, timezone
-            
+
             utc_now = datetime.now(timezone.utc)
             hour_utc = utc_now.hour
-            
+
             # 🌏 SESIONES DE MERCADO (UTC)
             if 0 <= hour_utc < 7:
                 return "ASIAN"
@@ -579,7 +579,7 @@ class TCTInterface:
                 return "NEWYORK"
             else:
                 return "ASIAN"
-                
+
         except Exception:
             return "ASIAN"  # Fallback seguro
 
@@ -592,13 +592,13 @@ class TCTInterface:
         try:
             # 🧠 USAR ICTDETECTOR REAL (el que está funcionando en Sprint 1.2)
             from core.ict_engine.ict_detector import ICTDetector
-            
+
             ict_detector = ICTDetector()
-            
+
             # � EJECUTAR ANÁLISIS DE ESTRUCTURA REAL
             # Simular datos básicos para el análisis (en producción vendrían de MT5)
             mock_data = self._create_mock_market_data(symbol, timeframe, market_context.current_price)
-            
+
             structure_analysis = ict_detector.analyze_structure(mock_data)
             bias_analysis = ict_detector.detect_bias(mock_data)
             patterns_analysis = ict_detector.detect_patterns({'candles': mock_data})
@@ -667,22 +667,22 @@ class TCTInterface:
             import pandas as pd
             import numpy as np
             from datetime import datetime, timedelta
-            
+
             # 📊 GENERAR 100 VELAS SIMULADAS REALISTAS
             num_candles = 100
             dates = pd.date_range(end=datetime.now(), periods=num_candles, freq='5min')
-            
+
             # 📈 SIMULACIÓN BÁSICA DE PRECIO (caminata aleatoria con tendencia)
             np.random.seed(42)  # Para reproducibilidad
             price_changes = np.random.normal(0, 0.0001, num_candles)  # Cambios pequeños
-            
+
             prices = []
             base_price = current_price - 0.001  # Empezar un poco abajo
-            
+
             for change in price_changes:
                 base_price += change
                 prices.append(base_price)
-            
+
             # 📊 CREAR DATAFRAME con formato estándar OHLC
             data = {
                 'open': [],
@@ -691,30 +691,30 @@ class TCTInterface:
                 'close': [],
                 'volume': np.random.randint(100, 1000, num_candles)
             }
-            
+
             for i, price in enumerate(prices):
                 # Simular OHLC realista
                 open_price = price
                 close_price = price + np.random.normal(0, 0.00005)
                 high_price = max(open_price, close_price) + abs(np.random.normal(0, 0.00002))
                 low_price = min(open_price, close_price) - abs(np.random.normal(0, 0.00002))
-                
+
                 data['open'].append(open_price)
                 data['high'].append(high_price)
                 data['low'].append(low_price)
                 data['close'].append(close_price)
-            
+
             df = pd.DataFrame(data, index=dates)
-            
+
             enviar_senal_log(
                 level='DEBUG',
                 message=f"📊 Mock data created | {symbol}_{timeframe} | {len(df)} candles | Price range: {df['low'].min():.5f}-{df['high'].max():.5f}",
                 emisor='tct_interface',
                 categoria='tct'
             )
-            
+
             return df
-            
+
         except Exception as e:
             enviar_senal_log(
                 level='ERROR',

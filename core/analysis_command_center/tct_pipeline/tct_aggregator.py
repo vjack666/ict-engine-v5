@@ -46,29 +46,29 @@ class AggregatedTCTMetrics:
 
     def to_dict(self) -> Dict[str, Any]:
         """Convierte las métricas agregadas a diccionario para serialización"""
-        
+
         # 📊 CONVERTIR TIMEFRAME_METRICS A DICT
         timeframe_dict = {}
         for tf, metrics in self.timeframe_metrics.items():
             timeframe_dict[tf] = metrics.to_dict()
-        
+
         return {
             # 🕐 MÉTRICAS GLOBALES AGREGADAS
             'global_avg_tct_ms': self.global_avg_tct_ms,
             'global_max_tct_ms': self.global_max_tct_ms,
             'global_min_tct_ms': self.global_min_tct_ms,
-            
+
             # 📊 MÉTRICAS POR TIMEFRAME
             'timeframe_metrics': timeframe_dict,
-            
+
             # 🎯 ANÁLISIS DE TENDENCIAS Y PERFORMANCE
             'tct_trend': self.tct_trend,
             'performance_grade': self.performance_grade,
-            
+
             # 📈 MÉTRICAS DE FRECUENCIA
             'measurements_per_minute': self.measurements_per_minute,
             'analysis_frequency_hz': self.analysis_frequency_hz,
-            
+
             # 🧬 METADATA Y CONTEXTO
             'aggregation_timestamp': self.aggregation_timestamp,
             'total_timeframes': self.total_timeframes,
@@ -354,39 +354,39 @@ class TCTAggregator:
 
         return summary
 
-    def aggregate_recent_measurements(self, 
-                                    timeframe: str = "ALL", 
+    def aggregate_recent_measurements(self,
+                                    timeframe: str = "ALL",
                                     max_age_minutes: int = 60,
                                     min_samples: int = 5) -> Optional[AggregatedTCTMetrics]:
         """
         🚀 MÉTODO CRÍTICO: Agrega solo las mediciones recientes
         Útil para análisis en tiempo real y dashboard updates
-        
+
         Args:
             timeframe: Timeframe específico ("M5", "H1", etc.) o "ALL" para todos
             max_age_minutes: Edad máxima de las mediciones en minutos
             min_samples: Mínimo número de samples requeridos
-        
+
         Returns:
             AggregatedTCTMetrics con solo datos recientes o None si insuficientes datos
         """
-        
+
         enviar_senal_log(
             level='DEBUG',
             message=f"📊 AGGREGATE RECENT | TF: {timeframe} | Max age: {max_age_minutes}min | Min samples: {min_samples}",
             emisor='tct_aggregator',
             categoria='tct'
         )
-        
+
         current_time = datetime.datetime.now()
         cutoff_time = current_time - datetime.timedelta(minutes=max_age_minutes)
-        
+
         # 🔄 FILTRAR TIMESTAMPS RECIENTES
         recent_timestamps = [
-            ts for ts in self.measurement_timestamps 
+            ts for ts in self.measurement_timestamps
             if ts >= cutoff_time
         ]
-        
+
         if len(recent_timestamps) < min_samples:
             enviar_senal_log(
                 level='WARNING',
@@ -395,27 +395,27 @@ class TCTAggregator:
                 categoria='tct'
             )
             return None
-        
+
         # 📊 INICIALIZAR MÉTRICAS AGREGADAS RECIENTES
         aggregated = AggregatedTCTMetrics()
         aggregated.aggregation_timestamp = current_time.isoformat()
-        
+
         # 🎯 PROCESAR TIMEFRAMES ESPECÍFICOS O TODOS
         target_timeframes = [timeframe] if timeframe != "ALL" else list(self.timeframe_data.keys())
-        
+
         recent_metrics_found = False
         all_avg_times = []
         all_max_times = []
         all_min_times = []
-        
+
         for tf in target_timeframes:
             if tf not in self.timeframe_data or not self.timeframe_data[tf]:
                 continue
-                
+
             # 🕐 FILTRAR MÉTRICAS RECIENTES POR TIMESTAMP
             # Nota: Asumimos que las métricas están ordenadas cronológicamente
             recent_metrics = []
-            
+
             # Tomar las últimas métricas dentro del rango de tiempo
             for i in range(len(self.timeframe_data[tf]) - 1, -1, -1):
                 # Aproximar que cada métrica corresponde a un timestamp
@@ -423,17 +423,17 @@ class TCTAggregator:
                     recent_metrics.append(self.timeframe_data[tf][i])
                 if len(recent_metrics) >= min_samples:
                     break
-            
+
             if not recent_metrics:
                 continue
-                
+
             recent_metrics_found = True
-            
+
             # 📊 CALCULAR MÉTRICAS CONSOLIDADAS PARA ESTE TIMEFRAME (RECIENTES)
             tf_avg = sum(m.avg_tct_ms for m in recent_metrics) / len(recent_metrics)
             tf_max = max(m.max_tct_ms for m in recent_metrics)
             tf_min = min(m.min_tct_ms for m in recent_metrics if m.min_tct_ms != float('inf'))
-            
+
             # 🎯 CREAR MÉTRICA CONSOLIDADA RECIENTE
             consolidated_metric = TCTMetrics()
             consolidated_metric.avg_tct_ms = tf_avg
@@ -443,23 +443,23 @@ class TCTAggregator:
             consolidated_metric.patterns_analyzed = sum(m.patterns_analyzed for m in recent_metrics)
             consolidated_metric.pois_processed = sum(m.pois_processed for m in recent_metrics)
             consolidated_metric.current_timeframe = tf
-            
+
             # 🗃️ ALMACENAR EN AGREGACIÓN
             aggregated.timeframe_metrics[tf] = consolidated_metric
-            
+
             # 📊 ACUMULAR PARA GLOBALES
             all_avg_times.append(tf_avg)
             all_max_times.append(tf_max)
             if tf_min != float('inf'):
                 all_min_times.append(tf_min)
-            
+
             enviar_senal_log(
                 level='DEBUG',
                 message=f"📊 RECENT TF PROCESSED | {tf} | Avg: {tf_avg:.2f}ms | Samples: {len(recent_metrics)}",
                 emisor='tct_aggregator',
                 categoria='tct'
             )
-        
+
         if not recent_metrics_found:
             enviar_senal_log(
                 level='WARNING',
@@ -468,13 +468,13 @@ class TCTAggregator:
                 categoria='tct'
             )
             return None
-        
+
         # 🌍 CALCULAR MÉTRICAS GLOBALES RECIENTES
         if all_avg_times:
             aggregated.global_avg_tct_ms = sum(all_avg_times) / len(all_avg_times)
             aggregated.global_max_tct_ms = max(all_max_times)
             aggregated.global_min_tct_ms = min(all_min_times) if all_min_times else 0.0
-        
+
         # 📈 CALCULAR FRECUENCIA RECIENTE
         if len(recent_timestamps) >= 2:
             duration_minutes = (recent_timestamps[-1] - recent_timestamps[0]).total_seconds() / 60
@@ -482,20 +482,20 @@ class TCTAggregator:
                 measurements_count = len(recent_timestamps) - 1
                 aggregated.measurements_per_minute = measurements_count / duration_minutes
                 aggregated.analysis_frequency_hz = (measurements_count / duration_minutes) / 60
-        
+
         # 🎯 ANÁLISIS DE TENDENCIAS RECIENTES
         aggregated.tct_trend = self._analyze_trend()  # Reutilizar método existente
         aggregated.performance_grade = self._calculate_performance_grade(aggregated.global_avg_tct_ms)
-        
+
         # 🧬 METADATA
         aggregated.total_timeframes = len(aggregated.timeframe_metrics)
         aggregated.active_sessions = list(self.session_data.keys())
-        
+
         enviar_senal_log(
             level='INFO',
             message=f"✅ Agregación reciente completada | TFs: {aggregated.total_timeframes} | Avg: {aggregated.global_avg_tct_ms:.2f}ms",
             emisor='tct_aggregator',
             categoria='tct'
         )
-        
+
         return aggregated
