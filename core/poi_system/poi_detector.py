@@ -24,7 +24,6 @@ from typing import List, Dict, Optional, Tuple, Any
 from datetime import datetime
 import json
 from pathlib import Path
-import logging
 
 # --- Configuración de logging para POI ---
 from sistema.logging_config import get_specialized_logger

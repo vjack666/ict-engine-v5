@@ -26,7 +26,6 @@ from sistema.logging_interface import enviar_senal_log
 import time
 from datetime import datetime
 from typing import Dict, Any, Optional, List
-import logging
 
 # 🔍 Logger especializado para widgets del dashboard
 # SLUC v2.0: logging centralizado
@@ -332,9 +331,9 @@ class CountdownWidget(Static):
         time_data = self.time_to_session
         
         # Formatear los números con padding
-        hours_str = f"{time_data['hours']:02d}"
-        minutes_str = f"{time_data['minutes']:02d}"
-        seconds_str = f"{time_data['seconds']:02d}"
+        hours_str = f"{getattr(time_data, "hours", 0):02d}"
+        minutes_str = f"{getattr(time_data, "minutes", 0):02d}"
+        seconds_str = f"{getattr(time_data, "seconds", 0):02d}"
         
         # Crear el contenido del countdown
         countdown_content = Text()

@@ -16,7 +16,6 @@ if sys.platform == "win32":
 import logging
 import logging.handlers
 from pathlib import Path
-import sys
 import json
 from datetime import datetime
 from typing import Optional, Dict, Any

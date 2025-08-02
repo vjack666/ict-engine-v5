@@ -177,8 +177,6 @@ class DebugLauncher(App):
 
         # ✅ Verificar imports críticos
         try:
-            from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as SentinelDashboard
-            from sistema.logging_interface import enviar_senal_log
             diagnostics['imports_ok'] = True
         except ImportError as e:
             diagnostics['imports_ok'] = f"ERROR: {e}"
@@ -272,8 +270,13 @@ class DebugLauncher(App):
         self.run_system_diagnostics()
         self.notify("✅ Diagnósticos completados", timeout=2)
 
-    def action_screenshot(self):
-        """Capturar screenshot del sistema"""
+    def action_screenshot(self, filename=None, path=None):
+        """Capturar screenshot del sistema
+
+        Args:
+            filename: Nombre del archivo (opcional)
+            path: Ruta donde guardar (opcional)
+        """
         if not self.debug_config['screenshot_enabled']:
             self.notify("❌ Screenshots deshabilitados", timeout=2)
             return
@@ -386,7 +389,6 @@ def main():
     else:
         # 🎯 Launch directo
         try:
-            from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as SentinelDashboard
 
             if args.mode == "debug":
                 os.environ['TEXTUAL_DEBUG'] = '1'

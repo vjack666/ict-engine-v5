@@ -7,7 +7,6 @@ Valida funcionamiento del sistema SLUC v2.0 y bitácoras
 import unittest
 import sys
 from pathlib import Path
-import tempfile
 import os
 
 # Agregar el directorio raíz al path
@@ -182,7 +181,6 @@ class TestLogRotation(unittest.TestCase):
 
     def test_daily_rotation_naming(self):
         """Test nomenclatura de rotación diaria"""
-        from datetime import datetime
 
         # Formato esperado: filename_YYYY-MM-DD.ext
         date_str = datetime.now().strftime('%Y-%m-%d')

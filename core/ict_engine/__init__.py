@@ -17,7 +17,7 @@ from .ict_types import (
     ICTSignal, MarketStructure, SessionCharacteristics, ICTAnalysisResult,
     PATTERN_EMOJIS, DIRECTION_COLORS, get_pattern_description
 )
-from .ict_detector import MarketContext, OptimizedICTAnalysis, update_market_context
+from .ict_detector import MarketContext, OptimizedICTAnalysis, ICTDetector, update_market_context
 from .pattern_analyzer import ICTPatternAnalyzer
 from .confidence_engine import ConfidenceEngine
 
@@ -26,13 +26,11 @@ try:
     from .veredicto_engine_v4 import VeredictoEngine
 except Exception as e:
     try:
-        from sistema.logging_interface import enviar_senal_log
         enviar_senal_log("ERROR", f"Error importando VeredictoEngine: {e}", __name__, "ict")
     except ImportError:
         print(f"ERROR: No se pudo importar VeredictoEngine: {e}")
     VeredictoEngine = None
     try:
-        from sistema.logging_interface import enviar_senal_log
         enviar_senal_log("ERROR", "VeredictoEngine se asignó a None por fallo de importación.", __name__, "ict")
     except ImportError:
         print("ERROR: VeredictoEngine se asignó a None por fallo de importación.")
@@ -49,6 +47,7 @@ __all__ = [
     # Clases Principales
     'MarketContext',
     'OptimizedICTAnalysis',
+    'ICTDetector',  # ✅ NUEVO: Detector ICT real agregado
     'ICTPatternAnalyzer',
     'ConfidenceEngine',
     'VeredictoEngine',
@@ -60,8 +59,6 @@ __all__ = [
 
 # Log de inicialización del paquete
 try:
-    from sistema.logging_interface import enviar_senal_log
     enviar_senal_log("INFO", f"✅ Paquete 'core.ict_engine' v{__version__} cargado y API pública definida.", __name__, "ict")
 except ImportError:
     print(f"INFO: Paquete 'core.ict_engine' cargado.")
-

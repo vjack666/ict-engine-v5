@@ -351,12 +351,10 @@ class DashboardController:
                             self.state.__dict__['next_session_name'] = 'LONDRES'
                         else:
                             # Fallback silencioso con valores por defecto
-                            from datetime import timedelta
                             self.state.__dict__['time_to_next_session'] = timedelta(hours=1, minutes=0, seconds=0)
                             self.state.__dict__['next_session_name'] = 'PRÓXIMA'
                     except (JSONDecodeError, ValueError):
                         # Error ya manejado - fallback silencioso sin logging repetitivo
-                        from datetime import timedelta
                         self.state.__dict__['time_to_next_session'] = timedelta(hours=1, minutes=0, seconds=0)
                         self.state.__dict__['next_session_name'] = 'PRÓXIMA'
                 

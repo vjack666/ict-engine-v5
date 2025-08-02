@@ -1,3 +1,4 @@
+import random
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -165,7 +166,6 @@ def test_poi_dashboard_edge_cases():
     print("-" * 50)
 
     try:
-        from dashboard.ict_professional_widget import ICTProfessionalWidget
 
         widget = ICTProfessionalWidget()
 

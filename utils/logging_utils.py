@@ -196,7 +196,7 @@ def get_max_terminal_logs() -> int:
 def set_max_terminal_logs(max_logs: int):
     """Establece el máximo número de logs a mantener"""
     global MAX_TERMINAL_LOGS
-    MAX_TERMINAL_LOGS = max_logs
+#     MAX_TERMINAL_LOGS = max_logs  # Constant redefinition
 
 
 # =============================================================================
@@ -235,7 +235,6 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
         import sys
         import os
         import importlib.util
-        from pathlib import Path
         
         # Calcular la ruta al archivo universal_intelligent_logger.py
         current_file = Path(__file__)  # logging_utils.py
@@ -286,7 +285,6 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
 def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> None:
     """Sistema de fallback tradicional solo para emergencias"""
     try:
-        import os
         
         # Crear directorio de logs si no existe
         logs_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logs', 'analysis')
@@ -331,7 +329,6 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
     """Log cuando una orden es ejecutada exitosamente"""
     try:
-        from sistema.logging_config import get_specialized_logger
         trading_logger = get_specialized_logger('trading')
         trading_logger.info("ORDER_FILLED: %s %s @ %s | Volume: %s", order_type, symbol, price, volume)
         return True
@@ -342,7 +339,6 @@ def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
 def log_order_rejected(order_type: str, symbol: str, reason: str):
     """Log cuando una orden es rechazada"""
     try:
-        from sistema.logging_config import get_specialized_logger
         trading_logger = get_specialized_logger('trading')
         trading_logger.warning("ORDER_REJECTED: %s %s | Reason: %s", order_type, symbol, reason)
         return True

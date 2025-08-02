@@ -7,6 +7,7 @@ Componente: FASE 2.4 - Integración Smart Logger Completa
 """
 
 import json
+from json import JSONDecodeError
 import pandas as pd
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log
@@ -14,7 +15,6 @@ from sistema.logging_interface import enviar_senal_log
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-import logging
 
 # USAR SISTEMA DE LOGGING CENTRALIZADO - ICT ESPECIALIZADO
 from sistema.logging_config import get_specialized_logger

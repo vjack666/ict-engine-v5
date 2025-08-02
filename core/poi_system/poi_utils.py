@@ -466,6 +466,6 @@ if __name__ == "__main__":
     
     # Crear resumen
     resumen = crear_resumen_pois(pois)
-    enviar_senal_log("INFO", f"Resumen: {resumen['total_pois']} POIs, Score promedio: {resumen['avg_score']}", __name__, "poi")
+    enviar_senal_log("INFO", f"Resumen: {resumen.get("total_pois", 0)} POIs, Score promedio: {resumen['avg_score']}", __name__, "poi")
     
     enviar_senal_log("SUCCESS", "POI Utilities funcionando correctamente!", __name__, "poi")

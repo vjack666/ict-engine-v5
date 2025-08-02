@@ -68,12 +68,10 @@ except ImportError:
 
             @staticmethod
             def exponential(scale):
-                import random
                 return random.expovariate(1/scale)
 
             @staticmethod
             def randint(low, high):
-                import random
                 return random.randint(low, high)
 
         @staticmethod

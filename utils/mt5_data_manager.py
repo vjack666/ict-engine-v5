@@ -52,7 +52,6 @@ FUNDEDNEXT_CONFIG = {
 
 def validate_fundednext_installation() -> bool:
     """Valida que el terminal FundedNext esté instalado."""
-    import os
     return os.path.exists(FUNDEDNEXT_MT5_PATH) and os.path.isfile(FUNDEDNEXT_MT5_PATH)
 
 # Configuración de timeframes
@@ -287,7 +286,6 @@ class MT5DataManager:
         """
         try:
             # Usar ruta absoluta desde el directorio actual
-            import os
             current_dir = os.path.dirname(os.path.abspath(__file__))
             candles_dir = os.path.join(current_dir, '..', 'data', 'candles')
             csv_path = Path(candles_dir) / f"{timeframe}.csv"
@@ -314,7 +312,6 @@ class MT5DataManager:
         """
         try:
             # Usar ruta absoluta desde el directorio actual
-            import os
             current_dir = os.path.dirname(os.path.abspath(__file__))
             csv_path = Path(os.path.join(current_dir, '..', 'data', 'candles', f"{timeframe}.csv"))
             

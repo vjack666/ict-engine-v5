@@ -40,9 +40,7 @@ def inicializar_sistema_candles():
 # SECCIÓN 9: CAPTURA DE SALIDA ESTÁNDAR PARA DEBUGGING DE RICH
 # =============================================================================
 import sys
-import os
 import pandas as pd
-from pathlib import Path
 from datetime import datetime
 import pytz
 import csv
@@ -130,14 +128,8 @@ def log_dashboard_error(panel_name: str, error: Exception):
 # =============================================================================
 # SECCIÓN 1: IMPORTACIONES DE LIBRERÍAS
 # =============================================================================
-import os
-import csv
-from datetime import datetime
 from typing import List, Optional
 import traceback
-import pytz
-import pandas as pd
-import sys
 
 from .config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL
 
@@ -586,8 +578,6 @@ def inicializar_directorio_candles():
 # =============================================================================
 def install_global_exception_handler():
     """Instala un manejador global para capturar todas las excepciones no controladas."""
-    import sys
-    import traceback
     
     original_excepthook = sys.excepthook
     
@@ -651,11 +641,6 @@ def log_market_context_to_csv(market_context):
     El archivo se guarda en data/logs/market_context/YYYYMMDD_market_context.csv
     """
     try:
-        import os
-        import csv
-        from datetime import datetime
-        from pathlib import Path
-        import pytz
 
         # Directorio y archivo
         log_dir = Path("../data/logs/market_context")
@@ -859,8 +844,6 @@ def log_manual_message(message, message_type="MANUAL"):
 
 def verificar_csv_fractal_actual():
     """Verifica que el CSV fractal del día tenga datos."""
-    import os
-    from datetime import datetime
     csv_fractal = os.path.join(
         "data", "logs", "fractal", f"fractal_analysis_{datetime.now().strftime('%Y%m%d')}.csv"
     )

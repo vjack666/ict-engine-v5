@@ -1,3 +1,5 @@
+from rich.panel import Panel
+from rich.text import Text
 #!/usr/bin/env python3
 """
 🧠 CLEAN POI DIAGNOSTICS - SIN ERRORES DE LINTING

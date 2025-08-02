@@ -651,8 +651,6 @@ class SentinelDashboardDefinitivo(App):
 
         Versión que asegura mostrar siempre la pantalla completa con datos.
         """
-        from rich.panel import Panel
-        from rich.text import Text
         from rich.table import Table
 
         try:
@@ -734,8 +732,6 @@ class SentinelDashboardDefinitivo(App):
 
     def render_patterns_panel(self):
         """Renderiza panel de patrones con datos reales"""
-        from rich.panel import Panel
-        from rich.text import Text
 
         content = Text()
         content.append("🧠 ANÁLISIS DE PATRONES ICT\n\n", style="bold green")
@@ -762,8 +758,6 @@ class SentinelDashboardDefinitivo(App):
 
     def render_analytics_panel(self):
         """Renderiza panel de analytics con métricas"""
-        from rich.panel import Panel
-        from rich.text import Text
 
         content = Text()
         content.append("📊 ANALYTICS Y MÉTRICAS\n\n", style="bold yellow")
@@ -993,7 +987,6 @@ class SentinelDashboardDefinitivo(App):
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ Error cargando datos multi-timeframe: %s", e)
             if self.debug_mode:
-                import traceback
                 logger.debug("Stack trace: %s", traceback.format_exc())
 
     # ======================================================================
@@ -1075,7 +1068,7 @@ class SentinelDashboardDefinitivo(App):
                 self.real_market_data['market_bias'] = context.get('h4_bias', 'NEUTRAL')
 
                 # 📋 LOGGING DETALLADO DE RESULTADOS
-                enviar_senal_log("SUCCESS", f"📋 ANÁLISIS ICT COMPLETADO - H4_bias: {context['h4_bias']}, M15_bias: {context['m15_bias']}, POIs: {context['total_pois']}, Calidad: {context['analysis_quality']}", __name__, "ict")
+                enviar_senal_log("SUCCESS", f"📋 ANÁLISIS ICT COMPLETADO - H4_bias: {context['h4_bias']}, M15_bias: {context['m15_bias']}, POIs: {context.get("total_pois", 0)}, Calidad: {context['analysis_quality']}", __name__, "ict")
 
                 if self.debug_mode:
                     print(f"🧠 ICT Contexto Real: {context.get('h4_bias')} | {context.get('market_phase')} | POIs: {context.get('total_pois')}")
@@ -1089,7 +1082,6 @@ class SentinelDashboardDefinitivo(App):
         except (AttributeError, ValueError, TypeError, ImportError, KeyError) as e:
             enviar_senal_log("ERROR", f"❌ Error crítico en integración ICT Engine: {e}", __name__, "ict")
             if self.debug_mode:
-                import traceback
                 enviar_senal_log("ERROR", f"Stack trace: {traceback.format_exc()}", __name__, "ict")
             return {'h4_bias': 'NEUTRAL', 'market_phase': 'ERROR', 'session_type': 'ASIAN', 'data_source': 'ERROR'}
 
@@ -2063,7 +2055,6 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ [DASHBOARD-CALLBACK] Error procesando estado del controller: %s", e)
-            import traceback
             logger.error("❌ [DASHBOARD-CALLBACK] Traceback: %s", traceback.format_exc())
 
     # ======================================================================

@@ -97,7 +97,6 @@ def test_integration():
     print("🧪 TESTEANDO INTEGRACIÓN...")
 
     try:
-        from core.limit_order_manager import LimitOrderManager
 
         lom = LimitOrderManager()
 

@@ -48,7 +48,7 @@ try:
     DEPENDENCIES_OK = True
 except ImportError as e:
     print(f"❌ Error importando dependencias: {e}")
-    DEPENDENCIES_OK = False
+#     DEPENDENCIES_OK = False  # Constant redefinition
 
 
 def crear_estructura_directorios():

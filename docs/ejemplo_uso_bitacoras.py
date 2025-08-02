@@ -45,7 +45,7 @@ try:
 except ImportError as e:
     print(f"❌ Error importando módulos: {e}")
     print("🔧 Ejecuta primero: python docs/init_documentation_system.py")
-    IMPORTS_OK = False
+#     IMPORTS_OK = False  # Constant redefinition
     sys.exit(1)
 
 

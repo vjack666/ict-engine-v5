@@ -1,3 +1,4 @@
+import random
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -303,9 +304,9 @@ class POIIntegrationTests(unittest.TestCase):
                 # Validar resumen
                 resumen = result['resumen']
                 self.assertIn('total_pois', resumen)
-                self.assertIsInstance(resumen['total_pois'], int)
+                self.assertIsInstance(resumen.get("total_pois", 0), int)
 
-                print(f"✅ detectar_todos_los_pois {timeframe}: PASSED ({resumen['total_pois']} total POIs)")
+                print(f"✅ detectar_todos_los_pois {timeframe}: PASSED ({resumen.get("total_pois", 0)} total POIs)")
 
     def test_poi_detector_class(self):
         """✅ Test clase unificada POIDetector"""

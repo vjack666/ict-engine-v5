@@ -24,7 +24,6 @@ def test_config_manager_import():
 def test_config_manager_initialization():
     """Test que el config manager se puede inicializar"""
     try:
-        from config.config_manager import ConfigManager
         config_manager = ConfigManager()
         assert config_manager is not None
         assert hasattr(config_manager, 'configs')

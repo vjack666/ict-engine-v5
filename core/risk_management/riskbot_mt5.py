@@ -177,7 +177,6 @@ class RiskBot:
         Obtiene información completa de la cuenta.
         Retorna un objeto con propiedades .equity y .profit para compatibilidad.
         """
-        import MetaTrader5 as mt5
         from types import SimpleNamespace
 
         account_info = mt5.account_info()  # type: ignore

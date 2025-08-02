@@ -22,6 +22,18 @@ from sistema.logging_config import get_specialized_logger
 # RiskBot para cálculo dinámico de volumen
 from core.risk_management.riskbot_mt5 import RiskBot
 
+# MT5 Connector - Import condicional
+try:
+    from sistema.mt5_connector import inicializar_mt5, MT5Connector
+    MT5_CONNECTOR_AVAILABLE = True
+except ImportError:
+    MT5_CONNECTOR_AVAILABLE = False
+    enviar_senal_log("WARNING", "sistema.mt5_connector no disponible - Funcionalidad limitada", __name__, "imports")
+
+    def inicializar_mt5():
+        """Fallback function when MT5 connector is not available"""
+        return mt5.initialize() if mt5 else False
+
 # 🔧 Silenciar advertencias MT5 del linter (falsos positivos)
 # pylint: disable=no-member
 logger = get_specialized_logger('trading')
@@ -559,7 +571,6 @@ class LimitOrderManager:
         """
         try:
             # Verificar conexión MT5
-            from sistema.mt5_connector import inicializar_mt5
             if not inicializar_mt5():
                 enviar_senal_log("CRITICAL", "Error: MT5 no inicializado (FundedNext)", __name__, "trading")
                 return None
@@ -804,7 +815,6 @@ class LimitOrderManager:
     def _check_active_positions(self) -> bool:
         """Verifica si hay posiciones abiertas (trades ejecutados)."""
         try:
-            import MetaTrader5 as mt5
             positions = mt5.positions_get()  # type: ignore
             return positions and len(positions) > 0
         except (ValueError, KeyError, TypeError):
@@ -813,7 +823,6 @@ class LimitOrderManager:
     def _check_active_limit_orders(self) -> bool:
         """Verifica si hay órdenes limit activas (pendientes de 0.05 lotes)."""
         try:
-            import MetaTrader5 as mt5
             orders = mt5.orders_get()  # type: ignore
             if not orders:
                 return False
@@ -841,7 +850,6 @@ class LimitOrderManager:
     def _count_limit_orders(self) -> int:
         """Cuenta el número de órdenes limit de entrada activas."""
         try:
-            import MetaTrader5 as mt5
             orders = mt5.orders_get()  # type: ignore
             if not orders:
                 return 0
@@ -870,7 +878,6 @@ class LimitOrderManager:
     def _cancel_limit_orders_only(self):
         """Cancela solo órdenes limit de entrada, preserva las del grid."""
         try:
-            import MetaTrader5 as mt5
             orders = mt5.orders_get()  # type: ignore
             if not orders:
                 return
@@ -903,7 +910,6 @@ class LimitOrderManager:
     def _keep_only_one_limit_order(self):
         """Mantiene solo la orden limit más reciente, cancela las demás."""
         try:
-            import MetaTrader5 as mt5
             orders = mt5.orders_get()  # type: ignore
             if not orders:
                 return

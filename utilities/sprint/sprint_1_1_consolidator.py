@@ -486,7 +486,6 @@ class Sprint11Consolidator:
 
         # [TEST] Test 1: Import básico del debug launcher
         try:
-            import importlib.util
             launcher_path = self.project_root / "debug_launcher.py"
             if launcher_path.exists():
                 spec = importlib.util.spec_from_file_location("debug_launcher", launcher_path)
@@ -506,7 +505,6 @@ class Sprint11Consolidator:
 
         # [TEST] Test 2: Sistema de logging funcional
         try:
-            from sistema.logging_interface import enviar_senal_log
             enviar_senal_log("INFO", "Test de integración Sprint 1.1", "sprint_consolidator", "test")
             integration_results['tests_run'] += 1
             integration_results['tests_passed'] += 1

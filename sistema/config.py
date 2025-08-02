@@ -73,9 +73,9 @@ TIMEFRAMES_SOPORTADOS = ['M1', 'M3', 'M5', 'M15', 'H1', 'H4', 'D1']
 USER_DIR = os.path.expanduser("~")
 SAFE_DATA_DIR = os.path.join(USER_DIR, "Documents", "GRID SCALP")
 TRADING_LOGS_DIR = os.path.join(SAFE_DATA_DIR, "trading_logs")
-SAFE_DATA_DIR = os.path.join(USER_DIR, "Documents", "GRID SCALP")
+# SAFE_DATA_DIR = os.path.join(USER_DIR, "Documents", "GRID SCALP")  # Constant redefinition
 ERROR_LOGS_DIR = os.path.join(SAFE_DATA_DIR, "error_logs")
-TRADING_LOGS_DIR = os.path.join(SAFE_DATA_DIR, "trading_logs")
+# TRADING_LOGS_DIR = os.path.join(SAFE_DATA_DIR, "trading_logs")  # Constant redefinition
 LOG_DEBUG_PATH = os.path.join(SAFE_DATA_DIR, "log_debug.csv")
 EVENTOS_SESION_PATH = os.path.join(SAFE_DATA_DIR, "eventos_sesion.csv")
 

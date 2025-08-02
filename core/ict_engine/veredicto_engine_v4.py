@@ -19,7 +19,7 @@ Fecha: 27 Julio 2025
 """
 
 import logging
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Optional, Dict, List, Any, Tuple
 from datetime import datetime
 
 # Logger usando sistema estándar SLUC v2.0
