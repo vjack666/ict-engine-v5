@@ -1,4 +1,4 @@
-# 🎯 SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM COMPLETE
+# [TARGET] SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM COMPLETE
 # Herramienta final para consolidar todas las mejoras del Sprint 1.1
 
 import sys
@@ -36,7 +36,7 @@ class Sprint11Consolidator:
             'next_actions': []
         }
 
-        # 🎯 Tareas del Sprint 1.1
+        # [TARGET] Tareas del Sprint 1.1
         self.sprint_tasks = {
             'debug_launcher': {
                 'name': 'Crear debug_launcher.py con DevTools F12 support',
@@ -72,7 +72,7 @@ class Sprint11Consolidator:
 
     def run_complete_validation(self) -> Dict:
         """Ejecuta validación completa del Sprint 1.1"""
-        print("🔍 Iniciando validación completa del Sprint 1.1...")
+        print("[SCAN] Iniciando validación completa del Sprint 1.1...")
 
         validation_results = {
             'overall_status': 'UNKNOWN',
@@ -82,24 +82,24 @@ class Sprint11Consolidator:
             'recommendations': []
         }
 
-        # ✅ Validar cada tarea del sprint
+        # [OK] Validar cada tarea del sprint
         for task_id, task_info in self.sprint_tasks.items():
-            print(f"\n📋 Validando tarea: {task_info['name']}")
+            print(f"\n[CHECK] Validando tarea: {task_info['name']}")
 
             task_result = self._validate_task(task_id, task_info)
             validation_results['task_results'][task_id] = task_result
 
             if task_result['status'] == 'COMPLETED':
                 self.sprint_report['tasks_completed'].append(task_id)
-                print(f"  ✅ COMPLETADA")
+                print(f"  [OK] COMPLETADA")
             elif task_result['status'] == 'FAILED':
                 self.sprint_report['tasks_pending'].append(task_id)
-                print(f"  ❌ FALLIDA: {task_result.get('error', 'Unknown error')}")
+                print(f"  [ERROR] FALLIDA: {task_result.get('error', 'Unknown error')}")
             else:
                 self.sprint_report['tasks_pending'].append(task_id)
-                print(f"  ⏳ PENDIENTE")
+                print(f"  [PENDING] PENDIENTE")
 
-        # 🎯 Determinar estado general
+        # [TARGET] Determinar estado general
         completed_tasks = len(self.sprint_report['tasks_completed'])
         total_tasks = len(self.sprint_tasks)
         completion_rate = (completed_tasks / total_tasks) * 100
@@ -157,17 +157,17 @@ class Sprint11Consolidator:
             'status': 'PENDING'
         }
 
-        # ✅ Check 1: Archivo existe
+        # [OK] Check 1: Archivo existe
         launcher_path = self.project_root / "utilities" / "debug" / "debug_launcher.py"
         if launcher_path.exists():
             result['checks_passed'] += 1
-            result['details'].append("✅ debug_launcher.py existe")
+            result['details'].append("[OK] debug_launcher.py existe")
         else:
-            result['details'].append("❌ debug_launcher.py no encontrado")
+            result['details'].append("[ERROR] debug_launcher.py no encontrado")
             result['status'] = 'FAILED'
             return result
 
-        # ✅ Check 2: Imports correctos
+        # [OK] Check 2: Imports correctos
         try:
             with open(launcher_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -181,37 +181,37 @@ class Sprint11Consolidator:
             imports_ok = all(imp in content for imp in required_imports)
             if imports_ok:
                 result['checks_passed'] += 1
-                result['details'].append("✅ Imports correctos")
+                result['details'].append("[OK] Imports correctos")
             else:
-                result['details'].append("❌ Imports faltantes")
+                result['details'].append("[ERROR] Imports faltantes")
 
         except Exception as e:
-            result['details'].append(f"❌ Error leyendo archivo: {e}")
+            result['details'].append(f"[ERROR] Error leyendo archivo: {e}")
 
-        # ✅ Check 3: Bindings F12
+        # [OK] Check 3: Bindings F12
         if 'F12' in content or 'f12' in content:
             result['checks_passed'] += 1
-            result['details'].append("✅ Binding F12 presente")
+            result['details'].append("[OK] Binding F12 presente")
         else:
-            result['details'].append("❌ Binding F12 no encontrado")
+            result['details'].append("[ERROR] Binding F12 no encontrado")
 
-        # ✅ Check 4: DevTools functionality
+        # [OK] Check 4: DevTools functionality
         if 'toggle_devtools' in content:
             result['checks_passed'] += 1
-            result['details'].append("✅ DevTools functionality presente")
+            result['details'].append("[OK] DevTools functionality presente")
         else:
-            result['details'].append("❌ DevTools functionality faltante")
+            result['details'].append("[ERROR] DevTools functionality faltante")
 
-        # ✅ Check 5: Launch modes
+        # [OK] Check 5: Launch modes
         launch_modes = ['launch_normal', 'launch_debug', 'launch_console']
         modes_present = sum(1 for mode in launch_modes if mode in content)
         if modes_present >= 2:
             result['checks_passed'] += 1
-            result['details'].append(f"✅ Launch modes ({modes_present}/3)")
+            result['details'].append(f"[OK] Launch modes ({modes_present}/3)")
         else:
-            result['details'].append(f"❌ Launch modes insuficientes ({modes_present}/3)")
+            result['details'].append(f"[ERROR] Launch modes insuficientes ({modes_present}/3)")
 
-        # 🎯 Determinar estado final
+        # [TARGET] Determinar estado final
         if result['checks_passed'] >= 4:
             result['status'] = 'COMPLETED'
         elif result['checks_passed'] >= 2:
@@ -231,15 +231,15 @@ class Sprint11Consolidator:
             'status': 'PENDING'
         }
 
-        # ✅ Check 1: Print migration tool existe
+        # [OK] Check 1: Print migration tool existe
         migration_tool_path = self.project_root / "utilities" / "migration" / "print_migration_tool.py"
         if migration_tool_path.exists():
             result['checks_passed'] += 1
-            result['details'].append("✅ Print migration tool existe")
+            result['details'].append("[OK] Print migration tool existe")
         else:
-            result['details'].append("❌ Print migration tool no encontrado")
+            result['details'].append("[ERROR] Print migration tool no encontrado")
 
-        # ✅ Check 2: Escanear prints restantes
+        # [OK] Check 2: Escanear prints restantes
         try:
             # Importar herramienta de migración si existe
             if migration_tool_path.exists():
@@ -254,19 +254,19 @@ class Sprint11Consolidator:
                 total_prints = scan_results['total_prints']
                 if total_prints == 0:
                     result['checks_passed'] += 2  # Double points for zero prints
-                    result['details'].append("✅ No hay print statements restantes")
+                    result['details'].append("[OK] No hay print statements restantes")
                 elif total_prints <= 5:
                     result['checks_passed'] += 1
-                    result['details'].append(f"⚠️ Quedan {total_prints} prints (aceptable)")
+                    result['details'].append(f"[WARNING] Quedan {total_prints} prints (aceptable)")
                 else:
-                    result['details'].append(f"❌ Quedan {total_prints} prints (demasiados)")
+                    result['details'].append(f"[ERROR] Quedan {total_prints} prints (demasiados)")
             else:
-                result['details'].append("❌ No se pudo escanear prints")
+                result['details'].append("[ERROR] No se pudo escanear prints")
 
         except Exception as e:
-            result['details'].append(f"❌ Error escaneando prints: {e}")
+            result['details'].append(f"[ERROR] Error escaneando prints: {e}")
 
-        # ✅ Check 3: enviar_senal_log usage
+        # [OK] Check 3: enviar_senal_log usage
         enviar_senal_log_usage = 0
         try:
             for py_file in self.project_root.rglob("*.py"):
@@ -283,14 +283,14 @@ class Sprint11Consolidator:
 
             if enviar_senal_log_usage > 0:
                 result['checks_passed'] += 1
-                result['details'].append(f"✅ enviar_senal_log usado {enviar_senal_log_usage} veces")
+                result['details'].append(f"[OK] enviar_senal_log usado {enviar_senal_log_usage} veces")
             else:
-                result['details'].append("❌ enviar_senal_log no encontrado")
+                result['details'].append("[ERROR] enviar_senal_log no encontrado")
 
         except Exception as e:
-            result['details'].append(f"❌ Error verificando enviar_senal_log: {e}")
+            result['details'].append(f"[ERROR] Error verificando enviar_senal_log: {e}")
 
-        # 🎯 Determinar estado
+        # [TARGET] Determinar estado
         if result['checks_passed'] >= 3:
             result['status'] = 'COMPLETED'
         elif result['checks_passed'] >= 2:
@@ -310,7 +310,7 @@ class Sprint11Consolidator:
             'status': 'PENDING'
         }
 
-        # ✅ Check 1: Environment variables en debug launcher
+        # [OK] Check 1: Environment variables en debug launcher
         launcher_path = self.project_root / "utilities" / "debug" / "debug_launcher.py"
         if launcher_path.exists():
             try:
@@ -319,20 +319,20 @@ class Sprint11Consolidator:
 
                 if 'TEXTUAL_CONSOLE' in content:
                     result['checks_passed'] += 1
-                    result['details'].append("✅ TEXTUAL_CONSOLE configurado")
+                    result['details'].append("[OK] TEXTUAL_CONSOLE configurado")
                 else:
-                    result['details'].append("❌ TEXTUAL_CONSOLE no configurado")
+                    result['details'].append("[ERROR] TEXTUAL_CONSOLE no configurado")
 
                 if 'TEXTUAL_DEBUG' in content:
                     result['checks_passed'] += 1
-                    result['details'].append("✅ TEXTUAL_DEBUG configurado")
+                    result['details'].append("[OK] TEXTUAL_DEBUG configurado")
                 else:
-                    result['details'].append("❌ TEXTUAL_DEBUG no configurado")
+                    result['details'].append("[ERROR] TEXTUAL_DEBUG no configurado")
 
             except Exception as e:
-                result['details'].append(f"❌ Error verificando console mode: {e}")
+                result['details'].append(f"[ERROR] Error verificando console mode: {e}")
 
-        # ✅ Check 2: Console mode launch option
+        # [OK] Check 2: Console mode launch option
         if launcher_path.exists():
             try:
                 with open(launcher_path, 'r', encoding='utf-8') as f:
@@ -340,12 +340,12 @@ class Sprint11Consolidator:
 
                 if 'launch_console' in content:
                     result['checks_passed'] += 1
-                    result['details'].append("✅ Launch console mode disponible")
+                    result['details'].append("[OK] Launch console mode disponible")
                 else:
-                    result['details'].append("❌ Launch console mode no encontrado")
+                    result['details'].append("[ERROR] Launch console mode no encontrado")
 
             except Exception as e:
-                result['details'].append(f"❌ Error verificando launch console: {e}")        # 🎯 Determinar estado
+                result['details'].append(f"[ERROR] Error verificando launch console: {e}")        # [TARGET] Determinar estado
         if result['checks_passed'] >= 2:
             result['status'] = 'COMPLETED'
         elif result['checks_passed'] >= 1:
@@ -365,7 +365,7 @@ class Sprint11Consolidator:
             'status': 'PENDING'
         }
 
-        # ✅ Check 1: Screenshot functionality en debug launcher
+        # [OK] Check 1: Screenshot functionality en debug launcher
         launcher_path = self.project_root / "utilities" / "debug" / "debug_launcher.py"
         if launcher_path.exists():
             try:
@@ -374,18 +374,18 @@ class Sprint11Consolidator:
 
                 if 'action_screenshot' in content:
                     result['checks_passed'] += 1
-                    result['details'].append("✅ Screenshot action implementado")
+                    result['details'].append("[OK] Screenshot action implementado")
                 else:
-                    result['details'].append("❌ Screenshot action no encontrado")
+                    result['details'].append("[ERROR] Screenshot action no encontrado")
 
                 if '_capture_debug_screenshot' in content:
                     result['checks_passed'] += 1
-                    result['details'].append("✅ Screenshot capture function presente")
+                    result['details'].append("[OK] Screenshot capture function presente")
                 else:
-                    result['details'].append("❌ Screenshot capture function faltante")
+                    result['details'].append("[ERROR] Screenshot capture function faltante")
 
             except Exception as e:
-                result['details'].append(f"❌ Error verificando screenshot tool: {e}")        # 🎯 Determinar estado
+                result['details'].append(f"[ERROR] Error verificando screenshot tool: {e}")        # [TARGET] Determinar estado
         if result['checks_passed'] >= 1:
             result['status'] = 'COMPLETED'
         else:
@@ -403,31 +403,31 @@ class Sprint11Consolidator:
             'status': 'PENDING'
         }
 
-        # ✅ Check 1: Logging system funcionando
+        # [OK] Check 1: Logging system funcionando
         try:
             from sistema.logging_interface import enviar_senal_log
             result['checks_passed'] += 1
-            result['details'].append("✅ Sistema de logging funcional")
+            result['details'].append("[OK] Sistema de logging funcional")
         except ImportError:
-            result['details'].append("❌ Sistema de logging no disponible")
+            result['details'].append("[ERROR] Sistema de logging no disponible")
 
-        # ✅ Check 2: Dashboard principal ejecutable
+        # [OK] Check 2: Dashboard principal ejecutable
         dashboard_path = self.project_root / "dashboard" / "dashboard_definitivo.py"
         if dashboard_path.exists():
             result['checks_passed'] += 1
-            result['details'].append("✅ Dashboard principal existe")
+            result['details'].append("[OK] Dashboard principal existe")
         else:
-            result['details'].append("❌ Dashboard principal no encontrado")
+            result['details'].append("[ERROR] Dashboard principal no encontrado")
 
-        # ✅ Check 3: Debug launcher ejecutable
+        # [OK] Check 3: Debug launcher ejecutable
         launcher_path = self.project_root / "utilities" / "debug" / "debug_launcher.py"
         if launcher_path.exists():
             result['checks_passed'] += 1
-            result['details'].append("✅ Debug launcher ejecutable")
+            result['details'].append("[OK] Debug launcher ejecutable")
         else:
-            result['details'].append("❌ Debug launcher no disponible")
+            result['details'].append("[ERROR] Debug launcher no disponible")
 
-        # 🎯 Determinar estado
+        # [TARGET] Determinar estado
         if result['checks_passed'] >= 2:
             result['status'] = 'COMPLETED'
         elif result['checks_passed'] >= 1:
@@ -442,7 +442,7 @@ class Sprint11Consolidator:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         report_path = self.project_root / f"sprint_1_1_report_{timestamp}.json"
 
-        # 📊 Métricas adicionales
+        # [REPORT] Métricas adicionales
         self.sprint_report['metrics'] = {
             'completion_rate': self.sprint_report.get('completion_rate', 0),
             'tasks_total': len(self.sprint_tasks),
@@ -451,23 +451,23 @@ class Sprint11Consolidator:
             'validation_timestamp': datetime.now().isoformat()
         }
 
-        # 🎯 Próximas acciones recomendadas
+        # [TARGET] Próximas acciones recomendadas
         if self.sprint_report['completion_rate'] >= 80:
             self.sprint_report['next_actions'] = [
-                "✅ Sprint 1.1 mayormente completo",
-                "🚀 Proceder con Sprint 1.2: Trading Engine Foundation",
-                "📊 Ejecutar testing final de integración",
-                "📋 Actualizar documentation del sistema"
+                "[OK] Sprint 1.1 mayormente completo",
+                "[LAUNCH] Proceder con Sprint 1.2: Trading Engine Foundation",
+                "[REPORT] Ejecutar testing final de integración",
+                "[LIST] Actualizar documentation del sistema"
             ]
         else:
             self.sprint_report['next_actions'] = [
-                "⚠️ Completar tareas pendientes del Sprint 1.1",
-                "🔍 Resolver issues críticos identificados",
-                "🧪 Ejecutar validación nuevamente",
-                "📋 Revisar criterios de aceptación"
+                "[WARNING] Completar tareas pendientes del Sprint 1.1",
+                "[SCAN] Resolver issues críticos identificados",
+                "[TEST] Ejecutar validación nuevamente",
+                "[LIST] Revisar criterios de aceptación"
             ]
 
-        # 💾 Guardar reporte
+        # [SAVE] Guardar reporte
         with open(report_path, 'w', encoding='utf-8') as f:
             json.dump(self.sprint_report, f, indent=2, ensure_ascii=False)
 
@@ -475,7 +475,7 @@ class Sprint11Consolidator:
 
     def run_integration_tests(self) -> Dict:
         """Ejecuta tests de integración básicos"""
-        print("🧪 Ejecutando tests de integración...")
+        print("[TEST] Ejecutando tests de integración...")
 
         integration_results = {
             'tests_run': 0,
@@ -484,7 +484,7 @@ class Sprint11Consolidator:
             'test_details': []
         }
 
-        # 🧪 Test 1: Import básico del debug launcher
+        # [TEST] Test 1: Import básico del debug launcher
         try:
             import importlib.util
             launcher_path = self.project_root / "debug_launcher.py"
@@ -494,29 +494,29 @@ class Sprint11Consolidator:
                 # No ejecutamos spec.loader.exec_module() para evitar side effects
                 integration_results['tests_run'] += 1
                 integration_results['tests_passed'] += 1
-                integration_results['test_details'].append("✅ Debug launcher importable")
+                integration_results['test_details'].append("[OK] Debug launcher importable")
             else:
                 integration_results['tests_run'] += 1
                 integration_results['tests_failed'] += 1
-                integration_results['test_details'].append("❌ Debug launcher no encontrado")
+                integration_results['test_details'].append("[ERROR] Debug launcher no encontrado")
         except Exception as e:
             integration_results['tests_run'] += 1
             integration_results['tests_failed'] += 1
-            integration_results['test_details'].append(f"❌ Error importando debug launcher: {e}")
+            integration_results['test_details'].append(f"[ERROR] Error importando debug launcher: {e}")
 
-        # 🧪 Test 2: Sistema de logging funcional
+        # [TEST] Test 2: Sistema de logging funcional
         try:
             from sistema.logging_interface import enviar_senal_log
             enviar_senal_log("INFO", "Test de integración Sprint 1.1", "sprint_consolidator", "test")
             integration_results['tests_run'] += 1
             integration_results['tests_passed'] += 1
-            integration_results['test_details'].append("✅ Sistema de logging funcional")
+            integration_results['test_details'].append("[OK] Sistema de logging funcional")
         except Exception as e:
             integration_results['tests_run'] += 1
             integration_results['tests_failed'] += 1
-            integration_results['test_details'].append(f"❌ Error en sistema de logging: {e}")
+            integration_results['test_details'].append(f"[ERROR] Error en sistema de logging: {e}")
 
-        # 🧪 Test 3: Estructura de directorios
+        # [TEST] Test 3: Estructura de directorios
         required_dirs = ['dashboard', 'core', 'sistema', 'config']
         dirs_ok = 0
         for dir_name in required_dirs:
@@ -526,10 +526,10 @@ class Sprint11Consolidator:
         integration_results['tests_run'] += 1
         if dirs_ok == len(required_dirs):
             integration_results['tests_passed'] += 1
-            integration_results['test_details'].append("✅ Estructura de directorios correcta")
+            integration_results['test_details'].append("[OK] Estructura de directorios correcta")
         else:
             integration_results['tests_failed'] += 1
-            integration_results['test_details'].append(f"❌ Estructura de directorios incompleta ({dirs_ok}/{len(required_dirs)})")
+            integration_results['test_details'].append(f"[ERROR] Estructura de directorios incompleta ({dirs_ok}/{len(required_dirs)})")
 
         return integration_results
 
@@ -548,78 +548,78 @@ def main():
 
     args = parser.parse_args()
 
-    # 🎯 Inicializar consolidator
+    # [TARGET] Inicializar consolidator
     consolidator = Sprint11Consolidator(args.project_root)
 
-    print("🎯 SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM & CLEAN CODE")
+    print("[TARGET] SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM & CLEAN CODE")
     print("=" * 60)
 
     if args.integration_only:
-        # 🧪 Solo integration tests
-        print("🧪 Ejecutando solo tests de integración...")
+        # [TEST] Solo integration tests
+        print("[TEST] Ejecutando solo tests de integración...")
         integration_results = consolidator.run_integration_tests()
 
-        print(f"\n📊 RESULTADOS DE INTEGRACIÓN:")
-        print(f"  🧪 Tests ejecutados: {integration_results['tests_run']}")
-        print(f"  ✅ Tests pasados: {integration_results['tests_passed']}")
-        print(f"  ❌ Tests fallidos: {integration_results['tests_failed']}")
+        print(f"\n[REPORT] RESULTADOS DE INTEGRACIÓN:")
+        print(f"  [TEST] Tests ejecutados: {integration_results['tests_run']}")
+        print(f"  [OK] Tests pasados: {integration_results['tests_passed']}")
+        print(f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}")
 
         for detail in integration_results['test_details']:
             print(f"  {detail}")
 
     elif args.validation_only:
-        # 🔍 Solo validación
-        print("🔍 Ejecutando solo validación de tareas...")
+        # [SCAN] Solo validación
+        print("[SCAN] Ejecutando solo validación de tareas...")
         validation_results = consolidator.run_complete_validation()
 
-        print(f"\n📊 RESULTADOS DE VALIDACIÓN:")
-        print(f"  📈 Estado general: {validation_results['overall_status']}")
-        print(f"  📋 Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
-        print(f"  ✅ Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
-        print(f"  ⏳ Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
+        print(f"\n[REPORT] RESULTADOS DE VALIDACIÓN:")
+        print(f"  [CHART] Estado general: {validation_results['overall_status']}")
+        print(f"  [PROGRESS] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
+        print(f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
+        print(f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
 
     else:
-        # 🚀 Validación completa + integration tests
-        print("🚀 Ejecutando validación completa y tests de integración...")
+        # [LAUNCH] Validación completa + integration tests
+        print("[LAUNCH] Ejecutando validación completa y tests de integración...")
 
-        # 🔍 Validación de tareas
+        # [SCAN] Validación de tareas
         validation_results = consolidator.run_complete_validation()
 
-        # 🧪 Integration tests
+        # [TEST] Integration tests
         integration_results = consolidator.run_integration_tests()
 
-        # 📊 Resultados combinados
-        print(f"\n🎉 RESUMEN COMPLETO DEL SPRINT 1.1:")
+        # [REPORT] Resultados combinados
+        print(f"\n[SUCCESS] RESUMEN COMPLETO DEL SPRINT 1.1:")
         print("=" * 50)
 
-        print(f"\n📋 VALIDACIÓN DE TAREAS:")
-        print(f"  📈 Estado general: {validation_results['overall_status']}")
-        print(f"  📊 Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
-        print(f"  ✅ Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
-        print(f"  ⏳ Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
+        print(f"\n[VALIDATION] VALIDACIÓN DE TAREAS:")
+        print(f"  [CHART] Estado general: {validation_results['overall_status']}")
+        print(f"  [REPORT] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
+        print(f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
+        print(f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
 
-        print(f"\n🧪 TESTS DE INTEGRACIÓN:")
-        print(f"  🧪 Tests ejecutados: {integration_results['tests_run']}")
-        print(f"  ✅ Tests pasados: {integration_results['tests_passed']}")
-        print(f"  ❌ Tests fallidos: {integration_results['tests_failed']}")
+        print(f"\n[TEST] TESTS DE INTEGRACIÓN:")
+        print(f"  [TEST] Tests ejecutados: {integration_results['tests_run']}")
+        print(f"  [OK] Tests pasados: {integration_results['tests_passed']}")
+        print(f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}")
 
-        # 🎯 Recomendaciones
-        print(f"\n🎯 PRÓXIMAS ACCIONES:")
+        # [TARGET] Recomendaciones
+        print(f"\n[TARGET] PRÓXIMAS ACCIONES:")
         for action in consolidator.sprint_report['next_actions']:
             print(f"  {action}")
 
         # 🏆 Estado final
         if consolidator.sprint_report['completion_rate'] >= 80:
             print(f"\n🏆 ¡SPRINT 1.1 EXITOSO!")
-            print("🚀 Listo para proceder con Sprint 1.2: Trading Engine Foundation")
+            print("[LAUNCH] Listo para proceder con Sprint 1.2: Trading Engine Foundation")
         else:
-            print(f"\n⚠️ SPRINT 1.1 REQUIERE ATENCIÓN")
-            print("🔧 Completar tareas pendientes antes de continuar")
+            print(f"\n[WARNING] SPRINT 1.1 REQUIERE ATENCIÓN")
+            print("[TOOL] Completar tareas pendientes antes de continuar")
 
-    # 📊 Generar reporte si se solicita
+    # [REPORT] Generar reporte si se solicita
     if args.report:
         report_path = consolidator.generate_sprint_report()
-        print(f"\n📊 Reporte detallado guardado en: {report_path}")
+        print(f"\n[REPORT] Reporte detallado guardado en: {report_path}")
 
 
 if __name__ == "__main__":
