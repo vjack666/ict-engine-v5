@@ -28,7 +28,7 @@ try:
     MT5_CONNECTOR_AVAILABLE = True
 except ImportError:
     MT5_CONNECTOR_AVAILABLE = False
-    enviar_senal_log("WARNING", "sistema.mt5_connector no disponible - Funcionalidad limitada", __name__, "imports")
+    enviar_senal_log("WARNING", "mt5_connector no disponible - Funcionalidad limitada", __name__, "mt5")
 
     def inicializar_mt5():
         """Fallback function when MT5 connector is not available"""

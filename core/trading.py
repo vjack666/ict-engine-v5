@@ -35,7 +35,7 @@ try:
     TRADING_SCHEDULE_AVAILABLE = True
 except ImportError:
     TRADING_SCHEDULE_AVAILABLE = False
-    enviar_senal_log("WARNING", "sistema.trading_schedule no disponible - Usando sesiones básicas", __name__, "imports")
+    enviar_senal_log("WARNING", "trading_schedule no disponible - Usando sesiones básicas", __name__, "trading")
 
     # Fallback: Definir sesiones básicas
     SESIONES_TRADING = {

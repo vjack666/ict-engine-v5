@@ -1038,10 +1038,10 @@ def _update_ob_mitigation_and_break(df, obs):
     except (JSONDecodeError, ValueError):
         return obs
 
-def detectar_fair_value_gaps(df):
+def detectar_fair_value_gaps_local(df):
     """
     Detecta Fair Value Gaps en el DataFrame.
-    Función consolidada desde analisis_ict.py
+    Función consolidada desde analisis_ict.py (RENOMBRADA para evitar conflictos)
     """
     try:
         if df is None or len(df) < 3:
@@ -1140,7 +1140,7 @@ __all__ = [
 
     # Detección de patrones
     'detectar_swing_points',
-    'detectar_fair_value_gaps',
+    'detectar_fair_value_gaps_local',
 
     # Funciones internas
     '_update_bias_h4',
@@ -1224,7 +1224,7 @@ class ICTDetector:
 
             # 1. DETECTAR FAIR VALUE GAPS
             try:
-                fvgs = detectar_fair_value_gaps(df)
+                fvgs = detectar_fair_value_gaps_local(df)
                 if fvgs:
                     for fvg in fvgs:
                         pattern = {
