@@ -792,7 +792,7 @@ class AnalysisOrchestrator:
                 uncertainty_factors=uncertainty_factors,
                 confidence_drivers=confidence_drivers,
                 trading_recommendation=trading_recommendation,
-                confidence_nivel="HIGH" if overall_confidence > 0.7 else "MEDIUM" if overall_confidence > 0.4 else "LOW"
+                confidence_level="HIGH" if overall_confidence > 0.7 else "MEDIUM" if overall_confidence > 0.4 else "LOW"
             )
 
             execution_time = (time.time() - start_time) * 1000
