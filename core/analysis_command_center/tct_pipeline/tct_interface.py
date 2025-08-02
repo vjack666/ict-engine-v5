@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_tct
 from core.ict_engine import (
     MarketContext,
     OptimizedICTAnalysis,
@@ -71,19 +71,19 @@ class TCTInterface:
 
         # 📝 CAJA NEGRA - LOG INICIALIZACIÓN
         enviar_senal_log(
-            level='DEBUG',
-            message=f"TCT Interface inicializado | "
+            nivel='DEBUG',
+            mensaje=f"TCT Interface inicializado | "
                    f"Medición: {measurement_interval}s | "
                    f"Agregación: {aggregation_interval}s | "
                    f"Exports: {enable_exports}",
-            emisor='tct_interface',
+            fuente='tct_interface',
             categoria='tct'
         )
 
         enviar_senal_log(
-            level='INFO',
-            message="🚪 TCT Interface - Sistema principal activado",
-            emisor='tct_interface',
+            nivel='INFO',
+            mensaje="🚪 TCT Interface - Sistema principal activado",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -97,9 +97,9 @@ class TCTInterface:
 
         if self._running:
             enviar_senal_log(
-                level='WARNING',
-                message="🚪 TCT Interface ya está ejecutándose",
-                emisor='tct_interface',
+                nivel='WARNING',
+                mensaje="🚪 TCT Interface ya está ejecutándose",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return False
@@ -135,20 +135,20 @@ class TCTInterface:
 
         # 📝 CAJA NEGRA - LOG START
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🚀 TCT MONITORING STARTED | "
+            nivel='DEBUG',
+            mensaje=f"🚀 TCT MONITORING STARTED | "
                    f"Symbols: {symbols} | "
                    f"Timeframes: {timeframes} | "
                    f"Threads: Measurement={self._measurement_thread.is_alive()}, "
                    f"Aggregation={self._aggregation_thread.is_alive()}",
-            emisor='tct_interface',
+            fuente='tct_interface',
             categoria='tct'
         )
 
         enviar_senal_log(
-            level='INFO',
-            message=f"🚀 TCT Pipeline iniciado - {len(symbols)} símbolos, {len(timeframes)} timeframes",
-            emisor='tct_interface',
+            nivel='INFO',
+            mensaje=f"🚀 TCT Pipeline iniciado - {len(symbols)} símbolos, {len(timeframes)} timeframes",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -159,9 +159,9 @@ class TCTInterface:
 
         if not self._running:
             enviar_senal_log(
-                level='WARNING',
-                message="🚪 TCT Interface no está ejecutándose",
-                emisor='tct_interface',
+                nivel='WARNING',
+                mensaje="🚪 TCT Interface no está ejecutándose",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return False
@@ -179,16 +179,16 @@ class TCTInterface:
 
         # 📝 CAJA NEGRA - LOG STOP
         enviar_senal_log(
-            level='DEBUG',
-            message="🛑 TCT MONITORING STOPPED | All threads terminated",
-            emisor='tct_interface',
+            nivel='DEBUG',
+            mensaje="🛑 TCT MONITORING STOPPED | All threads terminated",
+            fuente='tct_interface',
             categoria='tct'
         )
 
         enviar_senal_log(
-            level='INFO',
-            message="🛑 TCT Pipeline detenido",
-            emisor='tct_interface',
+            nivel='INFO',
+            mensaje="🛑 TCT Pipeline detenido",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -247,13 +247,13 @@ class TCTInterface:
 
             # 📝 CAJA NEGRA - LOG SINGLE MEASUREMENT (safe encoding)
             enviar_senal_log(
-                level='DEBUG',
-                message=f"TCT MEASUREMENT | "
+                nivel='DEBUG',
+                mensaje=f"TCT MEASUREMENT | "
                        f"Symbol: {symbol} | "
                        f"Timeframe: {timeframe} | "
                        f"TCT: {tct_duration_ms:.2f}ms | "
                        f"ID: {measurement_id}",
-                emisor='tct_interface',
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -261,10 +261,10 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='ERROR',
-                message=f"ERROR en medicion unica TCT | Symbol: {symbol} | "
+                nivel='ERROR',
+                mensaje=f"ERROR en medicion unica TCT | Symbol: {symbol} | "
                        f"Timeframe: {timeframe} | Error: {str(e)}",
-                emisor='tct_interface',
+                fuente='tct_interface',
                 categoria='tct'
             )
             return None
@@ -288,12 +288,12 @@ class TCTInterface:
 
         # 📝 CAJA NEGRA - LOG STATUS REQUEST (safe encoding)
         enviar_senal_log(
-            level='DEBUG',
-            message=f"TCT STATUS REQUEST | "
+            nivel='DEBUG',
+            mensaje=f"TCT STATUS REQUEST | "
                    f"Running: {status['is_running']} | "
                    f"Active: {status['current_measurements']} | "
                    f"Total: {status['total_measurements']}",
-            emisor='tct_interface',
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -307,9 +307,9 @@ class TCTInterface:
 
         if self._last_aggregation is None:
             enviar_senal_log(
-                level='DEBUG',
-                message="📊 Dashboard data request - No aggregated data available yet",
-                emisor='tct_interface',
+                nivel='DEBUG',
+                mensaje="📊 Dashboard data request - No aggregated data available yet",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return None
@@ -319,11 +319,11 @@ class TCTInterface:
 
         # 📝 CAJA NEGRA - LOG DASHBOARD DATA
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📊 DASHBOARD DATA PROVIDED | "
+            nivel='DEBUG',
+            mensaje=f"📊 DASHBOARD DATA PROVIDED | "
                    f"Grade: {dashboard_data['tct_status']['performance_grade']} | "
                    f"Timeframes: {len(dashboard_data['tct_timeframes'])}",
-            emisor='tct_interface',
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -337,9 +337,9 @@ class TCTInterface:
 
         if self._last_aggregation is None:
             enviar_senal_log(
-                level='WARNING',
-                message="💾 Export request - No aggregated data available",
-                emisor='tct_interface',
+                nivel='WARNING',
+                mensaje="💾 Export request - No aggregated data available",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return None
@@ -351,18 +351,18 @@ class TCTInterface:
                 export_path = self.formatter.format_for_csv_export(self._last_aggregation)
             else:
                 enviar_senal_log(
-                    level='ERROR',
-                    message=f"💾 Export format no soportado: {format_type}",
-                    emisor='tct_interface',
+                    nivel='ERROR',
+                    mensaje=f"💾 Export format no soportado: {format_type}",
+                    fuente='tct_interface',
                     categoria='tct'
                 )
                 return None
 
             # 📝 CAJA NEGRA - LOG EXPORT
             enviar_senal_log(
-                level='INFO',
-                message=f"💾 TCT data exported - {format_type.upper()} format",
-                emisor='tct_interface',
+                nivel='INFO',
+                mensaje=f"💾 TCT data exported - {format_type.upper()} format",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -370,9 +370,9 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='ERROR',
-                message=f"❌ ERROR en export TCT | Format: {format_type} | Error: {str(e)}",
-                emisor='tct_interface',
+                nivel='ERROR',
+                mensaje=f"❌ ERROR en export TCT | Format: {format_type} | Error: {str(e)}",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return None
@@ -381,9 +381,9 @@ class TCTInterface:
         """Loop principal de mediciones (thread background)"""
 
         enviar_senal_log(
-            level='DEBUG',
-            message="🔄 MEASUREMENT LOOP iniciado",
-            emisor='tct_interface',
+            nivel='DEBUG',
+            mensaje="🔄 MEASUREMENT LOOP iniciado",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -406,9 +406,9 @@ class TCTInterface:
                             pass
                         else:
                             enviar_senal_log(
-                                level='WARNING',
-                                message=f"⚠️ Measurement failed | {symbol}_{timeframe}",
-                                emisor='tct_interface',
+                                nivel='WARNING',
+                                mensaje=f"⚠️ Measurement failed | {symbol}_{timeframe}",
+                                fuente='tct_interface',
                                 categoria='tct'
                             )
 
@@ -417,17 +417,17 @@ class TCTInterface:
 
             except Exception as e:
                 enviar_senal_log(
-                    level='ERROR',
-                    message=f"❌ ERROR en measurement loop: {str(e)}",
-                    emisor='tct_interface',
+                    nivel='ERROR',
+                    mensaje=f"❌ ERROR en measurement loop: {str(e)}",
+                    fuente='tct_interface',
                     categoria='tct'
                 )
                 time.sleep(self.measurement_interval)  # Continue after error
 
         enviar_senal_log(
-            level='DEBUG',
-            message="🔄 MEASUREMENT LOOP terminado",
-            emisor='tct_interface',
+            nivel='DEBUG',
+            mensaje="🔄 MEASUREMENT LOOP terminado",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -435,9 +435,9 @@ class TCTInterface:
         """Loop de agregación (thread background)"""
 
         enviar_senal_log(
-            level='DEBUG',
-            message="📊 AGGREGATION LOOP iniciado",
-            emisor='tct_interface',
+            nivel='DEBUG',
+            mensaje="📊 AGGREGATION LOOP iniciado",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -455,19 +455,19 @@ class TCTInterface:
                 if self._last_aggregation:
                     # 📝 CAJA NEGRA - LOG AGGREGATION
                     enviar_senal_log(
-                        level='DEBUG',
-                        message=f"📊 AGGREGATION COMPLETED | "
+                        nivel='DEBUG',
+                        mensaje=f"📊 AGGREGATION COMPLETED | "
                                f"Grade: {self._last_aggregation.performance_grade} | "
                                f"Avg TCT: {self._last_aggregation.global_avg_tct_ms:.2f}ms | "
                                f"Timeframes: {self._last_aggregation.total_timeframes}",
-                        emisor='tct_interface',
+                        fuente='tct_interface',
                         categoria='tct'
                     )
 
                     enviar_senal_log(
-                        level='INFO',
-                        message="📊 TCT agregación completada",
-                        emisor='tct_interface',
+                        nivel='INFO',
+                        mensaje="📊 TCT agregación completada",
+                        fuente='tct_interface',
                         categoria='tct'
                     )
 
@@ -477,16 +477,16 @@ class TCTInterface:
 
             except Exception as e:
                 enviar_senal_log(
-                    level='ERROR',
-                    message=f"❌ ERROR en aggregation loop: {str(e)}",
-                    emisor='tct_interface',
+                    nivel='ERROR',
+                    mensaje=f"❌ ERROR en aggregation loop: {str(e)}",
+                    fuente='tct_interface',
                     categoria='tct'
                 )
 
         enviar_senal_log(
-            level='DEBUG',
-            message="📊 AGGREGATION LOOP terminado",
-            emisor='tct_interface',
+            nivel='DEBUG',
+            mensaje="📊 AGGREGATION LOOP terminado",
+            fuente='tct_interface',
             categoria='tct'
         )
 
@@ -514,9 +514,9 @@ class TCTInterface:
 
             # 📝 CAJA NEGRA - LOG CONTEXT (safe encoding)
             enviar_senal_log(
-                level='DEBUG',
-                message=f"Market context updated | {symbol}_{timeframe} | Price: {market_context.current_price:.5f} | Session: {market_context.current_session}",
-                emisor='tct_interface',
+                nivel='DEBUG',
+                mensaje=f"Market context updated | {symbol}_{timeframe} | Price: {market_context.current_price:.5f} | Session: {market_context.current_session}",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -524,9 +524,9 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='ERROR',
-                message=f"❌ ERROR obteniendo market context | {symbol}_{timeframe} | Error: {str(e)}",
-                emisor='tct_interface',
+                nivel='ERROR',
+                mensaje=f"❌ ERROR obteniendo market context | {symbol}_{timeframe} | Error: {str(e)}",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -555,9 +555,9 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='WARNING',
-                message=f"⚠️ Error obteniendo precio real para {symbol}: {str(e)}",
-                emisor='tct_interface',
+                nivel='WARNING',
+                mensaje=f"⚠️ Error obteniendo precio real para {symbol}: {str(e)}",
+                fuente='tct_interface',
                 categoria='tct'
             )
             return 1.17500  # Fallback seguro
@@ -627,9 +627,9 @@ class TCTInterface:
             }
 
             enviar_senal_log(
-                level='DEBUG',
-                message=f"🧠 ICT Analysis completed | {symbol}_{timeframe} | POIs: {result['pois_detected']} | Patterns: {result['patterns_detected']} | Confidence: {confidence_score:.2f}",
-                emisor='tct_interface',
+                nivel='DEBUG',
+                mensaje=f"🧠 ICT Analysis completed | {symbol}_{timeframe} | POIs: {result['pois_detected']} | Patterns: {result['patterns_detected']} | Confidence: {confidence_score:.2f}",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -637,9 +637,9 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='ERROR',
-                message=f"❌ ERROR en análisis ICT real | {symbol}_{timeframe} | Error: {str(e)}",
-                emisor='tct_interface',
+                nivel='ERROR',
+                mensaje=f"❌ ERROR en análisis ICT real | {symbol}_{timeframe} | Error: {str(e)}",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -707,9 +707,9 @@ class TCTInterface:
             df = pd.DataFrame(data, index=dates)
 
             enviar_senal_log(
-                level='DEBUG',
-                message=f"📊 Mock data created | {symbol}_{timeframe} | {len(df)} candles | Price range: {df['low'].min():.5f}-{df['high'].max():.5f}",
-                emisor='tct_interface',
+                nivel='DEBUG',
+                mensaje=f"📊 Mock data created | {symbol}_{timeframe} | {len(df)} candles | Price range: {df['low'].min():.5f}-{df['high'].max():.5f}",
+                fuente='tct_interface',
                 categoria='tct'
             )
 
@@ -717,9 +717,9 @@ class TCTInterface:
 
         except Exception as e:
             enviar_senal_log(
-                level='ERROR',
-                message=f"❌ Error creating mock data: {str(e)}",
-                emisor='tct_interface',
+                nivel='ERROR',
+                mensaje=f"❌ Error creating mock data: {str(e)}",
+                fuente='tct_interface',
                 categoria='tct'
             )
             # Fallback ultra-básico

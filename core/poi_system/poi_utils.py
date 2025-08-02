@@ -20,7 +20,7 @@ Tipos de POI soportados:
 from typing import List, Dict, Optional
 from datetime import datetime
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_poi
 
 # =============================================================================
 # CONFIGURACIÓN DE TIPOS POI

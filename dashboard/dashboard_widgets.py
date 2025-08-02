@@ -21,7 +21,7 @@ Versión: FASE 3.5 - Widget System
 import sys
 from pathlib import Path
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_dashboard
 
 import time
 from datetime import datetime

@@ -85,7 +85,7 @@ except ImportError:
 # Imports del sistema POI
 poi_system_available = False
 try:
-    from sistema.logging_interface import enviar_senal_log as _enviar_senal_log
+    from sistema.logging_interface import enviar_senal_log, log_poi as _enviar_senal_log
     poi_system_available = True
 
     # Wrapper para compatibilidad de parámetros

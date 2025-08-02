@@ -24,7 +24,7 @@ from datetime import datetime
 
 # Logger usando sistema estándar SLUC v2.0
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.logging_interface import enviar_senal_log, log_ict
     def log_veredicto(level, message):
         enviar_senal_log(level, message, 'veredicto_engine_v4', 'ict')
 except ImportError:

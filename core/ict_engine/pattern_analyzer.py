@@ -20,7 +20,7 @@ Versión: ICT Professional v1.0
 import random
 from datetime import datetime, time, timedelta
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_ict
 
 from typing import Dict, List, Tuple, Optional
 import pandas as pd

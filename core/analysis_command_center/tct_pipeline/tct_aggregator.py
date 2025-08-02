@@ -11,7 +11,7 @@ from collections import defaultdict, deque
 from dataclasses import dataclass, field
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_tct
 from .tct_measurements import TCTMetrics
 
 @dataclass
@@ -95,16 +95,16 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG INICIALIZACIÓN
         enviar_senal_log(
-            level='DEBUG',
-            message="TCT Aggregator inicializado | Listo para consolidación multi-timeframe",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje="TCT Aggregator inicializado | Listo para consolidación multi-timeframe",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
         enviar_senal_log(
-            level='INFO',
-            message="TCT Aggregator - Sistema de consolidación activado",
-            emisor='tct_aggregator',
+            nivel='INFO',
+            mensaje="TCT Aggregator - Sistema de consolidación activado",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -127,10 +127,10 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG ADICIÓN
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🔄 METRICS ADDED | TF: {timeframe} | Session: {session} | "
+            nivel='DEBUG',
+            mensaje=f"🔄 METRICS ADDED | TF: {timeframe} | Session: {session} | "
                    f"TCT: {metrics.avg_tct_ms:.2f}ms | Patterns: {metrics.patterns_analyzed}",
-            emisor='tct_aggregator',
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -141,9 +141,9 @@ class TCTAggregator:
         """
 
         enviar_senal_log(
-            level='DEBUG',
-            message="🔄 Iniciando agregación completa de todos los timeframes",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje="🔄 Iniciando agregación completa de todos los timeframes",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -186,10 +186,10 @@ class TCTAggregator:
 
             # 📝 CAJA NEGRA - LOG TIMEFRAME CONSOLIDADO
             enviar_senal_log(
-                level='DEBUG',
-                message=f"🔄 TF CONSOLIDATED | {timeframe} | Avg: {timeframe_avg:.2f}ms | "
+                nivel='DEBUG',
+                mensaje=f"🔄 TF CONSOLIDATED | {timeframe} | Avg: {timeframe_avg:.2f}ms | "
                        f"Max: {timeframe_max:.2f}ms | Measurements: {consolidated_metric.measurements_taken}",
-                emisor='tct_aggregator',
+                fuente='tct_aggregator',
                 categoria='tct'
             )
 
@@ -215,19 +215,19 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG AGREGACIÓN COMPLETA
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🔄 GLOBAL AGGREGATION | Avg: {aggregated.global_avg_tct_ms:.2f}ms | "
+            nivel='DEBUG',
+            mensaje=f"🔄 GLOBAL AGGREGATION | Avg: {aggregated.global_avg_tct_ms:.2f}ms | "
                    f"Timeframes: {aggregated.total_timeframes} | Trend: {aggregated.tct_trend} | "
                    f"Grade: {aggregated.performance_grade}",
-            emisor='tct_aggregator',
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
         # 📋 INFO TERMINAL (SILENCIOSO)
         enviar_senal_log(
-            level='INFO',
-            message=f"🔄 TCT Agregación completada - {aggregated.total_timeframes} timeframes procesados",
-            emisor='tct_aggregator',
+            nivel='INFO',
+            mensaje=f"🔄 TCT Agregación completada - {aggregated.total_timeframes} timeframes procesados",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -263,10 +263,10 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG FRECUENCIA
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📈 FREQUENCY CALC | {measurements_per_minute:.2f} measurements/min | "
+            nivel='DEBUG',
+            mensaje=f"📈 FREQUENCY CALC | {measurements_per_minute:.2f} measurements/min | "
                    f"{frequency_hz:.4f} Hz | Duration: {duration_minutes:.1f}min",
-            emisor='tct_aggregator',
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -291,9 +291,9 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG TENDENCIA
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📈 TREND ANALYSIS | {trend} | Recent avgs: {recent_averages}",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje=f"📈 TREND ANALYSIS | {trend} | Recent avgs: {recent_averages}",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -316,9 +316,9 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG GRADE
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🎯 PERFORMANCE GRADE | {grade} | Avg TCT: {avg_tct_ms:.2f}ms",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje=f"🎯 PERFORMANCE GRADE | {grade} | Avg TCT: {avg_tct_ms:.2f}ms",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -346,9 +346,9 @@ class TCTAggregator:
 
         # 📝 CAJA NEGRA - LOG SUMMARY
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📋 TIMEFRAME SUMMARY | {summary}",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje=f"📋 TIMEFRAME SUMMARY | {summary}",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -372,9 +372,9 @@ class TCTAggregator:
         """
 
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📊 AGGREGATE RECENT | TF: {timeframe} | Max age: {max_age_minutes}min | Min samples: {min_samples}",
-            emisor='tct_aggregator',
+            nivel='DEBUG',
+            mensaje=f"📊 AGGREGATE RECENT | TF: {timeframe} | Max age: {max_age_minutes}min | Min samples: {min_samples}",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 
@@ -389,9 +389,9 @@ class TCTAggregator:
 
         if len(recent_timestamps) < min_samples:
             enviar_senal_log(
-                level='WARNING',
-                message=f"⚠️ Insuficientes mediciones recientes: {len(recent_timestamps)} < {min_samples}",
-                emisor='tct_aggregator',
+                nivel='WARNING',
+                mensaje=f"⚠️ Insuficientes mediciones recientes: {len(recent_timestamps)} < {min_samples}",
+                fuente='tct_aggregator',
                 categoria='tct'
             )
             return None
@@ -454,17 +454,17 @@ class TCTAggregator:
                 all_min_times.append(tf_min)
 
             enviar_senal_log(
-                level='DEBUG',
-                message=f"📊 RECENT TF PROCESSED | {tf} | Avg: {tf_avg:.2f}ms | Samples: {len(recent_metrics)}",
-                emisor='tct_aggregator',
+                nivel='DEBUG',
+                mensaje=f"📊 RECENT TF PROCESSED | {tf} | Avg: {tf_avg:.2f}ms | Samples: {len(recent_metrics)}",
+                fuente='tct_aggregator',
                 categoria='tct'
             )
 
         if not recent_metrics_found:
             enviar_senal_log(
-                level='WARNING',
-                message=f"⚠️ No se encontraron métricas recientes para timeframe: {timeframe}",
-                emisor='tct_aggregator',
+                nivel='WARNING',
+                mensaje=f"⚠️ No se encontraron métricas recientes para timeframe: {timeframe}",
+                fuente='tct_aggregator',
                 categoria='tct'
             )
             return None
@@ -492,9 +492,9 @@ class TCTAggregator:
         aggregated.active_sessions = list(self.session_data.keys())
 
         enviar_senal_log(
-            level='INFO',
-            message=f"✅ Agregación reciente completada | TFs: {aggregated.total_timeframes} | Avg: {aggregated.global_avg_tct_ms:.2f}ms",
-            emisor='tct_aggregator',
+            nivel='INFO',
+            mensaje=f"✅ Agregación reciente completada | TFs: {aggregated.total_timeframes} | Avg: {aggregated.global_avg_tct_ms:.2f}ms",
+            fuente='tct_aggregator',
             categoria='tct'
         )
 

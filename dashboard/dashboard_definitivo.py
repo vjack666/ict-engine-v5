@@ -73,7 +73,7 @@ except (FileNotFoundError, PermissionError, IOError) as e:
 
 # Local imports
 from sistema.emoji_logger import get_emoji_safe_logger, safe_log_and_print
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_dashboard
 from utils.mt5_data_manager import get_mt5_manager
 
 # Core imports

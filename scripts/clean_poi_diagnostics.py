@@ -31,7 +31,7 @@ from rich.text import Text
 def safe_log(level: str, message: str, module: str = __name__, category: str = "dashboard") -> None:
     """Logging seguro con fallback."""
     try:
-        from sistema.logging_interface import enviar_senal_log
+        from sistema.logging_interface import enviar_senal_log, log_poi
         enviar_senal_log(level, message, module, category)
     except ImportError:
         print(f"[{level}] {message}")

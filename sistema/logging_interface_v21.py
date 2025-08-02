@@ -35,18 +35,18 @@ class SLUCv21:
     Sistema de Logging Unificado Centralizado v2.1
     Con routing inteligente automático
     """
-    
+
     def __init__(self):
         self.base_path = Path("data/logs")
         self.smart_logger = SmartDirectoryLogger()
         self.silent_mode = True  # Por defecto silencioso
-        
+
         # Asegurar que existan todos los directorios
         self._ensure_directories()
-        
+
         # Configurar logging básico
         self._setup_basic_logging()
-    
+
     def _ensure_directories(self):
         """Crear todas las carpetas necesarias"""
         directories = [
@@ -54,10 +54,10 @@ class SLUCv21:
             'metrics', 'mt5', 'poi', 'structured', 'tct',
             'terminal_capture', 'trading'
         ]
-        
+
         for directory in directories:
             (self.base_path / directory).mkdir(parents=True, exist_ok=True)
-    
+
     def _setup_basic_logging(self):
         """Configurar logging básico sin interferir con el sistema smart"""
         logging.basicConfig(
@@ -67,8 +67,8 @@ class SLUCv21:
                 logging.NullHandler()  # No output por defecto
             ]
         )
-    
-    def enviar_senal_log(self, nivel: str, mensaje: str, fuente: str = "sistema", 
+
+    def enviar_senal_log(self, nivel: str, mensaje: str, fuente: str = "sistema",
                         categoria: str = "general", metadata: Optional[Dict] = None):
         """
         Función principal compatible con SLUC v2.0
@@ -76,32 +76,32 @@ class SLUCv21:
         """
         # Usar el logger inteligente para determinar carpeta
         self.smart_logger.smart_log(nivel, mensaje, fuente, categoria, metadata or {})
-        
+
         # Si no está en modo silencioso, mostrar en terminal
         if not self.silent_mode:
             timestamp = datetime.now().strftime("%H:%M:%S")
             print(f"[{timestamp}] {nivel} | {fuente} | {mensaje}")
-    
+
     def set_silent_mode(self, silent: bool = True):
         """Activar/desactivar modo silencioso"""
         self.silent_mode = silent
-    
+
     def log_info(self, mensaje: str, fuente: str = "sistema", metadata: Optional[Dict] = None):
         """Log de información"""
         self.enviar_senal_log("INFO", mensaje, fuente, "info", metadata)
-    
+
     def log_warning(self, mensaje: str, fuente: str = "sistema", metadata: Optional[Dict] = None):
         """Log de advertencia"""
         self.enviar_senal_log("WARNING", mensaje, fuente, "warning", metadata)
-    
+
     def log_error(self, mensaje: str, fuente: str = "sistema", metadata: Optional[Dict] = None):
         """Log de error"""
         self.enviar_senal_log("ERROR", mensaje, fuente, "error", metadata)
-    
+
     def log_debug(self, mensaje: str, fuente: str = "sistema", metadata: Optional[Dict] = None):
         """Log de debug"""
         self.enviar_senal_log("DEBUG", mensaje, fuente, "debug", metadata)
-    
+
     def log_critical(self, mensaje: str, fuente: str = "sistema", metadata: Optional[Dict] = None):
         """Log crítico"""
         self.enviar_senal_log("CRITICAL", mensaje, fuente, "critical", metadata)
@@ -117,7 +117,7 @@ _sluc_v21 = SLUCv21()
 # FUNCIONES DE COMPATIBILIDAD TOTAL
 # =============================================================================
 
-def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "sistema", 
+def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "sistema",
                     categoria: str = "general", metadata: Optional[Dict] = None):
     """
     Función principal de logging - 100% compatible con código existente
@@ -221,28 +221,28 @@ def demo_sluc_v21():
     """Demostración del sistema SLUC v2.1"""
     print("=== DEMO SLUC v2.1 - ROUTING INTELIGENTE ===")
     print()
-    
+
     # Ejemplos de logs que se organizarán automáticamente
     enviar_senal_log("INFO", "Sistema iniciado correctamente", "main")
     enviar_senal_log("INFO", "Trade ejecutado: BUY EURUSD", "core.trading")
-    enviar_senal_log("DEBUG", "Patrón Fair Value Gap detectado", "ict.detector") 
+    enviar_senal_log("DEBUG", "Patrón Fair Value Gap detectado", "ict.detector")
     enviar_senal_log("WARNING", "POI de baja calidad encontrado", "poi.system")
     enviar_senal_log("ERROR", "Conexión MT5 fallida", "mt5.connector")
     enviar_senal_log("INFO", "Dashboard actualizado", "dashboard.main")
     enviar_senal_log("INFO", "TCT Pipeline completado", "tct.pipeline")
     enviar_senal_log("INFO", "Métricas de cuenta actualizadas", "metrics.account")
-    
+
     print("✅ Logs organizados automáticamente:")
     print("  📁 data/logs/daily/ - Logs del sistema principal")
     print("  📁 data/logs/trading/ - Logs de operaciones")
     print("  📁 data/logs/ict/ - Logs de análisis ICT")
-    print("  📁 data/logs/poi/ - Logs del sistema POI") 
+    print("  📁 data/logs/poi/ - Logs del sistema POI")
     print("  📁 data/logs/mt5/ - Logs de conexión MT5")
     print("  📁 data/logs/dashboard/ - Logs del dashboard")
     print("  📁 data/logs/tct/ - Logs de TCT Pipeline")
     print("  📁 data/logs/metrics/ - Logs de métricas")
     print()
-    
+
     # Mostrar estadísticas
     stats = get_log_stats()
     print("📊 Estadísticas:")

@@ -18,7 +18,7 @@ Versión: v3.3.3
 import pandas as pd
 import numpy as np
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_ict
 
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple, Union

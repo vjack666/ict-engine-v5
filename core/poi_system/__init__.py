@@ -12,7 +12,7 @@ Componentes:
 """
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_poi
 
 try:
     from .poi_detector import encontrar_pois_multiples_para_dashboard

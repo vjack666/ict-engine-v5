@@ -588,7 +588,7 @@ class AnalysisOrchestrator:
                 enviar_senal_log(
                     nivel='DEBUG',
                     mensaje=f"TF {timeframe}: {len(pois_in_tf)} POIs detectados",
-                    emisor='acc_orchestrator',
+                    fuente='acc_orchestrator',
                     categoria='poi'
                 )
 
@@ -639,7 +639,7 @@ class AnalysisOrchestrator:
                     enviar_senal_log(
                         nivel='WARNING',
                         mensaje=f"Error scoring POI {poi.get('id', 'unknown')}: {str(e)}",
-                        emisor='acc_orchestrator',
+                        fuente='acc_orchestrator',
                         categoria='poi'
                     )
 
@@ -702,7 +702,7 @@ class AnalysisOrchestrator:
             enviar_senal_log(
                 nivel='ERROR',
                 mensaje=f"Error en detección POI: {str(e)}",
-                emisor='acc_orchestrator',
+                fuente='acc_orchestrator',
                 categoria='acc'
             )
 
@@ -765,7 +765,7 @@ class AnalysisOrchestrator:
                         enviar_senal_log(
                             nivel='WARNING',
                             mensaje=f"Error calculando confianza para patrón {pattern}: {str(e)}",
-                            emisor='acc_orchestrator',
+                            fuente='acc_orchestrator',
                             categoria='acc'
                         )
                         pattern_confidence[pattern] = 0.5  # Default
@@ -792,7 +792,7 @@ class AnalysisOrchestrator:
                 uncertainty_factors=uncertainty_factors,
                 confidence_drivers=confidence_drivers,
                 trading_recommendation=trading_recommendation,
-                confidence_level="HIGH" if overall_confidence > 0.7 else "MEDIUM" if overall_confidence > 0.4 else "LOW"
+                confidence_nivel="HIGH" if overall_confidence > 0.7 else "MEDIUM" if overall_confidence > 0.4 else "LOW"
             )
 
             execution_time = (time.time() - start_time) * 1000
@@ -828,7 +828,7 @@ class AnalysisOrchestrator:
             enviar_senal_log(
                 nivel='ERROR',
                 mensaje=f"Error en análisis de confianza: {str(e)}",
-                emisor='acc_orchestrator',
+                fuente='acc_orchestrator',
                 categoria='acc'
             )
 
@@ -931,7 +931,7 @@ class AnalysisOrchestrator:
             enviar_senal_log(
                 nivel='ERROR',
                 mensaje=f"Error en generación de veredicto: {str(e)}",
-                emisor='acc_orchestrator',
+                fuente='acc_orchestrator',
                 categoria='acc'
             )
 
@@ -948,7 +948,7 @@ class AnalysisOrchestrator:
             enviar_senal_log(
                 nivel='DEBUG',
                 mensaje=f"Finalizando medición TCT ID: {tct_measurement_id}",
-                emisor='acc_orchestrator',
+                fuente='acc_orchestrator',
                 categoria='tct'
             )
 
@@ -995,7 +995,7 @@ class AnalysisOrchestrator:
             enviar_senal_log(
                 nivel='WARNING',
                 mensaje=f"Error finalizando TCT measurement: {str(e)}",
-                emisor='acc_orchestrator',
+                fuente='acc_orchestrator',
                 categoria='acc'
             )
 
@@ -1036,7 +1036,7 @@ class AnalysisOrchestrator:
             nivel='DEBUG',
             mensaje=f"Resultados consolidados | ID: {analysis_output.analysis_id} | "
                    f"Components: {len(analysis_output.component_results)}",
-            emisor='acc_orchestrator',
+            fuente='acc_orchestrator',
             categoria='acc'
         )
 
@@ -1198,7 +1198,7 @@ class AnalysisOrchestrator:
                 enviar_senal_log(
                     nivel='WARNING',
                     mensaje=f"Componente {component_name} tardó {result.execution_time_ms:.0f}ms",
-                    emisor='acc_orchestrator',
+                    fuente='acc_orchestrator',
                     categoria='performance'
                 )
 

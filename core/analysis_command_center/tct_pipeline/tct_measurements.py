@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Any
 from pathlib import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_tct
 
 @dataclass
 class TCTMetrics:
@@ -72,17 +72,17 @@ class TCTMeasurementEngine:
 
         # 📝 CAJA NEGRA - LOG DETALLADO
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🎯 TCT Measurement Engine inicializado | Logs: {self.logs_dir}",
-            emisor='tct_measurements',
+            nivel='DEBUG',
+            mensaje=f"🎯 TCT Measurement Engine inicializado | Logs: {self.logs_dir}",
+            fuente='tct_measurements',
             categoria='tct'
         )
 
         # 📋 INFO TERMINAL (SILENCIOSO)
         enviar_senal_log(
-            level='INFO',
-            message="TCT Pipeline - Motor de mediciones activado",
-            emisor='tct_measurements',
+            nivel='INFO',
+            mensaje="TCT Pipeline - Motor de mediciones activado",
+            fuente='tct_measurements',
             categoria='tct'
         )
 
@@ -104,9 +104,9 @@ class TCTMeasurementEngine:
 
         # 📝 CAJA NEGRA - LOG DETALLADO
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🕐 TCT START | ID: {measurement_key} | Context: {context}",
-            emisor='tct_measurements',
+            nivel='DEBUG',
+            mensaje=f"🕐 TCT START | ID: {measurement_key} | Context: {context}",
+            fuente='tct_measurements',
             categoria='tct'
         )
 
@@ -119,9 +119,9 @@ class TCTMeasurementEngine:
         """
         if measurement_key not in self._active_measurements:
             enviar_senal_log(
-                level='WARNING',
-                message=f"⚠️ TCT measurement key no encontrado: {measurement_key}",
-                emisor='tct_measurements',
+                nivel='WARNING',
+                mensaje=f"⚠️ TCT measurement key no encontrado: {measurement_key}",
+                fuente='tct_measurements',
                 categoria='tct'
             )
             return 0.0
@@ -146,9 +146,9 @@ class TCTMeasurementEngine:
 
         # 📝 CAJA NEGRA - LOG DETALLADO
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🕐 TCT END | ID: {measurement_key} | Duration: {duration_ms:.2f}ms | Results: {results}",
-            emisor='tct_measurements',
+            nivel='DEBUG',
+            mensaje=f"🕐 TCT END | ID: {measurement_key} | Duration: {duration_ms:.2f}ms | Results: {results}",
+            fuente='tct_measurements',
             categoria='tct'
         )
 
@@ -204,11 +204,11 @@ class TCTMeasurementEngine:
 
         # 📝 CAJA NEGRA - LOG MÉTRICS SNAPSHOT
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📊 TCT METRICS | Avg: {self.metrics.avg_tct_ms:.2f}ms | "
+            nivel='DEBUG',
+            mensaje=f"📊 TCT METRICS | Avg: {self.metrics.avg_tct_ms:.2f}ms | "
                    f"Cycles: {self.metrics.cycles_completed} | "
                    f"Patterns: {self.metrics.patterns_analyzed}",
-            emisor='tct_measurements',
+            fuente='tct_measurements',
             categoria='tct'
         )
 
@@ -245,9 +245,9 @@ class TCTMeasurementEngine:
 
         # 📝 CAJA NEGRA - LOG SUMMARY COMPLETO
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📋 TCT PERFORMANCE SUMMARY | {summary}",
-            emisor='tct_measurements',
+            nivel='DEBUG',
+            mensaje=f"📋 TCT PERFORMANCE SUMMARY | {summary}",
+            fuente='tct_measurements',
             categoria='tct'
         )
 

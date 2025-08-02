@@ -64,11 +64,11 @@ class AnalysisInput:
         
         # 📝 LOG CREACIÓN
         enviar_senal_log(
-            level='DEBUG',
+            nivel='DEBUG',
             message=f"📥 AnalysisInput created | ID: {self.analysis_id} | "
                    f"Symbol: {self.symbol} | Timeframes: {len(self.timeframes)} | "
                    f"Type: {self.analysis_type}",
-            emisor='acc_data_models',
+            fuente='acc_data_models',
             categoria='acc'
         )
         
@@ -123,11 +123,11 @@ class ComponentResult:
         status = "SUCCESS" if self.success else "FAILED"
         
         enviar_senal_log(
-            level='DEBUG' if self.success else 'WARNING',
+            nivel='DEBUG' if self.success else 'WARNING',
             message=f"🎖️ ComponentResult | {self.component_type.value} | "
                    f"Status: {status} | Time: {self.execution_time_ms:.2f}ms | "
                    f"Items: {self.items_processed}",
-            emisor='acc_data_models',
+            fuente='acc_data_models',
             categoria='acc'
         )
 
@@ -377,12 +377,12 @@ class AnalysisOutput:
         
         # 📝 LOG RESULTADO FINAL
         enviar_senal_log(
-            level='INFO',
+            nivel='INFO',
             message=f"📤 AnalysisOutput completed | ID: {self.analysis_id} | "
                    f"Status: {self.analysis_status.value} | "
                    f"Success Rate: {self.overall_success_rate:.2f} | "
                    f"Time: {self.total_execution_time_ms:.2f}ms",
-            emisor='acc_data_models',
+            fuente='acc_data_models',
             categoria='acc'
         )
     

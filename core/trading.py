@@ -404,7 +404,7 @@ def tomar_decision_de_trading(mercado, riskbot, df_by_timeframe):
 # SISTEMA DE LOGGING SILENCIOSO PARA TRADING CSV
 # =============================================================================
 
-def log_trading_silent_to_csv(component, message, level="INFO"):
+def log_trading_silent_to_csv(component, message, nivel="INFO"):
     """
     Logger silencioso TRADING que SOLO escribe a CSV sin interferir con dashboard.
     Todo va primero a log, después el sistema decide si mostrar o no.

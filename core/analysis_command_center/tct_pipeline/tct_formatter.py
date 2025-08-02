@@ -11,7 +11,7 @@ from typing import Dict, Any, List
 from pathlib import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_tct
 from utils.logging_utils import save_adaptive_debug_to_csv
 from .tct_aggregator import AggregatedTCTMetrics
 
@@ -29,16 +29,16 @@ class TCTFormatter:
         
         # 📝 CAJA NEGRA - LOG INICIALIZACIÓN
         enviar_senal_log(
-            level='DEBUG',
-            message=f"TCT Formatter inicializado | Exports: {self.exports_dir}",
-            emisor='tct_formatter',
+            nivel='DEBUG',
+            mensaje=f"TCT Formatter inicializado | Exports: {self.exports_dir}",
+            fuente='tct_formatter',
             categoria='tct'
         )
         
         enviar_senal_log(
-            level='INFO',
-            message="TCT Formatter - Sistema de formateo activado",
-            emisor='tct_formatter',
+            nivel='INFO',
+            mensaje="TCT Formatter - Sistema de formateo activado",
+            fuente='tct_formatter',
             categoria='tct'
         )
     
@@ -86,11 +86,11 @@ class TCTFormatter:
         
         # 📝 CAJA NEGRA - LOG DASHBOARD FORMAT
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📊 DASHBOARD FORMAT | Grade: {aggregated_metrics.performance_grade} | "
+            nivel='DEBUG',
+            mensaje=f"📊 DASHBOARD FORMAT | Grade: {aggregated_metrics.performance_grade} | "
                    f"Timeframes: {len(dashboard_data['tct_timeframes'])} | "
                    f"Global Avg: {aggregated_metrics.global_avg_tct_ms:.2f}ms",
-            emisor='tct_formatter',
+            fuente='tct_formatter',
             categoria='tct'
         )
         
@@ -164,17 +164,17 @@ class TCTFormatter:
         
         # 📝 CAJA NEGRA - LOG CSV EXPORT
         enviar_senal_log(
-            level='DEBUG',
-            message=f"💾 CSV EXPORT | File: {filename} | Rows: {len(csv_data)} | Path: {csv_path}",
-            emisor='tct_formatter',
+            nivel='DEBUG',
+            mensaje=f"💾 CSV EXPORT | File: {filename} | Rows: {len(csv_data)} | Path: {csv_path}",
+            fuente='tct_formatter',
             categoria='tct'
         )
         
         # 📋 INFO TERMINAL (SILENCIOSO)
         enviar_senal_log(
-            level='INFO',
-            message=f"💾 TCT métricas exportadas - {filename}",
-            emisor='tct_formatter',
+            nivel='INFO',
+            mensaje=f"💾 TCT métricas exportadas - {filename}",
+            fuente='tct_formatter',
             categoria='tct'
         )
         
@@ -220,9 +220,9 @@ class TCTFormatter:
         
         # 📝 CAJA NEGRA - LOG JSON EXPORT
         enviar_senal_log(
-            level='DEBUG',
-            message=f"📄 JSON EXPORT | File: {filename} | Size: {json_file.stat().st_size} bytes",
-            emisor='tct_formatter',
+            nivel='DEBUG',
+            mensaje=f"📄 JSON EXPORT | File: {filename} | Size: {json_file.stat().st_size} bytes",
+            fuente='tct_formatter',
             categoria='tct'
         )
         
@@ -256,9 +256,9 @@ class TCTFormatter:
         
         # 📝 CAJA NEGRA - LOG CONSOLE SUMMARY
         enviar_senal_log(
-            level='DEBUG',
-            message=f"🖥️ CONSOLE SUMMARY GENERATED | Lines: {len(lines)}",
-            emisor='tct_formatter',
+            nivel='DEBUG',
+            mensaje=f"🖥️ CONSOLE SUMMARY GENERATED | Lines: {len(lines)}",
+            fuente='tct_formatter',
             categoria='tct'
         )
         

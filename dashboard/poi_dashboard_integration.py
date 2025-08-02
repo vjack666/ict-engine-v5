@@ -33,7 +33,7 @@ from datetime import datetime
 # Imports del sistema POI existente
 try:
     from core.poi_system.poi_detector import POIDetector, encontrar_pois_multiples_para_dashboard
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.logging_interface import enviar_senal_log, log_poi
 except ImportError as e:
     print(f"⚠️ Import warning: {e}")
 
