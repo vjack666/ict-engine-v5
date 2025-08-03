@@ -404,7 +404,6 @@ enviar_senal_log = enviar_senal_log_smart
 if __name__ == "__main__":
     # Demo del sistema inteligente
     enviar_senal_log("INFO", "=== DEMO SISTEMA DE LOGGING INTELIGENTE CON DIRECTORIOS ===", "smart_directory_logger", "migration")
-    enviar_senal_log("INFO", , "smart_directory_logger", "migration")
 
     # Ejemplos de diferentes tipos de logs
     smart_log('INFO', 'Sistema iniciado correctamente', 'main', 'daily')
@@ -421,17 +420,17 @@ if __name__ == "__main__":
     stats = get_smart_stats()
     enviar_senal_log("INFO", "Estadísticas del sistema:", "smart_directory_logger", "migration")
     enviar_senal_log("INFO", f"  Total logs: {stats['total_logs']}", "smart_directory_logger", "migration")
-    enviar_senal_log("INFO", f"  Directorios activos: {len(stats['directories_active'], "smart_directory_logger", "migration")}")
+    enviar_senal_log("INFO", f"  Directorios activos: {len(stats['directories_active'])}", "smart_directory_logger", "migration")
     enviar_senal_log("INFO", f"  Modo silencioso: {stats['silent_mode']}", "smart_directory_logger", "migration")
-    enviar_senal_log("INFO", , "smart_directory_logger", "migration")
+
     enviar_senal_log("INFO", "Logs por directorio:", "smart_directory_logger", "migration")
     for directory, count in stats['logs_by_directory'].items():
         enviar_senal_log("INFO", f"  data/logs/{directory}/: {count} logs", "smart_directory_logger", "migration")
 
     # Crear resumen
     create_summary()
-    enviar_senal_log("INFO", , "smart_directory_logger", "migration")
+
     enviar_senal_log("INFO", "✅ Logs organizados automáticamente en sus directorios correspondientes", "smart_directory_logger", "migration")
-    enviar_senal_log("INFO", "✅ Sin emojis en archivos (formato profesional, "smart_directory_logger", "migration")")
+    enviar_senal_log("INFO", "✅ Sin emojis en archivos (formato profesional)", "smart_directory_logger", "migration")
     enviar_senal_log("INFO", "✅ Compatibilidad total con código existente", "smart_directory_logger", "migration")
     enviar_senal_log("INFO", "📁 Resumen guardado en data/logs/directory_summary.json", "smart_directory_logger", "migration")
