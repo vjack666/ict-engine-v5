@@ -283,7 +283,7 @@ migrate_from_v20()
 def demo_sluc_v21():
     """Demostración del sistema SLUC v2.1"""
     enviar_senal_log("INFO", "=== DEMO SLUC v2.1 - ROUTING INTELIGENTE ===", "logging_interface", "migration")
-    
+
     # Ejemplos de logs que se organizarán automáticamente
     enviar_senal_log("INFO", "Sistema iniciado correctamente", "main")
     enviar_senal_log("INFO", "Trade ejecutado: BUY EURUSD", "core.trading")
@@ -303,7 +303,7 @@ def demo_sluc_v21():
     enviar_senal_log("INFO", "  📁 data/logs/dashboard/ - Logs del dashboard", "logging_interface", "migration")
     enviar_senal_log("INFO", "  📁 data/logs/tct/ - Logs de TCT Pipeline", "logging_interface", "migration")
     enviar_senal_log("INFO", "  📁 data/logs/metrics/ - Logs de métricas", "logging_interface", "migration")
-    
+
     # Mostrar estadísticas
     stats = get_log_stats()
     enviar_senal_log("INFO", "📊 Estadísticas:", "logging_interface", "migration")
