@@ -51,6 +51,17 @@ from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
 from rich.text import Text
 from rich.panel import Panel
 
+# === SPRINT 1.2: CANDLE DOWNLOADER INTEGRATION ===
+try:
+    from dashboard.candle_downloader_widget import candle_downloader_widget
+    from core.integrations.candle_downloader_integration import downloader_integration
+    CANDLE_DOWNLOADER_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Candle downloader integration no disponible: {e}")
+    CANDLE_DOWNLOADER_AVAILABLE = False
+    candle_downloader_widget = None
+    downloader_integration = None
+
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
 # Asegurar que Python pueda encontrar todos los módulos del proyecto
