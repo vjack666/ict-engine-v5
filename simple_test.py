@@ -34,7 +34,7 @@ except Exception as e:
 # Check new methods exist
 new_methods = [
     'set_progress_callback',
-    'queue_download', 
+    'queue_download',
     'process_download_queue',
     'get_enhanced_status'
 ]
