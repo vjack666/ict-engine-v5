@@ -78,12 +78,11 @@ try:
         raise RuntimeError(f"No se puede encontrar el directorio core en {project_root}")
 
 except (FileNotFoundError, PermissionError, IOError) as e:
-    enviar_senal_log("ERROR", f"❌ ERROR CRÍTICO configurando paths de Python: {e}", "dashboard_definitivo", "migration")
+    print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
     sys.exit(1)
 # -------------------------------------------------
 
 # Local imports
-from sistema.emoji_logger import get_emoji_safe_logger, safe_log_and_print
 from sistema.logging_interface import enviar_senal_log, log_dashboard
 from utils.mt5_data_manager import get_mt5_manager
 
@@ -118,15 +117,9 @@ except ImportError as e:
 # 🔧 CONFIGURACIÓN DE LOGGING CENTRALIZADO - FASE 2
 try:
     # MIGRADO A SLUC v2.0 - Sistema de logging unificado
-    # Inicializar el Smart Logger (patrón singleton)
-    # Logger especializado para dashboard
-    logger = get_emoji_safe_logger('dashboard')
-    safe_log_and_print("DASHBOARD",
-                      "🚀 Dashboard Definitivo conectado al sistema de logging centralizado",
-                      True)
-    safe_log_and_print("DASHBOARD",
-                      "📊 Iniciando sistema de vigilancia para dashboard principal",
-                      True)
+    # Configurar logging SLUC v2.1 - Sistema Unificado
+    enviar_senal_log("INFO", "🚀 Dashboard Definitivo conectado al sistema de logging centralizado", "dashboard_definitivo", "dashboard")
+    enviar_senal_log("INFO", "📊 Iniciando sistema de vigilancia para dashboard principal", "dashboard_definitivo", "dashboard")
     # Registrar evento de sistema
     enviar_senal_log("INFO", "Dashboard Definitivo iniciado", __name__, "general")
 except ImportError as e:
@@ -189,29 +182,29 @@ try:
     CountdownWidget = dashboard_widgets.CountdownWidget
 
     components_available = True
-    # Reemplazamos prints con logging para vigilancia
-    logger.info("🎯 Componentes del Dashboard Definitivo cargados exitosamente")
-    logger.info("🧠 CAJA NEGRA ICT conectada: Detector, ConfidenceEngine, VeredictoEngine")
-    logger.info("📊 Conexión MT5 habilitada para datos reales")
-    logger.info("🔧 Motores ICT inicializados correctamente")
+    # Sistema SLUC v2.1 para logging
+    enviar_senal_log("INFO", "🎯 Componentes del Dashboard Definitivo cargados exitosamente", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("INFO", "🧠 CAJA NEGRA ICT conectada: Detector, ConfidenceEngine, VeredictoEngine", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("INFO", "📊 Conexión MT5 habilitada para datos reales", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("INFO", "🔧 Motores ICT inicializados correctamente", "dashboard_definitivo", "component_loading")
 
-    # Log del evento usando el logger centralizado
-    logger.info("COMPONENTS_LOADED: Todos los componentes ICT cargados correctamente")
+    # Log del evento usando SLUC v2.1
+    enviar_senal_log("INFO", "COMPONENTS_LOADED: Todos los componentes ICT cargados correctamente", "dashboard_definitivo", "component_loading")
 except ImportError as e:
-    logger.error("❌ Error importando componentes reales: %s", e)
-    logger.warning("📁 Verificando archivos necesarios para datos reales:")
-    logger.warning("   • sistema/mt5_connector.py")
-    logger.warning("   • utils/mt5_data_manager.py")
-    logger.warning("   • core/ict_engine/ict_types.py")
-    logger.warning("   • core/ict_engine/ict_detector.py")
-    logger.warning("   • core/ict_engine/confidence_engine.py")
-    logger.warning("   • core/ict_engine/veredicto_engine_v4.py")
-    logger.warning("   • core/ict_engine/pattern_analyzer.py")
-    logger.warning("   • dashboard/ict_professional_widget.py")
-    logger.warning("   • dashboard/dashboard_widgets.py")
+    enviar_senal_log("ERROR", f"❌ Error importando componentes reales: {e}", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "📁 Verificando archivos necesarios para datos reales:", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • sistema/mt5_connector.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • utils/mt5_data_manager.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • core/ict_engine/ict_types.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • core/ict_engine/ict_detector.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • core/ict_engine/confidence_engine.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • core/ict_engine/veredicto_engine_v4.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • core/ict_engine/pattern_analyzer.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • dashboard/ict_professional_widget.py", "dashboard_definitivo", "component_loading")
+    enviar_senal_log("WARNING", "   • dashboard/dashboard_widgets.py", "dashboard_definitivo", "component_loading")
 
-    # Log del error usando el logger disponible
-    logger.error('Error cargando componentes: %s', e)
+    # Log del error usando SLUC v2.1
+    enviar_senal_log("ERROR", f"Error cargando componentes: {e}", "dashboard_definitivo", "component_loading")
     components_available = False
 
 
@@ -299,14 +292,14 @@ class SentinelDashboardDefinitivo(App):
     def __init__(self):
         super().__init__()
 
-        logger.info("🚀 Inicializando Dashboard Definitivo...")
+        enviar_senal_log("INFO", "🚀 Inicializando Dashboard Definitivo...", "dashboard_definitivo", "initialization")
 
         if not components_available:
-            logger.error("❌ Componentes necesarios no disponibles - Sistema no puede ejecutarse")
+            enviar_senal_log("ERROR", "❌ Componentes necesarios no disponibles - Sistema no puede ejecutarse", "dashboard_definitivo", "initialization")
             self.exit()
             return
 
-        logger.info("✅ Componentes verificados - Iniciando configuración del sistema")
+        enviar_senal_log("INFO", "✅ Componentes verificados - Iniciando configuración del sistema", "dashboard_definitivo", "initialization")
 
         # � Métricas del sistema - INICIALIZACIÓN TEMPRANA
         self.analysis_count = 0
@@ -398,9 +391,9 @@ class SentinelDashboardDefinitivo(App):
         self.backend_connected = False
         try:
             self.dashboard_controller = get_dashboard_controller()
-            logger.info("📡 Dashboard Controller conectado - preparando registro")
+            enviar_senal_log("INFO", "📡 Dashboard Controller conectado - preparando registro", "dashboard_definitivo", "controller")
         except ImportError as e:
-            logger.warning("⚠️ Dashboard Controller no disponible: %s", e)
+            enviar_senal_log("WARNING", f"⚠️ Dashboard Controller no disponible: {e}", "dashboard_definitivo", "controller")
             enviar_senal_log("INFO", "⚠️ Dashboard Controller no disponible - funcionará sin datos del backend", "dashboard_definitivo", "migration")
 
         # 🎯 Estado del sistema
@@ -480,17 +473,17 @@ class SentinelDashboardDefinitivo(App):
                         # Obtener precio actual
                         self.update_current_price()
                     else:
-                        logger.error("❌ Error conectando MT5 Manager")
+                        enviar_senal_log("ERROR", "❌ Error conectando MT5 Manager", "dashboard_definitivo", "mt5_connection")
                         self.mt5_connected = False
                 else:
-                    logger.error("❌ Símbolo %s no disponible", self.symbol)
+                    enviar_senal_log("ERROR", f"❌ Símbolo {self.symbol} no disponible", "dashboard_definitivo", "mt5_connection")
                     self.mt5_connected = False
             else:
-                logger.error("❌ Error inicializando MT5")
+                enviar_senal_log("ERROR", "❌ Error inicializando MT5", "dashboard_definitivo", "mt5_connection")
                 self.mt5_connected = False
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error en conexión MT5: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error en conexión MT5: {e}", "dashboard_definitivo", "mt5_connection")
             self.mt5_connected = False
 
     def update_current_price(self):
@@ -566,7 +559,7 @@ class SentinelDashboardDefinitivo(App):
 
     def on_mount(self) -> None:
         """Configuración inicial del sistema"""
-        logger.info("🔧 Dashboard montado - Configurando sistema de vigilancia")
+        enviar_senal_log("INFO", "🔧 Dashboard montado - Configurando sistema de vigilancia", "dashboard_definitivo", "mount")
 
         # 🔄 Timer para auto-refresh cada 10 segundos
         self.set_interval(10.0, self.auto_refresh_system)
@@ -583,26 +576,26 @@ class SentinelDashboardDefinitivo(App):
         # 📡 REGISTRO CON DASHBOARD CONTROLLER - EL FIX CRÍTICO
         if self.dashboard_controller:
             try:
-                logger.info("📡 Intentando registrar dashboard con controller...")
+                enviar_senal_log("INFO", "📡 Intentando registrar dashboard con controller...", "dashboard_definitivo", "mount")
                 self.dashboard_controller.register_dashboard(
                     dashboard_id="dashboard_definitivo",
                     dashboard_instance=self
                 )
                 self.backend_connected = True
-                logger.info("✅ Dashboard registrado exitosamente con controller")
+                enviar_senal_log("INFO", "✅ Dashboard registrado exitosamente con controller", "dashboard_definitivo", "mount")
                 self.notify("📡 Conectado al backend de datos reales", timeout=3)
             except (FileNotFoundError, PermissionError, IOError) as e:
-                logger.error("❌ Error registrando dashboard: %s", e)
+                enviar_senal_log("ERROR", f"❌ Error registrando dashboard: {e}", "dashboard_definitivo", "mount")
                 self.notify("⚠️ Error conectando con backend", timeout=3)
         else:
-            logger.warning("⚠️ Dashboard Controller no disponible - modo independiente")
+            enviar_senal_log("WARNING", "⚠️ Dashboard Controller no disponible - modo independiente", "dashboard_definitivo", "mount")
 
-        logger.info("✅ Dashboard completamente inicializado y operativo")
-        logger.info("🔗 MT5 conectado: %s", self.mt5_connected)
-        logger.info("📊 Símbolo activo: %s", self.symbol)
+        enviar_senal_log("INFO", "✅ Dashboard completamente inicializado y operativo", "dashboard_definitivo", "mount")
+        enviar_senal_log("INFO", f"🔗 MT5 conectado: {self.mt5_connected}", "dashboard_definitivo", "mount")
+        enviar_senal_log("INFO", f"📊 Símbolo activo: {self.symbol}", "dashboard_definitivo", "mount")
 
-        # Log usando el logger centralizado
-        logger.info("DASHBOARD_MOUNTED: Dashboard operativo - MT5: %s", self.mt5_connected)
+        # Log usando SLUC v2.1
+        enviar_senal_log("INFO", f"DASHBOARD_MOUNTED: Dashboard operativo - MT5: {self.mt5_connected}", "dashboard_definitivo", "mount")
 
         # 🚀 Notificaciones de bienvenida
         self.notify("🚀 Sentinel Dashboard Definitivo v5.0 iniciado", timeout=4)
@@ -997,11 +990,11 @@ class SentinelDashboardDefinitivo(App):
             try:
                 risk_status = self.riskbot.check_and_act()
                 if risk_status != 'ok':
-                    logger.info("🛡️ RiskBot acción ejecutada: %s", risk_status)
+                    enviar_senal_log("INFO", f"🛡️ RiskBot acción ejecutada: {risk_status}", "dashboard_definitivo", "riskbot")
                     if self.debug_mode:
                         enviar_senal_log("INFO", f"🛡️ RiskBot: {risk_status}", "dashboard_definitivo", "migration")
             except (FileNotFoundError, PermissionError, IOError) as e:
-                logger.warning("⚠️ Error en monitoreo RiskBot: %s", e)
+                enviar_senal_log("WARNING", f"⚠️ Error en monitoreo RiskBot: {e}", "dashboard_definitivo", "riskbot")
 
         # Actualizar paneles
         if self.hibernation_static:
@@ -1051,25 +1044,25 @@ class SentinelDashboardDefinitivo(App):
                 self.sync_poi_logs_with_health_analyzer(scored_pois)
 
                 # Log del análisis completado
-                logger.info("🎯 ANÁLISIS INTEGRAL COMPLETADO:")
-                logger.info("   • Patrones ICT: %s", len(enriched_patterns))
-                logger.info("   • POIs detectados: %s", len(scored_pois))
-                logger.info("   • Veredicto: %s", veredicto['grade'] if veredicto else 'NINGUNO')
-                logger.info("   • Contexto: %s", market_context.get('h4_bias', 'NEUTRAL'))
+                enviar_senal_log("INFO", "🎯 ANÁLISIS INTEGRAL COMPLETADO:", "dashboard_definitivo", "analysis")
+                enviar_senal_log("INFO", f"   • Patrones ICT: {len(enriched_patterns)}", "dashboard_definitivo", "analysis")
+                enviar_senal_log("INFO", f"   • POIs detectados: {len(scored_pois)}", "dashboard_definitivo", "analysis")
+                enviar_senal_log("INFO", f"   • Veredicto: {veredicto['grade'] if veredicto else 'NINGUNO'}", "dashboard_definitivo", "analysis")
+                enviar_senal_log("INFO", f"   • Contexto: {market_context.get('h4_bias', 'NEUTRAL')}", "dashboard_definitivo", "analysis")
 
-                # Log del análisis usando el logger centralizado
+                # Log del análisis usando SLUC v2.1
                 analysis_summary = f"Análisis: {len(enriched_patterns)} patrones, {len(scored_pois)} POIs, veredicto: {veredicto['grade'] if veredicto else 'NINGUNO'}"
-                logger.info("ANALYSIS_COMPLETED: %s", analysis_summary)
+                enviar_senal_log("INFO", f"ANALYSIS_COMPLETED: {analysis_summary}", "dashboard_definitivo", "analysis")
 
             else:
                 # Modo simulado para desarrollo
                 self.simulate_pattern_detection()
-                logger.warning("🔄 Ejecutando en modo simulado - MT5 no conectado")
+                enviar_senal_log("WARNING", "🔄 Ejecutando en modo simulado - MT5 no conectado", "dashboard_definitivo", "analysis")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                logger.error("❌ Error en análisis integral: %s", e)
-                traceback.print_exc()
+                enviar_senal_log("ERROR", f"❌ Error en análisis integral: {e}", "dashboard_definitivo", "analysis")
+                # traceback disponible solo en debug
             # Fallback a simulación
             self.simulate_pattern_detection()
 
@@ -1077,11 +1070,11 @@ class SentinelDashboardDefinitivo(App):
         """Carga datos de múltiples timeframes para análisis ICT"""
         try:
             if not self.mt5_manager:
-                logger.warning("🔴 MT5 Manager no disponible para cargar datos")
+                enviar_senal_log("WARNING", "🔴 MT5 Manager no disponible para cargar datos", "dashboard_definitivo", "data_loading")
                 return
 
             symbol = self.symbol
-            logger.info("📊 Iniciando carga de datos multi-timeframe para %s", symbol)
+            enviar_senal_log("INFO", f"📊 Iniciando carga de datos multi-timeframe para {symbol}", "dashboard_definitivo", "data_loading")
 
             # 🚀 FASE 3: AUMENTAR DATOS HISTÓRICOS PARA ICT ENGINE COMPLETO
             timeframes = {
@@ -1098,21 +1091,21 @@ class SentinelDashboardDefinitivo(App):
                     if data is not None and not data.empty:
                         self.real_market_data[f'candles_{tf_name.lower()}'] = data
                         loaded_count += 1
-                        logger.info("✅ Datos %s cargados: %s velas (%s solicitadas)", tf_name, len(data), bars)
+                        enviar_senal_log("INFO", f"✅ Datos {tf_name} cargados: {len(data)} velas ({bars} solicitadas)", "dashboard_definitivo", "data_loading")
                         if self.debug_mode:
-                            logger.debug("   📊 %s - Último precio: %.5f", tf_name, data['close'].iloc[-1])
+                            enviar_senal_log("DEBUG", f"   📊 {tf_name} - Último precio: {data['close'].iloc[-1]:.5f}", "dashboard_definitivo", "data_loading")
                     else:
-                        logger.warning("⚠️ No se pudieron cargar datos %s", tf_name)
+                        enviar_senal_log("WARNING", f"⚠️ No se pudieron cargar datos {tf_name}", "dashboard_definitivo", "data_loading")
                 except (FileNotFoundError, PermissionError, IOError) as tf_error:
-                    logger.error("❌ Error cargando %s: %s", tf_name, tf_error)
+                    enviar_senal_log("ERROR", f"❌ Error cargando {tf_name}: {tf_error}", "dashboard_definitivo", "data_loading")
 
             self.real_market_data['last_update'] = datetime.now()
             self.system_metrics['data_updates'] += 1
 
-            logger.info("📈 Carga multi-timeframe completada: %s/4 timeframes cargados", loaded_count)
+            enviar_senal_log("INFO", f"📈 Carga multi-timeframe completada: {loaded_count}/4 timeframes cargados", "dashboard_definitivo", "data_loading")
 
-            # Log usando el logger centralizado
-            logger.info("DATA_LOADED: %s timeframes cargados para análisis ICT", loaded_count)
+            # Log usando SLUC v2.1
+            enviar_senal_log("INFO", f"DATA_LOADED: {loaded_count} timeframes cargados para análisis ICT", "dashboard_definitivo", "data_loading")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ Error cargando datos multi-timeframe: %s", e)

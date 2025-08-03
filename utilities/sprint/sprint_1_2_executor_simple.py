@@ -1082,7 +1082,6 @@ if __name__ == "__main__":
 '''
 
             # Crear test file
-            test_file = self.project_root / "tests" / "test_candle_downloader_integration.py"
             with open(test_file, 'w', encoding='utf-8') as f:
                 f.write(test_code)
 
@@ -1169,7 +1168,6 @@ if __name__ == "__main__":
                 'dashboard_widget': 'dashboard/candle_downloader_widget.py',
                 'integration_module': 'core/integrations/candle_downloader_integration.py',
                 'dashboard_integration': 'dashboard/dashboard_definitivo.py (updated)',
-                'testing_module': 'tests/test_candle_downloader_integration.py'
             },
             'tasks_completed': self.tasks_completed,
             'tasks_failed': self.tasks_failed,
@@ -1189,7 +1187,6 @@ if __name__ == "__main__":
         if results['status'] == 'SUCCESS':
             next_steps.extend([
                 "✅ Sprint 1.2 completado exitosamente",
-                "🧪 Ejecutar tests de integración: python tests/test_candle_downloader_integration.py",
                 "🎮 Probar widget en dashboard: integrar con dashboard_definitivo.py",
                 "📊 Validar descarga coordinada con CandleCoordinator",
                 "🚀 Preparar Sprint 1.3: ICT Analysis Automation"
@@ -1240,7 +1237,6 @@ def main():
     if results['status'] == 'SUCCESS':
         print("\n🎉 ¡SPRINT 1.2 COMPLETADO EXITOSAMENTE!")
         print("🧪 Ejecuta tests de integración:")
-        print("   python tests/test_candle_downloader_integration.py")
         print("\n🚀 Listo para Sprint 1.3: ICT Analysis Automation")
     else:
         print("\n⚠️ Sprint 1.2 necesita atención")

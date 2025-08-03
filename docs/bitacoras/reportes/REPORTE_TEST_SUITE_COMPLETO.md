@@ -2,7 +2,6 @@
 
 **Fecha:** 1 Agosto 2025
 **Sistema:** ICT Engine v5.0
-**Versión pytest:** 8.3.5
 **Python:** 3.13.2
 
 ---
@@ -24,7 +23,6 @@
 
 ## 📋 DESGLOSE DETALLADO POR MÓDULO
 
-### 1. 🔧 **test_config_manager.py**
 **Status:** ✅ COMPLETO (6/6 passed)
 ```
 ✅ test_config_manager_import                 PASSED
@@ -35,13 +33,11 @@
 ✅ test_logging_system                       PASSED
 ```
 
-### 2. 📊 **test_dashboard_specific.py**
 **Status:** ✅ COMPLETO (1/1 passed)
 ```
 ✅ test_dashboard_step_by_step               PASSED
 ```
 
-### 3. 🎛️ **test_dashboard_widgets.py**
 **Status:** ✅ COMPLETO (10/10 passed)
 ```
 ✅ test_confidence_validation                PASSED
@@ -56,7 +52,6 @@
 ✅ test_symbol_formatting                    PASSED
 ```
 
-### 4. 🧠 **test_ict_engine.py**
 **Status:** ⚠️ PARCIAL (2/7 passed, 5 skipped)
 ```
 ⏭️ test_confidence_engine_initialization    SKIPPED - ICT Engine modules not available
@@ -68,7 +63,6 @@
 ✅ test_price_structure_basic                PASSED
 ```
 
-### 5. 📦 **test_imports.py**
 **Status:** ✅ COMPLETO (3/3 passed)
 ```
 ✅ test_core_imports                         PASSED
@@ -76,7 +70,6 @@
 ✅ test_file_structure                       PASSED
 ```
 
-### 6. 📝 **test_logging_system.py**
 **Status:** ⚠️ PARCIAL (12/14 passed, 2 skipped)
 ```
 ⏭️ test_enviar_senal_log_function           SKIPPED - Logging interface not fully available
@@ -95,7 +88,6 @@
 ✅ test_sensitive_data_filtering             PASSED
 ```
 
-### 7. 💼 **test_trading_engine.py**
 **Status:** ⚠️ PARCIAL (9/10 passed, 1 skipped)
 ```
 ✅ test_order_validation                     PASSED
@@ -157,7 +149,6 @@
 
 ### 🔍 **Warning 1: Import Warnings**
 **Origen:** Warnings en imports de módulos opcionales
-**Archivo:** `test_ict_engine.py`, `test_trading_engine.py`, `test_logging_system.py`
 **Impacto:** BAJO - No afecta funcionalidad
 
 **Detalles:**
@@ -172,7 +163,6 @@
 **Impacto:** BAJO - Mantenimiento futuro
 
 ### 🔍 **Warning 3: Configuration Issues**
-**Origen:** Configuraciones no óptimas en pytest
 **Impacto:** MÍNIMO - No afecta resultados
 
 ---
@@ -191,7 +181,6 @@
 2. **Implementar LimitOrderManager** - Si es requerido
 
 ### 📊 **BAJA (1 item)**
-1. **Optimizar configuración pytest** - Reduce warnings
 
 ---
 
@@ -221,7 +210,6 @@
 ### 1. 🎯 **Resolución de Skipped Tests**
 ```bash
 # Activar tests ICT Engine
-python -m pytest tests/unit/test_ict_engine.py -v
 
 # Verificar disponibilidad de módulos
 python -c "from core.ict_engine import *"
@@ -230,10 +218,8 @@ python -c "from core.ict_engine import *"
 ### 2. 🧹 **Limpieza de Warnings**
 ```bash
 # Ejecutar con warnings detallados
-python -m pytest tests/ -v --disable-warnings
 
 # Revisar imports problemáticos
-python utilities/debug/test_imports.py
 ```
 
 ### 3. 📊 **Monitoreo Continuo**

@@ -64,7 +64,6 @@ class DashboardEnhancementRoadmap:
         return {
             "poi_integration": {
                 "requirement": "Tests POI deben seguir pasando al 100%",
-                "validation": "pytest tests/poi_system/poi_test_simple.py",
                 "frequency": "Antes de cada commit"
             },
 

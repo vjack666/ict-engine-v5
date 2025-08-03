@@ -26,10 +26,8 @@
 ## 🔍 **CORRECCIONES APLICADAS**
 
 ### **✅ Archivos Corregidos:**
-1. `tests/unit/test_imports.py` - Import correcto aplicado
 2. `utilities/debug/debug_launcher.py` - Import correcto aplicado
 3. `main.py` - Import correcto aplicado
-4. `tests/test_caja_negra.py` - Import correcto aplicado
 
 ### **🔧 Corrección Aplicada:**
 ```python
@@ -60,16 +58,12 @@ from dashboard.dashboard_definitivo import SentinelDashboard
 - ✅ `utils.mt5_data_manager.MT5DataManager` - OK
 
 ### **❌ Fallos Menores (No Críticos):**
-1. `test_config_manager.py` - Falta import de `ConfigManager`
-2. `test_logging_system.py` - Falta import de `datetime`
 
 ---
 
 ## 🚀 **SIGUIENTE FASE - LIMPIEZA FINAL**
 
 ### **🎯 Fase 3: Corrección de Fallos Menores (5 minutos)**
-- Corregir import faltante en `test_config_manager.py`
-- Corregir import faltante en `test_logging_system.py`
 - **Objetivo:** 100% de tests pasando
 
 ### **📈 Expectativa Post-Fase 3:**

@@ -49,10 +49,6 @@ class DependencyVerifier:
                 'scripts/master_sluc_v21_updater.py.bak'
             ],
             'test_files': [
-                'debugging/test_poi_integration.py',
-                'debugging/test_tct_render.py',
-                'tests/test_imports.py',
-                'utilities/debug/test_imports.py'
             ],
             'duplicates': [
                 'core/ict_engine/veredicto_engine_v4.py',

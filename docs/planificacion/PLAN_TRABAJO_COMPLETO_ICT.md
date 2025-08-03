@@ -308,29 +308,16 @@ class EnhancedSystemState:
 #### **1. Unit Testing:**
 ```python
 # Tests para cada componente crítico
-test_hibernation_manager.py
-test_auto_analysis_engine.py
-test_advanced_trading_engine.py
-test_session_manager.py
-test_phase_state_machine.py
 ```
 
 #### **2. Integration Testing:**
 ```python
 # Tests de integración entre componentes
-test_dashboard_controller_integration.py
-test_ict_engine_trading_integration.py
-test_hibernation_trading_integration.py
-test_mt5_system_integration.py
 ```
 
 #### **3. End-to-End Testing:**
 ```python
 # Tests de flujo completo
-test_complete_trading_cycle.py
-test_hibernation_to_trading_flow.py
-test_emergency_scenarios.py
-test_performance_under_load.py
 ```
 
 ---
@@ -351,7 +338,6 @@ test_performance_under_load.py
 
 ### **🔧 Herramientas de Desarrollo**
 - **Debug tools:** Suite completa de debugging
-- **Testing tools:** Framework de testing automatizado
 - **Monitoring tools:** Dashboards de monitoreo
 - **Deployment tools:** Scripts de deploy automatizado
 

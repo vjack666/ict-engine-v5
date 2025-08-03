@@ -331,7 +331,6 @@ class PrintMigrationTool:
             "__pycache__/",
             ".git/",
             "temp/",
-            "tests/",  # Tests pueden usar print para debugging
         ]
 
         python_files = []
@@ -819,7 +818,6 @@ if __name__ == "__main__":
     main()
 '''
 
-            rendering_tests_path = self.project_root / "utilities" / "debug" / "rendering_tests.py"
             rendering_tests_path.parent.mkdir(parents=True, exist_ok=True)
 
             if not self.dry_run:
@@ -856,7 +854,6 @@ if __name__ == "__main__":
                 "completed_tasks": self.tasks_completed,
                 "failed_tasks": self.tasks_failed,
                 "next_steps": [
-                    "Ejecutar tests de validación con rendering_tests.py",
                     "Probar Debug Launcher con DevTools F12",
                     "Ejecutar migración de prints si es necesario",
                     "Proceder con Sprint 1.2 si success_rate > 80%"
@@ -894,7 +891,6 @@ def main():
         enviar_senal_log("INFO", "🎉 ¡Sprint 1.1 completado exitosamente!", __name__, "executor")
         enviar_senal_log("INFO", "\n🚀 SPRINT 1.1 COMPLETADO EXITOSAMENTE!", "sprint_1_1_executor", "migration")
         enviar_senal_log("INFO", "📋 Próximos pasos:", "sprint_1_1_executor", "migration")
-        enviar_senal_log("DEBUG", "  1. python utilities/debug/rendering_tests.py", "sprint_1_1_executor", "migration")
         enviar_senal_log("DEBUG", "  2. python utilities/debug/debug_launcher.py", "sprint_1_1_executor", "migration")
         enviar_senal_log("INFO", "  3. python utilities/migration/print_migration_tool.py --scan-only", "sprint_1_1_executor", "migration")
     else:

@@ -190,7 +190,6 @@ Evolucionar el ICT Engine v5.0 de un conjunto de herramientas independientes a u
 1. Implementación de AdvancedCandleCoordinator
 2. Desarrollo de sistema de suscriptores
 3. Creación de ComprehensiveDataDistributor
-4. Tests unitarios básicos
 
 ### **📅 Semana 1 Completa**
 - AdvancedCandleCoordinator operativo

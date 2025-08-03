@@ -19,12 +19,8 @@
 
 ---
 
-## 🧪 **ARCHIVOS MOVIDOS A `/tests/`**
 
 ### **Tests y Validaciones:**
-- ✅ `test_ictdetector_sprint12.py` - Tests del ICTDetector Sprint 1.2
-- ✅ `test_imports.py` - Tests de importaciones del sistema
-- ✅ `test_tct_pipeline_complete.py` - Suite completa TCT Pipeline (6/6 tests)
 
 **Ubicación final:** `c:\Users\v_jac\Desktop\itc engine v5.0\tests\`
 
@@ -73,7 +69,6 @@
 
 ### **Archivos Principales del Proyecto:**
 - ✅ `main.py` - **CORRECTO** - Archivo principal de ejecución
-- ✅ `pytest.ini` - **CORRECTO** - Configuración de pytest
 - ✅ `README.md` - **CORRECTO** - Documentación principal del proyecto
 - ✅ `requirements.txt` - **CORRECTO** - Dependencias del proyecto
 
@@ -87,7 +82,6 @@
 ```
 📁 ICT Engine v5.0/
 ├── 📄 main.py
-├── 📄 pytest.ini
 ├── 📄 README.md
 ├── 📄 requirements.txt
 ├── 📁 scripts/
@@ -96,10 +90,6 @@
 │   ├── 📄 fix_jsondecode_error.py
 │   ├── 📄 mass_cleanup_script.py
 │   └── 📄 quick_fixes.py
-├── 📁 tests/
-│   ├── 📄 test_ictdetector_sprint12.py
-│   ├── 📄 test_imports.py
-│   └── 📄 test_tct_pipeline_complete.py
 └── 📁 docs/
     ├── 📄 index.md
     └── 📁 bitacoras/
@@ -121,7 +111,6 @@
 
 ### **🎯 Claridad Organizacional:**
 1. **Scripts agrupados** - Todos los scripts de mantenimiento en `/scripts/`
-2. **Tests centralizados** - Todos los tests en `/tests/`
 3. **Docs categorizadas** - Documentación organizada por tipo en bitácoras
 4. **Root limpio** - Solo archivos principales en directorio raíz
 

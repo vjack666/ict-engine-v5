@@ -35,9 +35,6 @@ La limpieza se ejecutó en **4 fases** siguiendo el plan aprobado, con verificac
 #### **✅ FASE 4: TESTS OBSOLETOS**
 - **Estado:** ✅ COMPLETADA EXITOSAMENTE
 - **Archivos eliminados confirmados:**
-  - ✅ `debugging/test_poi_integration.py` - ELIMINADO
-  - ✅ `debugging/test_tct_render.py` - ELIMINADO
-- **Tests esenciales mantenidos:** ✅ Preservados en `tests/unit/`
 
 ---
 
@@ -65,8 +62,6 @@ La limpieza se ejecutó en **4 fases** siguiendo el plan aprobado, con verificac
 └── verify_sluc_names_fix.py   # Verificador SLUC
 
 🗑️ ELIMINADOS (Obsoletos):
-├── test_poi_integration.py    # Test obsoleto
-└── test_tct_render.py         # Test obsoleto
 ```
 
 ---
@@ -75,14 +70,12 @@ La limpieza se ejecutó en **4 fases** siguiendo el plan aprobado, con verificac
 
 ### **Beneficios Alcanzados:**
 - **🧹 Archivos eliminados:** ~12-15 archivos obsoletos
-- **📁 Directorios optimizados:** `debugging/`, `scripts/`, `tests/`
 - **🔄 Sistema más limpio:** Menos confusión en navegación
 - **⚡ Performance:** Menos archivos en scans y builds
 - **📈 Mantenibilidad:** Código más organizado
 
 ### **Impacto en Funcionalidad:**
 - **❌ Riesgo CERO:** No se afectó ninguna funcionalidad core
-- **✅ Tests esenciales:** Preservados en `tests/unit/`
 - **✅ Scripts importantes:** Mantenidos (reutilizables)
 - **✅ Documentación:** Intacta y organizada
 - **✅ Logs recientes:** Preservados
@@ -99,7 +92,6 @@ La limpieza se ejecutó en **4 fases** siguiendo el plan aprobado, con verificac
 - [x] ✅ **TCT Pipeline:** Pipeline TCT operativo
 
 ### **Tests Disponibles:**
-- [x] ✅ **Core Tests:** `tests/unit/` - 18 archivos esenciales mantenidos
 - [x] ✅ **Integration Tests:** Funcionales disponibles
 - [x] ✅ **Dashboard Tests:** Específicos preservados
 
@@ -142,7 +134,6 @@ El sistema ICT Engine v5.0 ha sido limpiado exitosamente, eliminando archivos ob
 
 1. **✅ INMEDIATO:** Ejecutar test suite para validación final
    ```bash
-   python -m pytest tests/
    ```
 
 2. **✅ VALIDACIÓN:** Ejecutar dashboard para confirmar operación

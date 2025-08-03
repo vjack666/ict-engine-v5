@@ -81,7 +81,6 @@ Transformar el `advanced_candle_downloader.py` de un simple descargador de datos
   - [ ] Definir formatos de mensajes
   - [ ] Implementar protocolo de actualización
   - [ ] Crear sistema de prioridades
-- [ ] 🔄 Tests unitarios básicos
   - [ ] Test de inicialización
   - [ ] Test de distribución de datos
   - [ ] Test de manejo de errores
@@ -261,12 +260,6 @@ config/
 ├── comprehensive_config.py                 # ✅ Configuración completa
 └── trading_profiles.py                     # ✅ Perfiles de trading
 
-tests/
-├── test_comprehensive_integration.py       # ✅ Tests de integración
-├── test_performance.py                     # ✅ Tests de rendimiento
-├── test_ict_analysis.py                   # ✅ Tests análisis ICT
-├── test_fractal_analysis.py               # ✅ Tests fractales
-└── test_session_analysis.py               # ✅ Tests sesiones
 
 scripts/
 ├── start_comprehensive_system.py           # ✅ Script inicio completo

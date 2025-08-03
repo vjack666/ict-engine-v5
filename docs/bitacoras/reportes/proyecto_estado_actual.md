@@ -31,7 +31,6 @@
 ```
 debugging/
 ├── diagnose_tct_pipeline.py        ✅ Diagnóstico TCT Pipeline
-├── test_tct_render.py             ✅ Test render TCT panel
 ├── tct_quick_fix.py               ✅ Fix rápido TCT
 ├── tct_instant_fix.py             ✅ Fix instantáneo (30 seg)
 ├── tct_live_hotfix.py             ✅ Hot-fix sin restart

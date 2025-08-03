@@ -45,7 +45,6 @@ from sistema.data_logger import log_posicion_cerrada, log_error_critico
 - core/ict_engine/confidence_engine.py    # get_emoji_safe_logger
 - dashboard/dashboard_definitivo.py       # safe_log_and_print, get_emoji_safe_logger
 - docs/bitacoras/sistemas/bitacora_manager.py  # safe_log_and_print
-- tests/unit/test_logging_system.py       # EmojiLogger testing
 
 # FUNCIONALIDAD NO MIGRADA:
 - EmojiSafeLogger class

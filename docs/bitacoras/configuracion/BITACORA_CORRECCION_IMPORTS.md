@@ -41,7 +41,6 @@
 
 #### Task 1.1: Corregir imports de SentinelDashboard
 **Archivos afectados:**
-- `tests/unit/test_imports.py`
 - `utilities/debug/debug_launcher.py`
 - Cualquier otro archivo que importe `SentinelDashboard`
 
@@ -60,7 +59,6 @@ from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as Sentin
 #### Task 1.2: Verificar todos los imports de dashboard
 **Comando de verificación:**
 ```bash
-python tests/unit/test_imports.py
 ```
 
 **Resultado esperado:** Todos los imports ✅ OK
@@ -99,7 +97,6 @@ python main.py --dashboard
 - `requirements.txt` (verificar y actualizar)
 
 #### Task 3.2: Crear tests automáticos de imports
-**Nuevo archivo:** `tests/integration/test_full_system_imports.py`
 
 ---
 
@@ -108,10 +105,8 @@ python main.py --dashboard
 ### Verificación completa del sistema:
 ```bash
 # 1. Test de imports
-python tests/unit/test_imports.py
 
 # 2. Test específico del dashboard
-python tests/unit/test_dashboard_specific.py
 
 # 3. Test del sistema principal
 python main.py --tests
@@ -142,13 +137,11 @@ python main.py --dashboard
 ## 🎯 PRÓXIMOS PASOS INMEDIATOS
 
 ### 1. **ACCIÓN INMEDIATA** (5 minutos)
-Corregir el import en `test_imports.py`:
 ```python
 from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as SentinelDashboard
 ```
 
 ### 2. **VERIFICACIÓN** (2 minutos)
-Ejecutar: `python tests/unit/test_imports.py`
 
 ### 3. **CORRECCIÓN MASIVA** (10 minutos)
 Buscar y corregir todos los archivos que importen `SentinelDashboard`
@@ -180,7 +173,6 @@ Ejecutar: `python main.py --dashboard`
 **Archivos críticos identificados:**
 1. `dashboard/dashboard_definitivo.py` - Clase: `SentinelDashboardDefinitivo`
 2. `core/analysis_command_center/acc_orchestrator.py` - ✅ YA CORREGIDO
-3. `tests/unit/test_imports.py` - ❌ NECESITA CORRECCIÓN
 4. `utilities/debug/debug_launcher.py` - ❌ NECESITA CORRECCIÓN
 
 ---

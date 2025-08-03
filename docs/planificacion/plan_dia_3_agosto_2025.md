@@ -201,11 +201,8 @@ Completar la auditoría del `advanced_candle_downloader.py` y preparar la base p
 - [ ] Verificar imports funcionan
 
 ### **✅ 16:15-17:00: Preparación Testing**
-- [ ] Crear tests/integration/
-- [ ] Preparar test_candle_coordinator.py
 - [ ] Crear mocks para advanced_candle_downloader
 - [ ] Preparar datos de prueba
-- [ ] Configurar pytest si es necesario
 
 ### **✅ 17:00-18:00: Documentación Final**
 - [ ] Revisar toda la documentación creada
@@ -285,7 +282,6 @@ Completar la auditoría del `advanced_candle_downloader.py` y preparar la base p
 ### **🛠️ Recursos Técnicos**
 - Documentación existente en `docs/`
 - Código base en `core/` y `sistema/`
-- Tests existentes en `tests/`
 
 ### **📚 Referencias**
 - Metodología ICT documentación

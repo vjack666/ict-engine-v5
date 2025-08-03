@@ -57,28 +57,10 @@ scripts\quick_fixes.py
 **Recomendación:** REVISAR - Mantener tests importantes
 
 ```
-debugging\test_poi_integration.py
-debugging\test_tct_render.py
 docs\bitacoras\diagnosticos\tct_debugging_weekend_testing_completed.md
 docs\bitacoras\reportes\REPORTE_POI_TEST_SUITE_20250801_153152.md
 docs\bitacoras\reportes\REPORTE_POI_TEST_SUITE_20250801_153900.md
 docs\bitacoras\reportes\REPORTE_TEST_SUITE_COMPLETO.md
-tests\integration\test_poi_dashboard_integration.py
-tests\poi_system\poi_test_simple.py
-tests\poi_system\poi_test_suite.py
-tests\test_caja_negra.py
-tests\test_correcciones.py
-tests\test_ictdetector_sprint12.py
-tests\test_imports.py
-tests\test_poi_panel.py
-tests\test_tct_pipeline_complete.py
-tests\unit\test_dashboard_specific.py
-tests\unit\test_dashboard_widgets.py
-tests\unit\test_ict_engine.py
-tests\unit\test_imports.py
-tests\unit\test_logging_system.py
-tests\unit\test_trading_engine.py
-utilities\debug\test_imports.py
 ```
 
 ## 🔄 Posibles Duplicados
@@ -146,15 +128,6 @@ sistema\__pycache__\emoji_logger.cpython-313.pyc
 sistema\__pycache__\logging_config.cpython-313.pyc
 sistema\__pycache__\logging_interface.cpython-313.pyc
 sistema\__pycache__\smart_directory_logger.cpython-313.pyc
-tests\__pycache__\__init__.cpython-313.pyc
-tests\unit\__pycache__\__init__.cpython-313.pyc
-tests\unit\__pycache__\test_config_manager.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_dashboard_specific.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_dashboard_widgets.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_ict_engine.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_imports.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_logging_system.cpython-313-pytest-8.3.5.pyc
-tests\unit\__pycache__\test_trading_engine.cpython-313-pytest-8.3.5.pyc
 utilities\migration\__pycache__\print_migration_tool.cpython-313.pyc
 utils\__pycache__\__init__.cpython-313.pyc
 utils\__pycache__\logging_utils.cpython-313.pyc

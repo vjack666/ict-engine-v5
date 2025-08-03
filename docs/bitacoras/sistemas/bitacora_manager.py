@@ -21,8 +21,8 @@ from enum import Enum
 import threading
 import hashlib
 
-# Imports del sistema ICT
-from sistema.emoji_logger import safe_log_and_print
+# Imports del sistema ICT - MIGRADO A SLUC v2.1
+from sistema.logging_interface import enviar_senal_log
 
 
 class BitacoraType(Enum):
@@ -99,8 +99,8 @@ class ICTBitacoraManager:
             {"session_id": self.current_session_id, "version": "v3.44"}
         )
 
-        # Usar emoji safe logging
-        safe_log_and_print("BITACORA", "📋 Sistema de Bitácoras ICT inicializado", True)
+        # Sistema SLUC v2.1 para logging
+        enviar_senal_log("INFO", "📋 Sistema de Bitácoras ICT inicializado", "bitacora_manager", "initialization")
 
     def _generate_session_id(self) -> str:
         """Genera ID único para la sesión actual"""
@@ -130,7 +130,7 @@ class ICTBitacoraManager:
                 self.event_counters[entry.bitacora_type] += 1
 
             except (ValueError, OSError) as e:
-                safe_log_and_print("BITACORA", f"❌ Error escribiendo bitácora: {e}", True)
+                enviar_senal_log("ERROR", f"❌ Error escribiendo bitácora: {e}", "bitacora_manager", "write_error")
 
     # 🔧 MÉTODOS PÚBLICOS DE LOGGING ESPECIALIZADO
 
@@ -314,9 +314,7 @@ class ICTBitacoraManager:
 
                     if file_date < cutoff_date:
                         log_file.unlink()
-                        safe_log_and_print("BITACORA",
-                                         f"🗑️ Archivo de bitácora antiguo eliminado: {log_file.name}",
-                                         True)
+                        enviar_senal_log("INFO", f"🗑️ Archivo de bitácora antiguo eliminado: {log_file.name}", "bitacora_manager", "cleanup")
 
                 except (ValueError, IndexError):
                     # Si no se puede parsear la fecha, mantener el archivo

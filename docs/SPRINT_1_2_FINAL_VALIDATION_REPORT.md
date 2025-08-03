@@ -111,7 +111,6 @@ OK
 2. **`core/data_management/candle_coordinator.py`** - Coordinador central
 3. **`dashboard/candle_downloader_widget.py`** - Widget Rich/Textual
 4. **`core/integrations/candle_downloader_integration.py`** - Módulo integración
-5. **`tests/test_candle_downloader_integration.py`** - Suite de tests
 6. **`docs/SPRINT_1_2_COMPLETION_REPORT.md`** - Documentación
 
 ### Archivos Corregidos

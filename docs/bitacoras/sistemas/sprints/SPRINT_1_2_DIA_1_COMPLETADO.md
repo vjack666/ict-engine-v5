@@ -95,7 +95,6 @@
    - Actualizado `__all__` para exportar ICTDetector
 
 ### **📝 Archivos Creados:**
-1. **`test_ictdetector_sprint12.py`** - Test completo de validación
 
 ---
 

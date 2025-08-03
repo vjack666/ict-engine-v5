@@ -45,7 +45,6 @@ Sistema completo de bitácoras organizadas por función para mantener un registr
 ✅ BITACORA_CONFIGURACION_VSCODE.md           # Configuración VSCode
 ```
 
-### 🧪 `/tests/` - Pruebas y Validaciones
 ```
 ✅ test_results.md                             # Resultados de Tests
 ✅ REPORTE_POI_TEST_SUITE_*.md                # Suite de Tests POI

@@ -72,14 +72,9 @@ rm "scripts/master_sluc_v21_updater.py.bak"
 ### **FASE 4: TESTS OBSOLETOS - APROBADO ✅**
 ```bash
 # Tests verificados como no esenciales:
-rm "debugging/test_poi_integration.py"
-rm "debugging/test_tct_render.py"
-rm "tests/test_imports.py"
-rm "utilities/debug/test_imports.py"
 
 📊 Impacto:
 ├── Archivos: 4 tests obsoletos
-├── Tests esenciales: 🔄 MANTENIDOS (en tests/unit/)
 ├── Dependencias: ✅ 0 (verificado)
 └── Estado: ✅ APROBADO PARA ELIMINACIÓN
 ```
@@ -148,10 +143,6 @@ del "scripts\master_sluc_v21_updater.py.bak"
 
 4. **Eliminación de Tests Obsoletos:**
 ```bash
-del "debugging\test_poi_integration.py"
-del "debugging\test_tct_render.py"
-del "tests\test_imports.py"
-del "utilities\debug\test_imports.py"
 ```
 
 ### **⚠️ REVISAR MANUALMENTE:**
@@ -170,7 +161,6 @@ del "utilities\debug\test_imports.py"
 
 ### **Archivos que SE MANTIENEN (Por seguridad):**
 - **📋 Logs recientes:** 19 archivos (todos del 02/08/2025)
-- **🧪 Tests esenciales:** 18 archivos en tests/unit/
 - **🔧 Scripts reutilizables:** 6 scripts genéricos
 - **📚 Documentación:** Todas las bitácoras organizadas
 

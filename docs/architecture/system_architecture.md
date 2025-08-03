@@ -235,7 +235,6 @@ Component Health → System Metrics → Alert Processing → Bitácoras → Repo
 ### 3. **Mantenibilidad**
 - Código autodocumentado con docstrings
 - Logging estructurado para debugging
-- Tests unitarios para componentes críticos
 
 ### 4. **Observabilidad**
 - Logging completo de todas las operaciones
@@ -279,7 +278,6 @@ Component Health → System Metrics → Alert Processing → Bitácoras → Repo
 Para agregar un nuevo patrón:
 1. Definir tipo en `ict_types.py`
 2. Implementar detección en `pattern_analyzer.py`
-3. Agregar tests unitarios
 4. Actualizar documentación
 
 ### 2. **Nuevos Proveedores de Datos**

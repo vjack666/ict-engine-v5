@@ -203,7 +203,6 @@ TEXTUAL_DEBUG=1       # Debug mode habilitado
 
 ### **Base Técnica Establecida**
 - ✅ Debug infrastructure completa
-- ✅ Automated testing framework
 - ✅ Sprint automation tools
 - ✅ Clean logging system
 

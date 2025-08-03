@@ -41,7 +41,6 @@ Estos archivos se regeneran automáticamente cuando se ejecuta Python:
 ├── core/ict_engine/__pycache__/
 ├── dashboard/__pycache__/
 ├── sistema/__pycache__/
-├── tests/__pycache__/
 └── utils/__pycache__/
 ```
 
@@ -119,20 +118,10 @@ Estos archivos se regeneran automáticamente cuando se ejecuta Python:
 
 #### **🗑️ CANDIDATOS SEGUROS PARA ELIMINACIÓN:**
 ```
-✅ debugging/test_poi_integration.py         # Test de desarrollo - obsoleto
-✅ debugging/test_tct_render.py             # Test específico - obsoleto
-✅ tests/test_imports.py                    # Test básico - duplicado
-✅ utilities/debug/test_imports.py          # Test duplicado
 ```
 
 #### **📚 MANTENER - TESTS ESENCIALES:**
 ```
-🔄 tests/test_caja_negra.py                # Test core system
-🔄 tests/test_poi_panel.py                 # Test POI system
-🔄 tests/unit/test_dashboard_specific.py   # Test dashboard
-🔄 tests/unit/test_ict_engine.py           # Test ICT engine
-🔄 tests/unit/test_logging_system.py       # Test logging system
-🔄 tests/unit/test_trading_engine.py       # Test trading engine
 ```
 
 #### **📋 REPORTES DE TESTING (EVALUAR):**
@@ -258,7 +247,6 @@ Beneficio: Gestión de espacio
 - Cualquier archivo `__init__.py` - Estructura de paquetes Python
 
 ### ⚡ **VERIFICACIONES OBLIGATORIAS ANTES DE ELIMINAR:**
-1. **Ejecutar tests completos:** `python -m pytest tests/`
 2. **Verificar dashboard:** `python dashboard/dashboard_definitivo.py`
 3. **Crear backup completo** del proyecto
 4. **Verificar que no hay imports** de archivos a eliminar

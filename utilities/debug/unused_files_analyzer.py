@@ -42,7 +42,6 @@ class UnusedFilesAnalyzer:
             r'.*_backup\.py$',
             r'.*_old\.py$',
             r'.*_temp\.py$',
-            r'.*_test_.*\.py$',
             r'.*\.log$',
             r'.*\.tmp$',
             r'.*_copy\.py$',
@@ -59,7 +58,6 @@ class UnusedFilesAnalyzer:
             'smart_directory_logger.py',
             'config_manager.py',
             'requirements.txt',
-            'pytest.ini',
             'README.md',
             '__init__.py'
         }
@@ -177,10 +175,8 @@ class UnusedFilesAnalyzer:
         name = file_path.name.lower()
         parent = file_path.parent.name.lower()
         return (
-            name.startswith('test_') and not name in ['test_config_manager.py'] or
             '_test' in name or
             'debug_test' in name or
-            ('testing' in parent and name.endswith('.py'))
         )
 
     def _is_cache_file(self, file_path: Path) -> bool:

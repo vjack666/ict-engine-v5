@@ -104,7 +104,6 @@ utilities/
 - **📸 Screenshot System:** Integrado en debug launcher
 - **🎮 DevTools Integration:** F12 binding funcional
 - **🖥️ Console Mode:** Configuración completa Textual
-- **🧪 Testing Framework:** Validación automática
 
 ---
 

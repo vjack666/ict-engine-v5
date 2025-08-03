@@ -223,7 +223,6 @@ El sistema ahora:
 ✅ config/live_account_validator.py        - Validador de tipo de cuenta
 ✅ dashboard/widgets/account_status_widget.py - Widget de status
 ✅ utils/mt5_data_manager.py               - Integración validador (mod)
-✅ scripts/test_live_system.py             - Suite de testing
 ✅ docs/LIVE_MODE_MIGRATION_PLAN.md        - Plan de migración
 ✅ docs/CURRENT_ICT_WALKTHROUGH_DEMO.md    - Actualizado (mod)
 ```

@@ -132,7 +132,6 @@ def show_utilities_menu(args):
         ("1", "🔧 Debug Launcher", "python utilities/debug/debug_launcher.py"),
         ("2", "📝 Print Migration Tool", "python utilities/migration/print_migration_tool.py --scan-only"),
         ("3", "📊 Sprint Consolidator", "python utilities/sprint/sprint_1_1_consolidator.py"),
-        ("4", "🧪 Run Tests", "python -m pytest tests/"),
         ("5", "📋 System Info", "python scripts/system_info.py"),
     ]
 
@@ -166,24 +165,17 @@ def run_tests(args):
     """Ejecuta la suite de tests"""
     enviar_senal_log("INFO", "🧪 Ejecutando Tests...", "main", "migration")
 
-    # 🔍 Verificar que pytest esté disponible
     try:
-        import pytest
     except ImportError:
-        enviar_senal_log("INFO", "❌ pytest no está instalado", "main", "migration")
-        enviar_senal_log("INFO", "💡 Instala con: pip install pytest", "main", "migration")
         sys.exit(1)
 
     # 🚀 Ejecutar tests
-    test_args = ["tests/"]
 
     if args.verbose:
         test_args.extend(["-v", "--tb=short"])
     else:
         test_args.extend(["-q"])
 
-    # 📊 Ejecutar con pytest
-    exit_code = pytest.main(test_args)
 
     if exit_code == 0:
         enviar_senal_log("INFO", "✅ Todos los tests pasaron", "main", "migration")

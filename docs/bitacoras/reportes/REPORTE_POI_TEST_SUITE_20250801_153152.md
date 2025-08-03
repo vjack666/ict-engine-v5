@@ -59,7 +59,6 @@ VELOCIDAD: EXCELENTE (1.85s)
 
 ## MÉTRICAS DE PERFORMANCE
 
-- **Throughput de testing:** 5.4 tests/segundo
 - **Tiempo promedio por test:** 0.185s
 - **Eficiencia del sistema:** 100.0% de tests exitosos
 

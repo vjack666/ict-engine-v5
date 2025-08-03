@@ -6,18 +6,27 @@ Motor unificado para todo el análisis Inner Circle Trader.
 
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_ict
-pass
 
+# Importar clase principal ICTEngine
+try:
+    from .ict_engine import ICTEngine, get_ict_engine, ICTEngineResult
+    enviar_senal_log("INFO", "ICTEngine principal importado correctamente", __name__, "ict")
+except ImportError as e:
+    enviar_senal_log("ERROR", f"Error importando ICTEngine: {e}", __name__, "ict")
 
 __version__ = "3.4.1"  # Versión actualizada tras refactorización
 
 # --- Importar componentes clave desde los submódulos ---
-from .ict_types import (
-    ICTPattern, MarketPhase, SessionType, SignalStrength, TradingDirection,
-    ICTSignal, MarketStructure, SessionCharacteristics, ICTAnalysisResult,
-    PATTERN_EMOJIS, DIRECTION_COLORS, get_pattern_description
-)
-from .ict_detector import MarketContext, OptimizedICTAnalysis, ICTDetector, update_market_context
+try:
+    from .ict_types import (
+        ICTPattern, MarketPhase, SessionType, SignalStrength, TradingDirection,
+        ICTSignal, MarketStructure, SessionCharacteristics, ICTAnalysisResult,
+        PATTERN_EMOJIS, DIRECTION_COLORS, get_pattern_description
+    )
+    from .ict_detector import MarketContext, OptimizedICTAnalysis, ICTDetector, update_market_context
+    enviar_senal_log("INFO", "Componentes ICT importados correctamente", __name__, "ict")
+except ImportError as e:
+    enviar_senal_log("WARNING", f"Error importando componentes ICT: {e}", __name__, "ict")
 from .pattern_analyzer import ICTPatternAnalyzer
 from .confidence_engine import ConfidenceEngine
 

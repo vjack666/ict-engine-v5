@@ -125,7 +125,6 @@
 - [x] **`ESTADO_FINAL_SISTEMA_20250802.md`** - Estado actualizado
 
 ### **Tests y Validación:**
-- [x] **`test_tct_pipeline_complete.py`** - Suite exhaustiva 344 líneas
 - [x] **Validation reports** - Resultados detallados
 - [x] **Performance benchmarks** - Métricas documentadas
 - [x] **Error handling tests** - Robustez validada

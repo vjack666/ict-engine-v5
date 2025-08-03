@@ -50,7 +50,6 @@ docs/bitacoras/
 ├── reportes/                   # ✅ 1 archivo movido
 │   └── proyecto_estado_actual.md
 ├── configuracion/              # ✅ Existente
-├── tests/                      # ✅ Existente
 ├── trading/                    # ✅ Existente
 ├── analisis/                   # ✅ Existente
 ├── monitoreo/                  # ✅ Existente

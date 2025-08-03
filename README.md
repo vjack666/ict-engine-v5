@@ -17,7 +17,6 @@ Sistema avanzado de análisis y trading basado en patrones ICT (Inner Circle Tra
 ICT Engine v5.0/
 ├── 🚀 main.py                     # Launcher principal
 ├── 📋 requirements.txt            # Dependencias
-├── 🧪 pytest.ini                 # Configuración de tests
 ├── 🚫 .gitignore                 # Archivos excluidos
 ├──
 ├── 📊 dashboard/                  # Dashboard principal
@@ -45,8 +44,6 @@ ICT Engine v5.0/
 │   ├── migration/                # Migración de código
 │   └── sprint/                   # Gestión de sprints
 ├──
-├── 🧪 tests/                      # Suite de tests
-│   ├── unit/                     # Tests unitarios
 │   ├── integration/              # Tests integración
 │   └── fixtures/                 # Datos de prueba
 ├──
@@ -128,26 +125,18 @@ python utilities/sprint/sprint_1_1_consolidator.py
 ### **Ejecutar Tests**
 ```bash
 # 🧪 Todos los tests
-python -m pytest tests/
 
 # 📊 Tests con cobertura
-python -m pytest tests/ --cov=core --cov=dashboard
 
 # 🚀 Tests específicos
-python -m pytest tests/unit/test_config_manager.py
 
 # 🏷️ Tests por marker
-python -m pytest -m "unit" tests/
-python -m pytest -m "integration" tests/
 ```
 
 ### **Crear Nuevos Tests**
 ```bash
-# 📁 Tests unitarios
-tests/unit/test_nuevo_componente.py
 
 # 🔗 Tests de integración
-tests/integration/test_dashboard_integration.py
 ```
 
 ## 🛠️ Herramientas de Desarrollo

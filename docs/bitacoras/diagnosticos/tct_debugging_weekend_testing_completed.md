@@ -100,7 +100,6 @@ def render_tct_panel(self):
 ✅ python debugging/diagnose_tct_pipeline.py
    └── Resultado: TCT Pipeline funcional, problema en UI refresh
 
-✅ python debugging/test_tct_render.py
    └── Resultado: render_tct_panel() genera contenido correcto
 
 ✅ python debugging/tct_quick_fix.py
@@ -140,7 +139,6 @@ def render_tct_panel(self):
 ### **Para Debugging Completo:**
 ```bash
 1. python debugging/diagnose_tct_pipeline.py
-2. python debugging/test_tct_render.py
 3. python debugging/tct_quick_fix.py
 4. Verificar logs en data/logs/
 ```

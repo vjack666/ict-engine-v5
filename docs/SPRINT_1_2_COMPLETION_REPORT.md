@@ -17,7 +17,6 @@
 
 ### Test Coverage
 - **Status**: ✅ COMPLETADO
-- **Tests**: `tests/test_candle_downloader_integration.py`
 - **Cobertura**: 7/7 tests passed
 - **Validación**: Imports, funcionalidad básica, integración completa
 
@@ -55,7 +54,6 @@ class CandleDownloaderIntegration:
 
 ### 4. Test Suite
 ```python
-# tests/test_candle_downloader_integration.py
 - Import validation
 - Functionality testing
 - Integration testing

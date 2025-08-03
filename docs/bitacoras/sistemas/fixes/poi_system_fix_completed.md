@@ -13,7 +13,6 @@
 ## 🔍 Diagnóstico Realizado
 ### Scripts Creados y Ejecutados:
 - ✅ `debugging/diagnose_poi_system.py` - Diagnóstico completo
-- ✅ `debugging/test_poi_integration.py` - Prueba de integración
 - ✅ `scripts/clean_poi_diagnostics.py` - Validación final
 
 ### Resultados Diagnóstico:

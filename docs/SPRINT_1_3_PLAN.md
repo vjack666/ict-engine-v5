@@ -50,13 +50,8 @@
 │   └── performance_widget.py   # Widget métricas rendimiento
 └── analytics_dashboard.py      # 🆕 NUEVO - Dashboard analytics
 
-📁 tests/
 ├── analytics/                   # 🆕 NUEVO - Tests analytics
-│   ├── test_ict_analyzer.py    # Tests motor ICT
-│   ├── test_pattern_detection.py # Tests detección patrones
-│   └── test_signal_generation.py # Tests generación señales
 └── integration/
-    └── test_analytics_integration.py # Tests integración completa
 ```
 
 ## 📋 TASKS SPRINT 1.3

@@ -50,7 +50,6 @@ Error Diagnostics: ✅ ROBUSTO (sin fallos silenciosos)
 ```
 docs/bitacoras/
 ├── 📊 reportes/          - TODOS ACTUALIZADOS
-├── 🧪 tests/             - ORGANIZADOS
 ├── 🔍 diagnosticos/      - CATEGORIZADOS
 ├── ⚙️ configuracion/     - AGRUPADOS
 ├── 🎯 estrategias/       - PLANIFICACIÓN

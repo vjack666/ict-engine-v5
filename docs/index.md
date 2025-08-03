@@ -1,5 +1,9 @@
 # 📚 DOCUMENTACIÓN ICT ENGINE v5.0
 
+**Última Actualización:** 03 Agosto 2025 - 16:45 hrs
+**Estado:** ✅ **CONFIDENCE ENGINE v2.0 MIGRADO + SLUC v2.1 COMPLETO**
+**Sistemas Operativos:** Dashboard Multi-POI + TCT Pipeline + Motor Confianza Avanzado
+
 Bienvenido al sistema completo de documentación y bitácoras del ICT Engine. Este directorio contiene toda la información necesaria para operar, monitorear y mantener el sistema de trading profesional ICT.
 
 ## 📁 Estructura de la Documentación

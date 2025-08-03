@@ -23,7 +23,7 @@ from sistema.logging_interface import enviar_senal_log
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any, Tuple, Union, TypedDict
 from dataclasses import dataclass
 from enum import Enum
 
@@ -72,6 +72,18 @@ class FractalGrade(Enum):
     B = "B"        # 70-79% confianza
     C = "C"        # 60-69% confianza
     D = "D"        # <60% confianza
+
+# =============================================================================
+# TIPOS ESPECIALIZADOS
+# =============================================================================
+
+class FractalLevels(TypedDict):
+    """Tipo específico para niveles fractales"""
+    high: float
+    low: float
+    eq: float
+    confidence: float
+    grade: str
 
 # =============================================================================
 # DATACLASSES PARA ESTRUCTURA DE DATOS
@@ -569,21 +581,23 @@ class FractalAnalyzer:
             enviar_senal_log("ERROR", f"Error actualizando contexto fractal: {e}", __name__, "fractal_analysis")
             return False
 
-    def get_fractal_levels(self) -> Optional[Dict[str, float]]:
+    def get_fractal_levels(self) -> Optional[FractalLevels]:
         """
         📊 Obtiene niveles fractales actuales para trading
 
         Returns:
-            Dict con niveles high, low, eq o None si no hay fractal válido
+            FractalLevels con niveles high, low, eq o None si no hay fractal válido
         """
         if self.current_fractal and self.current_fractal.valid:
-            return {
+            # Explicitly typed return to ensure type checker correctness
+            fractal_levels: FractalLevels = {
                 'high': self.current_fractal.high,
                 'low': self.current_fractal.low,
                 'eq': self.current_fractal.eq,
                 'confidence': self.current_fractal.confidence,
                 'grade': self.current_fractal.grade.value
             }
+            return fractal_levels
         return None
 
     def is_price_at_equilibrium(self, current_price: float, tolerance_multiplier: float = 1.0) -> bool:
@@ -638,6 +652,7 @@ def update_fractal_in_context(market_context, df: pd.DataFrame, current_price: f
 __all__ = [
     'FractalAnalyzer',
     'FractalRange',
+    'FractalLevels',
     'SwingPoint',
     'FractalStatus',
     'FractalGrade',

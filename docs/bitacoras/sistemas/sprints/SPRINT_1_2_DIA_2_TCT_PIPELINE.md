@@ -248,7 +248,6 @@ dashboard_data['tct_status']['performance_grade']   # ✅ Correcto
 
 ### **Test Suite Implementation:**
 ```python
-# test_tct_pipeline_complete.py - 344 líneas de testing exhaustivo
 
 def test_aggregated_metrics_to_dict():
     """Test 1: AggregatedTCTMetrics.to_dict() con 11 campos"""

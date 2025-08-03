@@ -3,14 +3,16 @@ def descargar_y_guardar_m1(symbol: str = "EURUSD", lookback: int = 200000) -> bo
     """
     Descarga y guarda las velas de M1 siguiendo la lógica del sistema.
     """
+    from utils.mt5_data_manager import get_mt5_manager
+
     manager = get_mt5_manager()
-    enviar_senal_log("INFO", f"[MT5] Forzando descarga de velas M1 para {symbol}...", "mt5_data_manager", "migration")
+    enviar_senal_log("INFO", f"[MT5] Forzando descarga de velas M1 para {symbol}...", "mt5_data_manager")
     df = manager.get_historical_data(symbol, "M1", lookback, force_download=True)
     if df is not None and not df.empty:
-        enviar_senal_log("INFO", f"[MT5] Velas M1 descargadas y guardadas: {len(df)} filas.", "mt5_data_manager", "migration")
+        enviar_senal_log("INFO", f"[MT5] Velas M1 descargadas y guardadas: {len(df)} filas.", "mt5_data_manager")
         return True
     else:
-        enviar_senal_log("ERROR", f"[MT5] ERROR: No se pudieron descargar velas M1 para {symbol}.", "mt5_data_manager", "migration")
+        enviar_senal_log("ERROR", f"[MT5] ERROR: No se pudieron descargar velas M1 para {symbol}.", "mt5_data_manager")
         return False
 """
 MT5 Data Manager - Sistema Sentinel Grid v3.3.3.3.3
@@ -36,9 +38,9 @@ import os
 # Importación segura de MT5 y configuración FundedNext
 try:
     import MetaTrader5 as mt5
-    MT5_AVAILABLE = True
+    mt5_available = True
 except ImportError:
-    MT5_AVAILABLE = False
+    mt5_available = False
     mt5 = None
 
 # Configuración específica para FundedNext MT5
@@ -82,7 +84,7 @@ class MT5DataManager:
 
     def _check_mt5_availability(self) -> None:
         """Verifica qué funciones de MT5 están disponibles."""
-        if not MT5_AVAILABLE or mt5 is None:
+        if not mt5_available or mt5 is None:
             return
 
         # Lista de funciones críticas de MT5
@@ -100,7 +102,7 @@ class MT5DataManager:
 
     def connect(self) -> bool:
         """Conecta específicamente al terminal FundedNext MT5."""
-        if not MT5_AVAILABLE or mt5 is None:
+        if not mt5_available or mt5 is None:
             enviar_senal_log("INFO", "❌ MetaTrader5 no está disponible", "mt5_data_manager", "migration")
             return False
 
@@ -197,7 +199,7 @@ class MT5DataManager:
         Returns:
             True si el símbolo está disponible, False en caso contrario
         """
-        if not MT5_AVAILABLE or mt5 is None:
+        if not mt5_available or mt5 is None:
             enviar_senal_log('ERROR', f"MT5 no disponible para verificar símbolo {simbolo}", __name__, 'mt5')
             return False
 
@@ -245,7 +247,7 @@ class MT5DataManager:
         Returns:
             Constante de MT5 o None si no existe
         """
-        if not MT5_AVAILABLE or mt5 is None:
+        if not mt5_available or mt5 is None:
             return None
 
         try:
@@ -422,14 +424,14 @@ class MT5DataManager:
 
 
 # Instancia global del manager
-_mt5_manager = None
+_mt5_manager_instance = None
 
 def get_mt5_manager() -> MT5DataManager:
     """Obtiene la instancia global del MT5DataManager."""
-    global _mt5_manager
-    if _mt5_manager is None:
-        _mt5_manager = MT5DataManager()
-    return _mt5_manager
+    # Usar variable de módulo en lugar de global
+    if _mt5_manager_instance is None:
+        globals()['_mt5_manager_instance'] = MT5DataManager()
+    return _mt5_manager_instance
 
 def cargar_datos_historicos_unificado(timeframe: str,
                                      lookback: int = 10000,

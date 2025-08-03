@@ -41,8 +41,6 @@ class Sprint13Executor:
             "core/analytics",
             "core/data_pipeline",
             "dashboard/widgets",
-            "tests/analytics",
-            "tests/integration"
         ]
 
         for directory in directories:
