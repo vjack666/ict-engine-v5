@@ -793,7 +793,7 @@ class ICTProfessionalWidget:
                 "diagnostico"
             )
         except Exception as e:
-            print(f"Error en sonda B: {e}")
+            enviar_senal_log("ERROR", f"Error en sonda B: {e}", "ict_professional_widget", "migration")
         # --- FIN SONDA ---
         """
         Actualiza los datos ICT básicos (método de compatibilidad).

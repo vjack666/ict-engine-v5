@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -69,13 +70,13 @@ def fix_acc_flow_controller():
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
-    print("✅ acc_flow_controller.py corregido completamente")
-    print("✅ Parámetros actualizados:")
-    print("  - level -> nivel")
-    print("  - message -> mensaje")
-    print("  - emisor -> fuente")
-    print("  - f-strings corregidos")
-    print("  - Líneas multilinea unificadas")
+    enviar_senal_log("INFO", "✅ acc_flow_controller.py corregido completamente", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "✅ Parámetros actualizados:", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "  - level -> nivel", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "  - message -> mensaje", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "  - emisor -> fuente", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "  - f-strings corregidos", "fix_acc_flow_controller", "migration")
+    enviar_senal_log("INFO", "  - Líneas multilinea unificadas", "fix_acc_flow_controller", "migration")
 
 if __name__ == "__main__":
     fix_acc_flow_controller()

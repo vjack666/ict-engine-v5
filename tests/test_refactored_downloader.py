@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧪 TEST REFACTORED CANDLE DOWNLOADER
@@ -20,61 +21,61 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 def test_refactored_downloader():
     """Test del downloader refactorizado"""
 
-    print("🧪 === TEST REFACTORED CANDLE DOWNLOADER ===")
+    enviar_senal_log("INFO", "🧪 === TEST REFACTORED CANDLE DOWNLOADER ===", "test_refactored_downloader", "migration")
 
     try:
         from utils.advanced_candle_downloader import AdvancedCandleDownloader
 
         # Crear instancia
         downloader = AdvancedCandleDownloader()
-        print("✅ AdvancedCandleDownloader refactorizado creado exitosamente")
+        enviar_senal_log("INFO", "✅ AdvancedCandleDownloader refactorizado creado exitosamente", "test_refactored_downloader", "migration")
 
         # Test básico
-        print("📊 Información del downloader:")
-        print(f"   🔌 MT5Manager disponible: {downloader.mt5_manager is not None}")
-        print(f"   🏠 Directorio de datos: {downloader.data_dir}")
-        print(f"   📈 Estadísticas iniciales: {len(downloader.download_stats)} descargas")
+        enviar_senal_log("INFO", "📊 Información del downloader:", "test_refactored_downloader", "migration")
+        enviar_senal_log("INFO", f"   🔌 MT5Manager disponible: {downloader.mt5_manager is not None}", "test_refactored_downloader", "migration")
+        enviar_senal_log("INFO", f"   🏠 Directorio de datos: {downloader.data_dir}", "test_refactored_downloader", "migration")
+        enviar_senal_log("INFO", f"   📈 Estadísticas iniciales: {len(downloader.download_stats, "test_refactored_downloader", "migration")} descargas")
 
         # Test de conexión básica
-        print("🔗 Probando conexión...")
+        enviar_senal_log("INFO", "🔗 Probando conexión...", "test_refactored_downloader", "migration")
         if downloader.connect_mt5():
-            print("✅ Conexión exitosa via MT5DataManager")
+            enviar_senal_log("INFO", "✅ Conexión exitosa via MT5DataManager", "test_refactored_downloader", "migration")
 
             # Test de descarga pequeña
-            print("📥 Probando descarga pequeña de H4...")
+            enviar_senal_log("INFO", "📥 Probando descarga pequeña de H4...", "test_refactored_downloader", "migration")
             stats = downloader.download_symbol_timeframe("EURUSD", "H4", 100)
 
             if stats.success:
-                print(f"✅ Descarga exitosa: {stats.downloaded_bars} velas en {stats.elapsed_time:.1f}s")
+                enviar_senal_log("INFO", f"✅ Descarga exitosa: {stats.downloaded_bars} velas en {stats.elapsed_time:.1f}s", "test_refactored_downloader", "migration")
                 return True
             else:
-                print(f"❌ Descarga falló: {stats.error_message}")
+                enviar_senal_log("ERROR", f"❌ Descarga falló: {stats.error_message}", "test_refactored_downloader", "migration")
                 return False
         else:
-            print("⚠️ No se pudo conectar - probablemente MT5 no disponible")
-            print("✅ Test estructura completado - downloader refactorizado funciona")
+            enviar_senal_log("INFO", "⚠️ No se pudo conectar - probablemente MT5 no disponible", "test_refactored_downloader", "migration")
+            enviar_senal_log("INFO", "✅ Test estructura completado - downloader refactorizado funciona", "test_refactored_downloader", "migration")
             return True
 
     except Exception as e:
-        print(f"❌ Error en test: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test: {e}", "test_refactored_downloader", "migration")
         import traceback
-        print(f"Traceback: {traceback.format_exc()}")
+        enviar_senal_log("INFO", f"Traceback: {traceback.format_exc(, "test_refactored_downloader", "migration")}")
         return False
 
 def main():
     """Ejecuta el test"""
 
-    print("🚀 === INICIANDO TEST REFACTORED DOWNLOADER ===")
+    enviar_senal_log("INFO", "🚀 === INICIANDO TEST REFACTORED DOWNLOADER ===", "test_refactored_downloader", "migration")
 
     success = test_refactored_downloader()
 
     if success:
-        print("\n🎉 ¡TEST EXITOSO!")
-        print("✅ El downloader refactorizado usa correctamente el MT5DataManager del sistema")
-        print("✅ No más warnings de MetaTrader5 en Pylance")
-        print("✅ Integración perfecta con la arquitectura existente")
+        enviar_senal_log("INFO", "\n🎉 ¡TEST EXITOSO!", "test_refactored_downloader", "migration")
+        enviar_senal_log("INFO", "✅ El downloader refactorizado usa correctamente el MT5DataManager del sistema", "test_refactored_downloader", "migration")
+        enviar_senal_log("WARNING", "✅ No más warnings de MetaTrader5 en Pylance", "test_refactored_downloader", "migration")
+        enviar_senal_log("INFO", "✅ Integración perfecta con la arquitectura existente", "test_refactored_downloader", "migration")
     else:
-        print("\n❌ TEST FALLIDO")
+        enviar_senal_log("INFO", "\n❌ TEST FALLIDO", "test_refactored_downloader", "migration")
 
     return success
 

@@ -18,7 +18,7 @@ try:
     from sistema.emoji_logger import EmojiLogger  # type: ignore
     from sistema.logging_config import LoggingConfig  # type: ignore
 except ImportError as e:
-    print(f"⚠️ Import warning en test_logging_system: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Import warning en test_logging_system: {e}", "test_logging_system", "migration")
     enviar_senal_log = None
 
 class TestLoggingInterface(unittest.TestCase):
@@ -241,9 +241,9 @@ class TestLogSecurity(unittest.TestCase):
             self.assertIsInstance(malicious_input, str)
 
 if __name__ == '__main__':
-    print("🧪 Ejecutando tests del Sistema de Logging...")
+    enviar_senal_log("INFO", "🧪 Ejecutando tests del Sistema de Logging...", "test_logging_system", "migration")
 
     # Configurar verbosidad
     unittest.main(verbosity=2, exit=False)
 
-    print("✅ Tests del Sistema de Logging completados")
+    enviar_senal_log("INFO", "✅ Tests del Sistema de Logging completados", "test_logging_system", "migration")

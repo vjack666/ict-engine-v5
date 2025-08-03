@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -40,8 +41,8 @@ class SafeFileCleanup:
 
     def fase_1_cache_cleanup(self) -> Dict[str, Union[int, List[str]]]:
         """FASE 1: Limpieza de archivos de cache - COMPLETAMENTE SEGURO"""
-        print("🧹 FASE 1: Limpiando archivos de cache...")
-        print("=" * 50)
+        enviar_senal_log("INFO", "🧹 FASE 1: Limpiando archivos de cache...", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "=" * 50, "safe_file_cleanup", "migration")
 
         deleted = []
 
@@ -51,26 +52,26 @@ class SafeFileCleanup:
                 try:
                     shutil.rmtree(pycache_dir)
                     deleted.append(str(pycache_dir.relative_to(self.base_path)))
-                    print(f"✅ Eliminado: {pycache_dir.relative_to(self.base_path)}")
+                    enviar_senal_log("INFO", f"✅ Eliminado: {pycache_dir.relative_to(self.base_path, "safe_file_cleanup", "migration")}")
                 except Exception as e:
-                    print(f"❌ Error eliminando {pycache_dir}: {e}")
+                    enviar_senal_log("ERROR", f"❌ Error eliminando {pycache_dir}: {e}", "safe_file_cleanup", "migration")
 
         # Eliminar archivos .pyc sueltos
         for pyc_file in self.base_path.rglob("*.pyc"):
             try:
                 pyc_file.unlink()
                 deleted.append(str(pyc_file.relative_to(self.base_path)))
-                print(f"✅ Eliminado: {pyc_file.relative_to(self.base_path)}")
+                enviar_senal_log("INFO", f"✅ Eliminado: {pyc_file.relative_to(self.base_path, "safe_file_cleanup", "migration")}")
             except Exception as e:
-                print(f"❌ Error eliminando {pyc_file}: {e}")
+                enviar_senal_log("ERROR", f"❌ Error eliminando {pyc_file}: {e}", "safe_file_cleanup", "migration")
 
-        print(f"\\n🎯 FASE 1 COMPLETADA: {len(deleted)} elementos eliminados")
+        enviar_senal_log("INFO", f"\\n🎯 FASE 1 COMPLETADA: {len(deleted, "safe_file_cleanup", "migration")} elementos eliminados")
         return {"deleted": len(deleted), "files": deleted}
 
     def fase_2_fix_scripts_review(self) -> Dict[str, List[str]]:
         """FASE 2: Revisar scripts de fix - REQUIERE CONFIRMACIÓN"""
-        print("\\n🔧 FASE 2: Revisando scripts de fix...")
-        print("=" * 50)
+        enviar_senal_log("INFO", "\\n🔧 FASE 2: Revisando scripts de fix...", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "=" * 50, "safe_file_cleanup", "migration")
 
         fix_scripts = [
             "debugging/fix_logging_emoji_errors.py",
@@ -99,20 +100,20 @@ class SafeFileCleanup:
                 # Analizar si el script es reutilizable
                 if self._is_reusable_fix_script(full_path):
                     recommendations["keep_for_reference"].append(script_path)
-                    print(f"📚 MANTENER: {script_path} (reutilizable)")
+                    enviar_senal_log("INFO", f"📚 MANTENER: {script_path} (reutilizable, "safe_file_cleanup", "migration")")
                 elif self._is_one_time_fix(full_path):
                     recommendations["safe_to_delete"].append(script_path)
-                    print(f"🗑️ SEGURO BORRAR: {script_path} (fix de una vez)")
+                    enviar_senal_log("INFO", f"🗑️ SEGURO BORRAR: {script_path} (fix de una vez, "safe_file_cleanup", "migration")")
                 else:
                     recommendations["review_needed"].append(script_path)
-                    print(f"⚠️ REVISAR: {script_path} (requiere análisis)")
+                    enviar_senal_log("INFO", f"⚠️ REVISAR: {script_path} (requiere análisis, "safe_file_cleanup", "migration")")
 
         return recommendations
 
     def fase_3_backup_files_cleanup(self) -> Dict[str, int]:
         """FASE 3: Limpieza de archivos de backup - VERIFICAR ORIGINALES"""
-        print("\\n🗂️ FASE 3: Procesando archivos de backup...")
-        print("=" * 50)
+        enviar_senal_log("INFO", "\\n🗂️ FASE 3: Procesando archivos de backup...", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "=" * 50, "safe_file_cleanup", "migration")
 
         backup_files = [
             "core/analysis_command_center/acc_data_models.py.bak",
@@ -136,20 +137,20 @@ class SafeFileCleanup:
                     # Verificar que el original funcione
                     if self._verify_original_works(original_path):
                         safe_to_delete.append(backup_path)
-                        print(f"✅ SEGURO BORRAR: {backup_path} (original funciona)")
+                        enviar_senal_log("INFO", f"✅ SEGURO BORRAR: {backup_path} (original funciona, "safe_file_cleanup", "migration")")
                     else:
                         needs_review.append(backup_path)
-                        print(f"⚠️ MANTENER: {backup_path} (original problemático)")
+                        enviar_senal_log("INFO", f"⚠️ MANTENER: {backup_path} (original problemático, "safe_file_cleanup", "migration")")
                 else:
                     needs_review.append(backup_path)
-                    print(f"⚠️ MANTENER: {backup_path} (no existe original)")
+                    enviar_senal_log("INFO", f"⚠️ MANTENER: {backup_path} (no existe original, "safe_file_cleanup", "migration")")
 
         return {"safe_to_delete": len(safe_to_delete), "needs_review": len(needs_review)}
 
     def fase_4_log_cleanup(self) -> Dict[str, int]:
         """FASE 4: Limpieza de logs antiguos - MANTENER RECIENTES"""
-        print("\\n📋 FASE 4: Limpiando logs antiguos...")
-        print("=" * 50)
+        enviar_senal_log("INFO", "\\n📋 FASE 4: Limpiando logs antiguos...", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "=" * 50, "safe_file_cleanup", "migration")
 
         # Mantener logs de los últimos 3 días
         cutoff_date = datetime.now() - timedelta(days=3)
@@ -162,12 +163,12 @@ class SafeFileCleanup:
                 file_date = datetime.fromtimestamp(log_file.stat().st_mtime)
                 if file_date < cutoff_date:
                     old_logs.append(str(log_file.relative_to(self.base_path)))
-                    print(f"🗑️ LOG ANTIGUO: {log_file.relative_to(self.base_path)}")
+                    enviar_senal_log("INFO", f"🗑️ LOG ANTIGUO: {log_file.relative_to(self.base_path, "safe_file_cleanup", "migration")}")
                 else:
                     recent_logs.append(str(log_file.relative_to(self.base_path)))
-                    print(f"📚 LOG RECIENTE: {log_file.relative_to(self.base_path)}")
+                    enviar_senal_log("INFO", f"📚 LOG RECIENTE: {log_file.relative_to(self.base_path, "safe_file_cleanup", "migration")}")
             except Exception as e:
-                print(f"❌ Error procesando {log_file}: {e}")
+                enviar_senal_log("ERROR", f"❌ Error procesando {log_file}: {e}", "safe_file_cleanup", "migration")
 
         return {"old_logs": len(old_logs), "recent_logs": len(recent_logs)}
 
@@ -222,11 +223,11 @@ class SafeFileCleanup:
 
     def execute_safe_cleanup(self) -> Dict[str, Any]:
         """Ejecuta limpieza segura completa"""
-        print("🗑️ LIMPIEZA SEGURA ICT ENGINE v5.0")
-        print("=" * 60)
-        print(f"📁 Workspace: {self.base_path}")
-        print(f"🔒 Backup: {self.backup_path}")
-        print("")
+        enviar_senal_log("INFO", "🗑️ LIMPIEZA SEGURA ICT ENGINE v5.0", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "=" * 60, "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", f"📁 Workspace: {self.base_path}", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", f"🔒 Backup: {self.backup_path}", "safe_file_cleanup", "migration")
+        enviar_senal_log("INFO", "", "safe_file_cleanup", "migration")
 
         results = {}
 
@@ -284,7 +285,7 @@ def main():
     """Función principal"""
     cleanup = SafeFileCleanup()
 
-    print("🚀 Iniciando análisis de limpieza segura...")
+    enviar_senal_log("INFO", "🚀 Iniciando análisis de limpieza segura...", "safe_file_cleanup", "migration")
     results = cleanup.execute_safe_cleanup()
 
     # Generar reporte
@@ -295,8 +296,8 @@ def main():
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
 
-    print(f"\\n📄 Reporte guardado: {report_path}")
-    print("✅ Análisis de limpieza completado")
+    enviar_senal_log("INFO", f"\\n📄 Reporte guardado: {report_path}", "safe_file_cleanup", "migration")
+    enviar_senal_log("INFO", "✅ Análisis de limpieza completado", "safe_file_cleanup", "migration")
 
 if __name__ == "__main__":
     main()

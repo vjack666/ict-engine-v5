@@ -65,7 +65,7 @@ def save_adaptive_debug_to_csv(data: Any, filename: Optional[str] = None, direct
         return True
 
     except (JSONDecodeError, ValueError) as e:
-        print(f"Error guardando debug CSV: {e}")
+        enviar_senal_log("ERROR", f"Error guardando debug CSV: {e}", "logging_utils", "migration")
         return False
 
 def log_critical_error(error_message: str) -> bool:
@@ -104,11 +104,11 @@ def log_critical_error(error_message: str) -> bool:
         with open(log_file, 'w', encoding='utf-8') as f:
             json.dump(existing_errors, f, indent=2, ensure_ascii=False)
 
-        print(f"❌ ERROR CRÍTICO REGISTRADO: {error_message}")
+        enviar_senal_log("ERROR", f"❌ ERROR CRÍTICO REGISTRADO: {error_message}", "logging_utils", "migration")
         return True
 
     except (JSONDecodeError, ValueError) as e:
-        print(f"Error registrando error crítico: {e}")
+        enviar_senal_log("ERROR", f"Error registrando error crítico: {e}", "logging_utils", "migration")
         return False
 
 def save_poi_analysis_log(pois: List[Dict], filename: Optional[str] = None) -> bool:
@@ -140,7 +140,7 @@ def save_poi_analysis_log(pois: List[Dict], filename: Optional[str] = None) -> b
         return True
 
     except (JSONDecodeError, ValueError) as e:
-        print(f"Error guardando log POI: {e}")
+        enviar_senal_log("ERROR", f"Error guardando log POI: {e}", "logging_utils", "migration")
         return False
 
 def get_latest_debug_logs(log_type: str = "debug", limit: int = 10) -> List[Dict]:
@@ -170,7 +170,7 @@ def get_latest_debug_logs(log_type: str = "debug", limit: int = 10) -> List[Dict
         return all_logs[:limit]
 
     except (JSONDecodeError, ValueError) as e:
-        print(f"Error obteniendo logs: {e}")
+        enviar_senal_log("ERROR", f"Error obteniendo logs: {e}", "logging_utils", "migration")
         return []
 
 
@@ -273,11 +273,11 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
         logged = universal_logger.log_analysis(analysis_data, analysis_type)
 
         if logged:
-            print(f"📊 {component_name}: Cambio significativo logueado")
+            enviar_senal_log("INFO", f"📊 {component_name}: Cambio significativo logueado", "logging_utils", "migration")
         # No mostrar mensaje para logs omitidos para evitar spam
 
     except (JSONDecodeError, ValueError) as e:
-        print(f"⚠️ Error en logging inteligente {component_name}: {e}")
+        enviar_senal_log("ERROR", f"⚠️ Error en logging inteligente {component_name}: {e}", "logging_utils", "migration")
         # Fallback al sistema tradicional solo en caso de error crítico
         _fallback_traditional_logging(component_name, analysis_data)
 
@@ -305,10 +305,10 @@ def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> N
         with open(log_file, 'w', encoding='utf-8') as f:
             json.dump(log_entry, f, indent=2, ensure_ascii=False, default=json_serializer)
 
-        print(f"⚠️ Fallback logging para {component_name}")
+        enviar_senal_log("INFO", f"⚠️ Fallback logging para {component_name}", "logging_utils", "migration")
 
     except (JSONDecodeError, ValueError) as fallback_error:
-        print(f"❌ Error crítico en fallback logging {component_name}: {fallback_error}")
+        enviar_senal_log("ERROR", f"❌ Error crítico en fallback logging {component_name}: {fallback_error}", "logging_utils", "migration")
 
 # =============================================================================
 # FUNCIONES DE TRADING LOGGING (migradas desde important_logging)
@@ -322,7 +322,7 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
         trading_logger.info("TRADING_EVENT: %s %s @ %s | Volume: %s | Type: %s", action, symbol, price, volume, order_type)
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
-        print(f"Error en log_trading_event: {e}")
+        enviar_senal_log("ERROR", f"Error en log_trading_event: {e}", "logging_utils", "migration")
         return False
 
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
@@ -333,7 +333,7 @@ def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
         trading_logger.info("ORDER_FILLED: %s %s @ %s | Volume: %s", order_type, symbol, price, volume)
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
-        print(f"Error en log_order_filled: {e}")
+        enviar_senal_log("ERROR", f"Error en log_order_filled: {e}", "logging_utils", "migration")
         return False
 
 def log_order_rejected(order_type: str, symbol: str, reason: str):
@@ -344,5 +344,5 @@ def log_order_rejected(order_type: str, symbol: str, reason: str):
         trading_logger.warning("ORDER_REJECTED: %s %s | Reason: %s", order_type, symbol, reason)
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
-        print(f"Error en log_order_rejected: {e}")
+        enviar_senal_log("ERROR", f"Error en log_order_rejected: {e}", "logging_utils", "migration")
         return False

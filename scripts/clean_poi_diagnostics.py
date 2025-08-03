@@ -34,9 +34,9 @@ def safe_log(level: str, message: str, module: str = __name__, category: str = "
         from sistema.logging_interface import enviar_senal_log, log_poi
         enviar_senal_log(level, message, module, category)
     except ImportError:
-        print(f"[{level}] {message}")
+        enviar_senal_log("INFO", f"[{level}] {message}", "clean_poi_diagnostics", "migration")
     except Exception:
-        print(f"[{level}] {message}")
+        enviar_senal_log("INFO", f"[{level}] {message}", "clean_poi_diagnostics", "migration")
 
 
 class CleanPOIDiagnostics:
@@ -563,15 +563,15 @@ def crear_poi_dashboard_adaptativo(dashboard_instance: Any) -> Table:
 
 
 if __name__ == "__main__":
-    print("🧠 Clean POI Diagnostics - Ready!")
-    print("📁 Sistema limpio sin errores de linting")
-    print("🔗 Usar: integrar_poi_dashboard_limpio()")
-    print("✅ Listo para integración en dashboard_definitivo.py!")
+    enviar_senal_log("INFO", "🧠 Clean POI Diagnostics - Ready!", "clean_poi_diagnostics", "migration")
+    enviar_senal_log("ERROR", "📁 Sistema limpio sin errores de linting", "clean_poi_diagnostics", "migration")
+    enviar_senal_log("INFO", "🔗 Usar: integrar_poi_dashboard_limpio(, "clean_poi_diagnostics", "migration")")
+    enviar_senal_log("INFO", "✅ Listo para integración en dashboard_definitivo.py!", "clean_poi_diagnostics", "migration")
 
     # Test básico del sistema
     try:
         market_status = get_current_market_status()
-        print(f"📊 Estado actual del mercado: {market_status['display_message']}")
-        print(f"🔧 Modo desarrollo automático: {is_development_environment()}")
+        enviar_senal_log("INFO", f"📊 Estado actual del mercado: {market_status['display_message']}", "clean_poi_diagnostics", "migration")
+        enviar_senal_log("INFO", f"🔧 Modo desarrollo automático: {is_development_environment(, "clean_poi_diagnostics", "migration")}")
     except Exception as e:
-        print(f"⚠️ Test básico completado con advertencia: {e}")
+        enviar_senal_log("INFO", f"⚠️ Test básico completado con advertencia: {e}", "clean_poi_diagnostics", "migration")

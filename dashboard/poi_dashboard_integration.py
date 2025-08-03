@@ -35,7 +35,7 @@ try:
     from core.poi_system.poi_detector import POIDetector, encontrar_pois_multiples_para_dashboard
     from sistema.logging_interface import enviar_senal_log, log_poi
 except ImportError as e:
-    print(f"⚠️ Import warning: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Import warning: {e}", "poi_dashboard_integration", "migration")
 
 
 def integrar_multi_poi_en_panel_ict(dashboard_instance):

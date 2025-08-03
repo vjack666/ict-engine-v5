@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -61,7 +62,7 @@ class DependencyVerifier:
 
     def scan_all_dependencies(self) -> Dict[str, Dict]:
         """Escanea todas las dependencias del proyecto"""
-        print("🔍 Escaneando dependencias del proyecto...")
+        enviar_senal_log("INFO", "🔍 Escaneando dependencias del proyecto...", "dependency_verifier", "migration")
 
         # Obtener todos los archivos Python
         self._get_all_python_files()
@@ -74,7 +75,7 @@ class DependencyVerifier:
         verification_results = {}
 
         for category, candidates in self.candidates.items():
-            print(f"\\n📂 Verificando categoría: {category}")
+            enviar_senal_log("INFO", f"\\n📂 Verificando categoría: {category}", "dependency_verifier", "migration")
             verification_results[category] = self._verify_category(candidates)
 
         return verification_results
@@ -116,7 +117,7 @@ class DependencyVerifier:
                 self._analyze_imports_regex(file_path, content)
 
         except Exception as e:
-            print(f"❌ Error analizando {file_path}: {e}")
+            enviar_senal_log("ERROR", f"❌ Error analizando {file_path}: {e}", "dependency_verifier", "migration")
 
     def _analyze_imports_regex(self, file_path: Path, content: str):
         """Análisis de imports usando regex como respaldo"""
@@ -186,7 +187,7 @@ class DependencyVerifier:
                     'dependency_count': len(dependencies),
                     'risk_level': 'HIGH' if len(dependencies) > 3 else 'MEDIUM'
                 }
-                print(f"⚠️ {candidate}: usado por {len(dependencies)} archivos")
+                enviar_senal_log("INFO", f"⚠️ {candidate}: usado por {len(dependencies, "dependency_verifier", "migration")} archivos")
             else:
                 results['safe_to_delete'].append(candidate)
                 results['analysis'][candidate] = {
@@ -194,13 +195,13 @@ class DependencyVerifier:
                     'dependency_count': 0,
                     'risk_level': 'SAFE'
                 }
-                print(f"✅ {candidate}: seguro para eliminar")
+                enviar_senal_log("INFO", f"✅ {candidate}: seguro para eliminar", "dependency_verifier", "migration")
 
         return results
 
     def verify_duplicates(self) -> Dict[str, Any]:
         """Verificación especial para archivos duplicados"""
-        print("\\n🔍 Verificación especial de duplicados...")
+        enviar_senal_log("INFO", "\\n🔍 Verificación especial de duplicados...", "dependency_verifier", "migration")
 
         duplicate_analysis = {}
 
@@ -327,8 +328,8 @@ class DependencyVerifier:
 
 def main():
     """Función principal"""
-    print("🛡️ VERIFICADOR DE DEPENDENCIAS - ICT ENGINE v5.0")
-    print("=" * 60)
+    enviar_senal_log("INFO", "🛡️ VERIFICADOR DE DEPENDENCIAS - ICT ENGINE v5.0", "dependency_verifier", "migration")
+    enviar_senal_log("INFO", "=" * 60, "dependency_verifier", "migration")
 
     verifier = DependencyVerifier()
 
@@ -346,8 +347,8 @@ def main():
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
 
-    print(f"\\n📄 Reporte de seguridad generado: {report_path}")
-    print("✅ Verificación de dependencias completada")
+    enviar_senal_log("INFO", f"\\n📄 Reporte de seguridad generado: {report_path}", "dependency_verifier", "migration")
+    enviar_senal_log("INFO", "✅ Verificación de dependencias completada", "dependency_verifier", "migration")
 
 if __name__ == "__main__":
     main()

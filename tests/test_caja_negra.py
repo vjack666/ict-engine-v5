@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🔍 TEST SISTEMA DE CAJA NEGRA
@@ -10,8 +11,8 @@ está funcionando correctamente y conectado al dashboard.
 def test_sistema_caja_negra():
     """Prueba completa del sistema de caja negra."""
 
-    print("🔍 INICIANDO TEST SISTEMA DE CAJA NEGRA")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🔍 INICIANDO TEST SISTEMA DE CAJA NEGRA", "test_caja_negra", "migration")
+    enviar_senal_log("INFO", "=" * 50, "test_caja_negra", "migration")
 
     # 1. Test de imports
     try:
@@ -19,17 +20,17 @@ def test_sistema_caja_negra():
         import os
         sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         from utils.system_diagnostics import POIBlackBoxDiagnostics, integrar_multi_poi_con_diagnosticos
-        print("✅ Imports de sistema de diagnósticos simplificado: OK")
+        enviar_senal_log("INFO", "✅ Imports de sistema de diagnósticos simplificado: OK", "test_caja_negra", "migration")
     except Exception as e:
-        print(f"❌ Error en imports: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en imports: {e}", "test_caja_negra", "migration")
         return False
 
     # 2. Test de inicialización
     try:
         black_box = POIBlackBoxDiagnostics()
-        print("✅ Inicialización de caja negra: OK")
+        enviar_senal_log("INFO", "✅ Inicialización de caja negra: OK", "test_caja_negra", "migration")
     except Exception as e:
-        print(f"❌ Error en inicialización: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en inicialización: {e}", "test_caja_negra", "migration")
         return False
 
     # 3. Test de dashboard mock
@@ -44,48 +45,48 @@ def test_sistema_caja_negra():
                 self.mt5_connected = False
 
         mock_dashboard = MockDashboard()
-        print("✅ Dashboard mock creado: OK")
+        enviar_senal_log("INFO", "✅ Dashboard mock creado: OK", "test_caja_negra", "migration")
     except Exception as e:
-        print(f"❌ Error creando dashboard mock: {e}")
+        enviar_senal_log("ERROR", f"❌ Error creando dashboard mock: {e}", "test_caja_negra", "migration")
         return False
 
     # 4. Test de diagnóstico
     try:
         diagnostic_result = black_box.run_full_diagnostic(mock_dashboard)
-        print(f"✅ Diagnóstico completo: OK")
-        print(f"   - Status: {diagnostic_result.get('status', 'UNKNOWN')}")
-        print(f"   - Issues críticos: {len(diagnostic_result.get('critical_issues', []))}")
-        print(f"   - Soluciones: {len(diagnostic_result.get('solutions', []))}")
+        enviar_senal_log("INFO", f"✅ Diagnóstico completo: OK", "test_caja_negra", "migration")
+        enviar_senal_log("INFO", f"   - Status: {diagnostic_result.get('status', 'UNKNOWN', "test_caja_negra", "migration")}")
+        enviar_senal_log("INFO", f"   - Issues críticos: {len(diagnostic_result.get('critical_issues', [], "test_caja_negra", "migration"))}")
+        enviar_senal_log("INFO", f"   - Soluciones: {len(diagnostic_result.get('solutions', [], "test_caja_negra", "migration"))}")
     except Exception as e:
-        print(f"❌ Error en diagnóstico: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en diagnóstico: {e}", "test_caja_negra", "migration")
         return False
 
     # 5. Test de integración con dashboard
     try:
         contenido_integrado = integrar_multi_poi_con_diagnosticos(mock_dashboard)
-        print("✅ Integración con dashboard: OK")
-        print(f"   - Tipo de contenido: {type(contenido_integrado)}")
+        enviar_senal_log("INFO", "✅ Integración con dashboard: OK", "test_caja_negra", "migration")
+        enviar_senal_log("INFO", f"   - Tipo de contenido: {type(contenido_integrado, "test_caja_negra", "migration")}")
     except Exception as e:
-        print(f"❌ Error en integración: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en integración: {e}", "test_caja_negra", "migration")
         return False
 
     # 6. Test de importación desde dashboard
     try:
         from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
-        print("✅ Dashboard definitivo puede importar caja negra: OK")
+        enviar_senal_log("INFO", "✅ Dashboard definitivo puede importar caja negra: OK", "test_caja_negra", "migration")
     except Exception as e:
-        print(f"❌ Error importando dashboard: {e}")
+        enviar_senal_log("ERROR", f"❌ Error importando dashboard: {e}", "test_caja_negra", "migration")
         return False
 
-    print("\n🎉 TODOS LOS TESTS PASARON!")
-    print("🔍 Sistema de caja negra completamente funcional")
-    print("✅ Listo para usar en producción")
+    enviar_senal_log("INFO", "\n🎉 TODOS LOS TESTS PASARON!", "test_caja_negra", "migration")
+    enviar_senal_log("INFO", "🔍 Sistema de caja negra completamente funcional", "test_caja_negra", "migration")
+    enviar_senal_log("INFO", "✅ Listo para usar en producción", "test_caja_negra", "migration")
 
     return True
 
 if __name__ == "__main__":
     success = test_sistema_caja_negra()
     if success:
-        print("\n🚀 Sistema listo para usar!")
+        enviar_senal_log("INFO", "\n🚀 Sistema listo para usar!", "test_caja_negra", "migration")
     else:
-        print("\n⚠️ Revisar errores antes de usar")
+        enviar_senal_log("ERROR", "\n⚠️ Revisar errores antes de usar", "test_caja_negra", "migration")

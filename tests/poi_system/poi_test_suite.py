@@ -38,8 +38,8 @@ try:
     from core.poi_system.poi_utils import crear_poi_estructura
     from sistema.logging_interface import enviar_senal_log
 except ImportError as e:
-    print(f"⚠️ Error importando módulos POI: {e}")
-    print("📁 Verificar estructura del proyecto y paths")
+    enviar_senal_log("ERROR", f"⚠️ Error importando módulos POI: {e}", "poi_test_suite", "migration")
+    enviar_senal_log("INFO", "📁 Verificar estructura del proyecto y paths", "poi_test_suite", "migration")
     sys.exit(1)
 
 class TestDataGenerator:
@@ -196,7 +196,7 @@ class POIDetectionTests(unittest.TestCase):
         for poi_type in expected_types:
             self.assertIn(poi_type, POI_TYPES, f"POI_TYPE {poi_type} no está definido")
 
-        print("POI_TYPES constants validation: PASSED")
+        enviar_senal_log("INFO", "POI_TYPES constants validation: PASSED", "poi_test_suite", "migration")
 
     def test_order_blocks_detection(self):
         """Test detección de Order Blocks"""
@@ -221,7 +221,7 @@ class POIDetectionTests(unittest.TestCase):
                         self.assertGreaterEqual(poi['score'], 0)
                         self.assertLessEqual(poi['score'], 100)
 
-                print(f"Order Blocks detection {timeframe}: PASSED ({len(pois)} POIs)")
+                enviar_senal_log("INFO", f"Order Blocks detection {timeframe}: PASSED ({len(pois, "poi_test_suite", "migration")} POIs)")
 
     def test_fvg_detection(self):
         """✅ Test detección de Fair Value Gaps"""
@@ -240,7 +240,7 @@ class POIDetectionTests(unittest.TestCase):
                         self.assertIsInstance(poi['price'], (int, float))
                         self.assertEqual(poi['timeframe'], timeframe)
 
-                print(f"✅ FVG detection {timeframe}: PASSED ({len(pois)} POIs)")
+                enviar_senal_log("INFO", f"✅ FVG detection {timeframe}: PASSED ({len(pois, "poi_test_suite", "migration")} POIs)")
 
     def test_breaker_blocks_detection(self):
         """✅ Test detección de Breaker Blocks"""
@@ -255,7 +255,7 @@ class POIDetectionTests(unittest.TestCase):
                         self.assertIn(poi['type'], ['BULLISH_BREAKER', 'BEARISH_BREAKER'])
                         self.assertIsInstance(poi['score'], (int, float))
 
-                print(f"✅ Breaker Blocks detection {timeframe}: PASSED ({len(pois)} POIs)")
+                enviar_senal_log("INFO", f"✅ Breaker Blocks detection {timeframe}: PASSED ({len(pois, "poi_test_suite", "migration")} POIs)")
 
     def test_imbalances_detection(self):
         """✅ Test detección de Imbalances"""
@@ -269,7 +269,7 @@ class POIDetectionTests(unittest.TestCase):
                     for poi in pois:
                         self.assertIn(poi['type'], ['LIQUIDITY_VOID', 'PRICE_IMBALANCE'])
 
-                print(f"✅ Imbalances detection {timeframe}: PASSED ({len(pois)} POIs)")
+                enviar_senal_log("INFO", f"✅ Imbalances detection {timeframe}: PASSED ({len(pois, "poi_test_suite", "migration")} POIs)")
 
 class POIIntegrationTests(unittest.TestCase):
     """
@@ -306,7 +306,7 @@ class POIIntegrationTests(unittest.TestCase):
                 self.assertIn('total_pois', resumen)
                 self.assertIsInstance(resumen.get("total_pois", 0), int)
 
-                print(f"✅ detectar_todos_los_pois {timeframe}: PASSED ({resumen.get("total_pois", 0)} total POIs)")
+                enviar_senal_log("INFO", f"✅ detectar_todos_los_pois {timeframe}: PASSED ({resumen.get("total_pois", 0, "poi_test_suite", "migration")} total POIs)")
 
     def test_poi_detector_class(self):
         """✅ Test clase unificada POIDetector"""
@@ -334,7 +334,7 @@ class POIIntegrationTests(unittest.TestCase):
                 self.assertIsInstance(dashboard_pois, list)
                 self.assertLessEqual(len(dashboard_pois), 5)
 
-                print(f"✅ POIDetector class {timeframe}: PASSED")
+                enviar_senal_log("INFO", f"✅ POIDetector class {timeframe}: PASSED", "poi_test_suite", "migration")
 
 class POIPerformanceTests(unittest.TestCase):
     """
@@ -381,7 +381,7 @@ class POIPerformanceTests(unittest.TestCase):
                     f"{func_name} excedió SLA: {elapsed_time:.3f}s > {self.sla_individual_detection}s"
                 )
 
-                print(f"⚡ {func_name} performance: {elapsed_time:.3f}s - PASSED")
+                enviar_senal_log("INFO", f"⚡ {func_name} performance: {elapsed_time:.3f}s - PASSED", "poi_test_suite", "migration")
 
     def test_complete_detection_performance(self):
         """⚡ Test performance de detección completa"""
@@ -408,7 +408,7 @@ class POIPerformanceTests(unittest.TestCase):
                     f"Complete detection {dataset_name} excedió SLA: {elapsed_time:.3f}s > {expected_sla:.3f}s"
                 )
 
-                print(f"⚡ Complete detection {dataset_name}: {elapsed_time:.3f}s - PASSED")
+                enviar_senal_log("INFO", f"⚡ Complete detection {dataset_name}: {elapsed_time:.3f}s - PASSED", "poi_test_suite", "migration")
 
     def test_memory_usage(self):
         """🧠 Test uso de memoria"""
@@ -428,7 +428,7 @@ class POIPerformanceTests(unittest.TestCase):
         # Validar que no exceda límites razonables
         self.assertLess(peak_mb, 100, f"Uso de memoria excesivo: {peak_mb:.2f}MB")
 
-        print(f"🧠 Memory usage: Current={current_mb:.2f}MB, Peak={peak_mb:.2f}MB - PASSED")
+        enviar_senal_log("INFO", f"🧠 Memory usage: Current={current_mb:.2f}MB, Peak={peak_mb:.2f}MB - PASSED", "poi_test_suite", "migration")
 
 class POIDataValidationTests(unittest.TestCase):
     """
@@ -446,7 +446,7 @@ class POIDataValidationTests(unittest.TestCase):
         self.assertIsInstance(result, dict)
         self.assertEqual(result['resumen']['total_pois'], 0)
 
-        print("📊 Empty DataFrame handling: PASSED")
+        enviar_senal_log("INFO", "📊 Empty DataFrame handling: PASSED", "poi_test_suite", "migration")
 
     def test_insufficient_data(self):
         """📊 Test con datos insuficientes"""
@@ -457,7 +457,7 @@ class POIDataValidationTests(unittest.TestCase):
         # Debe manejar sin errores
         self.assertIsInstance(result, dict)
 
-        print("📊 Insufficient data handling: PASSED")
+        enviar_senal_log("INFO", "📊 Insufficient data handling: PASSED", "poi_test_suite", "migration")
 
     def test_nan_values_in_data(self):
         """📊 Test con valores NaN en datos"""
@@ -472,7 +472,7 @@ class POIDataValidationTests(unittest.TestCase):
         # Debe manejar NaN gracefully
         self.assertIsInstance(result, dict)
 
-        print("📊 NaN values handling: PASSED")
+        enviar_senal_log("INFO", "📊 NaN values handling: PASSED", "poi_test_suite", "migration")
 
 class POIScoringTests(unittest.TestCase):
     """
@@ -497,7 +497,7 @@ class POIScoringTests(unittest.TestCase):
             self.assertGreaterEqual(score, 0, "Score no puede ser negativo")
             self.assertLessEqual(score, 100, "Score no puede exceder 100")
 
-        print(f"🎯 Score ranges validation: PASSED ({len(all_pois)} POIs checked)")
+        enviar_senal_log("INFO", f"🎯 Score ranges validation: PASSED ({len(all_pois, "poi_test_suite", "migration")} POIs checked)")
 
 class POITestRunner:
     """
@@ -517,8 +517,8 @@ class POITestRunner:
 
     def run_all_tests(self, verbose: bool = True):
         """🚀 Ejecuta todos los test suites"""
-        print("🧪 INICIANDO TEST SUITE COMPLETO DEL SISTEMA POI")
-        print("=" * 60)
+        enviar_senal_log("INFO", "🧪 INICIANDO TEST SUITE COMPLETO DEL SISTEMA POI", "poi_test_suite", "migration")
+        enviar_senal_log("INFO", "=" * 60, "poi_test_suite", "migration")
 
         total_tests = 0
         total_failures = 0
@@ -528,8 +528,8 @@ class POITestRunner:
         start_time = time.time()
 
         for suite_name, suite_class in self.test_suites:
-            print(f"\n{suite_name}")
-            print("-" * len(suite_name))
+            enviar_senal_log("INFO", f"\n{suite_name}", "poi_test_suite", "migration")
+            enviar_senal_log("INFO", "-" * len(suite_name, "poi_test_suite", "migration"))
 
             # Crear y ejecutar test suite
             suite = unittest.TestLoader().loadTestsFromTestCase(suite_class)
@@ -564,29 +564,29 @@ class POITestRunner:
         }
 
         # Reporte final en consola
-        print("\n" + "=" * 60)
-        print("📊 REPORTE FINAL DEL TEST SUITE")
-        print("=" * 60)
-        print(f"⏱️  Tiempo total: {elapsed_time:.2f} segundos")
-        print(f"🧪 Tests ejecutados: {total_tests}")
-        print(f"✅ Tests exitosos: {total_tests - total_failures - total_errors}")
-        print(f"❌ Fallos: {total_failures}")
-        print(f"🚨 Errores: {total_errors}")
+        enviar_senal_log("INFO", "\n" + "=" * 60, "poi_test_suite", "migration")
+        enviar_senal_log("INFO", "📊 REPORTE FINAL DEL TEST SUITE", "poi_test_suite", "migration")
+        enviar_senal_log("INFO", "=" * 60, "poi_test_suite", "migration")
+        enviar_senal_log("INFO", f"⏱️  Tiempo total: {elapsed_time:.2f} segundos", "poi_test_suite", "migration")
+        enviar_senal_log("INFO", f"🧪 Tests ejecutados: {total_tests}", "poi_test_suite", "migration")
+        enviar_senal_log("ERROR", f"✅ Tests exitosos: {total_tests - total_failures - total_errors}", "poi_test_suite", "migration")
+        enviar_senal_log("ERROR", f"❌ Fallos: {total_failures}", "poi_test_suite", "migration")
+        enviar_senal_log("ERROR", f"🚨 Errores: {total_errors}", "poi_test_suite", "migration")
 
         success_rate = ((total_tests - total_failures - total_errors) / total_tests * 100) if total_tests > 0 else 0
-        print(f"📈 Tasa de éxito: {success_rate:.1f}%")
+        enviar_senal_log("INFO", f"📈 Tasa de éxito: {success_rate:.1f}%", "poi_test_suite", "migration")
 
         if total_failures == 0 and total_errors == 0:
-            print("🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!")
+            enviar_senal_log("INFO", "🎉 ¡TODOS LOS TESTS PASARON EXITOSAMENTE!", "poi_test_suite", "migration")
         else:
-            print("⚠️  Se encontraron issues que requieren atención")
+            enviar_senal_log("INFO", "⚠️  Se encontraron issues que requieren atención", "poi_test_suite", "migration")
 
         return self.report_data
 
     def generate_markdown_report(self, output_path: str):
         """📄 Genera reporte en Markdown"""
         if not self.report_data:
-            print("❌ No hay datos de reporte para generar")
+            enviar_senal_log("INFO", "❌ No hay datos de reporte para generar", "poi_test_suite", "migration")
             return
 
         report_content = f"""# 🧪 REPORTE TEST SUITE - SISTEMA POI
@@ -697,7 +697,7 @@ class POITestRunner:
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(report_content)
 
-        print(f"📄 Reporte generado: {output_path}")
+        enviar_senal_log("INFO", f"📄 Reporte generado: {output_path}", "poi_test_suite", "migration")
 
 # === EJECUCIÓN PRINCIPAL ===
 if __name__ == "__main__":
@@ -714,7 +714,7 @@ if __name__ == "__main__":
 
     # Ejecutar tests
     if args.quick:
-        print("⚡ Ejecutando Quick Test (tests críticos)")
+        enviar_senal_log("INFO", "⚡ Ejecutando Quick Test (tests críticos, "poi_test_suite", "migration")")
         result_data = runner.run_all_tests(verbose=False)
     else:
         result_data = runner.run_all_tests(verbose=args.verbose)
@@ -729,4 +729,4 @@ if __name__ == "__main__":
         report_path.parent.mkdir(parents=True, exist_ok=True)
 
         runner.generate_markdown_report(str(report_path))
-        print(f"📁 Reporte guardado en: {report_path}")
+        enviar_senal_log("INFO", f"📁 Reporte guardado en: {report_path}", "poi_test_suite", "migration")

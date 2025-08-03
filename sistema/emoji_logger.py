@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 """
 🎨 EMOJI LOGGER - Sistema de Logging Visual Inteligente
 ======================================================
@@ -166,7 +167,7 @@ def get_emoji_safe_logger(name: Optional[str] = None) -> EmojiSafeLogger:
     Ejemplo de uso:
         logger = get_emoji_safe_logger(__name__)
         logger.info("🚀 INICIANDO SISTEMA")  # En archivo: [INICIO] INICIANDO SISTEMA
-        print("🚀 INICIANDO SISTEMA")        # En consola: 🚀 INICIANDO SISTEMA
+        enviar_senal_log("INFO", "🚀 INICIANDO SISTEMA", "emoji_logger", "migration")        # En consola: 🚀 INICIANDO SISTEMA
     """
     from sistema.logging_config import get_logger
     base_logger = get_logger(name)
@@ -190,4 +191,4 @@ def safe_log_and_print(module: str, message: str, show_in_console: bool = True):
     logger.info(message)
     
     if show_in_console:
-        print(f"[{module}] {message}")
+        enviar_senal_log("INFO", f"[{module}] {message}", "emoji_logger", "migration")

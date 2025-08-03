@@ -95,7 +95,7 @@ def log_debug(seccion, mensaje, nivel="INFO"):
             f.write(f"{timestamp},{seccion},{mensaje},{nivel}\n")
             f.flush()
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"[CRITICAL ERROR] Fallo en log_debug: {e}")
+        enviar_senal_log("ERROR", f"[CRITICAL ERROR] Fallo en log_debug: {e}", "config", "migration")
 
 def log_event(evento, detalles=""):
     """Registra eventos importantes de la sesión."""
@@ -106,7 +106,7 @@ def log_event(evento, detalles=""):
             f.write(f"{timestamp},{evento},{detalles}\n")
             f.flush()
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"[ERROR] Fallo al escribir evento en CSV: {e}")
+        enviar_senal_log("ERROR", f"[ERROR] Fallo al escribir evento en CSV: {e}", "config", "migration")
 
 # =============================================================================
 # SECCIÓN 4: FUNCIONES DE INICIALIZACIÓN Y CIERRE DE MT5

@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🔍 AUDITORÍA COMPLETA - ADVANCED CANDLE DOWNLOADER
@@ -20,16 +21,16 @@ import ast
 def analyze_advanced_candle_downloader():
     """Análisis completo del Advanced Candle Downloader"""
 
-    print("🔍 === AUDITORÍA ADVANCED CANDLE DOWNLOADER ===")
-    print()
+    enviar_senal_log("INFO", "🔍 === AUDITORÍA ADVANCED CANDLE DOWNLOADER ===", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", , "audit_candle_downloader", "migration")
 
     # 1. ANÁLISIS DE ESTRUCTURA DE ARCHIVO
-    print("📁 1. ESTRUCTURA DE ARCHIVO:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "📁 1. ESTRUCTURA DE ARCHIVO:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     downloader_path = Path("utils/advanced_candle_downloader.py")
     if not downloader_path.exists():
-        print("❌ Error: Archivo no encontrado")
+        enviar_senal_log("ERROR", "❌ Error: Archivo no encontrado", "audit_candle_downloader", "migration")
         return
 
     # Leer contenido del archivo
@@ -37,12 +38,12 @@ def analyze_advanced_candle_downloader():
         content = f.read()
         lines = content.split('\n')
 
-    print(f"📊 Total líneas: {len(lines)}")
-    print(f"📊 Tamaño archivo: {len(content)} caracteres")
+    enviar_senal_log("INFO", f"📊 Total líneas: {len(lines, "audit_candle_downloader", "migration")}")
+    enviar_senal_log("INFO", f"📊 Tamaño archivo: {len(content, "audit_candle_downloader", "migration")} caracteres")
 
     # 2. ANÁLISIS DE IMPORTS Y DEPENDENCIAS
-    print("\n📦 2. IMPORTS Y DEPENDENCIAS:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n📦 2. IMPORTS Y DEPENDENCIAS:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     imports = []
     for line in lines:
@@ -50,15 +51,15 @@ def analyze_advanced_candle_downloader():
         if line.startswith('import ') or line.startswith('from '):
             imports.append(line)
 
-    print(f"📊 Total imports: {len(imports)}")
+    enviar_senal_log("INFO", f"📊 Total imports: {len(imports, "audit_candle_downloader", "migration")}")
     for imp in imports[:10]:  # Mostrar primeros 10
-        print(f"   • {imp}")
+        enviar_senal_log("INFO", f"   • {imp}", "audit_candle_downloader", "migration")
     if len(imports) > 10:
-        print(f"   ... y {len(imports) - 10} más")
+        enviar_senal_log("INFO", f"   ... y {len(imports, "audit_candle_downloader", "migration") - 10} más")
 
     # 3. ANÁLISIS DE CONFIGURACIONES
-    print("\n⚙️ 3. CONFIGURACIONES DETECTADAS:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n⚙️ 3. CONFIGURACIONES DETECTADAS:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     configs = []
     for i, line in enumerate(lines):
@@ -66,11 +67,11 @@ def analyze_advanced_candle_downloader():
             configs.append((i+1, line.strip()))
 
     for line_num, config in configs:
-        print(f"   Línea {line_num}: {config}")
+        enviar_senal_log("INFO", f"   Línea {line_num}: {config}", "audit_candle_downloader", "migration")
 
     # 4. ANÁLISIS DE CLASES Y MÉTODOS
-    print("\n🏗️ 4. CLASES Y MÉTODOS:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n🏗️ 4. CLASES Y MÉTODOS:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     try:
         # Importar el módulo dinámicamente
@@ -80,29 +81,29 @@ def analyze_advanced_candle_downloader():
         # Analizar la clase principal
         class_methods = inspect.getmembers(AdvancedCandleDownloader, predicate=inspect.isfunction)
 
-        print(f"📊 Clase principal: AdvancedCandleDownloader")
-        print(f"📊 Total métodos: {len(class_methods)}")
+        enviar_senal_log("INFO", f"📊 Clase principal: AdvancedCandleDownloader", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"📊 Total métodos: {len(class_methods, "audit_candle_downloader", "migration")}")
 
         # Categorizar métodos
         public_methods = [name for name, _ in class_methods if not name.startswith('_')]
         private_methods = [name for name, _ in class_methods if name.startswith('_')]
 
-        print(f"\n🔓 MÉTODOS PÚBLICOS ({len(public_methods)}):")
+        enviar_senal_log("INFO", f"\n🔓 MÉTODOS PÚBLICOS ({len(public_methods, "audit_candle_downloader", "migration")}):")
         for method in public_methods:
-            print(f"   • {method}")
+            enviar_senal_log("INFO", f"   • {method}", "audit_candle_downloader", "migration")
 
-        print(f"\n🔒 MÉTODOS PRIVADOS ({len(private_methods)}):")
+        enviar_senal_log("INFO", f"\n🔒 MÉTODOS PRIVADOS ({len(private_methods, "audit_candle_downloader", "migration")}):")
         for method in private_methods[:8]:  # Mostrar primeros 8
-            print(f"   • {method}")
+            enviar_senal_log("INFO", f"   • {method}", "audit_candle_downloader", "migration")
         if len(private_methods) > 8:
-            print(f"   ... y {len(private_methods) - 8} más")
+            enviar_senal_log("INFO", f"   ... y {len(private_methods, "audit_candle_downloader", "migration") - 8} más")
 
     except Exception as e:
-        print(f"❌ Error analizando clases: {e}")
+        enviar_senal_log("ERROR", f"❌ Error analizando clases: {e}", "audit_candle_downloader", "migration")
 
     # 5. ANÁLISIS DE FUNCIONES DE CONVENIENCIA
-    print("\n🛠️ 5. FUNCIONES DE CONVENIENCIA:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n🛠️ 5. FUNCIONES DE CONVENIENCIA:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     try:
         import utils.advanced_candle_downloader as downloader_module
@@ -111,41 +112,41 @@ def analyze_advanced_candle_downloader():
         functions = inspect.getmembers(downloader_module, predicate=inspect.isfunction)
         module_functions = [name for name, _ in functions if not name.startswith('_')]
 
-        print(f"📊 Total funciones del módulo: {len(module_functions)}")
+        enviar_senal_log("INFO", f"📊 Total funciones del módulo: {len(module_functions, "audit_candle_downloader", "migration")}")
         for func in module_functions:
-            print(f"   • {func}")
+            enviar_senal_log("INFO", f"   • {func}", "audit_candle_downloader", "migration")
 
     except Exception as e:
-        print(f"❌ Error analizando funciones: {e}")
+        enviar_senal_log("ERROR", f"❌ Error analizando funciones: {e}", "audit_candle_downloader", "migration")
 
     # 6. ANÁLISIS DE CAPACIDADES DE DATOS
-    print("\n📊 6. CAPACIDADES DE DATOS:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n📊 6. CAPACIDADES DE DATOS:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     try:
         from utils.advanced_candle_downloader import DOWNLOAD_CONFIG, TIMEFRAME_MAPPING
 
-        print("🎯 SÍMBOLOS SOPORTADOS:")
+        enviar_senal_log("INFO", "🎯 SÍMBOLOS SOPORTADOS:", "audit_candle_downloader", "migration")
         for i, symbol in enumerate(DOWNLOAD_CONFIG["symbols"], 1):
-            print(f"   {i}. {symbol}")
+            enviar_senal_log("INFO", f"   {i}. {symbol}", "audit_candle_downloader", "migration")
 
-        print("\n⏰ TIMEFRAMES SOPORTADOS:")
+        enviar_senal_log("INFO", "\n⏰ TIMEFRAMES SOPORTADOS:", "audit_candle_downloader", "migration")
         for tf, code in TIMEFRAME_MAPPING.items():
-            print(f"   • {tf} (MT5: {code})")
+            enviar_senal_log("INFO", f"   • {tf} (MT5: {code}, "audit_candle_downloader", "migration")")
 
-        print(f"\n⚙️ CONFIGURACIÓN:")
-        print(f"   • Velas por defecto: {DOWNLOAD_CONFIG['default_lookback']:,}")
-        print(f"   • Chunk size: {DOWNLOAD_CONFIG['chunk_size']:,}")
-        print(f"   • Descargas paralelas: {DOWNLOAD_CONFIG['parallel_downloads']}")
-        print(f"   • Verificar integridad: {DOWNLOAD_CONFIG['verify_data_integrity']}")
-        print(f"   • Backup automático: {DOWNLOAD_CONFIG['backup_existing_data']}")
+        enviar_senal_log("INFO", f"\n⚙️ CONFIGURACIÓN:", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"   • Velas por defecto: {DOWNLOAD_CONFIG['default_lookback']:,}", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"   • Chunk size: {DOWNLOAD_CONFIG['chunk_size']:,}", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"   • Descargas paralelas: {DOWNLOAD_CONFIG['parallel_downloads']}", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"   • Verificar integridad: {DOWNLOAD_CONFIG['verify_data_integrity']}", "audit_candle_downloader", "migration")
+        enviar_senal_log("INFO", f"   • Backup automático: {DOWNLOAD_CONFIG['backup_existing_data']}", "audit_candle_downloader", "migration")
 
     except Exception as e:
-        print(f"❌ Error analizando configuraciones: {e}")
+        enviar_senal_log("ERROR", f"❌ Error analizando configuraciones: {e}", "audit_candle_downloader", "migration")
 
     # 7. ANÁLISIS DE INTEGRACIÓN ACTUAL
-    print("\n🔗 7. INTEGRACIÓN ACTUAL:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n🔗 7. INTEGRACIÓN ACTUAL:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     integration_points = [
         "get_mt5_manager()",
@@ -156,13 +157,13 @@ def analyze_advanced_candle_downloader():
 
     for point in integration_points:
         if point in content:
-            print(f"   ✅ {point} - CONECTADO")
+            enviar_senal_log("INFO", f"   ✅ {point} - CONECTADO", "audit_candle_downloader", "migration")
         else:
-            print(f"   ❌ {point} - NO ENCONTRADO")
+            enviar_senal_log("INFO", f"   ❌ {point} - NO ENCONTRADO", "audit_candle_downloader", "migration")
 
     # 8. ANÁLISIS DE FORMATOS DE SALIDA
-    print("\n💾 8. FORMATOS DE SALIDA:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n💾 8. FORMATOS DE SALIDA:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     output_formats = []
     if "save_data_to_csv" in content:
@@ -173,11 +174,11 @@ def analyze_advanced_candle_downloader():
         output_formats.append("Pandas CSV")
 
     for fmt in output_formats:
-        print(f"   ✅ {fmt}")
+        enviar_senal_log("INFO", f"   ✅ {fmt}", "audit_candle_downloader", "migration")
 
     # 9. RECOMENDACIONES PARA INTEGRACIÓN
-    print("\n💡 9. RECOMENDACIONES PARA INTEGRACIÓN:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n💡 9. RECOMENDACIONES PARA INTEGRACIÓN:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
 
     recommendations = [
         "Usar download_multiple() para descarga optimizada",
@@ -190,15 +191,15 @@ def analyze_advanced_candle_downloader():
     ]
 
     for i, rec in enumerate(recommendations, 1):
-        print(f"   {i}. {rec}")
+        enviar_senal_log("INFO", f"   {i}. {rec}", "audit_candle_downloader", "migration")
 
-    print("\n🎯 PRÓXIMOS PASOS RECOMENDADOS:")
-    print("-" * 40)
-    print("1. Crear CandleCoordinator que use AdvancedCandleDownloader")
-    print("2. Implementar sistema de callbacks para tiempo real")
-    print("3. Integrar con dashboard usando download_multiple()")
-    print("4. Aprovechar validación y backup existentes")
-    print("5. Usar DownloadStats para métricas de rendimiento")
+    enviar_senal_log("INFO", "\n🎯 PRÓXIMOS PASOS RECOMENDADOS:", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "-" * 40, "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "1. Crear CandleCoordinator que use AdvancedCandleDownloader", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "2. Implementar sistema de callbacks para tiempo real", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "3. Integrar con dashboard usando download_multiple(, "audit_candle_downloader", "migration")")
+    enviar_senal_log("INFO", "4. Aprovechar validación y backup existentes", "audit_candle_downloader", "migration")
+    enviar_senal_log("INFO", "5. Usar DownloadStats para métricas de rendimiento", "audit_candle_downloader", "migration")
 
 if __name__ == "__main__":
     analyze_advanced_candle_downloader()

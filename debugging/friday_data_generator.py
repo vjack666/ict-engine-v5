@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 📅 GENERADOR DATOS DEL VIERNES - WEEKEND TESTING
@@ -20,7 +21,7 @@ sys.path.insert(0, str(project_root))
 def generate_friday_eurusd_session():
     """Genera sesión realista EURUSD del viernes"""
 
-    print("📅 Generando datos EURUSD del viernes 1 Aug 2025...")
+    enviar_senal_log("INFO", "📅 Generando datos EURUSD del viernes 1 Aug 2025...", "friday_data_generator", "migration")
 
     # Datos base del viernes (típico comportamiento EOD)
     friday_open = 1.17420
@@ -85,10 +86,10 @@ def generate_friday_eurusd_session():
     df['time'] = pd.to_datetime(df['time'])
     df = df.set_index('time')
 
-    print(f"✅ Generadas {len(df)} velas del viernes")
-    print(f"   📊 Rango: {df['low'].min():.5f} - {df['high'].max():.5f}")
-    print(f"   💰 Open: {friday_open:.5f} → Close: {df['close'].iloc[-1]:.5f}")
-    print(f"   📈 Variación: {((df['close'].iloc[-1] / friday_open - 1) * 10000):+.1f} pips")
+    enviar_senal_log("INFO", f"✅ Generadas {len(df, "friday_data_generator", "migration")} velas del viernes")
+    enviar_senal_log("INFO", f"   📊 Rango: {df['low'].min(, "friday_data_generator", "migration"):.5f} - {df['high'].max():.5f}")
+    enviar_senal_log("INFO", f"   💰 Open: {friday_open:.5f} → Close: {df['close'].iloc[-1]:.5f}", "friday_data_generator", "migration")
+    enviar_senal_log("INFO", f"   📈 Variación: {((df['close'].iloc[-1] / friday_open - 1, "friday_data_generator", "migration") * 10000):+.1f} pips")
 
     return df
 
@@ -144,7 +145,7 @@ def generate_friday_analysis_points():
 def save_friday_testing_data():
     """Guarda todos los datos del viernes para testing weekend"""
 
-    print("\n💾 Guardando datos del viernes para testing...")
+    enviar_senal_log("INFO", "\n💾 Guardando datos del viernes para testing...", "friday_data_generator", "migration")
 
     try:
         # Generar todos los componentes
@@ -176,7 +177,7 @@ def save_friday_testing_data():
         with open('friday_testing_data.json', 'w') as f:
             json.dump(friday_package, f, indent=2, default=str)
 
-        print("✅ Datos guardados en: friday_testing_data.json")
+        enviar_senal_log("INFO", "✅ Datos guardados en: friday_testing_data.json", "friday_data_generator", "migration")
 
         # Crear script de carga rápida para dashboard
         quick_load_script = f'''# 🔥 CARGA RÁPIDA DATOS DEL VIERNES EN DASHBOARD:
@@ -186,77 +187,77 @@ import json
 with open('friday_testing_data.json', 'r') as f:
     friday_data = json.load(f)
 
-print("📅 Cargando datos del viernes para análisis weekend...")
-print(f"💰 EURUSD Close: {{friday_data['current_price']:.5f}}")
-print(f"📊 Rango diario: {{friday_data['daily_range']['low']:.5f}} - {{friday_data['daily_range']['high']:.5f}}")
-print(f"🎯 Contexto: {{friday_data['market_context']['analysis_context']}}")
+enviar_senal_log("INFO", "📅 Cargando datos del viernes para análisis weekend...", "friday_data_generator", "migration")
+enviar_senal_log("INFO", f"💰 EURUSD Close: {{friday_data['current_price']:.5f}}", "friday_data_generator", "migration")
+enviar_senal_log("INFO", f"📊 Rango diario: {{friday_data['daily_range']['low']:.5f}} - {{friday_data['daily_range']['high']:.5f}}", "friday_data_generator", "migration")
+enviar_senal_log("INFO", f"🎯 Contexto: {{friday_data['market_context']['analysis_context']}}", "friday_data_generator", "migration")
 
 # Usar datos para TCT
 from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
 tct = TCTInterface()
 result = tct.measure_single_analysis('EURUSD', timeframe='M1')
-print(f"⚡ TCT Result: {{result.get('total_time_ms', 'N/A')}}ms")
+enviar_senal_log("INFO", f"⚡ TCT Result: {{result.get('total_time_ms', 'N/A', "friday_data_generator", "migration")}}ms")
 self.refresh()
-print("✅ Dashboard actualizado con datos del viernes")
+enviar_senal_log("INFO", "✅ Dashboard actualizado con datos del viernes", "friday_data_generator", "migration")
 '''
 
         with open('load_friday_data.py', 'w') as f:
             f.write(quick_load_script)
 
-        print("✅ Script de carga creado: load_friday_data.py")
+        enviar_senal_log("INFO", "✅ Script de carga creado: load_friday_data.py", "friday_data_generator", "migration")
 
         return friday_package
 
     except Exception as e:
-        print(f"❌ Error guardando datos: {e}")
+        enviar_senal_log("ERROR", f"❌ Error guardando datos: {e}", "friday_data_generator", "migration")
         return None
 
 def main():
     """Función principal"""
 
-    print("📅 GENERADOR DATOS DEL VIERNES - WEEKEND TESTING")
-    print("=" * 55)
-    print("🎯 PROPÓSITO: Datos realistas para testing durante fin de semana")
-    print("📊 SÍMBOLO: EURUSD")
-    print("📅 FECHA: Viernes 1 Aug 2025 (último trading day)")
-    print()
+    enviar_senal_log("INFO", "📅 GENERADOR DATOS DEL VIERNES - WEEKEND TESTING", "friday_data_generator", "migration")
+    enviar_senal_log("INFO", "=" * 55, "friday_data_generator", "migration")
+    enviar_senal_log("INFO", "🎯 PROPÓSITO: Datos realistas para testing durante fin de semana", "friday_data_generator", "migration")
+    enviar_senal_log("INFO", "📊 SÍMBOLO: EURUSD", "friday_data_generator", "migration")
+    enviar_senal_log("INFO", "📅 FECHA: Viernes 1 Aug 2025 (último trading day, "friday_data_generator", "migration")")
+    enviar_senal_log("INFO", , "friday_data_generator", "migration")
 
     # Generar y guardar datos
     friday_package = save_friday_testing_data()
 
     if friday_package:
-        print("\n🎉 DATOS DEL VIERNES GENERADOS EXITOSAMENTE")
-        print("=" * 50)
-        print("📊 RESUMEN DE DATOS:")
-        print(f"   💰 Precio cierre: {friday_package['current_price']:.5f}")
-        print(f"   📈 Rango diario: {friday_package['daily_range']['low']:.5f} - {friday_package['daily_range']['high']:.5f}")
-        print(f"   📅 Velas M1: {len(friday_package['candles'])}")
-        print(f"   🎯 Contexto: {friday_package['market_context']['market_phase']}")
+        enviar_senal_log("INFO", "\n🎉 DATOS DEL VIERNES GENERADOS EXITOSAMENTE", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "=" * 50, "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "📊 RESUMEN DE DATOS:", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", f"   💰 Precio cierre: {friday_package['current_price']:.5f}", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", f"   📈 Rango diario: {friday_package['daily_range']['low']:.5f} - {friday_package['daily_range']['high']:.5f}", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", f"   📅 Velas M1: {len(friday_package['candles'], "friday_data_generator", "migration")}")
+        enviar_senal_log("INFO", f"   🎯 Contexto: {friday_package['market_context']['market_phase']}", "friday_data_generator", "migration")
 
-        print("\n🔥 PARA USAR EN DASHBOARD:")
-        print("1. 📊 Ve a tu dashboard")
-        print("2. 🔧 Presiona 'D' para debug mode")
-        print("3. 📋 Copia contenido de load_friday_data.py")
-        print("4. ⚡ Pega en debug console y presiona Enter")
-        print("5. 🎨 Ve a pestaña TCT Real - debería mostrar análisis del viernes")
+        enviar_senal_log("INFO", "\n🔥 PARA USAR EN DASHBOARD:", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "1. 📊 Ve a tu dashboard", "friday_data_generator", "migration")
+        enviar_senal_log("DEBUG", "2. 🔧 Presiona 'D' para debug mode", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "3. 📋 Copia contenido de load_friday_data.py", "friday_data_generator", "migration")
+        enviar_senal_log("DEBUG", "4. ⚡ Pega en debug console y presiona Enter", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "5. 🎨 Ve a pestaña TCT Real - debería mostrar análisis del viernes", "friday_data_generator", "migration")
 
-        print("\n💡 BENEFICIOS:")
-        print("   • 📊 Análisis realista con datos históricos")
-        print("   • 🎯 Validación completa del sistema durante weekend")
-        print("   • ⚡ TCT Pipeline con datos reales de trading")
-        print("   • 🧠 ICT patterns basados en acción real del viernes")
+        enviar_senal_log("INFO", "\n💡 BENEFICIOS:", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "   • 📊 Análisis realista con datos históricos", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "   • 🎯 Validación completa del sistema durante weekend", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "   • ⚡ TCT Pipeline con datos reales de trading", "friday_data_generator", "migration")
+        enviar_senal_log("INFO", "   • 🧠 ICT patterns basados en acción real del viernes", "friday_data_generator", "migration")
 
         return True
     else:
-        print("\n❌ Error generando datos del viernes")
+        enviar_senal_log("ERROR", "\n❌ Error generando datos del viernes", "friday_data_generator", "migration")
         return False
 
 if __name__ == "__main__":
     success = main()
 
     if success:
-        print("\n✅ LISTO PARA TESTING WEEKEND CON DATOS REALISTAS")
+        enviar_senal_log("INFO", "\n✅ LISTO PARA TESTING WEEKEND CON DATOS REALISTAS", "friday_data_generator", "migration")
     else:
-        print("\n❌ GENERACIÓN FALLÓ - revisar errores")
+        enviar_senal_log("ERROR", "\n❌ GENERACIÓN FALLÓ - revisar errores", "friday_data_generator", "migration")
 
-    print("\n🏁 Generador completado.")
+    enviar_senal_log("INFO", "\n🏁 Generador completado.", "friday_data_generator", "migration")

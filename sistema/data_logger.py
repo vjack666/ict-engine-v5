@@ -89,7 +89,7 @@ def redirect_stdout_to_file(log_dir="../../data/logs/terminal_capture"):
         sys.stdout = StreamInterceptor(original_stdout, log_file_path)
         sys.stderr = StreamInterceptor(original_stderr, log_file_path)
 
-        print(f"\n✅ [DEBUG] Captura total de consola activada. Log en: {log_file_path}\n")
+        enviar_senal_log("DEBUG", f"\n✅ [DEBUG] Captura total de consola activada. Log en: {log_file_path}\n", "data_logger", "migration")
     except (FileNotFoundError, PermissionError, IOError) as e:
         sys.stdout.write(f"\n❌ [CRITICAL] No se pudo redirigir la salida de la consola: {e}\n")
 
@@ -121,8 +121,8 @@ def log_dashboard_error(panel_name: str, error: Exception):
 
     except (FileNotFoundError, PermissionError, IOError) as log_err:
         # Si el propio logger falla, lo imprimimos para no perder el error original.
-        print(f"[CRITICAL LOGGER ERROR] No se pudo escribir en dashboard_errors.log: {log_err}")
-        print(f"[ORIGINAL ERROR] Panel: {panel_name}, Error: {error}")
+        enviar_senal_log("ERROR", f"[CRITICAL LOGGER ERROR] No se pudo escribir en dashboard_errors.log: {log_err}", "data_logger", "migration")
+        enviar_senal_log("ERROR", f"[ORIGINAL ERROR] Panel: {panel_name}, Error: {error}", "data_logger", "migration")
 # data_logger.py
 
 # =============================================================================
@@ -241,7 +241,7 @@ def log_event(evento: str, detalles: str = "") -> None:
             
     except (FileNotFoundError, PermissionError, IOError) as e:
         error_msg = f"Error al registrar evento: {str(e)}"
-        print(f"[ERROR] {error_msg}")
+        enviar_senal_log("ERROR", f"[ERROR] {error_msg}", "data_logger", "migration")
         add_error_to_buffer(error_msg)
 
 def inicializar_csvs_logger():
@@ -300,7 +300,7 @@ def inicializar_csvs_logger():
                 ])
         
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"[CRITICAL] Error inicializando CSVs: {e}")
+        enviar_senal_log("ERROR", f"[CRITICAL] Error inicializando CSVs: {e}", "data_logger", "migration")
         raise
 
 def log_analisis_periodico(symbol: str, bid: float, ask: float, spread: float,
@@ -338,7 +338,7 @@ def log_error_critico(modulo: str, funcion: str, error: str, stack_trace: Option
         # Añadir al buffer para el dashboard
         add_error_to_buffer(f"[{modulo}] {error}")
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"[CRITICAL] Error en log_error_critico: {e}")
+        enviar_senal_log("ERROR", f"[CRITICAL] Error en log_error_critico: {e}", "data_logger", "migration")
 
 def add_error_to_buffer(msg: object) -> None:
     """Añade un mensaje de error al buffer circular para el dashboard."""
@@ -362,7 +362,7 @@ def add_error_to_buffer(msg: object) -> None:
         while len(_error_buffer) > MAX_BUFFER_SIZE:
             _error_buffer.pop(0)
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"Error en add_error_to_buffer: {str(e)}")
+        enviar_senal_log("ERROR", f"Error en add_error_to_buffer: {str(e, "data_logger", "migration")}")
 
 def get_error_buffer() -> List[str]:
     """Obtiene la lista actual de errores en el buffer."""
@@ -479,7 +479,7 @@ def log_trade_decision(
             
     except (FileNotFoundError, PermissionError, IOError) as e:
         error_msg = f"Error al registrar decisión de trading: {str(e)}"
-        print(f"[ERROR] {error_msg}")
+        enviar_senal_log("ERROR", f"[ERROR] {error_msg}", "data_logger", "migration")
         add_error_to_buffer(error_msg)
 
 # =============================================================================
@@ -593,7 +593,7 @@ def install_global_exception_handler():
         original_excepthook(exc_type, exc_value, exc_traceback)
     
     sys.excepthook = custom_exception_handler
-    print("[LOGGER] OK Manejador global de excepciones instalado.")
+    enviar_senal_log("INFO", "[LOGGER] OK Manejador global de excepciones instalado.", "data_logger", "migration")
 
 def force_log_and_print(modulo: str, mensaje: str, es_error: bool = True):
     """
@@ -606,7 +606,7 @@ def force_log_and_print(modulo: str, mensaje: str, es_error: bool = True):
         
         # CAMBIO IMPORTANTE: NO imprimir para evitar interferir con Rich dashboard
         # Los mensajes importantes se envían al terminal del dashboard usando add_terminal_log()
-        # print(f"\n{prefix} {timestamp} [{modulo}]: {mensaje}\n")
+        # enviar_senal_log("INFO", f"\n{prefix} {timestamp} [{modulo}]: {mensaje}\n", "data_logger", "migration")
         
         # En su lugar, usar el sistema de captura CSV para logging manual
         global _terminal_capture
@@ -822,7 +822,7 @@ def install_terminal_capture_csv():
         
         return True
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"Error instalando terminal capture CSV: {e}")
+        enviar_senal_log("ERROR", f"Error instalando terminal capture CSV: {e}", "data_logger", "migration")
         return False
 
 def get_terminal_capture_stats():

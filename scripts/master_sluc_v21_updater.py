@@ -183,13 +183,13 @@ class SLUCv21MasterUpdater:
 
     def run_complete_update(self):
         """Ejecuta la actualización completa del sistema"""
-        print("🔄 INICIANDO ACTUALIZACIÓN COMPLETA A SLUC v2.1")
-        print("=" * 60)
+        enviar_senal_log("INFO", "🔄 INICIANDO ACTUALIZACIÓN COMPLETA A SLUC v2.1", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "=" * 60, "master_sluc_v21_updater", "migration")
 
         # Encontrar archivos
-        print("📁 Buscando archivos Python con logging...")
+        enviar_senal_log("INFO", "📁 Buscando archivos Python con logging...", "master_sluc_v21_updater", "migration")
         files = self.find_python_files_with_logging()
-        print(f"   Encontrados: {len(files)} archivos")
+        enviar_senal_log("INFO", f"   Encontrados: {len(files, "master_sluc_v21_updater", "migration")} archivos")
 
         # Ordenar archivos por prioridad
         priority_files = []
@@ -204,14 +204,14 @@ class SLUCv21MasterUpdater:
 
         all_files = priority_files + regular_files
 
-        print(f"📋 Archivos prioritarios: {len(priority_files)}")
-        print(f"📋 Archivos regulares: {len(regular_files)}")
-        print()
+        enviar_senal_log("INFO", f"📋 Archivos prioritarios: {len(priority_files, "master_sluc_v21_updater", "migration")}")
+        enviar_senal_log("INFO", f"📋 Archivos regulares: {len(regular_files, "master_sluc_v21_updater", "migration")}")
+        enviar_senal_log("INFO", , "master_sluc_v21_updater", "migration")
 
         # Procesar archivos
         for i, file_path in enumerate(all_files, 1):
             relative_path = file_path.relative_to(self.base_path)
-            print(f"[{i:3d}/{len(all_files)}] Procesando: {relative_path}")
+            enviar_senal_log("INFO", f"[{i:3d}/{len(all_files, "master_sluc_v21_updater", "migration")}] Procesando: {relative_path}")
 
             self.files_processed += 1
 
@@ -219,36 +219,36 @@ class SLUCv21MasterUpdater:
             was_updated, message = self.update_file_logging(file_path)
             if was_updated:
                 self.files_updated += 1
-                print(f"   ✅ {message}")
+                enviar_senal_log("INFO", f"   ✅ {message}", "master_sluc_v21_updater", "migration")
             else:
-                print(f"   📝 {message}")
+                enviar_senal_log("INFO", f"   📝 {message}", "master_sluc_v21_updater", "migration")
 
             # Actualizar imports
             imports_updated = self.update_imports(file_path)
             if imports_updated:
-                print(f"   📦 Imports actualizados")
+                enviar_senal_log("INFO", f"   📦 Imports actualizados", "master_sluc_v21_updater", "migration")
 
-        print()
-        print("=" * 60)
-        print("✅ ACTUALIZACIÓN COMPLETA FINALIZADA")
-        print(f"📊 Archivos procesados: {self.files_processed}")
-        print(f"📊 Archivos actualizados: {self.files_updated}")
-        print(f"📊 Errores: {len(self.errors)}")
+        enviar_senal_log("INFO", , "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "=" * 60, "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "✅ ACTUALIZACIÓN COMPLETA FINALIZADA", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", f"📊 Archivos procesados: {self.files_processed}", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", f"📊 Archivos actualizados: {self.files_updated}", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("ERROR", f"📊 Errores: {len(self.errors, "master_sluc_v21_updater", "migration")}")
 
         if self.errors:
-            print()
-            print("❌ Errores encontrados:")
+            enviar_senal_log("INFO", , "master_sluc_v21_updater", "migration")
+            enviar_senal_log("ERROR", "❌ Errores encontrados:", "master_sluc_v21_updater", "migration")
             for error in self.errors[:10]:  # Mostrar solo los primeros 10
-                print(f"   - {error}")
+                enviar_senal_log("ERROR", f"   - {error}", "master_sluc_v21_updater", "migration")
             if len(self.errors) > 10:
-                print(f"   ... y {len(self.errors) - 10} errores más")
+                enviar_senal_log("ERROR", f"   ... y {len(self.errors, "master_sluc_v21_updater", "migration") - 10} errores más")
 
-        print()
-        print("🎯 PRÓXIMOS PASOS:")
-        print("   1. Verificar que no hay errores de sintaxis")
-        print("   2. Probar el dashboard")
-        print("   3. Validar routing de logs")
-        print("   4. Confirmar compatibilidad total")
+        enviar_senal_log("INFO", , "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "🎯 PRÓXIMOS PASOS:", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("ERROR", "   1. Verificar que no hay errores de sintaxis", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "   2. Probar el dashboard", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "   3. Validar routing de logs", "master_sluc_v21_updater", "migration")
+        enviar_senal_log("INFO", "   4. Confirmar compatibilidad total", "master_sluc_v21_updater", "migration")
 
 def main():
     """Función principal"""

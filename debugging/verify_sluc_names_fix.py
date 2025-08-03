@@ -22,30 +22,30 @@ def test_sluc_system_names():
     """
     Verifica que los nombres de sistemas SLUC sean válidos
     """
-    print("🔧 VERIFICACIÓN: SLUC System Names Fix")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🔧 VERIFICACIÓN: SLUC System Names Fix", "verify_sluc_names_fix", "migration")
+    enviar_senal_log("INFO", "=" * 50, "verify_sluc_names_fix", "migration")
 
     try:
         # 1. Verificar importaciones de trading.py
-        print("📊 1. Verificando core/trading.py...")
+        enviar_senal_log("INFO", "📊 1. Verificando core/trading.py...", "verify_sluc_names_fix", "migration")
         try:
             from core.trading import TRADING_SCHEDULE_AVAILABLE
-            print(f"   ✅ trading.py cargado correctamente")
-            print(f"   📋 TRADING_SCHEDULE_AVAILABLE: {TRADING_SCHEDULE_AVAILABLE}")
+            enviar_senal_log("INFO", f"   ✅ trading.py cargado correctamente", "verify_sluc_names_fix", "migration")
+            enviar_senal_log("INFO", f"   📋 TRADING_SCHEDULE_AVAILABLE: {TRADING_SCHEDULE_AVAILABLE}", "verify_sluc_names_fix", "migration")
         except Exception as e:
-            print(f"   ❌ Error en trading.py: {e}")
+            enviar_senal_log("ERROR", f"   ❌ Error en trading.py: {e}", "verify_sluc_names_fix", "migration")
 
         # 2. Verificar importaciones de limit_order_manager.py
-        print("\n🎯 2. Verificando core/limit_order_manager.py...")
+        enviar_senal_log("INFO", "\n🎯 2. Verificando core/limit_order_manager.py...", "verify_sluc_names_fix", "migration")
         try:
             from core.limit_order_manager import MT5_CONNECTOR_AVAILABLE
-            print(f"   ✅ limit_order_manager.py cargado correctamente")
-            print(f"   📋 MT5_CONNECTOR_AVAILABLE: {MT5_CONNECTOR_AVAILABLE}")
+            enviar_senal_log("INFO", f"   ✅ limit_order_manager.py cargado correctamente", "verify_sluc_names_fix", "migration")
+            enviar_senal_log("INFO", f"   📋 MT5_CONNECTOR_AVAILABLE: {MT5_CONNECTOR_AVAILABLE}", "verify_sluc_names_fix", "migration")
         except Exception as e:
-            print(f"   ❌ Error en limit_order_manager.py: {e}")
+            enviar_senal_log("ERROR", f"   ❌ Error en limit_order_manager.py: {e}", "verify_sluc_names_fix", "migration")
 
         # 3. Verificar sistema de logging
-        print("\n📝 3. Verificando sistema de logging...")
+        enviar_senal_log("INFO", "\n📝 3. Verificando sistema de logging...", "verify_sluc_names_fix", "migration")
         try:
             from sistema.logging_interface import enviar_senal_log
 
@@ -56,15 +56,15 @@ def test_sluc_system_names():
                 try:
                     # Enviar log de prueba
                     enviar_senal_log("DEBUG", f"Test SLUC para sistema: {system}", "verify_sluc", system)
-                    print(f"   ✅ Sistema '{system}': VÁLIDO")
+                    enviar_senal_log("INFO", f"   ✅ Sistema '{system}': VÁLIDO", "verify_sluc_names_fix", "migration")
                 except Exception as e:
-                    print(f"   ❌ Sistema '{system}': ERROR - {e}")
+                    enviar_senal_log("ERROR", f"   ❌ Sistema '{system}': ERROR - {e}", "verify_sluc_names_fix", "migration")
 
         except Exception as e:
-            print(f"   ❌ Error en sistema de logging: {e}")
+            enviar_senal_log("ERROR", f"   ❌ Error en sistema de logging: {e}", "verify_sluc_names_fix", "migration")
 
         # 4. Verificar que no existen nombres inválidos EN LOGS (no en imports)
-        print("\n🔍 4. Verificando ausencia de nombres inválidos EN LOGS...")
+        enviar_senal_log("INFO", "\n🔍 4. Verificando ausencia de nombres inválidos EN LOGS...", "verify_sluc_names_fix", "migration")
 
         # Buscar patrones específicos de enviar_senal_log con nombres problemáticos
         problematic_patterns = [
@@ -91,25 +91,25 @@ def test_sluc_system_names():
                     for pattern in problematic_patterns:
                         import re
                         if re.search(pattern, content):
-                            print(f"   ❌ Patrón problemático '{pattern}' encontrado en {file_path}")
+                            enviar_senal_log("INFO", f"   ❌ Patrón problemático '{pattern}' encontrado en {file_path}", "verify_sluc_names_fix", "migration")
                             issues_found = True
                         else:
-                            print(f"   ✅ Patrón '{pattern}' NO encontrado en {file_path}")
+                            enviar_senal_log("INFO", f"   ✅ Patrón '{pattern}' NO encontrado en {file_path}", "verify_sluc_names_fix", "migration")
 
                 except Exception as e:
-                    print(f"   ⚠️ Error leyendo {file_path}: {e}")
+                    enviar_senal_log("ERROR", f"   ⚠️ Error leyendo {file_path}: {e}", "verify_sluc_names_fix", "migration")
 
         if not issues_found:
-            print("\n🎉 RESULTADO: Todos los nombres de sistemas SLUC en logs están corregidos")
+            enviar_senal_log("INFO", "\n🎉 RESULTADO: Todos los nombres de sistemas SLUC en logs están corregidos", "verify_sluc_names_fix", "migration")
         else:
-            print("\n⚠️ RESULTADO: Aún existen algunos nombres problemáticos en logs")
+            enviar_senal_log("INFO", "\n⚠️ RESULTADO: Aún existen algunos nombres problemáticos en logs", "verify_sluc_names_fix", "migration")
 
-        print("\n" + "=" * 50)
-        print("✅ Verificación completada")
+        enviar_senal_log("INFO", "\n" + "=" * 50, "verify_sluc_names_fix", "migration")
+        enviar_senal_log("INFO", "✅ Verificación completada", "verify_sluc_names_fix", "migration")
         return not issues_found
 
     except Exception as e:
-        print(f"\n❌ ERROR CRÍTICO en verificación: {e}")
+        enviar_senal_log("ERROR", f"\n❌ ERROR CRÍTICO en verificación: {e}", "verify_sluc_names_fix", "migration")
         return False
 
 if __name__ == "__main__":

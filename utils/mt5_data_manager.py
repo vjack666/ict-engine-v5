@@ -4,13 +4,13 @@ def descargar_y_guardar_m1(symbol: str = "EURUSD", lookback: int = 200000) -> bo
     Descarga y guarda las velas de M1 siguiendo la lógica del sistema.
     """
     manager = get_mt5_manager()
-    print(f"[MT5] Forzando descarga de velas M1 para {symbol}...")
+    enviar_senal_log("INFO", f"[MT5] Forzando descarga de velas M1 para {symbol}...", "mt5_data_manager", "migration")
     df = manager.get_historical_data(symbol, "M1", lookback, force_download=True)
     if df is not None and not df.empty:
-        print(f"[MT5] Velas M1 descargadas y guardadas: {len(df)} filas.")
+        enviar_senal_log("INFO", f"[MT5] Velas M1 descargadas y guardadas: {len(df, "mt5_data_manager", "migration")} filas.")
         return True
     else:
-        print(f"[MT5] ERROR: No se pudieron descargar velas M1 para {symbol}.")
+        enviar_senal_log("ERROR", f"[MT5] ERROR: No se pudieron descargar velas M1 para {symbol}.", "mt5_data_manager", "migration")
         return False
 """
 MT5 Data Manager - Sistema Sentinel Grid v3.3.3.3.3
@@ -97,16 +97,16 @@ class MT5DataManager:
     def connect(self) -> bool:
         """Conecta específicamente al terminal FundedNext MT5."""
         if not MT5_AVAILABLE or mt5 is None:
-            print("❌ MetaTrader5 no está disponible")
+            enviar_senal_log("INFO", "❌ MetaTrader5 no está disponible", "mt5_data_manager", "migration")
             return False
             
         if not validate_fundednext_installation():
-            print(f"❌ Terminal FundedNext MT5 no encontrado en: {FUNDEDNEXT_MT5_PATH}")
+            enviar_senal_log("INFO", f"❌ Terminal FundedNext MT5 no encontrado en: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "migration")
             return False
             
         try:
             if self.available_functions.get('initialize', False):
-                print(f"🔗 Conectando a FundedNext MT5: {FUNDEDNEXT_MT5_PATH}")
+                enviar_senal_log("INFO", f"🔗 Conectando a FundedNext MT5: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "migration")
                 
                 # Intentar conexión con ruta específica de FundedNext
                 self.is_connected = mt5.initialize(path=FUNDEDNEXT_MT5_PATH)  # type: ignore
@@ -116,20 +116,20 @@ class MT5DataManager:
                     try:
                         terminal_info = mt5.terminal_info()  # type: ignore
                         if terminal_info:
-                            print(f"✅ Conectado a: {terminal_info.name}")
-                            print(f"   Versión: {terminal_info.version}")
-                            print(f"   Empresa: {terminal_info.company}")
-                            print(f"   Ruta: {terminal_info.path}")
+                            enviar_senal_log("INFO", f"✅ Conectado a: {terminal_info.name}", "mt5_data_manager", "migration")
+                            enviar_senal_log("INFO", f"   Versión: {terminal_info.version}", "mt5_data_manager", "migration")
+                            enviar_senal_log("INFO", f"   Empresa: {terminal_info.company}", "mt5_data_manager", "migration")
+                            enviar_senal_log("INFO", f"   Ruta: {terminal_info.path}", "mt5_data_manager", "migration")
                         else:
-                            print("✅ Conectado a FundedNext MT5")
+                            enviar_senal_log("INFO", "✅ Conectado a FundedNext MT5", "mt5_data_manager", "migration")
                     except:
-                        print("✅ Conectado a FundedNext MT5 (info limitada)")
+                        enviar_senal_log("INFO", "✅ Conectado a FundedNext MT5 (info limitada, "mt5_data_manager", "migration")")
                 else:
-                    print("❌ Error al conectar con FundedNext MT5")
+                    enviar_senal_log("ERROR", "❌ Error al conectar con FundedNext MT5", "mt5_data_manager", "migration")
                     
                 return self.is_connected
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"❌ Error de conexión MT5: {e}")
+            enviar_senal_log("ERROR", f"❌ Error de conexión MT5: {e}", "mt5_data_manager", "migration")
             
         return False
         
@@ -229,27 +229,27 @@ class MT5DataManager:
             
         # Verificar que el símbolo esté en la lista configurada
         if symbol not in FUNDEDNEXT_CONFIG["symbols"]:
-            print(f"⚠️  Símbolo {symbol} no está en la configuración FundedNext")
-            print(f"   Símbolos configurados: {FUNDEDNEXT_CONFIG['symbols']}")
+            enviar_senal_log("INFO", f"⚠️  Símbolo {symbol} no está en la configuración FundedNext", "mt5_data_manager", "migration")
+            enviar_senal_log("INFO", f"   Símbolos configurados: {FUNDEDNEXT_CONFIG['symbols']}", "mt5_data_manager", "migration")
         
         # Verificar que el timeframe esté configurado
         if timeframe not in FUNDEDNEXT_CONFIG["timeframes"]:
-            print(f"⚠️  Timeframe {timeframe} no está en la configuración FundedNext")
-            print(f"   Timeframes configurados: {FUNDEDNEXT_CONFIG['timeframes']}")
+            enviar_senal_log("INFO", f"⚠️  Timeframe {timeframe} no está en la configuración FundedNext", "mt5_data_manager", "migration")
+            enviar_senal_log("INFO", f"   Timeframes configurados: {FUNDEDNEXT_CONFIG['timeframes']}", "mt5_data_manager", "migration")
             
         if not self.is_connected:
-            print("🔗 Conectando a FundedNext MT5...")
+            enviar_senal_log("INFO", "🔗 Conectando a FundedNext MT5...", "mt5_data_manager", "migration")
             if not self.connect():
-                print("❌ No se pudo conectar a FundedNext MT5")
+                enviar_senal_log("INFO", "❌ No se pudo conectar a FundedNext MT5", "mt5_data_manager", "migration")
                 return None
                 
         timeframe_const = self.get_timeframe_constant(timeframe)
         if timeframe_const is None:
-            print(f"❌ Timeframe {timeframe} no reconocido por MT5")
+            enviar_senal_log("INFO", f"❌ Timeframe {timeframe} no reconocido por MT5", "mt5_data_manager", "migration")
             return None
             
         try:
-            print(f"📥 Descargando {count} velas de {symbol} {timeframe} desde FundedNext...")
+            enviar_senal_log("INFO", f"📥 Descargando {count} velas de {symbol} {timeframe} desde FundedNext...", "mt5_data_manager", "migration")
             rates = None
             
             # Intentar con copy_rates_from_pos (preferido)
@@ -269,7 +269,7 @@ class MT5DataManager:
                 return df
                 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"Error descargando datos MT5: {e}")
+            enviar_senal_log("ERROR", f"Error descargando datos MT5: {e}", "mt5_data_manager", "migration")
             
         return None
         
@@ -332,7 +332,7 @@ class MT5DataManager:
             
             return df.tail(lookback)
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"Error cargando {timeframe} desde CSV: {e}")
+            enviar_senal_log("ERROR", f"Error cargando {timeframe} desde CSV: {e}", "mt5_data_manager", "migration")
             return None
             
     def get_historical_data(self, 

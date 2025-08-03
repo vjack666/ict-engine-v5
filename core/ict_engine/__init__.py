@@ -28,12 +28,12 @@ except Exception as e:
     try:
         enviar_senal_log("ERROR", f"Error importando VeredictoEngine: {e}", __name__, "ict")
     except ImportError:
-        print(f"ERROR: No se pudo importar VeredictoEngine: {e}")
+        enviar_senal_log("ERROR", f"ERROR: No se pudo importar VeredictoEngine: {e}", "__init__", "migration")
     VeredictoEngine = None
     try:
         enviar_senal_log("ERROR", "VeredictoEngine se asignó a None por fallo de importación.", __name__, "ict")
     except ImportError:
-        print("ERROR: VeredictoEngine se asignó a None por fallo de importación.")
+        enviar_senal_log("ERROR", "ERROR: VeredictoEngine se asignó a None por fallo de importación.", "__init__", "migration")
 
 from .ict_historical_analyzer import ICTHistoricalAnalyzer
 
@@ -61,4 +61,4 @@ __all__ = [
 try:
     enviar_senal_log("INFO", f"✅ Paquete 'core.ict_engine' v{__version__} cargado y API pública definida.", __name__, "ict")
 except ImportError:
-    print(f"INFO: Paquete 'core.ict_engine' cargado.")
+    enviar_senal_log("INFO", f"INFO: Paquete 'core.ict_engine' cargado.", "__init__", "migration")

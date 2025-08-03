@@ -67,7 +67,7 @@ try:
         raise RuntimeError(f"No se puede encontrar el directorio core en {project_root}")
 
 except (FileNotFoundError, PermissionError, IOError) as e:
-    print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
+    enviar_senal_log("ERROR", f"❌ ERROR CRÍTICO configurando paths de Python: {e}", "dashboard_definitivo", "migration")
     sys.exit(1)
 # -------------------------------------------------
 
@@ -90,19 +90,19 @@ from dashboard.dashboard_controller import get_dashboard_controller
 try:
     from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
     multi_poi_available = True
-    print("✅ Multi-POI Dashboard disponible para panel ICT")
+    enviar_senal_log("INFO", "✅ Multi-POI Dashboard disponible para panel ICT", "dashboard_definitivo", "migration")
 except ImportError as e:
     multi_poi_available = False
-    print(f"⚠️ Multi-POI Dashboard no disponible: {e}")
+    enviar_senal_log("INFO", f"⚠️ Multi-POI Dashboard no disponible: {e}", "dashboard_definitivo", "migration")
 
 # 🧠 CLEAN POI DIAGNOSTICS INTEGRATION
 try:
     from scripts.clean_poi_diagnostics import integrar_poi_dashboard_limpio
     clean_poi_available = True
-    print("✅ Clean POI Diagnostics disponible")
+    enviar_senal_log("INFO", "✅ Clean POI Diagnostics disponible", "dashboard_definitivo", "migration")
 except ImportError as e:
     clean_poi_available = False
-    print(f"⚠️ Clean POI Diagnostics no disponible: {e}")
+    enviar_senal_log("INFO", f"⚠️ Clean POI Diagnostics no disponible: {e}", "dashboard_definitivo", "migration")
 
 # 🔧 CONFIGURACIÓN DE LOGGING CENTRALIZADO - FASE 2
 try:
@@ -334,9 +334,9 @@ class SentinelDashboardDefinitivo(App):
         try:
             self.trading_engine = TradingDecisionEngine()  # Motor principal de trading
             self.decision_cache = TradingDecisionCache()  # Cache inteligente
-            print("💼 Trading Core conectado exitosamente")
+            enviar_senal_log("INFO", "💼 Trading Core conectado exitosamente", "dashboard_definitivo", "migration")
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"⚠️ Trading Core no disponible: {e}")
+            enviar_senal_log("INFO", f"⚠️ Trading Core no disponible: {e}", "dashboard_definitivo", "migration")
             self.trading_engine = None
             self.decision_cache = None
 
@@ -349,10 +349,10 @@ class SentinelDashboardDefinitivo(App):
                 max_profit_target=130.0,
                 risk_percent=1.0
             )
-            print("✅ Managers especializados conectados")
-            print("🛡️ RiskBot integrado - Gestión de riesgo avanzada activa")
+            enviar_senal_log("INFO", "✅ Managers especializados conectados", "dashboard_definitivo", "migration")
+            enviar_senal_log("INFO", "🛡️ RiskBot integrado - Gestión de riesgo avanzada activa", "dashboard_definitivo", "migration")
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"⚠️ Algunos managers no disponibles: {e}")
+            enviar_senal_log("INFO", f"⚠️ Algunos managers no disponibles: {e}", "dashboard_definitivo", "migration")
             self.limit_order_manager = None
             self.config_manager = None
             self.riskbot = None
@@ -366,21 +366,21 @@ class SentinelDashboardDefinitivo(App):
                            "📊 Sistema de logging SLUC v2.1 conectado",
                            __name__,
                            'dashboard')
-            print("📊 Sistema de logging inteligente conectado")
+            enviar_senal_log("INFO", "📊 Sistema de logging inteligente conectado", "dashboard_definitivo", "migration")
         except (FileNotFoundError, PermissionError, IOError) as e:
-            print(f"⚠️ Sistema SLUC no disponible: {e}")
+            enviar_senal_log("INFO", f"⚠️ Sistema SLUC no disponible: {e}", "dashboard_definitivo", "migration")
             # Fallback temporal - usar logging global importado
             # Nota: logging ya está importado en el scope global (línea 66)
             self.logger = logging.getLogger(__name__)  # Logger por defecto
 
-        print("🎯 INVENTARIO DE ESPECIALISTAS CONECTADOS:")
-        print("🧠 ICT Engine: Detector, Analyzer, Confidence, Veredicto, Historical")
-        print("🎯 POI System: Detector Functions, Scoring Engine")
-        print("💼 Trading Core: Decision Engine, Smart Cache")
-        print("🔗 Managers: Limit Orders, Config")
-        print("�️ Risk Management: RiskBot MT5, Position Management")
-        print("�📊 Logging: Smart Logger activo")
-        print("🚀 TODOS LOS ESPECIALISTAS LISTOS PARA ACCIÓN")
+        enviar_senal_log("INFO", "🎯 INVENTARIO DE ESPECIALISTAS CONECTADOS:", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "🧠 ICT Engine: Detector, Analyzer, Confidence, Veredicto, Historical", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "🎯 POI System: Detector Functions, Scoring Engine", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "💼 Trading Core: Decision Engine, Smart Cache", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "🔗 Managers: Limit Orders, Config", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "�️ Risk Management: RiskBot MT5, Position Management", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "�📊 Logging: Smart Logger activo", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "🚀 TODOS LOS ESPECIALISTAS LISTOS PARA ACCIÓN", "dashboard_definitivo", "migration")
 
         # 🔗 DASHBOARD CONTROLLER INTEGRATION - CRÍTICO PARA COMUNICACIÓN CON BACKEND
         self.dashboard_controller = None
@@ -390,7 +390,7 @@ class SentinelDashboardDefinitivo(App):
             logger.info("📡 Dashboard Controller conectado - preparando registro")
         except ImportError as e:
             logger.warning("⚠️ Dashboard Controller no disponible: %s", e)
-            print("⚠️ Dashboard Controller no disponible - funcionará sin datos del backend")
+            enviar_senal_log("INFO", "⚠️ Dashboard Controller no disponible - funcionará sin datos del backend", "dashboard_definitivo", "migration")
 
         # 🎯 Estado del sistema
         self.hibernation_start = datetime.now()
@@ -428,11 +428,11 @@ class SentinelDashboardDefinitivo(App):
     def initialize_mt5_connection(self):
         """Inicializa la conexión real con MetaTrader5"""
         try:
-            print("🔗 Iniciando conexión con MetaTrader5...")
+            enviar_senal_log("INFO", "🔗 Iniciando conexión con MetaTrader5...", "dashboard_definitivo", "migration")
 
             # Verificar que system_metrics existe
             if not hasattr(self, 'system_metrics'):
-                print("⚠️ system_metrics no inicializado, creando...")
+                enviar_senal_log("INFO", "⚠️ system_metrics no inicializado, creando...", "dashboard_definitivo", "migration")
                 self.system_metrics = {
                     'session_start': datetime.now(),
                     'total_refreshes': 0,
@@ -446,15 +446,15 @@ class SentinelDashboardDefinitivo(App):
             # Inicializar MT5 usando MT5DataManager
             self.mt5_manager = get_mt5_manager()
             if self.mt5_manager and self.mt5_manager.connect():
-                print("✅ MT5 inicializado correctamente")
+                enviar_senal_log("INFO", "✅ MT5 inicializado correctamente", "dashboard_definitivo", "migration")
 
                 # Verificar símbolo usando MT5DataManager
                 if self.mt5_manager.verificar_simbolo(self.symbol):
-                    print(f"✅ Símbolo {self.symbol} disponible")
+                    enviar_senal_log("INFO", f"✅ Símbolo {self.symbol} disponible", "dashboard_definitivo", "migration")
 
                     self.mt5_connected = True
                     self.system_metrics['mt5_connections'] += 1
-                    print("🚀 Dashboard conectado a datos reales MT5")
+                    enviar_senal_log("INFO", "🚀 Dashboard conectado a datos reales MT5", "dashboard_definitivo", "migration")
 
                     # Log usando sistema SLUC
                     try:
@@ -463,8 +463,8 @@ class SentinelDashboardDefinitivo(App):
                                        __name__,
                                        'dashboard')
                     except (ImportError, ValueError, TypeError) as e:
-                        print(f"MT5_CONNECTED: Dashboard conectado a MT5 - {self.symbol}")
-                        print(f"Debug: Exception in logging attempt: {e}")
+                        enviar_senal_log("INFO", f"MT5_CONNECTED: Dashboard conectado a MT5 - {self.symbol}", "dashboard_definitivo", "migration")
+                        enviar_senal_log("ERROR", f"Debug: Exception in logging attempt: {e}", "dashboard_definitivo", "migration")
 
                         # Obtener precio actual
                         self.update_current_price()
@@ -493,7 +493,7 @@ class SentinelDashboardDefinitivo(App):
                     return True
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"Error actualizando precio: {e}")
+                enviar_senal_log("ERROR", f"Error actualizando precio: {e}", "dashboard_definitivo", "migration")
         return False
 
     def compose(self) -> ComposeResult:
@@ -988,7 +988,7 @@ class SentinelDashboardDefinitivo(App):
                 if risk_status != 'ok':
                     logger.info("🛡️ RiskBot acción ejecutada: %s", risk_status)
                     if self.debug_mode:
-                        print(f"🛡️ RiskBot: {risk_status}")
+                        enviar_senal_log("INFO", f"🛡️ RiskBot: {risk_status}", "dashboard_definitivo", "migration")
             except (FileNotFoundError, PermissionError, IOError) as e:
                 logger.warning("⚠️ Error en monitoreo RiskBot: %s", e)
 
@@ -1004,7 +1004,7 @@ class SentinelDashboardDefinitivo(App):
         try:
             # 🧠 EJECUTAR CAJA NEGRA ICT COMPLETA CON TODOS LOS ESPECIALISTAS
             if self.mt5_connected and self.mt5_manager:
-                print("🔥 INICIANDO ANÁLISIS INTEGRAL CON TODOS LOS ESPECIALISTAS...")
+                enviar_senal_log("INFO", "🔥 INICIANDO ANÁLISIS INTEGRAL CON TODOS LOS ESPECIALISTAS...", "dashboard_definitivo", "migration")
 
                 # 1. Obtener datos de múltiples timeframes
                 self.load_multi_timeframe_data()
@@ -1190,7 +1190,7 @@ class SentinelDashboardDefinitivo(App):
                 enviar_senal_log("SUCCESS", f"📋 ANÁLISIS ICT COMPLETADO - H4_bias: {context['h4_bias']}, M15_bias: {context['m15_bias']}, POIs: {context.get("total_pois", 0)}, Calidad: {context['analysis_quality']}", __name__, "ict")
 
                 if self.debug_mode:
-                    print(f"🧠 ICT Contexto Real: {context.get('h4_bias')} | {context.get('market_phase')} | POIs: {context.get('total_pois')}")
+                    enviar_senal_log("INFO", f"🧠 ICT Contexto Real: {context.get('h4_bias', "dashboard_definitivo", "migration")} | {context.get('market_phase')} | POIs: {context.get('total_pois')}")
 
                 return context
 
@@ -1255,7 +1255,7 @@ class SentinelDashboardDefinitivo(App):
                         logger.warning("⚠️ %s: No se detectaron POIs o formato inesperado", tf_name)
 
                     if self.debug_mode:
-                        print(f"🎯 POIs {tf_name}: {len(pois_tf) if isinstance(pois_tf, (list, dict)) else 0} detectados")
+                        enviar_senal_log("INFO", f"🎯 POIs {tf_name}: {len(pois_tf, "dashboard_definitivo", "migration") if isinstance(pois_tf, (list, dict)) else 0} detectados")
 
             # Filtrar POIs duplicados y ordenar por score
             unique_pois = self.filter_and_rank_pois(detected_pois)
@@ -1268,7 +1268,7 @@ class SentinelDashboardDefinitivo(App):
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ Error detectando POIs completos: %s", e, exc_info=True)
             if self.debug_mode:
-                print(f"❌ Error detectando POIs completos: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando POIs completos: {e}", "dashboard_definitivo", "migration")
             return []
 
     def sync_poi_logs_with_health_analyzer(self, scored_pois: List[Dict]):
@@ -1394,17 +1394,17 @@ class SentinelDashboardDefinitivo(App):
                         if pattern:
                             patterns.append(pattern)
                             if self.debug_mode:
-                                print(f"🎪 {pattern_name} detectado con {pattern.get('strength', 0)}% fortaleza")
+                                enviar_senal_log("INFO", f"🎪 {pattern_name} detectado con {pattern.get('strength', 0, "dashboard_definitivo", "migration")}% fortaleza")
                     except (FileNotFoundError, PermissionError, IOError) as pe:
                         if self.debug_mode:
-                            print(f"⚠️ Error detectando {pattern_name}: {pe}")
+                            enviar_senal_log("ERROR", f"⚠️ Error detectando {pattern_name}: {pe}", "dashboard_definitivo", "migration")
 
             self.real_market_data['ict_patterns'] = patterns
             return patterns
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error detectando patrones ICT completos: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando patrones ICT completos: {e}", "dashboard_definitivo", "migration")
             return []
 
     def calculate_confidence_scores_complete(self, patterns: List[Dict], market_context: Dict, pois: List[Dict]) -> List[Dict]:
@@ -1439,13 +1439,13 @@ class SentinelDashboardDefinitivo(App):
                 enriched_patterns.append(enriched_pattern)
 
                 if self.debug_mode:
-                    print(f"🧠 {pattern.get('type', 'Pattern')}: {confidence_score:.2f} confianza")
+                    enviar_senal_log("INFO", f"🧠 {pattern.get('type', 'Pattern', "dashboard_definitivo", "migration")}: {confidence_score:.2f} confianza")
 
             return enriched_patterns
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error calculando confianza completa: {e}")
+                enviar_senal_log("ERROR", f"❌ Error calculando confianza completa: {e}", "dashboard_definitivo", "migration")
             return patterns  # Devolver patrones sin enriquecer
 
     def score_pois_complete(self, pois: List[Dict], market_context: Dict) -> List[Dict]:
@@ -1476,7 +1476,7 @@ class SentinelDashboardDefinitivo(App):
                 if self.debug_mode:
                     grade = scored_poi.get('grade', 'C')
                     score = scored_poi.get('intelligent_score', scored_poi.get('score', 0))
-                    print(f"🎯 POI {poi.get('type', 'Unknown')}: {grade} ({score})")
+                    enviar_senal_log("INFO", f"🎯 POI {poi.get('type', 'Unknown', "dashboard_definitivo", "migration")}: {grade} ({score})")
 
             logger.info("✅ Scoring POI completado: %s POIs calificados", len(final_scored_pois))
             return final_scored_pois
@@ -1484,7 +1484,7 @@ class SentinelDashboardDefinitivo(App):
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ Error en scoring completo POIs: %s", e)
             if self.debug_mode:
-                print(f"❌ Error calculando scoring completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error calculando scoring completo: {e}", "dashboard_definitivo", "migration")
             return pois  # Devolver POIs sin enriquecer
 
     def get_final_veredicto_complete(self, enriched_patterns: List[Dict], scored_pois: List[Dict], market_context: Dict) -> Optional[Dict]:
@@ -1505,13 +1505,13 @@ class SentinelDashboardDefinitivo(App):
                 grade = veredicto.get('grade', 'C')
                 action = veredicto.get('action', 'ESPERAR')
                 confidence = veredicto.get('confidence', 0)
-                print(f"🎯 VEREDICTO FINAL: {grade} | {action} | {confidence:.0f}%")
+                enviar_senal_log("INFO", f"🎯 VEREDICTO FINAL: {grade} | {action} | {confidence:.0f}%", "dashboard_definitivo", "migration")
 
             return veredicto
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error generando veredicto completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error generando veredicto completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     def get_risk_management_status(self) -> Dict:
@@ -1585,7 +1585,7 @@ class SentinelDashboardDefinitivo(App):
 
             # Debug output para analysis_data
             if self.debug_mode:
-                print(f"Debug: Analysis data structure: {len(analysis_data)} fields")
+                enviar_senal_log("DEBUG", f"Debug: Analysis data structure: {len(analysis_data, "dashboard_definitivo", "migration")} fields")
 
             logger.info("🔍 Análisis integral completado: %s patrones, %s POIs", len(patterns), len(pois))
 
@@ -1595,7 +1595,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error logging análisis completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error logging análisis completo: {e}", "dashboard_definitivo", "migration")
 
     def update_system_state_complete(self, veredicto: Optional[Dict], patterns: List[Dict], pois: List[Dict], context: Dict):
         """Actualiza estado del sistema con resultados completos"""
@@ -1639,7 +1639,7 @@ class SentinelDashboardDefinitivo(App):
                 self.create_pattern_analysis_object(best_item, veredicto)
 
         if self.debug_mode:
-            print(f"📊 Estado actualizado: {self.patterns_detected} patrones, {len(pois)} POIs, {self.high_probability_signals} alta prob.")
+            enviar_senal_log("INFO", f"📊 Estado actualizado: {self.patterns_detected} patrones, {len(pois, "dashboard_definitivo", "migration")} POIs, {self.high_probability_signals} alta prob.")
 
     def generate_alerts_complete(self, veredicto: Optional[Dict]):
         """Genera alertas inteligentes basadas en veredicto completo"""
@@ -1681,7 +1681,7 @@ class SentinelDashboardDefinitivo(App):
                 return 'ASIAN'
         except (ValueError, AttributeError, ImportError) as e:
             # Error getting timezone, default to ASIAN
-            print(f"Debug: Exception in timezone detection: {e}")
+            enviar_senal_log("ERROR", f"Debug: Exception in timezone detection: {e}", "dashboard_definitivo", "migration")
             return 'ASIAN'
 
     def calculate_current_volatility(self, data: pd.DataFrame) -> float:
@@ -1694,7 +1694,7 @@ class SentinelDashboardDefinitivo(App):
             return 0.0
         except (ValueError, AttributeError, TypeError) as e:
             # Error calculating volatility, return safe default
-            print(f"Debug: Exception in volatility calculation: {e}")
+            enviar_senal_log("ERROR", f"Debug: Exception in volatility calculation: {e}", "dashboard_definitivo", "migration")
             return 0.0
 
     def filter_and_rank_pois(self, pois: List[Dict]) -> List[Dict]:
@@ -1721,7 +1721,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error filtrando POIs: {e}")
+                enviar_senal_log("ERROR", f"❌ Error filtrando POIs: {e}", "dashboard_definitivo", "migration")
             return pois
 
     def create_pattern_analysis_object(self, best_item: Dict, veredicto: Optional[Dict]):
@@ -1762,7 +1762,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error creando objeto de análisis: {e}")
+                enviar_senal_log("ERROR", f"❌ Error creando objeto de análisis: {e}", "dashboard_definitivo", "migration")
 
     # ======================================================================
     # 🎪 MÉTODOS DE DETECCIÓN ESPECÍFICOS MEJORADOS
@@ -1795,7 +1795,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error Silver Bullet completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error Silver Bullet completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_judas_swing_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
@@ -1858,7 +1858,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error Judas Swing completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error Judas Swing completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_liquidity_grab_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
@@ -1867,7 +1867,7 @@ class SentinelDashboardDefinitivo(App):
             return self.detect_liquidity_grab(m5_data)
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error Liquidity Grab completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error Liquidity Grab completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_order_blocks_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
@@ -1876,7 +1876,7 @@ class SentinelDashboardDefinitivo(App):
             return self.detect_order_blocks(m5_data)
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error Order Blocks completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error Order Blocks completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_fair_value_gaps_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
@@ -1885,7 +1885,7 @@ class SentinelDashboardDefinitivo(App):
             return self.detect_fair_value_gaps(m5_data)
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error Fair Value Gaps completo: {e}")
+                enviar_senal_log("ERROR", f"❌ Error Fair Value Gaps completo: {e}", "dashboard_definitivo", "migration")
             return None
 
     # ======================================================================
@@ -1914,7 +1914,7 @@ class SentinelDashboardDefinitivo(App):
             return None
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error detectando Silver Bullet: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando Silver Bullet: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_liquidity_grab(self, m5_data: pd.DataFrame) -> Optional[Dict]:
@@ -1941,7 +1941,7 @@ class SentinelDashboardDefinitivo(App):
             return None
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error detectando Liquidity Grab: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando Liquidity Grab: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_order_blocks(self, m5_data: pd.DataFrame) -> Optional[Dict]:
@@ -1968,7 +1968,7 @@ class SentinelDashboardDefinitivo(App):
             return None
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error detectando Order Blocks: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando Order Blocks: {e}", "dashboard_definitivo", "migration")
             return None
 
     def detect_fair_value_gaps(self, m5_data: pd.DataFrame) -> Optional[Dict]:
@@ -2014,7 +2014,7 @@ class SentinelDashboardDefinitivo(App):
             return None
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error detectando Fair Value Gaps: {e}")
+                enviar_senal_log("ERROR", f"❌ Error detectando Fair Value Gaps: {e}", "dashboard_definitivo", "migration")
             return None
 
     def simulate_pattern_detection(self):
@@ -2038,7 +2038,7 @@ class SentinelDashboardDefinitivo(App):
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error en simulación: {e}")
+                enviar_senal_log("ERROR", f"❌ Error en simulación: {e}", "dashboard_definitivo", "migration")
 
     # ======================================================================
     # 🔄 MÉTODOS DE ACTUALIZACIÓN AUTOMÁTICA
@@ -2054,7 +2054,7 @@ class SentinelDashboardDefinitivo(App):
             self.update_active_panel()
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error en auto-refresh: {e}")
+                enviar_senal_log("ERROR", f"❌ Error en auto-refresh: {e}", "dashboard_definitivo", "migration")
 
     def auto_analyze_patterns(self):
         """Auto-análisis de patrones cada 30 segundos"""
@@ -2069,7 +2069,7 @@ class SentinelDashboardDefinitivo(App):
                 self.hibernation_static.update(self.render_hibernation_panel())
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error en micro-update: {e}")
+                enviar_senal_log("ERROR", f"❌ Error en micro-update: {e}", "dashboard_definitivo", "migration")
 
     def update_active_panel(self):
         """Actualiza el panel activo"""
@@ -2087,7 +2087,7 @@ class SentinelDashboardDefinitivo(App):
                 self.tct_static.update(self.render_tct_panel())
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
-                print(f"❌ Error actualizando paneles: {e}")
+                enviar_senal_log("ERROR", f"❌ Error actualizando paneles: {e}", "dashboard_definitivo", "migration")
 
     def receive_data_from_backend(self, data_package: Dict[str, Any]):
         """
@@ -2125,12 +2125,12 @@ class SentinelDashboardDefinitivo(App):
             logger.info("✅ Datos procesados: Precio=%s, POIs=%s", self.current_price, self.patterns_detected)
 
             if self.debug_mode:
-                print(f"📦 Backend data: Precio={self.current_price:.5f}, POIs={self.patterns_detected}")
+                enviar_senal_log("INFO", f"📦 Backend data: Precio={self.current_price:.5f}, POIs={self.patterns_detected}", "dashboard_definitivo", "migration")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             logger.error("❌ Error procesando datos del backend: %s", e)
             if self.debug_mode:
-                print(f"❌ Error procesando datos del backend: {e}")
+                enviar_senal_log("ERROR", f"❌ Error procesando datos del backend: {e}", "dashboard_definitivo", "migration")
 
     def update_from_controller(self, controller_state):
         """
@@ -2194,9 +2194,9 @@ def main():
         app = SentinelDashboardDefinitivo()
         app.run()
     except KeyboardInterrupt:
-        print("\n🛑 Dashboard interrumpido por el usuario")
+        enviar_senal_log("INFO", "\n🛑 Dashboard interrumpido por el usuario", "dashboard_definitivo", "migration")
     except (FileNotFoundError, PermissionError, IOError) as e:
-        print(f"💥 Error ejecutando Dashboard: {e}")
+        enviar_senal_log("ERROR", f"💥 Error ejecutando Dashboard: {e}", "dashboard_definitivo", "migration")
 
 
 if __name__ == "__main__":

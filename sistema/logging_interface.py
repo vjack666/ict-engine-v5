@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -79,7 +80,7 @@ class SLUCv21:
         # Si no está en modo silencioso, mostrar en terminal
         if not self.silent_mode:
             timestamp = datetime.now().strftime("%H:%M:%S")
-            print(f"[{timestamp}] {nivel} | {fuente} | {mensaje}")
+            enviar_senal_log("INFO", f"[{timestamp}] {nivel} | {fuente} | {mensaje}", "logging_interface", "migration")
 
     def set_silent_mode(self, silent: bool = True):
         """Activar/desactivar modo silencioso"""
@@ -225,7 +226,7 @@ def export_log_config(output_file: str = "data/logs/config/sluc_config.json"):
     with open(config_path, 'w', encoding='utf-8') as f:
         json.dump(config_data, f, indent=2, ensure_ascii=False)
 
-    print(f"✅ Configuración SLUC exportada a: {output_file}")
+    enviar_senal_log("INFO", f"✅ Configuración SLUC exportada a: {output_file}", "logging_interface", "migration")
     return config_data
 
 def export_log_stats(output_file: str = "data/logs/stats/sluc_stats.json"):
@@ -254,7 +255,7 @@ def export_log_stats(output_file: str = "data/logs/stats/sluc_stats.json"):
     with open(stats_path, 'w', encoding='utf-8') as f:
         json.dump(stats_data, f, indent=2, ensure_ascii=False)
 
-    print(f"📊 Estadísticas SLUC exportadas a: {output_file}")
+    enviar_senal_log("INFO", f"📊 Estadísticas SLUC exportadas a: {output_file}", "logging_interface", "migration")
     return stats_data
 
 # =============================================================================
@@ -266,11 +267,11 @@ def migrate_from_v20():
     Migración automática desde SLUC v2.0 a v2.1
     Se ejecuta automáticamente al importar
     """
-    print("🔄 Migrando a SLUC v2.1...")
-    print("✅ Routing inteligente activado")
-    print("✅ Modo silencioso por defecto")
-    print("✅ Organización automática de logs")
-    print("✅ Compatibilidad total mantenida")
+    enviar_senal_log("INFO", "🔄 Migrando a SLUC v2.1...", "logging_interface", "migration")
+    enviar_senal_log("INFO", "✅ Routing inteligente activado", "logging_interface", "migration")
+    enviar_senal_log("INFO", "✅ Modo silencioso por defecto", "logging_interface", "migration")
+    enviar_senal_log("INFO", "✅ Organización automática de logs", "logging_interface", "migration")
+    enviar_senal_log("INFO", "✅ Compatibilidad total mantenida", "logging_interface", "migration")
 
 # Ejecutar migración al importar
 migrate_from_v20()
@@ -281,9 +282,8 @@ migrate_from_v20()
 
 def demo_sluc_v21():
     """Demostración del sistema SLUC v2.1"""
-    print("=== DEMO SLUC v2.1 - ROUTING INTELIGENTE ===")
-    print()
-
+    enviar_senal_log("INFO", "=== DEMO SLUC v2.1 - ROUTING INTELIGENTE ===", "logging_interface", "migration")
+    
     # Ejemplos de logs que se organizarán automáticamente
     enviar_senal_log("INFO", "Sistema iniciado correctamente", "main")
     enviar_senal_log("INFO", "Trade ejecutado: BUY EURUSD", "core.trading")
@@ -294,23 +294,22 @@ def demo_sluc_v21():
     enviar_senal_log("INFO", "TCT Pipeline completado", "tct.pipeline")
     enviar_senal_log("INFO", "Métricas de cuenta actualizadas", "metrics.account")
 
-    print("✅ Logs organizados automáticamente:")
-    print("  📁 data/logs/daily/ - Logs del sistema principal")
-    print("  📁 data/logs/trading/ - Logs de operaciones")
-    print("  📁 data/logs/ict/ - Logs de análisis ICT")
-    print("  📁 data/logs/poi/ - Logs del sistema POI")
-    print("  📁 data/logs/mt5/ - Logs de conexión MT5")
-    print("  📁 data/logs/dashboard/ - Logs del dashboard")
-    print("  📁 data/logs/tct/ - Logs de TCT Pipeline")
-    print("  📁 data/logs/metrics/ - Logs de métricas")
-    print()
-
+    enviar_senal_log("INFO", "✅ Logs organizados automáticamente:", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/daily/ - Logs del sistema principal", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/trading/ - Logs de operaciones", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/ict/ - Logs de análisis ICT", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/poi/ - Logs del sistema POI", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/mt5/ - Logs de conexión MT5", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/dashboard/ - Logs del dashboard", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/tct/ - Logs de TCT Pipeline", "logging_interface", "migration")
+    enviar_senal_log("INFO", "  📁 data/logs/metrics/ - Logs de métricas", "logging_interface", "migration")
+    
     # Mostrar estadísticas
     stats = get_log_stats()
-    print("📊 Estadísticas:")
-    print(f"  Total de logs: {stats['total_logs']}")
-    print(f"  Directorios activos: {len(stats['directories_active'])}")
-    print(f"  Modo silencioso: {stats['silent_mode']}")
+    enviar_senal_log("INFO", "📊 Estadísticas:", "logging_interface", "migration")
+    enviar_senal_log("INFO", f"  Total de logs: {stats['total_logs']}", "logging_interface", "migration")
+    enviar_senal_log("INFO", f"  Directorios activos: {len(stats['directories_active'])}", "logging_interface", "migration")
+    enviar_senal_log("INFO", f"  Modo silencioso: {stats['silent_mode']}", "logging_interface", "migration")
 
 if __name__ == "__main__":
     demo_sluc_v21()

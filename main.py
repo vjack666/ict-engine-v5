@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🚀 ICT ENGINE v5.0 - MAIN LAUNCHER
@@ -72,10 +73,10 @@ Ejemplos de uso:
             launch_interactive_menu(args)
 
     except KeyboardInterrupt:
-        print("\n❌ Operación cancelada por el usuario")
+        enviar_senal_log("INFO", "\n❌ Operación cancelada por el usuario", "main", "migration")
         sys.exit(0)
     except Exception as e:
-        print(f"❌ Error inesperado: {e}")
+        enviar_senal_log("ERROR", f"❌ Error inesperado: {e}", "main", "migration")
         if args.verbose:
             import traceback
             traceback.print_exc()
@@ -83,7 +84,7 @@ Ejemplos de uso:
 
 def launch_dashboard(args):
     """Lanza el dashboard principal"""
-    print("🚀 Lanzando Dashboard Principal...")
+    enviar_senal_log("INFO", "🚀 Lanzando Dashboard Principal...", "main", "migration")
 
     try:
         from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
@@ -98,13 +99,13 @@ def launch_dashboard(args):
         app.run()
 
     except ImportError as e:
-        print(f"❌ Error importando dashboard: {e}")
-        print("🔧 Asegúrate de que todos los módulos estén instalados")
+        enviar_senal_log("ERROR", f"❌ Error importando dashboard: {e}", "main", "migration")
+        enviar_senal_log("INFO", "🔧 Asegúrate de que todos los módulos estén instalados", "main", "migration")
         sys.exit(1)
 
 def launch_debug_tools(args):
     """Lanza las herramientas de debug"""
-    print("🔧 Lanzando Debug Tools...")
+    enviar_senal_log("DEBUG", "🔧 Lanzando Debug Tools...", "main", "migration")
 
     try:
         from utilities.debug.debug_launcher import DebugLauncher
@@ -118,14 +119,14 @@ def launch_debug_tools(args):
         app.run()
 
     except ImportError as e:
-        print(f"❌ Error importando debug tools: {e}")
-        print("🔧 Verifica que las utilidades estén en utilities/debug/")
+        enviar_senal_log("ERROR", f"❌ Error importando debug tools: {e}", "main", "migration")
+        enviar_senal_log("DEBUG", "🔧 Verifica que las utilidades estén en utilities/debug/", "main", "migration")
         sys.exit(1)
 
 def show_utilities_menu(args):
     """Muestra el menú de utilidades"""
-    print("🛠️ UTILIDADES DISPONIBLES:")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🛠️ UTILIDADES DISPONIBLES:", "main", "migration")
+    enviar_senal_log("INFO", "=" * 50, "main", "migration")
 
     utilities = [
         ("1", "🔧 Debug Launcher", "python utilities/debug/debug_launcher.py"),
@@ -136,13 +137,13 @@ def show_utilities_menu(args):
     ]
 
     for num, name, command in utilities:
-        print(f"  {num}. {name}")
+        enviar_senal_log("INFO", f"  {num}. {name}", "main", "migration")
         if args.verbose:
-            print(f"     💻 {command}")
+            enviar_senal_log("INFO", f"     💻 {command}", "main", "migration")
 
-    print("\n🎯 Para ejecutar una utilidad:")
-    print("  python main.py --utilities")
-    print("  Luego ingresa el número de la opción")
+    enviar_senal_log("INFO", "\n🎯 Para ejecutar una utilidad:", "main", "migration")
+    enviar_senal_log("INFO", "  python main.py --utilities", "main", "migration")
+    enviar_senal_log("INFO", "  Luego ingresa el número de la opción", "main", "migration")
 
     # 🎮 Menú interactivo
     try:
@@ -153,24 +154,24 @@ def show_utilities_menu(args):
 
         if choice in ['1', '2', '3', '4', '5']:
             command = utilities[int(choice)-1][2]
-            print(f"\n🚀 Ejecutando: {command}")
+            enviar_senal_log("INFO", f"\n🚀 Ejecutando: {command}", "main", "migration")
             os.system(command)
         else:
-            print("❌ Opción inválida")
+            enviar_senal_log("INFO", "❌ Opción inválida", "main", "migration")
 
     except (KeyboardInterrupt, EOFError):
-        print("\n👋 ¡Hasta luego!")
+        enviar_senal_log("INFO", "\n👋 ¡Hasta luego!", "main", "migration")
 
 def run_tests(args):
     """Ejecuta la suite de tests"""
-    print("🧪 Ejecutando Tests...")
+    enviar_senal_log("INFO", "🧪 Ejecutando Tests...", "main", "migration")
 
     # 🔍 Verificar que pytest esté disponible
     try:
         import pytest
     except ImportError:
-        print("❌ pytest no está instalado")
-        print("💡 Instala con: pip install pytest")
+        enviar_senal_log("INFO", "❌ pytest no está instalado", "main", "migration")
+        enviar_senal_log("INFO", "💡 Instala con: pip install pytest", "main", "migration")
         sys.exit(1)
 
     # 🚀 Ejecutar tests
@@ -185,17 +186,17 @@ def run_tests(args):
     exit_code = pytest.main(test_args)
 
     if exit_code == 0:
-        print("✅ Todos los tests pasaron")
-        print("📋 Reporte detallado disponible en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md")
+        enviar_senal_log("INFO", "✅ Todos los tests pasaron", "main", "migration")
+        enviar_senal_log("INFO", "📋 Reporte detallado disponible en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
     else:
-        print("❌ Algunos tests fallaron")
-        print("📋 Revisa el reporte detallado en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md")
+        enviar_senal_log("INFO", "❌ Algunos tests fallaron", "main", "migration")
+        enviar_senal_log("INFO", "📋 Revisa el reporte detallado en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
         sys.exit(exit_code)
 
 def launch_interactive_menu(args):
     """Lanza el menú interactivo principal"""
-    print("🎯 ICT ENGINE v5.0 - LAUNCHER PRINCIPAL")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🎯 ICT ENGINE v5.0 - LAUNCHER PRINCIPAL", "main", "migration")
+    enviar_senal_log("INFO", "=" * 50, "main", "migration")
 
     options = [
         ("1", "🚀 Dashboard Principal", "Lanzar dashboard de trading"),
@@ -207,17 +208,17 @@ def launch_interactive_menu(args):
     ]
 
     while True:
-        print("\n📋 OPCIONES DISPONIBLES:")
+        enviar_senal_log("INFO", "\n📋 OPCIONES DISPONIBLES:", "main", "migration")
         for num, name, desc in options:
-            print(f"  {num}. {name} - {desc}")
+            enviar_senal_log("INFO", f"  {num}. {name} - {desc}", "main", "migration")
 
-        print("\n❌ q. Salir")
+        enviar_senal_log("INFO", "\n❌ q. Salir", "main", "migration")
 
         try:
             choice = input("\n🎯 Selecciona una opción: ").strip().lower()
 
             if choice == 'q':
-                print("👋 ¡Hasta luego!")
+                enviar_senal_log("INFO", "👋 ¡Hasta luego!", "main", "migration")
                 break
             elif choice == '1':
                 launch_dashboard(args)
@@ -232,20 +233,20 @@ def launch_interactive_menu(args):
             elif choice == '6':
                 show_documentation()
             else:
-                print("❌ Opción inválida. Intenta de nuevo.")
+                enviar_senal_log("INFO", "❌ Opción inválida. Intenta de nuevo.", "main", "migration")
 
         except (KeyboardInterrupt, EOFError):
-            print("\n👋 ¡Hasta luego!")
+            enviar_senal_log("INFO", "\n👋 ¡Hasta luego!", "main", "migration")
             break
 
 def show_system_status():
     """Muestra el estado del sistema"""
-    print("\n📊 ESTADO DEL SISTEMA:")
-    print("-" * 30)
+    enviar_senal_log("INFO", "\n📊 ESTADO DEL SISTEMA:", "main", "migration")
+    enviar_senal_log("INFO", "-" * 30, "main", "migration")
 
     # 🐍 Información de Python
-    print(f"🐍 Python: {sys.version}")
-    print(f"📁 Directorio: {os.getcwd()}")
+    enviar_senal_log("INFO", f"🐍 Python: {sys.version}", "main", "migration")
+    enviar_senal_log("INFO", f"📁 Directorio: {os.getcwd(, "main", "migration")}")
 
     # 📦 Verificar módulos principales
     modules_to_check = [
@@ -256,13 +257,13 @@ def show_system_status():
         ('utilities.debug', 'Debug Tools'),
     ]
 
-    print(f"\n📦 MÓDULOS:")
+    enviar_senal_log("INFO", f"\n📦 MÓDULOS:", "main", "migration")
     for module_name, display_name in modules_to_check:
         try:
             __import__(module_name)
-            print(f"  ✅ {display_name}")
+            enviar_senal_log("INFO", f"  ✅ {display_name}", "main", "migration")
         except ImportError:
-            print(f"  ❌ {display_name}")
+            enviar_senal_log("INFO", f"  ❌ {display_name}", "main", "migration")
 
     # 📁 Verificar estructura de directorios
     required_dirs = [
@@ -270,17 +271,17 @@ def show_system_status():
         'utilities', 'tests', 'data', 'docs'
     ]
 
-    print(f"\n📁 ESTRUCTURA:")
+    enviar_senal_log("INFO", f"\n📁 ESTRUCTURA:", "main", "migration")
     for dir_name in required_dirs:
         if (PROJECT_ROOT / dir_name).exists():
-            print(f"  ✅ {dir_name}/")
+            enviar_senal_log("INFO", f"  ✅ {dir_name}/", "main", "migration")
         else:
-            print(f"  ❌ {dir_name}/")
+            enviar_senal_log("INFO", f"  ❌ {dir_name}/", "main", "migration")
 
 def show_documentation():
     """Muestra la documentación disponible"""
-    print("\n📚 DOCUMENTACIÓN DISPONIBLE:")
-    print("-" * 40)
+    enviar_senal_log("INFO", "\n📚 DOCUMENTACIÓN DISPONIBLE:", "main", "migration")
+    enviar_senal_log("INFO", "-" * 40, "main", "migration")
 
     docs = [
         ("📋 PLAN_TRABAJO_COMPLETO_ICT.md", "Plan completo del proyecto"),
@@ -294,9 +295,9 @@ def show_documentation():
     for doc_file, description in docs:
         doc_path = PROJECT_ROOT / doc_file.split(" ", 1)[1]
         if doc_path.exists():
-            print(f"  ✅ {doc_file} - {description}")
+            enviar_senal_log("INFO", f"  ✅ {doc_file} - {description}", "main", "migration")
         else:
-            print(f"  ❌ {doc_file} - {description}")
+            enviar_senal_log("INFO", f"  ❌ {doc_file} - {description}", "main", "migration")
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧪 TEST ICT ENGINE - Tests unitarios para el motor ICT
@@ -16,7 +17,7 @@ try:
     from core.ict_engine.confidence_engine import ConfidenceEngine
     from core.ict_engine.ict_types import PatternType
 except ImportError as e:
-    print(f"⚠️ Import warning en test_ict_engine: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Import warning en test_ict_engine: {e}", "test_ict_engine", "migration")
     ICTDetector = None
     ConfidenceEngine = None
     PatternType = None
@@ -131,9 +132,9 @@ class TestICTPatternLogic(unittest.TestCase):
         self.assertIsInstance(trend_up, bool)
 
 if __name__ == '__main__':
-    print("🧪 Ejecutando tests del ICT Engine...")
+    enviar_senal_log("INFO", "🧪 Ejecutando tests del ICT Engine...", "test_ict_engine", "migration")
 
     # Configurar verbosidad
     unittest.main(verbosity=2, exit=False)
 
-    print("✅ Tests del ICT Engine completados")
+    enviar_senal_log("INFO", "✅ Tests del ICT Engine completados", "test_ict_engine", "migration")

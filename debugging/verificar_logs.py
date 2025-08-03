@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 """
 🔍 VERIFICADOR DE LOGS DE BITÁCORAS
 =================================
@@ -12,8 +13,8 @@ from datetime import datetime
 def verificar_logs_sistema():
     """Verifica los logs en todas las carpetas de bitácoras."""
 
-    print("🔍 VERIFICANDO LOGS DEL SISTEMA POI/ICT...")
-    print("=" * 60)
+    enviar_senal_log("INFO", "🔍 VERIFICANDO LOGS DEL SISTEMA POI/ICT...", "verificar_logs", "migration")
+    enviar_senal_log("INFO", "=" * 60, "verificar_logs", "migration")
 
     # Directorios de logs a verificar
     log_dirs = {
@@ -29,10 +30,10 @@ def verificar_logs_sistema():
     resultados = {}
 
     for categoria, path in log_dirs.items():
-        print(f"\n📂 {categoria} LOGS ({path}):")
+        enviar_senal_log("INFO", f"\n📂 {categoria} LOGS ({path}, "verificar_logs", "migration"):")
 
         if not os.path.exists(path):
-            print(f"   ❌ Directorio no existe: {path}")
+            enviar_senal_log("INFO", f"   ❌ Directorio no existe: {path}", "verificar_logs", "migration")
             resultados[categoria] = {'status': 'NO_EXISTE', 'archivos': []}
             continue
 
@@ -40,7 +41,7 @@ def verificar_logs_sistema():
         resultados[categoria] = {'status': 'EXISTE', 'archivos': archivos}
 
         if not archivos:
-            print(f"   ⚠️  Directorio vacío - sin archivos .log")
+            enviar_senal_log("INFO", f"   ⚠️  Directorio vacío - sin archivos .log", "verificar_logs", "migration")
         else:
             for archivo in archivos:
                 archivo_path = os.path.join(path, archivo)
@@ -62,26 +63,26 @@ def verificar_logs_sistema():
                         # Buscar logs relacionados a POI/Dashboard
                         logs_poi = [l for l in lines if any(word in l.lower() for word in ['poi', 'dashboard', 'multi-poi', 'forex'])]
 
-                    print(f"   ✅ {archivo}")
-                    print(f"      └─ Tamaño: {tamaño} bytes | Líneas: {total_lines}")
-                    print(f"      └─ Modificado: {mod_time.strftime('%Y-%m-%d %H:%M:%S')}")
-                    print(f"      └─ Logs hoy: {len(logs_hoy)} | Logs POI: {len(logs_poi)}")
+                    enviar_senal_log("INFO", f"   ✅ {archivo}", "verificar_logs", "migration")
+                    enviar_senal_log("INFO", f"      └─ Tamaño: {tamaño} bytes | Líneas: {total_lines}", "verificar_logs", "migration")
+                    enviar_senal_log("INFO", f"      └─ Modificado: {mod_time.strftime('%Y-%m-%d %H:%M:%S', "verificar_logs", "migration")}")
+                    enviar_senal_log("INFO", f"      └─ Logs hoy: {len(logs_hoy, "verificar_logs", "migration")} | Logs POI: {len(logs_poi)}")
 
                     # Si hay logs POI, mostrar algunos ejemplos
                     if logs_poi:
-                        print(f"      📊 EJEMPLOS DE LOGS POI/DASHBOARD:")
+                        enviar_senal_log("INFO", f"      📊 EJEMPLOS DE LOGS POI/DASHBOARD:", "verificar_logs", "migration")
                         for i, log_line in enumerate(logs_poi[-3:], 1):  # Últimos 3
-                            print(f"         {i}. {log_line.strip()[:80]}...")
+                            enviar_senal_log("INFO", f"         {i}. {log_line.strip(, "verificar_logs", "migration")[:80]}...")
 
                 except Exception as e:
-                    print(f"   ❌ Error leyendo {archivo}: {e}")
+                    enviar_senal_log("ERROR", f"   ❌ Error leyendo {archivo}: {e}", "verificar_logs", "migration")
 
-    print("\n" + "=" * 60)
-    print("📊 RESUMEN DE VERIFICACIÓN:")
+    enviar_senal_log("INFO", "\n" + "=" * 60, "verificar_logs", "migration")
+    enviar_senal_log("INFO", "📊 RESUMEN DE VERIFICACIÓN:", "verificar_logs", "migration")
 
     for categoria, info in resultados.items():
         status_icon = "✅" if info['status'] == 'EXISTE' and info['archivos'] else "❌"
-        print(f"{status_icon} {categoria}: {len(info['archivos'])} archivos de log")
+        enviar_senal_log("INFO", f"{status_icon} {categoria}: {len(info['archivos'], "verificar_logs", "migration")} archivos de log")
 
     return resultados
 

@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -42,21 +43,21 @@ def fix_tct_pipeline_logging():
                 if content != original_content:
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(content)
-                    print(f"✅ Corregido: {os.path.basename(file_path)}")
+                    enviar_senal_log("INFO", f"✅ Corregido: {os.path.basename(file_path, "fix_tct_pipeline_logging", "migration")}")
                 else:
-                    print(f"📝 Sin cambios: {os.path.basename(file_path)}")
+                    enviar_senal_log("INFO", f"📝 Sin cambios: {os.path.basename(file_path, "fix_tct_pipeline_logging", "migration")}")
 
             except Exception as e:
-                print(f"❌ Error procesando {file_path}: {e}")
+                enviar_senal_log("ERROR", f"❌ Error procesando {file_path}: {e}", "fix_tct_pipeline_logging", "migration")
         else:
-            print(f"⚠️ Archivo no encontrado: {file_path}")
+            enviar_senal_log("INFO", f"⚠️ Archivo no encontrado: {file_path}", "fix_tct_pipeline_logging", "migration")
 
-    print()
-    print("✅ Corrección completada en TCT Pipeline")
-    print("✅ Parámetros actualizados:")
-    print("  - level -> nivel")
-    print("  - message -> mensaje")
-    print("  - emisor -> fuente")
+    enviar_senal_log("INFO", , "fix_tct_pipeline_logging", "migration")
+    enviar_senal_log("INFO", "✅ Corrección completada en TCT Pipeline", "fix_tct_pipeline_logging", "migration")
+    enviar_senal_log("INFO", "✅ Parámetros actualizados:", "fix_tct_pipeline_logging", "migration")
+    enviar_senal_log("INFO", "  - level -> nivel", "fix_tct_pipeline_logging", "migration")
+    enviar_senal_log("INFO", "  - message -> mensaje", "fix_tct_pipeline_logging", "migration")
+    enviar_senal_log("INFO", "  - emisor -> fuente", "fix_tct_pipeline_logging", "migration")
 
 if __name__ == "__main__":
     fix_tct_pipeline_logging()

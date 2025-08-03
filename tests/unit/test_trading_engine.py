@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧪 TEST TRADING ENGINE - Tests unitarios para el motor de trading
@@ -16,7 +17,7 @@ try:
     from core.limit_order_manager import LimitOrderManager
     from core.risk_management.riskbot_mt5 import RiskBotMT5
 except ImportError as e:
-    print(f"⚠️ Import warning en test_trading_engine: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Import warning en test_trading_engine: {e}", "test_trading_engine", "migration")
     TradingEngine = None
     LimitOrderManager = None
     RiskBotMT5 = None
@@ -199,9 +200,9 @@ class TestTradingLogic(unittest.TestCase):
         self.assertIn(test_symbol, forex_symbols)
 
 if __name__ == '__main__':
-    print("🧪 Ejecutando tests del Trading Engine...")
+    enviar_senal_log("INFO", "🧪 Ejecutando tests del Trading Engine...", "test_trading_engine", "migration")
 
     # Configurar verbosidad
     unittest.main(verbosity=2, exit=False)
 
-    print("✅ Tests del Trading Engine completados")
+    enviar_senal_log("INFO", "✅ Tests del Trading Engine completados", "test_trading_engine", "migration")

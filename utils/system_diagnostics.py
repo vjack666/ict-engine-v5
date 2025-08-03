@@ -22,7 +22,7 @@ try:
 except ImportError:
     def enviar_senal_log(nivel: str, mensaje: str, fuente: str, categoria: str):
         """Fallback logging function"""
-        print(f"[{nivel}] {fuente}: {mensaje}")
+        enviar_senal_log("INFO", f"[{nivel}] {fuente}: {mensaje}", "system_diagnostics", "migration")
 
 
 class POIBlackBoxDiagnostics:
@@ -236,36 +236,36 @@ def test_simplified_diagnostics():
         True si todos los tests pasan
     """
     try:
-        print("🧪 Testing sistema de diagnósticos simplificado...")
+        enviar_senal_log("INFO", "🧪 Testing sistema de diagnósticos simplificado...", "system_diagnostics", "migration")
 
         # Test 1: Inicialización
         diagnostics = POIBlackBoxDiagnostics()
-        print("✅ Inicialización: OK")
+        enviar_senal_log("INFO", "✅ Inicialización: OK", "system_diagnostics", "migration")
 
         # Test 2: Diagnóstico básico
         result = diagnostics.run_full_diagnostic(None)
         assert result["status"] == "COMPLETED"
-        print("✅ Diagnóstico básico: OK")
+        enviar_senal_log("INFO", "✅ Diagnóstico básico: OK", "system_diagnostics", "migration")
 
         # Test 3: Integración Multi-POI
         integration_result = integrar_multi_poi_con_diagnosticos()
         assert integration_result["status"] == "SUCCESS"
-        print("✅ Integración Multi-POI: OK")
+        enviar_senal_log("INFO", "✅ Integración Multi-POI: OK", "system_diagnostics", "migration")
 
         # Test 4: Fallback creation
         fallback_result = crear_multi_poi_con_fallback_completo()
         assert fallback_result["status"] == "SUCCESS"
-        print("✅ Creación con fallback: OK")
+        enviar_senal_log("INFO", "✅ Creación con fallback: OK", "system_diagnostics", "migration")
 
-        print("🎉 Todos los tests del sistema simplificado pasaron")
+        enviar_senal_log("INFO", "🎉 Todos los tests del sistema simplificado pasaron", "system_diagnostics", "migration")
         return True
 
     except Exception as e:
-        print(f"❌ Error en tests: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en tests: {e}", "system_diagnostics", "migration")
         return False
 
 
 if __name__ == "__main__":
-    print("🔍 SISTEMA DE DIAGNÓSTICOS SIMPLIFICADO v1.0.0")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🔍 SISTEMA DE DIAGNÓSTICOS SIMPLIFICADO v1.0.0", "system_diagnostics", "migration")
+    enviar_senal_log("INFO", "=" * 50, "system_diagnostics", "migration")
     test_simplified_diagnostics()

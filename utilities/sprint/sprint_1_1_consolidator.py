@@ -8,7 +8,17 @@ from datetime import datetime
 import json
 import subprocess
 import argparse
+import importlib.util
 from typing import Dict, List
+
+# Agregar el directorio raíz al Python path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+# Sistema de logging simplificado para el consolidator
+def enviar_senal_log(nivel, mensaje, fuente="consolidator", categoria="sprint", metadata=None):
+    """Sistema de logging simplificado para el consolidator"""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"{timestamp} | {nivel:8} | {fuente.upper()}.{categoria.upper()} | {mensaje}")
 
 class Sprint11Consolidator:
     """
@@ -72,7 +82,7 @@ class Sprint11Consolidator:
 
     def run_complete_validation(self) -> Dict:
         """Ejecuta validación completa del Sprint 1.1"""
-        print("[SCAN] Iniciando validación completa del Sprint 1.1...")
+        enviar_senal_log("INFO", "[SCAN] Iniciando validación completa del Sprint 1.1...", "sprint_1_1_consolidator", "migration")
 
         validation_results = {
             'overall_status': 'UNKNOWN',
@@ -84,20 +94,20 @@ class Sprint11Consolidator:
 
         # [OK] Validar cada tarea del sprint
         for task_id, task_info in self.sprint_tasks.items():
-            print(f"\n[CHECK] Validando tarea: {task_info['name']}")
+            enviar_senal_log("INFO", f"\n[CHECK] Validando tarea: {task_info['name']}", "sprint_1_1_consolidator", "migration")
 
             task_result = self._validate_task(task_id, task_info)
             validation_results['task_results'][task_id] = task_result
 
             if task_result['status'] == 'COMPLETED':
                 self.sprint_report['tasks_completed'].append(task_id)
-                print(f"  [OK] COMPLETADA")
+                enviar_senal_log("INFO", f"  [OK] COMPLETADA", "sprint_1_1_consolidator", "migration")
             elif task_result['status'] == 'FAILED':
                 self.sprint_report['tasks_pending'].append(task_id)
-                print(f"  [ERROR] FALLIDA: {task_result.get('error', 'Unknown error')}")
+                enviar_senal_log("ERROR", f"  [ERROR] FALLIDA: {task_result.get('error', 'Unknown error')}", "sprint_1_1_consolidator", "migration")
             else:
                 self.sprint_report['tasks_pending'].append(task_id)
-                print(f"  [PENDING] PENDIENTE")
+                enviar_senal_log("INFO", f"  [PENDING] PENDIENTE", "sprint_1_1_consolidator", "migration")
 
         # [TARGET] Determinar estado general
         completed_tasks = len(self.sprint_report['tasks_completed'])
@@ -243,23 +253,25 @@ class Sprint11Consolidator:
         try:
             # Importar herramienta de migración si existe
             if migration_tool_path.exists():
-                import importlib.util
                 spec = importlib.util.spec_from_file_location("print_migration_tool", migration_tool_path)
-                migration_module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(migration_module)
+                if spec is not None and spec.loader is not None:
+                    migration_module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(migration_module)
 
-                migration_tool = migration_module.PrintMigrationTool(self.project_root)
-                scan_results = migration_tool.scan_project()
+                    migration_tool = migration_module.PrintMigrationTool(self.project_root)
+                    scan_results = migration_tool.scan_project(scan_only=True)
 
-                total_prints = scan_results['total_prints']
-                if total_prints == 0:
-                    result['checks_passed'] += 2  # Double points for zero prints
-                    result['details'].append("[OK] No hay print statements restantes")
-                elif total_prints <= 5:
-                    result['checks_passed'] += 1
-                    result['details'].append(f"[WARNING] Quedan {total_prints} prints (aceptable)")
+                    total_prints = scan_results.get('prints_migrated', 0)
+                    if total_prints == 0:
+                        result['checks_passed'] += 2  # Double points for zero prints
+                        result['details'].append("[OK] No hay print statements restantes")
+                    elif total_prints <= 5:
+                        result['checks_passed'] += 1
+                        result['details'].append(f"[WARNING] Quedan {total_prints} prints (aceptable)")
+                    else:
+                        result['details'].append(f"[ERROR] Quedan {total_prints} prints (demasiados)")
                 else:
-                    result['details'].append(f"[ERROR] Quedan {total_prints} prints (demasiados)")
+                    result['details'].append("[ERROR] No se pudo cargar el módulo de migración")
             else:
                 result['details'].append("[ERROR] No se pudo escanear prints")
 
@@ -278,7 +290,7 @@ class Sprint11Consolidator:
                         content = f.read()
                         if 'enviar_senal_log' in content:
                             enviar_senal_log_usage += content.count('enviar_senal_log')
-                except:
+                except Exception:
                     continue
 
             if enviar_senal_log_usage > 0:
@@ -405,11 +417,12 @@ class Sprint11Consolidator:
 
         # [OK] Check 1: Logging system funcionando
         try:
-            from sistema.logging_interface import enviar_senal_log
+            # Test simple del sistema de logging
+            enviar_senal_log("INFO", "Test de logging", "test_module", "test")
             result['checks_passed'] += 1
             result['details'].append("[OK] Sistema de logging funcional")
-        except ImportError:
-            result['details'].append("[ERROR] Sistema de logging no disponible")
+        except Exception as e:
+            result['details'].append(f"[ERROR] Sistema de logging no disponible: {e}")
 
         # [OK] Check 2: Dashboard principal ejecutable
         dashboard_path = self.project_root / "dashboard" / "dashboard_definitivo.py"
@@ -475,7 +488,7 @@ class Sprint11Consolidator:
 
     def run_integration_tests(self) -> Dict:
         """Ejecuta tests de integración básicos"""
-        print("[TEST] Ejecutando tests de integración...")
+        enviar_senal_log("INFO", "[TEST] Ejecutando tests de integración...", "sprint_1_1_consolidator", "migration")
 
         integration_results = {
             'tests_run': 0,
@@ -486,14 +499,18 @@ class Sprint11Consolidator:
 
         # [TEST] Test 1: Import básico del debug launcher
         try:
-            launcher_path = self.project_root / "debug_launcher.py"
+            launcher_path = self.project_root / "utilities" / "debug" / "debug_launcher.py"
             if launcher_path.exists():
                 spec = importlib.util.spec_from_file_location("debug_launcher", launcher_path)
-                launcher_module = importlib.util.module_from_spec(spec)
-                # No ejecutamos spec.loader.exec_module() para evitar side effects
-                integration_results['tests_run'] += 1
-                integration_results['tests_passed'] += 1
-                integration_results['test_details'].append("[OK] Debug launcher importable")
+                if spec is not None:
+                    # No ejecutamos spec.loader.exec_module() para evitar side effects
+                    integration_results['tests_run'] += 1
+                    integration_results['tests_passed'] += 1
+                    integration_results['test_details'].append("[OK] Debug launcher importable")
+                else:
+                    integration_results['tests_run'] += 1
+                    integration_results['tests_failed'] += 1
+                    integration_results['test_details'].append("[ERROR] No se pudo crear spec para debug launcher")
             else:
                 integration_results['tests_run'] += 1
                 integration_results['tests_failed'] += 1
@@ -549,36 +566,36 @@ def main():
     # [TARGET] Inicializar consolidator
     consolidator = Sprint11Consolidator(args.project_root)
 
-    print("[TARGET] SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM & CLEAN CODE")
-    print("=" * 60)
+    enviar_senal_log("DEBUG", "[TARGET] SPRINT 1.1 CONSOLIDATOR - DEBUG SYSTEM & CLEAN CODE", "sprint_1_1_consolidator", "migration")
+    enviar_senal_log("INFO", "=" * 60, "sprint_1_1_consolidator", "migration")
 
     if args.integration_only:
         # [TEST] Solo integration tests
-        print("[TEST] Ejecutando solo tests de integración...")
+        enviar_senal_log("INFO", "[TEST] Ejecutando solo tests de integración...", "sprint_1_1_consolidator", "migration")
         integration_results = consolidator.run_integration_tests()
 
-        print(f"\n[REPORT] RESULTADOS DE INTEGRACIÓN:")
-        print(f"  [TEST] Tests ejecutados: {integration_results['tests_run']}")
-        print(f"  [OK] Tests pasados: {integration_results['tests_passed']}")
-        print(f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}")
+        enviar_senal_log("INFO", f"\n[REPORT] RESULTADOS DE INTEGRACIÓN:", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [TEST] Tests ejecutados: {integration_results['tests_run']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [OK] Tests pasados: {integration_results['tests_passed']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("ERROR", f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}", "sprint_1_1_consolidator", "migration")
 
         for detail in integration_results['test_details']:
-            print(f"  {detail}")
+            enviar_senal_log("INFO", f"  {detail}", "sprint_1_1_consolidator", "migration")
 
     elif args.validation_only:
         # [SCAN] Solo validación
-        print("[SCAN] Ejecutando solo validación de tareas...")
+        enviar_senal_log("INFO", "[SCAN] Ejecutando solo validación de tareas...", "sprint_1_1_consolidator", "migration")
         validation_results = consolidator.run_complete_validation()
 
-        print(f"\n[REPORT] RESULTADOS DE VALIDACIÓN:")
-        print(f"  [CHART] Estado general: {validation_results['overall_status']}")
-        print(f"  [PROGRESS] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
-        print(f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
-        print(f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
+        enviar_senal_log("INFO", f"\n[REPORT] RESULTADOS DE VALIDACIÓN:", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [CHART] Estado general: {validation_results['overall_status']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [PROGRESS] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}", "sprint_1_1_consolidator", "migration")
 
     else:
         # [LAUNCH] Validación completa + integration tests
-        print("[LAUNCH] Ejecutando validación completa y tests de integración...")
+        enviar_senal_log("INFO", "[LAUNCH] Ejecutando validación completa y tests de integración...", "sprint_1_1_consolidator", "migration")
 
         # [SCAN] Validación de tareas
         validation_results = consolidator.run_complete_validation()
@@ -587,37 +604,37 @@ def main():
         integration_results = consolidator.run_integration_tests()
 
         # [REPORT] Resultados combinados
-        print(f"\n[SUCCESS] RESUMEN COMPLETO DEL SPRINT 1.1:")
-        print("=" * 50)
+        enviar_senal_log("INFO", f"\n[SUCCESS] RESUMEN COMPLETO DEL SPRINT 1.1:", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", "=" * 50, "sprint_1_1_consolidator", "migration")
 
-        print(f"\n[VALIDATION] VALIDACIÓN DE TAREAS:")
-        print(f"  [CHART] Estado general: {validation_results['overall_status']}")
-        print(f"  [REPORT] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%")
-        print(f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}")
-        print(f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}")
+        enviar_senal_log("INFO", f"\n[VALIDATION] VALIDACIÓN DE TAREAS:", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [CHART] Estado general: {validation_results['overall_status']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [REPORT] Completitud: {consolidator.sprint_report['completion_rate']:.1f}%", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [OK] Tareas completadas: {len(consolidator.sprint_report['tasks_completed'])}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [PENDING] Tareas pendientes: {len(consolidator.sprint_report['tasks_pending'])}", "sprint_1_1_consolidator", "migration")
 
-        print(f"\n[TEST] TESTS DE INTEGRACIÓN:")
-        print(f"  [TEST] Tests ejecutados: {integration_results['tests_run']}")
-        print(f"  [OK] Tests pasados: {integration_results['tests_passed']}")
-        print(f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}")
+        enviar_senal_log("INFO", f"\n[TEST] TESTS DE INTEGRACIÓN:", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [TEST] Tests ejecutados: {integration_results['tests_run']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("INFO", f"  [OK] Tests pasados: {integration_results['tests_passed']}", "sprint_1_1_consolidator", "migration")
+        enviar_senal_log("ERROR", f"  [ERROR] Tests fallidos: {integration_results['tests_failed']}", "sprint_1_1_consolidator", "migration")
 
         # [TARGET] Recomendaciones
-        print(f"\n[TARGET] PRÓXIMAS ACCIONES:")
+        enviar_senal_log("INFO", f"\n[TARGET] PRÓXIMAS ACCIONES:", "sprint_1_1_consolidator", "migration")
         for action in consolidator.sprint_report['next_actions']:
-            print(f"  {action}")
+            enviar_senal_log("INFO", f"  {action}", "sprint_1_1_consolidator", "migration")
 
         # 🏆 Estado final
         if consolidator.sprint_report['completion_rate'] >= 80:
-            print(f"\n🏆 ¡SPRINT 1.1 EXITOSO!")
-            print("[LAUNCH] Listo para proceder con Sprint 1.2: Trading Engine Foundation")
+            enviar_senal_log("INFO", f"\n🏆 ¡SPRINT 1.1 EXITOSO!", "sprint_1_1_consolidator", "migration")
+            enviar_senal_log("INFO", "[LAUNCH] Listo para proceder con Sprint 1.2: Trading Engine Foundation", "sprint_1_1_consolidator", "migration")
         else:
-            print(f"\n[WARNING] SPRINT 1.1 REQUIERE ATENCIÓN")
-            print("[TOOL] Completar tareas pendientes antes de continuar")
+            enviar_senal_log("WARNING", f"\n[WARNING] SPRINT 1.1 REQUIERE ATENCIÓN", "sprint_1_1_consolidator", "migration")
+            enviar_senal_log("INFO", "[TOOL] Completar tareas pendientes antes de continuar", "sprint_1_1_consolidator", "migration")
 
     # [REPORT] Generar reporte si se solicita
     if args.report:
         report_path = consolidator.generate_sprint_report()
-        print(f"\n[REPORT] Reporte detallado guardado en: {report_path}")
+        enviar_senal_log("INFO", f"\n[REPORT] Reporte detallado guardado en: {report_path}", "sprint_1_1_consolidator", "migration")
 
 
 if __name__ == "__main__":

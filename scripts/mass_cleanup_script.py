@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧹 MASS CLEANUP SCRIPT - FASE 2
@@ -30,32 +31,32 @@ class MassCleanup:
 
     def process_all_files(self) -> dict:
         """Procesa todos los archivos Python del proyecto"""
-        print("🧹 INICIANDO LIMPIEZA MASIVA...")
-        print("=" * 40)
+        enviar_senal_log("INFO", "🧹 INICIANDO LIMPIEZA MASIVA...", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", "=" * 40, "mass_cleanup_script", "migration")
 
         python_files = list(Path('.').rglob('*.py'))
         total_files = len(python_files)
 
-        print(f"📁 Archivos Python encontrados: {total_files}")
+        enviar_senal_log("INFO", f"📁 Archivos Python encontrados: {total_files}", "mass_cleanup_script", "migration")
 
         for i, file_path in enumerate(python_files, 1):
             if self._should_skip_file(file_path):
                 continue
 
-            print(f"🔄 [{i:3d}/{total_files}] {file_path.name}", end=' ')
+            enviar_senal_log("INFO", f"🔄 [{i:3d}/{total_files}] {file_path.name}", end=' ', "mass_cleanup_script", "migration")
 
             try:
                 modified = self._process_single_file(file_path)
                 if modified:
-                    print("✅ MODIFICADO")
+                    enviar_senal_log("INFO", "✅ MODIFICADO", "mass_cleanup_script", "migration")
                     self.stats['files_modified'] += 1
                 else:
-                    print("⚪ Sin cambios")
+                    enviar_senal_log("INFO", "⚪ Sin cambios", "mass_cleanup_script", "migration")
 
                 self.stats['files_processed'] += 1
 
             except Exception as e:
-                print(f"❌ ERROR: {e}")
+                enviar_senal_log("ERROR", f"❌ ERROR: {e}", "mass_cleanup_script", "migration")
 
         return self.stats
 
@@ -254,24 +255,24 @@ class MassCleanup:
 
     def print_summary(self):
         """Imprime resumen de la limpieza"""
-        print("\n🎯 RESUMEN DE LIMPIEZA MASIVA:")
-        print("=" * 35)
-        print(f"📁 Archivos procesados: {self.stats['files_processed']}")
-        print(f"📝 Archivos modificados: {self.stats['files_modified']}")
-        print(f"🗑️  Imports duplicados removidos: {self.stats['duplicate_imports_removed']}")
-        print(f"🧹 Imports no utilizados removidos: {self.stats['unused_imports_removed']}")
-        print(f"🔧 Redefiniciones de constantes: {self.stats['constant_redefinitions_fixed']}")
+        enviar_senal_log("INFO", "\n🎯 RESUMEN DE LIMPIEZA MASIVA:", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", "=" * 35, "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", f"📁 Archivos procesados: {self.stats['files_processed']}", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", f"📝 Archivos modificados: {self.stats['files_modified']}", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", f"🗑️  Imports duplicados removidos: {self.stats['duplicate_imports_removed']}", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", f"🧹 Imports no utilizados removidos: {self.stats['unused_imports_removed']}", "mass_cleanup_script", "migration")
+        enviar_senal_log("INFO", f"🔧 Redefiniciones de constantes: {self.stats['constant_redefinitions_fixed']}", "mass_cleanup_script", "migration")
 
         total_fixes = (self.stats['duplicate_imports_removed'] +
                       self.stats['unused_imports_removed'] +
                       self.stats['constant_redefinitions_fixed'])
 
-        print(f"\n✅ TOTAL DE FIXES APLICADOS: {total_fixes}")
+        enviar_senal_log("INFO", f"\n✅ TOTAL DE FIXES APLICADOS: {total_fixes}", "mass_cleanup_script", "migration")
 
 def main():
     """Función principal"""
-    print("🧹 MASS CLEANUP - FASE 2 DEL PLAN HÍBRIDO")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🧹 MASS CLEANUP - FASE 2 DEL PLAN HÍBRIDO", "mass_cleanup_script", "migration")
+    enviar_senal_log("INFO", "=" * 50, "mass_cleanup_script", "migration")
 
     cleanup = MassCleanup()
 
@@ -281,8 +282,8 @@ def main():
     # Mostrar resumen
     cleanup.print_summary()
 
-    print("\n✅ FASE 2 COMPLETADA")
-    print("➡️  Listo para Fase 3: Fixes Manuales Críticos")
+    enviar_senal_log("INFO", "\n✅ FASE 2 COMPLETADA", "mass_cleanup_script", "migration")
+    enviar_senal_log("INFO", "➡️  Listo para Fase 3: Fixes Manuales Críticos", "mass_cleanup_script", "migration")
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🔍 DIAGNÓSTICO POI SYSTEM - FIND_POIS DEBUGGING
@@ -33,7 +34,7 @@ import traceback
 
 def test_poi_imports():
     """Test 1: Verificar que todos los imports POI funcionen"""
-    print("🔍 TEST 1: Verificando imports POI...")
+    enviar_senal_log("INFO", "🔍 TEST 1: Verificando imports POI...", "diagnose_poi_system", "migration")
 
     try:
         from core.poi_system.poi_detector import (
@@ -43,7 +44,7 @@ def test_poi_imports():
             detectar_imbalances,
             detectar_todos_los_pois
         )
-        print("✅ Imports POI: OK")
+        enviar_senal_log("INFO", "✅ Imports POI: OK", "diagnose_poi_system", "migration")
         return True, {
             'detectar_order_blocks': detectar_order_blocks,
             'detectar_fair_value_gaps': detectar_fair_value_gaps,
@@ -52,25 +53,25 @@ def test_poi_imports():
             'detectar_todos_los_pois': detectar_todos_los_pois
         }
     except ImportError as e:
-        print(f"❌ Imports POI fallaron: {e}")
+        enviar_senal_log("INFO", f"❌ Imports POI fallaron: {e}", "diagnose_poi_system", "migration")
         return False, {}
 
 def test_ict_detector_imports():
     """Test 2: Verificar ICTDetector"""
-    print("🔍 TEST 2: Verificando ICTDetector...")
+    enviar_senal_log("INFO", "🔍 TEST 2: Verificando ICTDetector...", "diagnose_poi_system", "migration")
 
     try:
         from core.ict_engine.ict_detector import ICTDetector
         detector = ICTDetector()
-        print("✅ ICTDetector: OK")
+        enviar_senal_log("INFO", "✅ ICTDetector: OK", "diagnose_poi_system", "migration")
         return True, detector
     except Exception as e:
-        print(f"❌ ICTDetector falló: {e}")
+        enviar_senal_log("INFO", f"❌ ICTDetector falló: {e}", "diagnose_poi_system", "migration")
         return False, None
 
 def create_test_data():
     """Test 3: Crear datos de prueba realistas"""
-    print("🔍 TEST 3: Creando datos de prueba...")
+    enviar_senal_log("INFO", "🔍 TEST 3: Creando datos de prueba...", "diagnose_poi_system", "migration")
 
     try:
         # Crear 100 velas de prueba con patrón claro
@@ -116,25 +117,25 @@ def create_test_data():
         df['close'] = df['close'].astype(float)
         df['volume'] = df['volume'].astype(int)
 
-        print(f"✅ Datos de prueba creados: {len(df)} velas")
-        print(f"   Rango precio: {df['low'].min():.5f} - {df['high'].max():.5f}")
-        print(f"   Precio actual (último close): {df['close'].iloc[-1]:.5f}")
+        enviar_senal_log("INFO", f"✅ Datos de prueba creados: {len(df, "diagnose_poi_system", "migration")} velas")
+        enviar_senal_log("INFO", f"   Rango precio: {df['low'].min(, "diagnose_poi_system", "migration"):.5f} - {df['high'].max():.5f}")
+        enviar_senal_log("INFO", f"   Precio actual (último close, "diagnose_poi_system", "migration"): {df['close'].iloc[-1]:.5f}")
 
         return True, df
 
     except Exception as e:
-        print(f"❌ Error creando datos de prueba: {e}")
+        enviar_senal_log("ERROR", f"❌ Error creando datos de prueba: {e}", "diagnose_poi_system", "migration")
         return False, None
 
 def test_poi_functions_individually(poi_functions, test_df):
     """Test 4: Probar cada función POI individualmente"""
-    print("🔍 TEST 4: Probando funciones POI individuales...")
+    enviar_senal_log("INFO", "🔍 TEST 4: Probando funciones POI individuales...", "diagnose_poi_system", "migration")
 
     results = {}
 
     for func_name, func in poi_functions.items():
         try:
-            print(f"   Probando {func_name}...")
+            enviar_senal_log("INFO", f"   Probando {func_name}...", "diagnose_poi_system", "migration")
             result = func(test_df, 'M15')
 
             if isinstance(result, list):
@@ -143,71 +144,71 @@ def test_poi_functions_individually(poi_functions, test_df):
                     'count': len(result),
                     'sample': result[0] if result else None
                 }
-                print(f"   ✅ {func_name}: {len(result)} POIs detectados")
+                enviar_senal_log("INFO", f"   ✅ {func_name}: {len(result, "diagnose_poi_system", "migration")} POIs detectados")
 
             else:
                 results[func_name] = {
                     'success': False,
                     'error': f"Tipo inesperado: {type(result)}"
                 }
-                print(f"   ❌ {func_name}: Tipo inesperado {type(result)}")
+                enviar_senal_log("INFO", f"   ❌ {func_name}: Tipo inesperado {type(result, "diagnose_poi_system", "migration")}")
 
         except Exception as e:
             results[func_name] = {
                 'success': False,
                 'error': str(e)
             }
-            print(f"   ❌ {func_name}: Error - {e}")
+            enviar_senal_log("ERROR", f"   ❌ {func_name}: Error - {e}", "diagnose_poi_system", "migration")
 
     return results
 
 def test_ict_detector_find_pois(ict_detector, test_df):
     """Test 5: Probar ICTDetector.find_pois()"""
-    print("🔍 TEST 5: Probando ICTDetector.find_pois()...")
+    enviar_senal_log("INFO", "🔍 TEST 5: Probando ICTDetector.find_pois(, "diagnose_poi_system", "migration")...")
 
     try:
         current_price = float(test_df['close'].iloc[-1])
-        print(f"   Precio actual: {current_price:.5f}")
+        enviar_senal_log("INFO", f"   Precio actual: {current_price:.5f}", "diagnose_poi_system", "migration")
 
         pois = ict_detector.find_pois(test_df)
 
-        print(f"   ✅ find_pois() ejecutado: {len(pois)} POIs encontrados")
+        enviar_senal_log("INFO", f"   ✅ find_pois(, "diagnose_poi_system", "migration") ejecutado: {len(pois)} POIs encontrados")
 
         if pois:
-            print("   Muestra de POIs encontrados:")
+            enviar_senal_log("INFO", "   Muestra de POIs encontrados:", "diagnose_poi_system", "migration")
             for i, poi in enumerate(pois[:3]):
-                print(f"      {i+1}. {poi.get('type', 'N/A')} @ {poi.get('price_level', 'N/A'):.5f}")
+                enviar_senal_log("INFO", f"      {i+1}. {poi.get('type', 'N/A', "diagnose_poi_system", "migration")} @ {poi.get('price_level', 'N/A'):.5f}")
         else:
-            print("   ⚠️ No se encontraron POIs - investigando causas...")
+            enviar_senal_log("INFO", "   ⚠️ No se encontraron POIs - investigando causas...", "diagnose_poi_system", "migration")
 
             # Debug: Verificar métodos auxiliares
-            print("   Depuración de métodos auxiliares:")
+            enviar_senal_log("INFO", "   Depuración de métodos auxiliares:", "diagnose_poi_system", "migration")
 
             ob_pois = ict_detector._find_order_block_pois_advanced(test_df, current_price)
-            print(f"      Order Blocks: {len(ob_pois)}")
+            enviar_senal_log("INFO", f"      Order Blocks: {len(ob_pois, "diagnose_poi_system", "migration")}")
 
             liq_pois = ict_detector._find_liquidity_pois_advanced(test_df, current_price)
-            print(f"      Liquidity: {len(liq_pois)}")
+            enviar_senal_log("INFO", f"      Liquidity: {len(liq_pois, "diagnose_poi_system", "migration")}")
 
             sr_pois = ict_detector._find_support_resistance_pois_advanced(test_df, current_price)
-            print(f"      Support/Resistance: {len(sr_pois)}")
+            enviar_senal_log("INFO", f"      Support/Resistance: {len(sr_pois, "diagnose_poi_system", "migration")}")
 
             fvg_pois = ict_detector._find_fvg_pois_advanced(test_df, current_price)
-            print(f"      FVG: {len(fvg_pois)}")
+            enviar_senal_log("INFO", f"      FVG: {len(fvg_pois, "diagnose_poi_system", "migration")}")
 
             hod_lod_pois = ict_detector._find_hod_lod_pois(test_df, current_price)
-            print(f"      HOD/LOD: {len(hod_lod_pois)}")
+            enviar_senal_log("INFO", f"      HOD/LOD: {len(hod_lod_pois, "diagnose_poi_system", "migration")}")
 
         return True, pois
 
     except Exception as e:
-        print(f"   ❌ Error en find_pois(): {e}")
-        print(f"   Traceback: {traceback.format_exc()}")
+        enviar_senal_log("ERROR", f"   ❌ Error en find_pois(, "diagnose_poi_system", "migration"): {e}")
+        enviar_senal_log("INFO", f"   Traceback: {traceback.format_exc(, "diagnose_poi_system", "migration")}")
         return False, []
 
 def test_detectar_todos_los_pois(poi_functions, test_df):
     """Test 6: Probar función completa detectar_todos_los_pois"""
-    print("🔍 TEST 6: Probando detectar_todos_los_pois()...")
+    enviar_senal_log("INFO", "🔍 TEST 6: Probando detectar_todos_los_pois(, "diagnose_poi_system", "migration")...")
 
     try:
         current_price = float(test_df['close'].iloc[-1])
@@ -215,94 +216,94 @@ def test_detectar_todos_los_pois(poi_functions, test_df):
 
         if isinstance(result, dict):
             total_pois = 0
-            print(f"   ✅ detectar_todos_los_pois() ejecutado:")
+            enviar_senal_log("INFO", f"   ✅ detectar_todos_los_pois(, "diagnose_poi_system", "migration") ejecutado:")
 
             for poi_type, poi_list in result.items():
                 if isinstance(poi_list, list) and poi_type != 'resumen':
                     total_pois += len(poi_list)
-                    print(f"      {poi_type}: {len(poi_list)} POIs")
+                    enviar_senal_log("INFO", f"      {poi_type}: {len(poi_list, "diagnose_poi_system", "migration")} POIs")
 
-            print(f"   Total POIs: {total_pois}")
+            enviar_senal_log("INFO", f"   Total POIs: {total_pois}", "diagnose_poi_system", "migration")
             return True, result
         else:
-            print(f"   ❌ Tipo inesperado: {type(result)}")
+            enviar_senal_log("INFO", f"   ❌ Tipo inesperado: {type(result, "diagnose_poi_system", "migration")}")
             return False, {}
 
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        enviar_senal_log("ERROR", f"   ❌ Error: {e}", "diagnose_poi_system", "migration")
         return False, {}
 
 def main():
     """Ejecutar diagnóstico completo"""
-    print("🚀 INICIANDO DIAGNÓSTICO POI SYSTEM")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🚀 INICIANDO DIAGNÓSTICO POI SYSTEM", "diagnose_poi_system", "migration")
+    enviar_senal_log("INFO", "=" * 50, "diagnose_poi_system", "migration")
 
     # Test 1: Imports POI
     poi_imports_ok, poi_functions = test_poi_imports()
     if not poi_imports_ok:
-        print("💀 ERROR CRÍTICO: No se pueden importar funciones POI")
+        enviar_senal_log("ERROR", "💀 ERROR CRÍTICO: No se pueden importar funciones POI", "diagnose_poi_system", "migration")
         return
 
     # Test 2: ICTDetector
     ict_imports_ok, ict_detector = test_ict_detector_imports()
     if not ict_imports_ok:
-        print("💀 ERROR CRÍTICO: No se puede importar ICTDetector")
+        enviar_senal_log("ERROR", "💀 ERROR CRÍTICO: No se puede importar ICTDetector", "diagnose_poi_system", "migration")
         return
 
     # Test 3: Datos de prueba
     data_ok, test_df = create_test_data()
     if not data_ok:
-        print("💀 ERROR CRÍTICO: No se pueden crear datos de prueba")
+        enviar_senal_log("ERROR", "💀 ERROR CRÍTICO: No se pueden crear datos de prueba", "diagnose_poi_system", "migration")
         return
 
     # Test 4: Funciones POI individuales
-    print("\\n" + "=" * 50)
+    enviar_senal_log("INFO", "\\n" + "=" * 50, "diagnose_poi_system", "migration")
     poi_results = test_poi_functions_individually(poi_functions, test_df)
 
     # Test 5: ICTDetector.find_pois()
-    print("\\n" + "=" * 50)
+    enviar_senal_log("INFO", "\\n" + "=" * 50, "diagnose_poi_system", "migration")
     ict_find_pois_ok, ict_pois = test_ict_detector_find_pois(ict_detector, test_df)
 
     # Test 6: detectar_todos_los_pois
-    print("\\n" + "=" * 50)
+    enviar_senal_log("INFO", "\\n" + "=" * 50, "diagnose_poi_system", "migration")
     detectar_todos_ok, todos_result = test_detectar_todos_los_pois(poi_functions, test_df)
 
     # Resumen final
-    print("\\n" + "=" * 50)
-    print("📊 RESUMEN DE DIAGNÓSTICO:")
-    print("=" * 50)
+    enviar_senal_log("INFO", "\\n" + "=" * 50, "diagnose_poi_system", "migration")
+    enviar_senal_log("INFO", "📊 RESUMEN DE DIAGNÓSTICO:", "diagnose_poi_system", "migration")
+    enviar_senal_log("INFO", "=" * 50, "diagnose_poi_system", "migration")
 
-    print(f"✅ Imports POI: {'OK' if poi_imports_ok else 'FAIL'}")
-    print(f"✅ ICTDetector: {'OK' if ict_imports_ok else 'FAIL'}")
-    print(f"✅ Datos de prueba: {'OK' if data_ok else 'FAIL'}")
+    enviar_senal_log("ERROR", f"✅ Imports POI: {'OK' if poi_imports_ok else 'FAIL'}", "diagnose_poi_system", "migration")
+    enviar_senal_log("ERROR", f"✅ ICTDetector: {'OK' if ict_imports_ok else 'FAIL'}", "diagnose_poi_system", "migration")
+    enviar_senal_log("ERROR", f"✅ Datos de prueba: {'OK' if data_ok else 'FAIL'}", "diagnose_poi_system", "migration")
 
     # Resumen de funciones POI
     for func_name, result in poi_results.items():
         status = "OK" if result['success'] else "FAIL"
         count = result.get('count', 0) if result['success'] else 0
-        print(f"   {func_name}: {status} ({count} POIs)")
+        enviar_senal_log("INFO", f"   {func_name}: {status} ({count} POIs, "diagnose_poi_system", "migration")")
 
-    print(f"✅ ICTDetector.find_pois(): {'OK' if ict_find_pois_ok else 'FAIL'} ({len(ict_pois)} POIs)")
-    print(f"✅ detectar_todos_los_pois(): {'OK' if detectar_todos_ok else 'FAIL'}")
+    enviar_senal_log("INFO", f"✅ ICTDetector.find_pois(, "diagnose_poi_system", "migration"): {'OK' if ict_find_pois_ok else 'FAIL'} ({len(ict_pois)} POIs)")
+    enviar_senal_log("INFO", f"✅ detectar_todos_los_pois(, "diagnose_poi_system", "migration"): {'OK' if detectar_todos_ok else 'FAIL'}")
 
     # Diagnóstico de causas
     if len(ict_pois) == 0:
-        print("\\n🔍 ANÁLISIS DE CAUSA RAÍZ:")
-        print("El problema find_pois() -> [] puede deberse a:")
-        print("1. Métodos auxiliares ICTDetector devuelven listas vacías")
-        print("2. Datos de entrada no cumplen criterios de detección")
-        print("3. Umbrales de filtrado demasiado restrictivos")
-        print("4. Error en integración ICTDetector <-> poi_detector")
+        enviar_senal_log("INFO", "\\n🔍 ANÁLISIS DE CAUSA RAÍZ:", "diagnose_poi_system", "migration")
+        enviar_senal_log("INFO", "El problema find_pois(, "diagnose_poi_system", "migration") -> [] puede deberse a:")
+        enviar_senal_log("INFO", "1. Métodos auxiliares ICTDetector devuelven listas vacías", "diagnose_poi_system", "migration")
+        enviar_senal_log("INFO", "2. Datos de entrada no cumplen criterios de detección", "diagnose_poi_system", "migration")
+        enviar_senal_log("INFO", "3. Umbrales de filtrado demasiado restrictivos", "diagnose_poi_system", "migration")
+        enviar_senal_log("ERROR", "4. Error en integración ICTDetector <-> poi_detector", "diagnose_poi_system", "migration")
 
         if any(result['success'] and result['count'] > 0 for result in poi_results.values()):
-            print("\\n✅ SOLUCIÓN: Las funciones POI SÍ detectan POIs")
-            print("El problema está en la integración ICTDetector")
-            print("Recomendación: Verificar métodos auxiliares en ict_detector.py")
+            enviar_senal_log("INFO", "\\n✅ SOLUCIÓN: Las funciones POI SÍ detectan POIs", "diagnose_poi_system", "migration")
+            enviar_senal_log("INFO", "El problema está en la integración ICTDetector", "diagnose_poi_system", "migration")
+            enviar_senal_log("INFO", "Recomendación: Verificar métodos auxiliares en ict_detector.py", "diagnose_poi_system", "migration")
         else:
-            print("\\n⚠️ PROBLEMA: Las funciones POI NO detectan POIs")
-            print("Recomendación: Verificar datos de entrada y umbrales")
+            enviar_senal_log("INFO", "\\n⚠️ PROBLEMA: Las funciones POI NO detectan POIs", "diagnose_poi_system", "migration")
+            enviar_senal_log("INFO", "Recomendación: Verificar datos de entrada y umbrales", "diagnose_poi_system", "migration")
 
-    print("\\n🎯 DIAGNÓSTICO COMPLETADO")
+    enviar_senal_log("INFO", "\\n🎯 DIAGNÓSTICO COMPLETADO", "diagnose_poi_system", "migration")
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -77,8 +78,8 @@ class UnusedFilesAnalyzer:
     def scan_for_unused_files(self) -> Dict[str, List[str]]:
         """Escanea y categoriza archivos posiblemente no utilizados"""
 
-        print("🔍 Escaneando archivos posiblemente no utilizados...")
-        print("=" * 60)
+        enviar_senal_log("INFO", "🔍 Escaneando archivos posiblemente no utilizados...", "unused_files_analyzer", "migration")
+        enviar_senal_log("INFO", "=" * 60, "unused_files_analyzer", "migration")
 
         for file_path in self.base_path.rglob("*"):
             if file_path.is_file():
@@ -297,8 +298,8 @@ class UnusedFilesAnalyzer:
 
 def main():
     """Función principal"""
-    print("🗑️ ANÁLISIS DE ARCHIVOS NO UTILIZADOS - ICT ENGINE v5.0")
-    print("=" * 60)
+    enviar_senal_log("INFO", "🗑️ ANÁLISIS DE ARCHIVOS NO UTILIZADOS - ICT ENGINE v5.0", "unused_files_analyzer", "migration")
+    enviar_senal_log("INFO", "=" * 60, "unused_files_analyzer", "migration")
 
     analyzer = UnusedFilesAnalyzer()
     report = analyzer.generate_report()
@@ -310,8 +311,8 @@ def main():
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
 
-    print(f"📄 Reporte generado: {report_path}")
-    print("✅ Análisis completado")
+    enviar_senal_log("INFO", f"📄 Reporte generado: {report_path}", "unused_files_analyzer", "migration")
+    enviar_senal_log("INFO", "✅ Análisis completado", "unused_files_analyzer", "migration")
 
     # Mostrar resumen en consola
     lines = report.split('\n')
@@ -322,7 +323,7 @@ def main():
         elif summary_start and line.startswith('## '):
             break
         elif summary_start:
-            print(line)
+            enviar_senal_log("INFO", line, "unused_files_analyzer", "migration")
 
 if __name__ == "__main__":
     main()

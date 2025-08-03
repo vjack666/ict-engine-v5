@@ -6,6 +6,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from sistema.logging_interface import enviar_senal_log
 
 def fix_unicode_issues():
     """
@@ -43,7 +44,7 @@ def fix_unicode_issues():
 
     for file_path in files_to_fix:
         if not file_path.exists():
-            print(f"[WARNING] File not found: {file_path}")
+            enviar_senal_log("WARNING", f"[WARNING] File not found: {file_path}", "windows_emoji_fixer", "migration")
             continue
 
         try:
@@ -60,18 +61,18 @@ def fix_unicode_issues():
             if content != original_content:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"[OK] Fixed emojis in: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] Fixed emojis in: {file_path.name}", "windows_emoji_fixer", "migration")
                 files_fixed += 1
             else:
-                print(f"[OK] No emojis to fix in: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] No emojis to fix in: {file_path.name}", "windows_emoji_fixer", "migration")
 
         except Exception as e:
-            print(f"[ERROR] Error fixing {file_path}: {e}")
+            enviar_senal_log("ERROR", f"[ERROR] Error fixing {file_path}: {e}", "windows_emoji_fixer", "migration")
 
-    print(f"\n[RESULT] Fixed emojis in {files_fixed} files")
-    print("[OK] Sprint 1.1 should now work on Windows!")
+    enviar_senal_log("INFO", f"\n[RESULT] Fixed emojis in {files_fixed} files", "windows_emoji_fixer", "migration")
+    enviar_senal_log("INFO", "[OK] Sprint 1.1 should now work on Windows!", "windows_emoji_fixer", "migration")
 
 if __name__ == "__main__":
-    print("[LAUNCH] Windows Emoji Fixer - Sprint 1.1")
-    print("=" * 50)
+    enviar_senal_log("INFO", "[LAUNCH] Windows Emoji Fixer - Sprint 1.1", "windows_emoji_fixer", "migration")
+    enviar_senal_log("INFO", "=" * 50, "windows_emoji_fixer", "migration")
     fix_unicode_issues()

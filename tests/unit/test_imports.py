@@ -16,42 +16,42 @@ def test_core_imports():
     # 🎯 Dashboard imports
     try:
         from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as SentinelDashboard
-        print("✅ dashboard.dashboard_definitivo.SentinelDashboardDefinitivo - OK")
+        enviar_senal_log("INFO", "✅ dashboard.dashboard_definitivo.SentinelDashboardDefinitivo - OK", "test_imports", "migration")
     except ImportError as e:
         missing_modules.append(f"❌ dashboard.dashboard_definitivo.SentinelDashboardDefinitivo - ERROR: {e}")
-        print(f"❌ dashboard.dashboard_definitivo.SentinelDashboardDefinitivo - ERROR: {e}")
+        enviar_senal_log("ERROR", f"❌ dashboard.dashboard_definitivo.SentinelDashboardDefinitivo - ERROR: {e}", "test_imports", "migration")
 
     # 🔧 Sistema imports
     try:
         from sistema.logging_interface import enviar_senal_log
-        print("✅ sistema.logging_interface.enviar_senal_log - OK")
+        enviar_senal_log("INFO", "✅ sistema.logging_interface.enviar_senal_log - OK", "test_imports", "migration")
     except ImportError as e:
         missing_modules.append(f"❌ sistema.logging_interface.enviar_senal_log - ERROR: {e}")
-        print(f"❌ sistema.logging_interface.enviar_senal_log - ERROR: {e}")
+        enviar_senal_log("ERROR", f"❌ sistema.logging_interface.enviar_senal_log - ERROR: {e}", "test_imports", "migration")
 
     # 🏗️ Core ICT imports
     try:
         from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
-        print("✅ core.ict_engine.veredicto_engine_v4.VeredictoEngine - OK")
+        enviar_senal_log("INFO", "✅ core.ict_engine.veredicto_engine_v4.VeredictoEngine - OK", "test_imports", "migration")
     except ImportError as e:
         missing_modules.append(f"❌ core.ict_engine.veredicto_engine_v4.VeredictoEngine - ERROR: {e}")
-        print(f"❌ core.ict_engine.veredicto_engine_v4.VeredictoEngine - ERROR: {e}")
+        enviar_senal_log("ERROR", f"❌ core.ict_engine.veredicto_engine_v4.VeredictoEngine - ERROR: {e}", "test_imports", "migration")
 
     # 📊 Config imports
     try:
         from config.config_manager import ConfigManager
-        print("✅ config.config_manager.ConfigManager - OK")
+        enviar_senal_log("INFO", "✅ config.config_manager.ConfigManager - OK", "test_imports", "migration")
     except ImportError as e:
         missing_modules.append(f"❌ config.config_manager.ConfigManager - ERROR: {e}")
-        print(f"❌ config.config_manager.ConfigManager - ERROR: {e}")
+        enviar_senal_log("ERROR", f"❌ config.config_manager.ConfigManager - ERROR: {e}", "test_imports", "migration")
 
     # 📡 MT5 imports
     try:
         from utils.mt5_data_manager import MT5DataManager
-        print("✅ utils.mt5_data_manager.MT5DataManager - OK")
+        enviar_senal_log("INFO", "✅ utils.mt5_data_manager.MT5DataManager - OK", "test_imports", "migration")
     except ImportError as e:
         missing_modules.append(f"❌ utils.mt5_data_manager.MT5DataManager - ERROR: {e}")
-        print(f"❌ utils.mt5_data_manager.MT5DataManager - ERROR: {e}")
+        enviar_senal_log("ERROR", f"❌ utils.mt5_data_manager.MT5DataManager - ERROR: {e}", "test_imports", "migration")
 
     return missing_modules
 
@@ -72,10 +72,10 @@ def test_external_dependencies():
     for dep in dependencies:
         try:
             __import__(dep)
-            print(f"✅ {dep} - OK")
+            enviar_senal_log("INFO", f"✅ {dep} - OK", "test_imports", "migration")
         except ImportError as e:
             missing_deps.append(f"❌ {dep} - ERROR: {e}")
-            print(f"❌ {dep} - ERROR: {e}")
+            enviar_senal_log("ERROR", f"❌ {dep} - ERROR: {e}", "test_imports", "migration")
 
     return missing_deps
 
@@ -95,52 +95,52 @@ def test_file_structure():
     for file_path in critical_files:
         full_path = project_root / file_path
         if full_path.exists():
-            print(f"✅ {file_path} - EXISTS")
+            enviar_senal_log("INFO", f"✅ {file_path} - EXISTS", "test_imports", "migration")
         else:
             missing_files.append(f"❌ {file_path} - NOT FOUND")
-            print(f"❌ {file_path} - NOT FOUND")
+            enviar_senal_log("INFO", f"❌ {file_path} - NOT FOUND", "test_imports", "migration")
 
     return missing_files
 
 def main():
     """Función principal de diagnóstico"""
-    print("🔍 DIAGNÓSTICO COMPLETO DE IMPORTS Y DEPENDENCIAS")
-    print("=" * 60)
+    enviar_senal_log("INFO", "🔍 DIAGNÓSTICO COMPLETO DE IMPORTS Y DEPENDENCIAS", "test_imports", "migration")
+    enviar_senal_log("INFO", "=" * 60, "test_imports", "migration")
 
-    print("\n📦 VERIFICANDO IMPORTS DEL CORE...")
+    enviar_senal_log("INFO", "\n📦 VERIFICANDO IMPORTS DEL CORE...", "test_imports", "migration")
     missing_modules = test_core_imports()
 
-    print("\n🌐 VERIFICANDO DEPENDENCIAS EXTERNAS...")
+    enviar_senal_log("INFO", "\n🌐 VERIFICANDO DEPENDENCIAS EXTERNAS...", "test_imports", "migration")
     missing_deps = test_external_dependencies()
 
-    print("\n📁 VERIFICANDO ESTRUCTURA DE ARCHIVOS...")
+    enviar_senal_log("INFO", "\n📁 VERIFICANDO ESTRUCTURA DE ARCHIVOS...", "test_imports", "migration")
     missing_files = test_file_structure()
 
-    print("\n" + "=" * 60)
-    print("📋 RESUMEN DE PROBLEMAS ENCONTRADOS:")
+    enviar_senal_log("INFO", "\n" + "=" * 60, "test_imports", "migration")
+    enviar_senal_log("INFO", "📋 RESUMEN DE PROBLEMAS ENCONTRADOS:", "test_imports", "migration")
 
     if missing_modules:
-        print("\n❌ MÓDULOS FALTANTES:")
+        enviar_senal_log("INFO", "\n❌ MÓDULOS FALTANTES:", "test_imports", "migration")
         for module in missing_modules:
-            print(f"  {module}")
+            enviar_senal_log("INFO", f"  {module}", "test_imports", "migration")
 
     if missing_deps:
-        print("\n❌ DEPENDENCIAS FALTANTES:")
+        enviar_senal_log("INFO", "\n❌ DEPENDENCIAS FALTANTES:", "test_imports", "migration")
         for dep in missing_deps:
-            print(f"  {dep}")
+            enviar_senal_log("INFO", f"  {dep}", "test_imports", "migration")
 
     if missing_files:
-        print("\n❌ ARCHIVOS FALTANTES:")
+        enviar_senal_log("INFO", "\n❌ ARCHIVOS FALTANTES:", "test_imports", "migration")
         for file in missing_files:
-            print(f"  {file}")
+            enviar_senal_log("INFO", f"  {file}", "test_imports", "migration")
 
     if not missing_modules and not missing_deps and not missing_files:
-        print("\n✅ TODOS LOS IMPORTS Y DEPENDENCIAS ESTÁN OK")
+        enviar_senal_log("INFO", "\n✅ TODOS LOS IMPORTS Y DEPENDENCIAS ESTÁN OK", "test_imports", "migration")
 
-    print("\n🎯 INFORMACIÓN PARA BITÁCORA:")
-    print(f"📁 Project Root: {project_root}")
-    print(f"🐍 Python: {sys.version}")
-    print(f"📂 Working Directory: {os.getcwd()}")
+    enviar_senal_log("INFO", "\n🎯 INFORMACIÓN PARA BITÁCORA:", "test_imports", "migration")
+    enviar_senal_log("INFO", f"📁 Project Root: {project_root}", "test_imports", "migration")
+    enviar_senal_log("INFO", f"🐍 Python: {sys.version}", "test_imports", "migration")
+    enviar_senal_log("INFO", f"📂 Working Directory: {os.getcwd(, "test_imports", "migration")}")
 
 if __name__ == "__main__":
     main()

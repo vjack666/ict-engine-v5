@@ -50,7 +50,7 @@ try:
     ]
     
 except ImportError as e:
-    print(f"⚠️ Warning: No se pudieron importar algunos componentes ICT: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Warning: No se pudieron importar algunos componentes ICT: {e}", "__init__", "migration")
     
     # __all__ básico sin componentes ICT
     __all__ = [
@@ -62,6 +62,6 @@ except ImportError as e:
 
 # Exportar componentes ICT de forma explícita - YA NO ES NECESARIO
 # Los componentes ICT ahora están en core/ict_engine/
-print("✅ ICT Engine consolidado en core/ict_engine/")
+enviar_senal_log("INFO", "✅ ICT Engine consolidado en core/ict_engine/", "__init__", "migration")
 
 __version__ = "3.5.0"

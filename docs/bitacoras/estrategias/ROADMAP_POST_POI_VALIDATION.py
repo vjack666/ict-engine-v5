@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -102,27 +103,27 @@ class DashboardEnhancementRoadmap:
 if __name__ == "__main__":
     roadmap = DashboardEnhancementRoadmap()
 
-    print("🎯 ROADMAP POST-POI VALIDATION")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🎯 ROADMAP POST-POI VALIDATION", "ROADMAP_POST_POI_VALIDATION", "migration")
+    enviar_senal_log("INFO", "=" * 50, "ROADMAP_POST_POI_VALIDATION", "migration")
 
-    print(f"\\n✅ POI System Status: {roadmap.poi_validation_status}")
-    print(f"🎯 Next Milestone: {roadmap.next_milestone}")
+    enviar_senal_log("INFO", f"\\n✅ POI System Status: {roadmap.poi_validation_status}", "ROADMAP_POST_POI_VALIDATION", "migration")
+    enviar_senal_log("INFO", f"🎯 Next Milestone: {roadmap.next_milestone}", "ROADMAP_POST_POI_VALIDATION", "migration")
 
-    print("\\n🔥 IMMEDIATE ACTIONS:")
+    enviar_senal_log("INFO", "\\n🔥 IMMEDIATE ACTIONS:", "ROADMAP_POST_POI_VALIDATION", "migration")
     for key, action in roadmap.get_immediate_actions().items():
-        print(f"\\n{key}:")
-        print(f"   Status: {action['status']}")
-        print(f"   Description: {action['description']}")
+        enviar_senal_log("INFO", f"\\n{key}:", "ROADMAP_POST_POI_VALIDATION", "migration")
+        enviar_senal_log("INFO", f"   Status: {action['status']}", "ROADMAP_POST_POI_VALIDATION", "migration")
+        enviar_senal_log("INFO", f"   Description: {action['description']}", "ROADMAP_POST_POI_VALIDATION", "migration")
         if 'confidence' in action:
-            print(f"   Confidence: {action['confidence']}")
+            enviar_senal_log("INFO", f"   Confidence: {action['confidence']}", "ROADMAP_POST_POI_VALIDATION", "migration")
 
-    print("\\n🎯 QUALITY GATES:")
+    enviar_senal_log("INFO", "\\n🎯 QUALITY GATES:", "ROADMAP_POST_POI_VALIDATION", "migration")
     for gate, details in roadmap.get_quality_gates().items():
-        print(f"\\n{gate}: {details['requirement']}")
-        print(f"   Validation: {details['validation']}")
+        enviar_senal_log("INFO", f"\\n{gate}: {details['requirement']}", "ROADMAP_POST_POI_VALIDATION", "migration")
+        enviar_senal_log("INFO", f"   Validation: {details['validation']}", "ROADMAP_POST_POI_VALIDATION", "migration")
 
-    print("\\n🛡️ SAFETY NET:")
-    print("POI Test Suite provides automatic regression detection")
-    print("Any dashboard changes can be validated immediately")
+    enviar_senal_log("INFO", "\\n🛡️ SAFETY NET:", "ROADMAP_POST_POI_VALIDATION", "migration")
+    enviar_senal_log("INFO", "POI Test Suite provides automatic regression detection", "ROADMAP_POST_POI_VALIDATION", "migration")
+    enviar_senal_log("INFO", "Any dashboard changes can be validated immediately", "ROADMAP_POST_POI_VALIDATION", "migration")
 
-    print("\\n🚀 READY TO PROCEED WITH CONFIDENCE!")
+    enviar_senal_log("INFO", "\\n🚀 READY TO PROCEED WITH CONFIDENCE!", "ROADMAP_POST_POI_VALIDATION", "migration")

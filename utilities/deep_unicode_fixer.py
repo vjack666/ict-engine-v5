@@ -6,6 +6,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from sistema.logging_interface import enviar_senal_log
 
 def deep_fix_unicode():
     """
@@ -23,7 +24,7 @@ def deep_fix_unicode():
 
     for file_path in files_to_fix:
         if not file_path.exists():
-            print(f"[WARNING] File not found: {file_path}")
+            enviar_senal_log("WARNING", f"[WARNING] File not found: {file_path}", "deep_unicode_fixer", "migration")
             continue
 
         try:
@@ -49,23 +50,23 @@ def deep_fix_unicode():
             ]
 
             for pattern in problematic_prints:
-                content = re.sub(pattern, 'print("[MSG]")', content)
+                content = re.sub(pattern, 'enviar_senal_log("INFO", "[MSG]", "deep_unicode_fixer", "migration")', content)
 
             # Solo escribir si hay cambios
             if content != original_content:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"[OK] Deep fixed Unicode in: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] Deep fixed Unicode in: {file_path.name}", "deep_unicode_fixer", "migration")
                 files_fixed += 1
             else:
-                print(f"[OK] No Unicode issues in: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] No Unicode issues in: {file_path.name}", "deep_unicode_fixer", "migration")
 
         except Exception as e:
-            print(f"[ERROR] Error fixing {file_path}: {e}")
+            enviar_senal_log("ERROR", f"[ERROR] Error fixing {file_path}: {e}", "deep_unicode_fixer", "migration")
 
-    print(f"\n[RESULT] Deep fixed Unicode in {files_fixed} files")
+    enviar_senal_log("INFO", f"\n[RESULT] Deep fixed Unicode in {files_fixed} files", "deep_unicode_fixer", "migration")
 
 if __name__ == "__main__":
-    print("[LAUNCH] Deep Unicode Fixer - Sprint 1.1")
-    print("=" * 50)
+    enviar_senal_log("INFO", "[LAUNCH] Deep Unicode Fixer - Sprint 1.1", "deep_unicode_fixer", "migration")
+    enviar_senal_log("INFO", "=" * 50, "deep_unicode_fixer", "migration")
     deep_fix_unicode()

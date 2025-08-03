@@ -3,6 +3,7 @@
 
 import re
 from pathlib import Path
+from sistema.logging_interface import enviar_senal_log
 
 def final_cleanup():
     """
@@ -60,14 +61,14 @@ def final_cleanup():
             if content != original:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"[OK] Cleaned: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] Cleaned: {file_path.name}", "final_emoji_cleanup", "migration")
             else:
-                print(f"[OK] Clean: {file_path.name}")
+                enviar_senal_log("INFO", f"[OK] Clean: {file_path.name}", "final_emoji_cleanup", "migration")
 
         except Exception as e:
-            print(f"[ERROR] {file_path}: {e}")
+            enviar_senal_log("ERROR", f"[ERROR] {file_path}: {e}", "final_emoji_cleanup", "migration")
 
-    print("[SUCCESS] Final cleanup completed!")
+    enviar_senal_log("INFO", "[SUCCESS] Final cleanup completed!", "final_emoji_cleanup", "migration")
 
 if __name__ == "__main__":
     final_cleanup()

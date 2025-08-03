@@ -37,17 +37,17 @@ try:
     from core.ict_engine import MarketContext
     from sistema.logging_interface import enviar_senal_log
 
-    print("✅ Todos los imports del TCT Pipeline exitosos")
+    enviar_senal_log("INFO", "✅ Todos los imports del TCT Pipeline exitosos", "test_tct_pipeline_complete", "migration")
 
 except ImportError as e:
-    print(f"❌ Error en imports: {e}")
+    enviar_senal_log("ERROR", f"❌ Error en imports: {e}", "test_tct_pipeline_complete", "migration")
     sys.exit(1)
 
 def test_aggregated_metrics_to_dict():
     """🧪 TEST 1: Validar que AggregatedTCTMetrics.to_dict() funciona correctamente"""
-    print("\n" + "="*60)
-    print("🧪 TEST 1: AggregatedTCTMetrics.to_dict()")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 1: AggregatedTCTMetrics.to_dict(, "test_tct_pipeline_complete", "migration")")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         # Crear métricas de prueba
@@ -72,21 +72,21 @@ def test_aggregated_metrics_to_dict():
         assert result_dict['total_timeframes'] == 3, "Total timeframes incorrecto"
         assert len(result_dict['active_sessions']) == 2, "Active sessions incorrecto"
 
-        print("✅ AggregatedTCTMetrics.to_dict() funciona correctamente")
-        print(f"📊 Resultado: {len(result_dict)} campos en el diccionario")
-        print(f"🎯 Grade: {result_dict['performance_grade']}, Trend: {result_dict['tct_trend']}")
+        enviar_senal_log("INFO", "✅ AggregatedTCTMetrics.to_dict(, "test_tct_pipeline_complete", "migration") funciona correctamente")
+        enviar_senal_log("INFO", f"📊 Resultado: {len(result_dict, "test_tct_pipeline_complete", "migration")} campos en el diccionario")
+        enviar_senal_log("INFO", f"🎯 Grade: {result_dict['performance_grade']}, Trend: {result_dict['tct_trend']}", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test AggregatedTCTMetrics.to_dict(): {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test AggregatedTCTMetrics.to_dict(, "test_tct_pipeline_complete", "migration"): {e}")
         return False
 
 def test_tct_aggregator_recent_measurements():
     """🧪 TEST 2: Validar aggregate_recent_measurements()"""
-    print("\n" + "="*60)
-    print("🧪 TEST 2: TCTAggregator.aggregate_recent_measurements()")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 2: TCTAggregator.aggregate_recent_measurements(, "test_tct_pipeline_complete", "migration")")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         aggregator = TCTAggregator()
@@ -120,22 +120,22 @@ def test_tct_aggregator_recent_measurements():
         assert recent_aggregated.global_avg_tct_ms > 0, "Debe calcular promedio global"
         assert recent_aggregated.performance_grade in ["A", "B", "C", "D", "F"], "Grade debe ser válido"
 
-        print("✅ aggregate_recent_measurements() funciona correctamente")
-        print(f"📊 Timeframes procesados: {recent_aggregated.total_timeframes}")
-        print(f"🎯 Avg TCT: {recent_aggregated.global_avg_tct_ms:.2f}ms")
-        print(f"📈 Grade: {recent_aggregated.performance_grade}")
+        enviar_senal_log("INFO", "✅ aggregate_recent_measurements(, "test_tct_pipeline_complete", "migration") funciona correctamente")
+        enviar_senal_log("INFO", f"📊 Timeframes procesados: {recent_aggregated.total_timeframes}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"🎯 Avg TCT: {recent_aggregated.global_avg_tct_ms:.2f}ms", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📈 Grade: {recent_aggregated.performance_grade}", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test aggregate_recent_measurements(): {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test aggregate_recent_measurements(, "test_tct_pipeline_complete", "migration"): {e}")
         return False
 
 def test_tct_measurement_engine():
     """🧪 TEST 3: Validar TCTMeasurementEngine básico"""
-    print("\n" + "="*60)
-    print("🧪 TEST 3: TCTMeasurementEngine")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 3: TCTMeasurementEngine", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         engine = TCTMeasurementEngine()
@@ -163,21 +163,21 @@ def test_tct_measurement_engine():
         assert metrics.measurements_taken == 1, "Debe contar 1 medición"
         assert metrics.avg_tct_ms > 0, "Debe calcular tiempo promedio"
 
-        print("✅ TCTMeasurementEngine funciona correctamente")
-        print(f"⏱️ Duración medida: {duration:.2f}ms")
-        print(f"📊 Métricas: {metrics.measurements_taken} mediciones tomadas")
+        enviar_senal_log("INFO", "✅ TCTMeasurementEngine funciona correctamente", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"⏱️ Duración medida: {duration:.2f}ms", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📊 Métricas: {metrics.measurements_taken} mediciones tomadas", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test TCTMeasurementEngine: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test TCTMeasurementEngine: {e}", "test_tct_pipeline_complete", "migration")
         return False
 
 def test_tct_interface_real_analysis():
     """🧪 TEST 4: Validar TCTInterface con análisis ICT real"""
-    print("\n" + "="*60)
-    print("🧪 TEST 4: TCTInterface con ICTDetector real")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 4: TCTInterface con ICTDetector real", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         tct_interface = TCTInterface(
@@ -209,28 +209,28 @@ def test_tct_interface_real_analysis():
         assert 'market_bias' in analysis_result, "Debe incluir bias de mercado"
         assert 'confidence_score' in analysis_result, "Debe incluir score de confianza"
 
-        print("✅ TCTInterface con ICTDetector real funciona correctamente")
-        print(f"🚀 Análisis: {result['analysis_result']['analysis_type']}")
-        print(f"📊 POIs detectados: {analysis_result['pois_detected']}")
-        print(f"🧠 Patrones detectados: {analysis_result['patterns_detected']}")
-        print(f"⏱️ TCT duration: {result['tct_ms']:.2f}ms")
-        print(f"🎯 Confidence: {analysis_result['confidence_score']:.2f}")
-        print(f"📈 Market structure: {analysis_result['market_structure']}")
-        print(f"💰 Price analyzed: {analysis_result['price_analyzed']:.5f}")
+        enviar_senal_log("INFO", "✅ TCTInterface con ICTDetector real funciona correctamente", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"🚀 Análisis: {result['analysis_result']['analysis_type']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📊 POIs detectados: {analysis_result['pois_detected']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"🧠 Patrones detectados: {analysis_result['patterns_detected']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"⏱️ TCT duration: {result['tct_ms']:.2f}ms", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"🎯 Confidence: {analysis_result['confidence_score']:.2f}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📈 Market structure: {analysis_result['market_structure']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"💰 Price analyzed: {analysis_result['price_analyzed']:.5f}", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test TCTInterface real analysis: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test TCTInterface real analysis: {e}", "test_tct_pipeline_complete", "migration")
         import traceback
         traceback.print_exc()
         return False
 
 def test_tct_formatter():
     """🧪 TEST 5: Validar TCTFormatter"""
-    print("\n" + "="*60)
-    print("🧪 TEST 5: TCTFormatter")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 5: TCTFormatter", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         formatter = TCTFormatter()
@@ -250,21 +250,21 @@ def test_tct_formatter():
         assert 'tct_summary' in dashboard_data, "Debe incluir resumen TCT"
         assert 'tct_timeframes' in dashboard_data, "Debe incluir datos por timeframe"
 
-        print("✅ TCTFormatter funciona correctamente")
-        print(f"📊 Dashboard data keys: {list(dashboard_data.keys())}")
-        print(f"🎯 Grade en status: {dashboard_data['tct_status']['performance_grade']}")
+        enviar_senal_log("INFO", "✅ TCTFormatter funciona correctamente", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📊 Dashboard data keys: {list(dashboard_data.keys(, "test_tct_pipeline_complete", "migration"))}")
+        enviar_senal_log("INFO", f"🎯 Grade en status: {dashboard_data['tct_status']['performance_grade']}", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test TCTFormatter: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test TCTFormatter: {e}", "test_tct_pipeline_complete", "migration")
         return False
 
 def test_tct_pipeline_integration():
     """🧪 TEST 6: Validar integración completa del pipeline"""
-    print("\n" + "="*60)
-    print("🧪 TEST 6: Integración completa TCT Pipeline")
-    print("="*60)
+    enviar_senal_log("INFO", "\n" + "="*60, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "🧪 TEST 6: Integración completa TCT Pipeline", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "="*60, "test_tct_pipeline_complete", "migration")
 
     try:
         # Crear todos los componentes
@@ -279,21 +279,21 @@ def test_tct_pipeline_integration():
         dashboard_data = tct_interface.get_formatted_dashboard_data()
         # Puede ser None si no hay datos aún, eso es válido
 
-        print("✅ Integración completa del pipeline funciona")
-        print(f"📊 Estado del pipeline: {status['is_running']}")
-        print(f"📈 Total measurements: {status['total_measurements']}")
-        print(f"🎯 Dashboard data disponible: {dashboard_data is not None}")
+        enviar_senal_log("INFO", "✅ Integración completa del pipeline funciona", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📊 Estado del pipeline: {status['is_running']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"📈 Total measurements: {status['total_measurements']}", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", f"🎯 Dashboard data disponible: {dashboard_data is not None}", "test_tct_pipeline_complete", "migration")
 
         return True
 
     except Exception as e:
-        print(f"❌ Error en test integración completa: {e}")
+        enviar_senal_log("ERROR", f"❌ Error en test integración completa: {e}", "test_tct_pipeline_complete", "migration")
         return False
 
 def main():
     """Ejecutar todos los tests del TCT Pipeline"""
-    print("🚀 INICIANDO TESTS COMPLETOS - TCT PIPELINE DÍA 2 SPRINT 1.2")
-    print("=" * 80)
+    enviar_senal_log("INFO", "🚀 INICIANDO TESTS COMPLETOS - TCT PIPELINE DÍA 2 SPRINT 1.2", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "=" * 80, "test_tct_pipeline_complete", "migration")
 
     tests = [
         ("AggregatedTCTMetrics.to_dict()", test_aggregated_metrics_to_dict),
@@ -311,30 +311,30 @@ def main():
             result = test_func()
             results.append((test_name, result))
         except Exception as e:
-            print(f"❌ Error inesperado en {test_name}: {e}")
+            enviar_senal_log("ERROR", f"❌ Error inesperado en {test_name}: {e}", "test_tct_pipeline_complete", "migration")
             results.append((test_name, False))
 
     # Resumen final
-    print("\n" + "="*80)
-    print("📋 RESUMEN DE TESTS - TCT PIPELINE COMPLETO")
-    print("="*80)
+    enviar_senal_log("INFO", "\n" + "="*80, "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "📋 RESUMEN DE TESTS - TCT PIPELINE COMPLETO", "test_tct_pipeline_complete", "migration")
+    enviar_senal_log("INFO", "="*80, "test_tct_pipeline_complete", "migration")
 
     passed = 0
     total = len(results)
 
     for test_name, success in results:
         status = "✅ PASS" if success else "❌ FAIL"
-        print(f"{status} | {test_name}")
+        enviar_senal_log("INFO", f"{status} | {test_name}", "test_tct_pipeline_complete", "migration")
         if success:
             passed += 1
 
-    print(f"\n🎯 RESULTADO FINAL: {passed}/{total} tests pasaron")
+    enviar_senal_log("INFO", f"\n🎯 RESULTADO FINAL: {passed}/{total} tests pasaron", "test_tct_pipeline_complete", "migration")
 
     if passed == total:
-        print("🎉 ¡TODOS LOS TESTS PASARON! TCT Pipeline Día 2 completado exitosamente")
-        print("✅ Sprint 1.2 Día 2 - TCT Pipeline: 100% FUNCIONAL")
+        enviar_senal_log("INFO", "🎉 ¡TODOS LOS TESTS PASARON! TCT Pipeline Día 2 completado exitosamente", "test_tct_pipeline_complete", "migration")
+        enviar_senal_log("INFO", "✅ Sprint 1.2 Día 2 - TCT Pipeline: 100% FUNCIONAL", "test_tct_pipeline_complete", "migration")
     else:
-        print(f"⚠️ {total - passed} tests fallaron. Revisar implementación.")
+        enviar_senal_log("INFO", f"⚠️ {total - passed} tests fallaron. Revisar implementación.", "test_tct_pipeline_complete", "migration")
 
     return passed == total
 

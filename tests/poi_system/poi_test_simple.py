@@ -1,4 +1,5 @@
 import random
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -31,9 +32,9 @@ try:
         POI_TYPES,
         POI_SCORING_CONFIG
     )
-    print("IMPORTS EXITOSOS: Todos los módulos POI importados correctamente")
+    enviar_senal_log("INFO", "IMPORTS EXITOSOS: Todos los módulos POI importados correctamente", "poi_test_simple", "migration")
 except ImportError as e:
-    print(f"ERROR IMPORTS: {e}")
+    enviar_senal_log("ERROR", f"ERROR IMPORTS: {e}", "poi_test_simple", "migration")
     sys.exit(1)
 
 class TestDataGenerator:
@@ -85,31 +86,31 @@ class POIBasicTests(unittest.TestCase):
         for poi_type in expected_types:
             self.assertIn(poi_type, POI_TYPES, f"POI_TYPE {poi_type} missing")
 
-        print("PASSED: POI_TYPES constants validation")
+        enviar_senal_log("INFO", "PASSED: POI_TYPES constants validation", "poi_test_simple", "migration")
 
     def test_order_blocks_detection(self):
         """Test detección Order Blocks"""
         result = detectar_order_blocks(self.test_df, 'H1')
         self.assertIsInstance(result, list)
-        print(f"PASSED: Order Blocks detection ({len(result)} POIs)")
+        enviar_senal_log("INFO", f"PASSED: Order Blocks detection ({len(result, "poi_test_simple", "migration")} POIs)")
 
     def test_fvg_detection(self):
         """Test detección Fair Value Gaps"""
         result = detectar_fair_value_gaps(self.test_df, 'H1')
         self.assertIsInstance(result, list)
-        print(f"PASSED: FVG detection ({len(result)} POIs)")
+        enviar_senal_log("INFO", f"PASSED: FVG detection ({len(result, "poi_test_simple", "migration")} POIs)")
 
     def test_breaker_blocks_detection(self):
         """Test detección Breaker Blocks"""
         result = detectar_breaker_blocks(self.test_df, 'H1')
         self.assertIsInstance(result, list)
-        print(f"PASSED: Breaker Blocks detection ({len(result)} POIs)")
+        enviar_senal_log("INFO", f"PASSED: Breaker Blocks detection ({len(result, "poi_test_simple", "migration")} POIs)")
 
     def test_imbalances_detection(self):
         """Test detección Imbalances"""
         result = detectar_imbalances(self.test_df, 'H1')
         self.assertIsInstance(result, list)
-        print(f"PASSED: Imbalances detection ({len(result)} POIs)")
+        enviar_senal_log("INFO", f"PASSED: Imbalances detection ({len(result, "poi_test_simple", "migration")} POIs)")
 
     def test_complete_detection(self):
         """Test detección completa"""
@@ -121,7 +122,7 @@ class POIBasicTests(unittest.TestCase):
             self.assertIn(key, result, f"Missing key: {key}")
 
         total_pois = result['resumen']['total_pois']
-        print(f"PASSED: Complete detection ({total_pois} total POIs)")
+        enviar_senal_log("INFO", f"PASSED: Complete detection ({total_pois} total POIs, "poi_test_simple", "migration")")
 
     def test_poi_detector_class(self):
         """Test clase POIDetector"""
@@ -134,7 +135,7 @@ class POIBasicTests(unittest.TestCase):
         self.assertIsInstance(dashboard_pois, list)
         self.assertLessEqual(len(dashboard_pois), 5)
 
-        print(f"PASSED: POIDetector class ({len(all_pois)} total, {len(dashboard_pois)} dashboard)")
+        enviar_senal_log("INFO", f"PASSED: POIDetector class ({len(all_pois, "poi_test_simple", "migration")} total, {len(dashboard_pois)} dashboard)")
 
 class POIPerformanceTests(unittest.TestCase):
     """Tests de rendimiento"""
@@ -155,7 +156,7 @@ class POIPerformanceTests(unittest.TestCase):
         # SLA: máximo 3 segundos para 500 velas
         self.assertLess(elapsed_time, 3.0, f"Performance SLA exceeded: {elapsed_time:.3f}s")
 
-        print(f"PASSED: Performance test ({elapsed_time:.3f}s for 500 candles)")
+        enviar_senal_log("INFO", f"PASSED: Performance test ({elapsed_time:.3f}s for 500 candles, "poi_test_simple", "migration")")
 
 class POIDataValidationTests(unittest.TestCase):
     """Tests de validación de datos"""
@@ -168,7 +169,7 @@ class POIDataValidationTests(unittest.TestCase):
         self.assertIsInstance(result, dict)
         self.assertEqual(result['resumen']['total_pois'], 0)
 
-        print("PASSED: Empty DataFrame handling")
+        enviar_senal_log("INFO", "PASSED: Empty DataFrame handling", "poi_test_simple", "migration")
 
     def test_small_dataframe(self):
         """Test DataFrame pequeño"""
@@ -177,13 +178,13 @@ class POIDataValidationTests(unittest.TestCase):
 
         self.assertIsInstance(result, dict)
 
-        print("PASSED: Small DataFrame handling")
+        enviar_senal_log("INFO", "PASSED: Small DataFrame handling", "poi_test_simple", "migration")
 
 def run_poi_tests():
     """Ejecuta todos los tests POI"""
-    print("="*60)
-    print("POI SYSTEM TEST SUITE - INICIANDO")
-    print("="*60)
+    enviar_senal_log("INFO", "="*60, "poi_test_simple", "migration")
+    enviar_senal_log("INFO", "POI SYSTEM TEST SUITE - INICIANDO", "poi_test_simple", "migration")
+    enviar_senal_log("INFO", "="*60, "poi_test_simple", "migration")
 
     # Crear test suites
     loader = unittest.TestLoader()
@@ -201,22 +202,22 @@ def run_poi_tests():
     elapsed_time = time.time() - start_time
 
     # Reporte final
-    print("\n" + "="*60)
-    print("REPORTE FINAL POI TEST SUITE")
-    print("="*60)
-    print(f"Tiempo total: {elapsed_time:.2f} segundos")
-    print(f"Tests ejecutados: {result.testsRun}")
-    print(f"Tests exitosos: {result.testsRun - len(result.failures) - len(result.errors)}")
-    print(f"Fallos: {len(result.failures)}")
-    print(f"Errores: {len(result.errors)}")
+    enviar_senal_log("INFO", "\n" + "="*60, "poi_test_simple", "migration")
+    enviar_senal_log("INFO", "REPORTE FINAL POI TEST SUITE", "poi_test_simple", "migration")
+    enviar_senal_log("INFO", "="*60, "poi_test_simple", "migration")
+    enviar_senal_log("INFO", f"Tiempo total: {elapsed_time:.2f} segundos", "poi_test_simple", "migration")
+    enviar_senal_log("INFO", f"Tests ejecutados: {result.testsRun}", "poi_test_simple", "migration")
+    enviar_senal_log("ERROR", f"Tests exitosos: {result.testsRun - len(result.failures, "poi_test_simple", "migration") - len(result.errors)}")
+    enviar_senal_log("ERROR", f"Fallos: {len(result.failures, "poi_test_simple", "migration")}")
+    enviar_senal_log("ERROR", f"Errores: {len(result.errors, "poi_test_simple", "migration")}")
 
     success_rate = ((result.testsRun - len(result.failures) - len(result.errors)) / result.testsRun * 100) if result.testsRun > 0 else 0
-    print(f"Tasa de éxito: {success_rate:.1f}%")
+    enviar_senal_log("INFO", f"Tasa de éxito: {success_rate:.1f}%", "poi_test_simple", "migration")
 
     if len(result.failures) == 0 and len(result.errors) == 0:
-        print("RESULTADO: TODOS LOS TESTS PASARON EXITOSAMENTE")
+        enviar_senal_log("INFO", "RESULTADO: TODOS LOS TESTS PASARON EXITOSAMENTE", "poi_test_simple", "migration")
     else:
-        print("RESULTADO: Se encontraron issues que requieren atención")
+        enviar_senal_log("INFO", "RESULTADO: Se encontraron issues que requieren atención", "poi_test_simple", "migration")
 
     # Generar reporte
     generate_report(result, elapsed_time)
@@ -327,7 +328,7 @@ VELOCIDAD: {'EXCELENTE' if elapsed_time < 30 else 'BUENA' if elapsed_time < 60 e
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report_content)
 
-    print(f"\nREPORTE GENERADO: {report_path}")
+    enviar_senal_log("INFO", f"\nREPORTE GENERADO: {report_path}", "poi_test_simple", "migration")
 
 if __name__ == "__main__":
     run_poi_tests()

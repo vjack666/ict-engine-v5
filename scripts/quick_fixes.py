@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🔧 QUICK FIXES AUTOMATION SCRIPT
@@ -32,11 +33,11 @@ class QuickFixer:
 
     def scan_and_fix_all(self, apply_fixes: bool = False) -> Dict:
         """Escanea y opcionalmente aplica todos los fixes."""
-        print("🔍 ESCANEANDO PROYECTO PARA QUICK FIXES...")
-        print("=" * 50)
+        enviar_senal_log("INFO", "🔍 ESCANEANDO PROYECTO PARA QUICK FIXES...", "quick_fixes", "migration")
+        enviar_senal_log("INFO", "=" * 50, "quick_fixes", "migration")
 
         python_files = list(self.project_root.rglob("*.py"))
-        print(f"📁 Archivos Python encontrados: {len(python_files)}")
+        enviar_senal_log("INFO", f"📁 Archivos Python encontrados: {len(python_files, "quick_fixes", "migration")}")
 
         results = {
             'files_scanned': len(python_files),
@@ -76,7 +77,7 @@ class QuickFixer:
             with open(file_path, 'r', encoding='utf-8') as f:
                 original_content = f.read()
         except Exception as e:
-            print(f"❌ Error leyendo {file_path}: {e}")
+            enviar_senal_log("ERROR", f"❌ Error leyendo {file_path}: {e}", "quick_fixes", "migration")
             return 0
 
         modified_content = original_content
@@ -107,7 +108,7 @@ class QuickFixer:
                 else:
                     fixes_in_file += 1
                     self.fixes_applied['duplicate_imports'] += 1
-                    print(f"  🔧 Removiendo import duplicado: {line.strip()}")
+                    enviar_senal_log("INFO", f"  🔧 Removiendo import duplicado: {line.strip(, "quick_fixes", "migration")}")
             else:
                 filtered_lines.append(line)
 
@@ -153,12 +154,12 @@ class QuickFixer:
             try:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(modified_content)
-                print(f"✅ {file_path.name}: {fixes_in_file} fixes aplicados")
+                enviar_senal_log("INFO", f"✅ {file_path.name}: {fixes_in_file} fixes aplicados", "quick_fixes", "migration")
             except Exception as e:
-                print(f"❌ Error escribiendo {file_path}: {e}")
+                enviar_senal_log("ERROR", f"❌ Error escribiendo {file_path}: {e}", "quick_fixes", "migration")
                 return 0
         elif fixes_in_file > 0:
-            print(f"🔍 {file_path.name}: {fixes_in_file} fixes detectados (no aplicados)")
+            enviar_senal_log("INFO", f"🔍 {file_path.name}: {fixes_in_file} fixes detectados (no aplicados, "quick_fixes", "migration")")
 
         return fixes_in_file
 
@@ -184,15 +185,15 @@ class QuickFixer:
     def _print_summary(self, results: Dict, applied: bool) -> None:
         """Imprime resumen de resultados."""
         action = "APLICADOS" if applied else "DETECTADOS"
-        print(f"\n🎯 RESUMEN DE FIXES {action}:")
-        print("=" * 40)
-        print(f"📁 Archivos escaneados: {results['files_scanned']}")
-        print(f"📝 Archivos modificados: {results['files_modified']}")
-        print(f"🔧 Total de fixes: {results['total_fixes']}")
-        print("\n📊 FIXES POR TIPO:")
+        enviar_senal_log("INFO", f"\n🎯 RESUMEN DE FIXES {action}:", "quick_fixes", "migration")
+        enviar_senal_log("INFO", "=" * 40, "quick_fixes", "migration")
+        enviar_senal_log("INFO", f"📁 Archivos escaneados: {results['files_scanned']}", "quick_fixes", "migration")
+        enviar_senal_log("INFO", f"📝 Archivos modificados: {results['files_modified']}", "quick_fixes", "migration")
+        enviar_senal_log("INFO", f"🔧 Total de fixes: {results['total_fixes']}", "quick_fixes", "migration")
+        enviar_senal_log("INFO", "\n📊 FIXES POR TIPO:", "quick_fixes", "migration")
         for fix_type, count in results['fixes_by_type'].items():
             if count > 0:
-                print(f"  ✅ {fix_type.replace('_', ' ').title()}: {count}")
+                enviar_senal_log("INFO", f"  ✅ {fix_type.replace('_', ' ', "quick_fixes", "migration").title()}: {count}")
 
 
 def main():
@@ -213,12 +214,12 @@ def main():
 
     if args.all:
         # Primero escanear
-        print("🔍 PASO 1: ESCANEANDO...")
+        enviar_senal_log("INFO", "🔍 PASO 1: ESCANEANDO...", "quick_fixes", "migration")
         fixer.scan_and_fix_all(apply_fixes=False)
 
         # Luego aplicar
         input("\n⏸️  Presiona Enter para aplicar fixes...")
-        print("\n🔧 PASO 2: APLICANDO FIXES...")
+        enviar_senal_log("INFO", "\n🔧 PASO 2: APLICANDO FIXES...", "quick_fixes", "migration")
         fixer.scan_and_fix_all(apply_fixes=True)
 
     elif args.scan:
@@ -226,7 +227,7 @@ def main():
     elif args.fix:
         fixer.scan_and_fix_all(apply_fixes=True)
 
-    print("\n✅ Quick Fixes completado!")
+    enviar_senal_log("INFO", "\n✅ Quick Fixes completado!", "quick_fixes", "migration")
 
 
 if __name__ == "__main__":

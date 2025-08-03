@@ -29,7 +29,7 @@ try:
 except ImportError:
     def enviar_senal_log(nivel: str, mensaje: str, fuente: str, categoria: str) -> None:
         """Fallback logging function"""
-        print(f"[{nivel}] {mensaje}")
+        enviar_senal_log("INFO", f"[{nivel}] {mensaje}", "trading_schedule", "migration")
 
 
 class TradingSession(Enum):
@@ -328,18 +328,18 @@ def test_trading_schedule() -> bool:
     try:
         # Test 1: Obtener sesión actual
         current_session = get_current_session_info()
-        print(f"✅ Test sesión actual: {current_session['name'] if current_session else 'Sin sesión activa'}")
+        enviar_senal_log("INFO", f"✅ Test sesión actual: {current_session['name'] if current_session else 'Sin sesión activa'}", "trading_schedule", "migration")
 
         # Test 2: Calcular tiempo restante
         tiempo_restante = calcular_tiempo_restante_para_proxima_sesion()
         if tiempo_restante:
-            print(f"✅ Test tiempo restante: {tiempo_restante['hours']}h {tiempo_restante['minutes']}m")
+            enviar_senal_log("INFO", f"✅ Test tiempo restante: {tiempo_restante['hours']}h {tiempo_restante['minutes']}m", "trading_schedule", "migration")
         else:
-            print("✅ Test tiempo restante: Datos no disponibles")
+            enviar_senal_log("INFO", "✅ Test tiempo restante: Datos no disponibles", "trading_schedule", "migration")
 
         # Test 3: Estado del mercado
         market_status = get_market_status()
-        print(f"✅ Test estado mercado: {'ABIERTO' if market_status['is_open'] else 'CERRADO'}")
+        enviar_senal_log("INFO", f"✅ Test estado mercado: {'ABIERTO' if market_status['is_open'] else 'CERRADO'}", "trading_schedule", "migration")
 
         enviar_senal_log(
             "INFO",
@@ -362,6 +362,6 @@ def test_trading_schedule() -> bool:
 
 # 🚀 INICIALIZACIÓN AUTOMÁTICA
 if __name__ == "__main__":
-    print("🕐 TRADING SCHEDULE - SISTEMA DE HORARIOS v1.0.0")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🕐 TRADING SCHEDULE - SISTEMA DE HORARIOS v1.0.0", "trading_schedule", "migration")
+    enviar_senal_log("INFO", "=" * 50, "trading_schedule", "migration")
     test_trading_schedule()

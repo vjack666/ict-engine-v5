@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧪 TEST DASHBOARD WIDGETS - Tests unitarios para widgets del dashboard
@@ -15,7 +16,7 @@ try:
     from dashboard.dashboard_widgets import *
     from dashboard.ict_professional_widget import *
 except ImportError as e:
-    print(f"⚠️ Import warning en test_dashboard_widgets: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Import warning en test_dashboard_widgets: {e}", "test_dashboard_widgets", "migration")
 
 class TestDashboardWidgets(unittest.TestCase):
     """Tests para widgets del dashboard"""
@@ -152,9 +153,9 @@ class TestWidgetFormatting(unittest.TestCase):
         self.assertTrue(symbol.isalpha())
 
 if __name__ == '__main__':
-    print("🧪 Ejecutando tests de Dashboard Widgets...")
+    enviar_senal_log("INFO", "🧪 Ejecutando tests de Dashboard Widgets...", "test_dashboard_widgets", "migration")
 
     # Configurar verbosidad
     unittest.main(verbosity=2, exit=False)
 
-    print("✅ Tests de Dashboard Widgets completados")
+    enviar_senal_log("INFO", "✅ Tests de Dashboard Widgets completados", "test_dashboard_widgets", "migration")

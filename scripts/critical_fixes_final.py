@@ -1,3 +1,4 @@
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 SCRIPT FINAL DE FIXES CRÍTICOS
@@ -17,7 +18,7 @@ class CriticalErrorFixer:
 
     def fix_none_assignable_errors(self):
         """Fix errores de Type 'None' is not assignable"""
-        print("🔧 Fixing None assignable errors...")
+        enviar_senal_log("ERROR", "🔧 Fixing None assignable errors...", "critical_fixes_final", "migration")
 
         # Fix en core/ict_engine/veredicto_engine_v4.py
         veredicto_file = self.base_path / "core/ict_engine/veredicto_engine_v4.py"
@@ -52,7 +53,7 @@ class CriticalErrorFixer:
 
     def fix_missing_attributes(self):
         """Fix errores de Cannot access attribute"""
-        print("🔧 Fixing missing attributes...")
+        enviar_senal_log("INFO", "🔧 Fixing missing attributes...", "critical_fixes_final", "migration")
 
         # Fix en core/ict_engine/tct_measurement_engine.py
         tct_file = self.base_path / "core/analysis_command_center/tct_pipeline/tct_measurement_engine.py"
@@ -82,7 +83,7 @@ class CriticalErrorFixer:
 
     def fix_aggregated_tct_metrics(self):
         """Fix para AggregatedTCTMetrics.to_dict()"""
-        print("🔧 Fixing AggregatedTCTMetrics...")
+        enviar_senal_log("INFO", "🔧 Fixing AggregatedTCTMetrics...", "critical_fixes_final", "migration")
 
         # Buscar archivo de métricas
         for metrics_file in self.base_path.glob("**/tct_*.py"):
@@ -116,7 +117,7 @@ class CriticalErrorFixer:
 
     def fix_confidence_engine_methods(self):
         """Fix métodos faltantes en ConfidenceEngine"""
-        print("🔧 Fixing ConfidenceEngine methods...")
+        enviar_senal_log("INFO", "🔧 Fixing ConfidenceEngine methods...", "critical_fixes_final", "migration")
 
         confidence_file = self.base_path / "core/ict_engine/confidence_engine.py"
         if confidence_file.exists():
@@ -149,7 +150,7 @@ class CriticalErrorFixer:
 
     def fix_market_context_attributes(self):
         """Fix atributos faltantes en MarketContext"""
-        print("🔧 Fixing MarketContext attributes...")
+        enviar_senal_log("INFO", "🔧 Fixing MarketContext attributes...", "critical_fixes_final", "migration")
 
         # Buscar archivo de MarketContext
         for context_file in self.base_path.glob("**/market_*.py"):
@@ -178,7 +179,7 @@ class CriticalErrorFixer:
 
     def fix_parameter_errors(self):
         """Fix errores de parámetros faltantes o incorrectos"""
-        print("🔧 Fixing parameter errors...")
+        enviar_senal_log("ERROR", "🔧 Fixing parameter errors...", "critical_fixes_final", "migration")
 
         # Fix en archivos que usan MarketContext
         for py_file in self.base_path.glob("**/*.py"):
@@ -236,7 +237,7 @@ class CriticalErrorFixer:
 
     def fix_undefined_variables(self):
         """Fix variables no definidas"""
-        print("🔧 Fixing undefined variables...")
+        enviar_senal_log("INFO", "🔧 Fixing undefined variables...", "critical_fixes_final", "migration")
 
         for py_file in self.base_path.glob("**/*.py"):
             try:
@@ -264,7 +265,7 @@ class CriticalErrorFixer:
 
     def fix_getitem_errors(self):
         """Fix errores de __getitem__"""
-        print("🔧 Fixing __getitem__ errors...")
+        enviar_senal_log("ERROR", "🔧 Fixing __getitem__ errors...", "critical_fixes_final", "migration")
 
         for py_file in self.base_path.glob("**/*.py"):
             try:
@@ -294,7 +295,7 @@ class CriticalErrorFixer:
 
     def run_all_fixes(self):
         """Ejecuta todos los fixes"""
-        print("🚀 Iniciando fixes críticos finales...")
+        enviar_senal_log("INFO", "🚀 Iniciando fixes críticos finales...", "critical_fixes_final", "migration")
 
         try:
             self.fix_none_assignable_errors()
@@ -306,19 +307,19 @@ class CriticalErrorFixer:
             self.fix_undefined_variables()
             self.fix_getitem_errors()
 
-            print(f"\n✅ FIXES COMPLETADOS:")
-            print(f"   📊 Total fixes aplicados: {self.fixes_applied}")
-            print(f"   📁 Archivos modificados: {len(self.files_modified)}")
+            enviar_senal_log("INFO", f"\n✅ FIXES COMPLETADOS:", "critical_fixes_final", "migration")
+            enviar_senal_log("INFO", f"   📊 Total fixes aplicados: {self.fixes_applied}", "critical_fixes_final", "migration")
+            enviar_senal_log("INFO", f"   📁 Archivos modificados: {len(self.files_modified, "critical_fixes_final", "migration")}")
 
             if self.files_modified:
-                print(f"\n📂 Archivos modificados:")
+                enviar_senal_log("INFO", f"\n📂 Archivos modificados:", "critical_fixes_final", "migration")
                 for file_path in self.files_modified:
-                    print(f"   ✅ {Path(file_path).name}")
+                    enviar_senal_log("INFO", f"   ✅ {Path(file_path, "critical_fixes_final", "migration").name}")
 
             return True
 
         except Exception as e:
-            print(f"❌ Error durante los fixes: {e}")
+            enviar_senal_log("ERROR", f"❌ Error durante los fixes: {e}", "critical_fixes_final", "migration")
             return False
 
 if __name__ == "__main__":
@@ -326,7 +327,7 @@ if __name__ == "__main__":
     success = fixer.run_all_fixes()
 
     if success:
-        print(f"\n🎉 FIXES CRÍTICOS COMPLETADOS EXITOSAMENTE!")
-        print(f"   Ejecuta el validation runner para verificar mejoras")
+        enviar_senal_log("INFO", f"\n🎉 FIXES CRÍTICOS COMPLETADOS EXITOSAMENTE!", "critical_fixes_final", "migration")
+        enviar_senal_log("INFO", f"   Ejecuta el validation runner para verificar mejoras", "critical_fixes_final", "migration")
     else:
-        print(f"\n⚠️  Algunos fixes pueden requerir revisión manual")
+        enviar_senal_log("INFO", f"\n⚠️  Algunos fixes pueden requerir revisión manual", "critical_fixes_final", "migration")
