@@ -1,7 +1,7 @@
 # 🏗️ ARQUITECTURA DEL SISTEMA ICT ENGINE v5.0 - INTEGRACIÓN COMPLETA
-**Fecha:** 3 de Agosto 2025  
-**Versión:** 5.0  
-**Tipo:** Arquitectura Técnica Detallada  
+**Fecha:** 3 de Agosto 2025
+**Versión:** 5.0
+**Tipo:** Arquitectura Técnica Detallada
 
 ---
 
@@ -31,7 +31,7 @@ graph TB
 class AdvancedCandleCoordinator:
     """
     RESPONSABILIDAD: Orquestación central de todo el ecosistema
-    
+
     FUNCIONES CLAVE:
     - Conexión con advanced_candle_downloader.py
     - Gestión de suscriptores por categoría
@@ -39,7 +39,7 @@ class AdvancedCandleCoordinator:
     - Distribución de datos enriquecidos
     - Manejo de errores y recuperación
     """
-    
+
     # ESTRUCTURA DE DATOS
     self.subscribers = {
         'dashboard': [],           # Callbacks del dashboard
@@ -51,10 +51,10 @@ class AdvancedCandleCoordinator:
         'session_analyzer': [],   # Análisis de sesiones
         'alert_system': []        # Sistema de alertas
     }
-    
+
     # TIMEFRAMES ACTIVOS
     self.active_timeframes = ["M1", "M5", "M15", "H1", "H4", "D1"]
-    
+
     # SÍMBOLOS MONITOREADOS
     self.active_symbols = ["EURUSD", "GBPUSD", "USDJPY"]
 ```
@@ -65,7 +65,7 @@ class AdvancedCandleCoordinator:
 class ICTMultiTimeframeAnalyzer:
     """
     RESPONSABILIDAD: Análisis completo de metodología ICT
-    
+
     ALGORITMOS IMPLEMENTADOS:
     - Market Structure Analysis (BOS/CHOCH)
     - Fair Value Gap Detection (3-candle pattern)
@@ -74,10 +74,10 @@ class ICTMultiTimeframeAnalyzer:
     - Candle Range Theory (H4/D1 analysis)
     - Session-based Bias Analysis
     """
-    
+
     # JERARQUÍA DE TIMEFRAMES
     self.timeframe_hierarchy = ["D1", "H4", "H1", "M15", "M5", "M1"]
-    
+
     # PERFILES DE SESIÓN
     self.session_profiles = {
         'LONDON': {
@@ -85,7 +85,7 @@ class ICTMultiTimeframeAnalyzer:
             'typical_patterns': ['JUDAS_SWING', 'FVG', 'LIQUIDITY_GRABS']
         },
         'NEW_YORK': {
-            'characteristics': 'DISTRIBUTION_FOCUSED', 
+            'characteristics': 'DISTRIBUTION_FOCUSED',
             'typical_patterns': ['SILVER_BULLET', 'ORDER_BLOCKS', 'POWER_OF_THREE']
         },
         'ASIAN': {
@@ -101,7 +101,7 @@ class ICTMultiTimeframeAnalyzer:
 class AdvancedFractalAnalyzer:
     """
     RESPONSABILIDAD: Análisis completo de fractales Williams + ZigZag
-    
+
     ALGORITMOS IMPLEMENTADOS:
     - Williams Fractals (5-candle pattern)
     - ZigZag Filtering (noise reduction)
@@ -110,13 +110,13 @@ class AdvancedFractalAnalyzer:
     - Trading Signal Generation
     - ICT Level Confluence
     """
-    
+
     # UMBRALES DE FUERZA POR TIMEFRAME
     self.fractal_strength_thresholds = {
-        'M1': 5, 'M5': 8, 'M15': 12, 
+        'M1': 5, 'M5': 8, 'M15': 12,
         'H1': 15, 'H4': 20, 'D1': 25
     }
-    
+
     # CONFIGURACIÓN ZIGZAG
     self.zigzag_config = {
         'min_change_percentage': 0.5,
@@ -131,7 +131,7 @@ class AdvancedFractalAnalyzer:
 class SessionAnalyzer:
     """
     RESPONSABILIDAD: Análisis de comportamiento por sesiones y Kill Zones
-    
+
     PATRONES ICT IMPLEMENTADOS:
     - Power of Three (Accumulation → Manipulation → Distribution)
     - Silver Bullet (10:00-11:00 GMT setup)
@@ -139,7 +139,7 @@ class SessionAnalyzer:
     - Session Characterization
     - Volatility Forecasting
     """
-    
+
     # KILL ZONES ICT
     self.kill_zones = {
         'LONDON_OPEN': {'time': '08:00-09:00', 'priority': 'HIGH'},
@@ -158,18 +158,18 @@ class SessionAnalyzer:
 1. DESCARGA DE VELAS
    advanced_candle_downloader.py
    ↓ (cada 5 segundos para M1)
-   
+
 2. COORDINACIÓN CENTRAL
    AdvancedCandleCoordinator
    ↓ (distribución asíncrona)
-   
+
 3. ANÁLISIS PARALELO
    ├── ICTMultiTimeframeAnalyzer
-   ├── AdvancedFractalAnalyzer  
+   ├── AdvancedFractalAnalyzer
    ├── SessionAnalyzer
    └── EnhancedPOIDetector
    ↓ (síntesis de resultados)
-   
+
 4. DISTRIBUCIÓN ENRIQUECIDA
    ├── AdvancedDashboard (visualización)
    ├── EnhancedDataLogger (persistencia)
@@ -183,7 +183,7 @@ enriched_candle_data = {
     'raw_candles': pd.DataFrame,           # Velas originales
     'timeframe': str,                      # M1, M5, M15, etc.
     'timestamp': datetime,                 # Momento del análisis
-    
+
     'ict_analysis': {
         'market_structure': {
             'break_of_structure': bool,
@@ -214,7 +214,7 @@ enriched_candle_data = {
             'volatility_forecast': str
         }
     },
-    
+
     'fractal_signals': {
         'bullish_fractals': [
             {
@@ -235,7 +235,7 @@ enriched_candle_data = {
             }
         ]
     },
-    
+
     'session_analysis': {
         'power_of_three': {
             'pattern_completion': bool,
@@ -248,7 +248,7 @@ enriched_candle_data = {
             'probability_success': float
         }
     },
-    
+
     'market_synthesis': {
         'overall_bias': str,
         'confluence_score': int,           # 0-10
@@ -267,7 +267,7 @@ enriched_candle_data = {
 ```python
 UPDATE_INTERVALS = {
     'M1': 5,     # Cada 5 segundos (crítico)
-    'M5': 30,    # Cada 30 segundos (importante) 
+    'M5': 30,    # Cada 30 segundos (importante)
     'M15': 60,   # Cada minuto (moderado)
     'H1': 300,   # Cada 5 minutos (relajado)
     'H4': 900,   # Cada 15 minutos (esporádico)
@@ -286,14 +286,14 @@ class ComprehensiveRealTimeEngine:
                 self.timeframe_loop(timeframe, interval)
             )
             tasks.append(task)
-            
+
         # Tareas de sistema
         tasks.extend([
             asyncio.create_task(self.system_monitor_loop()),
             asyncio.create_task(self.alert_generation_loop()),
             asyncio.create_task(self.performance_tracking_loop())
         ])
-        
+
         # Ejecutar todo concurrentemente
         await asyncio.gather(*tasks)
 ```
@@ -375,7 +375,7 @@ SYSTEM_CONFIG = {
         "symbols": ["EURUSD", "GBPUSD", "USDJPY"],
         "timeframes": ["M1", "M5", "M15", "H1", "H4", "D1"]
     },
-    
+
     # Configuración ICT
     "ict_settings": {
         "fair_value_gaps": {
@@ -396,7 +396,7 @@ SYSTEM_CONFIG = {
             }
         }
     },
-    
+
     # Configuración de fractales
     "fractal_settings": {
         "williams_fractals": {
@@ -408,7 +408,7 @@ SYSTEM_CONFIG = {
             "noise_reduction": True
         }
     },
-    
+
     # Configuración de riesgo
     "risk_settings": {
         "base_risk_per_trade": 0.02,
@@ -431,23 +431,23 @@ SYSTEM_CONFIG = {
 class AdvancedICTDashboard:
     """
     PANELES ESPECIALIZADOS:
-    
+
     1. Panel ICT Multi-Timeframe
        - Market Structure status
        - Fair Value Gaps activos
        - Order Blocks disponibles
        - Session context
-    
+
     2. Panel de Fractales Avanzado
        - Fractales activos por timeframe
        - Señales de trading
        - Confluencia con ICT
-    
+
     3. Panel de Análisis de Sesión
        - Sesión actual y progreso
        - Kill Zones activas
        - Patterns ICT detectados
-    
+
     4. Panel de Síntesis del Mercado
        - Bias general del mercado
        - Confluencia total (0-10)
@@ -515,11 +515,11 @@ SCALABILITY_FEATURES = {
 
 ---
 
-**📅 Fecha de Implementación:** 3 de Agosto 2025  
-**⚡ Arquitecto:** ICT Engine v5.0 Team  
+**📅 Fecha de Implementación:** 3 de Agosto 2025
+**⚡ Arquitecto:** ICT Engine v5.0 Team
 **🎯 Estado:** READY FOR DEVELOPMENT**
 
 ---
 
-**Sistema ICT Engine v5.0 - Arquitectura de Ecosistema Completo**  
+**Sistema ICT Engine v5.0 - Arquitectura de Ecosistema Completo**
 *"Transformando datos en inteligencia institucional"*

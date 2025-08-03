@@ -1,7 +1,7 @@
 # ⚙️ CONFIGURACIÓN COMPLETA - ICT ENGINE v5.0 INTEGRACIÓN
-**Fecha:** 3 de Agosto 2025  
-**Versión:** 5.0  
-**Tipo:** Guía de Configuración Técnica  
+**Fecha:** 3 de Agosto 2025
+**Versión:** 5.0
+**Tipo:** Guía de Configuración Técnica
 
 ---
 
@@ -24,19 +24,19 @@ from typing import Dict, List, Any
 DATA_SOURCES_CONFIG = {
     "primary_source": "advanced_candle_downloader",
     "backup_sources": ["mt5_direct", "api_fallback"],
-    
+
     "symbols": {
         "forex_majors": ["EURUSD", "GBPUSD", "USDJPY", "USDCHF"],
         "forex_minors": ["EURJPY", "GBPJPY", "EURGBP"],
         "active_symbols": ["EURUSD", "GBPUSD", "USDJPY"]  # Para iniciar
     },
-    
+
     "timeframes": {
         "all_available": ["M1", "M5", "M15", "M30", "H1", "H4", "D1", "W1"],
         "active_timeframes": ["M1", "M5", "M15", "H1", "H4", "D1"],
         "critical_timeframes": ["M5", "M15", "H1"]  # Para análisis principal
     },
-    
+
     "update_intervals": {
         "M1": 5,      # Cada 5 segundos (tiempo real crítico)
         "M5": 30,     # Cada 30 segundos (importante)
@@ -45,7 +45,7 @@ DATA_SOURCES_CONFIG = {
         "H4": 900,    # Cada 15 minutos (esporádico)
         "D1": 3600    # Cada hora (histórico)
     },
-    
+
     "data_retention": {
         "memory_buffer_size": 1000,      # Velas en memoria por TF
         "historical_days": 30,           # Días de histórico
@@ -65,7 +65,7 @@ ICT_ANALYSIS_CONFIG = {
         "multi_tf_confirmation": True,
         "higher_tf_bias_weight": 2.0
     },
-    
+
     "fair_value_gaps": {
         "min_gap_size_pips": {
             "EURUSD": 5, "GBPUSD": 6, "USDJPY": 8, "default": 5
@@ -79,7 +79,7 @@ ICT_ANALYSIS_CONFIG = {
             "timeframe_weight": {"M15": 1.0, "H1": 1.3, "H4": 1.8}
         }
     },
-    
+
     "order_blocks": {
         "min_reaction_pips": {
             "EURUSD": 15, "GBPUSD": 18, "USDJPY": 20, "default": 15
@@ -93,7 +93,7 @@ ICT_ANALYSIS_CONFIG = {
             "time_context_weight": 0.3
         }
     },
-    
+
     "liquidity_levels": {
         "equal_highs_lows_tolerance_pips": {
             "EURUSD": 3, "GBPUSD": 4, "USDJPY": 5, "default": 3
@@ -106,7 +106,7 @@ ICT_ANALYSIS_CONFIG = {
             "reversal_confirmation_candles": 2
         }
     },
-    
+
     "candle_range_theory": {
         "applicable_timeframes": ["H4", "D1", "W1"],
         "equilibrium_calculation": "midpoint",
@@ -118,12 +118,12 @@ ICT_ANALYSIS_CONFIG = {
             "opening_gap", "range_extension", "rejection_candles"
         ]
     },
-    
+
     "session_analysis": {
         "timezone": "GMT",
         "kill_zones": {
             "london_open": {
-                "start": "08:00", "end": "09:00", 
+                "start": "08:00", "end": "09:00",
                 "priority": "HIGH", "weight": 0.8
             },
             "london_close": {
@@ -154,7 +154,7 @@ ICT_ANALYSIS_CONFIG = {
                 "recommended_strategies": ["RANGE_TRADING", "ACCUMULATION"]
             },
             "LONDON": {
-                "volatility": "HIGH", 
+                "volatility": "HIGH",
                 "typical_range_pips": {"EURUSD": 80, "GBPUSD": 120},
                 "recommended_strategies": ["TREND_FOLLOWING", "BREAKOUTS"]
             },
@@ -175,7 +175,7 @@ FRACTAL_ANALYSIS_CONFIG = {
     "williams_fractals": {
         "confirmation_candles": 2,
         "min_strength_threshold": {
-            "M1": 5, "M5": 8, "M15": 12, 
+            "M1": 5, "M5": 8, "M15": 12,
             "H1": 15, "H4": 20, "D1": 25
         },
         "confluence_weight": 0.3,
@@ -183,7 +183,7 @@ FRACTAL_ANALYSIS_CONFIG = {
             "EURUSD": 5, "GBPUSD": 6, "USDJPY": 8
         }
     },
-    
+
     "zigzag_filter": {
         "min_change_percentage": {
             "M1": 0.3, "M5": 0.5, "M15": 0.8,
@@ -197,7 +197,7 @@ FRACTAL_ANALYSIS_CONFIG = {
             "market_condition_based": True
         }
     },
-    
+
     "multi_timeframe": {
         "alignment_analysis": True,
         "higher_tf_weight": 2.0,
@@ -209,7 +209,7 @@ FRACTAL_ANALYSIS_CONFIG = {
             ["H1", "H4", "D1"]
         ]
     },
-    
+
     "trading_signals": {
         "fractal_reversal": {
             "min_confidence_score": 70,
@@ -223,7 +223,7 @@ FRACTAL_ANALYSIS_CONFIG = {
             "continuation_probability": 0.75
         }
     },
-    
+
     "confluence_factors": {
         "ict_level_proximity": {
             "weight": 0.4,
@@ -251,13 +251,13 @@ POI_ENHANCED_CONFIG = {
         "time_validity_hours": 72,
         "max_active_pois": 50
     },
-    
+
     "enrichment_weights": {
         "ict_context_weight": 0.4,
         "fractal_context_weight": 0.3,
         "session_context_weight": 0.3
     },
-    
+
     "ict_integration": {
         "fvg_proximity_bonus": 2.0,
         "order_block_confluence_bonus": 1.5,
@@ -268,20 +268,20 @@ POI_ENHANCED_CONFIG = {
             "LOW_ACTIVITY": 0.7
         }
     },
-    
+
     "fractal_integration": {
         "fractal_confluence_bonus": 1.3,
         "swing_point_alignment_bonus": 1.4,
         "multi_tf_fractal_bonus": 1.6
     },
-    
+
     "narrative_generation": {
         "enabled": True,
         "include_probabilities": True,
         "include_risk_assessment": True,
         "include_recommended_actions": True
     },
-    
+
     "quality_scoring": {
         "base_score": 5.0,
         "max_score": 10.0,
@@ -302,28 +302,28 @@ RISK_MANAGEMENT_CONFIG = {
         "max_concurrent_trades": 3,
         "max_correlation_exposure": 0.8      # 80% correlación máxima
     },
-    
+
     "session_multipliers": {
         "ASIAN": 0.5,                       # Reducir riesgo 50%
         "LONDON": 1.0,                      # Riesgo normal
         "NEW_YORK": 1.2,                    # Aumentar 20%
         "LONDON_NY_OVERLAP": 1.5            # Aumentar 50%
     },
-    
+
     "confluence_multipliers": {
         "LOW": 0.5,        # < 5 puntos confluencia
         "MEDIUM": 1.0,      # 5-7 puntos
-        "HIGH": 1.5,        # 7-8 puntos  
+        "HIGH": 1.5,        # 7-8 puntos
         "EXTREME": 2.0      # > 8 puntos
     },
-    
+
     "volatility_adjustments": {
         "LOW": 1.2,         # Aumentar en baja volatilidad
         "NORMAL": 1.0,      # Sin ajuste
         "HIGH": 0.8,        # Reducir en alta volatilidad
         "EXTREME": 0.5      # Reducir significativamente
     },
-    
+
     "stop_loss_settings": {
         "use_fractal_stops": True,
         "min_stop_pips": {"EURUSD": 10, "GBPUSD": 12, "USDJPY": 15},
@@ -331,7 +331,7 @@ RISK_MANAGEMENT_CONFIG = {
         "atr_multiplier": 1.5,
         "dynamic_adjustment": True
     },
-    
+
     "position_sizing": {
         "calculation_method": "fixed_fractional",
         "account_balance_percentage": True,
@@ -348,7 +348,7 @@ RISK_MANAGEMENT_CONFIG = {
 ALERT_SYSTEM_CONFIG = {
     "enabled": True,
     "priorities": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
-    
+
     "channels": {
         "dashboard": {"enabled": True, "all_priorities": True},
         "email": {"enabled": False, "min_priority": "HIGH"},
@@ -356,10 +356,10 @@ ALERT_SYSTEM_CONFIG = {
         "log_file": {"enabled": True, "all_priorities": True},
         "sound": {"enabled": True, "min_priority": "HIGH"}
     },
-    
+
     "conditions": {
         "new_fvg": {
-            "priority": "HIGH", 
+            "priority": "HIGH",
             "enabled": True,
             "min_gap_size": 10,
             "session_filtering": True
@@ -390,7 +390,7 @@ ALERT_SYSTEM_CONFIG = {
             "multi_tf_confirmation": True
         }
     },
-    
+
     "rate_limiting": {
         "max_alerts_per_minute": 10,
         "duplicate_suppression_seconds": 30,
@@ -407,7 +407,7 @@ LOGGING_CONFIG = {
     "format": "structured",
     "enable_emoji": True,
     "enable_colors": True,
-    
+
     "files": {
         "system": {
             "path": "logs/system.log",
@@ -416,21 +416,21 @@ LOGGING_CONFIG = {
             "backup_count": 5
         },
         "trading": {
-            "path": "logs/trading.log", 
+            "path": "logs/trading.log",
             "level": "INFO",
             "max_size": "50MB",
             "backup_count": 10
         },
         "errors": {
             "path": "logs/errors.log",
-            "level": "ERROR", 
+            "level": "ERROR",
             "max_size": "20MB",
             "backup_count": 7
         },
         "performance": {
             "path": "logs/performance.log",
             "level": "DEBUG",
-            "max_size": "30MB", 
+            "max_size": "30MB",
             "backup_count": 3
         },
         "analysis": {
@@ -440,13 +440,13 @@ LOGGING_CONFIG = {
             "backup_count": 15
         }
     },
-    
+
     "rotation": {
         "interval": "daily",
         "when": "midnight",
         "utc": True
     },
-    
+
     "structured_data": {
         "include_timestamp": True,
         "include_thread_id": True,
@@ -468,7 +468,7 @@ PERFORMANCE_CONFIG = {
         "io_tracking": True,
         "network_tracking": True
     },
-    
+
     "optimization": {
         "cache_size": 1000,
         "parallel_processing": True,
@@ -478,7 +478,7 @@ PERFORMANCE_CONFIG = {
         "lazy_loading": True,
         "data_compression": True
     },
-    
+
     "limits": {
         "max_memory_usage_mb": 512,
         "max_cpu_usage_percent": 25,
@@ -486,7 +486,7 @@ PERFORMANCE_CONFIG = {
         "max_queue_size": 1000,
         "connection_timeout_seconds": 30
     },
-    
+
     "targets": {
         "processing_time_per_analysis": 500,    # milliseconds
         "data_distribution_time": 100,          # milliseconds
@@ -505,7 +505,7 @@ DEVELOPMENT_CONFIG = {
     "test_mode": False,
     "mock_data": False,
     "verbose_logging": False,
-    
+
     "testing": {
         "unit_tests": True,
         "integration_tests": True,
@@ -513,7 +513,7 @@ DEVELOPMENT_CONFIG = {
         "stress_tests": False,
         "mock_trading": True
     },
-    
+
     "development_tools": {
         "hot_reload": False,
         "debug_dashboard": False,
@@ -545,10 +545,10 @@ COMPREHENSIVE_CONFIG = {
 def get_config(section: str = None) -> Dict[str, Any]:
     """
     Obtiene configuración completa o por sección
-    
+
     Args:
         section: Sección específica (opcional)
-        
+
     Returns:
         Diccionario de configuración
     """
@@ -559,11 +559,11 @@ def get_config(section: str = None) -> Dict[str, Any]:
 def update_config(section: str, updates: Dict[str, Any]) -> bool:
     """
     Actualiza configuración específica
-    
+
     Args:
         section: Sección a actualizar
         updates: Nuevos valores
-        
+
     Returns:
         True si actualización exitosa
     """
@@ -575,7 +575,7 @@ def update_config(section: str, updates: Dict[str, Any]) -> bool:
 def validate_config() -> bool:
     """
     Valida configuración completa
-    
+
     Returns:
         True si configuración válida
     """
@@ -583,11 +583,11 @@ def validate_config() -> bool:
         "data_sources", "ict_analysis", "fractal_analysis",
         "risk_management", "alert_system", "logging"
     ]
-    
+
     for section in required_sections:
         if section not in COMPREHENSIVE_CONFIG:
             return False
-    
+
     return True
 
 # =====================================
@@ -596,7 +596,7 @@ def validate_config() -> bool:
 
 __all__ = [
     'COMPREHENSIVE_CONFIG',
-    'get_config', 
+    'get_config',
     'update_config',
     'validate_config'
 ]
@@ -693,11 +693,11 @@ SWING_PROFILE = {
 
 ---
 
-**📅 Fecha de Configuración:** 3 de Agosto 2025  
-**⚙️ Configurado por:** ICT Engine v5.0 Team  
+**📅 Fecha de Configuración:** 3 de Agosto 2025
+**⚙️ Configurado por:** ICT Engine v5.0 Team
 **🎯 Estado:** READY FOR IMPLEMENTATION**
 
 ---
 
-**Sistema ICT Engine v5.0 - Configuración Completa**  
+**Sistema ICT Engine v5.0 - Configuración Completa**
 *"Configuración inteligente para trading institucional"*
