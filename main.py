@@ -26,6 +26,32 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 def main():
     """Función principal del launcher"""
+    # 🚀 AUTO-INICIALIZACIÓN INTELIGENTE DE DATOS AL ARRANQUE
+    enviar_senal_log("INFO", "🚀 === ICT ENGINE v5.0 INICIANDO ===", "main", "startup")
+
+    # Usar sistema inteligente de auto-descarga existente
+    try:
+        from utils.mt5_data_manager import auto_download_essential_data
+
+        enviar_senal_log("INFO", "🔍 Iniciando auto-descarga inteligente de datos...", "main", "startup")
+
+        # El sistema ya verifica automáticamente qué datos necesita actualizar
+        # Solo descarga lo que falta o está obsoleto (>6 horas)
+        success = auto_download_essential_data(
+            symbols=["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD"],
+            timeframes=["H4", "H1", "M15", "M5", "M1"],  # Orden de prioridad ICT
+            lookback=30000  # 30k velas como solicitado
+        )
+
+        if success:
+            enviar_senal_log("INFO", "✅ Auto-descarga inteligente completada", "main", "startup")
+        else:
+            enviar_senal_log("WARNING", "⚠️ Auto-descarga completada con algunos errores", "main", "startup")
+
+    except Exception as e:
+        enviar_senal_log("WARNING", f"⚠️ Error en auto-descarga inteligente: {e}", "main", "startup")
+        enviar_senal_log("INFO", "🔄 Continuando sin auto-descarga...", "main", "startup")
+
     parser = argparse.ArgumentParser(
         description="ICT Engine v5.0 - Sistema de Trading Profesional",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -166,24 +192,29 @@ def run_tests(args):
     enviar_senal_log("INFO", "🧪 Ejecutando Tests...", "main", "migration")
 
     try:
+        import pytest
+
+        # 🚀 Ejecutar tests
+        test_args = ["tests/", "--tb=short"]
+
+        if args.verbose:
+            test_args.extend(["-v", "--tb=short"])
+        else:
+            test_args.extend(["-q"])
+
+        exit_code = pytest.main(test_args)
+
+        if exit_code == 0:
+            enviar_senal_log("INFO", "✅ Todos los tests pasaron", "main", "migration")
+            enviar_senal_log("INFO", "📋 Reporte detallado disponible en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
+        else:
+            enviar_senal_log("INFO", "❌ Algunos tests fallaron", "main", "migration")
+            enviar_senal_log("INFO", "📋 Revisa el reporte detallado en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
+            sys.exit(exit_code)
+
     except ImportError:
+        enviar_senal_log("ERROR", "❌ pytest no está instalado. Instala con: pip install pytest", "main", "migration")
         sys.exit(1)
-
-    # 🚀 Ejecutar tests
-
-    if args.verbose:
-        test_args.extend(["-v", "--tb=short"])
-    else:
-        test_args.extend(["-q"])
-
-
-    if exit_code == 0:
-        enviar_senal_log("INFO", "✅ Todos los tests pasaron", "main", "migration")
-        enviar_senal_log("INFO", "📋 Reporte detallado disponible en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
-    else:
-        enviar_senal_log("INFO", "❌ Algunos tests fallaron", "main", "migration")
-        enviar_senal_log("INFO", "📋 Revisa el reporte detallado en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
-        sys.exit(exit_code)
 
 def launch_interactive_menu(args):
     """Lanza el menú interactivo principal"""
@@ -238,7 +269,7 @@ def show_system_status():
 
     # 🐍 Información de Python
     enviar_senal_log("INFO", f"🐍 Python: {sys.version}", "main", "migration")
-    enviar_senal_log("INFO", f"📁 Directorio: {os.getcwd(, "main", "migration")}")
+    enviar_senal_log("INFO", f"📁 Directorio: {os.getcwd()}", "main", "migration")
 
     # 📦 Verificar módulos principales
     modules_to_check = [

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-08-03T15:14:35.980373",
+  "total_python_files": 87,
+  "total_obsolete_candidates": 1,
+  "categories": {
+    "backup_files": [],
+    "fixed_files": [],
+    "test_debug_files": [],
+    "deprecated_files": [],
+    "migration_temp_files": [],
+    "broken_reference_files": [
+      "utilities\\obsolete_files_diagnostic_simple.py"
+    ]
+  },
+  "safety_classification": {
+    "safe_to_delete": [],
+    "review_before_delete": [
+      "utilities\\obsolete_files_diagnostic_simple.py"
+    ],
+    "keep_files": []
+  },
+  "summary": {
+    "safe_to_delete": 0,
+    "review_before_delete": 1,
+    "keep_files": 0
+  }
+}

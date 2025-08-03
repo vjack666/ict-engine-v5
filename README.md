@@ -15,9 +15,48 @@ Sistema avanzado de análisis y trading basado en patrones ICT (Inner Circle Tra
 
 ```
 ICT Engine v5.0/
-├── 🚀 main.py                     # Launcher principal
+├── 🚀 main.py                     # Launcher principal con auto-descarga
 ├── 📋 requirements.txt            # Dependencias
 ├── 🚫 .gitignore                 # Archivos excluidos
+│
+├── 📊 dashboard/                  # Dashboard interactivo
+│   ├── dashboard_definitivo.py   # Dashboard principal
+│   ├── widgets/                  # Widgets especializados
+│   └── ...
+│
+├── 🧠 core/                      # Motor central del sistema
+│   ├── ict_engine/               # Análisis ICT
+│   ├── poi_system/               # Sistema POI
+│   ├── risk_management/          # Gestión de riesgo
+│   └── ...
+│
+├── 🔧 utils/                     # Utilidades centrales
+│   ├── mt5_data_manager.py       # Gestor de datos MT5 con auto-descarga
+│   └── ...
+│
+├── ⚙️ sistema/                   # Sistema base
+│   ├── logging_interface.py     # Sistema de logging
+│   └── ...
+│
+├── 🛠️ config/                    # Configuración
+│   ├── config_manager.py        # Gestor de configuración
+│   └── ...
+│
+├── 📊 data/                      # Datos del sistema
+│   ├── candles/                  # Datos históricos (auto-generados)
+│   ├── logs/                     # Logs del sistema
+│   └── exports/                  # Exportaciones
+│
+├── 📚 docs/                      # Documentación
+│   ├── reports/                  # Reportes de auditoría y sprints
+│   ├── project_management/       # Gestión de proyecto
+│   ├── architecture/             # Documentación técnica
+│   └── ...
+│
+├── 🔍 debugging/                 # Herramientas de debugging
+├── 🛠️ utilities/                 # Utilidades de desarrollo
+└── 📝 scripts/                   # Scripts de mantenimiento
+```
 ├──
 ├── 📊 dashboard/                  # Dashboard principal
 │   ├── dashboard_definitivo.py   # App principal

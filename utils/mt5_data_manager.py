@@ -25,13 +25,11 @@ Autor: Sistema Sentinel Grid v3.3.3.3.3
 Fecha: 2025
 """
 
-from typing import Optional, Any, Dict
+from typing import Optional, Any, Dict, List
 import pandas as pd
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_mt5
+from sistema.logging_interface import enviar_senal_log
 from config.live_account_validator import get_account_validator, AccountType
-
-import numpy as np
 from pathlib import Path
 import os
 
@@ -314,7 +312,7 @@ class MT5DataManager:
 
             # Si falla, intentar con copy_rates_from
             if rates is None and self.available_functions.get('copy_rates_from', False):
-                from datetime import datetime, timedelta
+                from datetime import datetime
                 end_time = datetime.now()
                 rates = mt5.copy_rates_from(symbol, timeframe_const, end_time, count)  # type: ignore
 
@@ -347,12 +345,27 @@ class MT5DataManager:
             csv_path = Path(candles_dir) / f"{timeframe}.csv"
             csv_path.parent.mkdir(parents=True, exist_ok=True)
 
-            # Resetear índice para guardar la columna time
-            df_to_save = df.reset_index()
-            df_to_save['time'] = df_to_save['time'].astype('int64') // 10**9  # Convertir a timestamp
+            # Preparar DataFrame para guardar
+            df_to_save = df.copy()
+
+            # Si 'time' está como índice, resetearlo a columna
+            if df_to_save.index.name == 'time':
+                df_to_save = df_to_save.reset_index()
+
+            # Asegurar que la columna 'time' existe y está en formato timestamp
+            if 'time' in df_to_save.columns:
+                # Convertir a timestamp si es datetime
+                if df_to_save['time'].dtype.kind in ['M', 'O']:  # datetime or object
+                    df_to_save['time'] = pd.to_datetime(df_to_save['time']).astype('int64') // 10**9
+            else:
+                enviar_senal_log("ERROR", f"❌ DataFrame no tiene columna 'time' para {timeframe}", "mt5_data_manager", "save_csv")
+                return False
+
             df_to_save.to_csv(csv_path, index=False)
+            enviar_senal_log("INFO", f"✅ Guardado {timeframe}.csv: {len(df_to_save)} velas", "mt5_data_manager", "save_csv")
             return True
-        except (FileNotFoundError, PermissionError, IOError):
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error guardando {timeframe}.csv: {e}", "mt5_data_manager", "save_csv")
             return False
 
     def load_data_from_csv(self, timeframe: str, lookback: int = 10000) -> Optional[pd.DataFrame]:
@@ -424,13 +437,13 @@ class MT5DataManager:
 
 
 # Instancia global del manager
-_mt5_manager_instance = None
+_mt5_manager_instance: Optional[MT5DataManager] = None
 
 def get_mt5_manager() -> MT5DataManager:
     """Obtiene la instancia global del MT5DataManager."""
-    # Usar variable de módulo en lugar de global
+    global _mt5_manager_instance
     if _mt5_manager_instance is None:
-        globals()['_mt5_manager_instance'] = MT5DataManager()
+        _mt5_manager_instance = MT5DataManager()
     return _mt5_manager_instance
 
 def cargar_datos_historicos_unificado(timeframe: str,
@@ -451,7 +464,51 @@ def cargar_datos_historicos_unificado(timeframe: str,
     manager = get_mt5_manager()
     return manager.get_historical_data(symbol, timeframe, lookback)
 
-# Funciones de compatibilidad para el sistema existente
 def cargar_datos_historicos_resiliente(timeframe: str, lookback: int) -> Optional[pd.DataFrame]:
     """Función de compatibilidad con el sistema existente."""
     return cargar_datos_historicos_unificado(timeframe, lookback)
+
+def auto_download_essential_data(symbols: Optional[List[str]] = None, timeframes: Optional[List[str]] = None, lookback: int = 30000) -> bool:
+    """
+    Descarga automática de datos esenciales para el sistema
+
+    Args:
+        symbols: Lista de símbolos (usa defaults si None)
+        timeframes: Lista de timeframes (usa defaults si None)
+        lookback: Número de velas a descargar
+
+    Returns:
+        True si la descarga fue exitosa
+    """
+    if symbols is None:
+        symbols = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD"]
+
+    if timeframes is None:
+        timeframes = ["H4", "H1", "M15", "M5", "M1"]  # Orden de prioridad ICT
+
+    manager = get_mt5_manager()
+    successful_downloads = 0
+    total_downloads = len(symbols) * len(timeframes)
+
+    enviar_senal_log("INFO", f"🚀 Iniciando descarga automática: {total_downloads} conjuntos de datos", "mt5_data_manager", "auto_download")
+
+    for symbol in symbols:
+        for timeframe in timeframes:
+            try:
+                enviar_senal_log("INFO", f"📥 Descargando {symbol} {timeframe}...", "mt5_data_manager", "auto_download")
+
+                df = manager.get_historical_data(symbol, timeframe, lookback, force_download=True)
+
+                if df is not None and not df.empty:
+                    successful_downloads += 1
+                    enviar_senal_log("INFO", f"✅ {symbol} {timeframe}: {len(df)} velas descargadas", "mt5_data_manager", "auto_download")
+                else:
+                    enviar_senal_log("ERROR", f"❌ Error descargando {symbol} {timeframe}", "mt5_data_manager", "auto_download")
+
+            except Exception as e:
+                enviar_senal_log("ERROR", f"❌ Excepción descargando {symbol} {timeframe}: {e}", "mt5_data_manager", "auto_download")
+
+    success_rate = (successful_downloads / total_downloads) * 100
+    enviar_senal_log("INFO", f"📊 Descarga completada: {successful_downloads}/{total_downloads} ({success_rate:.1f}%)", "mt5_data_manager", "auto_download")
+
+    return success_rate >= 80  # Consideramos exitoso si al menos 80% se descargó
