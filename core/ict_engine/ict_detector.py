@@ -41,6 +41,16 @@ try:
 except ImportError as e:
     enviar_senal_log("WARNING", f"Funciones POI no disponibles: {e}", __name__, "init")
     poi_functions_available = False
+
+# --- Import del FractalAnalyzer ---
+try:
+    from core.ict_engine.fractal_analyzer import FractalAnalyzer, update_fractal_in_context
+    fractal_analyzer_available = True
+    enviar_senal_log("INFO", "✅ FractalAnalyzer importado correctamente", __name__, "init")
+except ImportError as e:
+    enviar_senal_log("WARNING", f"FractalAnalyzer no disponible: {e}", __name__, "init")
+    fractal_analyzer_available = False
+
 logger = get_specialized_logger('ict')
 
 # =============================================================================
@@ -107,8 +117,16 @@ class MarketContext:
         self.daily_range = {'high': 0, 'low': 0, 'mid': 0}
         self.current_session = "UNKNOWN"
 
-        # Análisis fractal dinámico (ya consolidado en fractal module)
+        # Análisis fractal dinámico (integrado con FractalAnalyzer)
         self.fractal_range = {'high': 0, 'low': 0, 'eq': 0, 'status': 'NO_CALCULADO'}
+
+        # Inicializar FractalAnalyzer si está disponible
+        if fractal_analyzer_available:
+            self.fractal_analyzer = FractalAnalyzer()
+            enviar_senal_log("INFO", "🔮 FractalAnalyzer inicializado en MarketContext", __name__, "fractal_analysis")
+        else:
+            self.fractal_analyzer = None
+            enviar_senal_log("WARNING", "⚠️ FractalAnalyzer no disponible - usando valores por defecto", __name__, "fractal_analysis")
 
         # POIs por timeframe
         self.pois_h4 = []
@@ -140,7 +158,7 @@ class MarketContext:
         return (
             f"MarketContext("
             f"h4_bias={self.h4_bias}, "
-            f"fractal_status={self.fractal_range.get('status', symbol="EURUSD", timeframe="H1", current_price=1.0, trend="neutral", volatility=0.5)}, "
+            f"fractal_status={self.fractal_range.get('status', 'NO_CALCULADO')}, "
             f"daily_range={self.daily_range['high']:.5f}-{self.daily_range['low']:.5f}, "
             f"pois_count={len(self.pois_h4) + len(self.pois_m15) + len(self.pois_m5)}"
             f")"
@@ -457,6 +475,29 @@ def update_market_context(contexto: MarketContext, df_by_timeframe: dict, curren
         enviar_senal_log("DEBUG", "📈 Evaluando calidad del análisis...", __name__, "general")
         _evaluate_analysis_quality(contexto)
         enviar_senal_log("DEBUG", f"Calidad del análisis: {contexto.analysis_quality}", __name__, "general")
+
+        # Actualizar análisis fractal (usando FractalAnalyzer)
+        if hasattr(contexto, 'fractal_analyzer') and contexto.fractal_analyzer is not None:
+            enviar_senal_log("DEBUG", "🔮 Actualizando análisis fractal con FractalAnalyzer...", __name__, "fractal_analysis")
+
+            # Usar el timeframe M15 o H4 para análisis fractal (preferencia por M15)
+            fractal_df = None
+            if 'M15' in df_by_timeframe and df_by_timeframe['M15'] is not None and len(df_by_timeframe['M15']) > 0:
+                fractal_df = df_by_timeframe['M15']
+            elif 'H4' in df_by_timeframe and df_by_timeframe['H4'] is not None and len(df_by_timeframe['H4']) > 0:
+                fractal_df = df_by_timeframe['H4']
+
+            if fractal_df is not None and len(fractal_df) > 10:
+                fractal_success = contexto.fractal_analyzer.update_fractal_context(contexto, fractal_df, current_price)
+                if fractal_success:
+                    fractal_status = contexto.fractal_range.get('status', 'NO_CALCULADO')
+                    enviar_senal_log("DEBUG", f"Fractal actualizado exitosamente: {fractal_status}", __name__, "fractal_analysis")
+                else:
+                    enviar_senal_log("DEBUG", "Fractal no se pudo actualizar - usando valores previos", __name__, "fractal_analysis")
+            else:
+                enviar_senal_log("WARNING", "Datos insuficientes para análisis fractal", __name__, "fractal_analysis")
+        else:
+            enviar_senal_log("DEBUG", "FractalAnalyzer no disponible - manteniendo valores por defecto", __name__, "fractal_analysis")
 
         # Log del contexto actualizado
         context_summary = {
@@ -1659,7 +1700,7 @@ class ICTDetector:
                 return "MEDIUM"
             else:
                 return "HIGH"
-        except:
+        except Exception:
             return "LOW"
 
     def _analyze_trend_structure_advanced(self, candles: pd.DataFrame) -> Dict[str, str]:
@@ -1667,7 +1708,7 @@ class ICTDetector:
         try:
             trend = self._analyze_trend_structure_basic(candles)
             return {'primary_trend': trend, 'secondary_trend': 'neutral'}
-        except:
+        except Exception:
             return {'primary_trend': 'unknown', 'secondary_trend': 'unknown'}
 
     def _analyze_trend_structure_basic(self, df: pd.DataFrame) -> str:
@@ -1686,7 +1727,7 @@ class ICTDetector:
                 return 'bearish_structure'
             else:
                 return 'consolidation'
-        except:
+        except Exception:
             return 'error'
 
     def _calculate_structure_strength_advanced(self, candles: pd.DataFrame) -> float:
