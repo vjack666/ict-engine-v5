@@ -22,8 +22,8 @@ try:
     from .poi_detector import encontrar_pois_multiples_para_dashboard
     from .poi_utils import (
         calcular_riesgo_poi,
-        filtrar_pois_por_calidad,
-        generar_resumen_poi
+        filtrar_pois_por_relevancia,
+        crear_resumen_pois
     )
     POI_COMPONENTS_AVAILABLE = True
 except ImportError as e:

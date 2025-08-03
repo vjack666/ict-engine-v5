@@ -19,7 +19,16 @@ from typing import Dict, Optional, Tuple, Any
 from enum import Enum
 from dataclasses import dataclass
 from datetime import datetime
-import MetaTrader5 as mt5
+
+# Importación segura de MetaTrader5
+mt5_available = False
+mt5 = None
+
+try:
+    import MetaTrader5 as mt5
+    mt5_available = True
+except ImportError:
+    pass
 
 class AccountType(Enum):
     """Tipos de cuenta MT5 detectables"""
@@ -59,11 +68,22 @@ class LiveAccountValidator:
         Returns:
             Tuple con el tipo de cuenta y información adicional
         """
-        if not mt5.initialize():
-            return AccountType.UNKNOWN, {"error": "MT5 no inicializado"}
+        # Verificar si MT5 está disponible
+        if not mt5_available or mt5 is None:
+            return AccountType.UNKNOWN, {"error": "MetaTrader5 no está instalado"}
+
+        # Verificar si MT5 se puede inicializar
+        try:
+            if not hasattr(mt5, 'initialize') or not mt5.initialize():  # type: ignore
+                return AccountType.UNKNOWN, {"error": "MT5 no inicializado"}
+        except Exception as e:
+            return AccountType.UNKNOWN, {"error": f"Error inicializando MT5: {str(e)}"}
 
         try:
-            account_info = mt5.account_info()
+            if not hasattr(mt5, 'account_info'):
+                return AccountType.UNKNOWN, {"error": "MT5 account_info no disponible"}
+
+            account_info = mt5.account_info()  # type: ignore
             if not account_info:
                 return AccountType.UNKNOWN, {"error": "No se pudo obtener info de cuenta"}
 

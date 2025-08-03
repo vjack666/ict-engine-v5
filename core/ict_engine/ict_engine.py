@@ -18,6 +18,7 @@ from datetime import datetime
 from sistema.logging_interface import enviar_senal_log, log_ict
 
 # Importar componentes ICT existentes
+ict_components_available = False
 try:
     from .ict_detector import ICTDetector, MarketContext, OptimizedICTAnalysis
     from .ict_types import (
@@ -25,10 +26,9 @@ try:
         ICTSignal, MarketStructure, ICTAnalysisResult
     )
     from .confidence_engine import ConfidenceEngine
-    ICT_COMPONENTS_AVAILABLE = True
+    ict_components_available = True
 except ImportError as e:
     enviar_senal_log("WARNING", f"Componentes ICT no disponibles: {e}", "ict_engine")
-    ICT_COMPONENTS_AVAILABLE = False
 
 @dataclass
 class ICTEngineResult:
@@ -69,7 +69,7 @@ class ICTEngine:
         }
 
         # Inicializar componentes ICT si están disponibles
-        if ICT_COMPONENTS_AVAILABLE:
+        if ict_components_available:
             try:
                 self.detector = ICTDetector()
                 self.confidence_engine = ConfidenceEngine()
@@ -117,7 +117,7 @@ class ICTEngine:
                 return None
 
             # Realizar análisis ICT
-            if not ICT_COMPONENTS_AVAILABLE or not self.detector:
+            if not ict_components_available or not self.detector:
                 enviar_senal_log("WARNING", "Componentes ICT no disponibles, simulando análisis", "ict_engine")
                 return self._simular_analisis_ict(symbol, timeframe, df)
 
@@ -128,7 +128,14 @@ class ICTEngine:
 
                 # Realizar análisis optimizado
                 analysis = OptimizedICTAnalysis()
-                resultado_ict = analysis.analyze_market(df, market_context)
+                # Usar método alternativo si analyze_market no está disponible
+                if hasattr(analysis, 'analyze_market'):
+                    resultado_ict = analysis.analyze_market(df, market_context)  # type: ignore
+                elif hasattr(analysis, 'analyze'):
+                    resultado_ict = analysis.analyze(df, market_context)  # type: ignore
+                else:
+                    # Fallback a método simulado
+                    resultado_ict = None
 
                 if not resultado_ict:
                     return self._crear_resultado_basico(symbol, timeframe, df)
@@ -166,7 +173,7 @@ class ICTEngine:
                         'total_patterns': len(patterns),
                         'total_signals': len(signals),
                         'barras_analizadas': len(df),
-                        'componentes_disponibles': ICT_COMPONENTS_AVAILABLE
+                        'componentes_disponibles': ict_components_available
                     }
                 )
 
@@ -185,8 +192,8 @@ class ICTEngine:
             return None
 
     def obtener_analisis_dashboard(self,
-                                  symbols: List[str] = None,
-                                  timeframes: List[str] = None) -> Dict[str, Any]:
+                                  symbols: Optional[List[str]] = None,
+                                  timeframes: Optional[List[str]] = None) -> Dict[str, Any]:
         """
         Obtiene análisis ICT optimizado para mostrar en el dashboard.
 
@@ -264,9 +271,9 @@ class ICTEngine:
                 'total_patterns_sistema': total_patterns,
                 'total_signals_sistema': total_signals,
                 'confidence_promedio_global': confidence_promedio,
-                'simbolos_analizados': len(symbols),
-                'timeframes_analizados': len(timeframes),
-                'estado_sistema': 'OPERATIVO' if ICT_COMPONENTS_AVAILABLE else 'SIMULADO',
+                'simbolos_analizados': len(symbols) if symbols else 0,
+                'timeframes_analizados': len(timeframes) if timeframes else 0,
+                'estado_sistema': 'OPERATIVO' if ict_components_available else 'SIMULADO',
                 'alertas_activas': len(resultados_dashboard['alertas'])
             }
 
@@ -365,7 +372,7 @@ class ICTEngine:
                 'total_patterns': 0,
                 'total_signals': 0,
                 'barras_analizadas': len(df),
-                'componentes_disponibles': ICT_COMPONENTS_AVAILABLE
+                'componentes_disponibles': ict_components_available
             }
         )
 
@@ -506,12 +513,9 @@ class ICTEngine:
         else:
             return 'WAIT_AND_SEE'
 
-# Función de conveniencia para obtener instancia del motor ICT
-_ict_engine_instance = None
-
-def get_ict_engine(mt5_manager=None):
+def get_ict_engine(mt5_manager=None) -> ICTEngine:
     """
-    Obtiene una instancia del ICT Engine (singleton).
+    Obtiene una instancia del ICT Engine (patrón singleton mejorado).
 
     Args:
         mt5_manager: Manager de MT5 para integración
@@ -519,11 +523,10 @@ def get_ict_engine(mt5_manager=None):
     Returns:
         Instancia de ICTEngine
     """
-    global _ict_engine_instance
+    # Usar nonlocal en lugar de global para mejor encapsulación
+    if not hasattr(get_ict_engine, '_instance'):
+        get_ict_engine._instance = ICTEngine(mt5_manager)  # type: ignore
+    elif mt5_manager and get_ict_engine._instance.mt5_manager is None:  # type: ignore
+        get_ict_engine._instance.mt5_manager = mt5_manager  # type: ignore
 
-    if _ict_engine_instance is None:
-        _ict_engine_instance = ICTEngine(mt5_manager)
-    elif mt5_manager and _ict_engine_instance.mt5_manager is None:
-        _ict_engine_instance.mt5_manager = mt5_manager
-
-    return _ict_engine_instance
+    return get_ict_engine._instance  # type: ignore

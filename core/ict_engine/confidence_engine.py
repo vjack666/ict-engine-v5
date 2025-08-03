@@ -21,25 +21,31 @@ Autor: ICT Engine Team
 # MIGRADO A SLUC v2.1
 from sistema.logging_interface import enviar_senal_log
 
-from typing import Dict, List, Optional, Tuple, Any
+# Imports del ICT Engine - manejo seguro con type checking
+from typing import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
 from datetime import datetime, timedelta
 import numpy as np
 
-# Imports del ICT Engine
+# Type checking imports para evitar conflictos
+if TYPE_CHECKING:
+    try:
+        from .ict_types import ICTPattern, MarketPhase, SessionType, SignalStrength
+    except ImportError:
+        # Definir tipos stub para type checking
+        ICTPattern = Any
+        MarketPhase = Any
+        SessionType = Any
+        SignalStrength = Any
+
+# Runtime imports con fallback seguro
+ict_types_available = False
 try:
-    from .ict_types import ICTPattern, MarketPhase, SessionType, SignalStrength
+    from .ict_types import ICTPattern, MarketPhase, SessionType, SignalStrength  # type: ignore
     enviar_senal_log("INFO", "✅ ICT Types importados correctamente", __name__, "confidence_engine")
+    ict_types_available = True
 except ImportError as e:
     enviar_senal_log("WARNING", f"⚠️ ICT Types no disponibles: {e}", __name__, "confidence_engine")
-    # Definir tipos básicos como fallback
-    class ICTPattern:
-        pass
-    class MarketPhase:
-        pass
-    class SessionType:
-        pass
-    class SignalStrength:
-        pass
+    # En runtime, usaremos duck typing - no necesitamos clases fallback explícitas
 
 try:
     from .ict_historical_analyzer import ICTHistoricalAnalyzer
@@ -817,8 +823,8 @@ class ConfidenceEngine:
             # Bonus por cantidad de patrones (pero con diminishing returns)
             pattern_count_bonus = min(len(patterns) * 0.02, 0.1)  # Max 10% bonus
 
-            # Calcular confianza final
-            final_confidence = (weighted_avg * market_modifier) + pattern_count_bonus
+            # Calcular confianza final (convertir a float explícitamente)
+            final_confidence = float(weighted_avg * market_modifier) + pattern_count_bonus
             final_confidence = max(0.0, min(final_confidence, 1.0))
 
             enviar_senal_log(

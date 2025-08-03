@@ -27,9 +27,9 @@ import time
 try:
     from sistema.logging_interface import enviar_senal_log
 except ImportError:
-    def enviar_senal_log(nivel: str, mensaje: str, fuente: str, categoria: str) -> None:
+    def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "trading_schedule", categoria: str = "general") -> None:
         """Fallback logging function"""
-        enviar_senal_log("INFO", f"[{nivel}] {mensaje}", "trading_schedule", "migration")
+        print(f"[{nivel}] {fuente}: {mensaje}")  # Fallback seguro sin recursión
 
 
 class TradingSession(Enum):
