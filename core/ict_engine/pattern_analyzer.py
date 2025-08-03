@@ -3,7 +3,7 @@
 ICT Pattern Analyzer - Sistema de Interpretación Inteligente
 ===========================================================
 
-Analizador profesional que reconoce patrones ICT específicos y genera 
+Analizador profesional que reconoce patrones ICT específicos y genera
 narrativas contextuales como un verdadero "mapa del tesoro".
 
 Características:
@@ -36,50 +36,41 @@ from .ict_types import (
 from sistema.logging_config import get_specialized_logger
 logger = get_specialized_logger('ict')
 
-# 📋 Sistema de bitácoras integrado
-try:
-    from docs.bitacoras.bitacora_manager import bitacora_manager, log_trading_signal, log_poi_detected
-except ImportError:
-    # Fallback si no está disponible
-    bitacora_manager = None
-    log_trading_signal = None
-    log_poi_detected = None
-
 
 class ICTPatternAnalyzer:
     """
     Analizador inteligente de patrones ICT que interpreta
     la estructura del mercado y genera señales contextuales.
-    
+
     Este es el "cerebro" del sistema que convierte datos técnicos
     en narrativas comprensibles y planes de acción específicos.
     """
-    
+
     def __init__(self):
         """Inicializa el analizador de patrones ICT."""
         enviar_senal_log("INFO", "🔍 Inicializando ICT Pattern Analyzer", __name__, "general")
-        
+
         # 📊 Estado del mercado
         self.current_price = 1.09234
         self.pois = []
         self.candles_data = None
         self.symbol = "EURUSD"
-        
+
         # 🎯 Contexto temporal y sesión
         self.current_session = self._determine_current_session()
-        
+
         enviar_senal_log("INFO", f"✅ Pattern Analyzer inicializado - Sesión actual: {self.current_session}", __name__, "general")
         enviar_senal_log("DEBUG", f"Configuración inicial: Symbol={self.symbol}, Price={self.current_price}", __name__, "general")
         self.market_phase = MarketPhase.MANIPULATION
-        
+
         # 🧠 Historial de análisis para patrones complejos
         self.analysis_history = []
         self.last_signals = []
-        
+
         # ⚙️ Configuración del analizador
         self.min_signal_strength = 60.0  # Umbral mínimo para señales válidas
         self.max_signals_per_analysis = 3  # Máximo de señales simultáneas
-        
+
         # 📈 Estado de tendencia (se actualiza con nuevos datos)
         self.trend_state = {
             'primary': TradingDirection.NEUTRAL,
@@ -91,30 +82,20 @@ class ICTPatternAnalyzer:
     def analyze_current_structure(self) -> ICTAnalysisResult:
         """
         Análisis completo de la estructura actual del mercado.
-        
+
         Returns:
             ICTAnalysisResult: Resultado completo con señales, estructura y recomendaciones
         """
         # 🔄 Actualizar contexto temporal
         self.current_session = self._determine_current_session()
-        
-        # 📋 Registrar inicio de análisis en bitácoras
-        if bitacora_manager:
-            bitacora_manager.log_pattern_detection(
-                pattern_type="STRUCTURE_ANALYSIS",
-                confidence=80.0,
-                location_data={"current_price": self.current_price, "session": self.current_session.value},
-                confluences=[f"POIs: {len(self.pois)}", f"Session: {self.current_session.value}"],
-                context={"analysis_type": "current_structure", "timestamp": datetime.now().isoformat()}
-            )
-        
+
         # 🧠 Detectar patrones principales
         primary_signal = self._detect_primary_pattern()
         secondary_signals = self._detect_secondary_patterns()
-        
+
         # 📊 Analizar estructura del mercado
         market_structure = self._analyze_market_structure()
-        
+
         # 🎯 Obtener información de sesión (con fallback si no existe)
         session_info = SESSION_CONFIG.get(self.current_session)
         if session_info is None:
@@ -130,19 +111,19 @@ class ICTPatternAnalyzer:
                 key_times=["Monitoreo continuo"],
                 risk_considerations=["Condiciones estándar de mercado"]
             )
-        
+
         # 📖 Generar evaluación general
         overall_assessment = self._generate_overall_assessment(primary_signal, market_structure)
         recommended_action = self._determine_recommended_action(primary_signal, secondary_signals)
         market_outlook = self._generate_market_outlook(market_structure)
-        
+
         # ⚠️ Identificar alertas y oportunidades
         warnings = self._identify_warnings(market_structure)
         opportunities = self._identify_opportunities(primary_signal, secondary_signals)
-        
+
         # 📈 Calcular confianza del análisis
         analysis_confidence = self._calculate_analysis_confidence(primary_signal, market_structure)
-        
+
         return ICTAnalysisResult(
             primary_signal=primary_signal,
             secondary_signals=secondary_signals,
@@ -161,106 +142,106 @@ class ICTPatternAnalyzer:
     def _detect_primary_pattern(self) -> Optional[ICTSignal]:
         """
         🧠 Detecta el patrón ICT principal con lógica optimizada
-        
+
         Prioriza patrones según sesión activa y contexto temporal.
         Utiliza algoritmo jerárquico para máxima precisión.
         """
         current_time = datetime.now().time()
-        
+
         # 🎯 Logging optimizado para performance
-        enviar_senal_log("DEBUG", f"Detección ICT iniciada - POIs: {len(self.pois)}, Sesión: {self.current_session.value}", 
-                       "ict_pattern_detection", categoria="ict", 
+        enviar_senal_log("DEBUG", f"Detección ICT iniciada - POIs: {len(self.pois)}, Sesión: {self.current_session.value}",
+                       "ict_pattern_detection", categoria="ict",
                        metadata={
                            "pois_count": len(self.pois),
                            "session": self.current_session.value,
                            "current_hour": current_time.hour,
                            "timestamp": datetime.now().isoformat()
                        })
-        
+
         if not self.pois:
-            enviar_senal_log("DEBUG", "Sin POIs disponibles para análisis", 
+            enviar_senal_log("DEBUG", "Sin POIs disponibles para análisis",
                            "ict_pattern_empty", categoria="ict")
             return None
-        
+
         # 🥈 TIER 1: Silver Bullet (máxima prioridad)
         if self._is_silver_bullet_time(current_time) and self.current_session == SessionType.LONDON:
-            enviar_senal_log("INFO", "⚡ Ventana Silver Bullet activa - analizando", 
+            enviar_senal_log("INFO", "⚡ Ventana Silver Bullet activa - analizando",
                            "ict_silver_bullet", categoria="ict")
             signal = self._analyze_silver_bullet_setup()
             if signal and signal.strength >= 75:
-                enviar_senal_log("INFO", f"🎯 Silver Bullet detectado - Fortaleza: {signal.strength:.1f}%", 
-                               "ict_signal_detected", categoria="ict", 
+                enviar_senal_log("INFO", f"🎯 Silver Bullet detectado - Fortaleza: {signal.strength:.1f}%",
+                               "ict_signal_detected", categoria="ict",
                                metadata={"pattern": "silver_bullet", "strength": signal.strength})
                 return signal
-        
+
         # 🎭 TIER 2: Judas Swing (alta prioridad)
         if self._is_judas_swing_context():
             signal = self._analyze_judas_swing()
             if signal and signal.strength >= 70:
-                enviar_senal_log("INFO", f"🎭 Judas Swing detectado - Fortaleza: {signal.strength:.1f}%", 
-                               "ict_signal_detected", categoria="ict", 
+                enviar_senal_log("INFO", f"🎭 Judas Swing detectado - Fortaleza: {signal.strength:.1f}%",
+                               "ict_signal_detected", categoria="ict",
                                metadata={"pattern": "judas_swing", "strength": signal.strength})
                 return signal
-        
+
         # 🌊 TIER 3: Liquidity Grab (puede ocurrir en cualquier momento)
         signal = self._detect_liquidity_grab()
         if signal and signal.strength >= 80:
-            enviar_senal_log("INFO", f"🌊 Liquidity Grab detectado - Fortaleza: {signal.strength:.1f}%", 
-                           "ict_signal_detected", categoria="ict", 
+            enviar_senal_log("INFO", f"🌊 Liquidity Grab detectado - Fortaleza: {signal.strength:.1f}%",
+                           "ict_signal_detected", categoria="ict",
                            metadata={"pattern": "liquidity_grab", "strength": signal.strength})
             return signal
-        
-        # 🎯 TIER 4: Optimal Trade Entry 
+
+        # 🎯 TIER 4: Optimal Trade Entry
         if self._has_optimal_entry_conditions():
             signal = self._analyze_optimal_trade_entry()
             if signal and signal.strength >= 65:
-                enviar_senal_log("INFO", f"🎯 Optimal Trade Entry detectado - Fortaleza: {signal.strength:.1f}%", 
-                               "ict_signal_detected", categoria="ict", 
+                enviar_senal_log("INFO", f"🎯 Optimal Trade Entry detectado - Fortaleza: {signal.strength:.1f}%",
+                               "ict_signal_detected", categoria="ict",
                                metadata={"pattern": "optimal_entry", "strength": signal.strength})
                 return signal
-        
+
         # ⚡ TIER 5: Power of Three (sesión NY)
         if self.current_session == SessionType.NEW_YORK:
             signal = self._analyze_power_of_three()
             if signal and signal.strength >= 70:
                 return signal
-        
+
         # 🌅 TIER 6: Morning Reversal (contexto específico)
         if self._is_morning_reversal_context():
             signal = self._analyze_morning_reversal()
             if signal and signal.strength >= 68:
                 return signal
-        
+
         return None
 
     def _analyze_silver_bullet_setup(self) -> Optional[ICTSignal]:
         """
         Analiza setup de Silver Bullet (10:00-11:00 London time).
-        
+
         El Silver Bullet es el patrón de mayor probabilidad en ICT,
         representa la ventana donde instituciones establecen dirección real.
         """
         enviar_senal_log("INFO", "🎯 Analizando setup SILVER BULLET - Ventana institucional 10:00-11:00 London", __name__, "general")
-        
+
         # 📊 Encontrar Order Block más relevante para Silver Bullet
         enviar_senal_log("DEBUG", "Buscando Order Block más relevante para Silver Bullet...", __name__, "general")
         relevant_ob = self._find_most_relevant_order_block()
-        
+
         if not relevant_ob:
             enviar_senal_log("DEBUG", "❌ No se encontró Order Block válido para Silver Bullet", __name__, "general")
             return None
-        
+
         enviar_senal_log("INFO", f"✅ Order Block encontrado para Silver Bullet: {relevant_ob['type']} @ {relevant_ob.get('price', 'N/A')}", __name__, "general")
-        
+
         # 🎯 Determinar dirección basada en estructura y confluencias
         direction = TradingDirection.BUY if "BULLISH" in relevant_ob['type'] else TradingDirection.SELL
         enviar_senal_log("DEBUG", f"Dirección determinada: {direction.value}", __name__, "general")
-        
+
         # 📍 Calcular zonas de entrada más precisas
         entry_tolerance = 0.0008  # 8 pips de tolerancia
         entry_center = relevant_ob['price']
         entry_zone = (entry_center - entry_tolerance, entry_center + entry_tolerance)
-        
+
         # 🎯 Targets basados en estructura ICT
         if direction == TradingDirection.BUY:
             # Buscar liquidez bearish arriba como target
@@ -272,35 +253,35 @@ class ICTPatternAnalyzer:
         else:
             # Buscar liquidez bullish abajo como target
             targets = [
-                self.current_price - 0.0040,  # Target conservador  
+                self.current_price - 0.0040,  # Target conservador
                 self.current_price - 0.0070   # Target agresivo
             ]
             stop_loss = entry_center + 0.0020  # Stop arriba del OB
-        
+
         # 📊 Calcular métricas
         risk = abs(entry_center - stop_loss)
         reward = abs(targets[0] - entry_center)
         risk_reward = reward / risk if risk > 0 else 0
-        
+
         enviar_senal_log("DEBUG", f"Métricas calculadas: Risk={risk:.5f}, Reward={reward:.5f}, R:R={risk_reward:.2f}", __name__, "general")
-        
+
         # 📖 Narrativa específica del Silver Bullet
         narrative = self._generate_silver_bullet_narrative(relevant_ob, direction, entry_center)
-        
+
         # 🎪 Plan de acción específico
         action_plan = self._generate_silver_bullet_action_plan(direction, entry_zone, targets[0], stop_loss)
-        
+
         # ⚠️ Factores de riesgo del Silver Bullet
         risk_factors = [
             "Ventana temporal limitada (10:00-11:00 GMT)",
             "Mayor volatilidad durante London session",
             "Posible interferencia de noticias económicas"
         ]
-        
+
         # 🎯 Fortaleza basada en confluencias
         strength = self._calculate_silver_bullet_strength(relevant_ob, current_time=datetime.now().time())
         enviar_senal_log("INFO", f"🎯 Fortaleza del Silver Bullet calculada: {strength:.1f}%", __name__, "general")
-        
+
         # Crear señal
         signal = ICTSignal(
             pattern=ICTPattern.SILVER_BULLET,
@@ -322,52 +303,39 @@ class ICTPatternAnalyzer:
             invalidation_criteria=f"Cierre fuera de la ventana temporal o precio por {'debajo' if direction == TradingDirection.BUY else 'arriba'} de {stop_loss:.5f}",
             position_sizing="Tamaño estándar - alta probabilidad"
         )
-        
-        # 🚀 SILVER BULLET SETUP COMPLETADO - Registrar en bitácoras
-        if bitacora_manager and log_trading_signal:
-            log_trading_signal(
-                pattern="SILVER_BULLET",
-                direction=direction.value,
-                strength=strength,
-                entry_price=entry_center,
-                targets=targets,
-                stop_loss=stop_loss,
-                risk_reward=risk_reward,
-                reasoning=f"Silver Bullet detectado durante {self.current_session.value} session con Order Block {relevant_ob['type']}"
-            )
-        
+
         enviar_senal_log("INFO", f"🚀 SILVER BULLET SETUP COMPLETADO: {direction.value} con probabilidad {signal.probability}% (R:R {risk_reward:.2f})", __name__, "general")
         return signal
 
     def _analyze_judas_swing(self) -> Optional[ICTSignal]:
         """
         Analiza patrón Judas Swing (falsa ruptura inicial).
-        
+
         Judas Swing representa la manipulación matutina donde Smart Money
         'miente' sobre la dirección real para capturar liquidez retail.
         """
         # 🎭 Buscar evidencia de falsa ruptura
         false_breakout_evidence = self._detect_false_breakout()
-        
+
         if not false_breakout_evidence:
             return None
-        
+
         # 🎯 Dirección opuesta a la falsa ruptura
         direction = TradingDirection.SELL if false_breakout_evidence['type'] == 'false_bullish_break' else TradingDirection.BUY
-        
+
         # 📍 Zona de entrada en retorno al rango
         entry_zone = (self.current_price - 0.0012, self.current_price + 0.0012)
-        
+
         # 🎯 Target en liquidez acumulada del lado contrario
         target = false_breakout_evidence['target']
         stop_loss = false_breakout_evidence['invalidation']
-        
+
         # 📊 Calcular métricas
         entry_center = (entry_zone[0] + entry_zone[1]) / 2
         risk = abs(entry_center - stop_loss)
         reward = abs(target - entry_center)
         risk_reward = reward / risk if risk > 0 else 0
-        
+
         # 📖 Narrativa del Judas Swing
         narrative = f"""
 🎭 JUDAS SWING EN DESARROLLO
@@ -392,7 +360,7 @@ class ICTPatternAnalyzer:
 • Smart Money ha obtenido la liquidez necesaria
 • Ahora pueden mover precio hacia objetivo real
         """.strip()
-        
+
         # 🎪 Plan de acción del Judas Swing
         action_plan = [
             f"🎭 CONFIRMACIÓN: Verificar reversión completa hacia zona original",
@@ -402,17 +370,17 @@ class ICTPatternAnalyzer:
             f"🛡️ PROTECCIÓN: Stop beyond el extremo de la manipulación",
             f"📊 VALIDACIÓN: Confirmar con aumento de volumen en reversión"
         ]
-        
+
         # ⚠️ Factores de riesgo específicos
         risk_factors = [
             "Patrón sensible al tiempo - mejor en primeras horas",
             "Requiere confirmación de reversión clara",
             "Puede extenderse más si manipulación continúa"
         ]
-        
+
         # 🎯 Calcular fortaleza del patrón
         strength = self._calculate_judas_swing_strength(false_breakout_evidence)
-        
+
         return ICTSignal(
             pattern=ICTPattern.JUDAS_SWING,
             strength=strength,
@@ -437,32 +405,32 @@ class ICTPatternAnalyzer:
     def _detect_liquidity_grab(self) -> Optional[ICTSignal]:
         """
         Detecta patrones de Liquidity Grab (barrido de liquidez).
-        
+
         El Liquidity Grab ocurre cuando Smart Money barre rápidamente
         stops acumulados para obtener liquidez antes del movimiento real.
         """
         # 🌊 Buscar evidencia de barrido de liquidez
         liquidity_evidence = self._analyze_liquidity_pools()
-        
+
         if not liquidity_evidence:
             return None
-        
+
         # 🎯 Dirección del movimiento post-barrido
         direction = TradingDirection.BUY if liquidity_evidence['type'] == 'bullish_liquidity_grab' else TradingDirection.SELL
-        
+
         # 📍 Zona de entrada inmediata post-barrido
         entry_zone = (self.current_price - 0.0010, self.current_price + 0.0010)
-        
+
         # 🎯 Target en zona de valor real
         target = liquidity_evidence['target']
         stop_loss = liquidity_evidence['invalidation']
-        
+
         # 📊 Calcular métricas
         entry_center = (entry_zone[0] + entry_zone[1]) / 2
         risk = abs(entry_center - stop_loss)
         reward = abs(target - entry_center)
         risk_reward = reward / risk if risk > 0 else 0
-        
+
         # 📖 Narrativa del Liquidity Grab
         narrative = f"""
 🌊 LIQUIDITY GRAB CONFIRMADO
@@ -474,7 +442,7 @@ class ICTPatternAnalyzer:
 
 🎯 Mecánica del Barrido:
 • FASE 1: Acumulación silenciosa cerca del nivel ✅
-• FASE 2: Spike rápido para triggerear stops ✅  
+• FASE 2: Spike rápido para triggerear stops ✅
 • FASE 3: Reversión inmediata hacia objetivo real ⏳
 
 🗺️ Mapa Post-Barrido:
@@ -487,7 +455,7 @@ class ICTPatternAnalyzer:
 • Ventana de oportunidad muy limitada
 • Smart Money actuará inmediatamente después del barrido
         """.strip()
-        
+
         # 🎪 Plan de acción del Liquidity Grab
         action_plan = [
             f"⚡ RAPIDEZ: Actuar inmediatamente tras confirmación del barrido",
@@ -497,17 +465,17 @@ class ICTPatternAnalyzer:
             f"📊 CONFIRMACIÓN: Buscar rechazo inmediato del nivel barrido",
             f"🛡️ GESTIÓN: Stop ajustado, este setup puede ser muy rápido"
         ]
-        
+
         # ⚠️ Factores de riesgo específicos
         risk_factors = [
             "Ventana de ejecución muy limitada",
             "Requiere rapidez en la entrada",
             "Puede haber múltiples barridos falsos"
         ]
-        
+
         # 🎯 Calcular fortaleza (Liquidity Grab suele ser muy fuerte)
         strength = self._calculate_liquidity_grab_strength(liquidity_evidence)
-        
+
         return ICTSignal(
             pattern=ICTPattern.LIQUIDITY_GRAB,
             strength=strength,
@@ -556,12 +524,12 @@ class ICTPatternAnalyzer:
         order_blocks = [p for p in self.pois if 'Order Block' in p.get('type', '')]
         if not order_blocks:
             return None
-        
+
         # Retornar el más cercano al precio actual con strength HIGH
         relevant_obs = [ob for ob in order_blocks if ob.get('strength') == 'HIGH']
         if not relevant_obs:
             relevant_obs = order_blocks
-        
+
         return min(relevant_obs, key=lambda x: abs(self.current_price - x['price']))
 
     def _detect_false_breakout(self) -> Optional[Dict]:
@@ -569,7 +537,7 @@ class ICTPatternAnalyzer:
         # Lógica simplificada para demo - en producción sería más compleja
         if len(self.pois) >= 2 and random.random() < 0.4:  # 40% chance de detectar
             breakout_type = random.choice(['false_bullish_break', 'false_bearish_break'])
-            
+
             if breakout_type == 'false_bullish_break':
                 return {
                     'type': 'false_bullish_break',
@@ -590,10 +558,10 @@ class ICTPatternAnalyzer:
         """Analiza pools de liquidez para detectar barridos"""
         # Buscar POIs de liquidez
         liquidity_pois = [p for p in self.pois if 'Liquidity' in p.get('type', '')]
-        
+
         if liquidity_pois and random.random() < 0.3:  # 30% chance de barrido
             closest_liquidity = min(liquidity_pois, key=lambda x: abs(self.current_price - x['price']))
-            
+
             # Determinar tipo de barrido basado en el POI
             if 'BULLISH' in closest_liquidity.get('type', ''):
                 grab_type = 'bullish_liquidity_grab'
@@ -603,7 +571,7 @@ class ICTPatternAnalyzer:
                 grab_type = 'bearish_liquidity_grab'
                 target = self.current_price - 0.0055
                 invalidation = self.current_price + 0.0015
-            
+
             return {
                 'type': grab_type,
                 'description': f'Barrido de liquidez {"alcista" if "bullish" in grab_type else "bajista"} completado',
@@ -612,7 +580,7 @@ class ICTPatternAnalyzer:
                 'target': target,
                 'invalidation': invalidation
             }
-        
+
         return None
 
     # 🔧 MÉTODOS DE CÁLCULO DE FORTALEZA
@@ -620,60 +588,60 @@ class ICTPatternAnalyzer:
     def _calculate_silver_bullet_strength(self, order_block: Dict, current_time: time) -> float:
         """Calcula fortaleza específica del Silver Bullet"""
         base_strength = 75.0
-        
+
         # 🕐 Bonus por timing perfecto
         if time(10, 0) <= current_time <= time(10, 30):
             base_strength += 10  # Primera media hora es óptima
         elif time(10, 30) <= current_time <= time(11, 0):
             base_strength += 5   # Segunda media hora es buena
-        
+
         # 🎯 Bonus por strength del Order Block
         if order_block.get('strength') == 'HIGH':
             base_strength += 8
         elif order_block.get('strength') == 'MEDIUM':
             base_strength += 4
-        
+
         # 📊 Bonus por sesión correcta
         if self.current_session == SessionType.LONDON:
             base_strength += 5
-        
+
         return min(base_strength, 95)  # Cap at 95%
 
     def _calculate_judas_swing_strength(self, false_breakout: Dict) -> float:
         """Calcula fortaleza del Judas Swing"""
         base_strength = 70.0
-        
+
         # 🎭 Bonus por tipo de ruptura falsa
         if 'bullish' in false_breakout['type']:
             base_strength += 5  # Rupturas alcistas falsas suelen ser más claras
-        
+
         # ⏰ Bonus por timing en sesión
         current_hour = datetime.now().hour
         if (self.current_session == SessionType.LONDON and 8 <= current_hour <= 10) or \
            (self.current_session == SessionType.NEW_YORK and 13 <= current_hour <= 15):
             base_strength += 8
-        
+
         # 📊 Bonus por calidad de POIs disponibles
         if len(self.pois) >= 4:
             base_strength += 5
-        
+
         return min(base_strength, 88)
 
     def _calculate_liquidity_grab_strength(self, liquidity_evidence: Dict) -> float:
         """Calcula fortaleza del Liquidity Grab"""
         base_strength = 80.0  # Liquidity Grab inherentemente fuerte
-        
+
         # 🌊 Bonus por volumen estimado
         volume_range = liquidity_evidence.get('estimated_volume', '500-800')
         if '1000' in volume_range:
             base_strength += 8
         elif '800' in volume_range:
             base_strength += 5
-        
+
         # ⚡ Bonus por sesión de alta liquidez
         if self.current_session in [SessionType.LONDON, SessionType.NEW_YORK]:
             base_strength += 5
-        
+
         return min(base_strength, 92)
 
     # 🔧 MÉTODOS AUXILIARES DE ANÁLISIS
@@ -681,7 +649,7 @@ class ICTPatternAnalyzer:
     def _determine_current_session(self) -> SessionType:
         """Determina la sesión actual basada en la hora GMT"""
         current_hour = datetime.now().hour
-        
+
         if 8 <= current_hour < 16:
             return SessionType.LONDON
         elif 13 <= current_hour < 21:
@@ -696,7 +664,7 @@ class ICTPatternAnalyzer:
         # 📊 Contar tipos de POIs para determinar bias
         bullish_pois = len([p for p in self.pois if 'BULLISH' in p.get('type', '').upper()])
         bearish_pois = len([p for p in self.pois if 'BEARISH' in p.get('type', '').upper()])
-        
+
         # 🎯 Determinar tendencias
         if bullish_pois > bearish_pois * 1.5:
             primary_trend = TradingDirection.BUY
@@ -707,12 +675,12 @@ class ICTPatternAnalyzer:
         else:
             primary_trend = TradingDirection.NEUTRAL
             structure_quality = SignalStrength.MEDIUM
-        
+
         # 📊 Extraer niveles clave
         key_levels = self.pois[:6]  # Top 6 niveles más relevantes
         support_levels = [p['price'] for p in self.pois if 'BULLISH' in p.get('type', '') or 'Support' in p.get('type', '')][:3]
         resistance_levels = [p['price'] for p in self.pois if 'BEARISH' in p.get('type', '') or 'Resistance' in p.get('type', '')][:3]
-        
+
         return MarketStructure(
             primary_trend=primary_trend,
             secondary_trend=TradingDirection.NEUTRAL,
@@ -749,7 +717,7 @@ class ICTPatternAnalyzer:
     def _generate_silver_bullet_narrative(self, order_block: Dict, direction: TradingDirection, entry_price: float) -> str:
         """Genera narrativa específica para Silver Bullet"""
         distance_pips = int(abs(self.current_price - entry_price) * 10000)
-        
+
         return f"""
 🥈 SILVER BULLET DETECTADO (10:00-11:00 London)
 
@@ -790,7 +758,7 @@ class ICTPatternAnalyzer:
     def update_data(self, current_price: float, pois: List[Dict], candles_data: Optional[pd.DataFrame] = None):
         """
         Actualiza los datos del analizador con nueva información de mercado.
-        
+
         Args:
             current_price: Precio actual del instrumento
             pois: Lista de Puntos de Interés (POIs) detectados
@@ -799,13 +767,13 @@ class ICTPatternAnalyzer:
         self.current_price = current_price
         self.pois = pois
         self.candles_data = candles_data
-        
+
         # 🔄 Actualizar contexto temporal
         self.current_session = self._determine_current_session()
-        
+
         # 🧠 Re-evaluar estado de tendencia
         self._update_trend_state()
-        
+
         # 📊 Re-evaluar fase del mercado
         self._update_market_phase()
 
@@ -814,11 +782,11 @@ class ICTPatternAnalyzer:
         if not self.pois:
             self.trend_state['primary'] = TradingDirection.NEUTRAL
             return
-        
+
         # 📊 Análisis de POIs para determinar bias
         bullish_strength = sum(1.5 if p.get('strength') == 'HIGH' else 1.0 for p in self.pois if 'BULLISH' in p.get('type', ''))
         bearish_strength = sum(1.5 if p.get('strength') == 'HIGH' else 1.0 for p in self.pois if 'BEARISH' in p.get('type', ''))
-        
+
         total_strength = bullish_strength + bearish_strength
         if total_strength == 0:
             self.trend_state['primary'] = TradingDirection.NEUTRAL
@@ -834,7 +802,7 @@ class ICTPatternAnalyzer:
             else:
                 self.trend_state['primary'] = TradingDirection.NEUTRAL
                 self.trend_state['strength'] = 50.0
-        
+
         self.trend_state['last_update'] = datetime.now()
 
     def _update_market_phase(self):
@@ -842,12 +810,12 @@ class ICTPatternAnalyzer:
         if not self.pois:
             self.market_phase = MarketPhase.REBALANCE
             return
-        
+
         # 🧠 Lógica de fases basada en distribución de POIs y sesión
         bullish_pois = len([p for p in self.pois if 'BULLISH' in p.get('type', '')])
         bearish_pois = len([p for p in self.pois if 'BEARISH' in p.get('type', '')])
         total_pois = len(self.pois)
-        
+
         # 📊 Determinar fase según concentración y sesión
         if self.current_session == SessionType.ASIAN:
             self.market_phase = MarketPhase.ACCUMULATION
@@ -922,13 +890,13 @@ class ICTPatternAnalyzer:
     def _calculate_analysis_confidence(self, primary_signal: Optional[ICTSignal], market_structure: MarketStructure) -> float:
         """Placeholder para cálculo de confianza del análisis"""
         base_confidence = 60.0
-        
+
         if primary_signal:
             base_confidence += primary_signal.strength * 0.3
-        
+
         if market_structure.structure_quality == SignalStrength.HIGH:
             base_confidence += 15
         elif market_structure.structure_quality == SignalStrength.MEDIUM:
             base_confidence += 8
-        
+
         return min(base_confidence, 95.0)

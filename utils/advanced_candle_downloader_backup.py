@@ -29,7 +29,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-from typing import Optional, Dict, List, Tuple, Union, Callable
+from typing import Optional, Dict, List, Tuple, Union
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -143,28 +143,6 @@ class AdvancedCandleDownloader:
 
         enviar_senal_log("INFO", "🚀 AdvancedCandleDownloader inicializado", __name__, "downloader")
         self._validate_environment()
-        
-        # === SPRINT 1.2 ENHANCEMENTS: CALLBACKS Y COORDINACIÓN ===
-        
-        # Callbacks para integración con dashboard
-        self.progress_callback: Optional[Callable] = None
-        self.completion_callback: Optional[Callable] = None
-        self.error_callback: Optional[Callable] = None
-        
-        # Sistema de prioridades
-        self.timeframe_priorities = {
-            "H4": 1,  # Mayor prioridad para ICT
-            "H1": 2,
-            "M15": 3,
-            "M5": 4,
-            "M1": 5   # Menor prioridad
-        }
-        
-        # Cola de descargas con prioridades
-        self.download_queue = []
-        self.queue_lock = threading.Lock()
-        
-        enviar_senal_log("INFO", "✨ Sprint 1.2 enhancements activos", __name__, "downloader")
 
     def _validate_environment(self) -> bool:
         """Valida el ambiente de ejecución usando MT5DataManager"""
@@ -572,172 +550,6 @@ class AdvancedCandleDownloader:
 
         except Exception as e:
             enviar_senal_log("ERROR", f"Error guardando reporte: {e}", __name__, "downloader")
-
-    # === SPRINT 1.2 ENHANCEMENTS: CALLBACKS Y COORDINACIÓN ===
-    
-    def set_progress_callback(self, callback: Callable):
-        """Establece callback para updates de progreso"""
-        self.progress_callback = callback
-        enviar_senal_log("DEBUG", "Progress callback configurado", __name__, "downloader")
-        
-    def set_completion_callback(self, callback: Callable):
-        """Establece callback para descarga completada"""
-        self.completion_callback = callback
-        enviar_senal_log("DEBUG", "Completion callback configurado", __name__, "downloader")
-        
-    def set_error_callback(self, callback: Callable):
-        """Establece callback para errores"""
-        self.error_callback = callback
-        enviar_senal_log("DEBUG", "Error callback configurado", __name__, "downloader")
-    
-    def queue_download(self, symbol: str, timeframe: str, lookback: int = 50000) -> int:
-        """Añade descarga a cola con priorización automática"""
-        priority = self.timeframe_priorities.get(timeframe, 10)
-        
-        task = {
-            'symbol': symbol,
-            'timeframe': timeframe,
-            'lookback': lookback,
-            'priority': priority,
-            'queued_at': datetime.now()
-        }
-        
-        with self.queue_lock:
-            # Insertar ordenado por prioridad
-            inserted = False
-            for i, existing_task in enumerate(self.download_queue):
-                if priority < existing_task['priority']:
-                    self.download_queue.insert(i, task)
-                    inserted = True
-                    break
-            
-            if not inserted:
-                self.download_queue.append(task)
-            
-            queue_length = len(self.download_queue)
-        
-        enviar_senal_log("INFO", f"📥 Queued: {symbol} {timeframe} (priority {priority}, queue: {queue_length})", __name__, "downloader")
-        return queue_length
-    
-    def process_download_queue(self) -> List[DownloadStats]:
-        """Procesa toda la cola de descargas en orden de prioridad"""
-        all_stats = []
-        
-        with self.queue_lock:
-            queue_copy = self.download_queue.copy()
-            self.download_queue.clear()
-        
-        if not queue_copy:
-            enviar_senal_log("INFO", "📭 Cola de descargas vacía", __name__, "downloader")
-            return all_stats
-        
-        enviar_senal_log("INFO", f"🔄 Procesando {len(queue_copy)} descargas en cola", __name__, "downloader")
-        
-        for i, task in enumerate(queue_copy, 1):
-            symbol = task['symbol']
-            timeframe = task['timeframe']
-            lookback = task['lookback']
-            
-            enviar_senal_log("INFO", f"📈 [{i}/{len(queue_copy)}] Procesando {symbol} {timeframe}", __name__, "downloader")
-            
-            # Callback de progreso
-            if self.progress_callback:
-                try:
-                    self.progress_callback(symbol, timeframe, 'starting', progress=0)
-                except Exception as e:
-                    enviar_senal_log("WARNING", f"Error en progress callback: {e}", __name__, "downloader")
-            
-            # Ejecutar descarga
-            stats = self.download_symbol_timeframe(symbol, timeframe, lookback)
-            all_stats.append(stats)
-            
-            # Callbacks de resultado
-            if stats.success and self.completion_callback:
-                try:
-                    self.completion_callback(symbol, timeframe, stats)
-                except Exception as e:
-                    enviar_senal_log("WARNING", f"Error en completion callback: {e}", __name__, "downloader")
-            elif not stats.success and self.error_callback:
-                try:
-                    self.error_callback(symbol, timeframe, stats.error_message)
-                except Exception as e:
-                    enviar_senal_log("WARNING", f"Error en error callback: {e}", __name__, "downloader")
-        
-        return all_stats
-    
-    def download_with_coordination(self, symbols: List[str], timeframes: List[str], 
-                                 lookback: int = 50000) -> List[DownloadStats]:
-        """Descarga coordinada con prioridades automáticas"""
-        
-        # Limpiar cola actual
-        with self.queue_lock:
-            self.download_queue.clear()
-        
-        # Añadir todas las tareas a la cola
-        for symbol in symbols:
-            for timeframe in timeframes:
-                self.queue_download(symbol, timeframe, lookback)
-        
-        # Procesar cola completa
-        return self.process_download_queue()
-    
-    def auto_update_stale_data(self, symbols: List[str], timeframes: List[str], 
-                              max_age_hours: int = 24) -> int:
-        """Auto-actualiza datos obsoletos"""
-        stale_count = 0
-        
-        for symbol in symbols:
-            for timeframe in timeframes:
-                if not self._check_data_freshness(symbol, timeframe, max_age_hours):
-                    self.queue_download(symbol, timeframe)
-                    stale_count += 1
-        
-        if stale_count > 0:
-            enviar_senal_log("INFO", f"🔄 Auto-queued {stale_count} stale data updates", __name__, "downloader")
-        
-        return stale_count
-    
-    def _check_data_freshness(self, symbol: str, timeframe: str, max_age_hours: int) -> bool:
-        """Verifica si los datos están actualizados"""
-        try:
-            data_file = self.data_dir / f"{timeframe}.csv"
-            if not data_file.exists():
-                return False
-                
-            # Verificar edad del archivo
-            file_age = datetime.now() - datetime.fromtimestamp(data_file.stat().st_mtime)
-            if file_age.total_seconds() > (max_age_hours * 3600):
-                return False
-                
-            # Verificar contenido usando pandas
-            try:
-                df = pd.read_csv(data_file)
-                return not df.empty
-            except Exception:
-                return False
-                
-        except Exception:
-            return False
-    
-    def get_enhanced_status(self) -> Dict:
-        """Estado mejorado con info de coordinación"""
-        with self.queue_lock:
-            queue_length = len(self.download_queue)
-            queue_priorities = [task['priority'] for task in self.download_queue]
-        
-        return {
-            'is_connected': self.is_connected,
-            'active_downloads': self.active_downloads,
-            'total_downloads': self.total_downloads,
-            'queue_length': queue_length,
-            'queue_priorities': queue_priorities,
-            'has_callbacks': {
-                'progress': self.progress_callback is not None,
-                'completion': self.completion_callback is not None,
-                'error': self.error_callback is not None
-            },
-            'last_update': datetime.now().isoformat()
-        }
 
 # =============================================================================
 # FUNCIONES DE CONVENIENCIA
