@@ -205,7 +205,6 @@ class POISystemManager:
 
     def get_stats(self) -> dict:
         """Obtener estadísticas del sistema."""
-        global _poi_system_stats
         return {
             'instance_stats': self._stats.copy(),
             'global_stats': _poi_system_stats.copy(),
@@ -514,7 +513,7 @@ def get_poi_system_instance() -> POISystemManager:
     Returns:
         POISystemManager: Instancia única del sistema POI
     """
-    global _poi_system_instance, _poi_system_lock
+    global _poi_system_instance
 
     # Double-check locking pattern para thread-safety
     if _poi_system_instance is None:
@@ -530,7 +529,7 @@ def reset_poi_system_instance():
 
     Útil para testing o cuando se necesita reinicializar completamente.
     """
-    global _poi_system_instance, _poi_system_lock, _poi_global_cache, _poi_system_stats
+    global _poi_system_instance, _poi_global_cache, _poi_system_stats
 
     with _poi_system_lock:
         if _poi_system_instance:
@@ -546,7 +545,6 @@ def is_poi_system_initialized() -> bool:
     Returns:
         bool: True si el sistema está inicializado y listo
     """
-    global _poi_system_instance
     return (_poi_system_instance is not None and
             _poi_system_instance.is_initialized())
 
@@ -557,8 +555,6 @@ def get_poi_system_stats() -> Dict[str, Any]:
     Returns:
         Dict con estadísticas globales del sistema
     """
-    global _poi_system_stats, _poi_system_instance
-
     stats = _poi_system_stats.copy()
 
     if _poi_system_instance:

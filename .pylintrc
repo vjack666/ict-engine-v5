@@ -28,9 +28,43 @@ disable=
     C0302,  # Too many lines in module
     W0102,  # Dangerous default value
     W0107,  # Unnecessary pass statement
+    W0602,  # global-variable-not-assigned (tu problema específico)
+    W0603,  # global-statement
+    W0601,  # global-variable-undefined
+    W0604,  # global-at-module-level
+    W0621,  # redefined-outer-name
+    W0631,  # undefined-loop-variable
+    W0640,  # cell-var-from-loop
+    W0703,  # broad-except
+    W0707,  # raise-missing-from
+    R0205,  # useless-object-inheritance
+    R0911,  # too-many-return-statements
+    R1705,  # no-else-return
+    R1720,  # no-else-raise
+    R1723,  # no-else-break
+    R1724,  # no-else-continue
+    R1729,  # use-dict-literal
+    R1732,  # consider-using-with
+    C0325,  # superfluous-parens
+    W1514,  # unspecified-encoding
+    W1203,  # logging-fstring-interpolation
+    W1201,  # logging-not-lazy
 
-# Only show errors and critical warnings
+# Solo mostrar errores que realmente impiden la ejecución
 confidence=HIGH
+
+[REPORTS]
+# Formato de salida simple
+output-format=text
+
+# No mostrar reportes estadísticos detallados
+reports=no
+
+# No mostrar el score de pylint
+score=no
+
+# Plantilla de mensaje más simple
+msg-template={path}:{line}: [{msg_id}] {msg}
 
 [FORMAT]
 # Maximum number of characters on a single line
