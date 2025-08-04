@@ -154,6 +154,11 @@ try:
     from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
     from core.ict_engine import ict_historical_analyzer
 
+    # 🚀 SPRINT 1.7 - ADVANCED PATTERNS v2.0
+    from core.ict_engine.advanced_patterns import AdvancedSilverBulletDetector
+    from core.ict_engine.advanced_patterns import JudasSwingAnalyzer
+    from core.ict_engine.advanced_patterns import MarketStructureEngine
+
     # ⏱️ TCT PIPELINE INTEGRATION - SPRINT 1.2 COMPLETADO
     from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
     from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
@@ -334,6 +339,18 @@ class SentinelDashboardDefinitivo(App):
         self.veredicto_engine = VeredictoEngine()  # Motor de veredicto final
         self.historical_analyzer = ICTHistoricalAnalyzer()  # Análisis histórico
         self.ict_widget = ICTProfessionalWidget()
+
+        # 🚀 SPRINT 1.7 - ADVANCED PATTERNS v2.0
+        try:
+            self.advanced_silver_bullet = AdvancedSilverBulletDetector()  # Silver Bullet v2.0
+            self.judas_swing_analyzer = JudasSwingAnalyzer()  # Judas Swing v2.0
+            self.market_structure_engine = MarketStructureEngine()  # Market Structure v2.0
+            enviar_senal_log("INFO", "🚀 Sprint 1.7 Advanced Patterns v2.0 inicializados", "dashboard_definitivo", "sprint_1_7")
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error inicializando Advanced Patterns: {e}", "dashboard_definitivo", "sprint_1_7")
+            self.advanced_silver_bullet = None
+            self.judas_swing_analyzer = None
+            self.market_structure_engine = None
 
         # 🎯 SISTEMA POI - ESPECIALISTAS COMPLETOS (usando imports del header)
         self.poi_detector_functions = poi_detector  # Módulo de funciones POI
@@ -1330,6 +1347,27 @@ class SentinelDashboardDefinitivo(App):
                 update_market_context(self.market_context_obj, df_by_timeframe, self.current_price)
                 enviar_senal_log("SUCCESS", "✅ ICT Engine procesó datos reales exitosamente", __name__, "ict")
 
+                # 🏗️ SPRINT 1.7 - INTEGRAR MARKET STRUCTURE ENGINE v2.0
+                structure_signal = None
+                if self.market_structure_engine:
+                    try:
+                        enviar_senal_log("INFO", "🏗️ Iniciando análisis Market Structure v2.0", __name__, "sprint_1_7")
+
+                        structure_signal = self.market_structure_engine.analyze_market_structure(
+                            candles_m15=m5_data,  # Usar M5 como proxy para M15
+                            candles_m5=m5_data,
+                            candles_h1=h1_data,
+                            current_price=self.current_price
+                        )
+
+                        if structure_signal:
+                            enviar_senal_log("INFO", f"🎯 Market Structure v2.0: {structure_signal.structure_type.value} - {structure_signal.confidence:.1f}%", __name__, "sprint_1_7")
+                        else:
+                            enviar_senal_log("DEBUG", "🏗️ No se detectó cambio estructural significativo", __name__, "sprint_1_7")
+
+                    except Exception as structure_error:
+                        enviar_senal_log("ERROR", f"❌ Error en Market Structure v2.0: {structure_error}", __name__, "sprint_1_7")
+
                 # 📊 EXTRAER RESULTADOS DEL ANÁLISIS ICT
                 context = {
                     'h4_bias': getattr(self.market_context_obj, 'h4_bias', 'NEUTRAL'),
@@ -1341,7 +1379,14 @@ class SentinelDashboardDefinitivo(App):
                                  len(getattr(self.market_context_obj, 'pois_m15', [])) +
                                  len(getattr(self.market_context_obj, 'pois_m5', [])),
                     'analysis_quality': getattr(self.market_context_obj, 'analysis_quality', 'MEDIUM'),
-                    'data_source': 'MT5_REAL'
+                    'data_source': 'MT5_REAL',
+                    # 🚀 SPRINT 1.7 - Añadir datos de Market Structure
+                    'market_structure_signal': structure_signal,
+                    'structure_type': structure_signal.structure_type.value if structure_signal else 'UNKNOWN',
+                    'structure_confidence': structure_signal.confidence if structure_signal else 0.0,
+                    'structure_direction': structure_signal.direction.value if structure_signal else 'NEUTRAL',
+                    'fvg_present': structure_signal.fvg_present if structure_signal else False,
+                    'order_block_present': structure_signal.order_block_present if structure_signal else False
                 }
 
                 # 🎯 GUARDAR CONTEXTO ACTUALIZADO
@@ -1547,6 +1592,7 @@ class SentinelDashboardDefinitivo(App):
                 pattern_methods = [
                     ('SILVER_BULLET', self.detect_silver_bullet_complete),
                     ('JUDAS_SWING', self.detect_judas_swing_complete),
+                    ('MARKET_STRUCTURE', self.detect_market_structure_complete),
                     ('LIQUIDITY_GRAB', self.detect_liquidity_grab_complete),
                     ('ORDER_BLOCK', self.detect_order_blocks_complete),
                     ('FAIR_VALUE_GAP', self.detect_fair_value_gaps_complete)
@@ -1933,58 +1979,151 @@ class SentinelDashboardDefinitivo(App):
     # ======================================================================
 
     def detect_silver_bullet_complete(self, m5_data: pd.DataFrame, m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
-        """Detecta Silver Bullet usando análisis completo"""
+        """🚀 Detecta Silver Bullet usando Advanced Silver Bullet Detector v2.0"""
         try:
-            # Usar el ICT Pattern Analyzer si está disponible
+            enviar_senal_log("INFO", "🥈 Iniciando detección Silver Bullet avanzada v2.0", "dashboard_definitivo", "sprint_1_7")
+
+            # 🚀 USAR ADVANCED SILVER BULLET DETECTOR v2.0
+            if self.advanced_silver_bullet:
+                try:
+                    # Obtener datos adicionales para análisis completo
+                    market_context = _context if _context else {}
+
+                    # Ejecutar análisis Silver Bullet avanzado
+                    silver_bullet_signal = self.advanced_silver_bullet.analyze_silver_bullet_pattern(
+                        candles_m5=m5_data,
+                        candles_m1=m1_data,
+                        current_price=self.current_price,
+                        market_context=market_context
+                    )
+
+                    if silver_bullet_signal:
+                        enviar_senal_log("INFO", f"🎯 Silver Bullet v2.0 detectado: {silver_bullet_signal.confidence:.1f}% confianza", "dashboard_definitivo", "sprint_1_7")
+
+                        return {
+                            'type': 'SILVER_BULLET_V2',
+                            'timeframe': 'M5',
+                            'strength': 'HIGH' if silver_bullet_signal.confidence > 85 else 'MEDIUM' if silver_bullet_signal.confidence > 70 else 'LOW',
+                            'confidence_pct': silver_bullet_signal.confidence,
+                            'direction': silver_bullet_signal.direction.value,
+                            'narrative': silver_bullet_signal.narrative,
+                            'price_level': silver_bullet_signal.entry_price,
+                            'target_level': silver_bullet_signal.target_price,
+                            'stop_level': silver_bullet_signal.stop_loss,
+                            'session_type': silver_bullet_signal.session_type.value,
+                            'confluence_score': silver_bullet_signal.confluence_score,
+                            'timing_score': getattr(silver_bullet_signal, 'timing_score', 0.0),
+                            'detected_at': datetime.now(),
+                            'advanced_pattern': True,
+                            'sprint_version': '1.7'
+                        }
+
+                    else:
+                        enviar_senal_log("DEBUG", "🥈 No se detectó patrón Silver Bullet v2.0", "dashboard_definitivo", "sprint_1_7")
+
+                except Exception as advanced_error:
+                    enviar_senal_log("ERROR", f"❌ Error en Silver Bullet v2.0: {advanced_error}", "dashboard_definitivo", "sprint_1_7")
+                    # Continuar con fallback
+
+            # FALLBACK: Usar el ICT Pattern Analyzer legacy si está disponible
             analyzer_method = getattr(self.ict_analyzer, '_analyze_silver_bullet_setup', None)
             if analyzer_method:
                 try:
                     ict_signal = analyzer_method()
                     if ict_signal:
                         return {
-                            'type': 'SILVER_BULLET',
+                            'type': 'SILVER_BULLET_LEGACY',
                             'timeframe': 'M5',
                             'strength': ict_signal.strength,
                             'confidence_pct': ict_signal.probability,
                             'direction': ict_signal.direction.value,
                             'narrative': ict_signal.narrative,
                             'price_level': self.current_price,
-                            'detected_at': datetime.now()
+                            'detected_at': datetime.now(),
+                            'advanced_pattern': False
                         }
                 except (AttributeError, TypeError, ValueError):  # ICT analyzer exceptions
                     pass
 
-            # Fallback a detección simple
+            # Fallback final a detección simple
+            enviar_senal_log("DEBUG", "🥈 Usando detección Silver Bullet simple como fallback", "dashboard_definitivo", "sprint_1_7")
             return self.detect_silver_bullet(m5_data, m1_data)
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            if self.debug_mode:
-                enviar_senal_log("ERROR", f"❌ Error Silver Bullet completo: {e}", "dashboard_definitivo", "migration")
+            enviar_senal_log("ERROR", f"❌ Error Silver Bullet completo: {e}", "dashboard_definitivo", "sprint_1_7")
             return None
 
-    def detect_judas_swing_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
-        """Detecta Judas Swing usando análisis completo"""
+    def detect_judas_swing_complete(self, m5_data: pd.DataFrame, m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
+        """🎭 Detecta Judas Swing usando Judas Swing Analyzer v2.0"""
         try:
-            # Usar el ICT Pattern Analyzer si está disponible
+            enviar_senal_log("INFO", "🎭 Iniciando detección Judas Swing avanzada v2.0", "dashboard_definitivo", "sprint_1_7")
+
+            # 🚀 USAR JUDAS SWING ANALYZER v2.0
+            if self.judas_swing_analyzer:
+                try:
+                    # Obtener datos adicionales para análisis completo
+                    market_context = _context if _context else {}
+
+                    # Ejecutar análisis Judas Swing avanzado
+                    judas_swing_signal = self.judas_swing_analyzer.analyze_judas_swing_pattern(
+                        candles_m5=m5_data,
+                        candles_m1=m1_data,
+                        current_price=self.current_price,
+                        market_structure=market_context
+                    )
+
+                    if judas_swing_signal:
+                        enviar_senal_log("INFO", f"🎯 Judas Swing v2.0 detectado: {judas_swing_signal.confidence:.1f}% confianza", "dashboard_definitivo", "sprint_1_7")
+
+                        return {
+                            'type': 'JUDAS_SWING_V2',
+                            'timeframe': 'M5',
+                            'strength': 'HIGH' if judas_swing_signal.confidence > 85 else 'MEDIUM' if judas_swing_signal.confidence > 70 else 'LOW',
+                            'confidence_pct': judas_swing_signal.confidence,
+                            'direction': judas_swing_signal.direction.value,
+                            'narrative': judas_swing_signal.narrative,
+                            'price_level': judas_swing_signal.false_break_price,
+                            'target_level': judas_swing_signal.reversal_target,
+                            'session_type': judas_swing_signal.signal_type.value,
+                            'breakout_type': judas_swing_signal.breakout_type.value,
+                            'liquidity_grabbed': judas_swing_signal.liquidity_grabbed,
+                            'structure_confirmed': judas_swing_signal.structure_confirmed,
+                            'risk_reward_ratio': judas_swing_signal.risk_reward_ratio,
+                            'session_context': judas_swing_signal.session_context,
+                            'detected_at': datetime.now(),
+                            'advanced_pattern': True,
+                            'sprint_version': '1.7'
+                        }
+
+                    else:
+                        enviar_senal_log("DEBUG", "🎭 No se detectó patrón Judas Swing v2.0", "dashboard_definitivo", "sprint_1_7")
+
+                except Exception as advanced_error:
+                    enviar_senal_log("ERROR", f"❌ Error en Judas Swing v2.0: {advanced_error}", "dashboard_definitivo", "sprint_1_7")
+                    # Continuar con fallback
+
+            # FALLBACK: Usar el ICT Pattern Analyzer legacy si está disponible
             analyzer_method = getattr(self.ict_analyzer, '_analyze_judas_swing', None)
             if analyzer_method:
                 try:
                     ict_signal = analyzer_method()
                     if ict_signal:
                         return {
-                            'type': 'JUDAS_SWING',
+                            'type': 'JUDAS_SWING_LEGACY',
                             'timeframe': 'M5',
                             'strength': ict_signal.strength,
                             'confidence_pct': ict_signal.probability,
                             'direction': ict_signal.direction.value,
                             'narrative': ict_signal.narrative,
                             'price_level': self.current_price,
-                            'detected_at': datetime.now()
+                            'detected_at': datetime.now(),
+                            'advanced_pattern': False
                         }
                 except (AttributeError, TypeError, ValueError):  # ICT analyzer exceptions
                     pass
 
-            # Fallback: detección manual de Judas Swing
+            # Fallback final: detección manual de Judas Swing
+            enviar_senal_log("DEBUG", "🎭 Usando detección Judas Swing simple como fallback", "dashboard_definitivo", "sprint_1_7")
             if len(m5_data) < 20:
                 return None
 
@@ -2023,6 +2162,62 @@ class SentinelDashboardDefinitivo(App):
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
                 enviar_senal_log("ERROR", f"❌ Error Judas Swing completo: {e}", "dashboard_definitivo", "migration")
+            return None
+
+    def detect_market_structure_complete(self, m5_data: pd.DataFrame, m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
+        """🏗️ Detecta cambios de Market Structure usando Market Structure Engine v2.0"""
+        try:
+            enviar_senal_log("INFO", "🏗️ Iniciando detección Market Structure como patrón v2.0", "dashboard_definitivo", "sprint_1_7")
+
+            # 🚀 USAR MARKET STRUCTURE ENGINE v2.0
+            if self.market_structure_engine:
+                try:
+                    # Obtener datos adicionales para análisis completo
+                    h1_data = self.real_market_data.get('candles_h1')
+
+                    # Ejecutar análisis Market Structure avanzado
+                    structure_signal = self.market_structure_engine.analyze_market_structure(
+                        candles_m15=m5_data,  # Usar M5 como proxy para M15
+                        candles_m5=m5_data,
+                        candles_h1=h1_data,
+                        current_price=self.current_price
+                    )
+
+                    if structure_signal:
+                        enviar_senal_log("INFO", f"🎯 Market Structure v2.0 como patrón: {structure_signal.structure_type.value} - {structure_signal.confidence:.1f}%", "dashboard_definitivo", "sprint_1_7")
+
+                        return {
+                            'type': 'MARKET_STRUCTURE_V2',
+                            'timeframe': structure_signal.timeframe,
+                            'strength': 'HIGH' if structure_signal.confidence > 85 else 'MEDIUM' if structure_signal.confidence > 70 else 'LOW',
+                            'confidence_pct': structure_signal.confidence,
+                            'direction': structure_signal.direction.value,
+                            'narrative': structure_signal.narrative,
+                            'structure_type': structure_signal.structure_type.value,
+                            'break_level': structure_signal.break_level,
+                            'target_level': structure_signal.target_level,
+                            'confluence_score': structure_signal.confluence_score,
+                            'fvg_present': structure_signal.fvg_present,
+                            'order_block_present': structure_signal.order_block_present,
+                            'detected_at': datetime.now(),
+                            'advanced_pattern': True,
+                            'sprint_version': '1.7'
+                        }
+
+                    else:
+                        enviar_senal_log("DEBUG", "🏗️ No se detectó cambio estructural significativo", "dashboard_definitivo", "sprint_1_7")
+                        return None
+
+                except Exception as advanced_error:
+                    enviar_senal_log("ERROR", f"❌ Error en Market Structure v2.0: {advanced_error}", "dashboard_definitivo", "sprint_1_7")
+                    return None
+
+            # Fallback: No hay detector avanzado disponible
+            enviar_senal_log("DEBUG", "🏗️ Market Structure Engine no disponible", "dashboard_definitivo", "sprint_1_7")
+            return None
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error en detect_market_structure_complete: {e}", "dashboard_definitivo", "sprint_1_7")
             return None
 
     def detect_liquidity_grab_complete(self, m5_data: pd.DataFrame, _m1_data: Optional[pd.DataFrame], _context: Dict) -> Optional[Dict]:
