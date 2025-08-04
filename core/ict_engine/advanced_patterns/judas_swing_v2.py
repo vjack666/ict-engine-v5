@@ -18,9 +18,8 @@ Fecha: 04 Agosto 2025
 """
 
 import pandas as pd
-import numpy as np
 from datetime import datetime, time, timedelta
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional, Tuple
 from dataclasses import dataclass
 from enum import Enum
 
@@ -28,7 +27,7 @@ from enum import Enum
 from sistema.logging_interface import enviar_senal_log
 
 # ICT Types
-from ..ict_types import SessionType, TradingDirection, SignalStrength
+from ..ict_types import TradingDirection
 
 
 class JudasSwingType(Enum):
@@ -110,7 +109,7 @@ class JudasSwingAnalyzer:
                                   candles_m5: pd.DataFrame,
                                   candles_m1: Optional[pd.DataFrame] = None,
                                   current_price: float = 0.0,
-                                  market_structure: Dict = None) -> Optional[JudasSwingSignal]:
+                                  market_structure: Optional[Dict] = None) -> Optional[JudasSwingSignal]:
         """
         🎭 ANÁLISIS COMPLETO JUDAS SWING v2.0
 
@@ -453,11 +452,11 @@ class JudasSwingAnalyzer:
 
             # Determinar dirección de reversión esperada
             if breakout_type in [BreakoutType.FALSE_BREAKOUT_HIGH, BreakoutType.LIQUIDITY_GRAB_HIGH]:
-                expected_direction = TradingDirection.BEARISH
+                expected_direction = TradingDirection.SELL
                 # Target para movimiento bajista
                 target = recent['low'].min() * 0.999  # 10 pips abajo del low reciente
             elif breakout_type in [BreakoutType.FALSE_BREAKOUT_LOW, BreakoutType.LIQUIDITY_GRAB_LOW]:
-                expected_direction = TradingDirection.BULLISH
+                expected_direction = TradingDirection.BUY
                 # Target para movimiento alcista
                 target = recent['high'].max() * 1.001  # 10 pips arriba del high reciente
             else:
@@ -469,7 +468,7 @@ class JudasSwingAnalyzer:
             # Analizar últimas velas para confirmación
             last_3_candles = recent.tail(3)
 
-            if expected_direction == TradingDirection.BEARISH:
+            if expected_direction == TradingDirection.SELL:
                 # Buscar velas bajistas de confirmación
                 bearish_candles = sum(1 for _, candle in last_3_candles.iterrows()
                                     if candle['close'] < candle['open'])
@@ -485,8 +484,8 @@ class JudasSwingAnalyzer:
             # Bonus por alineación con estructura de mercado
             if market_structure:
                 market_bias = market_structure.get('h4_bias', 'NEUTRAL')
-                if (expected_direction == TradingDirection.BEARISH and market_bias == 'BEARISH') or \
-                   (expected_direction == TradingDirection.BULLISH and market_bias == 'BULLISH'):
+                if (expected_direction == TradingDirection.SELL and market_bias == 'BEARISH') or \
+                   (expected_direction == TradingDirection.BUY and market_bias == 'BULLISH'):
                     structure_score += 0.2
 
             final_score = min(structure_score, 1.0)
@@ -620,8 +619,8 @@ class JudasSwingAnalyzer:
 
             # Dirección
             direction_desc = {
-                TradingDirection.BULLISH: "📈 reversión alcista",
-                TradingDirection.BEARISH: "📉 reversión bajista",
+                TradingDirection.BUY: "📈 reversión alcista",
+                TradingDirection.SELL: "📉 reversión bajista",
                 TradingDirection.NEUTRAL: "⚖️ movimiento lateral"
             }.get(direction, "movimiento")
 

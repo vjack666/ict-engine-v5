@@ -22,24 +22,21 @@ Autor: ICT Engine Team
 import sys
 import os
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple, Any
-import json
+from typing import Dict, List, Optional, Tuple
 import copy
 
 # MIGRADO A SLUC v2.1
-import sys
-import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from sistema.logging_interface import enviar_senal_log
 
 try:
-    from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+    from core.ict_engine.confidence_engine import CONFIDENCE_CONFIG
     from core.ict_engine.confidence_engine import confidence_engine as global_confidence_engine
 except ImportError as e:
     try:
         # Fallback para imports relativos
-        from .confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+        from .confidence_engine import CONFIDENCE_CONFIG
         from .confidence_engine import confidence_engine as global_confidence_engine
     except ImportError as e2:
         enviar_senal_log("ERROR", f"Error importando confidence engine: {e2}", __name__, "confidence_calibrator")
@@ -423,8 +420,8 @@ class ConfidenceCalibrator:
                 'test_results': test_results,
                 'best_configuration': best_config,
                 'best_result': best_result,
-                'recommendations': self._generate_final_recommendations(best_result, current_performance),
-                'next_steps': self._generate_next_steps(best_result)
+                'recommendations': self._generate_final_recommendations(best_result or {}, current_performance),
+                'next_steps': self._generate_next_steps(best_result or {})
             }
 
             # 6. LOG DE RESULTADOS
@@ -436,7 +433,7 @@ class ConfidenceCalibrator:
             enviar_senal_log("ERROR", f"Error en Sprint 1.6: {e}", __name__, "confidence_calibrator")
             return {'error': str(e), 'sprint_status': 'FAILED'}
 
-    def _select_best_configuration(self, test_results: List[Dict]) -> Tuple[Dict, Dict]:
+    def _select_best_configuration(self, test_results: List[Dict]) -> Tuple[Optional[Dict], Optional[Dict]]:
         """Selecciona la mejor configuración de los tests"""
         if not test_results:
             return None, None

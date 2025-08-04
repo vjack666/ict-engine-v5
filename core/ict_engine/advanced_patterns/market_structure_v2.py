@@ -18,8 +18,7 @@ Fecha: 04 Agosto 2025
 """
 
 import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from enum import Enum
@@ -28,7 +27,7 @@ from enum import Enum
 from sistema.logging_interface import enviar_senal_log
 
 # ICT Types
-from ..ict_types import SessionType, TradingDirection, SignalStrength
+from ..ict_types import TradingDirection
 
 
 class StructureType(Enum):
@@ -316,7 +315,7 @@ class MarketStructureEngine:
 
             # DETECTAR CHOCH ALCISTA (Rompe low anterior en downtrend)
             elif (current_price > prev_low['price'] and
-                  self.current_trend == TradingDirection.BEARISH and
+                  self.current_trend == TradingDirection.SELL and
                   last_low['price'] > prev_low['price']):
                 structure_score = 0.9
                 structure_type = StructureType.CHOCH_BULLISH
@@ -326,7 +325,7 @@ class MarketStructureEngine:
 
             # DETECTAR CHOCH BAJISTA (Rompe high anterior en uptrend)
             elif (current_price < prev_high['price'] and
-                  self.current_trend == TradingDirection.BULLISH and
+                  self.current_trend == TradingDirection.BUY and
                   last_high['price'] < prev_high['price']):
                 structure_score = 0.9
                 structure_type = StructureType.CHOCH_BEARISH
@@ -457,10 +456,10 @@ class MarketStructureEngine:
 
                 # Bonus por alineación
                 if structure_type in [StructureType.BOS_BULLISH, StructureType.CHOCH_BULLISH]:
-                    if h1_trend == TradingDirection.BULLISH:
+                    if h1_trend == TradingDirection.BUY:
                         confluence_score += 0.3
                 elif structure_type in [StructureType.BOS_BEARISH, StructureType.CHOCH_BEARISH]:
-                    if h1_trend == TradingDirection.BEARISH:
+                    if h1_trend == TradingDirection.SELL:
                         confluence_score += 0.3
 
             # Verificar presencia de niveles clave
@@ -487,9 +486,9 @@ class MarketStructureEngine:
             price_change = (recent['close'].iloc[-1] - recent['close'].iloc[0]) / recent['close'].iloc[0]
 
             if price_change > 0.005:  # >50 pips en H1
-                return TradingDirection.BULLISH
+                return TradingDirection.BUY
             elif price_change < -0.005:  # <-50 pips en H1
-                return TradingDirection.BEARISH
+                return TradingDirection.SELL
             else:
                 return TradingDirection.NEUTRAL
 
@@ -507,7 +506,6 @@ class MarketStructureEngine:
 
             for i in range(2, len(recent)):
                 candle_1 = recent.iloc[i-2]  # Candle anterior
-                candle_2 = recent.iloc[i-1]  # Candle medio
                 candle_3 = recent.iloc[i]    # Candle actual
 
                 # Detectar FVG alcista
@@ -635,9 +633,9 @@ class MarketStructureEngine:
 
             # Determinar dirección
             if structure_type in [StructureType.BOS_BULLISH, StructureType.CHOCH_BULLISH]:
-                direction = TradingDirection.BULLISH
+                direction = TradingDirection.BUY
             elif structure_type in [StructureType.BOS_BEARISH, StructureType.CHOCH_BEARISH]:
-                direction = TradingDirection.BEARISH
+                direction = TradingDirection.SELL
             else:
                 direction = TradingDirection.NEUTRAL
 
@@ -717,9 +715,9 @@ class MarketStructureEngine:
         try:
             # Actualizar tendencia actual
             if structure_type in [StructureType.BOS_BULLISH, StructureType.CHOCH_BULLISH]:
-                self.current_trend = TradingDirection.BULLISH
+                self.current_trend = TradingDirection.BUY
             elif structure_type in [StructureType.BOS_BEARISH, StructureType.CHOCH_BEARISH]:
-                self.current_trend = TradingDirection.BEARISH
+                self.current_trend = TradingDirection.SELL
             else:
                 self.current_trend = TradingDirection.NEUTRAL
 

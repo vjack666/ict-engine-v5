@@ -20,7 +20,7 @@ import numpy as np
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_ict
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Any, Tuple, Union
 import json
 from json import JSONDecodeError
@@ -1262,13 +1262,15 @@ class ICTDetector:
         # SPRINT 1.4 FIX: Agregar session detection también al ICTDetector
         if market_status_available:
             try:
-                from sistema.trading_schedule import get_current_session_info
+                self.market_status_detector = MarketStatusDetector()
                 self.session_detector_available = True
                 enviar_senal_log("INFO", "🕐 Session Detection habilitado en ICTDetector", __name__, "session_detection")
             except Exception as e:
+                self.market_status_detector = None
                 self.session_detector_available = False
                 enviar_senal_log("WARNING", f"🕐 Error habilitando session detection: {e}", __name__, "session_detection")
         else:
+            self.market_status_detector = None
             self.session_detector_available = False
 
     def detect_patterns(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -1837,7 +1839,7 @@ class ICTDetector:
 
             strength = min(abs(momentum) * 100 + (1 - volatility) * 50, 100)
             return max(0, strength)
-        except:
+        except Exception:
             return 50.0
 
     def _detect_break_of_structure_advanced(self, candles: pd.DataFrame) -> Dict[str, Any]:
@@ -1858,7 +1860,7 @@ class ICTDetector:
                 return {'overall': 'BEARISH', 'short_term': short_term * 100}
             else:
                 return {'overall': 'NEUTRAL', 'short_term': short_term * 100}
-        except:
+        except Exception:
             return {'overall': 'NEUTRAL'}
 
     def _assess_structure_quality(self, candles, trend_analysis, structure_strength) -> str:
@@ -1870,7 +1872,7 @@ class ICTDetector:
                 return "MEDIUM"
             else:
                 return "LOW"
-        except:
+        except Exception:
             return "MEDIUM"
 
     def _calculate_structure_confidence_advanced(self, trend_analysis, structure_strength, structure_quality) -> float:
@@ -1880,7 +1882,7 @@ class ICTDetector:
             if trend_analysis['primary_trend'] in ['bullish_structure', 'bearish_structure']:
                 base += 20
             return min(base + structure_strength * 0.3, 95)
-        except:
+        except Exception:
             return 60.0
 
     def _simulate_h4_data(self, candles: pd.DataFrame) -> pd.DataFrame:
@@ -1903,7 +1905,7 @@ class ICTDetector:
                 bias = 'NEUTRAL'
 
             return {'bias': bias, 'confidence': 75, 'strength': 'MEDIUM'}
-        except:
+        except Exception:
             return {'bias': 'NEUTRAL', 'confidence': 50, 'strength': 'LOW'}
 
     def _calculate_m15_bias_advanced(self, m15_simulation: pd.DataFrame) -> Dict[str, Any]:
@@ -1922,7 +1924,7 @@ class ICTDetector:
                 bias = 'NEUTRAL'
 
             return {'bias': bias, 'confidence': 70, 'strength': 'MEDIUM'}
-        except:
+        except Exception:
             return {'bias': 'NEUTRAL', 'confidence': 50, 'strength': 'LOW'}
 
     def _calculate_bias_confluence_advanced(self, h4_bias: Dict, m15_bias: Dict, candles: pd.DataFrame) -> Dict[str, Any]:
@@ -1959,7 +1961,7 @@ class ICTDetector:
                     'confidence': 30,
                     'score': 25
                 }
-        except:
+        except Exception:
             return {'primary_bias': 'NEUTRAL', 'strength': 'LOW', 'confidence': 25, 'score': 20}
 
     def _analyze_bias_momentum(self, candles: pd.DataFrame) -> Dict[str, Any]:
@@ -1974,11 +1976,18 @@ class ICTDetector:
         try:
             # Verificar si tenemos session detection disponible (ICTDetector)
             if hasattr(self, 'session_detector_available') and self.session_detector_available:
-                from sistema.trading_schedule import get_current_session_info
-                current_session = get_current_session_info()
+                if market_status_available:
+                    current_session = get_current_session_info()
+                else:
+                    enviar_senal_log("WARNING", "🕐 Market Status no disponible", __name__, "session_detection")
+                    return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
             # Verificar si tenemos market_status_detector disponible (MarketContext)
             elif hasattr(self, 'market_status_detector') and self.market_status_detector:
-                current_session = get_current_session_info()
+                if market_status_available:
+                    current_session = get_current_session_info()
+                else:
+                    enviar_senal_log("WARNING", "🕐 Market Status no disponible", __name__, "session_detection")
+                    return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
             else:
                 enviar_senal_log("WARNING", "🕐 Session Detection no disponible en este contexto", __name__, "session_detection")
                 return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
@@ -2021,7 +2030,6 @@ class ICTDetector:
         NY Killzone: 8-11 AM EST (13-16 UTC)
         """
         try:
-            from datetime import datetime, timezone
             current_utc = datetime.now(timezone.utc)
             current_hour = current_utc.hour
 
@@ -2253,7 +2261,7 @@ class ICTDetector:
             if gap_size > 0.001:
                 base_confidence += 10
             return base_confidence
-        except:
+        except Exception:
             return 70
 
     def _calculate_swing_confidence(self, swing, swing_type) -> float:
@@ -2385,10 +2393,9 @@ class ICTDetector:
             session_zones = []
 
             # Solo si tenemos session detection disponible
-            if hasattr(self, 'session_detector_available') and self.session_detector_available:
+            if hasattr(self, 'session_detector_available') and self.session_detector_available and market_status_available:
 
                 # Obtener información de sesión actual
-                from sistema.trading_schedule import get_current_session_info
                 session_info = get_current_session_info()
 
                 if session_info:

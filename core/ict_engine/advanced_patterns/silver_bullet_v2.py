@@ -27,7 +27,7 @@ from enum import Enum
 from sistema.logging_interface import enviar_senal_log
 
 # ICT Types
-from ..ict_types import SessionType, TradingDirection, SignalStrength
+from ..ict_types import TradingDirection
 
 
 class SilverBulletType(Enum):
@@ -91,7 +91,7 @@ class AdvancedSilverBulletDetector:
                                   candles_m1: Optional[pd.DataFrame] = None,
                                   candles_h1: Optional[pd.DataFrame] = None,
                                   current_price: float = 0.0,
-                                  detected_obs: List[Dict] = None) -> Optional[SilverBulletSignal]:
+                                  detected_obs: Optional[List[Dict]] = None) -> Optional[SilverBulletSignal]:
         """
         🎯 ANÁLISIS COMPLETO SILVER BULLET v2.0
 
@@ -220,9 +220,9 @@ class AdvancedSilverBulletDetector:
             # Análisis de estructura M5
             recent_m5 = candles_m5.tail(20)
 
-            # Detectar swing highs/lows
-            highs = recent_m5['high'].rolling(window=3, center=True).max()
-            lows = recent_m5['low'].rolling(window=3, center=True).min()
+            # Detectar swing highs/lows (preparado para futuras mejoras)
+            # highs = recent_m5['high'].rolling(window=3, center=True).max()
+            # lows = recent_m5['low'].rolling(window=3, center=True).min()
 
             # Determinar dirección predominante
             recent_close = recent_m5['close'].iloc[-1]
@@ -231,10 +231,10 @@ class AdvancedSilverBulletDetector:
 
             # Scoring basado en posición relativa
             if recent_close > sma_10 > sma_20:
-                direction = TradingDirection.BULLISH
+                direction = TradingDirection.BUY
                 structure_score = 0.8
             elif recent_close < sma_10 < sma_20:
-                direction = TradingDirection.BEARISH
+                direction = TradingDirection.SELL
                 structure_score = 0.8
             else:
                 direction = TradingDirection.NEUTRAL
@@ -246,8 +246,8 @@ class AdvancedSilverBulletDetector:
                 h1_sma = h1_recent['close'].rolling(5).mean().iloc[-1]
                 h1_close = h1_recent['close'].iloc[-1]
 
-                if (direction == TradingDirection.BULLISH and h1_close > h1_sma) or \
-                   (direction == TradingDirection.BEARISH and h1_close < h1_sma):
+                if (direction == TradingDirection.BUY and h1_close > h1_sma) or \
+                   (direction == TradingDirection.SELL and h1_close < h1_sma):
                     structure_score += 0.15  # Bonus por alineación MTF
 
             enviar_senal_log("DEBUG", f"📊 Estructura: {direction.value} - Score: {structure_score:.2f}", __name__, "silver_bullet")
@@ -347,9 +347,9 @@ class AdvancedSilverBulletDetector:
             current = close.iloc[-1]
 
             if current > sma_short > sma_long:
-                return TradingDirection.BULLISH
+                return TradingDirection.BUY
             elif current < sma_short < sma_long:
-                return TradingDirection.BEARISH
+                return TradingDirection.SELL
             else:
                 return TradingDirection.NEUTRAL
 
@@ -410,7 +410,7 @@ class AdvancedSilverBulletDetector:
                 session_context={}
             )
 
-    def _generate_narrative(self, killzone_type: SilverBulletType, direction: TradingDirection, confidence: float, candles_m5: pd.DataFrame) -> str:
+    def _generate_narrative(self, killzone_type: SilverBulletType, direction: TradingDirection, confidence: float, candles_m5: Optional[pd.DataFrame]) -> str:
         """Genera narrativa contextual para la señal"""
         try:
             # Base de la narrativa según killzone
@@ -423,8 +423,8 @@ class AdvancedSilverBulletDetector:
 
             # Dirección y confianza
             direction_text = {
-                TradingDirection.BULLISH: "📈 BULLISH setup",
-                TradingDirection.BEARISH: "📉 BEARISH setup",
+                TradingDirection.BUY: "📈 BULLISH setup",
+                TradingDirection.SELL: "📉 BEARISH setup",
                 TradingDirection.NEUTRAL: "⚖️ NEUTRAL setup"
             }.get(direction, "Unknown direction")
 

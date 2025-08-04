@@ -50,11 +50,11 @@ except ImportError:
 
 # Establecer variables para compatibilidad
 if not trading_schedule_available:
-    def calcular_tiempo_restante_para_proxima_sesion():
+    def calcular_tiempo_restante_para_proxima_sesion() -> Optional[Dict[str, int]]:
         """Fallback function"""
         return {"hours": 2, "minutes": 30, "seconds": 0}
 
-    def get_current_session_info():
+    def get_current_session_info() -> Optional[Dict[str, Any]]:
         """Fallback function"""
         current_hour = datetime.now().hour
         if 8 <= current_hour < 17:
@@ -542,12 +542,19 @@ def get_trading_session_info() -> tuple:
         if get_current_session_info is not None:
             current_session = get_current_session_info()
             if current_session:
-                sesion_nombre = current_session['name']
+                sesion_nombre = current_session.get('name', 'DESCONOCIDA')
                 if calcular_tiempo_restante_para_proxima_sesion is not None:
                     tiempo_restante = calcular_tiempo_restante_para_proxima_sesion()
                     if tiempo_restante:
-                        tiempo_str = f"{getattr(tiempo_restante, "hours", 0):02d}:{getattr(tiempo_restante, "minutes", 0):02d}:{getattr(tiempo_restante, "seconds", 0):02d}"
-                        horario_desc = f"{current_session['start']} - {current_session['end']} UTC"
+                        # tiempo_restante es un diccionario, usar acceso por clave
+                        horas = tiempo_restante.get("hours", 0)
+                        minutos = tiempo_restante.get("minutes", 0)
+                        segundos = tiempo_restante.get("seconds", 0)
+                        tiempo_str = f"{horas:02d}:{minutos:02d}:{segundos:02d}"
+                        # Verificar si current_session tiene información de horario
+                        start_time = current_session.get('start', 'N/A')
+                        end_time = current_session.get('end', 'N/A')
+                        horario_desc = f"{start_time} - {end_time} UTC"
                         return sesion_nombre, tiempo_str, horario_desc
                 return sesion_nombre, "N/A", "Sesión activa"
         return "DESCONOCIDA", "Calculando...", "Verificando horarios"
