@@ -505,6 +505,49 @@ class SentinelDashboardDefinitivo(App):
                 enviar_senal_log("ERROR", f"Error actualizando precio: {e}", "dashboard_definitivo", "migration")
         return False
 
+    def _detectar_mt5_optimizado(self):
+        """
+        Detección optimizada de MT5 con múltiples métodos
+
+        Returns:
+            tuple: (conectado: bool, precio_actual: float, info_conexion: str)
+        """
+        try:
+            # Método 1: Verificación directa MT5
+            import MetaTrader5 as mt5
+
+            # Intentar conexión rápida
+            if not mt5.initialize():
+                return False, 0.0, "MT5 no inicializado"
+
+            # Verificar cuenta activa
+            account_info = mt5.account_info()
+            if not account_info:
+                mt5.shutdown()
+                return False, 0.0, "Sin info de cuenta"
+
+            # Obtener tick actual para confirmar conexión activa
+            tick = mt5.symbol_info_tick("EURUSD")
+            if not tick:
+                mt5.shutdown()
+                return False, 0.0, "Sin datos de tick"
+
+            precio_actual = tick.bid
+            mt5.shutdown()
+
+            # Actualizar variables de clase también
+            self.mt5_connected = True
+            self.current_price = precio_actual
+
+            return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f}"
+
+        except ImportError:
+            self.mt5_connected = False
+            return False, 0.0, "MT5 no instalado"
+        except Exception as e:
+            self.mt5_connected = False
+            return False, 0.0, f"Error: {str(e)[:50]}"
+
     def compose(self) -> ComposeResult:
         """Composición de la interfaz con 4 pestañas especializadas"""
         yield Header(classes="main-header")
@@ -608,13 +651,16 @@ class SentinelDashboardDefinitivo(App):
         self.notify("🎯 Sistema conectado a datos reales MT5", timeout=3)
 
     def render_hibernation_panel(self):
-        """Renderiza panel de hibernación inteligente basado en estado real del mercado"""
+        """Renderiza panel de hibernación perfecta con detección optimizada MT5"""
 
         # ⚡ USAR DETECTOR DE MERCADO EXISTENTE (COHERENCIA ENTRE PESTAÑAS)
         market_status = self.market_detector.get_current_market_status()
 
+        # 🔥 DETECCIÓN MT5 OPTIMIZADA Y RÁPIDA
+        mt5_connected, precio_actual, info_mt5 = self._detectar_mt5_optimizado()
+
         content = Text()
-        content.append("🚀 SENTINEL ICT ANALYZER - HIBERNACIÓN INTELIGENTE\n\n",
+        content.append("🚀 SENTINEL ICT ANALYZER - HIBERNACIÓN PERFECTA\n\n",
                       style="bold magenta")
 
         # Determinar estado del sistema basado en mercado real
@@ -623,15 +669,16 @@ class SentinelDashboardDefinitivo(App):
         current_session = market_status.get('session_activa', {})
         session_name = current_session.get('name', 'Ninguna') if current_session else 'Ninguna'
 
-        # Lógica de hibernación inteligente
-        if is_market_open and self.mt5_connected:
-            # Mercado abierto + MT5 conectado = MODO ACTIVO
-            content.append("🟢 SISTEMA ACTIVO - ANÁLISIS EN TIEMPO REAL\n", style="bold green")
-            content.append(f"📊 Sesión: {session_name}\n", style="cyan")
-            content.append(f"💰 Precio Actual: {self.current_price:.5f}\n", style="yellow")
+        # 🎯 LÓGICA DE HIBERNACIÓN INTELIGENTE MEJORADA (USA DETECCIÓN OPTIMIZADA)
+        if is_market_open and mt5_connected:
+            # 🔥 SISTEMA COMPLETAMENTE ACTIVO
+            content.append("� SISTEMA ACTIVO - ANÁLISIS EN TIEMPO REAL\n", style="bold green")
+            content.append(f"📊 Sesión: {session_name}\n", style="bright_cyan")
+            content.append(f"💰 Precio Actual: {precio_actual:.5f}\n", style="bright_yellow")
+            content.append(f"✅ {info_mt5}\n", style="green")
             hibernation_status = "🔥 OPERATIVO"
 
-        elif is_market_open and not self.mt5_connected:
+        elif is_market_open and not mt5_connected:
             # Mercado abierto pero MT5 desconectado = MODO LIMITADO
             content.append("� MODO LIMITADO - MERCADO ABIERTO SIN MT5\n", style="bold yellow")
             content.append(f"📊 Sesión: {session_name}\n", style="cyan")
