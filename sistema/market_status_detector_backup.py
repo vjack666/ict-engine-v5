@@ -36,6 +36,9 @@ import os
 from datetime import datetime, timezone, timedelta
 import platform
 
+# Agregar el directorio raíz al path para imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 try:
     from sistema.trading_schedule import TradingScheduleManager
     from sistema.logging_interface import enviar_senal_log
@@ -47,7 +50,7 @@ except ImportError as e:
         from sistema.trading_schedule import TradingScheduleManager
         from sistema.logging_interface import enviar_senal_log
     except ImportError as e2:
-        enviar_senal_log("ERROR", f"Error crítico importando módulos: {e2}", __name__, "market_status")
+        print(f"Error crítico importando módulos: {e2}")
         sys.exit(1)
 
 
@@ -234,8 +237,8 @@ class MarketStatusDetector:
                 'all_active': []
             }
 
-            if session_info and 'session_key' in session_info:
-                session_name = session_info['session_key']
+            if session_info and 'session' in session_info:
+                session_name = session_info['session']
                 session_activa = {
                     'name': session_name,
                     'description': f"Sesión {session_name} activa",

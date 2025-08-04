@@ -2553,6 +2553,47 @@ class ICTDetector:
             enviar_senal_log("ERROR", f"Error rankeando liquidity zones: {e}", __name__, "liquidity")
             return zones  # Retornar sin rankear si hay error
 
+    def _detect_swing_points(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Wrapper para detectar swing points usando la función global existente
+        Conecta con detectar_swing_points() ya implementada
+        """
+        try:
+            if df is None or len(df) < 10:
+                return []
+
+            # Usar la función global ya implementada
+            swing_highs, swing_lows = detectar_swing_points(df, len_left=5, len_right=1)
+
+            swing_points = []
+
+            # Convertir swing highs a formato estándar
+            for high in swing_highs:
+                swing_points.append({
+                    'type': 'HIGH',
+                    'price': high.get('price', 0),
+                    'index': high.get('index', 0),
+                    'strength': high.get('strength', 50),
+                    'created_at': datetime.now().isoformat()
+                })
+
+            # Convertir swing lows a formato estándar
+            for low in swing_lows:
+                swing_points.append({
+                    'type': 'LOW',
+                    'price': low.get('price', 0),
+                    'index': low.get('index', 0),
+                    'strength': low.get('strength', 50),
+                    'created_at': datetime.now().isoformat()
+                })
+
+            enviar_senal_log("DEBUG", f"Swing Points detectados: {len(swing_points)} ({len(swing_highs)} highs, {len(swing_lows)} lows)", __name__, "liquidity")
+            return swing_points
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error en _detect_swing_points: {e}", __name__, "liquidity")
+            return []
+
     # =========================================================================
     # MÉTODOS DE UTILIDAD Y ESTADO
     # =========================================================================

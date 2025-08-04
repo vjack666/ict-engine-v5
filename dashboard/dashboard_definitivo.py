@@ -608,25 +608,50 @@ class SentinelDashboardDefinitivo(App):
         self.notify("🎯 Sistema conectado a datos reales MT5", timeout=3)
 
     def render_hibernation_panel(self):
-        """Renderiza panel de hibernación con datos reales"""
+        """Renderiza panel de hibernación inteligente basado en estado real del mercado"""
+
+        # ⚡ USAR DETECTOR DE MERCADO EXISTENTE (COHERENCIA ENTRE PESTAÑAS)
+        market_status = self.market_detector.get_current_market_status()
 
         content = Text()
         content.append("🚀 SENTINEL ICT ANALYZER - HIBERNACIÓN INTELIGENTE\n\n",
                       style="bold magenta")
 
-        # Estado de conexión MT5
-        if self.mt5_connected:
-            content.append("🟢 MT5 CONECTADO - DATOS REALES\n", style="bold green")
-            content.append(f"📊 Símbolo: {self.symbol}\n", style="cyan")
-            content.append(f"💰 Precio Actual: {self.current_price:.5f}\n", style="yellow")
-        else:
-            content.append("🔴 MT5 DESCONECTADO - MODO DEMO\n", style="bold red")
+        # Determinar estado del sistema basado en mercado real
+        market_status_text = market_status.get('market_status', 'DESCONOCIDO')
+        is_market_open = market_status_text == 'MERCADO ABIERTO'
+        current_session = market_status.get('session_activa', {})
+        session_name = current_session.get('name', 'Ninguna') if current_session else 'Ninguna'
 
-        # Tiempo de hibernación
+        # Lógica de hibernación inteligente
+        if is_market_open and self.mt5_connected:
+            # Mercado abierto + MT5 conectado = MODO ACTIVO
+            content.append("🟢 SISTEMA ACTIVO - ANÁLISIS EN TIEMPO REAL\n", style="bold green")
+            content.append(f"📊 Sesión: {session_name}\n", style="cyan")
+            content.append(f"💰 Precio Actual: {self.current_price:.5f}\n", style="yellow")
+            hibernation_status = "🔥 OPERATIVO"
+
+        elif is_market_open and not self.mt5_connected:
+            # Mercado abierto pero MT5 desconectado = MODO LIMITADO
+            content.append("� MODO LIMITADO - MERCADO ABIERTO SIN MT5\n", style="bold yellow")
+            content.append(f"📊 Sesión: {session_name}\n", style="cyan")
+            content.append("⚠️ Reconectar MT5 para análisis completo\n", style="red")
+            hibernation_status = "⚠️ LIMITADO"
+
+        else:
+            # Mercado cerrado = MODO HIBERNACIÓN
+            content.append("🌙 SISTEMA EN HIBERNACIÓN - MERCADO CERRADO\n", style="bold blue")
+            next_session = market_status.get('time_to_next_session', {})
+            if next_session:
+                content.append(f"⏰ Próxima sesión: {next_session.get('next_session', 'N/A')}\n", style="cyan")
+                content.append(f"� Tiempo restante: {next_session.get('formatted_time', 'N/A')}\n", style="yellow")
+            hibernation_status = "� HIBERNANDO"
+
+        # Tiempo en estado actual
         elapsed = datetime.now() - self.hibernation_start
         hours = int(elapsed.total_seconds() // 3600)
         minutes = int((elapsed.total_seconds() % 3600) // 60)
-        content.append(f"⏰ Tiempo de hibernación: {hours}h {minutes}m\n\n", style="white")
+        content.append(f"⏱️ Tiempo en estado actual: {hours}h {minutes}m\n\n", style="white")
 
         # Verificar que system_metrics existe y tiene las claves necesarias
         if not hasattr(self, 'system_metrics') or not isinstance(self.system_metrics, dict):
@@ -641,12 +666,17 @@ class SentinelDashboardDefinitivo(App):
             }
 
         content.append("📈 MÉTRICAS DEL SISTEMA:\n", style="bold blue")
+        content.append(f"• Estado: {hibernation_status}\n", style="bold cyan")
         content.append(f"• Análisis realizados: {self.analysis_count}\n", style="white")
         content.append(f"• Patrones detectados: {self.patterns_detected}\n", style="cyan")
         content.append(f"• Señales alta probabilidad: {self.high_probability_signals}\n",
                       style="green")
         content.append(f"• Actualizaciones de datos: {self.system_metrics.get('data_updates', 0)}\n",
                       style="yellow")
+
+        # Estado detallado del mercado
+        content.append(f"• Mercado: {'🟢 ABIERTO' if is_market_open else '🔴 CERRADO'}\n", style="white")
+        content.append(f"• MT5: {'🟢 CONECTADO' if self.mt5_connected else '🔴 DESCONECTADO'}\n", style="white")
 
         # 🛡️ INFORMACIÓN DE GESTIÓN DE RIESGO
         if self.riskbot:
@@ -660,11 +690,22 @@ class SentinelDashboardDefinitivo(App):
                 if self.debug_mode:
                     content.append(f"   Error: {e}\n", style="dim red")
 
+        # Determinar título dinámico basado en estado
+        if is_market_open and self.mt5_connected:
+            panel_title = "🔥 [bold green]SISTEMA ACTIVO - ANÁLISIS EN TIEMPO REAL[/bold green]"
+            border_color = "bright_green"
+        elif is_market_open and not self.mt5_connected:
+            panel_title = "⚠️ [bold yellow]MODO LIMITADO - RECONECTAR MT5[/bold yellow]"
+            border_color = "bright_yellow"
+        else:
+            panel_title = "🌙 [bold blue]HIBERNACIÓN INTELIGENTE - ESPERANDO MERCADO[/bold blue]"
+            border_color = "bright_blue"
+
         return Panel(
             content,
-            title="🚀 [bold magenta]HIBERNACIÓN INTELIGENTE - DATOS REALES[/bold magenta]",
+            title=panel_title,
             subtitle=f"🔬 Debug: {'ON' if self.debug_mode else 'OFF'} | 📊 {self.patterns_detected} patrones | 💾 {self.system_metrics['export_count']} exports",
-            border_style="bright_magenta",
+            border_style=border_color,
             padding=(1, 2)
         )
 
@@ -1111,9 +1152,23 @@ class SentinelDashboardDefinitivo(App):
                 enviar_senal_log("INFO", f"ANALYSIS_COMPLETED: {analysis_summary}", "dashboard_definitivo", "analysis")
 
             else:
-                # Modo simulado para desarrollo
-                self.simulate_pattern_detection()
-                enviar_senal_log("WARNING", "🔄 Ejecutando en modo simulado - MT5 no conectado", "dashboard_definitivo", "analysis")
+                # ⚡ VERIFICACIÓN ADICIONAL MT5 (SPRINT 1.6 FIX)
+                try:
+                    import MetaTrader5 as mt5
+                    if mt5.initialize():
+                        # MT5 está realmente conectado, corregir el estado
+                        self.mt5_connected = True
+                        enviar_senal_log("SUCCESS", "✅ MT5 detectado y conectado (verificación adicional)", "dashboard_definitivo", "mt5_connection")
+                        self.update_current_price()
+                        mt5.shutdown()
+                    else:
+                        # Modo simulado para desarrollo
+                        self.simulate_pattern_detection()
+                        enviar_senal_log("WARNING", "🔄 Ejecutando en modo simulado - MT5 no conectado", "dashboard_definitivo", "analysis")
+                except Exception:
+                    # Modo simulado para desarrollo
+                    self.simulate_pattern_detection()
+                    enviar_senal_log("WARNING", "🔄 Ejecutando en modo simulado - MT5 no conectado", "dashboard_definitivo", "analysis")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:

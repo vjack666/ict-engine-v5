@@ -60,22 +60,22 @@ except ImportError as e:
 
 CONFIDENCE_CONFIG = {
     'weights': {
-        'base_pattern': 0.4,         # 40% peso al análisis base del patrón
-        'poi_confluence': 0.25,      # 25% peso a confluencia con POIs
-        'historical': 0.15,          # 15% peso al rendimiento histórico
-        'market_structure': 0.10,    # 10% peso a estructura de mercado
-        'session_context': 0.10,     # 10% peso al contexto de sesión
+        'base_pattern': 0.25,        # ⭐ REDUCIDO: 40% → 25% (menos dependencia de patrón base)
+        'poi_confluence': 0.40,      # ⭐ AUMENTADO: 25% → 40% (mayor sinergia POI-ICT)
+        'historical': 0.20,          # ⭐ AUMENTADO: 15% → 20% (mayor peso histórico)
+        'market_structure': 0.10,    # MANTENIDO: 10% estructura de mercado
+        'session_context': 0.05,     # ⭐ REDUCIDO: 10% → 5% (menos peso sesión)
     },
-    'confluence_distance_pips': 10,      # Distancia máxima para confluencia
+    'confluence_distance_pips': 20,      # ⭐ AUMENTADO: 10 → 20 pips (mayor rango confluencia)
     'min_historical_samples': 5,         # Mínimo de samples para histórico
     'max_pattern_age_minutes': 120,      # Edad máxima del patrón (2 horas)
     'volatility_adjustment': True,       # Ajuste por volatilidad
     'session_multipliers': {
-        'asian': 0.85,           # Sesión asiática: menor volatilidad
-        'london': 1.1,           # Sesión Londres: mayor confiabilidad
-        'new_york': 1.0,         # Sesión NY: baseline
-        'overlap': 1.15,         # Overlap: máxima confiabilidad
-        'quiet': 0.7,            # Horas silenciosas
+        'asian': 0.95,           # ⭐ MEJORADO: 0.85 → 0.95 (mejor asiática)
+        'london': 1.25,          # ⭐ MEJORADO: 1.1 → 1.25 (mejor Londres)
+        'new_york': 1.15,        # ⭐ MEJORADO: 1.0 → 1.15 (mejor NY)
+        'overlap': 1.30,         # ⭐ MEJORADO: 1.15 → 1.30 (mejor overlap)
+        'quiet': 0.80,           # ⭐ MEJORADO: 0.7 → 0.80 (mejor horas silenciosas)
     },
     'confidence_thresholds': {
         'very_high': 0.85,       # 85%+
