@@ -135,7 +135,7 @@ except ImportError as e:
         ]
     )
     logger = logging.getLogger('sentinel.dashboard_definitivo')
-    logger.warning("⚠️ Smart logger no disponible: %s. Usando logging básico.", e)
+    enviar_senal_log("WARNING", f"⚠️ Smart logger no disponible: {e}. Usando logging básico.", "dashboard_definitivo", "initialization")
 
 # Imports de sistemas reales MT5 y ICT
 try:
@@ -1191,11 +1191,11 @@ class SentinelDashboardDefinitivo(App):
                 enviar_senal_log("INFO", "🎯 ANÁLISIS INTEGRAL COMPLETADO:", "dashboard_definitivo", "analysis")
                 enviar_senal_log("INFO", f"   • Patrones ICT: {len(enriched_patterns)}", "dashboard_definitivo", "analysis")
                 enviar_senal_log("INFO", f"   • POIs detectados: {len(scored_pois)}", "dashboard_definitivo", "analysis")
-                enviar_senal_log("INFO", f"   • Veredicto: {veredicto['grade'] if veredicto else 'NINGUNO'}", "dashboard_definitivo", "analysis")
+                enviar_senal_log("INFO", f"   • Veredicto: {veredicto['setup_grade'] if veredicto else 'NINGUNO'}", "dashboard_definitivo", "analysis")
                 enviar_senal_log("INFO", f"   • Contexto: {market_context.get('h4_bias', 'NEUTRAL')}", "dashboard_definitivo", "analysis")
 
                 # Log del análisis usando SLUC v2.1
-                analysis_summary = f"Análisis: {len(enriched_patterns)} patrones, {len(scored_pois)} POIs, veredicto: {veredicto['grade'] if veredicto else 'NINGUNO'}"
+                analysis_summary = f"Análisis: {len(enriched_patterns)} patrones, {len(scored_pois)} POIs, veredicto: {veredicto['setup_grade'] if veredicto else 'NINGUNO'}"
                 enviar_senal_log("INFO", f"ANALYSIS_COMPLETED: {analysis_summary}", "dashboard_definitivo", "analysis")
 
             else:
@@ -1266,9 +1266,9 @@ class SentinelDashboardDefinitivo(App):
             enviar_senal_log("INFO", f"DATA_LOADED: {loaded_count} timeframes cargados para análisis ICT", "dashboard_definitivo", "data_loading")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error cargando datos multi-timeframe: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error cargando datos multi-timeframe: {e}", "dashboard_definitivo", "data_loading")
             if self.debug_mode:
-                logger.debug("Stack trace: %s", traceback.format_exc())
+                enviar_senal_log("DEBUG", f"Stack trace: {traceback.format_exc()}", "dashboard_definitivo", "data_loading")
 
     # ======================================================================
     # 🚀 MÉTODOS COMPLETOS USANDO TODOS LOS ESPECIALISTAS CONECTADOS
@@ -1376,8 +1376,8 @@ class SentinelDashboardDefinitivo(App):
             m15_data = self.real_market_data.get('candles_m1')  # Usar M1 como M15 equivalente
             h1_data = self.real_market_data.get('candles_h1')
 
-            logger.info("🎯 INICIANDO DETECCIÓN POI COMPLETA")
-            logger.debug("Datos disponibles: M5=%s, M15=%s, H1=%s", len(m5_data) if m5_data is not None else 0, len(m15_data) if m15_data is not None else 0, len(h1_data) if h1_data is not None else 0)
+            enviar_senal_log("INFO", "🎯 INICIANDO DETECCIÓN POI COMPLETA", "dashboard_definitivo", "poi_detection")
+            enviar_senal_log("DEBUG", f"Datos disponibles: M5={len(m5_data) if m5_data is not None else 0}, M15={len(m15_data) if m15_data is not None else 0}, H1={len(h1_data) if h1_data is not None else 0}", "dashboard_definitivo", "poi_detection")
 
             # Detectar POIs en múltiples timeframes usando el detector completo
             timeframes_data = [
@@ -1388,8 +1388,8 @@ class SentinelDashboardDefinitivo(App):
 
             for data, tf_name in timeframes_data:
                 if data is not None and not data.empty:
-                    logger.info("🔍 Detectando POIs en %s: %s velas disponibles", tf_name, len(data))
-                    logger.debug("   Rango precio %s: %.5f - %.5f", tf_name, data['close'].min(), data['close'].max())
+                    enviar_senal_log("INFO", f"🔍 Detectando POIs en {tf_name}: {len(data)} velas disponibles", "dashboard_definitivo", "poi_detection")
+                    enviar_senal_log("DEBUG", f"   Rango precio {tf_name}: {data['close'].min():.5f} - {data['close'].max():.5f}", "dashboard_definitivo", "poi_detection")
 
                     # Usar las funciones del poi_detector
                     pois_tf = self.poi_detector_functions.detectar_todos_los_pois(
@@ -1398,7 +1398,7 @@ class SentinelDashboardDefinitivo(App):
                         current_price=self.current_price
                     )
 
-                    logger.info("📊 Resultado detección %s: %s - %s", tf_name, type(pois_tf), len(pois_tf) if isinstance(pois_tf, (list, dict)) else 'N/A')
+                    enviar_senal_log("INFO", f"📊 Resultado detección {tf_name}: {type(pois_tf)} - {len(pois_tf) if isinstance(pois_tf, (list, dict)) else 'N/A'}", "dashboard_definitivo", "poi_detection")
 
                     if pois_tf and isinstance(pois_tf, dict):
                         # Consolidar todos los tipos de POI detectados
@@ -1406,15 +1406,15 @@ class SentinelDashboardDefinitivo(App):
                         for poi_type, poi_list in pois_tf.items():
                             if isinstance(poi_list, list) and poi_type != 'resumen':
                                 all_pois_from_tf.extend(poi_list)
-                                logger.debug("   %s: %s POIs", poi_type, len(poi_list))
+                                enviar_senal_log("DEBUG", f"   {poi_type}: {len(poi_list)} POIs", "dashboard_definitivo", "poi_detection")
 
                         detected_pois.extend(all_pois_from_tf)
-                        logger.info("✅ %s: %s POIs agregados (Total acumulado: %s)", tf_name, len(all_pois_from_tf), len(detected_pois))
+                        enviar_senal_log("INFO", f"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})", "dashboard_definitivo", "poi_detection")
                     elif isinstance(pois_tf, list):
                         detected_pois.extend(pois_tf)
-                        logger.info("✅ %s: %s POIs agregados (Total acumulado: %s)", tf_name, len(pois_tf), len(detected_pois))
+                        enviar_senal_log("INFO", f"✅ {tf_name}: {len(pois_tf)} POIs agregados (Total acumulado: {len(detected_pois)})", "dashboard_definitivo", "poi_detection")
                     else:
-                        logger.warning("⚠️ %s: No se detectaron POIs o formato inesperado", tf_name)
+                        enviar_senal_log("WARNING", f"⚠️ {tf_name}: No se detectaron POIs o formato inesperado", "dashboard_definitivo", "poi_detection")
 
                     if self.debug_mode:
                         enviar_senal_log("INFO", f"🎯 POIs {tf_name}: {len(pois_tf, "dashboard_definitivo", "migration") if isinstance(pois_tf, (list, dict)) else 0} detectados")
@@ -1422,13 +1422,15 @@ class SentinelDashboardDefinitivo(App):
             # Filtrar POIs duplicados y ordenar por score
             unique_pois = self.filter_and_rank_pois(detected_pois)
 
-            logger.info("🏆 POI DETECCIÓN COMPLETADA: %s total → %s únicos", len(detected_pois), len(unique_pois))
+            enviar_senal_log("INFO", f"🏆 POI DETECCIÓN COMPLETADA: {len(detected_pois)} total → {len(unique_pois)} únicos", "dashboard_definitivo", "poi_detection")
 
             self.real_market_data['pois_detected'] = unique_pois
             return unique_pois
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error detectando POIs completos: %s", e, exc_info=True)
+            enviar_senal_log("ERROR", f"❌ Error detectando POIs completos: {e}", "dashboard_definitivo", "poi_detection")
+            if self.debug_mode:
+                enviar_senal_log("DEBUG", f"Stack trace: {traceback.format_exc()}", "dashboard_definitivo", "poi_detection")
             if self.debug_mode:
                 enviar_senal_log("ERROR", f"❌ Error detectando POIs completos: {e}", "dashboard_definitivo", "migration")
             return []
@@ -1464,10 +1466,10 @@ class SentinelDashboardDefinitivo(App):
                 summary_entry = f"{timestamp} | INFO | POIs detectados: {len(scored_pois)} total en análisis integral\n"
                 f.write(summary_entry)
 
-            logger.info("📊 Sincronizado con Health Analyzer: %s POIs registrados en poi_detection.log", len(scored_pois))
+            enviar_senal_log("INFO", f"📊 Sincronizado con Health Analyzer: {len(scored_pois)} POIs registrados en poi_detection.log", "dashboard_definitivo", "poi_scoring")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error sincronizando logs POI: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error sincronizando logs POI: {e}", "dashboard_definitivo", "poi_scoring")
 
     def integrate_poi_scoring_engine(self, raw_pois: List[Dict]) -> List[Dict]:
         """🎯 INTEGRA POI SCORING ENGINE PARA SCORING AVANZADO - 100% OPERATIVO"""
@@ -1479,7 +1481,7 @@ class SentinelDashboardDefinitivo(App):
             current_price = self.current_price or 1.17500  # Fallback
             market_context = self.real_market_data.get('market_context', {})
 
-            logger.info("🎯 Aplicando scoring avanzado a %s POIs...", len(raw_pois))
+            enviar_senal_log("INFO", f"🎯 Aplicando scoring avanzado a {len(raw_pois)} POIs...", "dashboard_definitivo", "poi_scoring")
 
             for poi in raw_pois:
                 try:
@@ -1503,18 +1505,18 @@ class SentinelDashboardDefinitivo(App):
                     enhanced_pois.append(enhanced_poi)
 
                 except (FileNotFoundError, PermissionError, IOError) as scoring_error:
-                    logger.warning("⚠️ Error en scoring POI individual: %s", scoring_error)
+                    enviar_senal_log("WARNING", f"⚠️ Error en scoring POI individual: {scoring_error}", "dashboard_definitivo", "poi_scoring")
                     enhanced_pois.append(poi)  # Fallback al POI original
 
             # Filtrar POIs por calidad (solo grado B o mejor)
             quality_pois = [poi for poi in enhanced_pois if poi.get('grade', 'D') in ['A+', 'A', 'B']]
 
-            logger.info("✅ Scoring avanzado completado: %s procesados → %s de calidad", len(enhanced_pois), len(quality_pois))
+            enviar_senal_log("INFO", f"✅ Scoring avanzado completado: {len(enhanced_pois)} procesados → {len(quality_pois)} de calidad", "dashboard_definitivo", "poi_scoring")
 
             return quality_pois
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error en integración scoring engine: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error en integración scoring engine: {e}", "dashboard_definitivo", "poi_scoring")
             return raw_pois  # Fallback a POIs originales
 
     def detect_ict_patterns_complete(self) -> List[Dict]:
@@ -1613,7 +1615,7 @@ class SentinelDashboardDefinitivo(App):
     def score_pois_complete(self, pois: List[Dict], market_context: Dict) -> List[Dict]:
         """🎯 CALIFICA POIs USANDO SCORING ENGINE AVANZADO + INTEGRACIÓN COMPLETA"""
         try:
-            logger.info("🎯 Iniciando scoring avanzado de %s POIs...", len(pois))
+            enviar_senal_log("INFO", f"🎯 Iniciando scoring avanzado de {len(pois)} POIs...", "dashboard_definitivo", "poi_scoring")
 
             # 🚀 USAR LA INTEGRACIÓN COMPLETA DEL SCORING ENGINE
             enhanced_pois = self.integrate_poi_scoring_engine(pois)
@@ -1640,11 +1642,11 @@ class SentinelDashboardDefinitivo(App):
                     score = scored_poi.get('intelligent_score', scored_poi.get('score', 0))
                     enviar_senal_log("INFO", f"🎯 POI {poi.get('type', 'Unknown', "dashboard_definitivo", "migration")}: {grade} ({score})")
 
-            logger.info("✅ Scoring POI completado: %s POIs calificados", len(final_scored_pois))
+            enviar_senal_log("INFO", f"✅ Scoring POI completado: {len(final_scored_pois)} POIs calificados", "dashboard_definitivo", "poi_scoring")
             return final_scored_pois
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error en scoring completo POIs: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error en scoring completo POIs: {e}", "dashboard_definitivo", "poi_scoring")
             if self.debug_mode:
                 enviar_senal_log("ERROR", f"❌ Error calculando scoring completo: {e}", "dashboard_definitivo", "migration")
             return pois  # Devolver POIs sin enriquecer
@@ -1664,9 +1666,9 @@ class SentinelDashboardDefinitivo(App):
             )
 
             if self.debug_mode and veredicto:
-                grade = veredicto.get('grade', 'C')
-                action = veredicto.get('action', 'ESPERAR')
-                confidence = veredicto.get('confidence', 0)
+                grade = veredicto.get('setup_grade', 'C')
+                action = veredicto.get('action_plan', 'ESPERAR')
+                confidence = veredicto.get('confidence_score', 0)
                 enviar_senal_log("INFO", f"🎯 VEREDICTO FINAL: {grade} | {action} | {confidence:.0f}%", "dashboard_definitivo", "migration")
 
             return veredicto
@@ -1723,11 +1725,11 @@ class SentinelDashboardDefinitivo(App):
                 }
                 risk_status['positions'].append(pos_data)
 
-            logger.info("🛡️ Estado RiskBot actualizado: %s posiciones, P&L neto: $%s", len(positions), profit_neto)
+            enviar_senal_log("INFO", f"🛡️ Estado RiskBot actualizado: {len(positions)} posiciones, P&L neto: ${profit_neto}", "dashboard_definitivo", "risk_management")
             return risk_status
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error obteniendo estado RiskBot: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error obteniendo estado RiskBot: {e}", "dashboard_definitivo", "risk_management")
             return {'status': 'error', 'message': str(e)}
 
     def log_analysis_complete(self, veredicto: Optional[Dict], patterns: List[Dict], pois: List[Dict], context: Dict):
@@ -1749,11 +1751,11 @@ class SentinelDashboardDefinitivo(App):
             if self.debug_mode:
                 enviar_senal_log("DEBUG", f"Debug: Analysis data structure: {len(analysis_data, "dashboard_definitivo", "migration")} fields")
 
-            logger.info("🔍 Análisis integral completado: %s patrones, %s POIs", len(patterns), len(pois))
+            enviar_senal_log("INFO", f"🔍 Análisis integral completado: {len(patterns)} patrones, {len(pois)} POIs", "dashboard_definitivo", "analysis")
 
             if veredicto:
-                grade = veredicto.get('grade', 'C')
-                logger.info("🎯 Veredicto final: %s", grade)
+                grade = veredicto.get('setup_grade', 'C')
+                enviar_senal_log("INFO", f"🎯 Veredicto final: {grade}", "dashboard_definitivo", "analysis")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
             if self.debug_mode:
@@ -1808,14 +1810,14 @@ class SentinelDashboardDefinitivo(App):
         if not veredicto:
             return
 
-        grade = veredicto.get('grade', 'C')
-        confidence = veredicto.get('confidence', 0)
-        pattern_type = veredicto.get('pattern_type', 'Unknown')
+        grade = veredicto.get('setup_grade', 'C')
+        confidence = veredicto.get('confidence_score', 0)
+        pattern_type = veredicto.get('opportunity_type', 'Unknown')
 
         # Alertas para grades altos con más detalle
         if grade in ['A+', 'A', 'A-']:
             self.system_metrics['alerts_generated'] += 1
-            action = veredicto.get('action', 'REVISAR')
+            action = veredicto.get('action_plan', 'REVISAR')
             emoji = veredicto.get('emoji', '🎯')
 
             alert_msg = f"{emoji} SEÑAL {grade}: {pattern_type} - {action} ({confidence:.0f}%)"
@@ -1825,7 +1827,7 @@ class SentinelDashboardDefinitivo(App):
                 self.notify("🚀 SETUP EXCEPCIONAL - Confluencia perfecta detectada", timeout=10)
 
             # Log adicional para alertas importantes
-            logger.warning("🚨 ALERTA %s: %s con %s%% confianza", grade, pattern_type, confidence)
+            enviar_senal_log("WARNING", f"🚨 ALERTA {grade}: {pattern_type} con {confidence}% confianza", "dashboard_definitivo", "alerts")
 
     # ======================================================================
     # 🔧 MÉTODOS AUXILIARES PARA ESPECIALISTAS
@@ -1914,8 +1916,8 @@ class SentinelDashboardDefinitivo(App):
                         confidence = data.get('score', 0)
 
                     if veredicto:
-                        grade = veredicto.get('grade', 'C')
-                        action = veredicto.get('action', 'ESPERAR')
+                        grade = veredicto.get('setup_grade', 'C')
+                        action = veredicto.get('action_plan', 'ESPERAR')
                         return f"{pattern_name} detectado con {confidence:.0f}% confianza. Grade: {grade}. Acción: {action}. Análisis completo con todos los especialistas."
                     else:
                         return f"{pattern_name} detectado con {confidence:.0f}% confianza usando análisis integral de especialistas MT5."
@@ -2257,7 +2259,7 @@ class SentinelDashboardDefinitivo(App):
         Este es el método que el controller llama para enviar datos actualizados
         """
         try:
-            logger.info("📦 Datos recibidos del backend")
+            enviar_senal_log("INFO", "📦 Datos recibidos del backend", "dashboard_definitivo", "data_updates")
 
             # Actualizar datos de mercado
             if 'current_price' in data_package:
@@ -2284,13 +2286,13 @@ class SentinelDashboardDefinitivo(App):
             # Forzar actualización de todos los paneles
             self.update_active_panel()
 
-            logger.info("✅ Datos procesados: Precio=%s, POIs=%s", self.current_price, self.patterns_detected)
+            enviar_senal_log("INFO", f"✅ Datos procesados: Precio={self.current_price}, POIs={self.patterns_detected}", "dashboard_definitivo", "data_updates")
 
             if self.debug_mode:
                 enviar_senal_log("INFO", f"📦 Backend data: Precio={self.current_price:.5f}, POIs={self.patterns_detected}", "dashboard_definitivo", "migration")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ Error procesando datos del backend: %s", e)
+            enviar_senal_log("ERROR", f"❌ Error procesando datos del backend: {e}", "dashboard_definitivo", "data_updates")
             if self.debug_mode:
                 enviar_senal_log("ERROR", f"❌ Error procesando datos del backend: {e}", "dashboard_definitivo", "migration")
 
@@ -2300,14 +2302,14 @@ class SentinelDashboardDefinitivo(App):
         Este método es llamado por el DashboardController para enviar actualizaciones
         """
         try:
-            logger.info("🔄 [DASHBOARD-CALLBACK] Recibiendo estado del controller")
+            enviar_senal_log("INFO", "🔄 [DASHBOARD-CALLBACK] Recibiendo estado del controller", "dashboard_definitivo", "callbacks")
 
             # Verificar si hay datos válidos en el estado del controller
             if controller_state:
                 # Actualizar precio actual
                 if 'current_price' in controller_state and controller_state['current_price'] > 0:
                     self.current_price = controller_state['current_price']
-                    logger.info("💰 Precio actualizado: %s", self.current_price)
+                    enviar_senal_log("INFO", f"💰 Precio actualizado: {self.current_price}", "dashboard_definitivo", "callbacks")
 
                 # Actualizar POIs desde poi_results
                 if 'poi_results' in controller_state and controller_state['poi_results']:
@@ -2315,12 +2317,12 @@ class SentinelDashboardDefinitivo(App):
                     if 'pois' in poi_data:
                         self.real_market_data['pois_detected'] = poi_data['pois']
                         self.patterns_detected = len(poi_data['pois'])
-                        logger.info("🎯 POIs actualizados: %s detectados", self.patterns_detected)
+                        enviar_senal_log("INFO", f"🎯 POIs actualizados: {self.patterns_detected} detectados", "dashboard_definitivo", "callbacks")
 
                 # Actualizar análisis ICT desde ict_results
                 if 'ict_results' in controller_state and controller_state['ict_results']:
                     self.real_market_data['market_context'] = controller_state['ict_results']
-                    logger.info("📊 Análisis ICT actualizado")
+                    enviar_senal_log("INFO", "📊 Análisis ICT actualizado", "dashboard_definitivo", "callbacks")
 
                 # Actualizar timestamp
                 if 'last_update' in controller_state:
@@ -2332,13 +2334,13 @@ class SentinelDashboardDefinitivo(App):
                 # Forzar actualización de todos los paneles
                 self.update_active_panel()
 
-                logger.info("✅ [DASHBOARD-CALLBACK] Estado del controller procesado exitosamente")
+                enviar_senal_log("INFO", "✅ [DASHBOARD-CALLBACK] Estado del controller procesado exitosamente", "dashboard_definitivo", "callbacks")
             else:
-                logger.warning("⚠️ [DASHBOARD-CALLBACK] Estado del controller vacío o None")
+                enviar_senal_log("WARNING", "⚠️ [DASHBOARD-CALLBACK] Estado del controller vacío o None", "dashboard_definitivo", "callbacks")
 
         except (FileNotFoundError, PermissionError, IOError) as e:
-            logger.error("❌ [DASHBOARD-CALLBACK] Error procesando estado del controller: %s", e)
-            logger.error("❌ [DASHBOARD-CALLBACK] Traceback: %s", traceback.format_exc())
+            enviar_senal_log("ERROR", f"❌ [DASHBOARD-CALLBACK] Error procesando estado del controller: {e}", "dashboard_definitivo", "callbacks")
+            enviar_senal_log("ERROR", f"❌ [DASHBOARD-CALLBACK] Traceback: {traceback.format_exc()}", "dashboard_definitivo", "callbacks")
 
     # ======================================================================
     # 🏗️ MÉTODOS STUB - ARQUITECTURA FUTURA (YA DEFINIDOS ARRIBA)
