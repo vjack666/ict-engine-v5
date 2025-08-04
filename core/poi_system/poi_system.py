@@ -20,15 +20,11 @@ from sistema.logging_interface import enviar_senal_log, log_poi
 # Importar componentes POI existentes
 try:
     from .poi_detector import encontrar_pois_multiples_para_dashboard
-    from .poi_utils import (
-        calcular_riesgo_poi,
-        filtrar_pois_por_relevancia,
-        crear_resumen_pois
-    )
-    POI_COMPONENTS_AVAILABLE = True
+    # Funciones específicas se importarán si se necesitan
+    poi_components_available = True
 except ImportError as e:
     enviar_senal_log("WARNING", f"Componentes POI no disponibles: {e}", "poi_system")
-    POI_COMPONENTS_AVAILABLE = False
+    poi_components_available = False
 
 @dataclass
 class POIResult:
@@ -98,12 +94,12 @@ class POISystem:
                 return None
 
             # Realizar análisis POI
-            if not POI_COMPONENTS_AVAILABLE:
+            if not poi_components_available:
                 enviar_senal_log("WARNING", "Componentes POI no disponibles, simulando análisis", "poi_system")
                 return self._simular_analisis_poi(symbol, timeframe, df)
 
             # Análisis real con componentes POI
-            pois_encontrados = encontrar_pois_multiples_para_dashboard(df)
+            pois_encontrados = encontrar_pois_multiples_para_dashboard(df, current_price=df['close'].iloc[-1])
 
             if not pois_encontrados:
                 enviar_senal_log("INFO", f"No se encontraron POIs para {symbol} {timeframe}", "poi_system")
@@ -126,7 +122,7 @@ class POISystem:
                 detalles={
                     'total_pois': len(pois_encontrados),
                     'barras_analizadas': len(df),
-                    'componentes_disponibles': POI_COMPONENTS_AVAILABLE
+                    'componentes_disponibles': poi_components_available
                 }
             )
 
@@ -141,8 +137,8 @@ class POISystem:
             return None
 
     def obtener_pois_para_dashboard(self,
-                                   symbols: List[str] = None,
-                                   timeframes: List[str] = None) -> Dict[str, Any]:
+                                   symbols: Optional[List[str]] = None,
+                                   timeframes: Optional[List[str]] = None) -> Dict[str, Any]:
         """
         Obtiene POIs optimizados para mostrar en el dashboard.
 
@@ -196,9 +192,9 @@ class POISystem:
             resultados_dashboard['resumen_general'] = {
                 'total_pois_sistema': total_pois,
                 'calidad_promedio_global': calidad_promedio_global,
-                'simbolos_analizados': len(symbols),
-                'timeframes_analizados': len(timeframes),
-                'estado_sistema': 'OPERATIVO' if POI_COMPONENTS_AVAILABLE else 'SIMULADO'
+                'simbolos_analizados': len(symbols) if symbols else 0,
+                'timeframes_analizados': len(timeframes) if timeframes else 0,
+                'estado_sistema': 'OPERATIVO' if poi_components_available else 'SIMULADO'
             }
 
             enviar_senal_log("INFO",
@@ -267,7 +263,7 @@ class POISystem:
             detalles={
                 'total_pois': 0,
                 'barras_analizadas': 0,
-                'componentes_disponibles': POI_COMPONENTS_AVAILABLE
+                'componentes_disponibles': poi_components_available
             }
         )
 

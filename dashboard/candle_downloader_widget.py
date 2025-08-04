@@ -198,13 +198,26 @@ class CandleDownloaderWidget:
         with self.lock:
             self.download_stats['total_downloads'] += 1
             self.download_stats['successful'] += 1
-            self.download_stats['total_bars'] += stats.downloaded_bars
+
+            # Manejar tanto objetos con atributos como diccionarios
+            downloaded_bars = 0
+            download_speed = 0.0
+
+            if isinstance(stats, dict):
+                downloaded_bars = stats.get('downloaded_bars', 0)
+                download_speed = stats.get('download_speed', 0.0)
+            else:
+                # Asumir que es un objeto con atributos
+                downloaded_bars = getattr(stats, 'downloaded_bars', 0)
+                download_speed = getattr(stats, 'download_speed', 0.0)
+
+            self.download_stats['total_bars'] += downloaded_bars
 
             # Actualizar velocidad promedio
             if self.download_stats['total_downloads'] > 0:
                 self.download_stats['average_speed'] = (
                     self.download_stats['average_speed'] * (self.download_stats['total_downloads'] - 1) +
-                    stats.download_speed
+                    download_speed
                 ) / self.download_stats['total_downloads']
 
             # Limpiar progreso

@@ -28,6 +28,28 @@ ICT Engine v5.0/
 │   ├── ict_engine/               # Análisis ICT
 │   ├── poi_system/               # Sistema POI
 │   ├── risk_management/          # Gestión de riesgo
+│   ├── data_management/          # ✨ Gestión de datos y velas
+│   ├── integrations/             # ✨ Integraciones del sistema
+│   └── ...
+│
+├── 🧪 tests/                     # ✨ Pruebas y testing
+│   ├── test_candle_integration.py # Tests de integración de velas
+│   ├── test_ict_engine.py        # Tests del motor ICT
+│   └── README.md                 # Documentación de tests
+│
+├── 📚 docs/                      # Documentación
+│   ├── reports/                  # ✨ Reportes y auditorías
+│   │   ├── RESOLUCION_DIAGNOSTICO_CANDLE_DOWNLOADER.md
+│   │   ├── CONFIDENCE_ENGINE_AUDIT_REPORT.md
+│   │   └── sprint_reports.json
+│   ├── architecture/             # Documentación técnica
+│   └── ...
+│
+├── ⚙️ config/                    # Configuración del sistema
+├── 🛠️ utils/                     # Utilidades
+├── 🔧 scripts/                   # Scripts de automatización
+├── 🐛 debugging/                 # Herramientas de debug
+└── 🏗️ deployment/               # Scripts de despliegue
 │   └── ...
 │
 ├── 🔧 utils/                     # Utilidades centrales
@@ -164,18 +186,34 @@ python utilities/sprint/sprint_1_1_consolidator.py
 ### **Ejecutar Tests**
 ```bash
 # 🧪 Todos los tests
+python -m pytest tests/
 
-# 📊 Tests con cobertura
+# 📊 Test de integración de velas (completo)
+python tests/test_candle_integration.py
 
-# 🚀 Tests específicos
+# 🚀 Test del motor ICT
+python tests/test_ict_engine.py
 
-# 🏷️ Tests por marker
+# 🏷️ Tests específicos desde main.py
+python main.py --tests
+```
+
+### **Verificación del Sistema**
+```bash
+# 📊 Estado de componentes
+python tests/test_candle_integration.py
+
+# 🔗 Verificar integración completa
+cd tests
+python test_candle_integration.py
 ```
 
 ### **Crear Nuevos Tests**
 ```bash
-
-# 🔗 Tests de integración
+# 📁 Agregar en /tests/
+# - test_[component].py para tests específicos
+# - Seguir estructura existente
+# - Documentar en tests/README.md
 ```
 
 ## 🛠️ Herramientas de Desarrollo
