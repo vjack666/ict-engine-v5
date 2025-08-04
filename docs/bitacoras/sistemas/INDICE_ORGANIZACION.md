@@ -1,7 +1,8 @@
 # 📁 ÍNDICE DE ORGANIZACIÓN - BITÁCORAS DE SISTEMAS
-**Fecha de Organización:** 3 de Agosto 2025
-**Estado:** ✅ COMPLETADO
-**Archivos Organizados:** 15
+**Fecha de Organización:** 4 de Agosto 2025
+**Estado:** ✅ ACTUALIZADO
+**Archivos Organizados:** 17
+**Última Actualización:** Implementación Detector Adaptativo v2.0
 
 ---
 
@@ -43,6 +44,13 @@ estados/
 ```
 integraciones/
 └── dashboard_tct_integration_completed.md # Integración Dashboard-TCT completada
+```
+
+### **🕐 /sistemas/ - Sistemas Principales**
+```
+sistemas/
+├── DETECTOR_MERCADO_IMPLEMENTACION_2025-08-04.md  # ← NUEVO: Detector Adaptativo v2.0
+└── [otros archivos de sistemas]
 ```
 
 ### **📍 Archivos en Raíz /sistemas/**

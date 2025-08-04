@@ -1564,11 +1564,15 @@ class ICTDetector:
             if 'candles' in data and isinstance(data['candles'], pd.DataFrame):
                 return data['candles']
 
-            # Formato 2: data directo es DataFrame
+            # Formato 2: data['dataframe'] (usado por diagnóstico)
+            if 'dataframe' in data and isinstance(data['dataframe'], pd.DataFrame):
+                return data['dataframe']
+
+            # Formato 3: data directo es DataFrame
             if isinstance(data, pd.DataFrame):
                 return data
 
-            # Formato 3: data['last_100_candles_m1'] u otros
+            # Formato 4: data['last_100_candles_m1'] u otros
             for key in ['last_100_candles_m1', 'ohlc_data', 'market_data', 'data']:
                 if key in data:
                     candidate = data[key]

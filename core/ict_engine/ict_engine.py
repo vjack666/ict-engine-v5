@@ -123,38 +123,75 @@ class ICTEngine:
 
             # Análisis real con componentes ICT
             try:
-                # Crear contexto de mercado
-                market_context = MarketContext()
+                enviar_senal_log("INFO", f"🔍 Ejecutando análisis ICT con detector disponible", "ict_engine")
 
-                # Realizar análisis optimizado
-                analysis = OptimizedICTAnalysis()
-                # Usar método alternativo si analyze_market no está disponible
-                if hasattr(analysis, 'analyze_market'):
-                    resultado_ict = analysis.analyze_market(df, market_context)  # type: ignore
-                elif hasattr(analysis, 'analyze'):
-                    resultado_ict = analysis.analyze(df, market_context)  # type: ignore
-                else:
-                    # Fallback a método simulado
-                    resultado_ict = None
+                # Preparar datos para el detector
+                data_dict = {
+                    "dataframe": df,
+                    "symbol": symbol,
+                    "timeframe": timeframe
+                }
 
-                if not resultado_ict:
-                    return self._crear_resultado_basico(symbol, timeframe, df)
+                # Usar ICTDetector directamente para obtener patrones
+                patterns = []
+                if hasattr(self.detector, 'detect_patterns'):
+                    detected_patterns = self.detector.detect_patterns(data_dict)
+                    patterns.extend(detected_patterns or [])
+                    enviar_senal_log("INFO", f"🎯 ICTDetector encontró {len(patterns)} patrones", "ict_engine")
 
-                # Extraer patrones y señales
-                patterns = self._extraer_patterns(resultado_ict)
-                signals = self._extraer_signals(resultado_ict)
+                # Obtener análisis de estructura
+                structure_analysis = {}
+                if hasattr(self.detector, 'analyze_structure'):
+                    structure_analysis = self.detector.analyze_structure(df) or {}
+                    enviar_senal_log("INFO", f"🏗️ Análisis de estructura completado", "ict_engine")
 
-                # Calcular confianza y riesgo
-                confidence = self._calcular_confidence(patterns, signals)
-                risk_level = self._calcular_riesgo(patterns, signals)
+                # Obtener análisis de bias
+                bias_analysis = {}
+                if hasattr(self.detector, 'detect_bias'):
+                    bias_analysis = self.detector.detect_bias(df) or {}
+                    enviar_senal_log("INFO", f"🧭 Análisis de bias completado", "ict_engine")
 
-                # Determinar fase de mercado y dirección
-                market_phase = self._determinar_fase_mercado(resultado_ict)
-                direction = self._determinar_direccion(signals)
-                strength = self._calcular_strength(patterns, signals)
+                # Obtener POIs adicionales
+                pois = []
+                if hasattr(self.detector, 'find_pois'):
+                    found_pois = self.detector.find_pois(df) or []
+                    pois.extend(found_pois)
+                    enviar_senal_log("INFO", f"🎯 ICTDetector encontró {len(pois)} POIs", "ict_engine")
+
+                # Generar señales basadas en patrones
+                signals = self._generar_signals_desde_patterns(patterns, pois)
+                enviar_senal_log("INFO", f"📡 Generadas {len(signals)} señales", "ict_engine")
+
+                # Calcular confianza usando el Confidence Engine
+                confidence = 0.0
+                if self.confidence_engine and patterns:
+                    try:
+                        # Usar el primer patrón para calcular confianza general
+                        market_context_dict = {
+                            **structure_analysis,
+                            **bias_analysis
+                        }
+                        confidence = self.confidence_engine.calculate_overall_confidence(patterns, market_context_dict)
+                        enviar_senal_log("INFO", f"🧠 Confianza calculada: {confidence:.3f}", "ict_engine")
+                    except Exception as e:
+                        enviar_senal_log("WARNING", f"Error calculando confianza: {e}", "ict_engine")
+                        confidence = 0.0
+
+                # Calcular métricas derivadas
+                risk_level = max(0.0, 1.0 - confidence) if confidence > 0 else 0.0
+                strength = confidence
+
+                # Determinar fase de mercado desde análisis de estructura
+                market_phase = structure_analysis.get('structure', 'UNKNOWN')
+                direction = bias_analysis.get('bias', 'NEUTRAL')
 
                 # Generar recomendación
-                recommendation = self._generar_recomendacion(confidence, risk_level, strength)
+                if confidence >= 0.6:
+                    recommendation = "TRADE_READY"
+                elif confidence >= 0.4:
+                    recommendation = "MONITOR"
+                else:
+                    recommendation = "NO_TRADE"
 
                 # Crear resultado final
                 resultado_final = ICTEngineResult(
@@ -178,8 +215,11 @@ class ICTEngine:
                 )
 
                 enviar_senal_log("INFO",
-                               f"✅ Análisis ICT completado: {len(patterns)} patterns, {len(signals)} signals",
+                               f"✅ Análisis ICT completado: {len(patterns)} patterns, {len(signals)} signals, confidence: {confidence:.3f}",
                                "ict_engine")
+
+                # 📊 LOG DETALLADO PARA DASHBOARD TRACKING
+                self._log_datos_para_dashboard(resultado_final, patterns, signals, pois)
 
                 return resultado_final
 
@@ -287,6 +327,9 @@ class ICTEngine:
             enviar_senal_log("INFO",
                            f"📊 Dashboard ICT actualizado: {total_patterns} patterns, {total_signals} signals",
                            "ict_engine")
+
+            # 📊 LOG DETALLADO PARA DASHBOARD FINAL
+            self._log_resumen_dashboard(resultados_dashboard, total_patterns, total_signals, confidence_promedio)
 
             return resultados_dashboard
 
@@ -458,6 +501,110 @@ class ICTEngine:
         else:
             return 'NEUTRAL'
 
+    def _generar_signals_desde_patterns(self, patterns: List[Dict], pois: List[Dict]) -> List[Dict]:
+        """Genera señales de trading basadas en patrones y POIs detectados."""
+        signals = []
+
+        try:
+            # Procesar patrones para generar señales
+            for pattern in patterns:
+                pattern_type = pattern.get('type', 'UNKNOWN')
+                confidence = pattern.get('confidence', 0.0)
+
+                # Solo generar señales para patrones con confianza mínima
+                if confidence >= 0.5:
+                    signal = {
+                        'type': 'PATTERN_SIGNAL',
+                        'source_pattern': pattern_type,
+                        'direction': self._inferir_direccion_desde_pattern(pattern),
+                        'strength': confidence,
+                        'price_level': pattern.get('price', 0.0),
+                        'timestamp': datetime.now(),
+                        'confidence': confidence,
+                        'metadata': {
+                            'pattern_id': pattern.get('analysis_id', 0),
+                            'pattern_details': pattern
+                        }
+                    }
+                    signals.append(signal)
+
+            # Procesar POIs para generar señales adicionales
+            for poi in pois:
+                poi_type = poi.get('type', 'UNKNOWN')
+                confidence = poi.get('confidence', 0.0)
+
+                # Solo generar señales para POIs con confianza mínima
+                if confidence >= 0.7:
+                    signal = {
+                        'type': 'POI_SIGNAL',
+                        'source_poi': poi_type,
+                        'direction': self._inferir_direccion_desde_poi(poi),
+                        'strength': confidence,
+                        'price_level': poi.get('price_level', 0.0),
+                        'timestamp': datetime.now(),
+                        'confidence': confidence,
+                        'metadata': {
+                            'poi_id': poi.get('metadata', {}).get('id', 'unknown'),
+                            'poi_details': poi
+                        }
+                    }
+                    signals.append(signal)
+
+            enviar_senal_log("INFO", f"🎯 Generadas {len(signals)} señales desde {len(patterns)} patrones y {len(pois)} POIs", "ict_engine")
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error generando señales: {e}", "ict_engine")
+
+        return signals
+
+    def _inferir_direccion_desde_pattern(self, pattern: Dict) -> str:
+        """Infiere dirección de trading desde un patrón."""
+        pattern_type = pattern.get('type', '')
+        subtype = pattern.get('subtype', '')
+
+        # FVG patterns
+        if 'FVG' in pattern_type:
+            if 'BULLISH' in subtype:
+                return 'BUY'
+            elif 'BEARISH' in subtype:
+                return 'SELL'
+
+        # Order Block patterns
+        if 'ORDER_BLOCK' in pattern_type:
+            if 'BULLISH' in subtype:
+                return 'BUY'
+            elif 'BEARISH' in subtype:
+                return 'SELL'
+
+        # Swing Point patterns
+        if 'SWING' in pattern_type:
+            if 'HIGH' in subtype:
+                return 'SELL'  # Swing high = posible reversal bearish
+            elif 'LOW' in subtype:
+                return 'BUY'   # Swing low = posible reversal bullish
+
+        return 'NEUTRAL'
+
+    def _inferir_direccion_desde_poi(self, poi: Dict) -> str:
+        """Infiere dirección de trading desde un POI."""
+        poi_type = poi.get('type', '')
+
+        # Bullish POIs
+        if 'BULLISH' in poi_type:
+            return 'BUY'
+
+        # Bearish POIs
+        if 'BEARISH' in poi_type:
+            return 'SELL'
+
+        # Support/Resistance logic
+        if 'SUPPORT' in poi_type:
+            return 'BUY'
+        elif 'RESISTANCE' in poi_type:
+            return 'SELL'
+
+        return 'NEUTRAL'
+
     def _calcular_strength(self, patterns: List[Dict], signals: List[Dict]) -> float:
         """Calcula la fuerza general del análisis."""
         all_items = patterns + signals
@@ -512,6 +659,153 @@ class ICTEngine:
             return 'SELECTIVE_TRADING'
         else:
             return 'WAIT_AND_SEE'
+
+    def _log_datos_para_dashboard(self, resultado: ICTEngineResult, patterns: List[Dict], signals: List[Dict], pois: List[Dict]) -> None:
+        """
+        📊 LOGGING DETALLADO PARA DASHBOARD TRACKING
+
+        Registra todos los datos que se enviarán al dashboard para verificar
+        que los datos mostrados coinciden exactamente con los procesados.
+        """
+        try:
+            # Generar ID único para este análisis
+            analysis_id = f"{resultado.symbol}_{resultado.timeframe}_{datetime.now().strftime('%H%M%S')}"
+
+            # Log del resultado principal
+            enviar_senal_log("INFO",
+                           f"📊 [DASHBOARD_DATA] ID: {analysis_id} | Symbol: {resultado.symbol} | TF: {resultado.timeframe}",
+                           "ict_engine", "dashboard_tracking")
+
+            enviar_senal_log("INFO",
+                           f"📈 [DASHBOARD_DATA] Metrics - Confidence: {resultado.confidence:.3f} | Strength: {resultado.strength:.3f} | Risk: {resultado.risk_level:.3f}",
+                           "ict_engine", "dashboard_tracking")
+
+            enviar_senal_log("INFO",
+                           f"🎯 [DASHBOARD_DATA] Phase: {resultado.market_phase} | Direction: {resultado.direction} | Recommendation: {resultado.recommendation}",
+                           "ict_engine", "dashboard_tracking")
+
+            # Log detallado de patrones
+            enviar_senal_log("INFO",
+                           f"🔍 [DASHBOARD_DATA] Patterns detected: {len(patterns)} items",
+                           "ict_engine", "dashboard_tracking")
+
+            for i, pattern in enumerate(patterns[:5]):  # Log primeros 5 patrones
+                pattern_info = f"Pattern {i+1}: {pattern.get('type', 'UNKNOWN')} | " + \
+                             f"Subtype: {pattern.get('subtype', 'N/A')} | " + \
+                             f"Confidence: {pattern.get('confidence', 0.0):.3f} | " + \
+                             f"Price: {pattern.get('price_high', pattern.get('price', 0.0)):.5f}"
+
+                enviar_senal_log("INFO", f"   • {pattern_info}", "ict_engine", "dashboard_tracking")
+
+            # Log detallado de señales
+            enviar_senal_log("INFO",
+                           f"📡 [DASHBOARD_DATA] Signals generated: {len(signals)} items",
+                           "ict_engine", "dashboard_tracking")
+
+            for i, signal in enumerate(signals[:5]):  # Log primeras 5 señales
+                signal_info = f"Signal {i+1}: {signal.get('type', 'UNKNOWN')} | " + \
+                            f"Direction: {signal.get('direction', 'NEUTRAL')} | " + \
+                            f"Strength: {signal.get('strength', 0.0):.3f} | " + \
+                            f"Price: {signal.get('price_level', 0.0):.5f}"
+
+                enviar_senal_log("INFO", f"   • {signal_info}", "ict_engine", "dashboard_tracking")
+
+            # Log detallado de POIs
+            enviar_senal_log("INFO",
+                           f"🎯 [DASHBOARD_DATA] POIs found: {len(pois)} items",
+                           "ict_engine", "dashboard_tracking")
+
+            for i, poi in enumerate(pois[:5]):  # Log primeros 5 POIs
+                poi_info = f"POI {i+1}: {poi.get('type', 'UNKNOWN')} | " + \
+                         f"Confidence: {poi.get('confidence', 0.0):.3f} | " + \
+                         f"Price: {poi.get('price_level', 0.0):.5f} | " + \
+                         f"Distance: {poi.get('distance_pips', 0.0):.1f} pips"
+
+                enviar_senal_log("INFO", f"   • {poi_info}", "ict_engine", "dashboard_tracking")
+
+            # Log de timestamp para sincronización
+            enviar_senal_log("INFO",
+                           f"⏰ [DASHBOARD_DATA] Timestamp: {resultado.timestamp.isoformat()} | " + \
+                           f"Analysis ID: {analysis_id} | Ready for dashboard display",
+                           "ict_engine", "dashboard_tracking")
+
+            # Log de verificación de integridad
+            total_elements = len(patterns) + len(signals) + len(pois)
+            enviar_senal_log("INFO",
+                           f"✅ [DASHBOARD_DATA] Integrity check - Total elements: {total_elements} | " + \
+                           f"Patterns: {len(patterns)} | Signals: {len(signals)} | POIs: {len(pois)}",
+                           "ict_engine", "dashboard_tracking")
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error en logging de dashboard: {e}", "ict_engine", "dashboard_tracking")
+
+    def _log_resumen_dashboard(self, resultados: Dict[str, Any], total_patterns: int, total_signals: int, confidence_promedio: float) -> None:
+        """
+        📊 LOGGING DEL RESUMEN FINAL PARA DASHBOARD
+
+        Registra el resumen final que se envía al dashboard para verificación.
+        """
+        try:
+            dashboard_id = f"DASHBOARD_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
+            enviar_senal_log("INFO",
+                           f"📋 [DASHBOARD_SUMMARY] ID: {dashboard_id} | Timestamp: {resultados.get('timestamp', 'N/A')}",
+                           "ict_engine", "dashboard_tracking")
+
+            # Log de resumen general
+            resumen = resultados.get('resumen_general', {})
+            enviar_senal_log("INFO",
+                           f"📊 [DASHBOARD_SUMMARY] Global metrics - Patterns: {total_patterns} | Signals: {total_signals} | Avg Confidence: {confidence_promedio:.3f}",
+                           "ict_engine", "dashboard_tracking")
+
+            enviar_senal_log("INFO",
+                           f"🔍 [DASHBOARD_SUMMARY] System status: {resumen.get('estado_sistema', 'UNKNOWN')} | Active alerts: {resumen.get('alertas_activas', 0)}",
+                           "ict_engine", "dashboard_tracking")
+
+            # Log de market overview
+            market_overview = resultados.get('market_overview', {})
+            enviar_senal_log("INFO",
+                           f"🌍 [DASHBOARD_SUMMARY] Market - Trend: {market_overview.get('tendencia_general', 'UNKNOWN')} | " + \
+                           f"Volatility: {market_overview.get('volatilidad', 'UNKNOWN')} | Recommendation: {market_overview.get('recomendacion_general', 'UNKNOWN')}",
+                           "ict_engine", "dashboard_tracking")
+
+            # Log de datos detallados por símbolo
+            datos_detallados = resultados.get('datos_detallados', {})
+            enviar_senal_log("INFO",
+                           f"📈 [DASHBOARD_SUMMARY] Symbols analyzed: {len(datos_detallados)} pairs",
+                           "ict_engine", "dashboard_tracking")
+
+            for symbol_tf, data in datos_detallados.items():
+                symbol_info = f"{symbol_tf}: Phase={data.get('market_phase', 'UNKNOWN')} | " + \
+                            f"Direction={data.get('direction', 'NEUTRAL')} | " + \
+                            f"Confidence={data.get('confidence', 0.0):.3f} | " + \
+                            f"Patterns={data.get('patterns_count', 0)} | " + \
+                            f"Signals={data.get('signals_count', 0)}"
+
+                enviar_senal_log("INFO", f"   • {symbol_info}", "ict_engine", "dashboard_tracking")
+
+            # Log de alertas
+            alertas = resultados.get('alertas', [])
+            if alertas:
+                enviar_senal_log("INFO",
+                               f"🚨 [DASHBOARD_SUMMARY] Active alerts: {len(alertas)} items",
+                               "ict_engine", "dashboard_tracking")
+
+                for i, alerta in enumerate(alertas):
+                    alert_info = f"Alert {i+1}: {alerta.get('tipo', 'UNKNOWN')} | " + \
+                               f"{alerta.get('symbol', 'UNKNOWN')} {alerta.get('timeframe', 'UNKNOWN')} | " + \
+                               f"Message: {alerta.get('mensaje', 'No message')}"
+
+                    enviar_senal_log("INFO", f"   🚨 {alert_info}", "ict_engine", "dashboard_tracking")
+
+            # Log final de verificación
+            enviar_senal_log("INFO",
+                           f"✅ [DASHBOARD_SUMMARY] Dashboard data package ready - ID: {dashboard_id} | " + \
+                           f"Total data points: {len(datos_detallados)} | Alerts: {len(alertas)} | Status: READY_FOR_DISPLAY",
+                           "ict_engine", "dashboard_tracking")
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error en logging de resumen dashboard: {e}", "ict_engine", "dashboard_tracking")
 
 def get_ict_engine(mt5_manager=None) -> ICTEngine:
     """

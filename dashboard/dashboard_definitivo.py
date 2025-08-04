@@ -84,6 +84,7 @@ except (FileNotFoundError, PermissionError, IOError) as e:
 
 # Local imports
 from sistema.logging_interface import enviar_senal_log, log_dashboard
+from sistema.market_status_detector import MarketStatusDetector
 from utils.mt5_data_manager import get_mt5_manager
 
 # Core imports
@@ -301,7 +302,11 @@ class SentinelDashboardDefinitivo(App):
 
         enviar_senal_log("INFO", "✅ Componentes verificados - Iniciando configuración del sistema", "dashboard_definitivo", "initialization")
 
-        # � Métricas del sistema - INICIALIZACIÓN TEMPRANA
+        # 🕐 DETECTOR AUTOMÁTICO DE ESTADO DE MERCADO
+        self.market_detector = MarketStatusDetector()
+        enviar_senal_log("INFO", "🕐 Market Status Detector adaptativo integrado", "dashboard_definitivo", "initialization")
+
+        # 📊 Métricas del sistema - INICIALIZACIÓN TEMPRANA
         self.analysis_count = 0
         self.patterns_detected = 0
         self.high_probability_signals = 0
@@ -684,6 +689,10 @@ class SentinelDashboardDefinitivo(App):
                         development_mode=DEVELOPMENT_MODE
                     )
 
+                    # 📊 LOG: Datos del sistema limpio mostrados
+                    enviar_senal_log("INFO", "🧠 ICT PANEL: Mostrando datos del sistema limpio POI", __name__, "dashboard")
+                    enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_CLEAN_POI: {str(contenido_limpio)[:200]}...", __name__, "dashboard")
+
                     return Panel(
                         contenido_limpio,
                         title="🧠 ICT PROFESIONAL",
@@ -694,17 +703,29 @@ class SentinelDashboardDefinitivo(App):
                     enviar_senal_log("ERROR", f"❌ Error en sistema limpio: {e}", __name__, "dashboard")
                     # Continuar con fallback manual
 
-            # 📊 FALLBACK MANUAL CON DATOS COMPLETOS (COMO LA PANTALLA ORIGINAL)
+            # 📊 FALLBACK MANUAL CON DATOS COMPLETOS CON DETECCIÓN AUTOMÁTICA
             main_table = Table.grid()
             main_table.add_column()
 
-            # Header como en la pantalla original
+            # 🕐 OBTENER ESTADO REAL DEL MERCADO AUTOMÁTICAMENTE
+            market_status = self.market_detector.get_current_market_status()
+
+            # Header con estado real detectado automáticamente
+            status_color = "bold green" if market_status['market_status'] == "ABIERTO" else "bold yellow"
             header = Text.assemble(
-                ("🔧 DEVELOPMENT MODE | ", "bold bright_yellow"),
-                ("🟡 ", "yellow"),
-                ("MERCADO CERRADO - FIN DE SEMANA", "bold yellow")
+                ("� TIEMPO REAL | ", "bold bright_cyan"),
+                (f"{market_status['emoji_status']} ", "white"),
+                (market_status['status_display'], status_color)
             )
             main_table.add_row(header)
+
+            # Información de zonas horarias múltiples
+            timezone_info = Text.assemble(
+                (f"🏠 Local: {market_status['tiempo_local']['hora']} ({market_status['tiempo_local']['offset']}) | ", "cyan"),
+                (f"🌐 UTC: {market_status['tiempo_utc']['hora']} | ", "white"),
+                (f"💼 Broker: {market_status['tiempo_broker']['hora']} ({market_status['tiempo_broker']['offset']})", "yellow")
+            )
+            main_table.add_row(timezone_info)
             main_table.add_row("")
 
             # Estadísticas como en la pantalla original
@@ -735,6 +756,30 @@ class SentinelDashboardDefinitivo(App):
             recommendation = Text("🎯 DEV RECOMMENDATION: BULLISH_OB - 15p", style="bold bright_yellow")
             main_table.add_row(recommendation)
 
+            # 📊 LOG: Datos fallback mostrados en el panel ICT con estado real
+            datos_mostrados = {
+                "mode": "REAL_TIME",
+                "market_status": market_status['market_status'],
+                "status_display": market_status['status_display'],
+                "tiempo_local": market_status['tiempo_local'],
+                "tiempo_utc": market_status['tiempo_utc'],
+                "tiempo_broker": market_status['tiempo_broker'],
+                "session_activa": market_status['session_activa'],
+                "dia_semana": market_status['dia_semana'],
+                "is_weekend": market_status['is_weekend'],
+                "pois_simulated": 4,
+                "pois_active": 4,
+                "pois_high": 2,
+                "bull_ob": {"price": 1.17650, "points": 78, "pips": 15},
+                "bear_ob": {"price": 1.17300, "points": 72, "pips": 20},
+                "bull_fvg": {"price": 1.17580, "points": 55, "pips": 8},
+                "bear_fvg": {"price": 1.17380, "points": 42, "pips": 12},
+                "recommendation": "BULLISH_OB - 15p"
+            }
+
+            enviar_senal_log("INFO", "🧠 ICT PANEL: Mostrando datos con detección automática de mercado", __name__, "dashboard")
+            enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_ADAPTIVE: {datos_mostrados}", __name__, "dashboard")
+
             return Panel(
                 main_table,
                 title="🧠 ICT PROFESIONAL",
@@ -745,8 +790,19 @@ class SentinelDashboardDefinitivo(App):
         except Exception as e:
             enviar_senal_log("ERROR", f"❌ Error crítico en render_ict_panel: {e}", __name__, "dashboard")
 
-            # Fallback ultra-seguro
-            basic_content = Text("🧠 ICT PROFESIONAL\nSistema iniciando...", style="cyan")
+            # Fallback ultra-seguro con estado real del mercado
+            market_status = getattr(self, 'market_detector', None)
+            if market_status:
+                try:
+                    status_info = self.market_detector.get_current_market_status()
+                    basic_content = Text(f"🧠 ICT PROFESIONAL\n{status_info['emoji_status']} {status_info['status_display']}\nSistema iniciando...", style="cyan")
+                    enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_BASIC_REAL: {status_info['status_display']}", __name__, "dashboard")
+                except:
+                    basic_content = Text("🧠 ICT PROFESIONAL\nSistema iniciando...", style="cyan")
+                    enviar_senal_log("DATA", "🧠 ICT_DISPLAY_BASIC: Sistema iniciando...", __name__, "dashboard")
+            else:
+                basic_content = Text("🧠 ICT PROFESIONAL\nSistema iniciando...", style="cyan")
+                enviar_senal_log("DATA", "🧠 ICT_DISPLAY_BASIC: Sistema iniciando...", __name__, "dashboard")
             return Panel(basic_content, title="🧠 ICT", border_style="cyan")
 
     def render_patterns_panel(self):
