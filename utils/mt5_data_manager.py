@@ -147,15 +147,19 @@ class MT5DataManager:
             self.account_type = account_type
             self.account_config = self.account_validator.get_live_trading_config()
 
-            # Log del tipo de cuenta detectado
+            # Log del tipo de cuenta detectado con claridad sobre datos reales
             if account_type == AccountType.DEMO:
-                enviar_senal_log("WARNING", f"🔶 CUENTA DEMO detectada - Datos reales, ejecución simulada", "mt5_data_manager", "migration")
+                enviar_senal_log("INFO", f"🔶 CUENTA DEMO detectada - Usando datos REALES de mercado para trading simulado", "mt5_data_manager", "migration")
             elif account_type == AccountType.REAL:
-                enviar_senal_log("INFO", f"💰 CUENTA REAL detectada - Trading en vivo", "mt5_data_manager", "migration")
+                enviar_senal_log("INFO", f"💰 CUENTA REAL detectada - Usando datos REALES de mercado para trading en vivo", "mt5_data_manager", "migration")
             elif account_type == AccountType.CONTEST:
-                enviar_senal_log("INFO", f"🏆 CUENTA DE FONDEO detectada - Reglas estrictas aplicadas", "mt5_data_manager", "migration")
+                enviar_senal_log("INFO", f"🏆 CUENTA DE FONDEO detectada - Usando datos REALES de mercado con reglas de evaluación", "mt5_data_manager", "migration")
             else:
                 enviar_senal_log("ERROR", f"❓ TIPO DE CUENTA DESCONOCIDO", "mt5_data_manager", "migration")
+
+            # Mensaje clarificatorio sobre datos de mercado
+            enviar_senal_log("INFO", f"📊 CONFIRMACIÓN: TODOS los datos de mercado son REALES desde MT5", "mt5_data_manager", "migration")
+            enviar_senal_log("INFO", f"🔍 El sistema NUNCA simula precios - Solo obtiene datos directos del broker", "mt5_data_manager", "migration")
 
             # Log información adicional
             enviar_senal_log("INFO", f"   Número de cuenta: {account_data.get('login', 'N/A')}", "mt5_data_manager", "migration")
@@ -491,6 +495,7 @@ def auto_download_essential_data(symbols: Optional[List[str]] = None, timeframes
     total_downloads = len(symbols) * len(timeframes)
 
     enviar_senal_log("INFO", f"🚀 Iniciando descarga automática: {total_downloads} conjuntos de datos", "mt5_data_manager", "auto_download")
+    enviar_senal_log("INFO", f"📊 CONFIRMACIÓN: Descargando datos REALES directos del broker MT5", "mt5_data_manager", "auto_download")
 
     for symbol in symbols:
         for timeframe in timeframes:

@@ -85,7 +85,7 @@ Ejemplos de uso:
 
     args = parser.parse_args()
 
-    # 🎯 Ejecutar según parámetros
+    # 🎯 Ejecutar según parámetros - MODO AUTOMÁTICO
     try:
         if args.dashboard:
             launch_dashboard(args)
@@ -96,7 +96,9 @@ Ejemplos de uso:
         elif args.tests:
             run_tests(args)
         else:
-            launch_interactive_menu(args)
+            # 🚀 MODO AUTOMÁTICO: Lanzar dashboard directamente
+            enviar_senal_log("INFO", "🤖 MODO AUTOMÁTICO: Lanzando Dashboard Principal...", "main", "auto")
+            launch_dashboard(args)
 
     except KeyboardInterrupt:
         enviar_senal_log("INFO", "\n❌ Operación cancelada por el usuario", "main", "migration")
