@@ -51,6 +51,16 @@ except ImportError as e:
     enviar_senal_log("WARNING", f"FractalAnalyzer no disponible: {e}", __name__, "init")
     fractal_analyzer_available = False
 
+# --- Import del Market Status Detector (SPRINT 1.4 FIX) ---
+try:
+    from sistema.market_status_detector import MarketStatusDetector
+    from sistema.trading_schedule import get_current_session_info, TradingScheduleManager
+    market_status_available = True
+    enviar_senal_log("INFO", "✅ Market Status Detector importado correctamente", __name__, "init")
+except ImportError as e:
+    enviar_senal_log("WARNING", f"❌ Market Status Detector no disponible: {e}", __name__, "init")
+    market_status_available = False
+
 logger = get_specialized_logger('ict')
 
 # =============================================================================
@@ -127,6 +137,16 @@ class MarketContext:
         else:
             self.fractal_analyzer = None
             enviar_senal_log("WARNING", "⚠️ FractalAnalyzer no disponible - usando valores por defecto", __name__, "fractal_analysis")
+
+        # Inicializar Market Status Detector (SPRINT 1.4 FIX)
+        if market_status_available:
+            self.market_status_detector = MarketStatusDetector()
+            self.trading_schedule = TradingScheduleManager()
+            enviar_senal_log("INFO", "🕐 Market Status Detector inicializado en MarketContext", __name__, "session_detection")
+        else:
+            self.market_status_detector = None
+            self.trading_schedule = None
+            enviar_senal_log("WARNING", "⚠️ Market Status Detector no disponible - sesión permanecerá UNKNOWN", __name__, "session_detection")
 
         # POIs por timeframe
         self.pois_h4 = []
@@ -1239,6 +1259,18 @@ class ICTDetector:
         enviar_senal_log("DEBUG", "ICTDetector listo para análisis completo de patrones ICT", __name__, "general")
         enviar_senal_log("INFO", f"⚙️ Configuración cargada: threshold={self.config['min_confidence_threshold']}", __name__, "general")
 
+        # SPRINT 1.4 FIX: Agregar session detection también al ICTDetector
+        if market_status_available:
+            try:
+                from sistema.trading_schedule import get_current_session_info
+                self.session_detector_available = True
+                enviar_senal_log("INFO", "🕐 Session Detection habilitado en ICTDetector", __name__, "session_detection")
+            except Exception as e:
+                self.session_detector_available = False
+                enviar_senal_log("WARNING", f"🕐 Error habilitando session detection: {e}", __name__, "session_detection")
+        else:
+            self.session_detector_available = False
+
     def detect_patterns(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         IMPLEMENTACIÓN REAL: Detección completa de patrones ICT
@@ -1692,8 +1724,67 @@ class ICTDetector:
     # =========================================================================
 
     def _detect_liquidity_zones_advanced(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
-        """Detecta zonas de liquidez avanzadas (implementación simplificada)"""
-        return []  # Implementación básica por ahora
+        """
+        🎯 LIQUIDITY DETECTION ENGINE v1.0 (Sprint 1.5)
+
+        Detecta zonas de liquidez institucional según metodología ICT:
+        - Equal Highs/Lows (Stop Hunt Zones)
+        - Session Extremes (London/NY/Asian)
+        - Previous Day High/Low
+        - Swing Point Liquidity
+        """
+        try:
+            liquidity_zones = []
+
+            if len(df) < 20:
+                enviar_senal_log("WARNING", "Insuficientes datos para Liquidity Detection", __name__, "liquidity")
+                return []
+
+            enviar_senal_log("INFO", f"🔍 Iniciando Liquidity Detection en {len(df)} velas", __name__, "liquidity")
+
+            # 1. EQUAL HIGHS DETECTION
+            equal_highs = self._find_equal_highs(df)
+            liquidity_zones.extend(equal_highs)
+
+            # 2. EQUAL LOWS DETECTION
+            equal_lows = self._find_equal_lows(df)
+            liquidity_zones.extend(equal_lows)
+
+            # 3. SESSION EXTREMES (usar session detection existente)
+            session_liquidity = self._find_session_liquidity_zones(df)
+            liquidity_zones.extend(session_liquidity)
+
+            # 4. DAILY HIGH/LOW LEVELS
+            daily_levels = self._find_daily_liquidity_levels(df)
+            liquidity_zones.extend(daily_levels)
+
+            # 5. SWING POINT LIQUIDITY (usar swing points existentes)
+            swing_liquidity = self._find_swing_liquidity_zones(df)
+            liquidity_zones.extend(swing_liquidity)
+
+            # Filtrar y rankear por importancia
+            liquidity_zones = self._rank_liquidity_zones(liquidity_zones, df['close'].iloc[-1])
+
+            enviar_senal_log("INFO",
+                f"✅ Liquidity Engine completado: {len(liquidity_zones)} zonas detectadas",
+                __name__, "liquidity")
+
+            # Desglose por tipo
+            equal_h_count = len([z for z in liquidity_zones if z.get('type') == 'EQUAL_HIGHS'])
+            equal_l_count = len([z for z in liquidity_zones if z.get('type') == 'EQUAL_LOWS'])
+            session_count = len([z for z in liquidity_zones if 'SESSION' in z.get('type', '')])
+            daily_count = len([z for z in liquidity_zones if 'DAILY' in z.get('type', '')])
+            swing_count = len([z for z in liquidity_zones if 'SWING' in z.get('type', '')])
+
+            enviar_senal_log("INFO",
+                f"🎯 Desglose: Equal Highs: {equal_h_count} | Equal Lows: {equal_l_count} | Session: {session_count} | Daily: {daily_count} | Swing: {swing_count}",
+                __name__, "liquidity")
+
+            return liquidity_zones
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error en Liquidity Detection Engine: {e}", __name__, "liquidity")
+            return []
 
     def _assess_data_quality(self, df: pd.DataFrame) -> str:
         """Evalúa la calidad de los datos"""
@@ -1876,8 +1967,76 @@ class ICTDetector:
         return self._analyze_momentum_comprehensive(candles)
 
     def _determine_session_context(self) -> Dict[str, Any]:
-        """Determina contexto de sesión"""
-        return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
+        """
+        Determina contexto de sesión usando Market Status Detector
+        SPRINT 1.4 FIX: Conecta con sistema real de sesiones
+        """
+        try:
+            # Verificar si tenemos session detection disponible (ICTDetector)
+            if hasattr(self, 'session_detector_available') and self.session_detector_available:
+                from sistema.trading_schedule import get_current_session_info
+                current_session = get_current_session_info()
+            # Verificar si tenemos market_status_detector disponible (MarketContext)
+            elif hasattr(self, 'market_status_detector') and self.market_status_detector:
+                current_session = get_current_session_info()
+            else:
+                enviar_senal_log("WARNING", "🕐 Session Detection no disponible en este contexto", __name__, "session_detection")
+                return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
+
+            if current_session:
+                session_name = current_session.get('session_key', 'UNKNOWN')
+                is_active = current_session.get('is_active', False)
+                volatility = current_session.get('volatility', 'MEDIUM')
+
+                # Detectar si estamos en killzone
+                is_killzone = self._is_killzone_active(session_name)
+
+                # Actualizar session en contexto si es MarketContext
+                if hasattr(self, 'current_session'):
+                    self.current_session = session_name
+
+                enviar_senal_log("INFO",
+                               f"🕐 Sesión detectada: {session_name} | Activa: {is_active} | Killzone: {is_killzone}",
+                               __name__, "session_detection")
+
+                return {
+                    'session': session_name,
+                    'is_active': is_active,
+                    'volatility': volatility,
+                    'is_killzone': is_killzone,
+                    'activity_level': volatility
+                }
+            else:
+                enviar_senal_log("WARNING", "🕐 No hay sesión activa detectada", __name__, "session_detection")
+                return {'session': 'NO_SESSION', 'is_active': False, 'activity_level': 'LOW'}
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"🕐 Error determinando sesión: {e}", __name__, "session_detection")
+            return {'session': 'ERROR', 'overlap': False, 'activity_level': 'MEDIUM'}
+
+    def _is_killzone_active(self, session_name: str) -> bool:
+        """
+        Determina si estamos en killzone ICT
+        London Killzone: 2-5 AM EST (7-10 UTC)
+        NY Killzone: 8-11 AM EST (13-16 UTC)
+        """
+        try:
+            from datetime import datetime, timezone
+            current_utc = datetime.now(timezone.utc)
+            current_hour = current_utc.hour
+
+            if session_name == 'LONDON':
+                # London Killzone: 7-10 UTC (2-5 AM EST)
+                return 7 <= current_hour <= 10
+            elif session_name == 'NEW_YORK':
+                # NY Killzone: 13-16 UTC (8-11 AM EST)
+                return 13 <= current_hour <= 16
+            else:
+                return False
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"🕐 Error detectando killzone: {e}", __name__, "session_detection")
+            return False
 
     def _analyze_bias_confirmation_factors(self, candles, h4_bias, m15_bias) -> List[str]:
         """Analiza factores de confirmación de bias"""
@@ -2118,6 +2277,283 @@ class ICTDetector:
         return True  # Simplificado por ahora
 
     # =========================================================================
+    # LIQUIDITY DETECTION ENGINE - HELPER FUNCTIONS (Sprint 1.5)
+    # =========================================================================
+
+    def _find_equal_highs(self, df: pd.DataFrame, tolerance_pips: float = 5.0) -> List[Dict[str, Any]]:
+        """
+        Detecta Equal Highs - niveles donde el precio ha tocado múltiples veces
+        Estos son zonas prime para stop hunts institucionales
+        """
+        try:
+            equal_highs = []
+            highs = df['high'].values
+            current_price = df['close'].iloc[-1]
+
+            # Buscar niveles tocados múltiples veces
+            for i in range(len(highs) - 10, len(highs) - 1):  # Últimas 10 velas
+                if i < 5:  # Necesitamos contexto previo
+                    continue
+
+                current_high = highs[i]
+
+                # Contar cuántas veces se ha tocado este nivel
+                tolerance = tolerance_pips * 0.00001  # Convertir pips a precio
+                touches = 0
+
+                for j in range(max(0, i-20), len(highs)):  # Buscar en 20 velas
+                    if abs(highs[j] - current_high) <= tolerance:
+                        touches += 1
+
+                # Si se ha tocado 2+ veces, es zona de liquidez
+                if touches >= 2:
+                    distance_pips = abs(current_price - current_high) / 0.00001
+
+                    equal_highs.append({
+                        'type': 'EQUAL_HIGHS',
+                        'level': current_high,
+                        'touches': touches,
+                        'distance_pips': distance_pips,
+                        'strength': min(touches * 25, 100),  # Max 100%
+                        'side': 'RESISTANCE',
+                        'freshness': 'FRESH' if distance_pips > 10 else 'CLOSE',
+                        'candle_index': i,
+                        'description': f"Equal Highs @ {current_high:.5f} ({touches} touches)"
+                    })
+
+            enviar_senal_log("DEBUG", f"Equal Highs detectados: {len(equal_highs)}", __name__, "liquidity")
+            return equal_highs
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Equal Highs: {e}", __name__, "liquidity")
+            return []
+
+    def _find_equal_lows(self, df: pd.DataFrame, tolerance_pips: float = 5.0) -> List[Dict[str, Any]]:
+        """
+        Detecta Equal Lows - niveles donde el precio ha tocado múltiples veces
+        Zonas prime para stop hunts en el lado de compra
+        """
+        try:
+            equal_lows = []
+            lows = df['low'].values
+            current_price = df['close'].iloc[-1]
+
+            # Buscar niveles tocados múltiples veces
+            for i in range(len(lows) - 10, len(lows) - 1):  # Últimas 10 velas
+                if i < 5:  # Necesitamos contexto previo
+                    continue
+
+                current_low = lows[i]
+
+                # Contar cuántas veces se ha tocado este nivel
+                tolerance = tolerance_pips * 0.00001  # Convertir pips a precio
+                touches = 0
+
+                for j in range(max(0, i-20), len(lows)):  # Buscar en 20 velas
+                    if abs(lows[j] - current_low) <= tolerance:
+                        touches += 1
+
+                # Si se ha tocado 2+ veces, es zona de liquidez
+                if touches >= 2:
+                    distance_pips = abs(current_price - current_low) / 0.00001
+
+                    equal_lows.append({
+                        'type': 'EQUAL_LOWS',
+                        'level': current_low,
+                        'touches': touches,
+                        'distance_pips': distance_pips,
+                        'strength': min(touches * 25, 100),  # Max 100%
+                        'side': 'SUPPORT',
+                        'freshness': 'FRESH' if distance_pips > 10 else 'CLOSE',
+                        'candle_index': i,
+                        'description': f"Equal Lows @ {current_low:.5f} ({touches} touches)"
+                    })
+
+            enviar_senal_log("DEBUG", f"Equal Lows detectados: {len(equal_lows)}", __name__, "liquidity")
+            return equal_lows
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Equal Lows: {e}", __name__, "liquidity")
+            return []
+
+    def _find_session_liquidity_zones(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Detecta zonas de liquidez en extremos de sesión
+        Usa el session detection ya implementado en Sprint 1.4
+        """
+        try:
+            session_zones = []
+
+            # Solo si tenemos session detection disponible
+            if hasattr(self, 'session_detector_available') and self.session_detector_available:
+
+                # Obtener información de sesión actual
+                from sistema.trading_schedule import get_current_session_info
+                session_info = get_current_session_info()
+
+                if session_info:
+                    session_name = session_info.get('session_key', 'UNKNOWN')
+
+                    # Buscar high/low de la sesión actual (aprox. últimas 4 horas en M15)
+                    session_period = min(16, len(df))  # 16 velas = 4 horas en M15
+                    session_data = df.tail(session_period)
+
+                    session_high = session_data['high'].max()
+                    session_low = session_data['low'].min()
+                    current_price = df['close'].iloc[-1]
+
+                    # Session High como zona de liquidez
+                    high_distance = abs(current_price - session_high) / 0.00001
+                    session_zones.append({
+                        'type': f'SESSION_HIGH_{session_name}',
+                        'level': session_high,
+                        'distance_pips': high_distance,
+                        'strength': 75,  # Session levels son importantes
+                        'side': 'RESISTANCE',
+                        'freshness': 'FRESH' if high_distance > 15 else 'CLOSE',
+                        'session': session_name,
+                        'description': f"{session_name} Session High @ {session_high:.5f}"
+                    })
+
+                    # Session Low como zona de liquidez
+                    low_distance = abs(current_price - session_low) / 0.00001
+                    session_zones.append({
+                        'type': f'SESSION_LOW_{session_name}',
+                        'level': session_low,
+                        'distance_pips': low_distance,
+                        'strength': 75,  # Session levels son importantes
+                        'side': 'SUPPORT',
+                        'freshness': 'FRESH' if low_distance > 15 else 'CLOSE',
+                        'session': session_name,
+                        'description': f"{session_name} Session Low @ {session_low:.5f}"
+                    })
+
+                    enviar_senal_log("DEBUG",
+                        f"Session Liquidity {session_name}: High @ {session_high:.5f}, Low @ {session_low:.5f}",
+                        __name__, "liquidity")
+
+            return session_zones
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Session Liquidity: {e}", __name__, "liquidity")
+            return []
+
+    def _find_daily_liquidity_levels(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Detecta Previous Day High/Low como zonas de liquidez
+        Estos niveles son críticos en la metodología ICT
+        """
+        try:
+            daily_zones = []
+
+            # Aproximar PDH/PDL usando los extremos de las últimas 96 velas (24h en M15)
+            if len(df) >= 96:
+                previous_day_data = df.iloc[-96:-1]  # Excluir vela actual
+
+                pdh = previous_day_data['high'].max()
+                pdl = previous_day_data['low'].min()
+                current_price = df['close'].iloc[-1]
+
+                # Previous Day High
+                pdh_distance = abs(current_price - pdh) / 0.00001
+                daily_zones.append({
+                    'type': 'DAILY_HIGH',
+                    'level': pdh,
+                    'distance_pips': pdh_distance,
+                    'strength': 85,  # Daily levels son muy importantes
+                    'side': 'RESISTANCE',
+                    'freshness': 'FRESH' if pdh_distance > 20 else 'CLOSE',
+                    'description': f"Previous Day High @ {pdh:.5f}"
+                })
+
+                # Previous Day Low
+                pdl_distance = abs(current_price - pdl) / 0.00001
+                daily_zones.append({
+                    'type': 'DAILY_LOW',
+                    'level': pdl,
+                    'distance_pips': pdl_distance,
+                    'strength': 85,  # Daily levels son muy importantes
+                    'side': 'SUPPORT',
+                    'freshness': 'FRESH' if pdl_distance > 20 else 'CLOSE',
+                    'description': f"Previous Day Low @ {pdl:.5f}"
+                })
+
+                enviar_senal_log("DEBUG",
+                    f"Daily Liquidity: PDH @ {pdh:.5f}, PDL @ {pdl:.5f}",
+                    __name__, "liquidity")
+
+            return daily_zones
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Daily Liquidity: {e}", __name__, "liquidity")
+            return []
+
+    def _find_swing_liquidity_zones(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Detecta liquidez en swing points ya identificados
+        Conecta con el sistema de swing detection existente
+        """
+        try:
+            swing_zones = []
+
+            # Usar swing points ya detectados por el sistema
+            swing_points = self._detect_swing_points(df)
+            current_price = df['close'].iloc[-1]
+
+            for swing in swing_points:
+                swing_level = swing.get('price', 0)
+                swing_type = swing.get('type', 'UNKNOWN')
+
+                if swing_level > 0:
+                    distance_pips = abs(current_price - swing_level) / 0.00001
+
+                    swing_zones.append({
+                        'type': f'SWING_{swing_type.upper()}',
+                        'level': swing_level,
+                        'distance_pips': distance_pips,
+                        'strength': 65,  # Swing points tienen fuerza media
+                        'side': 'RESISTANCE' if swing_type.upper() == 'HIGH' else 'SUPPORT',
+                        'freshness': 'FRESH' if distance_pips > 10 else 'CLOSE',
+                        'description': f"Swing {swing_type} @ {swing_level:.5f}"
+                    })
+
+            enviar_senal_log("DEBUG", f"Swing Liquidity detectado: {len(swing_zones)} zonas", __name__, "liquidity")
+            return swing_zones
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error detectando Swing Liquidity: {e}", __name__, "liquidity")
+            return []
+
+    def _rank_liquidity_zones(self, zones: List[Dict[str, Any]], current_price: float) -> List[Dict[str, Any]]:
+        """
+        Rankea zonas de liquidez por importancia e relevancia
+        """
+        try:
+            if not zones:
+                return []
+
+            # Asignar score a cada zona
+            for zone in zones:
+                base_strength = zone.get('strength', 50)
+                distance_pips = zone.get('distance_pips', 100)
+
+                # Score basado en fuerza y proximidad
+                proximity_score = max(0, 100 - distance_pips)  # Más cerca = mayor score
+                final_score = (base_strength * 0.7) + (proximity_score * 0.3)
+
+                zone['score'] = round(final_score, 1)
+
+            # Ordenar por score (mayor a menor)
+            ranked_zones = sorted(zones, key=lambda x: x.get('score', 0), reverse=True)
+
+            # Limitar a top 20 para performance
+            return ranked_zones[:20]
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error rankeando liquidity zones: {e}", __name__, "liquidity")
+            return zones  # Retornar sin rankear si hay error
+
+    # =========================================================================
     # MÉTODOS DE UTILIDAD Y ESTADO
     # =========================================================================
 
@@ -2149,8 +2585,21 @@ class ICTDetector:
         enviar_senal_log("INFO", "🔄 Cache del ICTDetector reiniciado", __name__, "general")
 
     def set_market_context(self, market_context):
-        """Establece el contexto de mercado para análisis más precisos"""
+        """
+        Establece el contexto de mercado para análisis más precisos
+        SPRINT 1.4 FIX: Actualiza sesión inmediatamente
+        """
         self.market_context = market_context
+
+        # SPRINT 1.4 FIX: Actualizar sesión inmediatamente al establecer contexto
+        if hasattr(market_context, '_determine_session_context'):
+            try:
+                session_info = market_context._determine_session_context()
+                session_name = session_info.get('session', 'UNKNOWN')
+                enviar_senal_log("INFO", f"🕐 Sesión actualizada al establecer contexto: {session_name}", __name__, "session_detection")
+            except Exception as e:
+                enviar_senal_log("ERROR", f"🕐 Error actualizando sesión en contexto: {e}", __name__, "session_detection")
+
         enviar_senal_log("DEBUG", "📊 Contexto de mercado establecido en ICTDetector", __name__, "general")
 
     def update_configuration(self, new_config: Dict[str, Any]):
