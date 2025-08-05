@@ -30,7 +30,7 @@ FILOSOFÍA:
 AUTOR: Sistema Inteligente de Directorios v2.1
 FECHA: 02 Agosto 2025
 """
-# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
+# LEGACY SISTEM INTERNO: import logging solo para infraestructura interna
 import logging
 import json
 import os
@@ -206,9 +206,9 @@ class SmartDirectoryLogger:
             if cache_key in self.loggers_cache:
                 return self.loggers_cache[cache_key]
 
-            # Crear logger único
+            # SISTEMA INTERNO: Crear logger único para infraestructura
             logger = logging.getLogger(f"SMART.{directory.upper()}.{source.upper()}")
-            logger.setLevel(logging.DEBUG)
+            logger.setLevel(logging.WARNING)  # Solo errores críticos de infraestructura
 
             # Remover handlers existentes
             for handler in logger.handlers[:]:
@@ -229,11 +229,11 @@ class SmartDirectoryLogger:
 
             logger.addHandler(file_handler)
 
-            # No agregar handler de consola si estamos en modo silencioso
+            # SISTEMA INTERNO: No agregar handler de consola - usar enviar_senal_log
             if not self.silent_mode:
                 console_handler = logging.StreamHandler()
                 console_handler.setFormatter(self.formatter)
-                console_handler.setLevel(logging.WARNING)  # Solo warnings+ en consola
+                console_handler.setLevel(logging.ERROR)  # Solo errores críticos en consola
                 logger.addHandler(console_handler)
 
             # Prevenir propagación para evitar duplicados
@@ -287,9 +287,9 @@ class SmartDirectoryLogger:
                 self.stats['logs_by_directory'][directory] += 1
 
         except Exception as e:
-            # Log de emergencia en debug
+            # SISTEMA INTERNO: Log de emergencia solo para infraestructura crítica
             emergency_logger = logging.getLogger('EMERGENCY')
-            emergency_logger.error(f"SmartDirectoryLogger error: {e}")
+            emergency_logger.error(f"SmartDirectoryLogger CRITICAL infrastructure error: {e}")
 
     def _format_message_with_metadata(self, message: str, metadata: Optional[Dict]) -> str:
         """Formatea el mensaje incluyendo metadatos si existen."""

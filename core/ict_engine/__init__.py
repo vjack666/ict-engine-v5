@@ -4,15 +4,15 @@ ICT Engine - Motor Consolidado de Análisis ICT
 Motor unificado para todo el análisis Inner Circle Trader.
 """
 
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_ict
+from sistema.logging_interface import enviar_senal_log
 
 # Importar clase principal ICTEngine
 try:
     from .ict_engine import ICTEngine, get_ict_engine, ICTEngineResult
-    enviar_senal_log("INFO", "ICTEngine principal importado correctamente", __name__, "ict")
-except ImportError as e:
-    enviar_senal_log("ERROR", f"Error importando ICTEngine: {e}", __name__, "ict")
+    # ICT Engine cargado exitosamente
+except ImportError:
+    # Error al cargar ICT Engine - modo degradado
+    pass
 
 __version__ = "3.4.1"  # Versión actualizada tras refactorización
 

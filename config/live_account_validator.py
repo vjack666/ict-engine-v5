@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 """
 🚀 VALIDADOR DE TIPO DE CUENTA MT5 - LIVE ONLY
 ==============================================
@@ -21,6 +19,8 @@ from typing import Dict, Optional, Tuple, Any
 from enum import Enum
 from dataclasses import dataclass
 from datetime import datetime
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 
 # Importación segura de MetaTrader5
 mt5_available = False

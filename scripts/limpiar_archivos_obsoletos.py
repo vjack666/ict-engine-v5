@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧹 ICT ENGINE v5.0 - LIMPIEZA DE ARCHIVOS OBSOLETOS
@@ -18,6 +16,8 @@ ANÁLISIS DE ARCHIVOS:
 
 import shutil
 from pathlib import Path
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 from typing import List, Dict, Tuple
 
 # Configurar paths

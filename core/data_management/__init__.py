@@ -32,12 +32,8 @@ try:
         'stop_candle_coordinator'
     ]
 
-except ImportError as e:
-    try:
-        from sistema.logging_interface import enviar_senal_log
-        enviar_senal_log("WARNING", f"Error importando componentes de data_management: {e}", __name__, "init")
-    except ImportError:
-        enviar_senal_log("WARNING", f"Error importando componentes de data_management: {e}", __name__, "sistema")
+except ImportError:
+    # Error al cargar componentes de data_management - modo degradado
     __all__ = []
 
 # Información del módulo

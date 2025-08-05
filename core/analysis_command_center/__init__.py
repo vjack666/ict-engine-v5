@@ -38,10 +38,10 @@ from .tct_pipeline import (
 def create_analysis_orchestrator(**kwargs) -> AnalysisOrchestrator:
     """
     🎯 Factory function para crear orquestador de análisis
-    
+
     Args:
         **kwargs: Parámetros de configuración
-        
+
     Returns:
         AnalysisOrchestrator configurado
     """
@@ -50,11 +50,11 @@ def create_analysis_orchestrator(**kwargs) -> AnalysisOrchestrator:
 def run_quick_analysis(symbol: str, timeframe: str = "M15") -> AnalysisOutput:
     """
     ⚡ Análisis rápido para dashboard
-    
+
     Args:
         symbol: Símbolo a analizar
         timeframe: Timeframe (default M15)
-        
+
     Returns:
         AnalysisOutput con resultado completo
     """
@@ -65,21 +65,21 @@ def run_quick_analysis(symbol: str, timeframe: str = "M15") -> AnalysisOutput:
         focus_areas=["ICT", "POI", "CONFIDENCE"]
     )
 
-def run_comprehensive_analysis(symbol: str, 
+def run_comprehensive_analysis(symbol: str,
                              timeframes: Optional[List[str]] = None) -> AnalysisOutput:
     """
     🎼 Análisis completo para dashboard
-    
+
     Args:
         symbol: Símbolo a analizar
         timeframes: Lista de timeframes (default ["M1", "M5", "M15"])
-        
+
     Returns:
         AnalysisOutput con resultado completo
     """
     if timeframes is None:
         timeframes = ["M1", "M5", "M15"]
-    
+
     orchestrator = AnalysisOrchestrator()
     return orchestrator.run_full_analysis_cycle(symbol, timeframes)
 
@@ -88,7 +88,7 @@ __all__ = [
     # 🎯 COMPONENTES PRINCIPALES
     'AnalysisOrchestrator',
     'AccFlowController',
-    
+
     # 📊 MODELOS DE DATOS
     'AnalysisInput',
     'AnalysisOutput',
@@ -100,11 +100,11 @@ __all__ = [
     'ConfidenceData',
     'VeredictoData',
     'TCTData',
-    
+
     # 🎛️ CONTROL DE FLUJO
     'FlowPriority',
     'CacheStrategy',
-    
+
     # 🎯 TCT PIPELINE
     'TCTInterface',
     'TCTMeasurementEngine',
@@ -112,7 +112,7 @@ __all__ = [
     'TCTAggregator',
     'AggregatedTCTMetrics',
     'TCTFormatter',
-    
+
     # 📊 FUNCIONES DE CONVENIENCIA
     'create_analysis_orchestrator',
     'run_quick_analysis',
@@ -125,16 +125,5 @@ __description__ = "Centro de Mando de Análisis para ICT Engine v3.4"
 __architecture__ = "ORCHESTRATED_SPECIALISTS"
 __protocol__ = "CAJA_NEGRA"
 
-# 📝 LOG DE INICIALIZACIÓN DEL MÓDULO
-try:
-    from sistema.logging_interface import enviar_senal_log
-    enviar_senal_log(
-        'INFO',
-        "🧠 Analysis Command Center módulo cargado - Sistema de orquestación activado",
-        'analysis_command_center',
-        'general'
-    )
-    
-except ImportError:
-    # 🔄 FALLBACK SI NO ESTÁ DISPONIBLE EL LOGGING
-    pass
+# 📝 MÓDULO CARGADO - Analysis Command Center
+# Sistema de orquestación activado

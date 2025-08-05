@@ -20,8 +20,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from sistema.logging_interface import enviar_senal_log
 
-# Configurar logger para este módulo
-logger = logging.getLogger(__name__)
+# MIGRADO A SLUC v2.0: logger eliminado - usar enviar_senal_log
 
 class ScriptAnalyzer:
     """Analizador de scripts del proyecto"""

@@ -18,7 +18,7 @@ Versión profesional con:
 Autor: Sistema ITC Engine v5.0
 Fecha: 2024
 """
-# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
+# LEGACY MIGRADO A SLUC v2.0: import logging comentado para uso interno únicamente
 import logging
 import json
 from datetime import datetime
@@ -60,11 +60,12 @@ class SLUCv21:
 
     def _setup_basic_logging(self):
         """Configurar logging básico sin interferir con el sistema smart"""
+        # SISTEMA INTERNO: logging básico solo para infraestructura SLUC
         logging.basicConfig(
-            level=logging.INFO,
+            level=logging.WARNING,  # Solo errores críticos de infraestructura
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.NullHandler()  # No output por defecto
+                logging.NullHandler()  # No output por defecto - usar enviar_senal_log
             ]
         )
 

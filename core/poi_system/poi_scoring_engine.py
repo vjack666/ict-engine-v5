@@ -19,7 +19,6 @@ Fecha: 27 Julio 2025
 
 from typing import List, Dict, Optional
 from datetime import datetime
-
 # Logger especializado
 from sistema.logging_interface import enviar_senal_log, log_poi
 # Usar sistema de logging central

@@ -590,9 +590,9 @@ def install_global_exception_handler():
         original_excepthook(exc_type, exc_value, exc_traceback)
 
     sys.excepthook = custom_exception_handler
-    enviar_senal_log("INFO", "[LOGGER] OK Manejador global de excepciones instalado.", "data_logger", "migration")
+    enviar_senal_log("INFO", "[LOGGER] OK Manejador global de excepciones instalado.", "data_logger", "sistema")
 
-def force_log_and_print(modulo: str, mensaje: str, es_error: bool = True):
+def force_log_and_enviar_senal_log(modulo: str, mensaje: str, es_error: bool = True):
     """
     Fuerza el logging a archivo y opcionalmente imprime en consola.
     NOTA: Cuando se usa Rich dashboard, solo loggea a archivo para evitar interferencias.

@@ -18,9 +18,6 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 
 🎮 NAVEGACIÓN:
 - H1: Estado de hibernación inteligente con métricas de MT5
-
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_dashboard
 - H2: Análisis ICT profesional con datos reales completos
 - H3: 🧠 Patrones ICT con narrativa completa y plan de acción
 - H4: 📊 Analytics y métricas avanzadas del sistema
@@ -33,6 +30,12 @@ from sistema.logging_interface import enviar_senal_log, log_dashboard
 - Q: Salir del sistema
 
 Autor: Sistema Sentinel Grid
+"""
+
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log, log_dashboard
+
+"""
 Fecha: 2025-07-27
 Versión: Dashboard Definitivo v5.0 🚀
 Entorno: PRODUCCIÓN - DATOS REALES MT5

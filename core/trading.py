@@ -24,9 +24,9 @@ from pathlib import Path
 import MetaTrader5 as mt5
 import csv
 import os
+from sistema.config import SIMBOLO
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log
-from sistema.config import SIMBOLO
 
 # Trading Schedule - Import condicional
 trading_schedule_available = False

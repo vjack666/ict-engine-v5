@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 Script para detectar imports de subprocess no usados
@@ -8,6 +6,8 @@ Analiza el patrón que teníamos con 'os'
 
 import ast
 from pathlib import Path
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 
 class SubprocessImportChecker(ast.NodeVisitor):
     def __init__(self):
@@ -84,7 +84,7 @@ def main():
         result = check_file(py_file)
 
         if 'error' in result:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en {result['file_path']}: {result['error']}")
+            enviar_senal_log("ERROR", f"❌ Error en {result['file_path']}: {result['error']}", __name__, "sistema")
             continue
 
         if result['imports_subprocess'] and not result['uses_subprocess']:

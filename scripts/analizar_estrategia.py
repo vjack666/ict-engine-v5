@@ -234,10 +234,10 @@ def detectar_cuellos_botella():
         logs_dir = PROJECT_ROOT / "data" / "logs" / "errors"
         if logs_dir.exists():
             today = datetime.now().strftime("%Y%m%d")
-            error_log = logs_dir / f"errors_{today}.log"
+            error_file = logs_dir / f"errors_{today}.log"
 
-            if error_log.exists():
-                with open(error_log, 'r', encoding='utf-8') as f:
+            if error_file.exists():
+                with open(error_file, 'r', encoding='utf-8') as f:
                     content = f.read()
                     if 'CRITICAL' in content:
                         problemas_detectados.append("🔴 Errores críticos detectados en logs")

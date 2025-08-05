@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 📋 RESUMEN DE CAMBIOS - VERIFICACIÓN DIRECTA MT5
@@ -7,6 +5,9 @@ from sistema.logging_interface import enviar_senal_log
 
 Documentación de los cambios implementados para verificación directa de MT5.
 """
+
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 
 enviar_senal_log("INFO", "="*60, __name__, "sistema")
 enviar_senal_log("INFO", "🎯 CAMBIOS IMPLEMENTADOS - VERIFICACIÓN DIRECTA MT5", __name__, "sistema")

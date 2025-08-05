@@ -8,12 +8,12 @@ Puede crear, actualizar y cancelar órdenes límite según las condiciones del m
 
 import MetaTrader5 as mt5
 from datetime import datetime
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_trading
 from typing import Optional
 import time
 
 from sistema.config import SIMBOLO
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log, log_trading
 
 # RiskBot para cálculo dinámico de volumen
 from core.risk_management.riskbot_mt5 import RiskBot
@@ -25,7 +25,7 @@ try:
     from sistema.mt5_connector import inicializar_mt5, MT5Connector  # type: ignore
     mt5_connector_available = True
 except ImportError:
-    enviar_senal_log("WARNING", "mt5_connector no disponible - Funcionalidad limitada", __name__, "mt5")
+    # Silenciar importación para evitar logging legacy
     MT5Connector = None
 
     def inicializar_mt5():

@@ -6,7 +6,6 @@ Sistema de dashboard modular para el sistema Sentinel Grid.
 Exporta las funciones principales para compatibilidad con app.py y main.py.
 """
 
-# MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log
 
 # Funciones dummy para compatibilidad mientras se implementa el core
@@ -32,15 +31,15 @@ try:
     from core.ict_engine import ICTPatternAnalyzer
     from .ict_professional_widget import ICTProfessionalWidget
     from .dashboard_widgets import HibernationStatusWidget, CountdownWidget
-    
+
     # Agregar a __all__
     __all__ = [
         'crear_layout_inicial',
-        'update_layout', 
+        'update_layout',
         'create_sleep_mode_layout',
         'update_sleep_mode_layout',
         'ICTPattern',
-        'TradingDirection', 
+        'TradingDirection',
         'SessionType',
         'PATTERN_EMOJIS',
         'ICTPatternAnalyzer',
@@ -48,14 +47,14 @@ try:
         'HibernationStatusWidget',
         'CountdownWidget'
     ]
-    
+
 except ImportError as e:
     enviar_senal_log("WARNING", f"⚠️ Warning: No se pudieron importar algunos componentes ICT: {e}", "__init__", "migration")
-    
+
     # __all__ básico sin componentes ICT
     __all__ = [
         'crear_layout_inicial',
-        'update_layout', 
+        'update_layout',
         'create_sleep_mode_layout',
         'update_sleep_mode_layout'
     ]

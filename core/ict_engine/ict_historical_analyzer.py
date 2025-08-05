@@ -11,7 +11,6 @@ from json import JSONDecodeError
 import pandas as pd
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_ict
-
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple

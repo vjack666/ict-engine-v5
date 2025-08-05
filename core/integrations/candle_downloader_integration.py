@@ -12,7 +12,6 @@ Creado por Sprint 1.2 Executor
 from typing import Dict, List, Optional, Callable
 import sys
 from pathlib import Path
-
 # Importaciones seguras - Sistema ICT Engine v5.0
 from sistema.logging_interface import enviar_senal_log
 

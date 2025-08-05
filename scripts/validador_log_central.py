@@ -40,12 +40,22 @@ class ValidadorLogCentral:
         self.archivos_validados = 0
         self.violaciones_protocolo = 0
 
+        # ARCHIVOS DE INFRAESTRUCTURA (EXENTOS DE VALIDACIÓN)
+        self.archivos_excepcion = {
+            'sistema/logging_interface.py',  # Sistema central de logging
+            'sistema/smart_directory_logger.py',  # Logger especializado
+            'utils/logging_utils.py',  # Utilidades de logging
+            'migrate_sluc_atomic.py',  # Migrador con código de ejemplo
+            'scripts/validador_log_central.py',  # Este mismo validador
+            'scripts/corrector_log_central.py'  # Corrector de logging
+        }
+
         # Patrones PROHIBIDOS (violaciones del protocolo)
         self.patrones_prohibidos = {
             'import_logging': r'^(\s*)import\s+logging',
             'from_logging': r'^(\s*)from\s+logging\s+import',
             'print_logging': r'print\s*\([^)]*(?:error|warning|info|debug|log)[^)]*\)',
-            'reimport_enviar_senal': r'from\s+sistema\.logging_interface\s+import\s+enviar_senal_log',
+            # REMOVED: 'reimport_enviar_senal' - Este causa falsos positivos
             'log_direct': r'(?:log|logging)\.[a-zA-Z]+\(',
             'logger_creation': r'logger\s*=\s*(?:logging\.getLogger|Logger)'
         }
@@ -103,9 +113,50 @@ class ValidadorLogCentral:
 
         return archivos
 
+    def _verificar_imports_duplicados(self, contenido):
+        """
+        Detecta imports duplicados REALES de enviar_senal_log en el mismo archivo
+        Ignora imports dentro de strings o comentarios
+        """
+        lineas = contenido.split('\n')
+        imports_encontrados = []
+
+        for i, linea in enumerate(lineas, 1):
+            # Ignorar líneas comentadas
+            if linea.strip().startswith('#'):
+                continue
+
+            # Buscar el import específico, pero NO dentro de strings
+            if re.search(self.patrones_obligatorios['sistema_logging_import'], linea):
+                # Verificar que NO esté dentro de una cadena de texto
+                # Contar comillas antes del import para detectar si está en string
+                pos_import = linea.find('from sistema.logging_interface import enviar_senal_log')
+                if pos_import > 0:
+                    texto_antes = linea[:pos_import]
+                    comillas_simples = texto_antes.count("'") - texto_antes.count("\\'")
+                    comillas_dobles = texto_antes.count('"') - texto_antes.count('\\"')
+
+                    # Si hay número impar de comillas, está dentro de un string
+                    if comillas_simples % 2 != 0 or comillas_dobles % 2 != 0:
+                        continue
+
+                imports_encontrados.append(i)
+
+        # Si hay más de 1 import REAL, reportar como duplicados
+        if len(imports_encontrados) > 1:
+            return [(f"IMPORT_DUPLICADO", i, lineas[i-1].strip()) for i in imports_encontrados[1:]]
+
+        return []
+
     def _validar_archivo(self, archivo: Path):
         """Valida un archivo individual"""
         try:
+            # VERIFICAR SI EL ARCHIVO ESTÁ EN LA LISTA DE EXCEPCIONES
+            archivo_relativo = str(archivo.relative_to(self.ruta_proyecto)).replace('\\', '/')
+            if archivo_relativo in self.archivos_excepcion:
+                enviar_senal_log("DEBUG", f"⚠️ SALTANDO (Infraestructura): {archivo_relativo}", __name__, "validacion")
+                return
+
             with open(archivo, 'r', encoding='utf-8') as f:
                 contenido = f.read()
                 lineas = contenido.split('\n')
@@ -133,23 +184,23 @@ class ValidadorLogCentral:
     def _detectar_violaciones(self, archivo: Path, lineas: List[str]) -> List[Dict[str, Any]]:
         """Detecta violaciones del protocolo de logging"""
         violaciones = []
-        imports_enviar_senal = 0
 
+        # Verificar imports duplicados REALES usando método específico
+        contenido = '\n'.join(lineas)
+        imports_duplicados = self._verificar_imports_duplicados(contenido)
+
+        for violacion_data in imports_duplicados:
+            violaciones.append({
+                'tipo': violacion_data[0],
+                'archivo': archivo,
+                'linea': violacion_data[1],
+                'contenido': violacion_data[2],
+                'descripcion': 'Import duplicado de enviar_senal_log',
+                'severidad': 'ERROR'
+            })
+
+        # Detectar otros patrones prohibidos
         for i, linea in enumerate(lineas, 1):
-            # Contar imports de enviar_senal_log para detectar duplicados
-            if re.search(self.patrones_obligatorios['sistema_logging_import'], linea):
-                imports_enviar_senal += 1
-                if imports_enviar_senal > 1:
-                    violaciones.append({
-                        'tipo': 'REIMPORT_DUPLICADO',
-                        'archivo': archivo,
-                        'linea': i,
-                        'contenido': linea.strip(),
-                        'descripcion': 'Import duplicado de enviar_senal_log',
-                        'severidad': 'ERROR'
-                    })
-
-            # Detectar otros patrones prohibidos
             for patron_nombre, patron_regex in self.patrones_prohibidos.items():
                 if re.search(patron_regex, linea, re.IGNORECASE):
                     violaciones.append({
@@ -269,7 +320,7 @@ if __name__ == "__main__":
     resultado = validar_protocolo_log_central()
 
     if resultado['protocolo_cumplido']:
-        print("✅ PROTOCOLO LOG CENTRAL: CUMPLIDO")
+        enviar_senal_log("INFO", "✅ PROTOCOLO LOG CENTRAL: CUMPLIDO", __name__, "validacion")
     else:
-        print("❌ PROTOCOLO LOG CENTRAL: VIOLACIONES DETECTADAS")
-        print(f"📊 Violaciones: {resultado['total_violaciones']}")
+        enviar_senal_log("WARNING", "❌ PROTOCOLO LOG CENTRAL: VIOLACIONES DETECTADAS", __name__, "validacion")
+        enviar_senal_log("INFO", f"📊 Violaciones: {resultado['total_violaciones']}", __name__, "validacion")

@@ -14,7 +14,6 @@ import pandas as pd
 from dataclasses import dataclass
 from datetime import datetime
 import threading
-
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_poi
 

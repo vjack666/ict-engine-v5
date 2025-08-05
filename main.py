@@ -1,4 +1,3 @@
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🚀 ICT ENGINE v5.0 - MAIN LAUNCHER
@@ -23,6 +22,9 @@ from pathlib import Path
 # 📁 Configurar paths del proyecto
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
+
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 
 def main():
     """Función principal del launcher"""

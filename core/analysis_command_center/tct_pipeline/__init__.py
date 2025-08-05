@@ -6,14 +6,12 @@ from .tct_measurements import TCTMeasurementEngine, TCTMetrics
 from .tct_aggregator import TCTAggregator, AggregatedTCTMetrics
 from .tct_formatter import TCTFormatter
 from .tct_interface import TCTInterface
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 
 __all__ = [
     'TCTMeasurementEngine',
     'TCTMetrics',
     'TCTAggregator',
-    'AggregatedTCTMetrics', 
+    'AggregatedTCTMetrics',
     'TCTFormatter',
     'TCTInterface'
 ]

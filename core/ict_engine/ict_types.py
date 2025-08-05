@@ -6,7 +6,7 @@ ICT Types - Estructuras de Datos Fundamentales
 Definición de tipos, enums y dataclasses para el sistema ICT profesional.
 Contiene las estructuras de datos que utiliza todo el ecosistema de análisis.
 
-Autor: Sistema Automático  
+Autor: Sistema Automático
 Fecha: 25 de Julio, 2025
 Versión: ICT Professional v1.0
 """
@@ -15,7 +15,6 @@ from enum import Enum
 from typing import Dict, List, Tuple, Optional
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log
-
 from dataclasses import dataclass
 from datetime import time
 
@@ -80,23 +79,23 @@ class ICTSignal:
     direction: TradingDirection        # Dirección recomendada
     probability: float                 # 0-100, probabilidad de éxito
     confidence: SignalStrength         # Nivel de confianza categórico
-    
+
     # 📊 Datos técnicos de trading
     entry_zone: Tuple[float, float]    # (precio_min, precio_max) para entrada
     target_zones: List[float]          # Lista de objetivos de beneficio
     stop_loss: float                   # Nivel de stop loss
     risk_reward: float                 # Ratio riesgo/beneficio
-    
+
     # 📖 Información narrativa
     narrative: str                     # Historia completa del patrón
     context: str                       # Contexto de mercado actual
     action_plan: List[str]            # Pasos específicos de ejecución
-    
+
     # ⏰ Información temporal
     session_context: SessionType      # Sesión donde ocurre el patrón
     optimal_timing: str               # Ventana temporal óptima
     time_sensitivity: str             # Qué tan sensible al tiempo es
-    
+
     # ⚠️ Gestión de riesgo
     risk_factors: List[str]           # Factores de riesgo específicos
     invalidation_criteria: str       # Qué invalida el patrón
@@ -114,12 +113,12 @@ class MarketStructure:
     secondary_trend: TradingDirection # Tendencia secundaria/pullback
     market_bias: TradingDirection     # Bias operativo actual
     structure_quality: SignalStrength # Qué tan clara está la estructura
-    
+
     # 🎯 Niveles clave
     key_levels: List[Dict]            # Niveles importantes (SR, OB, FVG)
     support_levels: List[float]       # Niveles de soporte identificados
     resistance_levels: List[float]    # Niveles de resistencia identificados
-    
+
     # 📊 Información de contexto
     current_phase: MarketPhase        # Fase actual del mercado
     volatility_regime: str           # "LOW", "NORMAL", "HIGH"
@@ -136,11 +135,11 @@ class SessionCharacteristics:
     active_hours: Tuple[time, time]   # Horario activo (inicio, fin)
     typical_range: Tuple[int, int]    # Rango típico en pips (min, max)
     volatility_profile: str          # "LOW", "MEDIUM", "HIGH"
-    
+
     # 🎯 Patrones más comunes en esta sesión
     common_patterns: List[ICTPattern]
     avoid_patterns: List[ICTPattern]   # Patrones menos fiables en esta sesión
-    
+
     # 💡 Estrategias recomendadas
     recommended_approach: str         # Descripción de enfoque óptimo
     key_times: List[str]             # Momentos clave dentro de la sesión
@@ -156,20 +155,20 @@ class ICTAnalysisResult:
     # 🎯 Señal principal
     primary_signal: Optional[ICTSignal]
     secondary_signals: List[ICTSignal]
-    
+
     # 📊 Estado del mercado
     market_structure: MarketStructure
     session_info: SessionCharacteristics
-    
+
     # 🧠 Análisis inteligente
     overall_assessment: str           # Evaluación general del mercado
     recommended_action: str          # Acción recomendada inmediata
     market_outlook: str              # Perspectiva a corto/medio plazo
-    
+
     # ⚠️ Alertas y advertencias
     warnings: List[str]              # Advertencias importantes
     opportunities: List[str]         # Oportunidades identificadas
-    
+
     # 📈 Métricas de rendimiento
     analysis_confidence: float       # 0-100, confianza en el análisis
     prediction_horizon: str         # Horizonte temporal de validez
@@ -181,7 +180,7 @@ class ICTAnalysisResult:
 # Emojis para cada patrón ICT
 PATTERN_EMOJIS = {
     ICTPattern.SILVER_BULLET: "🥈",
-    ICTPattern.JUDAS_SWING: "🎭", 
+    ICTPattern.JUDAS_SWING: "🎭",
     ICTPattern.OPTIMAL_TRADE_ENTRY: "🎯",
     ICTPattern.LIQUIDITY_GRAB: "🌊",
     ICTPattern.POWER_OF_THREE: "⚡",
@@ -195,7 +194,7 @@ PATTERN_EMOJIS = {
 # Colores para direcciones
 DIRECTION_COLORS = {
     TradingDirection.BUY: "green",
-    TradingDirection.SELL: "red", 
+    TradingDirection.SELL: "red",
     TradingDirection.NEUTRAL: "yellow",
     TradingDirection.WAIT: "dim white"
 }
@@ -213,7 +212,7 @@ SESSION_CONFIG = {
         key_times=["02:33-03:00 (Asian Kill Zone)", "06:00-07:00 (Pre-London)"],
         risk_considerations=["Baja liquidez", "Spreads amplios", "Movimientos erráticos"]
     ),
-    
+
     SessionType.LONDON: SessionCharacteristics(
         session=SessionType.LONDON,
         active_hours=(time(8, 0), time(16, 0)),
@@ -225,7 +224,7 @@ SESSION_CONFIG = {
         key_times=["08:30-09:00 (London Open)", "10:00-11:00 (Silver Bullet)", "15:15-15:45 (London Close)"],
         risk_considerations=["Alta volatilidad inicial", "Noticias económicas", "Overlaps con NY"]
     ),
-    
+
     SessionType.NEW_YORK: SessionCharacteristics(
         session=SessionType.NEW_YORK,
         active_hours=(time(13, 0), time(21, 0)),

@@ -21,6 +21,7 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional
+from sistema.logging_interface import enviar_senal_log
 
 class SLUCAtomicMigrator:
     def __init__(self):
@@ -34,8 +35,8 @@ class SLUCAtomicMigrator:
         """Ejecutar migración completa de forma atómica"""
 
         try:
-            print("🚀 INICIANDO MIGRACIÓN SLUC v2.0 - PROTOCOLO ZERO RASTROS")
-            print("=" * 60)
+            enviar_senal_log("INFO", "🚀 INICIANDO MIGRACIÓN SLUC v2.0 - PROTOCOLO ZERO RASTROS", __name__, "sistema")
+            enviar_senal_log("INFO", "=" * 60, __name__, "sistema")
 
             # PASO 1: Crear backup completo
             if not self._create_full_backup():
@@ -60,18 +61,18 @@ class SLUCAtomicMigrator:
             # PASO 6: Limpieza de archivos temporales
             self._cleanup_temp_files()
 
-            print("✅ MIGRACIÓN COMPLETADA CON ÉXITO - ZERO RASTROS")
+            enviar_senal_log("INFO", "✅ MIGRACIÓN COMPLETADA CON ÉXITO - ZERO RASTROS", __name__, "sistema")
             self._generate_migration_report()
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ ERROR EN MIGRACIÓN: {e}")
+            enviar_senal_log("ERROR", f"❌ ERROR EN MIGRACIÓN: {e}", __name__, "sistema")
             self._rollback_changes()
             return False
 
     def _create_full_backup(self) -> bool:
         """Crear backup completo del proyecto"""
-        print("📁 Creando backup completo...")
+        enviar_senal_log("INFO", "📁 Creando backup completo...", __name__, "sistema")
 
         try:
             # Crear directorio de backup
@@ -96,16 +97,16 @@ class SLUCAtomicMigrator:
                     else:
                         shutil.copytree(source_path, self.backup_dir / path_str)
 
-            print(f"✅ Backup creado en: {self.backup_dir}")
+            enviar_senal_log("INFO", f"✅ Backup creado en: {self.backup_dir}", __name__, "sistema")
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error creando backup: {e}")
+            enviar_senal_log("ERROR", f"❌ Error creando backup: {e}", __name__, "sistema")
             return False
 
     def _analyze_current_state(self) -> bool:
         """Análisis completo del estado actual"""
-        print("🔍 Analizando estado actual...")
+        enviar_senal_log("INFO", "🔍 Analizando estado actual...", __name__, "sistema")
 
         try:
             # Ejecutar validador para obtener estado actual
@@ -114,7 +115,7 @@ class SLUCAtomicMigrator:
             ], capture_output=True, text=True, cwd=self.project_root)
 
             if result.returncode != 0:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Error ejecutando validador")
+                enviar_senal_log("ERROR", "❌ Error ejecutando validador", __name__, "sistema")
                 return False
 
             # Parsear resultado
@@ -130,28 +131,28 @@ class SLUCAtomicMigrator:
                 "files_affected": len(validation_data.get("files", []))
             })
 
-            print(f"📊 Violaciones encontradas: {validation_data.get('total_violations', 0)}")
+            enviar_senal_log("INFO", f"📊 Violaciones encontradas: {validation_data.get('total_violations', 0)}", __name__, "sistema")
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en análisis: {e}")
+            enviar_senal_log("ERROR", f"❌ Error en análisis: {e}", __name__, "sistema")
             return False
 
     def _execute_automated_migration(self) -> bool:
         """Ejecutar migración automática completa"""
-        print("🔧 Ejecutando migración automática...")
+        enviar_senal_log("INFO", "🔧 Ejecutando migración automática...", __name__, "sistema")
 
         try:
             # Ejecutar corrector en modo agresivo
             for iteration in range(1, 6):  # Hasta 5 iteraciones
-                print(f"  📍 Iteración {iteration}/5...")
+                enviar_senal_log("INFO", f"📍 Iteración {iteration}/5...", __name__, "sistema")
 
                 result = subprocess.run([
                     sys.executable, "scripts/corrector_log_central.py"
                 ], capture_output=True, text=True, cwd=self.project_root)
 
                 if result.returncode != 0:
-                    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en iteración {iteration}")
+                    enviar_senal_log("ERROR", f"❌ Error en iteración {iteration}", __name__, "sistema")
                     return False
 
                 # Verificar progreso
@@ -164,10 +165,10 @@ class SLUCAtomicMigrator:
                 except:
                     violations_remaining = 100  # Valor por defecto si falla
 
-                print(f"    Violaciones restantes: {violations_remaining}")
+                enviar_senal_log("INFO", f"Violaciones restantes: {violations_remaining}", __name__, "sistema")
 
                 if violations_remaining == 0:
-                    print("✅ Migración automática completada")
+                    enviar_senal_log("INFO", "✅ Migración automática completada", __name__, "sistema")
                     break
 
                 if violations_remaining < 10:
@@ -177,12 +178,12 @@ class SLUCAtomicMigrator:
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en migración automática: {e}")
+            enviar_senal_log("ERROR", f"❌ Error en migración automática: {e}", __name__, "sistema")
             return False
 
     def _cleanup_legacy_code(self) -> bool:
         """Limpieza completa de código legacy"""
-        print("🧹 Limpiando código legacy...")
+        enviar_senal_log("INFO", "🧹 Limpiando código legacy...", __name__, "sistema")
 
         try:
             # Patrones de código legacy a eliminar
@@ -192,7 +193,7 @@ class SLUCAtomicMigrator:
                 "from sistema.universal_intelligent_logger import",
                 "import logging as",
                 "logger = logging.getLogger",
-                "# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("DEBUG", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("DEBUG", mensaje, __name__, "sistema") # print(f\"[DEBUG]",
+                "print(f\"[DEBUG]",
                 "print(f\"[INFO]",
                 "print(f\"[WARNING]",
                 "print(f\"[ERROR]"
@@ -211,11 +212,11 @@ class SLUCAtomicMigrator:
                     files_cleaned += 1
                     self.files_modified.append(str(file_path))
 
-            print(f"✅ {files_cleaned} archivos limpiados de código legacy")
+            enviar_senal_log("INFO", f"✅ {files_cleaned} archivos limpiados de código legacy", __name__, "sistema")
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error limpiando código legacy: {e}")
+            enviar_senal_log("ERROR", f"❌ Error limpiando código legacy: {e}", __name__, "sistema")
             return False
 
     def _clean_file_legacy(self, file_path: Path, patterns: List[str]) -> bool:
@@ -258,7 +259,7 @@ class SLUCAtomicMigrator:
             return False
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"⚠️ Error limpiando {file_path}: {e}")
+            enviar_senal_log("WARNING", f"⚠️ Error limpiando {file_path}: {e}", __name__, "sistema")
             return False
 
     def _convert_debug_print_to_sluc(self, line: str) -> str:
@@ -277,7 +278,7 @@ class SLUCAtomicMigrator:
 
     def _final_validation(self) -> bool:
         """Validación final del sistema"""
-        print("✅ Ejecutando validación final...")
+        enviar_senal_log("INFO", "✅ Ejecutando validación final...", __name__, "sistema")
 
         try:
             # Validación completa
@@ -292,19 +293,19 @@ class SLUCAtomicMigrator:
             ], capture_output=True, text=True, cwd=self.project_root)
 
             if "SLUC OK" not in test_result.stdout:
-                print("❌ Test de funcionalidad SLUC falló")
+                enviar_senal_log("ERROR", "❌ Test de funcionalidad SLUC falló", __name__, "sistema")
                 return False
 
-            print("✅ Validación final exitosa")
+            enviar_senal_log("INFO", "✅ Validación final exitosa", __name__, "sistema")
             return True
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en validación final: {e}")
+            enviar_senal_log("ERROR", f"❌ Error en validación final: {e}", __name__, "sistema")
             return False
 
     def _cleanup_temp_files(self):
         """Limpiar archivos temporales"""
-        print("🧹 Limpiando archivos temporales...")
+        enviar_senal_log("INFO", "🧹 Limpiando archivos temporales...", __name__, "sistema")
 
         temp_patterns = [
             "*.log.backup",
@@ -322,7 +323,7 @@ class SLUCAtomicMigrator:
 
     def _rollback_changes(self):
         """Rollback completo en caso de error"""
-        print("🔄 Ejecutando rollback...")
+        enviar_senal_log("WARNING", "🔄 Ejecutando rollback...", __name__, "sistema")
 
         if self.backup_dir.exists():
             try:
@@ -334,10 +335,10 @@ class SLUCAtomicMigrator:
                         target_path.parent.mkdir(parents=True, exist_ok=True)
                         shutil.copy2(backup_file, target_path)
 
-                print("✅ Rollback completado")
+                enviar_senal_log("INFO", "✅ Rollback completado", __name__, "sistema")
 
             except Exception as e:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en rollback: {e}")
+                enviar_senal_log("ERROR", f"❌ Error en rollback: {e}", __name__, "sistema")
 
     def _generate_migration_report(self):
         """Generar reporte final de migración"""
@@ -356,7 +357,7 @@ class SLUCAtomicMigrator:
         with open(report_path, 'w', encoding='utf-8') as f:
             json.dump(report_data, f, indent=2)
 
-        print(f"📋 Reporte de migración: {report_path}")
+        enviar_senal_log("INFO", f"📋 Reporte de migración: {report_path}", __name__, "sistema")
 
 # EJECUCIÓN PRINCIPAL
 if __name__ == "__main__":
@@ -364,11 +365,11 @@ if __name__ == "__main__":
     success = migrator.execute_migration()
 
     if success:
-        print("\n🎉 MIGRACIÓN SLUC v2.0 COMPLETADA CON ÉXITO")
-        print("✅ Zero rastros de código legacy")
-        print("✅ Sistema completamente migrado")
-        print("✅ Validación final exitosa")
+        enviar_senal_log("INFO", "\n🎉 MIGRACIÓN SLUC v2.0 COMPLETADA CON ÉXITO", __name__, "sistema")
+        enviar_senal_log("INFO", "✅ Zero rastros de código legacy", __name__, "sistema")
+        enviar_senal_log("INFO", "✅ Sistema completamente migrado", __name__, "sistema")
+        enviar_senal_log("INFO", "✅ Validación final exitosa", __name__, "sistema")
         sys.exit(0)
     else:
-        print("\n❌ MIGRACIÓN FALLÓ - Sistema restaurado")
+        enviar_senal_log("ERROR", "\n❌ MIGRACIÓN FALLÓ - Sistema restaurado", __name__, "sistema")
         sys.exit(1)
