@@ -352,5 +352,94 @@ Technical Specs: 90% completo
 
 ---
 
-*Bitácora generada: 04 Agosto 2025 - 12:45 hrs*
-*Versión: v5.0 - Sistema Semi-Automático*
+## 🎯 **NUEVO PLAN DE TRABAJO - POI DASHBOARD INTEGRATION v2.0**
+**Fecha de Planificación:** 05 Agosto 2025
+**Estado:** 📋 **PLANIFICADO - LISTO PARA EJECUCIÓN**
+**Duración Estimada:** 5-8 horas (4 fases)
+
+### **📋 DIRECTIVA COMPLETA DE INTEGRACIÓN**
+
+#### **✅ RECURSOS EXISTENTES IDENTIFICADOS**
+- 🔥 **LOGGING CENTRAL SLUC v2.0:** `sistema.logging_interface.enviar_senal_log()`
+- 🔗 **CONEXIÓN MT5 UNIFICADA:** `utils.mt5_data_manager.get_mt5_manager()`
+- 🎯 **SISTEMA POI COMPLETO:** `core.poi_system.poi_detector.detectar_todos_los_pois()`
+- 🎮 **DASHBOARD CONTROLLER:** `dashboard.dashboard_controller.get_dashboard_controller()`
+- 🎨 **RICH UI FRAMEWORK:** Completamente configurado y operativo
+- 🛡️ **RISK MANAGEMENT:** RiskBot integrado y funcional
+- 📊 **DATOS REALES MT5:** Ya cargados en `dashboard_instance.real_market_data`
+
+#### **🏗️ ARQUITECTURA DE INTEGRACIÓN DIRECTA**
+```python
+# ORDEN CLARA PARA IMPLEMENTACIÓN:
+✅ USAR TODO LO EXISTENTE - No reinventar
+❌ NO DUPLICAR código o funcionalidad
+🎯 COMPLETAR SOLO LO FALTANTE - Funciones auxiliares
+📊 USAR DATOS REALES - Ya disponibles en dashboard
+```
+
+#### **🚀 PLAN DE FASES (5-8 horas total)**
+
+**FASE 1: COMPLETAR FUNCIONES AUXILIARES (2-3h)**
+- 🔧 `_crear_multi_poi_basico()` - POI básico con datos reales
+- 🔧 `_crear_multi_poi_con_datos_fallback()` - Optimización fallback
+- 🔧 `_extract_panel_content_as_table()` - Conversión Panel→Table
+- 🔧 `_crear_tabla_error_critico()` - Manejo de errores
+- ✅ **Entregable:** Funciones auxiliares completas
+
+**FASE 2: OPTIMIZACIÓN Y VALIDACIÓN (1-2h)**
+- 🚀 `POICacheManager` - Sistema de cache inteligente
+- 🛡️ `validar_datos_entrada()` - Validación robusta
+- ⚠️ `POIIntegrationError` - Manejo avanzado de errores
+- ✅ **Entregable:** Cache y validación implementados
+
+**FASE 3: MEJORAS VISUALES Y UX (1-2h)**
+- 🎨 `crear_tabla_poi_profesional()` - Formateo visual avanzado
+- 📊 `añadir_metricas_performance()` - Métricas de rendimiento
+- 🚥 `crear_indicadores_estado()` - Indicadores visuales
+- ✅ **Entregable:** UI/UX mejorado
+
+**FASE 4: INTEGRACIÓN Y TESTING (1h)**
+- 🧪 `test_poi_dashboard_integration()` - Testing unitario
+- ✅ `validar_integracion_completa()` - Validación end-to-end
+- ✅ **Entregable:** poi_dashboard_integration.py completo
+
+#### **🎯 OBJETIVOS DE CALIDAD**
+- ⏱️ **Performance:** < 200ms tiempo respuesta POI
+- 💾 **Memoria:** < 50MB overhead para cache
+- 🛡️ **Robustez:** 100% casos edge cubiertos
+- 🎨 **UX:** Estilos coherentes con dashboard existente
+
+#### **📊 DATOS REALES MT5 - DISPONIBLES**
+```python
+# ✅ ACCESO DIRECTO A DATOS REALES (NO CARGAR NUEVOS)
+dashboard_instance.real_market_data = {
+    'candles_m1': pd.DataFrame(),    # ✅ Datos M1 reales MT5
+    'candles_m5': pd.DataFrame(),    # ✅ Datos M5 reales MT5
+    'candles_h1': pd.DataFrame(),    # ✅ Datos H1 reales MT5
+    'candles_h4': pd.DataFrame(),    # ✅ Datos H4 reales MT5
+    'current_price': float,          # ✅ Precio actual real
+    'pois_detected': [],             # ✅ POIs ya detectados
+    'market_context': {}             # ✅ Contexto completo
+}
+```
+
+#### **✅ CRITERIOS DE ACEPTACIÓN**
+- [ ] Integración POI funciona con datos reales MT5
+- [ ] Modo fallback operativo en caso de problemas
+- [ ] Manejo graceful de todos los errores
+- [ ] Cache POI mejora performance significativamente
+- [ ] No rompe funcionalidad existente del dashboard
+- [ ] UI/UX profesional y clara
+
+#### **🎉 RESULTADO ESPERADO**
+Al completar este plan:
+1. **📈 poi_dashboard_integration.py completamente funcional**
+2. **🎯 Integración POI perfecta con dashboard existente**
+3. **💪 Sistema robusto con manejo completo de errores**
+4. **🚀 Performance optimizada con sistema de cache**
+5. **✨ UI/UX profesional y user-friendly**
+
+---
+
+*Bitácora actualizada: 05 Agosto 2025 - 10:30 hrs*
+*Versión: v5.0 - Sistema Semi-Automático + POI Integration Plan*
