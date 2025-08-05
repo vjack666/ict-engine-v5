@@ -26,7 +26,7 @@ from sistema.logging_interface import enviar_senal_log
 
 def test_importaciones_estrategia():
     """Prueba las importaciones de los componentes de la estrategia"""
-    print("🔍 FASE 1: Verificando importaciones de componentes ICT...")
+    enviar_senal_log("🔍 FASE 1: Verificando importaciones de componentes ICT...", "DEBUG")
 
     resultados = {
         "imports_exitosos": [],
@@ -84,7 +84,7 @@ def test_importaciones_estrategia():
 
 def test_inicializacion_estrategia():
     """Prueba la inicialización de los componentes de la estrategia"""
-    print("🔍 FASE 2: Probando inicialización de componentes...")
+    enviar_senal_log("🔍 FASE 2: Probando inicialización de componentes...", "DEBUG")
 
     resultados = {
         "inicializaciones_exitosas": [],
@@ -122,7 +122,7 @@ def test_inicializacion_estrategia():
 
 def test_carga_datos():
     """Prueba la carga de datos históricos"""
-    print("🔍 FASE 3: Probando carga de datos históricos...")
+    enviar_senal_log("🔍 FASE 3: Probando carga de datos históricos...", "DEBUG")
 
     resultados = {
         "cargas_exitosas": [],
@@ -162,7 +162,7 @@ def test_carga_datos():
 
 def test_ejecucion_estrategia():
     """Prueba la ejecución completa de la estrategia"""
-    print("🔍 FASE 4: Probando ejecución completa de estrategia ICT...")
+    enviar_senal_log("🔍 FASE 4: Probando ejecución completa de estrategia ICT...", "DEBUG")
 
     resultados = {
         "ejecuciones_exitosas": [],
@@ -200,17 +200,17 @@ def test_ejecucion_estrategia():
 
         except Exception as e:
             resultados["ejecuciones_fallidas"].append(f"❌ Análisis mercado completo: {e}")
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"Error detallado: {traceback.format_exc()}")
+            enviar_senal_log("ERROR", f"Error detallado: {traceback.format_exc()}", __name__, "analisis")
 
     except Exception as e:
         resultados["ejecuciones_fallidas"].append(f"❌ Error general ejecución: {e}")
-        print(f"Error detallado: {traceback.format_exc()}")
+        enviar_senal_log("ERROR", f"Error detallado: {traceback.format_exc()}", __name__, "analisis")
 
     return resultados
 
 def detectar_cuellos_botella():
     """Detecta posibles cuellos de botella en la estrategia"""
-    print("🔍 FASE 5: Detectando cuellos de botella...")
+    enviar_senal_log("🔍 FASE 5: Detectando cuellos de botella...", "DEBUG")
 
     problemas_detectados = []
 
@@ -233,7 +233,6 @@ def detectar_cuellos_botella():
     try:
         logs_dir = PROJECT_ROOT / "data" / "logs" / "errors"
         if logs_dir.exists():
-            from datetime import datetime
             today = datetime.now().strftime("%Y%m%d")
             error_log = logs_dir / f"errors_{today}.log"
 
@@ -252,59 +251,59 @@ def detectar_cuellos_botella():
 def generar_reporte_estrategia():
     """Genera un reporte completo del análisis de la estrategia"""
 
-    print("=" * 70)
-    print("🔍 ICT ENGINE v5.0 - ANÁLISIS COMPLETO DE ESTRATEGIA")
-    print("=" * 70)
-    print()
+    enviar_senal_log("=" * 70, "INFO")
+    enviar_senal_log("🔍 ICT ENGINE v5.0 - ANÁLISIS COMPLETO DE ESTRATEGIA", "INFO")
+    enviar_senal_log("=" * 70, "INFO")
+    enviar_senal_log("", "INFO")
 
     # Ejecutar todas las fases de análisis
     try:
         imports = test_importaciones_estrategia()
-        print("\n📋 IMPORTACIONES:")
+        enviar_senal_log("\n📋 IMPORTACIONES:", "INFO")
         for item in imports["imports_exitosos"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "INFO")
         for item in imports["imports_fallidos"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "WARNING")
 
         inicializaciones = test_inicializacion_estrategia()
-        print("\n🚀 INICIALIZACIONES:")
+        enviar_senal_log("\n🚀 INICIALIZACIONES:", "INFO")
         for item in inicializaciones["inicializaciones_exitosas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "INFO")
         for item in inicializaciones["inicializaciones_fallidas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "WARNING")
 
         datos = test_carga_datos()
-        print("\n💾 CARGA DE DATOS:")
+        enviar_senal_log("\n💾 CARGA DE DATOS:", "INFO")
         for item in datos["cargas_exitosas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "INFO")
         for item in datos["cargas_fallidas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "WARNING")
 
         ejecucion = test_ejecucion_estrategia()
-        print("\n⚡ EJECUCIÓN DE ESTRATEGIA:")
+        enviar_senal_log("\n⚡ EJECUCIÓN DE ESTRATEGIA:", "INFO")
         for item in ejecucion["ejecuciones_exitosas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "INFO")
         for item in ejecucion["ejecuciones_fallidas"]:
-            print(f"  {item}")
+            enviar_senal_log(f"  {item}", "WARNING")
 
         if ejecucion["analisis_resultados"]:
-            print("\n📊 RESULTADOS DE ANÁLISIS:")
+            enviar_senal_log("\n📊 RESULTADOS DE ANÁLISIS:", "INFO")
             for key, value in ejecucion["analisis_resultados"].items():
-                print(f"  📈 {key}:")
+                enviar_senal_log(f"  📈 {key}:", "INFO")
                 for k, v in value.items():
-                    print(f"    • {k}: {v}")
+                    enviar_senal_log(f"    • {k}: {v}", "INFO")
 
         cuellos_botella = detectar_cuellos_botella()
-        print("\n🚨 CUELLOS DE BOTELLA DETECTADOS:")
+        enviar_senal_log("\n🚨 CUELLOS DE BOTELLA DETECTADOS:", "WARNING")
         if cuellos_botella:
             for problema in cuellos_botella:
-                print(f"  {problema}")
+                enviar_senal_log(f"  {problema}", "WARNING")
         else:
-            print("  ✅ No se detectaron cuellos de botella críticos")
+            enviar_senal_log("  ✅ No se detectaron cuellos de botella críticos", "INFO")
 
         # Evaluación general
-        print("\n" + "=" * 70)
-        print("📊 EVALUACIÓN GENERAL:")
+        enviar_senal_log("\n" + "=" * 70, "INFO")
+        enviar_senal_log("📊 EVALUACIÓN GENERAL:", "INFO")
 
         total_exitosos = (len(imports["imports_exitosos"]) +
                          len(inicializaciones["inicializaciones_exitosas"]) +
@@ -317,32 +316,32 @@ def generar_reporte_estrategia():
                          len(ejecucion["ejecuciones_fallidas"]))
 
         if total_fallidos == 0:
-            print("🎉 ESTRATEGIA FUNCIONANDO PERFECTAMENTE")
+            enviar_senal_log("🎉 ESTRATEGIA FUNCIONANDO PERFECTAMENTE", "INFO")
         elif total_fallidos < 3:
-            print("🟡 ESTRATEGIA CON PROBLEMAS MENORES")
+            enviar_senal_log("🟡 ESTRATEGIA CON PROBLEMAS MENORES", "WARNING")
         else:
-            print("🔴 ESTRATEGIA CON PROBLEMAS CRÍTICOS")
+            enviar_senal_log("🔴 ESTRATEGIA CON PROBLEMAS CRÍTICOS", "ERROR")
 
-        print(f"✅ Componentes funcionando: {total_exitosos}")
-        print(f"❌ Componentes con problemas: {total_fallidos}")
+        enviar_senal_log(f"Componentes funcionando: {total_exitosos}", "INFO")
+        enviar_senal_log(f"Componentes con problemas: {total_fallidos}", "WARNING")
 
-        print("\n🔧 RECOMENDACIONES:")
+        enviar_senal_log("\n🔧 RECOMENDACIONES:", "INFO")
         if total_fallidos > 0:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("1. 🔍 Revisar errores específicos mostrados arriba")
-            print("2. 🛠️ Verificar dependencias de componentes fallidos")
-            print("3. 📊 Comprobar integridad de datos históricos")
-            print("4. 🔄 Considerar reinicialización de componentes problemáticos")
+            enviar_senal_log("1. 🔍 Revisar errores específicos mostrados arriba", "WARNING")
+            enviar_senal_log("2. 🛠️ Verificar dependencias de componentes fallidos", "WARNING")
+            enviar_senal_log("3. 📊 Comprobar integridad de datos históricos", "WARNING")
+            enviar_senal_log("4. 🔄 Considerar reinicialización de componentes problemáticos", "WARNING")
         else:
-            print("✅ La estrategia está funcionando óptimamente")
-            print("🚀 Lista para trading en vivo")
+            enviar_senal_log("✅ La estrategia está funcionando óptimamente", "INFO")
+            enviar_senal_log("🚀 Lista para trading en vivo", "INFO")
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"\n❌ ERROR CRÍTICO en análisis: {e}")
-        print(f"Detalles: {traceback.format_exc()}")
+        enviar_senal_log(f"ERROR CRÍTICO en análisis: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
-    print("\n" + "=" * 70)
-    print(f"📅 Análisis completado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 70)
+    enviar_senal_log("\n" + "=" * 70, "INFO")
+    enviar_senal_log(f"📅 Análisis completado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", "INFO")
+    enviar_senal_log("=" * 70, "INFO")
 
 if __name__ == "__main__":
     generar_reporte_estrategia()
