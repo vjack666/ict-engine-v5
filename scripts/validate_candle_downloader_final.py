@@ -23,53 +23,50 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+# Import SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
+
 def test_imports():
     """Test básico de imports"""
-    print("🔍 Validando imports...")
+    enviar_senal_log("INFO", "🔍 Validando imports...", __name__, "test")
 
     try:
-        # Test sistema logging
-        from sistema.logging_interface import enviar_senal_log
-        print("  ✅ sistema.logging_interface - OK")
-
         # Test candle downloader widget
         from dashboard.candle_downloader_widget import candle_downloader_widget
-        print("  ✅ candle_downloader_widget - OK")
+        enviar_senal_log("INFO", "  ✅ candle_downloader_widget - OK", __name__, "test")
 
         # Test advanced downloader
         from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader
-        print("  ✅ AdvancedCandleDownloader - OK")
+        enviar_senal_log("INFO", "  ✅ AdvancedCandleDownloader - OK", __name__, "test")
 
         # Test dashboard integration
         from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
-        print("  ✅ Dashboard integration - OK")
+        enviar_senal_log("INFO", "  ✅ Dashboard integration - OK", __name__, "test")
 
         return True
 
     except ImportError as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Error de import: {e}")
+        enviar_senal_log("ERROR", f"  ❌ Error de import: {e}", __name__, "test")
         return False
 
 def test_logging_integration():
     """Test del sistema de logging centralizado"""
-    print("\n📊 Validando logging centralizado...")
+    enviar_senal_log("INFO", "\n📊 Validando logging centralizado...", __name__, "test")
 
     try:
-        from sistema.logging_interface import enviar_senal_log
-
         # Test logging básico
         enviar_senal_log("INFO", "🔍 Test de validación final - sistema operativo", "validate_final", "test")
-        print("  ✅ Logging centralizado - OK")
+        enviar_senal_log("INFO", "  ✅ Logging centralizado - OK", __name__, "test")
 
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Error en logging: {e}")
+        enviar_senal_log("ERROR", f"  ❌ Error en logging: {e}", __name__, "test")
         return False
 
 def test_downloader_backend():
     """Test del backend del downloader"""
-    print("\n🚀 Validando backend downloader...")
+    enviar_senal_log("INFO", "\n🚀 Validando backend downloader...", __name__, "test")
 
     try:
         from core.data_management.advanced_candle_downloader import get_advanced_candle_downloader
@@ -81,60 +78,60 @@ def test_downloader_backend():
         stats = downloader.get_download_statistics()
         progress = downloader.get_download_progress()
 
-        print("  ✅ Backend downloader - OK")
-        print(f"  📊 Estado inicial: {stats}")
+        enviar_senal_log("INFO", "  ✅ Backend downloader - OK", __name__, "test")
+        enviar_senal_log("INFO", f"  📊 Estado inicial: {stats}", __name__, "test")
 
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Error en backend: {e}")
+        enviar_senal_log("ERROR", f"  ❌ Error en backend: {e}", __name__, "test")
         return False
 
 def test_widget_integration():
     """Test del widget de UI"""
-    print("\n🎮 Validando widget UI...")
+    enviar_senal_log("INFO", "\n🎮 Validando widget UI...", __name__, "test")
 
     try:
         from dashboard.candle_downloader_widget import candle_downloader_widget
 
         # Verificar que la instancia está disponible
         if candle_downloader_widget is not None:
-            print("  ✅ Widget UI - OK")
-            print("  🎯 Widget disponible para dashboard")
+            enviar_senal_log("INFO", "  ✅ Widget UI - OK", __name__, "test")
+            enviar_senal_log("INFO", "  🎯 Widget disponible para dashboard", __name__, "test")
             return True
         else:
-            print("  ❌ Widget no disponible")
+            enviar_senal_log("WARNING", "  ❌ Widget no disponible", __name__, "test")
             return False
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Error en widget: {e}")
+        enviar_senal_log("ERROR", f"  ❌ Error en widget: {e}", __name__, "test")
         return False
 
 def test_dashboard_integration():
     """Test de integración en dashboard"""
-    print("\n📱 Validando integración dashboard...")
+    enviar_senal_log("INFO", "\n📱 Validando integración dashboard...", __name__, "test")
 
     try:
         # Verificar que el dashboard puede importar componentes
         from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
 
-        print("  ✅ Dashboard puede cargar componentes")
+        enviar_senal_log("INFO", "  ✅ Dashboard puede cargar componentes", __name__, "test")
 
         # Verificar imports en __init__.py
         import dashboard
 
-        print("  ✅ Módulo dashboard configurado")
+        enviar_senal_log("INFO", "  ✅ Módulo dashboard configurado", __name__, "test")
 
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Error en dashboard: {e}")
+        enviar_senal_log("ERROR", f"  ❌ Error en dashboard: {e}", __name__, "test")
         return False
 
 def main():
     """Función principal de validación"""
-    print("🚀 VALIDACIÓN FINAL - CANDLE DOWNLOADER SYSTEM")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🚀 VALIDACIÓN FINAL - CANDLE DOWNLOADER SYSTEM", __name__, "test")
+    enviar_senal_log("INFO", "=" * 50, __name__, "test")
 
     tests = [
         ("Imports básicos", test_imports),
@@ -151,36 +148,32 @@ def main():
             result = test_func()
             results.append(result)
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error ejecutando {test_name}: {e}")
+            enviar_senal_log("ERROR", f"❌ Error ejecutando {test_name}: {e}", __name__, "test")
             results.append(False)
 
     # Resumen final
-    print("\n" + "=" * 50)
-    print("📊 RESUMEN FINAL")
-    print("=" * 50)
+    enviar_senal_log("INFO", "\n" + "=" * 50, __name__, "test")
+    enviar_senal_log("INFO", "📊 RESUMEN FINAL", __name__, "test")
+    enviar_senal_log("INFO", "=" * 50, __name__, "test")
 
     passed = sum(results)
     total = len(results)
 
     for i, (test_name, _) in enumerate(tests):
         status = "✅ PASS" if results[i] else "❌ FAIL"
-        print(f"  {status} - {test_name}")
+        enviar_senal_log("INFO", f"  {status} - {test_name}", __name__, "test")
 
-    print(f"\n🎯 RESULTADO: {passed}/{total} tests pasaron")
+    enviar_senal_log("INFO", f"\n🎯 RESULTADO: {passed}/{total} tests pasaron", __name__, "test")
 
     if passed == total:
-        print("🎉 ¡CANDLE DOWNLOADER COMPLETAMENTE INTEGRADO!")
-        print("✅ Sistema listo para producción")
+        enviar_senal_log("INFO", "🎉 ¡CANDLE DOWNLOADER COMPLETAMENTE INTEGRADO!", __name__, "test")
+        enviar_senal_log("INFO", "✅ Sistema listo para producción", __name__, "test")
 
         # Log final
-        try:
-            from sistema.logging_interface import enviar_senal_log
-            enviar_senal_log("INFO", "🎉 Candle Downloader completamente validado y funcional", "validate_final", "completion")
-        except:
-            pass
+        enviar_senal_log("INFO", "🎉 Candle Downloader completamente validado y funcional", "validate_final", "completion")
 
     else:
-        print("⚠️  Sistema requiere atención en algunas áreas")
+        enviar_senal_log("WARNING", "⚠️  Sistema requiere atención en algunas áreas", __name__, "test")
 
     return passed == total
 

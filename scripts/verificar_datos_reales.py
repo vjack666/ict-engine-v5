@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -14,92 +12,95 @@ import sys
 import os
 from datetime import datetime, timezone
 
+# Import SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
+
 # Agregar paths necesarios
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-print("🔍 VERIFICADOR DE DATOS - ICT ENGINE v5.0")
-print("=" * 60)
+enviar_senal_log("INFO", "🔍 VERIFICADOR DE DATOS - ICT ENGINE v5.0", __name__, "verificacion")
+enviar_senal_log("INFO", "=" * 60, __name__, "verificacion")
 
 # 1. VERIFICAR ESTADO DEL MERCADO
-print("\n📅 1. ESTADO DEL MERCADO")
-print("-" * 30)
+enviar_senal_log("INFO", "\n📅 1. ESTADO DEL MERCADO", __name__, "verificacion")
+enviar_senal_log("INFO", "-" * 30, __name__, "verificacion")
 
 now = datetime.now(timezone.utc)
 dia_semana = now.weekday()  # 0=Lunes, 6=Domingo
 hora_utc = now.hour
 
 if dia_semana >= 5:  # Sábado o Domingo
-    print("🟡 MERCADO: CERRADO (FIN DE SEMANA)")
-    print("   ⏰ Los domingos el mercado abre a las 22:00 UTC")
-    print("   ⏰ Los viernes el mercado cierra a las 22:00 UTC")
+    enviar_senal_log("WARNING", "🟡 MERCADO: CERRADO (FIN DE SEMANA)", __name__, "verificacion")
+    enviar_senal_log("INFO", "   ⏰ Los domingos el mercado abre a las 22:00 UTC", __name__, "verificacion")
+    enviar_senal_log("INFO", "   ⏰ Los viernes el mercado cierra a las 22:00 UTC", __name__, "verificacion")
     modo_mercado = "WEEKEND"
 elif 22 <= hora_utc or hora_utc < 22:  # Mercado normalmente abierto
-    print("🟢 MERCADO: ABIERTO (DÍAS LABORABLES)")
+    enviar_senal_log("INFO", "🟢 MERCADO: ABIERTO (DÍAS LABORABLES)", __name__, "verificacion")
     modo_mercado = "LIVE"
 else:
-    print("🟡 MERCADO: CERRADO (FUERA DE HORARIO)")
+    enviar_senal_log("WARNING", "🟡 MERCADO: CERRADO (FUERA DE HORARIO)", __name__, "verificacion")
     modo_mercado = "CLOSED"
 
-print(f"   📍 Ahora: {now.strftime('%A %Y-%m-%d %H:%M:%S UTC')}")
+enviar_senal_log("INFO", f"   📍 Ahora: {now.strftime('%A %Y-%m-%d %H:%M:%S UTC')}", __name__, "verificacion")
 
 # 2. VERIFICAR CONEXIÓN MT5
-print("\n🔗 2. CONEXIÓN MT5 - SEGURIDAD FUNDEDNEXT")
-print("-" * 50)
+enviar_senal_log("INFO", "\n🔗 2. CONEXIÓN MT5 - SEGURIDAD FUNDEDNEXT", __name__, "verificacion")
+enviar_senal_log("INFO", "-" * 50, __name__, "verificacion")
 
 try:
     from utils.mt5_data_manager import get_mt5_manager
 
-    print("🔒 Verificando conexión exclusiva a FundedNext MT5...")
+    enviar_senal_log("INFO", "🔒 Verificando conexión exclusiva a FundedNext MT5...", __name__, "verificacion")
     manager = get_mt5_manager()
     connected = manager.connect()
 
     if connected:
-        print("✅ MT5: CONECTADO SEGURO A FUNDEDNEXT")
+        enviar_senal_log("INFO", "✅ MT5: CONECTADO SEGURO A FUNDEDNEXT", __name__, "verificacion")
 
         # Verificar info de cuenta
         account_info = manager.get_account_info()
         if account_info:
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💰 Broker: {account_info.get('broker', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🏦 Cuenta: {account_info.get('login', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🔧 Tipo: {account_info.get('type_description', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💵 Balance: ${account_info.get('balance', 0):,.2f}")
-            print(f"   🛡️  Terminal: SOLO FundedNext MT5")
+            enviar_senal_log("INFO", f"   💰 Broker: {account_info.get('broker', 'N/A')}", __name__, "verificacion")
+            enviar_senal_log("INFO", f"   🏦 Cuenta: {account_info.get('login', 'N/A')}", __name__, "verificacion")
+            enviar_senal_log("INFO", f"   🔧 Tipo: {account_info.get('type_description', 'N/A')}", __name__, "verificacion")
+            enviar_senal_log("INFO", f"   💵 Balance: ${account_info.get('balance', 0):,.2f}", __name__, "verificacion")
+            enviar_senal_log("INFO", f"   🛡️  Terminal: SOLO FundedNext MT5", __name__, "verificacion")
 
         # Verificar datos reales usando el manager MT5
         try:
             # Usar la función segura del manager para obtener tick
             tick_info = manager.get_symbol_tick("EURUSD")
             if tick_info:
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   📊 PRECIO REAL EURUSD: {tick_info['bid']:.5f} (desde FundedNext)")
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   ⏰ Timestamp: {datetime.fromtimestamp(tick_info['time'])}")
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💱 Spread: {(tick_info['ask'] - tick_info['bid']):.5f}")
+                enviar_senal_log("INFO", f"   📊 PRECIO REAL EURUSD: {tick_info['bid']:.5f} (desde FundedNext)", __name__, "verificacion")
+                enviar_senal_log("INFO", f"   ⏰ Timestamp: {datetime.fromtimestamp(tick_info['time'])}", __name__, "verificacion")
+                enviar_senal_log("INFO", f"   💱 Spread: {(tick_info['ask'] - tick_info['bid']):.5f}", __name__, "verificacion")
                 datos_tipo = "DATOS REALES DEL BROKER FUNDEDNEXT"
             else:
-                print("   ⚠️ No se pudo obtener tick en tiempo real")
+                enviar_senal_log("WARNING", "   ⚠️ No se pudo obtener tick en tiempo real", __name__, "verificacion")
                 datos_tipo = "DATOS HISTÓRICOS REALES FUNDEDNEXT"
         except (ImportError, AttributeError, Exception) as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"   ⚠️ Error obteniendo tick en tiempo real: {e}")
+            enviar_senal_log("ERROR", f"   ⚠️ Error obteniendo tick en tiempo real: {e}", __name__, "verificacion")
             datos_tipo = "DATOS HISTÓRICOS REALES FUNDEDNEXT"
 
     else:
-        print("❌ MT5: NO CONECTADO A FUNDEDNEXT")
+        enviar_senal_log("ERROR", "❌ MT5: NO CONECTADO A FUNDEDNEXT", __name__, "verificacion")
         datos_tipo = "SIN CONEXIÓN SEGURA"
 
 except Exception as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error verificando MT5: {e}")
+    enviar_senal_log("ERROR", f"❌ Error verificando MT5: {e}", __name__, "verificacion")
     datos_tipo = "ERROR DE SEGURIDAD"
 
 # 3. VERIFICAR DATOS DEL DASHBOARD
-print("\n📊 3. FUENTE DE DATOS DEL SISTEMA")
-print("-" * 30)
+enviar_senal_log("INFO", "\n📊 3. FUENTE DE DATOS DEL SISTEMA", __name__, "verificacion")
+enviar_senal_log("INFO", "-" * 30, __name__, "verificacion")
 
 # Verificar si hay datos históricos cargados
 data_dir = "data"
 if os.path.exists(data_dir):
     csv_files = [f for f in os.listdir(data_dir) if f.endswith('.csv')]
     if csv_files:
-        print(f"✅ DATOS HISTÓRICOS: {len(csv_files)} archivos CSV encontrados")
-        print("   📁 Fuente: Datos reales descargados de MT5/broker")
+        enviar_senal_log("INFO", f"✅ DATOS HISTÓRICOS: {len(csv_files)} archivos CSV encontrados", __name__, "verificacion")
+        enviar_senal_log("INFO", "   📁 Fuente: Datos reales descargados de MT5/broker", __name__, "verificacion")
 
         # Verificar edad de los datos
         for csv_file in csv_files[:3]:  # Mostrar solo los primeros 3
@@ -107,58 +108,58 @@ if os.path.exists(data_dir):
             if os.path.exists(file_path):
                 mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
                 age_hours = (datetime.now() - mod_time).total_seconds() / 3600
-                print(f"   📄 {csv_file}: {age_hours:.1f} horas de antigüedad")
+                enviar_senal_log("INFO", f"   📄 {csv_file}: {age_hours:.1f} horas de antigüedad", __name__, "verificacion")
     else:
-        print("⚠️ No se encontraron archivos de datos CSV")
+        enviar_senal_log("WARNING", "⚠️ No se encontraron archivos de datos CSV", __name__, "verificacion")
 else:
-    print("❌ Directorio de datos no encontrado")
+    enviar_senal_log("ERROR", "❌ Directorio de datos no encontrado", __name__, "verificacion")
 
 # 4. CONCLUSIÓN CLARA
-print("\n🎯 4. CONCLUSIÓN")
-print("-" * 30)
+enviar_senal_log("INFO", "\n🎯 4. CONCLUSIÓN", __name__, "verificacion")
+enviar_senal_log("INFO", "-" * 30, __name__, "verificacion")
 
-print(f"🔍 TIPO DE DATOS USADOS: {datos_tipo}")
+enviar_senal_log("INFO", f"🔍 TIPO DE DATOS USADOS: {datos_tipo}", __name__, "verificacion")
 
 if modo_mercado == "WEEKEND":
-    print("📋 EXPLICACIÓN:")
-    print("   • El sistema usa DATOS REALES históricos del broker")
-    print("   • Durante fin de semana, el análisis se hace con la última data real")
-    print("   • Los POIs y patrones se calculan con precios reales")
-    print("   • El término 'simulado' se refiere al TIMING, no a los datos")
-    print("   • Cuando el mercado abra, el sistema usará datos en tiempo real")
+    enviar_senal_log("INFO", "📋 EXPLICACIÓN:", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • El sistema usa DATOS REALES históricos del broker", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Durante fin de semana, el análisis se hace con la última data real", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Los POIs y patrones se calculan con precios reales", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • El término 'simulado' se refiere al TIMING, no a los datos", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Cuando el mercado abra, el sistema usará datos en tiempo real", __name__, "verificacion")
 
-    print("\n✅ RESUMEN: DATOS REALES + ANÁLISIS DIFERIDO (normal en weekend)")
+    enviar_senal_log("INFO", "\n✅ RESUMEN: DATOS REALES + ANÁLISIS DIFERIDO (normal en weekend)", __name__, "verificacion")
 
 elif modo_mercado == "LIVE":
-    print("📋 EXPLICACIÓN:")
-    print("   • El sistema usa DATOS EN TIEMPO REAL del broker FundedNext")
-    print("   • Precios actualizados cada tick desde terminal seguro")
-    print("   • POIs y patrones calculados con datos live verificados")
-    print("   • Análisis completamente en tiempo real con seguridad")
-    print("   🛡️  GARANTÍA: Solo terminal FundedNext MT5 autorizado")
+    enviar_senal_log("INFO", "📋 EXPLICACIÓN:", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • El sistema usa DATOS EN TIEMPO REAL del broker FundedNext", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Precios actualizados cada tick desde terminal seguro", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • POIs y patrones calculados con datos live verificados", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Análisis completamente en tiempo real con seguridad", __name__, "verificacion")
+    enviar_senal_log("INFO", "   🛡️  GARANTÍA: Solo terminal FundedNext MT5 autorizado", __name__, "verificacion")
 
-    print("\n✅ RESUMEN: DATOS REALES + ANÁLISIS TIEMPO REAL + SEGURIDAD FUNDEDNEXT")
+    enviar_senal_log("INFO", "\n✅ RESUMEN: DATOS REALES + ANÁLISIS TIEMPO REAL + SEGURIDAD FUNDEDNEXT", __name__, "verificacion")
 
 else:
-    print("📋 EXPLICACIÓN:")
-    print("   • Mercado cerrado temporalmente")
-    print("   • Sistema usa últimos datos reales disponibles")
-    print("   • Los datos siguen siendo reales del broker")
+    enviar_senal_log("INFO", "📋 EXPLICACIÓN:", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Mercado cerrado temporalmente", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Sistema usa últimos datos reales disponibles", __name__, "verificacion")
+    enviar_senal_log("INFO", "   • Los datos siguen siendo reales del broker", __name__, "verificacion")
 
-    print("\n✅ RESUMEN: DATOS REALES + ANÁLISIS CON ÚLTIMA DATA")
+    enviar_senal_log("INFO", "\n✅ RESUMEN: DATOS REALES + ANÁLISIS CON ÚLTIMA DATA", __name__, "verificacion")
 
 # 5. RECOMENDACIÓN
-print("\n🚀 5. PARA VERIFICAR DATOS 100% LIVE")
-print("-" * 30)
-print("⏰ Ejecuta este script durante horarios de mercado:")
-print("   • Lunes 22:00 UTC - Viernes 22:00 UTC")
-print("   • Verás 'DATOS EN TIEMPO REAL' en lugar de datos históricos")
-print("\n📊 Los análisis de patrones ICT siempre usan datos reales,")
-print("   independientemente del horario de ejecución.")
+enviar_senal_log("INFO", "\n🚀 5. PARA VERIFICAR DATOS 100% LIVE", __name__, "verificacion")
+enviar_senal_log("INFO", "-" * 30, __name__, "verificacion")
+enviar_senal_log("INFO", "⏰ Ejecuta este script durante horarios de mercado:", __name__, "verificacion")
+enviar_senal_log("INFO", "   • Lunes 22:00 UTC - Viernes 22:00 UTC", __name__, "verificacion")
+enviar_senal_log("INFO", "   • Verás 'DATOS EN TIEMPO REAL' en lugar de datos históricos", __name__, "verificacion")
+enviar_senal_log("INFO", "\n📊 Los análisis de patrones ICT siempre usan datos reales,", __name__, "verificacion")
+enviar_senal_log("INFO", "   independientemente del horario de ejecución.", __name__, "verificacion")
 
-print("\n" + "=" * 60)
-print("🎯 VERIFICACIÓN COMPLETADA")
-print("✅ El sistema SIEMPRE usa datos reales del broker FundedNext")
-print("🛡️  SEGURIDAD: Solo terminal FundedNext MT5 autorizado")
-print("🔍 Solo el timing cambia (live vs histórico)")
-print("=" * 60)
+enviar_senal_log("INFO", "\n" + "=" * 60, __name__, "verificacion")
+enviar_senal_log("INFO", "🎯 VERIFICACIÓN COMPLETADA", __name__, "verificacion")
+enviar_senal_log("INFO", "✅ El sistema SIEMPRE usa datos reales del broker FundedNext", __name__, "verificacion")
+enviar_senal_log("INFO", "🛡️  SEGURIDAD: Solo terminal FundedNext MT5 autorizado", __name__, "verificacion")
+enviar_senal_log("INFO", "🔍 Solo el timing cambia (live vs histórico)", __name__, "verificacion")
+enviar_senal_log("INFO", "=" * 60, __name__, "verificacion")

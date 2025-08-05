@@ -81,13 +81,13 @@ def crear_backup(archivos: List[str]) -> bool:
         # Crear directorio de backup
         BACKUP_DIR.mkdir(exist_ok=True)
 
-        print(f"📦 Creando backup en: {BACKUP_DIR}")
+        enviar_senal_log("INFO", f"📦 Creando backup en: {BACKUP_DIR}", __name__, "sistema")
 
         for archivo_rel in archivos:
             archivo_path = PROJECT_ROOT / archivo_rel
 
             if not archivo_path.exists():
-                print(f"⚠️  Archivo no encontrado: {archivo_rel}")
+                enviar_senal_log("WARNING", f"⚠️  Archivo no encontrado: {archivo_rel}", __name__, "sistema")
                 continue
 
             # Crear estructura de directorios en backup
@@ -96,15 +96,15 @@ def crear_backup(archivos: List[str]) -> bool:
 
             if archivo_path.is_file():
                 shutil.copy2(archivo_path, backup_path)
-                print(f"✅ Respaldado: {archivo_rel}")
+                enviar_senal_log("INFO", f"✅ Respaldado: {archivo_rel}", __name__, "sistema")
             elif archivo_path.is_dir():
                 shutil.copytree(archivo_path, backup_path, dirs_exist_ok=True)
-                print(f"✅ Respaldado directorio: {archivo_rel}")
+                enviar_senal_log("INFO", f"✅ Respaldado directorio: {archivo_rel}", __name__, "sistema")
 
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error creando backup: {e}")
+        enviar_senal_log("ERROR", f"❌ Error creando backup: {e}", __name__, "sistema")
         return False
 
 def eliminar_archivos(archivos: List[str], categoria: str) -> Tuple[int, int]:
@@ -121,27 +121,27 @@ def eliminar_archivos(archivos: List[str], categoria: str) -> Tuple[int, int]:
     eliminados = 0
     errores = 0
 
-    print(f"\n🗑️  Eliminando {categoria}...")
+    enviar_senal_log("INFO", f"\n🗑️  Eliminando {categoria}...", __name__, "sistema")
 
     for archivo_rel in archivos:
         archivo_path = PROJECT_ROOT / archivo_rel
 
         try:
             if not archivo_path.exists():
-                print(f"⚠️  Ya eliminado: {archivo_rel}")
+                enviar_senal_log("WARNING", f"⚠️  Ya eliminado: {archivo_rel}", __name__, "sistema")
                 continue
 
             if archivo_path.is_file():
                 archivo_path.unlink()
-                print(f"✅ Eliminado archivo: {archivo_rel}")
+                enviar_senal_log("INFO", f"✅ Eliminado archivo: {archivo_rel}", __name__, "sistema")
                 eliminados += 1
             elif archivo_path.is_dir():
                 shutil.rmtree(archivo_path)
-                print(f"✅ Eliminado directorio: {archivo_rel}")
+                enviar_senal_log("INFO", f"✅ Eliminado directorio: {archivo_rel}", __name__, "sistema")
                 eliminados += 1
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error eliminando {archivo_rel}: {e}")
+            enviar_senal_log("ERROR", f"❌ Error eliminando {archivo_rel}: {e}", __name__, "sistema")
             errores += 1
 
     return eliminados, errores
@@ -149,26 +149,26 @@ def eliminar_archivos(archivos: List[str], categoria: str) -> Tuple[int, int]:
 def mostrar_resumen_limpieza(obsoletos: Dict[str, List[str]]) -> None:
     """Muestra un resumen de lo que se va a limpiar."""
 
-    print("🧹 RESUMEN DE LIMPIEZA")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🧹 RESUMEN DE LIMPIEZA", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 50, __name__, "sistema")
 
     total_archivos = 0
 
     for categoria, archivos in obsoletos.items():
         if archivos:
-            print(f"\n📂 {categoria.upper()}:")
+            enviar_senal_log("INFO", f"\n📂 {categoria.upper()}:", __name__, "sistema")
             for archivo in archivos:
-                print(f"  🗑️  {archivo}")
+                enviar_senal_log("INFO", f"  🗑️  {archivo}", __name__, "sistema")
             total_archivos += len(archivos)
 
-    print(f"\n📊 TOTAL A ELIMINAR: {total_archivos} elementos")
-    print("=" * 50)
+    enviar_senal_log("INFO", f"\n📊 TOTAL A ELIMINAR: {total_archivos} elementos", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 50, __name__, "sistema")
 
 def main():
     """Función principal de limpieza."""
 
-    print("🧹 ICT ENGINE v5.0 - LIMPIADOR DE ARCHIVOS OBSOLETOS")
-    print("=" * 60)
+    enviar_senal_log("INFO", "🧹 ICT ENGINE v5.0 - LIMPIADOR DE ARCHIVOS OBSOLETOS", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 60, __name__, "sistema")
 
     # 1. Identificar archivos obsoletos
     obsoletos = identificar_archivos_obsoletos()
@@ -180,7 +180,7 @@ def main():
     respuesta = input("\n¿Proceder con la limpieza? (s/N): ").strip().lower()
 
     if respuesta not in ['s', 'si', 'sí', 'y', 'yes']:
-        print("❌ Limpieza cancelada por el usuario.")
+        enviar_senal_log("WARNING", "❌ Limpieza cancelada por el usuario.", __name__, "sistema")
         return
 
     # 4. Crear lista completa de archivos
@@ -190,7 +190,7 @@ def main():
 
     # 5. Crear backup
     if not crear_backup(todos_archivos):
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Error creando backup. Cancelando limpieza.")
+        enviar_senal_log("ERROR", "❌ Error creando backup. Cancelando limpieza.", __name__, "sistema")
         return
 
     # 6. Eliminar archivos por categoría
@@ -204,22 +204,22 @@ def main():
             total_errores += errores
 
     # 7. Resumen final
-    print("\n" + "=" * 60)
-    print("🎯 LIMPIEZA COMPLETADA")
-    print("=" * 60)
-    print(f"✅ Archivos eliminados: {total_eliminados}")
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Errores: {total_errores}")
-    print(f"📦 Backup creado en: {BACKUP_DIR}")
+    enviar_senal_log("INFO", "\n" + "=" * 60, __name__, "sistema")
+    enviar_senal_log("INFO", "🎯 LIMPIEZA COMPLETADA", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 60, __name__, "sistema")
+    enviar_senal_log("INFO", f"✅ Archivos eliminados: {total_eliminados}", __name__, "sistema")
+    enviar_senal_log("ERROR" if total_errores > 0 else "INFO", f"❌ Errores: {total_errores}", __name__, "sistema")
+    enviar_senal_log("INFO", f"📦 Backup creado en: {BACKUP_DIR}", __name__, "sistema")
 
     if total_errores == 0:
-        print("🎉 ¡Limpieza exitosa! El sistema está más ligero.")
+        enviar_senal_log("INFO", "🎉 ¡Limpieza exitosa! El sistema está más ligero.", __name__, "sistema")
     else:
-        print("⚠️  Algunos archivos no se pudieron eliminar. Revisar logs.")
+        enviar_senal_log("WARNING", "⚠️  Algunos archivos no se pudieron eliminar. Revisar logs.", __name__, "sistema")
 
-    print("\n💡 Notas importantes:")
-    print("  • Los archivos se respaldaron antes de eliminar")
-    print("  • El sistema principal no se vio afectado")
-    print("  • Los archivos activos se mantuvieron intactos")
+    enviar_senal_log("INFO", "\n💡 Notas importantes:", __name__, "sistema")
+    enviar_senal_log("INFO", "  • Los archivos se respaldaron antes de eliminar", __name__, "sistema")
+    enviar_senal_log("INFO", "  • El sistema principal no se vio afectado", __name__, "sistema")
+    enviar_senal_log("INFO", "  • Los archivos activos se mantuvieron intactos", __name__, "sistema")
 
 if __name__ == "__main__":
     main()

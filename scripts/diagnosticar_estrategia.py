@@ -25,7 +25,7 @@ from sistema.logging_interface import enviar_senal_log
 
 def analizar_datos_detallado():
     """Analiza en detalle los datos disponibles"""
-    print("🔍 DIAGNÓSTICO: Analizando datos en detalle...")
+    enviar_senal_log("🔍 DIAGNÓSTICO: Analizando datos en detalle...", "INFO")
 
     try:
         from utils.mt5_data_manager import get_mt5_manager
@@ -34,41 +34,41 @@ def analizar_datos_detallado():
         df = manager.get_historical_data("EURUSD", "H1", 100)
 
         if df is not None and not df.empty:
-            print(f"✅ Datos cargados: {len(df)} velas")
-            print(f"📊 Columnas disponibles: {list(df.columns)}")
-            print(f"📈 Rango de fechas: {df.index.min()} a {df.index.max()}")
-            print(f"💰 Precio actual: {df['close'].iloc[-1]:.5f}")
-            print(f"📊 Estadísticas básicas:")
-            print(f"   • Open: {df['open'].mean():.5f}")
-            print(f"   • High: {df['high'].mean():.5f}")
-            print(f"   • Low: {df['low'].mean():.5f}")
-            print(f"   • Close: {df['close'].mean():.5f}")
-            print(f"   • Volume: {df['tick_volume'].mean():.0f}")
+            enviar_senal_log(f"✅ Datos cargados: {len(df)} velas", "INFO")
+            enviar_senal_log(f"📊 Columnas disponibles: {list(df.columns)}", "INFO")
+            enviar_senal_log(f"📈 Rango de fechas: {df.index.min()} a {df.index.max()}", "INFO")
+            enviar_senal_log(f"💰 Precio actual: {df['close'].iloc[-1]:.5f}", "INFO")
+            enviar_senal_log(f"📊 Estadísticas básicas:", "INFO")
+            enviar_senal_log(f"   • Open: {df['open'].mean():.5f}", "INFO")
+            enviar_senal_log(f"   • High: {df['high'].mean():.5f}", "INFO")
+            enviar_senal_log(f"   • Low: {df['low'].mean():.5f}", "INFO")
+            enviar_senal_log(f"   • Close: {df['close'].mean():.5f}", "INFO")
+            enviar_senal_log(f"   • Volume: {df['tick_volume'].mean():.0f}", "INFO")
 
             # Verificar si hay movimientos de precio
             price_range = df['high'].max() - df['low'].min()
-            print(f"📏 Rango de precio total: {price_range:.5f}")
+            enviar_senal_log(f"📏 Rango de precio total: {price_range:.5f}", "INFO")
 
             # Verificar últimas 5 velas
-            print("📋 Últimas 5 velas:")
+            enviar_senal_log("📋 Últimas 5 velas:", "INFO")
             for i in range(-5, 0):
                 vela = df.iloc[i]
-                print(f"   {vela.name}: O:{vela['open']:.5f} H:{vela['high']:.5f} L:{vela['low']:.5f} C:{vela['close']:.5f}")
+                enviar_senal_log(f"   {vela.name}: O:{vela['open']:.5f} H:{vela['high']:.5f} L:{vela['low']:.5f} C:{vela['close']:.5f}", "INFO")
 
             return df
         else:
-            print("❌ No se pudieron cargar datos")
+            enviar_senal_log("❌ No se pudieron cargar datos", "ERROR")
             return None
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error analizando datos: {e}")
-        print(traceback.format_exc())
+        enviar_senal_log(f"❌ Error analizando datos: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
         return None
 
 
 def diagnosticar_ict_engine():
     """Diagnostica el ICT Engine principal"""
-    print("\n🔍 DIAGNÓSTICO: Analizando ICT Engine...")
+    enviar_senal_log("\n🔍 DIAGNÓSTICO: Analizando ICT Engine...", "INFO")
 
     try:
         from core.ict_engine.ict_engine import ICTEngine, get_ict_engine
@@ -78,42 +78,42 @@ def diagnosticar_ict_engine():
 
         # Crear ICT Engine
         engine = ICTEngine(mt5_manager=manager)
-        print("✅ ICTEngine creado correctamente")
+        enviar_senal_log("✅ ICTEngine creado correctamente", "INFO")
 
         # Verificar componentes
-        print(f"📊 Detector disponible: {engine.detector is not None}")
-        print(f"🎯 Confidence Engine disponible: {engine.confidence_engine is not None}")
-        print(f"⚙️ Configuración: {engine.configuracion}")
+        enviar_senal_log(f"📊 Detector disponible: {engine.detector is not None}", "INFO")
+        enviar_senal_log(f"🎯 Confidence Engine disponible: {engine.confidence_engine is not None}", "INFO")
+        enviar_senal_log(f"⚙️ Configuración: {engine.configuracion}", "INFO")
 
         # Test análisis completo
         resultado = engine.analizar_mercado_completo("EURUSD", "H1", 100)
         if resultado:
-            print("✅ Análisis completado exitosamente")
-            print(f"   • Symbol: {resultado.symbol}")
-            print(f"   • Timeframe: {resultado.timeframe}")
-            print(f"   • Market Phase: {resultado.market_phase}")
-            print(f"   • Direction: {resultado.direction}")
-            print(f"   • Strength: {resultado.strength}")
-            print(f"   • Confidence: {resultado.confidence}")
-            print(f"   • Patterns: {len(resultado.patterns_detected)}")
-            print(f"   • Signals: {len(resultado.signals)}")
-            print(f"   • Recommendation: {resultado.recommendation}")
-            print(f"   • Risk Level: {resultado.risk_level}")
+            enviar_senal_log("✅ Análisis completado exitosamente", "INFO")
+            enviar_senal_log(f"   • Symbol: {resultado.symbol}", "INFO")
+            enviar_senal_log(f"   • Timeframe: {resultado.timeframe}", "INFO")
+            enviar_senal_log(f"   • Market Phase: {resultado.market_phase}", "INFO")
+            enviar_senal_log(f"   • Direction: {resultado.direction}", "INFO")
+            enviar_senal_log(f"   • Strength: {resultado.strength}", "INFO")
+            enviar_senal_log(f"   • Confidence: {resultado.confidence}", "INFO")
+            enviar_senal_log(f"   • Patterns: {len(resultado.patterns_detected)}", "INFO")
+            enviar_senal_log(f"   • Signals: {len(resultado.signals)}", "INFO")
+            enviar_senal_log(f"   • Recommendation: {resultado.recommendation}", "INFO")
+            enviar_senal_log(f"   • Risk Level: {resultado.risk_level}", "INFO")
 
             return resultado
         else:
-            print("❌ El análisis retornó None")
+            enviar_senal_log("❌ El análisis retornó None", "ERROR")
             return None
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error diagnosticando ICT Engine: {e}")
-        print(traceback.format_exc())
+        enviar_senal_log(f"❌ Error diagnosticando ICT Engine: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
         return None
 
 
 def diagnosticar_poi_system():
     """Diagnostica el POI System específicamente"""
-    print("\n🔍 DIAGNÓSTICO: Analizando POI System...")
+    enviar_senal_log("\n🔍 DIAGNÓSTICO: Analizando POI System...", "INFO")
 
     try:
         from core.poi_system.poi_system import POISystem
@@ -123,52 +123,52 @@ def diagnosticar_poi_system():
         df = manager.get_historical_data("EURUSD", "H1", 100)
 
         if df is None or df.empty:
-            print("❌ Sin datos para analizar")
+            enviar_senal_log("❌ Sin datos para analizar", "ERROR")
             return
 
         # Crear POI system
         poi_system = POISystem()
-        print("✅ POISystem creado")
+        enviar_senal_log("✅ POISystem creado", "INFO")
 
         # Test analizar POIs completo
         if hasattr(poi_system, 'analizar_pois_completo'):
             try:
                 resultado = poi_system.analizar_pois_completo("EURUSD", "H1", 100)
-                print(f"🎯 Análisis POI completo: {resultado is not None}")
+                enviar_senal_log(f"🎯 Análisis POI completo: {resultado is not None}", "INFO")
                 if resultado:
-                    print(f"   • Tipo: {type(resultado)}")
+                    enviar_senal_log(f"   • Tipo: {type(resultado)}", "INFO")
                     if hasattr(resultado, '__dict__'):
-                        print(f"   • Atributos: {list(resultado.__dict__.keys())}")
+                        enviar_senal_log(f"   • Atributos: {list(resultado.__dict__.keys())}", "INFO")
             except Exception as e:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error analizando POIs completo: {e}")
-                print(traceback.format_exc())
+                enviar_senal_log(f"❌ Error analizando POIs completo: {e}", "ERROR")
+                enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
         # Test obtener POIs para dashboard
         if hasattr(poi_system, 'obtener_pois_para_dashboard'):
             try:
                 pois_dashboard = poi_system.obtener_pois_para_dashboard(["EURUSD"], ["H1"])
-                print(f"📊 POIs para dashboard: {type(pois_dashboard)}")
+                enviar_senal_log(f"📊 POIs para dashboard: {type(pois_dashboard)}", "INFO")
                 if isinstance(pois_dashboard, dict):
-                    print(f"   • Claves: {list(pois_dashboard.keys())}")
+                    enviar_senal_log(f"   • Claves: {list(pois_dashboard.keys())}", "INFO")
             except Exception as e:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error obteniendo POIs para dashboard: {e}")
-                print(traceback.format_exc())
+                enviar_senal_log(f"❌ Error obteniendo POIs para dashboard: {e}", "ERROR")
+                enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error diagnosticando POI System: {e}")
-        print(traceback.format_exc())
+        enviar_senal_log(f"❌ Error diagnosticando POI System: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
 
 def diagnosticar_confidence_engine():
     """Diagnostica el Confidence Engine específicamente"""
-    print("\n🔍 DIAGNÓSTICO: Analizando Confidence Engine...")
+    enviar_senal_log("\n🔍 DIAGNÓSTICO: Analizando Confidence Engine...", "INFO")
 
     try:
         from core.ict_engine.confidence_engine import ConfidenceEngine
 
         # Crear confidence engine
         confidence_engine = ConfidenceEngine()
-        print("✅ ConfidenceEngine creado")
+        enviar_senal_log("✅ ConfidenceEngine creado", "INFO")
 
         # Test cálculo de confianza con datos mock
         if hasattr(confidence_engine, 'calculate_pattern_confidence'):
@@ -197,10 +197,10 @@ def diagnosticar_confidence_engine():
                     poi_list_mock,
                     current_price
                 )
-                print(f"🎯 Test confianza: {confianza}")
+                enviar_senal_log(f"🎯 Test confianza: {confianza}", "INFO")
             except Exception as e:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error calculando confianza: {e}")
-                print(traceback.format_exc())
+                enviar_senal_log(f"❌ Error calculando confianza: {e}", "ERROR")
+                enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
         # Test calcular confianza general
         if hasattr(confidence_engine, 'calculate_overall_confidence'):
@@ -211,18 +211,18 @@ def diagnosticar_confidence_engine():
                 ]
                 market_context_mock = {"bias": "BULLISH"}
                 confianza_general = confidence_engine.calculate_overall_confidence(patterns_mock, market_context_mock)
-                print(f"🎯 Confianza general: {confianza_general}")
+                enviar_senal_log(f"🎯 Confianza general: {confianza_general}", "INFO")
             except Exception as e:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error calculando confianza general: {e}")
+                enviar_senal_log(f"❌ Error calculando confianza general: {e}", "ERROR")
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error diagnosticando Confidence Engine: {e}")
-        print(traceback.format_exc())
+        enviar_senal_log(f"❌ Error diagnosticando Confidence Engine: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
 
 
 def test_flujo_completo():
     """Test del flujo completo de la estrategia"""
-    print("\n🔍 DIAGNÓSTICO: Test flujo completo de estrategia...")
+    enviar_senal_log("\n🔍 DIAGNÓSTICO: Test flujo completo de estrategia...", "INFO")
 
     try:
         from core.ict_engine.ict_engine import ICTEngine
@@ -231,7 +231,7 @@ def test_flujo_completo():
         # Paso 1: Obtener datos
         manager = get_mt5_manager()
         if not manager.connect():
-            print("❌ No se pudo conectar a MT5")
+            enviar_senal_log("❌ No se pudo conectar a MT5", "ERROR")
             return False
 
         # Paso 2: Crear engine
@@ -247,36 +247,36 @@ def test_flujo_completo():
         for symbol in simbolos_test:
             for timeframe in timeframes_test:
                 total_tests += 1
-                print(f"🧪 Test {symbol} {timeframe}...")
+                enviar_senal_log(f"🧪 Test {symbol} {timeframe}...", "INFO")
 
                 try:
                     resultado = engine.analizar_mercado_completo(symbol, timeframe, 100)
                     if resultado and resultado.confidence > 0:
                         resultados_exitosos += 1
-                        print(f"   ✅ Exitoso - Confidence: {resultado.confidence:.2f}, Patterns: {len(resultado.patterns_detected)}")
+                        enviar_senal_log(f"   ✅ Exitoso - Confidence: {resultado.confidence:.2f}, Patterns: {len(resultado.patterns_detected)}", "INFO")
                     else:
-                        print(f"   ⚠️ Sin confianza - Resultado: {resultado is not None}")
+                        enviar_senal_log(f"   ⚠️ Sin confianza - Resultado: {resultado is not None}", "WARNING")
                 except Exception as e:
-                    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"   ❌ Error: {e}")
+                    enviar_senal_log(f"   ❌ Error: {e}", "ERROR")
 
-        print(f"\n📊 RESUMEN FLUJO COMPLETO:")
-        print(f"   • Tests ejecutados: {total_tests}")
-        print(f"   • Tests exitosos: {resultados_exitosos}")
-        print(f"   • Tasa de éxito: {(resultados_exitosos/total_tests)*100:.1f}%")
+        enviar_senal_log(f"\n📊 RESUMEN FLUJO COMPLETO:", "INFO")
+        enviar_senal_log(f"   • Tests ejecutados: {total_tests}", "INFO")
+        enviar_senal_log(f"   • Tests exitosos: {resultados_exitosos}", "INFO")
+        enviar_senal_log(f"   • Tasa de éxito: {(resultados_exitosos/total_tests)*100:.1f}%", "INFO")
 
         return resultados_exitosos > 0
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en test flujo completo: {e}")
-        print(traceback.format_exc())
+        enviar_senal_log(f"❌ Error en test flujo completo: {e}", "ERROR")
+        enviar_senal_log(f"Detalles: {traceback.format_exc()}", "ERROR")
         return False
 
 
 def main():
     """Función principal de diagnóstico"""
-    print("=" * 70)
-    print("🔧 ICT ENGINE v5.0 - DIAGNÓSTICO DETALLADO DE ESTRATEGIA")
-    print("=" * 70)
+    enviar_senal_log("=" * 70, "INFO")
+    enviar_senal_log("🔧 ICT ENGINE v5.0 - DIAGNÓSTICO DETALLADO DE ESTRATEGIA", "INFO")
+    enviar_senal_log("=" * 70, "INFO")
 
     # Ejecutar diagnósticos
     datos = analizar_datos_detallado()
@@ -287,34 +287,34 @@ def main():
         diagnosticar_confidence_engine()
         flujo_exitoso = test_flujo_completo()
 
-        print("\n" + "=" * 70)
-        print("🎯 CONCLUSIONES DEL DIAGNÓSTICO:")
-        print("=" * 70)
+        enviar_senal_log("\n" + "=" * 70, "INFO")
+        enviar_senal_log("🎯 CONCLUSIONES DEL DIAGNÓSTICO:", "INFO")
+        enviar_senal_log("=" * 70, "INFO")
 
         if datos is not None:
-            print("✅ Los datos están disponibles y son válidos")
+            enviar_senal_log("✅ Los datos están disponibles y son válidos", "INFO")
         else:
-            print("❌ Problema con los datos")
+            enviar_senal_log("❌ Problema con los datos", "ERROR")
 
         if resultado_engine:
-            print("✅ El ICT Engine se ejecuta correctamente")
+            enviar_senal_log("✅ El ICT Engine se ejecuta correctamente", "INFO")
             if resultado_engine.confidence > 0:
-                print("✅ El sistema genera confianza en los análisis")
+                enviar_senal_log("✅ El sistema genera confianza en los análisis", "INFO")
             else:
-                print("⚠️ El sistema no genera confianza suficiente")
+                enviar_senal_log("⚠️ El sistema no genera confianza suficiente", "WARNING")
         else:
-            print("❌ Problema con el ICT Engine")
+            enviar_senal_log("❌ Problema con el ICT Engine", "ERROR")
 
         if flujo_exitoso:
-            print("✅ El flujo completo funciona exitosamente")
+            enviar_senal_log("✅ El flujo completo funciona exitosamente", "INFO")
         else:
-            print("⚠️ El flujo completo necesita optimización")
+            enviar_senal_log("⚠️ El flujo completo necesita optimización", "WARNING")
 
-        print("🔍 Los componentes se inicializan correctamente")
-        print("🎯 El sistema está operativo para análisis ICT")
-        print("=" * 70)
+        enviar_senal_log("🔍 Los componentes se inicializan correctamente", "INFO")
+        enviar_senal_log("🎯 El sistema está operativo para análisis ICT", "INFO")
+        enviar_senal_log("=" * 70, "INFO")
     else:
-        print("\n❌ No se pudo completar el diagnóstico debido a falta de datos")
+        enviar_senal_log("\n❌ No se pudo completar el diagnóstico debido a falta de datos", "ERROR")
 
 
 if __name__ == "__main__":

@@ -22,15 +22,9 @@ from typing import Optional, Dict, List, Any, Tuple
 from datetime import datetime
 
 # Logger usando sistema estándar SLUC v2.0
-try:
-    from sistema.logging_interface import enviar_senal_log, log_ict
-    def log_veredicto(level, message):
-        enviar_senal_log(level, message, 'veredicto_engine_v4', 'ict')
-except ImportError:
-    # Fallback a logging estándar
-    veredicto_logger = logging.getLogger('veredicto_engine_v4')
-    def log_veredicto(level, message):
-        getattr(veredicto_logger, level.lower())(message)
+from sistema.logging_interface import enviar_senal_log
+def log_veredicto(level, message):
+    enviar_senal_log(level, message, 'veredicto_engine_v4', 'ict')
 
 class VeredictoEngine:
     """
