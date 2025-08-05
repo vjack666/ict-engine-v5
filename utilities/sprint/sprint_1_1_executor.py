@@ -624,7 +624,7 @@ try:
     configure_console_mode()
     enviar_senal_log("INFO", "Test console configurado exitosamente", "rendering_tests", "console_success")
 except Exception as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"ERROR: {e}")
+    enviar_senal_log("ERROR", f"ERROR: {e}", "rendering_tests", "console_error")
 """
 
             result = subprocess.run([
@@ -646,12 +646,12 @@ try:
     from textual.app import App
     from textual.widgets import Static
     enviar_senal_log("INFO", "Textual disponible", "rendering_tests", "textual_ok")
-    print("TEXTUAL_OK")
+    enviar_senal_log("INFO", "TEXTUAL_OK", "rendering_tests", "status")
 except ImportError:
     enviar_senal_log("WARNING", "Textual no disponible", "rendering_tests", "textual_missing")
-    print("TEXTUAL_MISSING")
+    enviar_senal_log("WARNING", "TEXTUAL_MISSING", "rendering_tests", "status")
 except Exception as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"TEXTUAL_ERROR: {e}")
+    enviar_senal_log("ERROR", f"TEXTUAL_ERROR: {e}", "rendering_tests", "textual_error")
 """
 
             result = subprocess.run([
@@ -684,11 +684,11 @@ try:
     # Import manejado al inicio del archivo
     enviar_senal_log("INFO", "Test message", "test_module", "test_category")
     enviar_senal_log("INFO", "Test logging OK", "rendering_tests", "logging_test")
-    print("LOGGING_OK")
+    enviar_senal_log("INFO", "LOGGING_OK", "rendering_tests", "status")
 except ImportError as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"LOGGING_IMPORT_ERROR: {e}")
+    enviar_senal_log("ERROR", f"LOGGING_IMPORT_ERROR: {e}", "rendering_tests", "import_error")
 except Exception as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"LOGGING_ERROR: {e}")
+    enviar_senal_log("ERROR", f"LOGGING_ERROR: {e}", "rendering_tests", "logging_error")
 """
 
             result = subprocess.run([
