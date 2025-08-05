@@ -59,10 +59,10 @@ try:
         # Verificar info de cuenta
         account_info = manager.get_account_info()
         if account_info:
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💰 Broker: {account_info.get('broker', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🏦 Cuenta: {account_info.get('login', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🔧 Tipo: {account_info.get('type_description', 'N/A')}")
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💵 Balance: ${account_info.get('balance', 0):,.2f}")
+            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💰 Broker: {account_info.get('broker', 'N/A')}")
+            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🏦 Cuenta: {account_info.get('login', 'N/A')}")
+            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   🔧 Tipo: {account_info.get('type_description', 'N/A')}")
+            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💵 Balance: ${account_info.get('balance', 0):,.2f}")
             print(f"   🛡️  Terminal: SOLO FundedNext MT5")
 
         # Verificar datos reales usando el manager MT5
@@ -70,15 +70,15 @@ try:
             # Usar la función segura del manager para obtener tick
             tick_info = manager.get_symbol_tick("EURUSD")
             if tick_info:
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   📊 PRECIO REAL EURUSD: {tick_info['bid']:.5f} (desde FundedNext)")
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   ⏰ Timestamp: {datetime.fromtimestamp(tick_info['time'])}")
-                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💱 Spread: {(tick_info['ask'] - tick_info['bid']):.5f}")
+                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   📊 PRECIO REAL EURUSD: {tick_info['bid']:.5f} (desde FundedNext)")
+                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   ⏰ Timestamp: {datetime.fromtimestamp(tick_info['time'])}")
+                # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"   💱 Spread: {(tick_info['ask'] - tick_info['bid']):.5f}")
                 datos_tipo = "DATOS REALES DEL BROKER FUNDEDNEXT"
             else:
                 print("   ⚠️ No se pudo obtener tick en tiempo real")
                 datos_tipo = "DATOS HISTÓRICOS REALES FUNDEDNEXT"
         except (ImportError, AttributeError, Exception) as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"   ⚠️ Error obteniendo tick en tiempo real: {e}")
+            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"   ⚠️ Error obteniendo tick en tiempo real: {e}")
             datos_tipo = "DATOS HISTÓRICOS REALES FUNDEDNEXT"
 
     else:
@@ -86,7 +86,7 @@ try:
         datos_tipo = "SIN CONEXIÓN SEGURA"
 
 except Exception as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error verificando MT5: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error verificando MT5: {e}")
     datos_tipo = "ERROR DE SEGURIDAD"
 
 # 3. VERIFICAR DATOS DEL DASHBOARD

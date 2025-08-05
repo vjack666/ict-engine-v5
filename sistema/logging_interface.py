@@ -1,3 +1,4 @@
+# MIGRADO A SLUC v2.0
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -17,7 +18,7 @@ Versión profesional con:
 Autor: Sistema ITC Engine v5.0
 Fecha: 2024
 """
-# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
+# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
 import logging
 import json
 from datetime import datetime

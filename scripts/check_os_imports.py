@@ -82,7 +82,7 @@ def main():
             elif status == "no_import":
                 print(f"⚪ {file_path}: sin import os")
             else:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"🔴 {file_path}: Error - {count}")
+                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"🔴 {file_path}: Error - {count}")
                 error_files.append(file_path)
         else:
             print(f"🚫 {file_path}: archivo no existe")
@@ -90,7 +90,7 @@ def main():
     print("\n📊 RESUMEN:")
     print(f"❌ Archivos con import os NO USADO: {len(unused_files)}")
     print(f"✅ Archivos con import os USADO: {len(used_files)}")
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"🔴 Archivos con errores: {len(error_files)}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"🔴 Archivos con errores: {len(error_files)}")
 
     if unused_files:
         print("\n🧹 ARCHIVOS QUE NECESITAN LIMPIEZA:")

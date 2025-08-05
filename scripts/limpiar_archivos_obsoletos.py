@@ -104,7 +104,7 @@ def crear_backup(archivos: List[str]) -> bool:
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error creando backup: {e}")
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error creando backup: {e}")
         return False
 
 def eliminar_archivos(archivos: List[str], categoria: str) -> Tuple[int, int]:
@@ -141,7 +141,7 @@ def eliminar_archivos(archivos: List[str], categoria: str) -> Tuple[int, int]:
                 eliminados += 1
 
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error eliminando {archivo_rel}: {e}")
+            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error eliminando {archivo_rel}: {e}")
             errores += 1
 
     return eliminados, errores
@@ -190,7 +190,7 @@ def main():
 
     # 5. Crear backup
     if not crear_backup(todos_archivos):
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Error creando backup. Cancelando limpieza.")
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Error creando backup. Cancelando limpieza.")
         return
 
     # 6. Eliminar archivos por categoría
@@ -208,7 +208,7 @@ def main():
     print("🎯 LIMPIEZA COMPLETADA")
     print("=" * 60)
     print(f"✅ Archivos eliminados: {total_eliminados}")
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Errores: {total_errores}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Errores: {total_errores}")
     print(f"📦 Backup creado en: {BACKUP_DIR}")
 
     if total_errores == 0:

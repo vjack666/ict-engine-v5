@@ -27,7 +27,7 @@ from sistema.logging_interface import enviar_senal_log
 
 def analizar_logs_mt5(log_path: Path) -> Dict:
     """Analiza los logs de MT5"""
-    print("🔍 Analizando logs de MT5...")
+    enviar_senal_log('INFO', '🔍 Analizando logs de MT5...', __name__, 'analisis')
 
     if not log_path.exists():
         return {"error": "Archivo no encontrado"}
@@ -52,7 +52,7 @@ def analizar_logs_mt5(log_path: Path) -> Dict:
 
 def analizar_logs_dashboard(log_path: Path) -> Dict:
     """Analiza los logs del dashboard"""
-    print("📊 Analizando logs del dashboard...")
+    enviar_senal_log('INFO', '📊 Analizando logs del dashboard...', __name__, 'analisis')
 
     if not log_path.exists():
         return {"error": "Archivo no encontrado"}
@@ -72,7 +72,7 @@ def analizar_logs_dashboard(log_path: Path) -> Dict:
 
 def analizar_logs_errores(log_path: Path) -> Dict:
     """Analiza los logs de errores"""
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Analizando logs de errores...")
+    enviar_senal_log('INFO', "❌ Analizando logs de errores...", __name__, "analisis")
 
     if not log_path.exists():
         return {"error": "Archivo no encontrado"}
@@ -102,7 +102,7 @@ def analizar_logs_errores(log_path: Path) -> Dict:
 
 def detectar_patrones_problematicos(logs_dir: Path) -> List[str]:
     """Detecta patrones problemáticos en todos los logs"""
-    print("🔍 Detectando patrones problemáticos...")
+    enviar_senal_log('INFO', '🔍 Detectando patrones problemáticos...', __name__, 'analisis')
 
     problemas = []
 
@@ -173,10 +173,9 @@ def generar_resumen_rendimiento(stats_mt5: Dict) -> str:
 def main():
     """Función principal del analizador"""
 
-    print("=" * 70)
-    print("📊 ICT ENGINE v5.0 - ANÁLISIS INTELIGENTE DE LOGS")
-    print("=" * 70)
-    print()
+    enviar_senal_log('INFO', '=' * 70, __name__, 'analisis')
+    enviar_senal_log('INFO', '📊 ICT ENGINE v5.0 - ANÁLISIS INTELIGENTE DE LOGS', __name__, 'analisis')
+    enviar_senal_log('INFO', '=' * 70, __name__, 'analisis')
 
     logs_dir = PROJECT_ROOT / "data" / "logs"
     today = datetime.now().strftime("%Y%m%d")
@@ -190,94 +189,94 @@ def main():
     problemas = detectar_patrones_problematicos(logs_dir)
 
     # Generar reporte
-    print("📈 ESTADÍSTICAS MT5:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '📈 ESTADÍSTICAS MT5:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
     if "error" not in stats_mt5:
-        print(f"  💾 Descargas exitosas: {stats_mt5['descargas_exitosas']}")
-        print(f"  🔗 Conexiones MT5: {stats_mt5['conexiones_mt5']}")
-        print(f"  📊 Confirmaciones datos REALES: {stats_mt5['datos_reales_confirmados']}")
-        print(f"  📈 Símbolos procesados: {len(stats_mt5['simbolos_procesados'])}")
-        print(f"  ⏰ Timeframes procesados: {len(stats_mt5['timeframes_procesados'])}")
+        enviar_senal_log('INFO', f"  💾 Descargas exitosas: {stats_mt5['descargas_exitosas']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  🔗 Conexiones MT5: {stats_mt5['conexiones_mt5']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  📊 Confirmaciones datos REALES: {stats_mt5['datos_reales_confirmados']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  📈 Símbolos procesados: {len(stats_mt5['simbolos_procesados'])}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  ⏰ Timeframes procesados: {len(stats_mt5['timeframes_procesados'])}", __name__, 'analisis')
 
         if stats_mt5['cuenta_detectada']:
-            print(f"  🏦 Tipo de cuenta: {stats_mt5['cuenta_detectada'].group(1)}")
+            enviar_senal_log('INFO', f"  🏦 Tipo de cuenta: {stats_mt5['cuenta_detectada'].group(1)}", __name__, 'analisis')
         if stats_mt5['broker_info']:
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"  🏢 Broker: {stats_mt5['broker_info'].group(1)}")
+            enviar_senal_log('INFO', f"Broker: {stats_mt5['broker_info'].group(1)}", __name__, 'sistema')
         if stats_mt5['balance_info']:
-            # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"  💰 Balance: ${stats_mt5['balance_info'].group(1)}")
+            enviar_senal_log('INFO', f"Balance: ${stats_mt5['balance_info'].group(1)}", __name__, 'sistema')
 
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Errores: {stats_mt5['errores']}")
-        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"  ⚠️ Warnings: {stats_mt5['warnings']}")
+        enviar_senal_log('ERROR', f"Errores: {stats_mt5['errores']}", __name__, 'sistema')
+        enviar_senal_log('WARNING', f"Warnings: {stats_mt5['warnings']}", __name__, 'sistema')
     else:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ {stats_mt5['error']}")
+        enviar_senal_log('ERROR', f"{stats_mt5['error']}", __name__, 'sistema')
 
-    print()
-    print("📊 ESTADÍSTICAS DASHBOARD:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '📊 ESTADÍSTICAS DASHBOARD:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
     if "error" not in stats_dashboard:
-        print(f"  🚀 Inicios dashboard: {stats_dashboard['inicios_dashboard']}")
-        print(f"  🔄 Migraciones SLUC: {stats_dashboard['migraciones_sluc']}")
-        print(f"  🎛️ Activaciones centro mando: {stats_dashboard['activaciones_centro_mando']}")
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ Errores: {stats_dashboard['errores']}")
-        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"  ⚠️ Warnings: {stats_dashboard['warnings']}")
+        enviar_senal_log('INFO', f"  🚀 Inicios dashboard: {stats_dashboard['inicios_dashboard']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  🔄 Migraciones SLUC: {stats_dashboard['migraciones_sluc']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  🎛️ Activaciones centro mando: {stats_dashboard['activaciones_centro_mando']}", __name__, 'analisis')
+        enviar_senal_log('ERROR', f"  ❌ Errores: {stats_dashboard['errores']}", __name__, 'sistema')
+        enviar_senal_log('WARNING', f"  ⚠️ Warnings: {stats_dashboard['warnings']}", __name__, 'sistema')
     else:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ {stats_dashboard['error']}")
+        enviar_senal_log('ERROR', f"  ❌ {stats_dashboard['error']}", __name__, 'sistema')
 
-    print()
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ ANÁLISIS DE ERRORES:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '❌ ANÁLISIS DE ERRORES:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
     if "error" not in stats_errores:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  🔴 Total errores: {stats_errores['total_errores']}")
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  💥 Errores críticos: {stats_errores['errores_criticos']}")
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"  ⚠️ Warnings importantes: {stats_errores['warnings_importantes']}")
+        enviar_senal_log('INFO', f"  🔴 Total errores: {stats_errores['total_errores']}", __name__, 'analisis')
+        enviar_senal_log('INFO', f"  💥 Errores críticos: {stats_errores['errores_criticos']}", __name__, 'analisis')
+        enviar_senal_log('WARNING', f"  ⚠️ Warnings importantes: {stats_errores['warnings_importantes']}", __name__, 'sistema')
 
         if stats_errores['errores_recientes']:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("  📋 Errores recientes:")
+            enviar_senal_log('INFO', "  📋 Errores recientes:", __name__, 'analisis')
             for error in stats_errores['errores_recientes']:
-                # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"    • {error[:100]}...")
+                enviar_senal_log('ERROR', f"    • {error[:100]}...", __name__, 'sistema')
     else:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"  ❌ {stats_errores['error']}")
+        enviar_senal_log('ERROR', f"  ❌ {stats_errores['error']}", __name__, 'sistema')
 
-    print()
-    print("🔍 PATRONES PROBLEMÁTICOS:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '🔍 PATRONES PROBLEMÁTICOS:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
     if problemas:
         for problema in problemas:
-            print(f"  {problema}")
+            enviar_senal_log('INFO', f"  {problema}", __name__, 'analisis')
     else:
-        print("  ✅ No se detectaron patrones problemáticos")
+        enviar_senal_log('INFO', "  ✅ No se detectaron patrones problemáticos", __name__, 'analisis')
 
-    print()
-    print("🎯 EVALUACIÓN DE RENDIMIENTO:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '🎯 EVALUACIÓN DE RENDIMIENTO:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
     rendimiento = generar_resumen_rendimiento(stats_mt5)
     for linea in rendimiento.split("\\n"):
-        print(f"  {linea}")
+        enviar_senal_log('INFO', f"  {linea}", __name__, 'analisis')
 
-    print()
-    print("🔧 RECOMENDACIONES:")
-    print("-" * 30)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '🔧 RECOMENDACIONES:', __name__, 'analisis')
+    enviar_senal_log('INFO', '-' * 30, __name__, 'analisis')
 
     # Generar recomendaciones basadas en el análisis
     if stats_mt5.get("errores", 0) > 0:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("  🔴 Revisar errores de MT5 - pueden afectar la descarga de datos")
+        enviar_senal_log('WARNING', "  🔴 Revisar errores de MT5 - pueden afectar la descarga de datos", __name__, 'sistema')
 
     if stats_mt5.get("descargas_exitosas", 0) < 20:
-        print("  🟡 Pocas descargas exitosas - verificar conectividad MT5")
+        enviar_senal_log('WARNING', "  🟡 Pocas descargas exitosas - verificar conectividad MT5", __name__, 'sistema')
 
     if not stats_mt5.get("datos_reales_confirmados", 0):
-        print("  ⚠️ No se confirmaron datos REALES - verificar configuración")
+        enviar_senal_log('WARNING', "  ⚠️ No se confirmaron datos REALES - verificar configuración", __name__, 'sistema')
 
     if stats_dashboard.get("errores", 0) > 0:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("  📊 Errores en dashboard - revisar logs detallados")
+        enviar_senal_log('WARNING', "  📊 Errores en dashboard - revisar logs detallados", __name__, 'sistema')
 
     if not problemas and stats_mt5.get("descargas_exitosas", 0) > 25:
-        print("  🎉 ¡Sistema funcionando ÓPTIMAMENTE!")
+        enviar_senal_log('INFO', "  🎉 ¡Sistema funcionando ÓPTIMAMENTE!", __name__, 'analisis')
 
-    print()
-    print("=" * 70)
-    print(f"📅 Análisis completado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 70)
+    enviar_senal_log('INFO', '', __name__, 'analisis')
+    enviar_senal_log('INFO', '=' * 70, __name__, 'analisis')
+    enviar_senal_log('INFO', f"📅 Análisis completado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", __name__, 'analisis')
+    enviar_senal_log('INFO', '=' * 70, __name__, 'analisis')
 
 if __name__ == "__main__":
     main()

@@ -55,7 +55,7 @@ try:
         raise RuntimeError(f"No se puede encontrar el directorio sistema en {project_root}")
 
 except (FileNotFoundError, PermissionError, IOError) as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
     sys.exit(1)
 # -------------------------------------------------
 

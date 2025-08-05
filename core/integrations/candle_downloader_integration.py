@@ -21,7 +21,7 @@ except ImportError:
         from sistema.logging_interface import enviar_senal_log
         enviar_senal_log("WARNING", "No se pudo importar candle_coordinator", __name__, "init")
     except ImportError:
-        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print("Warning: No se pudo importar candle_coordinator")
+        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print("Warning: No se pudo importar candle_coordinator")
     candle_coordinator = None
 
 try:
@@ -33,7 +33,7 @@ except ImportError:
         from sistema.logging_interface import enviar_senal_log
         enviar_senal_log("WARNING", "No se pudo importar CandleDownloaderWidget", __name__, "init")
     except ImportError:
-        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print("Warning: No se pudo importar CandleDownloaderWidget")
+        # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print("Warning: No se pudo importar CandleDownloaderWidget")
     candle_downloader_widget = None
 
 # Sistema de logging del ICT Engine

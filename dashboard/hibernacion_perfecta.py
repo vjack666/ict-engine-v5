@@ -216,7 +216,7 @@ def test_hibernacion_perfecta():
     conectado, precio, info = detectar_mt5_optimizado()
     print(f"MT5 Conectado: {conectado}")
     print(f"Precio: {precio}")
-    # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"Info: {info}")
+    # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"Info: {info}")
 
     print("\n✅ Prueba completada")
 

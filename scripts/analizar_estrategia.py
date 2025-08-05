@@ -200,7 +200,7 @@ def test_ejecucion_estrategia():
 
         except Exception as e:
             resultados["ejecuciones_fallidas"].append(f"❌ Análisis mercado completo: {e}")
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"Error detallado: {traceback.format_exc()}")
+            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"Error detallado: {traceback.format_exc()}")
 
     except Exception as e:
         resultados["ejecuciones_fallidas"].append(f"❌ Error general ejecución: {e}")
@@ -328,7 +328,7 @@ def generar_reporte_estrategia():
 
         print("\n🔧 RECOMENDACIONES:")
         if total_fallidos > 0:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("1. 🔍 Revisar errores específicos mostrados arriba")
+            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("1. 🔍 Revisar errores específicos mostrados arriba")
             print("2. 🛠️ Verificar dependencias de componentes fallidos")
             print("3. 📊 Comprobar integridad de datos históricos")
             print("4. 🔄 Considerar reinicialización de componentes problemáticos")
@@ -337,7 +337,7 @@ def generar_reporte_estrategia():
             print("🚀 Lista para trading en vivo")
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"\n❌ ERROR CRÍTICO en análisis: {e}")
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"\n❌ ERROR CRÍTICO en análisis: {e}")
         print(f"Detalles: {traceback.format_exc()}")
 
     print("\n" + "=" * 70)

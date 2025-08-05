@@ -80,7 +80,7 @@ def safe_log(level: str, message: str, module: str, category: str = "poi"):
             print(f"[{timestamp}] [{level}] {message}")
     except Exception as e:
         # Último recurso: print básico sin fallar
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"[LOG_ERROR] {message} | Error: {e}")
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"[LOG_ERROR] {message} | Error: {e}")
 
 
 # ═══════════════════════════════════════════════════════════════

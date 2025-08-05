@@ -34,7 +34,7 @@ def inicializar_sistema_candles():
             force_log_and_print("CANDLE_INIT", "✅ Sistema de Candles verificado.", False)
     except (FileNotFoundError, PermissionError, IOError) as e:
         if 'force_log_and_print' in globals():
-            force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("CANDLE_INIT", f"❌ Error crítico al inicializar sistema de candles: {e}", True)
+            force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("CANDLE_INIT", f"❌ Error crítico al inicializar sistema de candles: {e}", True)
 
 # =============================================================================
 # SECCIÓN 9: CAPTURA DE SALIDA ESTÁNDAR PARA DEBUGGING DE RICH
@@ -549,7 +549,7 @@ def guardar_velas(df: pd.DataFrame, timeframe: str, symbol: str) -> None:
     except (FileNotFoundError, PermissionError, IOError) as e:
         # Logging robusto y visible
         error_completo = f"Error en guardar_velas ({timeframe}): {e}\n{traceback.format_exc()}"
-        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("DATA_LOGGER", error_completo, es_error=True)
+        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("DATA_LOGGER", error_completo, es_error=True)
 
 def inicializar_directorio_candles():
     """Inicializa el directorio de velas en la ruta específica."""
@@ -587,7 +587,7 @@ def install_global_exception_handler():
         full_traceback = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
 
         # Forzar el log y la impresión para asegurar visibilidad
-        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("GLOBAL_HANDLER", f"EXCEPCIÓN NO CAPTURADA: {error_msg}\n{full_traceback}", True)
+        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("GLOBAL_HANDLER", f"EXCEPCIÓN NO CAPTURADA: {error_msg}\n{full_traceback}", True)
 
         # Llamar al manejador original para no romper el flujo normal de salida de errores
         original_excepthook(exc_type, exc_value, exc_traceback)
@@ -595,7 +595,7 @@ def install_global_exception_handler():
     sys.excepthook = custom_exception_handler
     enviar_senal_log("INFO", "[LOGGER] OK Manejador global de excepciones instalado.", "data_logger", "migration")
 
-def force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(modulo: str, mensaje: str, es_error: bool = True):
+def force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(modulo: str, mensaje: str, es_error: bool = True):
     """
     Fuerza el logging a archivo y opcionalmente imprime en consola.
     NOTA: Cuando se usa Rich dashboard, solo loggea a archivo para evitar interferencias.

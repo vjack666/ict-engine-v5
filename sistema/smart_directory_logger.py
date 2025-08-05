@@ -1,3 +1,4 @@
+# MIGRADO A SLUC v2.0
 #!/usr/bin/env python3
 """
 SISTEMA DE LOGGING INTELIGENTE CON DIRECTORIOS ORGANIZADOS
@@ -29,7 +30,7 @@ FILOSOFÍA:
 AUTOR: Sistema Inteligente de Directorios v2.1
 FECHA: 02 Agosto 2025
 """
-# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
+# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
 import logging
 import json
 import os

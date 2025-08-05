@@ -16,11 +16,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-# USAR SISTEMA DE LOGGING CENTRALIZADO - ICT ESPECIALIZADO
-from sistema.logging_interface import enviar_senal_log, log_ict
-
-# Usar sistema de logging central
-
 class ICTHistoricalAnalyzer:
     """
     Analiza el rendimiento histórico de POIs basado en logs del Smart Logger
@@ -176,21 +171,21 @@ class ICTHistoricalAnalyzer:
             total_successes = 0
 
             for poi_type in ['ORDER_BLOCK', 'FAIR_VALUE_GAP', 'LIQUIDITY_POOL', 'H4_BIAS']:
-                type_logs = [log for log in all_logs if log.get('poi_type') == poi_type]
+                type_entries = [entry for entry in all_logs if entry.get('poi_type') == poi_type]
 
-                if type_logs:
-                    success_rate = self._calculate_success_rate(type_logs)
-                    avg_confidence = sum(log.get('confidence', 0) for log in type_logs) / len(type_logs)
+                if type_entries:
+                    success_rate = self._calculate_success_rate(type_entries)
+                    avg_confidence = sum(entry.get('confidence', 0) for entry in type_entries) / len(type_entries)
 
                     performance_by_type[poi_type] = {
-                        'detections': len(type_logs),
+                        'detections': len(type_entries),
                         'success_rate': success_rate,
                         'avg_confidence': avg_confidence,
                         'current_weight': self.get_historical_poi_performance(poi_type)
                     }
 
-                    total_detections += len(type_logs)
-                    total_successes += len([log for log in type_logs if log.get('success', False)])
+                    total_detections += len(type_entries)
+                    total_successes += len([entry for entry in type_entries if entry.get('success', False)])
 
             # Estadísticas globales
             overall_success_rate = total_successes / total_detections if total_detections > 0 else 0
@@ -255,11 +250,11 @@ class ICTHistoricalAnalyzer:
             cutoff_date = datetime.now() - timedelta(days=self.config['max_lookback_days'])
 
             filtered_logs = []
-            for log in logs:
+            for entry in logs:
                 try:
-                    log_date = datetime.fromisoformat(log.get('timestamp', '').replace('Z', '+00:00'))
-                    if log_date >= cutoff_date:
-                        filtered_logs.append(log)
+                    entry_date = datetime.fromisoformat(entry.get('timestamp', '').replace('Z', '+00:00'))
+                    if entry_date >= cutoff_date:
+                        filtered_logs.append(entry)
                 except (ValueError, TypeError):
                     continue
 
@@ -319,30 +314,30 @@ class ICTHistoricalAnalyzer:
             enviar_senal_log("ERROR", f"Error cargando logs recientes: {e}", __name__, "general")
             return []
 
-    def _calculate_success_rate(self, logs: List[Dict]) -> float:
-        """Calcula la tasa de éxito de los logs."""
-        if not logs:
+    def _calculate_success_rate(self, entries: List[Dict]) -> float:
+        """Calcula la tasa de éxito de los entries."""
+        if not entries:
             return 0.5  # Valor neutral
 
-        successes = sum(1 for log in logs if log.get('success', False))
-        return successes / len(logs)
+        successes = sum(1 for entry in entries if entry.get('success', False))
+        return successes / len(entries)
 
-    def _apply_time_decay(self, logs: List[Dict], base_rate: float) -> float:
+    def _apply_time_decay(self, entries: List[Dict], base_rate: float) -> float:
         """Aplica decaimiento temporal a la tasa de éxito."""
-        if not logs:
+        if not entries:
             return base_rate
 
         now = datetime.now()
         weighted_sum = 0
         total_weight = 0
 
-        for log in logs:
+        for entry in entries:
             try:
-                log_date = datetime.fromisoformat(log.get('timestamp', '').replace('Z', '+00:00'))
-                days_old = (now - log_date).days
+                entry_date = datetime.fromisoformat(entry.get('timestamp', '').replace('Z', '+00:00'))
+                days_old = (now - entry_date).days
                 weight = max(0.1, 1.0 - (days_old * self.config['time_decay_factor']))
 
-                success_value = 1.0 if log.get('success', False) else 0.0
+                success_value = 1.0 if entry.get('success', False) else 0.0
                 weighted_sum += success_value * weight
                 total_weight += weight
 
