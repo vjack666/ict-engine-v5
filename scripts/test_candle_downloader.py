@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🧪 TEST CANDLE DOWNLOADER - ICT ENGINE v5.0
@@ -14,6 +12,7 @@ Fecha: 2025-08-05
 
 import sys
 from pathlib import Path
+from sistema.logging_interface import enviar_senal_log
 
 # Agregar path del proyecto
 project_root = Path(__file__).parent.parent
@@ -32,7 +31,7 @@ def test_candle_downloader_imports():
         print(f"   - Widget global disponible: {candle_downloader_widget is not None}")
         print(f"   - Tipo: {type(candle_downloader_widget)}")
     except ImportError as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error importando CandleDownloaderWidget: {e}")
+        enviar_senal_log('ERROR', f"Error importando CandleDownloaderWidget: {e}", __name__, 'testing')
         return False
 
     # Test 2: Integración del downloader
@@ -40,7 +39,7 @@ def test_candle_downloader_imports():
         from core.integrations.candle_downloader_integration import CandleDownloaderIntegration
         print("✅ CandleDownloaderIntegration importado correctamente")
     except ImportError as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error importando CandleDownloaderIntegration: {e}")
+        enviar_senal_log('ERROR', f"Error importando CandleDownloaderIntegration: {e}", __name__, 'testing')
 
     # Test 3: Verificar disponibilidad en dashboard
     try:
@@ -82,7 +81,7 @@ def test_widget_functionality():
         print(f"✅ Stats panel: {type(stats_panel)}")
 
         errors_panel = candle_downloader_widget.render_errors_panel()
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"✅ Errors panel: {type(errors_panel)}")
+        enviar_senal_log('INFO', f"Errors panel: {type(errors_panel)}", __name__, 'testing')
 
         # Test configuración
         candle_downloader_widget.configure_symbols(["EURUSD", "GBPUSD"])
@@ -97,7 +96,7 @@ def test_widget_functionality():
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en funcionalidad del widget: {e}")
+        enviar_senal_log('ERROR', f"Error en funcionalidad del widget: {e}", __name__, 'testing')
         return False
 
 def test_dashboard_integration():
@@ -130,7 +129,7 @@ def test_dashboard_integration():
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en integración del dashboard: {e}")
+        enviar_senal_log('ERROR', f"Error en integración del dashboard: {e}", __name__, 'testing')
         return False
 
 def test_mt5_compatibility():
@@ -164,7 +163,7 @@ def test_mt5_compatibility():
         return True
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en compatibilidad MT5: {e}")
+        enviar_senal_log('ERROR', f"Error en compatibilidad MT5: {e}", __name__, 'testing')
         return False
 
 def main():
@@ -189,7 +188,7 @@ def main():
             result = test()
             results.append(result)
         except Exception as e:
-            # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error ejecutando {test.__name__}: {e}")
+            enviar_senal_log('ERROR', f"Error ejecutando {test.__name__}: {e}", __name__, 'testing')
             results.append(False)
 
     # Resumen
@@ -200,11 +199,11 @@ def main():
     print(f"📈 Porcentaje éxito: {(sum(results)/len(results)*100):.1f}%")
 
     if all(results):
-        print("\n🎉 ¡TODAS LAS PRUEBAS PASARON!")
-        print("📥 El Candle Downloader está completamente integrado")
+        enviar_senal_log(nivel="INFO", mensaje="🎉 ¡TODAS LAS PRUEBAS PASARON!")
+        enviar_senal_log(nivel="INFO", mensaje="📥 El Candle Downloader está completamente integrado")
     else:
-        print("\n⚠️ Algunas pruebas fallaron")
-        print("🔧 Revisar logs para solucionar problemas")
+        enviar_senal_log(nivel="WARNING", mensaje="⚠️ Algunas pruebas fallaron")
+        enviar_senal_log(nivel="WARNING", mensaje="🔧 Revisar logs para solucionar problemas")
 
 if __name__ == "__main__":
     main()

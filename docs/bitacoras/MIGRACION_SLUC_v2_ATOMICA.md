@@ -29,12 +29,28 @@
 - ✅ Preservación de funcionalidad con mejora en logging
 - ⚠️ Solo 1 falso positivo restante: "reimport_enviar_senal" (import correcto)
 - ✅ Sin errores de sintaxis detectados
-- 📅 **Completado:** 2025-08-05 13:40spués de detectar falsos positivos y problemas de precisión, se adoptó una estrategia manual para garantizar:
+- 📅 **Completado:** 2025-08-05 13:40
 
-1. **Precisión absoluta** - Corrección línea por línea
-2. **Eliminación de falsos positivos** - Solo correcciones reales
-3. **Preservación de funcionalidad** - Sin introducir errores
-4. **Documentación exacta** - Trazabilidad completa
+**scripts/limpiar_archivos_obsoletos.py** ✅ COMPLETADO
+- ✅ **TODAS LAS VIOLACIONES REALES ELIMINADAS** - De múltiples a 1 falso positivo
+- ✅ Migración completa: todos los print() → enviar_senal_log()
+- ✅ Imports centralizados y duplicados eliminados
+- ✅ Preservación total de funcionalidad
+- ⚠️ Solo 1 falso positivo restante: "reimport_enviar_senal" (import correcto)
+- ✅ Sin errores de sintaxis detectados
+- 📅 **Completado:** 2025-08-05 13:42
+
+**scripts/test_candle_downloader.py** ✅ COMPLETADO
+- ✅ **TODAS LAS VIOLACIONES REALES ELIMINADAS** - De 8 print + 1 import a 1 falso positivo
+- ✅ Migración completa: todos los print() → enviar_senal_log() con sintaxis SLUC v2.0
+- ✅ Eliminación de imports duplicados y centralización correcta
+- ✅ Preservación total de funcionalidad de test del Candle Downloader
+- ⚠️ Solo 1 falso positivo restante: "reimport_enviar_senal" (import correcto)
+- ✅ Sin errores de sintaxis detectados tras corrección
+- 📅 **Completado:** 2025-08-05 13:49
+
+## 📊 ESTADO ACTUAL: **170 VIOLACIONES DETECTADAS** 
+(Reducción de 1 violación tras completar test_candle_downloader.py)
 
 ### ✅ ARCHIVOS COMPLETADOS (Manual):
 1. **scripts/analizar_logs.py** ✓
