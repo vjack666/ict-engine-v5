@@ -61,7 +61,6 @@ Ejemplos de uso:
   python main.py --dashboard        # Dashboard directo
   python main.py --debug           # Herramientas de debug
   python main.py --utilities       # Utilidades de desarrollo
-  python main.py --tests           # Ejecutar tests
         """
     )
 
@@ -74,8 +73,6 @@ Ejemplos de uso:
                        help="Modo console para desarrollo")
     parser.add_argument("--utilities", action="store_true",
                        help="Mostrar utilidades disponibles")
-    parser.add_argument("--tests", action="store_true",
-                       help="Ejecutar suite de tests")
 
     # 🔧 Opciones de configuración
     parser.add_argument("--verbose", "-v", action="store_true",
@@ -93,8 +90,6 @@ Ejemplos de uso:
             launch_debug_tools(args)
         elif args.utilities:
             show_utilities_menu(args)
-        elif args.tests:
-            run_tests(args)
         else:
             # 🚀 MODO AUTOMÁTICO: Lanzar dashboard directamente
             enviar_senal_log("INFO", "🤖 MODO AUTOMÁTICO: Lanzando Dashboard Principal...", "main", "auto")
@@ -144,7 +139,9 @@ def launch_debug_tools(args):
             os.environ['TEXTUAL_LOG'] = '1'
 
         app = DebugLauncher()
-        app.run()
+        # Usar launch_debug por defecto para debug tools
+        app.launch_debug()
+
 
     except ImportError as e:
         enviar_senal_log("ERROR", f"❌ Error importando debug tools: {e}", "main", "migration")
@@ -189,35 +186,6 @@ def show_utilities_menu(args):
     except (KeyboardInterrupt, EOFError):
         enviar_senal_log("INFO", "\n👋 ¡Hasta luego!", "main", "migration")
 
-def run_tests(args):
-    """Ejecuta la suite de tests"""
-    enviar_senal_log("INFO", "🧪 Ejecutando Tests...", "main", "migration")
-
-    try:
-        import pytest
-
-        # 🚀 Ejecutar tests
-        test_args = ["tests/", "--tb=short"]
-
-        if args.verbose:
-            test_args.extend(["-v", "--tb=short"])
-        else:
-            test_args.extend(["-q"])
-
-        exit_code = pytest.main(test_args)
-
-        if exit_code == 0:
-            enviar_senal_log("INFO", "✅ Todos los tests pasaron", "main", "migration")
-            enviar_senal_log("INFO", "📋 Reporte detallado disponible en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
-        else:
-            enviar_senal_log("INFO", "❌ Algunos tests fallaron", "main", "migration")
-            enviar_senal_log("INFO", "📋 Revisa el reporte detallado en: docs/bitacoras/REPORTE_TEST_SUITE_COMPLETO.md", "main", "migration")
-            sys.exit(exit_code)
-
-    except ImportError:
-        enviar_senal_log("ERROR", "❌ pytest no está instalado. Instala con: pip install pytest", "main", "migration")
-        sys.exit(1)
-
 def launch_interactive_menu(args):
     """Lanza el menú interactivo principal"""
     enviar_senal_log("INFO", "🎯 ICT ENGINE v5.0 - LAUNCHER PRINCIPAL", "main", "migration")
@@ -227,9 +195,8 @@ def launch_interactive_menu(args):
         ("1", "🚀 Dashboard Principal", "Lanzar dashboard de trading"),
         ("2", "🔧 Debug Tools", "Herramientas de debugging"),
         ("3", "🛠️ Utilidades", "Ver utilidades disponibles"),
-        ("4", "🧪 Tests", "Ejecutar suite de tests"),
-        ("5", "📊 Estado del Sistema", "Ver información del sistema"),
-        ("6", "📋 Documentación", "Ver documentación disponible"),
+        ("4", "📊 Estado del Sistema", "Ver información del sistema"),
+        ("5", "📋 Documentación", "Ver documentación disponible"),
     ]
 
     while True:
@@ -252,10 +219,8 @@ def launch_interactive_menu(args):
             elif choice == '3':
                 show_utilities_menu(args)
             elif choice == '4':
-                run_tests(args)
-            elif choice == '5':
                 show_system_status()
-            elif choice == '6':
+            elif choice == '5':
                 show_documentation()
             else:
                 enviar_senal_log("INFO", "❌ Opción inválida. Intenta de nuevo.", "main", "migration")
@@ -293,7 +258,7 @@ def show_system_status():
     # 📁 Verificar estructura de directorios
     required_dirs = [
         'dashboard', 'core', 'sistema', 'config',
-        'utilities', 'tests', 'data', 'docs'
+        'utilities', 'teste', 'data', 'docs'
     ]
 
     enviar_senal_log("INFO", f"\n📁 ESTRUCTURA:", "main", "migration")

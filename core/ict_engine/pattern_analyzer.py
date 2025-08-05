@@ -33,8 +33,8 @@ from .ict_types import (
 )
 
 # --- Sistema de logging centralizado ---
-from sistema.logging_config import get_specialized_logger
-logger = get_specialized_logger('ict')
+from sistema.logging_interface import enviar_senal_log, log_ict
+# Usar sistema de logging central
 
 
 class ICTPatternAnalyzer:

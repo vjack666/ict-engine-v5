@@ -5,7 +5,6 @@
 
 import csv
 import json
-import os
 from json import JSONDecodeError
 from datetime import datetime
 from pathlib import Path
@@ -317,9 +316,8 @@ def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> N
 def log_trading_event(action: str, symbol: str, price: float, volume: float, order_type: str = "") -> bool:
     """Log de eventos de trading estandarizado"""
     try:
-        from sistema.logging_config import get_specialized_logger
-        trading_logger = get_specialized_logger('trading')
-        trading_logger.info("TRADING_EVENT: %s %s @ %s | Volume: %s | Type: %s", action, symbol, price, volume, order_type)
+        from sistema.logging_interface import log_trading
+        log_trading("INFO", f"TRADING_EVENT: {action} {symbol} @ {price} | Volume: {volume} | Type: {order_type}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
         enviar_senal_log("ERROR", f"Error en log_trading_event: {e}", "logging_utils", "migration")
@@ -328,9 +326,8 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
     """Log cuando una orden es ejecutada exitosamente"""
     try:
-        from sistema.logging_config import get_specialized_logger
-        trading_logger = get_specialized_logger('trading')
-        trading_logger.info("ORDER_FILLED: %s %s @ %s | Volume: %s", order_type, symbol, price, volume)
+        from sistema.logging_interface import log_trading
+        log_trading("INFO", f"ORDER_FILLED: {order_type} {symbol} @ {price} | Volume: {volume}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
         enviar_senal_log("ERROR", f"Error en log_order_filled: {e}", "logging_utils", "migration")
@@ -339,9 +336,8 @@ def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
 def log_order_rejected(order_type: str, symbol: str, reason: str):
     """Log cuando una orden es rechazada"""
     try:
-        from sistema.logging_config import get_specialized_logger
-        trading_logger = get_specialized_logger('trading')
-        trading_logger.warning("ORDER_REJECTED: %s %s | Reason: %s", order_type, symbol, reason)
+        from sistema.logging_interface import log_trading
+        log_trading("WARNING", f"ORDER_REJECTED: {order_type} {symbol} | Reason: {reason}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
         enviar_senal_log("ERROR", f"Error en log_order_rejected: {e}", "logging_utils", "migration")

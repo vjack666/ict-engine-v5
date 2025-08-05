@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -20,46 +22,75 @@ Fecha: 04 Agosto 2025
 """
 
 from datetime import datetime
+from typing import Tuple, Optional, Any
 from rich.text import Text
 from rich.panel import Panel
 
+# Importar el MT5DataManager del sistema en lugar de usar MT5 directamente
+try:
+    from utils.mt5_data_manager import get_mt5_manager
+    mt5_manager_available = True
+except ImportError:
+    # Para cuando se ejecuta directamente, intentar con path
+    import sys
+    import os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    try:
+        from utils.mt5_data_manager import get_mt5_manager
+        mt5_manager_available = True
+    except ImportError:
+        mt5_manager_available = False
 
-def detectar_mt5_optimizado():
+
+def detectar_mt5_optimizado() -> Tuple[bool, float, str]:
     """
-    Detección optimizada de MT5 con múltiples métodos
+    Detección optimizada de MT5 usando el MT5DataManager del sistema
 
     Returns:
         tuple: (conectado: bool, precio_actual: float, info_conexion: str)
     """
+    if not mt5_manager_available:
+        return False, 0.0, "MT5DataManager no disponible"
+
     try:
-        # Método 1: Verificación directa MT5
-        import MetaTrader5 as mt5
+        # Usar el MT5DataManager del sistema
+        mt5_manager = get_mt5_manager()
 
-        # Intentar conexión rápida
-        if not mt5.initialize():
-            return False, 0.0, "MT5 no inicializado"
+        # Verificar conexión
+        if not mt5_manager.is_connected:
+            # Intentar conectar
+            if not mt5_manager.connect():
+                return False, 0.0, "MT5 no puede conectar"
 
-        # Verificar cuenta activa
-        account_info = mt5.account_info()
-        if not account_info:
-            mt5.shutdown()
-            return False, 0.0, "Sin info de cuenta"
+        # Obtener información de cuenta para verificar conexión activa
+        account_info = mt5_manager.get_account_info()
+        if account_info.get("error"):
+            return False, 0.0, f"Error cuenta: {account_info['error']}"
 
-        # Obtener tick actual para confirmar conexión activa
-        tick = mt5.symbol_info_tick("EURUSD")
-        if not tick:
-            mt5.shutdown()
-            return False, 0.0, "Sin datos de tick"
+        # Intentar obtener datos históricos recientes para confirmar conexión
+        try:
+            # Obtener las últimas 2 barras M1 para verificar datos actuales
+            recent_data = mt5_manager.get_historical_data("EURUSD", "M1", 2, force_download=True)
+            if recent_data is not None and not recent_data.empty:
+                # Usar el precio de cierre más reciente
+                precio_actual = float(recent_data.iloc[-1]['close'])
 
-        precio_actual = tick.bid
-        mt5.shutdown()
+                # Verificar que el precio es realista (mayor que 0.5 y menor que 2.0 para EURUSD)
+                if 0.5 < precio_actual < 2.0:
+                    timestamp = recent_data.iloc[-1]['time'] if 'time' in recent_data.columns else "desconocido"
+                    return True, precio_actual, f"Conectado - {precio_actual:.5f} ({timestamp})"
+                else:
+                    return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f} (verificar)"
 
-        return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f}"
+            # Si no hay datos recientes, verificar que al menos la conexión existe
+            return True, 0.0, "Conectado sin datos recientes"
 
-    except ImportError:
-        return False, 0.0, "MT5 no instalado"
+        except Exception as e:
+            # Conexión existe pero sin datos
+            return True, 0.0, f"Conectado - Error datos: {str(e)[:30]}"
+
     except Exception as e:
-        return False, 0.0, f"Error: {str(e)[:50]}"
+        return False, 0.0, f"Error MT5Manager: {str(e)[:50]}"
 
 
 def render_hibernacion_perfecta(market_detector, hibernation_start, analysis_count,
@@ -185,7 +216,7 @@ def test_hibernacion_perfecta():
     conectado, precio, info = detectar_mt5_optimizado()
     print(f"MT5 Conectado: {conectado}")
     print(f"Precio: {precio}")
-    print(f"Info: {info}")
+    # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"Info: {info}")
 
     print("\n✅ Prueba completada")
 

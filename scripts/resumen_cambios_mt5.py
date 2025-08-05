@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 📋 RESUMEN DE CAMBIOS - VERIFICACIÓN DIRECTA MT5
@@ -76,11 +78,11 @@ try:
     print("\n🧪 TEST RÁPIDO:")
     mt5_status = _verificar_conexion_mt5_directa()
     print(f"   MT5 Conectado: {mt5_status['connected']}")
-    print(f"   Error (si hay): {mt5_status.get('error', 'Ninguno')}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"   Error (si hay): {mt5_status.get('error', 'Ninguno')}")
     print("   ✅ Funciones operativas")
 
 except Exception as e:
-    print(f"\n❌ Error en test: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"\n❌ Error en test: {e}")
 
 print("\n🎯 PRÓXIMOS PASOS:")
 print("   1. Probar con MT5 conectado")

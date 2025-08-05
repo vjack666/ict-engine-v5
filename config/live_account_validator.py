@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 """
 🚀 VALIDADOR DE TIPO DE CUENTA MT5 - LIVE ONLY
 ==============================================
@@ -361,4 +363,4 @@ if __name__ == "__main__":
     if validation.get('warnings'):
         print("\n⚠️ Advertencias:")
         for warning in validation['warnings']:
-            print(f"  - {warning}")
+            # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"  - {warning}")

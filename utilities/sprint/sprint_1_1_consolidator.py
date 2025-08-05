@@ -2,14 +2,14 @@
 # Herramienta final para consolidar todas las mejoras del Sprint 1.1
 
 import sys
-import os
 from pathlib import Path
 from datetime import datetime
 import json
-import subprocess
 import argparse
 import importlib.util
 from typing import Dict, List
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 
 # Agregar el directorio raíz al Python path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))

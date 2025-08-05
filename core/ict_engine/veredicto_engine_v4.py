@@ -17,8 +17,7 @@ Funcionalidades:
 Versión: v4.0.0 (Refactorizado para ConfidenceEngine)
 Fecha: 27 Julio 2025
 """
-
-import logging
+# TODO: Eliminado - usar enviar_senal_log # import logging
 from typing import Optional, Dict, List, Any, Tuple
 from datetime import datetime
 

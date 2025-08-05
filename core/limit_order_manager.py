@@ -17,7 +17,7 @@ import time
 from sistema.config import SIMBOLO
 
 # Sistema de logging centralizado
-from sistema.logging_config import get_specialized_logger
+from sistema.logging_interface import enviar_senal_log, log_trading
 
 # RiskBot para cálculo dinámico de volumen
 from core.risk_management.riskbot_mt5 import RiskBot
@@ -45,7 +45,7 @@ except ImportError:
 
 # 🔧 Silenciar advertencias MT5 del linter (falsos positivos)
 # pylint: disable=no-member
-logger = get_specialized_logger('trading')
+# Usar sistema de logging central
 
 
 class LimitOrderManager:

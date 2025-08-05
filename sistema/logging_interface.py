@@ -17,7 +17,7 @@ Versión profesional con:
 Autor: Sistema ITC Engine v5.0
 Fecha: 2024
 """
-
+# TODO: Eliminado - usar enviar_senal_log # # TODO: Eliminado - usar enviar_senal_log # import logging
 import logging
 import json
 from datetime import datetime

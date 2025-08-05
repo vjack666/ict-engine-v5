@@ -6,7 +6,13 @@
 Widget para controlar el AdvancedCandleDownloader desde el dashboard
 Proporciona interfaz visual para descarga de datos
 
+Integra con:
+- AdvancedCandleDownloader para descarga real
+- CandleCoordinator para orquestación
+- MT5DataManager para datos
+
 Creado por Sprint 1.2 Executor
+Actualizado: 2025-08-05 - Integración completa
 """
 
 from rich.panel import Panel
@@ -18,6 +24,18 @@ from rich import box
 from datetime import datetime
 from typing import Dict, List, Optional
 import threading
+
+# Importar el downloader avanzado
+try:
+    from core.data_management.advanced_candle_downloader import get_advanced_candle_downloader, DownloadStats
+    advanced_downloader_available = True
+except ImportError:
+    advanced_downloader_available = False
+    get_advanced_candle_downloader = None
+    DownloadStats = None
+
+# Importar logging centralizado
+from sistema.logging_interface import enviar_senal_log
 
 class CandleDownloaderWidget:
     """
@@ -53,6 +71,34 @@ class CandleDownloaderWidget:
 
         # Lock para thread safety
         self.lock = threading.Lock()
+
+        # Integración con Advanced Candle Downloader
+        self.advanced_downloader = None
+        self._initialize_downloader()
+
+    def _initialize_downloader(self):
+        """Inicializa el downloader avanzado"""
+        if advanced_downloader_available:
+            try:
+                self.advanced_downloader = get_advanced_candle_downloader()
+
+                # Configurar callbacks
+                self.advanced_downloader.progress_callback = self.on_download_progress
+                self.advanced_downloader.complete_callback = self.on_download_complete
+                self.advanced_downloader.error_callback = self.on_download_error
+
+                # Inicializar el downloader
+                if self.advanced_downloader.initialize():
+                    enviar_senal_log("INFO", "✅ Advanced Candle Downloader inicializado", "candle_downloader_widget", "initialization")
+                else:
+                    enviar_senal_log("ERROR", "⚠️ Error inicializando Advanced Candle Downloader", "candle_downloader_widget", "initialization")
+                    self.advanced_downloader = None
+
+            except Exception as e:
+                enviar_senal_log("ERROR", f"❌ Error configurando Advanced Candle Downloader: {e}", "candle_downloader_widget", "initialization")
+                self.advanced_downloader = None
+        else:
+            enviar_senal_log("WARNING", "⚠️ Advanced Candle Downloader no disponible", "candle_downloader_widget", "initialization")
 
     def render_control_panel(self) -> Panel:
         """Renderiza panel de controles"""
@@ -178,7 +224,41 @@ class CandleDownloaderWidget:
 
         return layout
 
-    # Métodos para callbacks del coordinador
+    # Métodos para callbacks del Advanced Candle Downloader
+    def on_download_progress(self, symbol: str, timeframe: str, progress: float, stats):
+        """Callback para progreso de descarga del Advanced Downloader"""
+        with self.lock:
+            key = f"{symbol}_{timeframe}"
+            self.progress_data[key] = {
+                'progress': progress,
+                'bars_downloaded': stats.downloaded_bars if stats else 0,
+                'total_bars': stats.total_bars if stats else 0,
+                'speed': stats.download_speed if stats else 0.0,
+                'last_update': datetime.now()
+            }
+
+    def on_download_complete(self, symbol: str, timeframe: str, stats):
+        """Callback para descarga completada del Advanced Downloader"""
+        with self.lock:
+            self.download_stats['total_downloads'] += 1
+            self.download_stats['successful'] += 1
+
+            if stats:
+                self.download_stats['total_bars'] += stats.downloaded_bars
+
+                # Actualizar velocidad promedio
+                if self.download_stats['total_downloads'] > 0:
+                    self.download_stats['average_speed'] = (
+                        self.download_stats['average_speed'] * (self.download_stats['total_downloads'] - 1) +
+                        stats.download_speed
+                    ) / self.download_stats['total_downloads']
+
+            # Limpiar progreso
+            key = f"{symbol}_{timeframe}"
+            if key in self.progress_data:
+                del self.progress_data[key]
+
+    # Métodos para callbacks del coordinador (legacy)
     def on_progress_update(self, symbol: str, timeframe: str, status: str, **kwargs):
         """Callback para updates de progreso"""
         with self.lock:
@@ -244,11 +324,38 @@ class CandleDownloaderWidget:
                 del self.progress_data[key]
 
     def start_download(self):
-        """Inicia descarga"""
-        self.is_downloading = True
+        """Inicia descarga usando el Advanced Candle Downloader"""
+        if self.is_downloading:
+            return False
+
+        try:
+            if self.advanced_downloader and advanced_downloader_available:
+                # Usar Advanced Candle Downloader
+                success = self.advanced_downloader.start_batch_download(
+                    symbols=self.selected_symbols,
+                    timeframes=self.selected_timeframes,
+                    lookback_bars=self.lookback_bars
+                )
+
+                if success:
+                    self.is_downloading = True
+                    return True
+                else:
+                    return False
+            else:
+                # Fallback - modo simulado
+                self.is_downloading = True
+                return True
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error iniciando descarga: {e}", "candle_downloader_widget", "download")
+            return False
 
     def stop_download(self):
         """Detiene descarga"""
+        if self.advanced_downloader and advanced_downloader_available:
+            self.advanced_downloader.stop_download()
+
         self.is_downloading = False
         self.progress_data.clear()
 
@@ -263,6 +370,48 @@ class CandleDownloaderWidget:
     def configure_lookback(self, lookback: int):
         """Configura número de velas"""
         self.lookback_bars = lookback
+
+    def update_from_advanced_downloader(self):
+        """Actualiza datos desde el Advanced Candle Downloader"""
+        if not self.advanced_downloader or not advanced_downloader_available:
+            return
+
+        try:
+            # Obtener progreso actual
+            progress_data = self.advanced_downloader.get_download_progress()
+            with self.lock:
+                self.progress_data.update(progress_data)
+
+            # Obtener estadísticas generales
+            stats = self.advanced_downloader.get_download_statistics()
+            if stats:
+                with self.lock:
+                    self.is_downloading = stats.get('is_downloading', False)
+                    # Actualizar estadísticas si hay datos nuevos
+                    if stats.get('downloaded_bars', 0) > 0:
+                        self.download_stats['total_bars'] = stats.get('total_bars', 0)
+                        self.download_stats['average_speed'] = stats.get('average_speed', 0.0)
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error actualizando desde Advanced Downloader: {e}", "candle_downloader_widget", "update")
+
+    def get_real_time_stats(self) -> Dict:
+        """Obtiene estadísticas en tiempo real"""
+        self.update_from_advanced_downloader()
+
+        with self.lock:
+            return {
+                'is_downloading': self.is_downloading,
+                'download_stats': self.download_stats.copy(),
+                'progress_data': self.progress_data.copy(),
+                'error_messages': self.error_messages.copy(),
+                'configuration': {
+                    'symbols': self.selected_symbols.copy(),
+                    'timeframes': self.selected_timeframes.copy(),
+                    'lookback_bars': self.lookback_bars
+                },
+                'advanced_downloader_available': self.advanced_downloader is not None
+            }
 
 # Instancia global para dashboard
 candle_downloader_widget = CandleDownloaderWidget()

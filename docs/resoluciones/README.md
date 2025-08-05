@@ -13,7 +13,7 @@ Esta carpeta contiene todas las soluciones técnicas y correcciones implementada
 - **Resultado:** 100% libre de errores
 
 #### 🕐 **[RESOLUCION_TRADING_SCHEDULE_COMPLETA.md](./RESOLUCION_TRADING_SCHEDULE_COMPLETA.md)**
-- **Estado:** ✅ COMPLETADO  
+- **Estado:** ✅ COMPLETADO
 - **Descripción:** Corrección del sistema de horarios de trading y cálculo de tiempo restante
 - **Problema:** Error de tipos en `calcular_tiempo_restante_para_proxima_sesion`
 - **Resultado:** Sistema de horarios 100% funcional

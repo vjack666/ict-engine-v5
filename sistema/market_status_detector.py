@@ -10,7 +10,7 @@ SISTEMA PROFESIONAL DE DETECCIÓN DE ESTADO DE MERCADO FOREX
 CARACTERÍSTICAS AVANZADAS:
 - ✅ Detección automática de sesiones de trading en tiempo real
 - ✅ Soporte completo para múltiples zonas horarias
-- ✅ Integración con TradingScheduleManager profesional  
+- ✅ Integración con TradingScheduleManager profesional
 - ✅ Detección automática de DST (Daylight Saving Time)
 - ✅ Cálculo preciso de tiempo restante hasta próximas sesiones
 - ✅ Soporte para brokers MT5 con diferentes zonas horarias
@@ -20,7 +20,7 @@ CARACTERÍSTICAS AVANZADAS:
 
 SESIONES SOPORTADAS:
 - 🌏 ASIA (Sydney/Tokyo): 21:00-06:00 UTC
-- 🇬🇧 LONDON (Europa): 08:00-17:00 UTC  
+- 🇬🇧 LONDON (Europa): 08:00-17:00 UTC
 - 🇺🇸 NEW_YORK (América): 13:00-22:00 UTC
 - 🔄 Detección automática de solapamientos
 
@@ -30,19 +30,18 @@ INTEGRACIÓN:
 - Trading Engine: Filtros de horario para trading automático
 
 AUTOR: ICT Engine v5.0 Professional
-FECHA: 4 Agosto 2025
+FECHA: 5 Agosto 2025
 VERSIÓN: v3.0 - Production Ready
 """
 
 import sys
-import os
 from datetime import datetime, timezone, timedelta
 import platform
 from typing import Dict, Optional, Any, Tuple
 from dataclasses import dataclass
 from enum import Enum
 
-# MIGRADO A SLUC v2.1 
+# MIGRADO A SLUC v2.1
 try:
     from sistema.logging_interface import enviar_senal_log
 except ImportError:
@@ -69,7 +68,7 @@ except ImportError:
 class MarketSession(Enum):
     """Enumeración de sesiones de mercado"""
     ASIA = "ASIA"
-    LONDON = "LONDON" 
+    LONDON = "LONDON"
     NEW_YORK = "NEW_YORK"
     CLOSED = "CLOSED"
 
@@ -99,7 +98,7 @@ class SessionInfo:
 class MarketStatusDetector:
     """
     🚀 DETECTOR PROFESIONAL DE ESTADO DE MERCADO v3.0
-    
+
     Proporciona detección en tiempo real del estado del mercado Forex
     con soporte completo para múltiples zonas horarias y sesiones.
     """
@@ -107,7 +106,7 @@ class MarketStatusDetector:
     def __init__(self):
         """Inicializar detector con configuración automática avanzada"""
         enviar_senal_log("INFO", "🚀 Inicializando Market Status Detector v3.0", __name__, "market_status")
-        
+
         # Integración con Trading Schedule Manager
         if trading_schedule_available:
             self.trading_schedule = TradingScheduleManager()
@@ -118,13 +117,13 @@ class MarketStatusDetector:
 
         # Detectar configuración del sistema
         self.timezone_info = self._detect_system_configuration()
-        
+
         # Cache para optimización
         self._cache_session_info = None
         self._cache_timestamp = None
         self._cache_duration = 30  # segundos
 
-        enviar_senal_log("INFO", 
+        enviar_senal_log("INFO",
                         f"Configuración detectada - "
                         f"Local: {self.timezone_info['local_timezone']} | "
                         f"Platform: {self.timezone_info['platform']} | "
@@ -138,7 +137,7 @@ class MarketStatusDetector:
         try:
             # Información del sistema
             platform_info = platform.system()
-            
+
             # Zona horaria local
             local_time = datetime.now()
             local_utc_offset = local_time.astimezone().utcoffset().total_seconds() / 3600
@@ -174,7 +173,7 @@ class MarketStatusDetector:
         # Mapeo mejorado de offsets UTC a zonas horarias
         timezone_map = {
             -12.0: "UTC-12 (Baker Island)",
-            -11.0: "UTC-11 (American Samoa)", 
+            -11.0: "UTC-11 (American Samoa)",
             -10.0: "UTC-10 (Hawaii)",
             -9.0: "UTC-9 (Alaska)",
             -8.0: "UTC-8 (Pacific Time)",
@@ -200,7 +199,7 @@ class MarketStatusDetector:
             11.0: "UTC+11 (Solomon Islands)",
             12.0: "UTC+12 (New Zealand)",
         }
-        
+
         return timezone_map.get(utc_offset, f"UTC{utc_offset:+.1f} (Unknown)")
 
     def _detect_broker_timezone(self) -> str:
@@ -225,26 +224,26 @@ class MarketStatusDetector:
                             if shutdown_func:
                                 shutdown_func()
                             return "UTC+2 (Europe/MT5)"
-                    
+
                     shutdown_func = getattr(mt5, 'shutdown', None)
                     if shutdown_func:
                         shutdown_func()
-                        
+
             except ImportError:
                 enviar_senal_log("WARNING", "MT5 no disponible - usando zona horaria por defecto", __name__, "market_status")
-                
+
         except Exception as e:
             enviar_senal_log("WARNING", f"Error detectando broker timezone: {e}", __name__, "market_status")
-            
+
         # Fallback a UTC+2 (común para brokers europeos)
         return "UTC+2 (Default/Europe)"
 
     def get_current_market_status(self) -> Dict[str, Any]:
         """
         🚀 FUNCIÓN PRINCIPAL: Obtiene el estado actual completo del mercado
-        
+
         Returns:
-            Diccionario completo con estado del mercado, sesión activa, 
+            Diccionario completo con estado del mercado, sesión activa,
             tiempo restante y información técnica
         """
         try:
@@ -263,10 +262,11 @@ class MarketStatusDetector:
             # Determinar estado del mercado
             market_status = self._determine_market_status_v3(current_session)
 
-            # Construir respuesta completa
+            # Construir respuesta completa con mejoras para dashboard
             status_response = {
                 'market_status': market_status['status'],
                 'emoji_status': market_status['emoji'],
+                'status_display': market_status['status'],  # Para compatibilidad con dashboard
                 'session_activa': {
                     'name': current_session.get('name', 'UNKNOWN') if current_session else 'UNKNOWN',
                     'description': current_session.get('description', 'N/A') if current_session else 'N/A',
@@ -281,6 +281,24 @@ class MarketStatusDetector:
                     'seconds': time_remaining.get('seconds', 0) if time_remaining else 0,
                     'time_string': f"{time_remaining.get('hours', 0):02d}:{time_remaining.get('minutes', 0):02d}:{time_remaining.get('seconds', 0):02d}" if time_remaining else "00:00:00"
                 },
+                'time_to_next_session': {
+                    'next_session': current_session.get('name', 'UNKNOWN') if current_session else 'UNKNOWN',
+                    'formatted_time': f"{time_remaining.get('hours', 0):02d}:{time_remaining.get('minutes', 0):02d}:{time_remaining.get('seconds', 0):02d}" if time_remaining else "00:00:00"
+                },
+                # Información temporal mejorada para dashboard
+                'tiempo_local': {
+                    'hora': datetime.now().strftime('%H:%M:%S'),
+                    'offset': f"UTC{self.timezone_info['local_utc_offset']:+.1f}"
+                },
+                'tiempo_utc': {
+                    'hora': datetime.now(timezone.utc).strftime('%H:%M:%S')
+                },
+                'tiempo_broker': {
+                    'hora': (datetime.now(timezone.utc) + timedelta(hours=2)).strftime('%H:%M:%S'),
+                    'offset': 'UTC+2'
+                },
+                'dia_semana': datetime.now().strftime('%A'),
+                'is_weekend': datetime.now().weekday() >= 5,
                 'timezone_info': self.timezone_info,
                 'timestamp': datetime.now().isoformat(),
                 'system_info': {
@@ -305,7 +323,7 @@ class MarketStatusDetector:
         """
         if not session_info or not session_info.get('is_active', False):
             return {
-                'status': 'CLOSED',
+                'status': 'MERCADO CERRADO',
                 'emoji': '🔴'
             }
 
@@ -314,19 +332,19 @@ class MarketStatusDetector:
 
         # Mapeo de estados por sesión
         if session_name == 'ASIA':
-            return {'status': 'OPEN (Asian Session)', 'emoji': '🟡'}
+            return {'status': 'MERCADO ABIERTO (Sesión Asiática)', 'emoji': '🟡'}
         elif session_name == 'LONDON':
-            return {'status': 'OPEN (London Session)', 'emoji': '🟢'}
+            return {'status': 'MERCADO ABIERTO (Sesión Londres)', 'emoji': '🟢'}
         elif session_name == 'NEW_YORK':
-            return {'status': 'OPEN (New York Session)', 'emoji': '🔵'}
+            return {'status': 'MERCADO ABIERTO (Sesión Nueva York)', 'emoji': '🔵'}
         else:
-            return {'status': 'OPEN (Active)', 'emoji': '🟢'}
+            return {'status': 'MERCADO ABIERTO', 'emoji': '🟢'}
 
     def _is_cache_valid(self) -> bool:
         """Verifica si el cache es válido"""
         if not self._cache_session_info or not self._cache_timestamp:
             return False
-        
+
         time_diff = (datetime.now() - self._cache_timestamp).total_seconds()
         return time_diff < self._cache_duration
 
@@ -338,7 +356,7 @@ class MarketStatusDetector:
     def _get_fallback_session(self) -> Dict[str, Any]:
         """Sesión de fallback cuando TradingScheduleManager no está disponible"""
         current_hour = datetime.now().hour
-        
+
         if 8 <= current_hour < 17:
             return {
                 'name': 'London Session',
@@ -351,7 +369,7 @@ class MarketStatusDetector:
             }
         elif 13 <= current_hour < 22:
             return {
-                'name': 'New York Session', 
+                'name': 'New York Session',
                 'session_key': 'NEW_YORK',
                 'description': 'Sesión Americana',
                 'volatility': 'HIGH',
@@ -362,7 +380,7 @@ class MarketStatusDetector:
         elif 21 <= current_hour or current_hour < 6:
             return {
                 'name': 'Asia-Pacific',
-                'session_key': 'ASIA', 
+                'session_key': 'ASIA',
                 'description': 'Sesión Asia-Pacífico',
                 'volatility': 'LOW',
                 'is_active': True,
@@ -385,6 +403,7 @@ class MarketStatusDetector:
         return {
             'market_status': 'ERROR',
             'emoji_status': '❌',
+            'status_display': 'ERROR DE SISTEMA',
             'session_activa': {
                 'name': 'ERROR',
                 'description': f'Error: {error_message[:50]}...',
@@ -397,6 +416,23 @@ class MarketStatusDetector:
                 'seconds': 0,
                 'time_string': "00:00:00"
             },
+            'time_to_next_session': {
+                'next_session': 'UNKNOWN',
+                'formatted_time': "00:00:00"
+            },
+            'tiempo_local': {
+                'hora': datetime.now().strftime('%H:%M:%S'),
+                'offset': 'ERROR'
+            },
+            'tiempo_utc': {
+                'hora': datetime.now(timezone.utc).strftime('%H:%M:%S')
+            },
+            'tiempo_broker': {
+                'hora': 'ERROR',
+                'offset': 'ERROR'
+            },
+            'dia_semana': datetime.now().strftime('%A'),
+            'is_weekend': datetime.now().weekday() >= 5,
             'timezone_info': self.timezone_info,
             'timestamp': datetime.now().isoformat(),
             'error': error_message
@@ -429,12 +465,12 @@ class MarketStatusDetector:
             status = self.get_current_market_status()
             session = status['session_activa']
             remaining = status['proxima_sesion']
-            
+
             if session['is_active']:
                 return f"{status['emoji_status']} {session['name']} - Próxima en {remaining['time_string']}"
             else:
                 return f"{status['emoji_status']} Mercado Cerrado - Próxima sesión en {remaining['time_string']}"
-                
+
         except Exception as e:
             return f"❌ Error obteniendo resumen: {str(e)[:30]}..."
 

@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 """
 🚀 WIDGET DE STATUS DE CUENTA - LIVE ONLY
 ========================================
@@ -21,7 +23,15 @@ from rich.table import Table
 from rich.console import Console
 from datetime import datetime
 
-from config.live_account_validator import get_account_validator, AccountType
+# Importación condicional para evitar errores en demo
+try:
+    from config.live_account_validator import get_account_validator, AccountType
+except ImportError:
+    # Para cuando se ejecuta directamente
+    import sys
+    import os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+    from config.live_account_validator import get_account_validator, AccountType
 
 class AccountStatusWidget:
     """Widget para mostrar el status de la cuenta MT5"""
@@ -59,12 +69,33 @@ class AccountStatusWidget:
             else:
                 # Usar validador directamente
                 validation = self.validator.validate_account_for_live_trading()
-                return validation
+                config = self.validator.get_live_trading_config()
+
+                # Combinar información de validación y configuración
+                combined_info = {
+                    "account_type": validation.get("account_type", "unknown"),
+                    "suitable_for_live": validation.get("suitable_for_live_trading", False),
+                    "risk_level": validation.get("risk_level", "UNKNOWN"),
+                    "warnings": validation.get("warnings", []),
+                    "recommendations": validation.get("recommendations", []),
+                    "config": {
+                        "risk_management": config.get("risk_management", "N/A"),
+                        "position_sizing": config.get("position_sizing", "N/A"),
+                        "max_risk_per_trade": config.get("max_risk_per_trade", 0),
+                        "trading_enabled": config.get("trading_enabled", False),
+                        "auto_trading": config.get("auto_trading", False)
+                    },
+                    "account_data": validation.get("account_data", {})
+                }
+                return combined_info
         except Exception as e:
             return {
                 "account_type": "error",
                 "error": str(e),
-                "suitable_for_live": False
+                "suitable_for_live": False,
+                "risk_level": "UNKNOWN",
+                "warnings": [f"Error al obtener información: {str(e)}"],
+                "config": {}
             }
 
     def _create_account_content(self, account_info: Dict[str, Any]) -> Text:
@@ -158,6 +189,10 @@ class AccountStatusWidget:
             "unknown": "gray"
         }
 
+        # Manejar el caso None
+        if account_type is None:
+            account_type = "unknown"
+
         return style_mapping.get(account_type, "white")
 
     def create_compact_status(self, mt5_manager=None) -> str:
@@ -230,13 +265,20 @@ def get_compact_account_status(mt5_manager=None) -> str:
 
 if __name__ == "__main__":
     # Demo del widget
-    console = Console()
-    widget = AccountStatusWidget()
+    try:
+        console = Console()
+        widget = AccountStatusWidget()
 
-    panel = widget.create_account_status_panel()
-    console.print(panel)
+        panel = widget.create_account_status_panel()
+        console.print(panel)
 
-    print(f"\nStatus compacto: {widget.create_compact_status()}")
+        print(f"\nStatus compacto: {widget.create_compact_status()}")
 
-    metrics = widget.get_account_metrics()
-    print(f"Métricas: {metrics}")
+        metrics = widget.get_account_metrics()
+        print(f"Métricas: {metrics}")
+
+        print("\n✅ Demo del widget ejecutada correctamente")
+
+    except Exception as e:
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en demo: {e}")
+        print("💡 Ejecuta desde el directorio raíz del proyecto: python dashboard/widgets/account_status_widget.py")

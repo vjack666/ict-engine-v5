@@ -20,14 +20,14 @@ try:
     from sistema.logging_interface import enviar_senal_log
     print("✅ Sistema de logging cargado")
 except Exception as e:
-    print(f"⚠️ Error con logging: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"⚠️ Error con logging: {e}")
 
 try:
     from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
     from core.ict_engine.confidence_engine import confidence_engine as global_confidence_engine
     print("✅ Confidence Engine cargado")
 except Exception as e:
-    print(f"❌ Error cargando Confidence Engine: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error cargando Confidence Engine: {e}")
     sys.exit(1)
 
 # Test básico del motor
@@ -46,7 +46,7 @@ try:
         print(f"  - {key}: {value:.1%}")
 
 except Exception as e:
-    print(f"❌ Error obteniendo estadísticas: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error obteniendo estadísticas: {e}")
 
 # NUEVA CONFIGURACIÓN OPTIMIZADA (Configuración Agresiva Meta 70%+)
 print("\n🔧 APLICANDO CONFIGURACIÓN OPTIMIZADA")
@@ -115,10 +115,10 @@ try:
             print(f"⚠️ Meta 70%+ aún requiere +{(0.70 - estimated_new):.1%} adicional")
 
     else:
-        print("❌ Error aplicando configuración")
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("❌ Error aplicando configuración")
 
 except Exception as e:
-    print(f"❌ Error en calibración: {e}")
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en calibración: {e}")
 
 print("\n🚀 PRÓXIMOS PASOS:")
 print("1. ✅ Configuración optimizada aplicada al motor global")

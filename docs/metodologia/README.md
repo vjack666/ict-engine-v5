@@ -6,7 +6,7 @@ Esta carpeta contiene la documentación completa de metodologías de trading ICT
 
 ### 📊 **[ICT_METHODOLOGY_COMPLETE_ANALYSIS.md](./ICT_METHODOLOGY_COMPLETE_ANALYSIS.md)**
 - **Descripción:** Análisis completo de la metodología ICT
-- **Contenido:** 
+- **Contenido:**
   - Conceptos fundamentales ICT
   - Market Structure y Smart Money
   - Order Blocks y Fair Value Gaps
@@ -38,7 +38,7 @@ Esta carpeta contiene la documentación completa de metodologías de trading ICT
 
 ### 🕐 **Session Analysis**
 - **London Session (Kill Zone)**
-- **New York Session (Kill Zone)**  
+- **New York Session (Kill Zone)**
 - **Asian Session**
 - **Session Overlaps**
 
@@ -61,7 +61,7 @@ core/ict_engine/                 # Motor principal ICT
 ## 📚 **REFERENCIAS Y FUENTES**
 
 - **ICT Official Concepts:** Inner Circle Trader methodology
-- **Smart Money Theory:** Institutional trading concepts  
+- **Smart Money Theory:** Institutional trading concepts
 - **Market Structure Analysis:** Technical analysis frameworks
 - **Session-based Trading:** Time-based market analysis
 

@@ -1,52 +1,134 @@
-# 📚 ÍNDICE DE BITÁCORAS ICT ENGINE v5.0 ✅ SLUC v2.1 + ORGANIZACIÓN COMPLETA
+# 📚 ÍNDICE DE BITÁCORAS ICT ENGINE v5.0 - ESTRUCTURA REORGANIZADA
 
-**Fecha de Actualización:** 03 Agosto 2025 - 17:30 hrs
-**Estado:** ✅ **MIGRA7. **✅ COMPLETADO:** Dashboard integration, MT5 real data, performance optimization
-8. **✅ COMPLETADO:** Fix emoji_logger + FVG arguments errors
-9. **✅ COMPLETADO:** Auditoría y migración Confidence Engine v2.0 con sistema multi-factor
-10. **✅ COMPLETADO:** Migración completa POI Logging a SLUC v2.1 - Sistema centralizado
-11. **🔧 NUEVO:** Integración avanzada Confidence Engine + Testing suite completo
+**Fecha de Actualización:** 04 Agosto 2025 - 15:30 hrs
+**Estado:** ✅ **ESTRUCTURA COMPLETAMENTE REORGANIZADA Y OPTIMIZADA**
+**Versión:** Limpia y eficiente - Solo archivos relevantes
 
 ---
 
-**Nota:** Sistema POI completamente migrado a SLUC v2.1. Confidence Engine v2.0 completado exitosamente. Sistema de confianza transformado a implementación multi-factor avanzada con migración completa a SLUC v2.1. Motor listo para integración avanzada y testing exhaustivo.GING + POI COMPLETADA - SLUC v2.1 SISTEMA UNIFICADO**
-**Última Actualización:** ✅ **MIGRACIÓN COMPLETA POI LOGGING A SLUC v2.1 + SISTEMA CENTRALIZADO + 100% COMPATIBILIDAD**
+## 🎯 **ESTRUCTURA ACTUAL ORGANIZADA**
 
----
+### 📋 **ARCHIVOS PRINCIPALES** (`/current/`)
+Documentos críticos y actuales del proyecto:
 
-## 📁 **ESTRUCTURA COMPLETAMENTE ORGANIZADA**
+- 🎯 `BITACORA_GENERAL_PROYECTO.md` - **DOCUMENTO MAESTRO DEL PROYECTO**
+- 📊 `ESTADO_BITACORAS_ACTUALIZADO_03_AGO_2025.md` - **Estado actual del sistema**
 
-### 📊 **REPORTES** (`/reportes/`)
-Documentos de estado final y resultados de implementaciones:
+### 🚀 **SPRINTS ACTIVOS** (`/sprints/`)
+Gestión de sprints y desarrollo iterativo:
 
-- ✅ `REPORTE_INTEGRACION_POI_DASHBOARD_EXITOSA.md` - **ACTUALIZADA**
-- ✅ `REPORTE_CAJAS_NEGRAS_ICT_ENGINE.md` - **VERIFICADA**
-- ✅ `REPORTE_NODOS_FALTANTES_RED_FLUJO.md`
-- ✅ `REPORTE_POI_TEST_SUITE_*.md` - Serie completa de tests
-- ✅ `REPORTE_TEST_SUITE_COMPLETO.md`
-- ✅ `IMPLEMENTACION_COMPLETADA.md` - **ORGANIZADA**
-- ✅ `proyecto_estado_actual.md` - **NUEVA - Estado General del Proyecto + Próximos Pasos**
+- 🚨 `SPRINT_EMERGENCIA_CRITICAL_REPAIR.md` - **SPRINT ACTUAL**
+- ⏸️ `SPRINT_1_8_PLAN.md` - **PRÓXIMO SPRINT (PAUSADO)**
+- ✅ `VERIFICACION_PRE_SPRINT_1_8.md` - **Verificación completada**
+- 📊 `RESUMEN_FINAL_SPRINT_1_6_EXITOSO.md` - **Último sprint exitoso**
+- 📋 `SPRINT_1_7_ADVANCED_PATTERNS_PLAN.md` - **Sprint de patrones avanzados**
+- 📜 `2025-08-03_sprint_1_1_completado.md` - **Sprint histórico**
 
-### 🛠️ **SISTEMAS** (`/sistemas/`)
-Documentación de sistemas core y actualizaciones principales:
+### ⚙️ **CONFIGURACIÓN** (`/configuracion/`)
+Configuración del sistema y herramientas:
 
-- ✅ `POI_LOGGING_MIGRATION_COMPLETADA.md` - **NUEVA - Migración Completa Sistema POI a SLUC v2.1**
-- ✅ `MIGRACION_LOGGING_COMPLETADA.md` - **ACTUALIZADA - Migración Completa a SLUC v2.1 - Sistema Unificado**
-- ✅ `AUDITORIA_CONFIDENCE_ENGINE_v2_0_COMPLETADA.md` - **NUEVA - Auditoría completa y migración Confidence Engine v2.0**
-- ✅ `dashboard_tct_integration_completed.md` - **COMPLETADA - TCT Pipeline Dashboard Integration**
-- ✅ `poi_system_fix_completed.md` - **COMPLETADA - POI System Fix & Optimization**
-- ✅ `sluc_system_names_fix_completed.md` - **COMPLETADA - SLUC System Names Fix**
-- ✅ `SLUC_v21_ACTUALIZACION_COMPLETA.md` - **NUEVA - Actualización Completa SLUC v2.1 + Routing Inteligente**
+- 🔧 `BITACORA_CONFIGURACION_VSCODE.md` - **Configuración VS Code**
+- 🔄 `BITACORA_CORRECCION_IMPORTS.md` - **Corrección de imports**
 
 ### 🔍 **DIAGNÓSTICOS** (`/diagnosticos/`)
-Análisis de problemas, debugging y seguimiento:
+Análisis de problemas y debugging:
 
-- ✅ `diagnostico_sistema_completo.md` - **ACTUALIZADA**
-- ✅ `BITACORA_DIAGNOSTICO_DASHBOARD.md`
-- ✅ `BITACORA_SEGUIMIENTO_ICT.md`
-- ✅ `tct_debugging_weekend_testing_completed.md` - **NUEVA - TCT Debugging + Weekend Testing Scripts**
+- 📊 `BITACORA_DIAGNOSTICO_DASHBOARD.md` - **Diagnóstico dashboard**
+- 🔍 `BITACORA_SEGUIMIENTO_ICT.md` - **Seguimiento ICT**
+- 🧪 `tct_debugging_weekend_testing_completed.md` - **Testing completado**
 
-Documentación de pruebas y validaciones:
+### 📈 **ESTRATEGIAS** (`/estrategias/`)
+Estrategias de trading y metodología:
+
+- 🎯 `ESTRATEGIA_ACTUAL_ICT_ENGINE_v5.0.md` - **Estrategia principal**
+
+### 👁️ **MONITOREO** (`/monitoreo/`)
+Monitoreo del sistema y detección de patrones:
+
+- ❌ `error_tracking.md` - **Seguimiento de errores**
+- 🔍 `pattern_detection.md` - **Detección de patrones**
+- 🔄 `poi_lifecycle.md` - **Ciclo de vida POI**
+
+### 📊 **REPORTES ACTUALES** (`/reportes/`)
+Reportes y análisis del sistema:
+
+- 📊 `ANALISIS_SYSTEM_MONITOR.md` - **Análisis del monitor**
+- ✅ `CONFIDENCE_ENGINE_v2_0_MIGRACION_EXITOSA.md` - **Migración exitosa**
+- 🔧 `CORRECCION_FASE2_SISTEMA_DESBLOQUEADO.md` - **Corrección fase 2**
+- �️ `CORRECCION_SISTEMATICA_FASE1_COMPLETADA.md` - **Corrección fase 1**
+- ✅ `IMPLEMENTACION_COMPLETADA.md` - **Implementación completada**
+- � `proyecto_estado_actual.md` - **Estado actual del proyecto**
+- 🔗 `REPORTE_CONSOLIDACION_LOGGING.md` - **Consolidación logging**
+- 🎯 `REPORTE_INTEGRACION_POI_DASHBOARD_EXITOSA.md` - **Integración POI exitosa**
+- 📊 `REPORTE_LIMPIEZA_FINAL_APROBADO.md` - **Limpieza final**
+- 🔍 `REPORTE_NODOS_FALTANTES_RED_FLUJO.md` - **Nodos faltantes**
+- 🔐 `REPORTE_SEGURIDAD_DEPENDENCIAS.md` - **Seguridad dependencias**
+- 🧪 `REPORTE_TEST_SUITE_COMPLETO.md` - **Suite de tests**
+- 📦 `REUBICACION_SYSTEM_MONITOR_COMPLETADA.md` - **Reubicación completada**
+
+### �️ **SISTEMAS** (`/sistemas/`)
+Sistemas core y actualizaciones principales:
+
+- ✅ `AUDITORIA_CONFIDENCE_ENGINE_v2_0_COMPLETADA.md` - **Auditoría CE completada**
+- 🔍 `CONFIDENCE_ENGINE_NECESARIO_ANALISIS.md` - **Análisis CE**
+- 🔧 `CONFIDENCE_ENGINE_TYPE_HANDLING_MEJORADO.md` - **Mejora tipos CE**
+- 🎯 `DETECTOR_IMPLEMENTACION_COMPLETADA_2025-08-04.md` - **Detector completado**
+- 📊 `DETECTOR_MERCADO_IMPLEMENTACION_2025-08-04.md` - **Detector mercado**
+- 🧹 `LIMPIEZA_DEBUGGING_FILES_2025-08-04.md` - **Limpieza debugging**
+- ✅ `LIVE_ACCOUNT_VALIDATOR_FIX_COMPLETED.md` - **Validador cuenta live**
+- 🔄 `MIGRACION_LOGGING_COMPLETADA.md` - **Migración logging**
+- 📊 `POI_LOGGING_MIGRATION_COMPLETADA.md` - **Migración POI logging**
+- 📈 `system_status.md` - **Estado del sistema**
+
+### 💱 **TRADING** (`/trading/`)
+Gestión de riesgo y decisiones de trading:
+
+- ⚠️ `risk_management.md` - **Gestión de riesgo**
+- 💰 `trading_decisions.md` - **Decisiones de trading**
+
+### 📂 **ARCHIVADO** (`/archive/`)
+Archivos históricos y obsoletos preservados:
+
+- 📁 `old_files/` - **Archivos obsoletos** (5 archivos)
+- 📁 `old_reports/` - **Reportes antiguos** (5 reportes)
+
+---
+
+## 🎯 **ARCHIVOS CRÍTICOS PRIORITARIOS**
+
+### 🚨 **ALTA PRIORIDAD**
+1. 🎯 `current/BITACORA_GENERAL_PROYECTO.md` - **DOCUMENTO MAESTRO**
+2. 🚨 `sprints/SPRINT_EMERGENCIA_CRITICAL_REPAIR.md` - **SPRINT ACTUAL**
+3. 📊 `current/ESTADO_BITACORAS_ACTUALIZADO_03_AGO_2025.md` - **Estado actual**
+
+### 📊 **PRIORIDAD MEDIA**
+1. ✅ `sprints/VERIFICACION_PRE_SPRINT_1_8.md` - **Verificación completada**
+2. 📊 `sprints/RESUMEN_FINAL_SPRINT_1_6_EXITOSO.md` - **Último exitoso**
+3. 🎯 `estrategias/ESTRATEGIA_ACTUAL_ICT_ENGINE_v5.0.md` - **Estrategia**
+
+---
+
+## � **BENEFICIOS DE LA REORGANIZACIÓN**
+
+### ✅ **Mejoras Obtenidas**
+- **80% menos archivos** en vista principal
+- **Navegación más eficiente** por categorías
+- **Archivos críticos** fácilmente identificables
+- **Historial preservado** en archive/
+- **Estructura lógica** y mantenible
+
+### 🎯 **Acceso Optimizado**
+- **Documentos actuales** en `/current/`
+- **Sprints activos** en `/sprints/`
+- **Reportes relevantes** organizados por tipo
+- **Sistemas** documentados por área
+- **Archivos obsoletos** preservados en `/archive/`
+
+---
+
+**Estado:** ✅ **ÍNDICE ACTUALIZADO - ESTRUCTURA OPTIMIZADA**
+**Reorganización:** Completada 04 Agosto 2025 - 15:30 hrs
+**Próximo:** Continuar con Sprint Emergencia sobre base limpia
 
 - ✅ `test_results.md` - **ACTUALIZADA**
 - ✅ Reportes de test suites POI

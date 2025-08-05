@@ -17,7 +17,7 @@ Versión: ICT Professional v1.0
 from rich.panel import Panel
 from rich.table import Table
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_ict
+from sistema.logging_interface import enviar_senal_log
 
 # 🎯 INTEGRACIÓN POI SYSTEM - VALIDADO AL 100%
 from core.poi_system.poi_detector import (
@@ -34,7 +34,6 @@ from rich import box
 from datetime import datetime
 import pandas as pd
 from typing import Dict, List, Optional
-import logging
 
 # 🔍 Logger especializado para widget ICT
 # SLUC v2.0: logging centralizado

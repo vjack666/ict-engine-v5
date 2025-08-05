@@ -8,7 +8,7 @@ Esta carpeta contiene manuales de usuario, guías operativas y documentación de
 - **Descripción:** Manual completo de modos automáticos del sistema
 - **Contenido:**
   - Configuración de modos automáticos
-  - Parámetros de trading automático  
+  - Parámetros de trading automático
   - Monitoreo y control
   - Troubleshooting
 - **Estado:** ✅ MANUAL COMPLETO
@@ -19,7 +19,7 @@ Esta carpeta contiene manuales de usuario, guías operativas y documentación de
 
 ### 🔧 **MANUALES TÉCNICOS**
 - **Configuración del Sistema**
-- **Parámetros de Trading**  
+- **Parámetros de Trading**
 - **Integración con MT5**
 - **Dashboard y Monitoreo**
 
@@ -66,7 +66,7 @@ Esta carpeta contiene manuales de usuario, guías operativas y documentación de
 ### 🟢 **PRINCIPIANTE**
 ```
 📋 Quick Start Guide
-🔧 Configuración Básica  
+🔧 Configuración Básica
 📊 Dashboard Básico
 🎯 Primeras Estrategias
 ```
@@ -75,7 +75,7 @@ Esta carpeta contiene manuales de usuario, guías operativas y documentación de
 ```
 📈 Análisis Avanzado
 🔍 Configuración Personalizada
-📊 Monitoreo Avanzado  
+📊 Monitoreo Avanzado
 🎯 Optimización de Estrategias
 ```
 

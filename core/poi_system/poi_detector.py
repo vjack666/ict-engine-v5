@@ -26,8 +26,8 @@ import json
 from pathlib import Path
 
 # --- Configuración de logging para POI ---
-from sistema.logging_config import get_specialized_logger
-poi_logger = get_specialized_logger('poi')
+from sistema.logging_interface import enviar_senal_log, log_poi
+# Usar sistema de logging central
 
 # =============================================================================
 # CONFIGURACIÓN Y CONSTANTES POI
@@ -498,9 +498,9 @@ def detectar_todos_los_pois(df: pd.DataFrame, timeframe: str = "M15",
     Returns:
         Dict con todos los POIs detectados por tipo
     """
-    poi_logger.info("🚀 INICIANDO DETECCIÓN COMPLETA DE POIs en %s", timeframe)
+    log_poi("INFO", f"🚀 INICIANDO DETECCIÓN COMPLETA DE POIs en {timeframe}", "poi_detector")
     precio_str = f"{current_price:.5f}" if current_price is not None else "N/A"
-    poi_logger.info("📊 Dataset: %s velas | Precio actual: %s", len(df), precio_str)
+    log_poi("INFO", f"📊 Dataset: {len(df)} velas | Precio actual: {precio_str}", "poi_detector")
 
     todos_los_pois = {
         'order_blocks': [],
@@ -1014,7 +1014,7 @@ class POIDetector:
     def __init__(self):
         """Inicializar el detector de POIs"""
         try:
-            poi_logger.info("INIT: POI Detector inicializado y listo para operar con ACC")
+            log_poi("INFO", "INIT: POI Detector inicializado y listo para operar con ACC", "poi_detector")
             self.config = POI_SCORING_CONFIG
             self.initialized = True
             enviar_senal_log("INFO", "POIDetector listo para integración ACC", __name__, "poi")
@@ -1040,7 +1040,7 @@ class POIDetector:
             Lista unificada de todos los POIs detectados
         """
         try:
-            poi_logger.info("🎯 ACC REQUEST: Iniciando detección completa de POIs en %s", timeframe)
+            log_poi("INFO", f"🎯 ACC REQUEST: Iniciando detección completa de POIs en {timeframe}", "poi_detector")
             enviar_senal_log("INFO", f"🔍 POI Detection iniciada para TF: {timeframe}", __name__, "detection")
 
             if not self.initialized:
@@ -1074,8 +1074,7 @@ class POIDetector:
             # 📊 ESTADÍSTICAS DE DETECCIÓN
             detection_time = (datetime.now() - detection_start).total_seconds()
 
-            poi_logger.info("✅ ACC RESPONSE: Detección completa finalizada. %d POIs encontrados en %s (%.2fs)",
-                           len(all_pois), timeframe, detection_time)
+            log_poi("INFO", f"✅ ACC RESPONSE: Detección completa finalizada. {len(all_pois)} POIs encontrados en {timeframe} ({detection_time:.2f}s)", "poi_detector")
 
             enviar_senal_log("INFO", f"✅ POI Detection completada: {len(all_pois)} POIs en {timeframe} ({detection_time:.2f}s)", __name__, "detection")
             enviar_senal_log("DEBUG", f"Distribución: OB={len(order_blocks)}, FVG={len(fair_value_gaps)}, BB={len(breaker_blocks)}, IM={len(imbalances)}", __name__, "detection")
@@ -1083,7 +1082,7 @@ class POIDetector:
             return all_pois
 
         except Exception as e:
-            poi_logger.error("❌ ERROR en find_all_pois: %s", str(e))
+            log_poi("ERROR", f"❌ ERROR en find_all_pois: {str(e)}", "poi_detector")
             enviar_senal_log("ERROR", f"❌ Error en detección POI: {e}", __name__, "detection")
             return []
 

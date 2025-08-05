@@ -34,7 +34,7 @@ def inicializar_sistema_candles():
             force_log_and_print("CANDLE_INIT", "✅ Sistema de Candles verificado.", False)
     except (FileNotFoundError, PermissionError, IOError) as e:
         if 'force_log_and_print' in globals():
-            force_log_and_print("CANDLE_INIT", f"❌ Error crítico al inicializar sistema de candles: {e}", True)
+            force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("CANDLE_INIT", f"❌ Error crítico al inicializar sistema de candles: {e}", True)
 
 # =============================================================================
 # SECCIÓN 9: CAPTURA DE SALIDA ESTÁNDAR PARA DEBUGGING DE RICH
@@ -165,7 +165,7 @@ MAX_BUFFER_SIZE = 100
 def log_checklist_evaluation(condiciones_cumplidas: int, total_condiciones: int, veredicto: str, detalles_checklist: Optional[dict] = None) -> None:
     """
     Registra específicamente las evaluaciones del checklist ICT en un CSV dedicado.
-    
+
     Args:
         condiciones_cumplidas (int): Número de condiciones cumplidas
         total_condiciones (int): Total de condiciones evaluadas
@@ -176,17 +176,17 @@ def log_checklist_evaluation(condiciones_cumplidas: int, total_condiciones: int,
         checklist_log_path = os.path.join(LOGS_DIR, "checklist_evaluations.csv")
         os.makedirs(os.path.dirname(checklist_log_path), exist_ok=True)
         timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
-        
+
         # Crear archivo si no existe
         if not os.path.exists(checklist_log_path):
             with open(checklist_log_path, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow([
                     'timestamp', 'condiciones_cumplidas', 'total_condiciones', 'veredicto',
-                    'estructura_externa', 'estructura_interna', 'zona_precios', 
+                    'estructura_externa', 'estructura_interna', 'zona_precios',
                     'poi_relevante', 'confirmacion_momentum', 'sesion_trading'
                 ])
-        
+
         # Preparar datos del checklist
         if detalles_checklist and 'checklist' in detalles_checklist:
             checklist_data = detalles_checklist['checklist']
@@ -199,7 +199,7 @@ def log_checklist_evaluation(condiciones_cumplidas: int, total_condiciones: int,
         else:
             estructura_externa = estructura_interna = zona_precios = False
             poi_relevante = confirmacion_momentum = sesion_trading = False
-        
+
         # Agregar la evaluación
         with open(checklist_log_path, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
@@ -208,10 +208,10 @@ def log_checklist_evaluation(condiciones_cumplidas: int, total_condiciones: int,
                 estructura_externa, estructura_interna, zona_precios,
                 poi_relevante, confirmacion_momentum, sesion_trading
             ])
-            
+
         # También registrar en el log general de eventos
         log_event("CHECKLIST_EVALUATION", f"{condiciones_cumplidas}/{total_condiciones} - {veredicto}")
-            
+
     except (FileNotFoundError, PermissionError, IOError) as e:
         error_msg = f"Error al registrar evaluación de checklist: {str(e)}"
         add_error_to_buffer(error_msg)
@@ -219,7 +219,7 @@ def log_checklist_evaluation(condiciones_cumplidas: int, total_condiciones: int,
 def log_event(evento: str, detalles: str = "") -> None:
     """
     Registra eventos importantes de la sesión en un archivo CSV.
-    
+
     Args:
         evento (str): Nombre o tipo del evento
         detalles (str): Detalles adicionales del evento
@@ -227,18 +227,18 @@ def log_event(evento: str, detalles: str = "") -> None:
     try:
         os.makedirs(os.path.dirname(EVENTOS_LOG_PATH), exist_ok=True)
         timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
-        
+
         # Crear archivo si no existe
         if not os.path.exists(EVENTOS_LOG_PATH):
             with open(EVENTOS_LOG_PATH, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow(['timestamp', 'evento', 'detalles'])
-        
+
         # Agregar el evento
         with open(EVENTOS_LOG_PATH, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow([timestamp, evento, detalles])
-            
+
     except (FileNotFoundError, PermissionError, IOError) as e:
         error_msg = f"Error al registrar evento: {str(e)}"
         enviar_senal_log("ERROR", f"[ERROR] {error_msg}", "data_logger", "migration")
@@ -249,7 +249,7 @@ def inicializar_csvs_logger():
     try:
         os.makedirs(SAFE_DATA_DIR, exist_ok=True)
         os.makedirs(os.path.dirname(TRADE_DECISION_LOG_PATH), exist_ok=True)
-        
+
         # Crear o verificar archivo de análisis periódico
         if not os.path.exists(ANALISIS_LOG_PATH):
             with open(ANALISIS_LOG_PATH, 'w', newline='') as f:
@@ -260,29 +260,29 @@ def inicializar_csvs_logger():
                     'cruce_k_d', 'cruce_d_k', 'sobreventa', 'sobrecompra',
                     'bb_upper', 'bb_sma', 'bb_lower', 'bb_width', 'bb_phase',
                     'account_balance', 'account_equity', 'floating_profit',
-                    'open_positions', 'total_volume', 
+                    'open_positions', 'total_volume',
                     'suggested_action', 'no_trade_reason'
                 ])
-        
+
         # Crear o verificar archivo de eventos
         if not os.path.exists(EVENTOS_LOG_PATH):
             with open(EVENTOS_LOG_PATH, 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(['timestamp', 'evento', 'detalles'])
-        
+
         # Crear o verificar archivo de errores críticos
         if not os.path.exists(ERROR_LOG_PATH):
             with open(ERROR_LOG_PATH, 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(['timestamp', 'module', 'function', 'error', 'stack_trace'])
-        
+
         # Crear o verificar archivo de operaciones ejecutadas
         if not os.path.exists(OPERACIONES_LOG_PATH):
             with open(OPERACIONES_LOG_PATH, 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow([
                     'timestamp', 'symbol', 'ticket', 'type', 'volume',
-                    'price_open', 'tp', 'sl', 'strategy', 'estoc_info', 
+                    'price_open', 'tp', 'sl', 'strategy', 'estoc_info',
                     'grid_info', 'bollinger_info', 'error_details'
                 ])
 
@@ -298,7 +298,7 @@ def inicializar_csvs_logger():
                     'ict_m15_bias', 'ict_h1_bias', 'ict_h4_bias',
                     'final_decision', 'action_taken', 'rejection_reason'
                 ])
-        
+
     except (FileNotFoundError, PermissionError, IOError) as e:
         enviar_senal_log("ERROR", f"[CRITICAL] Error inicializando CSVs: {e}", "data_logger", "migration")
         raise
@@ -334,7 +334,7 @@ def log_error_critico(modulo: str, funcion: str, error: str, stack_trace: Option
         with open(ERROR_LOG_PATH, 'a', newline='') as f:
             writer = csv.writer(f)
             writer.writerow([timestamp, modulo, funcion, error, stack_trace or ''])
-        
+
         # Añadir al buffer para el dashboard
         add_error_to_buffer(f"[{modulo}] {error}")
     except (FileNotFoundError, PermissionError, IOError) as e:
@@ -350,19 +350,19 @@ def add_error_to_buffer(msg: object) -> None:
             error_msg = "Error desconocido"
         else:
             error_msg = str(msg).strip()
-        
+
         # Evitar duplicados consecutivos
         if _error_buffer and _error_buffer[-1].endswith(error_msg):
             return
-            
+
         formatted_msg = f"{timestamp} - {error_msg}"
         _error_buffer.append(formatted_msg)
-        
+
         # Mantener el tamaño del buffer
         while len(_error_buffer) > MAX_BUFFER_SIZE:
             _error_buffer.pop(0)
     except (FileNotFoundError, PermissionError, IOError) as e:
-        enviar_senal_log("ERROR", f"Error en add_error_to_buffer: {str(e, "data_logger", "migration")}")
+        enviar_senal_log("ERROR", f"Error en add_error_to_buffer: {str(e)}", "data_logger", "migration")
 
 def get_error_buffer() -> List[str]:
     """Obtiene la lista actual de errores en el buffer."""
@@ -379,7 +379,7 @@ def log_operacion_ejecutada(symbol: str, ticket: int, tipo: str, volumen: float,
                           bollinger_info: Optional[dict] = None, error_detalle: str = ""):
     """
     Registra una operación ejecutada en el CSV de operaciones.
-    
+
     Args:
         symbol: Símbolo del instrumento
         ticket: Número de ticket de la orden
@@ -442,7 +442,7 @@ def log_trade_decision(
 ) -> None:
     """
     Registra una decisión de trading con toda la información relevante.
-    
+
     Args:
         symbol: Símbolo del instrumento
         current_price: Precio actual del instrumento
@@ -457,10 +457,10 @@ def log_trade_decision(
     """
     try:
         timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
-        
+
         # Asegurar que el directorio existe
         os.makedirs(os.path.dirname(TRADE_DECISION_LOG_PATH), exist_ok=True)
-        
+
         # Preparar los datos para el CSV
         row_data = [
             timestamp, symbol, current_price, spread,
@@ -471,12 +471,12 @@ def log_trade_decision(
             ict_data.get('M15', 'NEUTRAL'), ict_data.get('H1', 'NEUTRAL'), ict_data.get('H4', 'NEUTRAL'),
             final_decision, action_taken, rejection_reason
         ]
-        
+
         # Escribir al CSV
         with open(TRADE_DECISION_LOG_PATH, 'a', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(row_data)
-            
+
     except (FileNotFoundError, PermissionError, IOError) as e:
         error_msg = f"Error al registrar decisión de trading: {str(e)}"
         enviar_senal_log("ERROR", f"[ERROR] {error_msg}", "data_logger", "migration")
@@ -549,7 +549,7 @@ def guardar_velas(df: pd.DataFrame, timeframe: str, symbol: str) -> None:
     except (FileNotFoundError, PermissionError, IOError) as e:
         # Logging robusto y visible
         error_completo = f"Error en guardar_velas ({timeframe}): {e}\n{traceback.format_exc()}"
-        force_log_and_print("DATA_LOGGER", error_completo, es_error=True)
+        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("DATA_LOGGER", error_completo, es_error=True)
 
 def inicializar_directorio_candles():
     """Inicializa el directorio de velas en la ruta específica."""
@@ -578,24 +578,24 @@ def inicializar_directorio_candles():
 # =============================================================================
 def install_global_exception_handler():
     """Instala un manejador global para capturar todas las excepciones no controladas."""
-    
+
     original_excepthook = sys.excepthook
-    
+
     def custom_exception_handler(exc_type, exc_value, exc_traceback):
         """Manejador personalizado que registra y muestra todos los errores."""
         error_msg = str(exc_value) if exc_value else str(exc_type)
         full_traceback = ''.join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-        
+
         # Forzar el log y la impresión para asegurar visibilidad
-        force_log_and_print("GLOBAL_HANDLER", f"EXCEPCIÓN NO CAPTURADA: {error_msg}\n{full_traceback}", True)
-        
+        force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print("GLOBAL_HANDLER", f"EXCEPCIÓN NO CAPTURADA: {error_msg}\n{full_traceback}", True)
+
         # Llamar al manejador original para no romper el flujo normal de salida de errores
         original_excepthook(exc_type, exc_value, exc_traceback)
-    
+
     sys.excepthook = custom_exception_handler
     enviar_senal_log("INFO", "[LOGGER] OK Manejador global de excepciones instalado.", "data_logger", "migration")
 
-def force_log_and_print(modulo: str, mensaje: str, es_error: bool = True):
+def force_log_and_# TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(modulo: str, mensaje: str, es_error: bool = True):
     """
     Fuerza el logging a archivo y opcionalmente imprime en consola.
     NOTA: Cuando se usa Rich dashboard, solo loggea a archivo para evitar interferencias.
@@ -603,16 +603,16 @@ def force_log_and_print(modulo: str, mensaje: str, es_error: bool = True):
     try:
         timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
         prefix = "[ERROR]" if es_error else "[INFO]"
-        
+
         # CAMBIO IMPORTANTE: NO imprimir para evitar interferir con Rich dashboard
         # Los mensajes importantes se envían al terminal del dashboard usando add_terminal_log()
         # enviar_senal_log("INFO", f"\n{prefix} {timestamp} [{modulo}]: {mensaje}\n", "data_logger", "migration")
-        
+
         # En su lugar, usar el sistema de captura CSV para logging manual
         global _terminal_capture
         if _terminal_capture:
             _terminal_capture._log_to_csv('FORCE_LOG', f"{prefix} {timestamp} [{modulo}]: {mensaje}")
-        
+
         # Registrar en el archivo apropiado
         if es_error:
             add_error_to_buffer(f"{modulo}: {mensaje}")
@@ -682,34 +682,34 @@ def log_market_context_to_csv(market_context):
 
 class TerminalCaptureCSV:
     """
-    Captura TODAS las salidas del terminal (prints, errores, etc.) 
+    Captura TODAS las salidas del terminal (prints, errores, etc.)
     excepto Rich y las guarda en CSV para análisis completo
     """
     def __init__(self, csv_dir="../data/logs/terminal_capture"):
         self.csv_dir = Path(csv_dir)
         self.csv_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Importar zona horaria desde config
         try:
             from .config import ZONA_HORARIA_LOCAL
             self.timezone = ZONA_HORARIA_LOCAL
         except ImportError:
             self.timezone = 'America/Guayaquil'  # Fallback
-        
+
         # Archivo CSV diario
         date_str = datetime.now(pytz.timezone(self.timezone)).strftime("%Y-%m-%d")
         self.csv_file = self.csv_dir / f"terminal_capture_{date_str}.csv"
-        
+
         # Referencias originales
         self.original_stdout = sys.stdout
         self.original_stderr = sys.stderr
-        
+
         # Contador de mensajes
         self.message_count = 0
-        
+
         # Inicializar CSV
         self._init_csv()
-        
+
     def _init_csv(self):
         """Inicializa el archivo CSV con headers si no existe"""
         if not self.csv_file.exists():
@@ -717,7 +717,7 @@ class TerminalCaptureCSV:
             with open(self.csv_file, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
                 writer.writerow(headers)
-    
+
     def _is_rich_output(self, content):
         """Detecta si el contenido es de Rich dashboard"""
         rich_indicators = [
@@ -727,18 +727,18 @@ class TerminalCaptureCSV:
             '\r',  # Carriage return usado por Rich Live
         ]
         return any(indicator in content for indicator in rich_indicators)
-    
+
     def _log_to_csv(self, stream_type, content):
         """Loggea el contenido al CSV"""
         try:
             if not content.strip():
                 return  # No loggear líneas vacías
-                
+
             self.message_count += 1
             timestamp = datetime.now(pytz.timezone(self.timezone)).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-            
+
             is_rich = self._is_rich_output(content)
-            
+
             # Solo loggear si NO es Rich
             if not is_rich:
                 row = [
@@ -749,28 +749,28 @@ class TerminalCaptureCSV:
                     len(content),
                     'NO'
                 ]
-                
+
                 with open(self.csv_file, 'a', newline='', encoding='utf-8') as f:
                     writer = csv.writer(f)
                     writer.writerow(row)
         except (FileNotFoundError, PermissionError, IOError) as e:
             # Fallar silenciosamente para no crear loops infinitos
             pass
-    
+
     def write_stdout(self, content):
         """Captura stdout"""
         self.original_stdout.write(content)
         self._log_to_csv('STDOUT', content)
-        
+
     def write_stderr(self, content):
         """Captura stderr"""
         self.original_stderr.write(content)
         self._log_to_csv('STDERR', content)
-        
+
     def flush_stdout(self):
         """Flush stdout"""
         self.original_stdout.flush()
-        
+
     def flush_stderr(self):
         """Flush stderr"""
         self.original_stderr.flush()
@@ -780,10 +780,10 @@ class StdoutInterceptor:
     """Interceptor para stdout"""
     def __init__(self, capture_system):
         self.capture = capture_system
-    
+
     def write(self, content):
         self.capture.write_stdout(content)
-    
+
     def flush(self):
         self.capture.flush_stdout()
 
@@ -792,10 +792,10 @@ class StderrInterceptor:
     """Interceptor para stderr"""
     def __init__(self, capture_system):
         self.capture = capture_system
-    
+
     def write(self, content):
         self.capture.write_stderr(content)
-    
+
     def flush(self):
         self.capture.flush_stderr()
 
@@ -809,17 +809,17 @@ def install_terminal_capture_csv():
     DEBE llamarse ANTES de cualquier print o Rich
     """
     global _terminal_capture
-    
+
     try:
         _terminal_capture = TerminalCaptureCSV()
-        
+
         # Redirigir stdout y stderr
         sys.stdout = StdoutInterceptor(_terminal_capture)
         sys.stderr = StderrInterceptor(_terminal_capture)
-        
+
         # Loggear que el sistema está activo
         _terminal_capture._log_to_csv('SYSTEM', 'Terminal capture CSV iniciado correctamente')
-        
+
         return True
     except (FileNotFoundError, PermissionError, IOError) as e:
         enviar_senal_log("ERROR", f"Error instalando terminal capture CSV: {e}", "data_logger", "migration")

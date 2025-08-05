@@ -21,6 +21,8 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 - H2: Análisis ICT profesional con datos reales completos
 - H3: 🧠 Patrones ICT con narrativa completa y plan de acción
 - H4: 📊 Analytics y métricas avanzadas del sistema
+- H5: ⚡ TCT Pipeline con análisis en tiempo real
+- H6: 📥 Candle Downloader con control de descarga
 - R: Refresh manual de todo el sistema y datos MT5
 - P: Toggle análisis automático de patrones
 - D: Debug mode para desarrollo
@@ -33,13 +35,34 @@ Versión: Dashboard Definitivo v5.0 🚀
 Entorno: PRODUCCIÓN - DATOS REALES MT5
 """
 
-# Standard library imports
-import logging
-import random
+# --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
+# DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
 import sys
+from pathlib import Path
+
+# Asegurar que Python pueda encontrar todos los módulos del proyecto
+try:
+    # El directorio padre de dashboard es el proyecto principal
+    project_root = Path(__file__).parent.parent  # ICT Engine v5.0
+
+    # Agregar las rutas necesarias al sys.path
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
+    # Verificar que el directorio es correcto
+    sistema_path = project_root / "sistema"
+    if not sistema_path.exists():
+        raise RuntimeError(f"No se puede encontrar el directorio sistema en {project_root}")
+
+except (FileNotFoundError, PermissionError, IOError) as e:
+    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
+    sys.exit(1)
+# -------------------------------------------------
+
+# Standard library imports
+import random
 import traceback
 from datetime import datetime
-from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 # Third party imports
@@ -51,41 +74,22 @@ from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
 from rich.text import Text
 from rich.panel import Panel
 
-# === SPRINT 1.2: CANDLE DOWNLOADER INTEGRATION ===
-try:
-    from dashboard.candle_downloader_widget import candle_downloader_widget
-    from core.integrations.candle_downloader_integration import downloader_integration
-    CANDLE_DOWNLOADER_AVAILABLE = True
-except ImportError as e:
-    print(f"Warning: Candle downloader integration no disponible: {e}")
-    CANDLE_DOWNLOADER_AVAILABLE = False
-    candle_downloader_widget = None
-    downloader_integration = None
-
-# --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
-# DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
-# Asegurar que Python pueda encontrar todos los módulos del proyecto
-try:
-    # El directorio padre de dashboard es el proyecto principal
-    project_root = Path(__file__).parent.parent  # ICT Engine v3.4
-
-    # Agregar las rutas necesarias al sys.path
-    if str(project_root) not in sys.path:
-        sys.path.insert(0, str(project_root))
-    # Verificar que el directorio es correcto
-    core_path = project_root / "core"
-    if not core_path.exists():
-        raise RuntimeError(f"No se puede encontrar el directorio core en {project_root}")
-
-except (FileNotFoundError, PermissionError, IOError) as e:
-    print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
-    sys.exit(1)
-# -------------------------------------------------
-
 # Local imports
 from sistema.logging_interface import enviar_senal_log, log_dashboard
 from sistema.market_status_detector import MarketStatusDetector
 from utils.mt5_data_manager import get_mt5_manager
+
+# === SPRINT 1.2: CANDLE DOWNLOADER INTEGRATION ===
+try:
+    from dashboard.candle_downloader_widget import candle_downloader_widget
+    from core.integrations.candle_downloader_integration import downloader_integration
+    candle_downloader_available = True
+    enviar_senal_log("INFO", "✅ Candle downloader integration cargado exitosamente", "dashboard_definitivo", "candle_downloader")
+except ImportError as e:
+    enviar_senal_log("WARNING", f"⚠️ Candle downloader integration no disponible: {e}", "dashboard_definitivo", "candle_downloader")
+    candle_downloader_available = False
+    candle_downloader_widget = None
+    downloader_integration = None
 
 # Core imports
 from core.poi_system import poi_detector
@@ -97,6 +101,15 @@ from core.risk_management.riskbot_mt5 import RiskBot
 from config.config_manager import ConfigManager
 from dashboard.dashboard_controller import get_dashboard_controller
 
+# 🌙 HIBERNACIÓN PERFECTA INTEGRATION
+try:
+    from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
+    hibernacion_perfecta_available = True
+    enviar_senal_log("INFO", "✅ Hibernación Perfecta disponible para detección MT5", "dashboard_definitivo", "migration")
+except ImportError as e:
+    hibernacion_perfecta_available = False
+    enviar_senal_log("INFO", f"⚠️ Hibernación Perfecta no disponible: {e}", "dashboard_definitivo", "migration")
+
 # 🎯 MULTI-POI DASHBOARD INTEGRATION
 try:
     from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
@@ -106,36 +119,16 @@ except ImportError as e:
     multi_poi_available = False
     enviar_senal_log("INFO", f"⚠️ Multi-POI Dashboard no disponible: {e}", "dashboard_definitivo", "migration")
 
-# 🧠 CLEAN POI DIAGNOSTICS INTEGRATION
-try:
-    from scripts.clean_poi_diagnostics import integrar_poi_dashboard_limpio
-    clean_poi_available = True
-    enviar_senal_log("INFO", "✅ Clean POI Diagnostics disponible", "dashboard_definitivo", "migration")
-except ImportError as e:
-    clean_poi_available = False
-    enviar_senal_log("INFO", f"⚠️ Clean POI Diagnostics no disponible: {e}", "dashboard_definitivo", "migration")
+# 🧠 CLEAN POI DIAGNOSTICS INTEGRATION - REMOVIDO (ARCHIVO NO EXISTE)
+# NOTA: Se eliminó la dependencia de scripts.clean_poi_diagnostics ya que el archivo no existe
+# El sistema usará Multi-POI Dashboard como alternativa principal
+clean_poi_available = False
+enviar_senal_log("INFO", "⚠️ Clean POI Diagnostics removido - usando Multi-POI como alternativa", "dashboard_definitivo", "migration")
 
-# 🔧 CONFIGURACIÓN DE LOGGING CENTRALIZADO - FASE 2
-try:
-    # MIGRADO A SLUC v2.0 - Sistema de logging unificado
-    # Configurar logging SLUC v2.1 - Sistema Unificado
-    enviar_senal_log("INFO", "🚀 Dashboard Definitivo conectado al sistema de logging centralizado", "dashboard_definitivo", "dashboard")
-    enviar_senal_log("INFO", "📊 Iniciando sistema de vigilancia para dashboard principal", "dashboard_definitivo", "dashboard")
-    # Registrar evento de sistema
-    enviar_senal_log("INFO", "Dashboard Definitivo iniciado", __name__, "general")
-except ImportError as e:
-    # Fallback a logging básico si no está disponible el smart logger
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s | %(levelname)s | %(name)s | %(message)s',
-        handlers=[
-            logging.StreamHandler(),
-            logging.FileHandler('data/logs/dashboard/dashboard_definitivo.log',
-                              encoding='utf-8')
-        ]
-    )
-    logger = logging.getLogger('sentinel.dashboard_definitivo')
-    enviar_senal_log("WARNING", f"⚠️ Smart logger no disponible: {e}. Usando logging básico.", "dashboard_definitivo", "initialization")
+# 🔧 CONFIGURACIÓN DE LOGGING CENTRALIZADO - SISTEMA SLUC v2.1
+enviar_senal_log("INFO", "🚀 Dashboard Definitivo conectado al sistema de logging centralizado", "dashboard_definitivo", "dashboard")
+enviar_senal_log("INFO", "📊 Iniciando sistema de vigilancia para dashboard principal", "dashboard_definitivo", "dashboard")
+enviar_senal_log("INFO", "Dashboard Definitivo iniciado", __name__, "general")
 
 # Imports de sistemas reales MT5 y ICT
 try:
@@ -269,6 +262,21 @@ class SentinelDashboardDefinitivo(App):
         padding: 1;
     }
 
+    .tct-panel {
+        background: $panel;
+        border: solid $accent;
+        margin: 1;
+        padding: 1;
+    }
+
+    .downloader-panel {
+        background: $panel;
+        border: solid $success;
+        margin: 1;
+        padding: 1;
+        min-height: 15;
+    }
+
     .main-header {
         background: $primary;
         color: $text;
@@ -288,6 +296,8 @@ class SentinelDashboardDefinitivo(App):
         Binding("h2", "switch_ict", "🔍 ICT Pro", show=True),
         Binding("h3", "switch_patterns", "🧠 Patrones", show=True),
         Binding("h4", "switch_analytics", "📊 Analytics", show=True),
+        Binding("h5", "switch_tct", "⚡ TCT", show=True),
+        Binding("h6", "switch_downloader", "📥 Downloader", show=True),
         Binding("r", "refresh_system", "🔄 Refresh", show=True),
         Binding("p", "toggle_patterns", "🎯 Auto", show=True),
         Binding("d", "toggle_debug", "🐛 Debug", show=True),
@@ -384,28 +394,21 @@ class SentinelDashboardDefinitivo(App):
             self.riskbot = None
 
         # 📊 LOGGERS INTELIGENTES (Usar sistema SLUC v2.1)
-        try:
-            # CORRECCIÓN: Usar el sistema SLUC v2.1 en lugar de logging directo
-            # Nota: enviar_senal_log ya está importado en el scope global
-            self.logger = None  # No usar logging directo
-            enviar_senal_log('INFO',
-                           "📊 Sistema de logging SLUC v2.1 conectado",
-                           __name__,
-                           'dashboard')
-            enviar_senal_log("INFO", "📊 Sistema de logging inteligente conectado", "dashboard_definitivo", "migration")
-        except (FileNotFoundError, PermissionError, IOError) as e:
-            enviar_senal_log("INFO", f"⚠️ Sistema SLUC no disponible: {e}", "dashboard_definitivo", "migration")
-            # Fallback temporal - usar logging global importado
-            # Nota: logging ya está importado en el scope global (línea 66)
-            self.logger = logging.getLogger(__name__)  # Logger por defecto
+        # Solo usar el sistema de logging centralizado
+        self.logger = None  # No usar logging directo
+        enviar_senal_log('INFO',
+                       "📊 Sistema de logging SLUC v2.1 conectado",
+                       __name__,
+                       'dashboard')
+        enviar_senal_log("INFO", "📊 Sistema de logging inteligente conectado", "dashboard_definitivo", "migration")
 
         enviar_senal_log("INFO", "🎯 INVENTARIO DE ESPECIALISTAS CONECTADOS:", "dashboard_definitivo", "migration")
         enviar_senal_log("INFO", "🧠 ICT Engine: Detector, Analyzer, Confidence, Veredicto, Historical", "dashboard_definitivo", "migration")
         enviar_senal_log("INFO", "🎯 POI System: Detector Functions, Scoring Engine", "dashboard_definitivo", "migration")
         enviar_senal_log("INFO", "💼 Trading Core: Decision Engine, Smart Cache", "dashboard_definitivo", "migration")
         enviar_senal_log("INFO", "🔗 Managers: Limit Orders, Config", "dashboard_definitivo", "migration")
-        enviar_senal_log("INFO", "�️ Risk Management: RiskBot MT5, Position Management", "dashboard_definitivo", "migration")
-        enviar_senal_log("INFO", "�📊 Logging: Smart Logger activo", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "🛡️ Risk Management: RiskBot MT5, Position Management", "dashboard_definitivo", "migration")
+        enviar_senal_log("INFO", "📊 Logging: Smart Logger activo", "dashboard_definitivo", "migration")
         enviar_senal_log("INFO", "🚀 TODOS LOS ESPECIALISTAS LISTOS PARA ACCIÓN", "dashboard_definitivo", "migration")
 
         # 🔗 DASHBOARD CONTROLLER INTEGRATION - CRÍTICO PARA COMUNICACIÓN CON BACKEND
@@ -429,6 +432,8 @@ class SentinelDashboardDefinitivo(App):
         self.ict_static = None
         self.pattern_static = None
         self.analytics_static = None
+        self.tct_static = None
+        self.downloader_static = None
 
         # 📊 Datos reales de mercado - CAJA NEGRA INTEGRADA
         self.real_market_data = {
@@ -524,46 +529,113 @@ class SentinelDashboardDefinitivo(App):
 
     def _detectar_mt5_optimizado(self):
         """
-        Detección optimizada de MT5 con múltiples métodos
+        Detección optimizada de MT5 usando el MT5DataManager del sistema
 
         Returns:
             tuple: (conectado: bool, precio_actual: float, info_conexion: str)
         """
         try:
-            # Método 1: Verificación directa MT5
-            import MetaTrader5 as mt5
+            # Usar el MT5DataManager si está disponible
+            if hasattr(self, 'mt5_manager') and self.mt5_manager:
+                # Verificar conexión
+                if not self.mt5_manager.is_connected:
+                    # Intentar conectar
+                    if not self.mt5_manager.connect():
+                        self.mt5_connected = False
+                        return False, 0.0, "MT5 no puede conectar"
 
-            # Intentar conexión rápida
-            if not mt5.initialize():
-                return False, 0.0, "MT5 no inicializado"
+                # Obtener información de cuenta para verificar conexión activa
+                account_info = self.mt5_manager.get_account_info()
+                if account_info.get("error"):
+                    self.mt5_connected = False
+                    return False, 0.0, f"Error cuenta: {account_info['error']}"
 
-            # Verificar cuenta activa
-            account_info = mt5.account_info()
-            if not account_info:
-                mt5.shutdown()
-                return False, 0.0, "Sin info de cuenta"
+                # Intentar obtener datos históricos recientes para confirmar conexión
+                try:
+                    # Obtener las últimas 2 barras M1 para verificar datos actuales
+                    recent_data = self.mt5_manager.get_historical_data(self.symbol, "M1", 2, force_download=True)
+                    if recent_data is not None and not recent_data.empty:
+                        # Usar el precio de cierre más reciente
+                        precio_actual = float(recent_data.iloc[-1]['close'])
 
-            # Obtener tick actual para confirmar conexión activa
-            tick = mt5.symbol_info_tick("EURUSD")
-            if not tick:
-                mt5.shutdown()
-                return False, 0.0, "Sin datos de tick"
+                        # Verificar que el precio es realista
+                        if 0.5 < precio_actual < 2.0:  # Para EURUSD
+                            # Actualizar variables de clase también
+                            self.mt5_connected = True
+                            self.current_price = precio_actual
+                            timestamp = recent_data.iloc[-1]['time'] if 'time' in recent_data.columns else "desconocido"
+                            return True, precio_actual, f"Conectado - {precio_actual:.5f} ({timestamp})"
+                        else:
+                            self.mt5_connected = True
+                            self.current_price = precio_actual
+                            return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f} (verificar)"
 
-            precio_actual = tick.bid
-            mt5.shutdown()
+                    # Si no hay datos recientes, verificar que al menos la conexión existe
+                    self.mt5_connected = True
+                    return True, 0.0, "Conectado sin datos recientes"
 
-            # Actualizar variables de clase también
-            self.mt5_connected = True
-            self.current_price = precio_actual
+                except Exception as e:
+                    # Conexión existe pero sin datos
+                    self.mt5_connected = True
+                    return True, 0.0, f"Conectado - Error datos: {str(e)[:30]}"
 
-            return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f}"
+            # Fallback al método anterior si no hay MT5DataManager
+            else:
+                # Método 1: Verificación directa MT5
+                import MetaTrader5 as mt5
+
+                # Usar getattr para evitar errores de tipo en Pylance
+                initialize_func = getattr(mt5, 'initialize', None)
+                if not initialize_func or not initialize_func():
+                    return False, 0.0, "MT5 no inicializado"
+
+                # Verificar cuenta activa
+                account_info_func = getattr(mt5, 'account_info', None)
+                if not account_info_func:
+                    shutdown_func = getattr(mt5, 'shutdown', None)
+                    if shutdown_func:
+                        shutdown_func()
+                    return False, 0.0, "Sin función account_info"
+
+                account_info = account_info_func()
+                if not account_info:
+                    shutdown_func = getattr(mt5, 'shutdown', None)
+                    if shutdown_func:
+                        shutdown_func()
+                    return False, 0.0, "Sin info de cuenta"
+
+                # Obtener tick actual para confirmar conexión activa
+                symbol_info_tick_func = getattr(mt5, 'symbol_info_tick', None)
+                if not symbol_info_tick_func:
+                    shutdown_func = getattr(mt5, 'shutdown', None)
+                    if shutdown_func:
+                        shutdown_func()
+                    return False, 0.0, "Sin función symbol_info_tick"
+
+                tick = symbol_info_tick_func(self.symbol)
+                if not tick:
+                    shutdown_func = getattr(mt5, 'shutdown', None)
+                    if shutdown_func:
+                        shutdown_func()
+                    return False, 0.0, "Sin datos de tick"
+
+                precio_actual = tick.bid
+                shutdown_func = getattr(mt5, 'shutdown', None)
+                if shutdown_func:
+                    shutdown_func()
+
+                # Actualizar variables de clase también
+                self.mt5_connected = True
+                self.current_price = precio_actual
+
+                return True, precio_actual, f"Conectado - Precio: {precio_actual:.5f}"
 
         except ImportError:
             self.mt5_connected = False
             return False, 0.0, "MT5 no instalado"
         except Exception as e:
             self.mt5_connected = False
-            return False, 0.0, f"Error: {str(e)[:50]}"
+            return False, 0.0, f"Error MT5: {str(e)[:50]}"
 
     def compose(self) -> ComposeResult:
         """Composición de la interfaz con 4 pestañas especializadas"""
@@ -620,6 +692,16 @@ class SentinelDashboardDefinitivo(App):
                     )
                     yield self.tct_static
 
+            # 📥 Pestaña H6: Candle Downloader
+            with TabPane("📥 Downloader", id="tab_downloader"):
+                with Container(classes="scrollable-container"):
+                    self.downloader_static = Static(
+                        self.render_downloader_panel(),
+                        id="downloader_display",
+                        classes="downloader-panel"
+                    )
+                    yield self.downloader_static
+
         yield Footer(classes="main-footer")
 
     def on_mount(self) -> None:
@@ -670,6 +752,24 @@ class SentinelDashboardDefinitivo(App):
     def render_hibernation_panel(self):
         """Renderiza panel de hibernación perfecta con detección optimizada MT5"""
 
+        # 🌙 USAR HIBERNACIÓN PERFECTA EXTERNA SI ESTÁ DISPONIBLE
+        if hibernacion_perfecta_available:
+            try:
+                return render_hibernacion_perfecta(
+                    market_detector=self.market_detector,
+                    hibernation_start=self.hibernation_start,
+                    analysis_count=self.system_metrics.get('total_refreshes', 0),
+                    patterns_detected=self.system_metrics.get('alerts_generated', 0),
+                    high_probability_signals=getattr(self, 'high_probability_count', 0),
+                    system_metrics=self.system_metrics,
+                    riskbot=getattr(self, 'riskbot', None),
+                    debug_mode=self.debug_mode
+                )
+            except Exception as e:
+                enviar_senal_log("ERROR", f"Error en hibernación perfecta externa: {e}", "dashboard_definitivo", "migration")
+                # Continuar con implementación interna en caso de error
+
+        # 🔄 IMPLEMENTACIÓN INTERNA DE RESPALDO
         # ⚡ USAR DETECTOR DE MERCADO EXISTENTE (COHERENCIA ENTRE PESTAÑAS)
         market_status = self.market_detector.get_current_market_status()
 
@@ -786,26 +886,18 @@ class SentinelDashboardDefinitivo(App):
             # CONFIGURACIÓN: FORZAR MODO DESARROLLO PARA DATOS COMPLETOS
             DEVELOPMENT_MODE = True
 
-            # 🧠 USAR SISTEMA LIMPIO DIRECTAMENTE (SIN CAJA NEGRA)
-            if clean_poi_available:
+            # 🧠 USAR MULTI-POI DASHBOARD COMO SISTEMA PRINCIPAL
+            if multi_poi_available:
                 try:
-                    contenido_limpio = integrar_poi_dashboard_limpio(
-                        dashboard_instance=self,
-                        development_mode=DEVELOPMENT_MODE
-                    )
+                    contenido_multi_poi = integrar_multi_poi_en_panel_ict(self)
 
-                    # 📊 LOG: Datos del sistema limpio mostrados
-                    enviar_senal_log("INFO", "🧠 ICT PANEL: Mostrando datos del sistema limpio POI", __name__, "dashboard")
-                    enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_CLEAN_POI: {str(contenido_limpio)[:200]}...", __name__, "dashboard")
+                    # 📊 LOG: Datos del Multi-POI mostrados
+                    enviar_senal_log("INFO", "🧠 ICT PANEL: Mostrando datos del Multi-POI Dashboard", __name__, "dashboard")
+                    enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_MULTI_POI: Multi-POI panel generado exitosamente", __name__, "dashboard")
 
-                    return Panel(
-                        contenido_limpio,
-                        title="🧠 ICT PROFESIONAL",
-                        border_style="cyan",
-                        padding=(1, 2)
-                    )
+                    return contenido_multi_poi
                 except Exception as e:
-                    enviar_senal_log("ERROR", f"❌ Error en sistema limpio: {e}", __name__, "dashboard")
+                    enviar_senal_log("ERROR", f"❌ Error en Multi-POI Dashboard: {e}", __name__, "dashboard")
                     # Continuar con fallback manual
 
             # 📊 FALLBACK MANUAL CON DATOS COMPLETOS CON DETECCIÓN AUTOMÁTICA
@@ -902,7 +994,7 @@ class SentinelDashboardDefinitivo(App):
                     status_info = self.market_detector.get_current_market_status()
                     basic_content = Text(f"🧠 ICT PROFESIONAL\n{status_info['emoji_status']} {status_info['status_display']}\nSistema iniciando...", style="cyan")
                     enviar_senal_log("DATA", f"🧠 ICT_DISPLAY_BASIC_REAL: {status_info['status_display']}", __name__, "dashboard")
-                except:
+                except Exception:
                     basic_content = Text("🧠 ICT PROFESIONAL\nSistema iniciando...", style="cyan")
                     enviar_senal_log("DATA", "🧠 ICT_DISPLAY_BASIC: Sistema iniciando...", __name__, "dashboard")
             else:
@@ -1070,6 +1162,111 @@ class SentinelDashboardDefinitivo(App):
             padding=(2, 4)
         )
 
+    def render_downloader_panel(self):
+        """
+        📥 PANEL CANDLE DOWNLOADER - CONTROL DE DESCARGA
+        ===============================================
+
+        Renderiza panel del Candle Downloader con controles y estadísticas.
+        """
+        from rich.layout import Layout
+        from rich.console import Group
+
+        content = Text()
+        content.append("📥 CANDLE DOWNLOADER - CONTROL DE DESCARGA\n\n", style="bold bright_green")
+
+        try:
+            # Verificar si el widget está disponible
+            if candle_downloader_available and candle_downloader_widget:
+
+                # 🎮 Panel de controles
+                control_panel = candle_downloader_widget.render_control_panel()
+
+                # 📊 Panel de progreso
+                progress_panel = candle_downloader_widget.render_progress_panel()
+
+                # 📈 Panel de estadísticas
+                stats_panel = candle_downloader_widget.render_stats_panel()
+
+                # 🚨 Panel de errores
+                errors_panel = candle_downloader_widget.render_errors_panel()
+
+                # Crear layout combinado
+                layout = Layout()
+                layout.split_column(
+                    Layout(control_panel, name="controls", size=8),
+                    Layout(progress_panel, name="progress", size=6),
+                    Layout(stats_panel, name="stats", size=8),
+                    Layout(errors_panel, name="errors", size=6)
+                )
+
+                return Panel(
+                    layout,
+                    title="📥 [bold bright_green]CANDLE DOWNLOADER - CONTROL TOTAL[/bold bright_green]",
+                    border_style="bright_green",
+                    padding=(1, 2)
+                )
+
+            else:
+                # Widget no disponible - mostrar panel de información
+                content.append("⚠️ Candle Downloader Widget no disponible\n", style="yellow")
+                content.append("\n🔧 CONFIGURACIÓN MANUAL:\n", style="bold cyan")
+
+                # Información de estado básico
+                if self.mt5_connected:
+                    content.append("✅ MT5 conectado - Listo para descarga\n", style="green")
+                    content.append(f"📊 Símbolo activo: {self.symbol}\n", style="white")
+                    content.append(f"💰 Precio actual: {self.current_price:.5f}\n", style="bright_yellow")
+                else:
+                    content.append("❌ MT5 desconectado - Conectar primero\n", style="red")
+
+                content.append("\n📥 OPERACIONES DISPONIBLES:\n", style="bold cyan")
+                content.append("• Presiona 'R' para refresh de conexión\n", style="white")
+                content.append("• Usa scripts de debugging para descarga\n", style="cyan")
+                content.append("• Verifica core/data_management/\n", style="white")
+
+                # Información de archivos disponibles
+                content.append("\n📁 ARCHIVOS DEL SISTEMA:\n", style="bold yellow")
+                content.append("• dashboard/candle_downloader_widget.py\n", style="white")
+                content.append("• core/integrations/candle_downloader_integration.py\n", style="white")
+                content.append("• core/data_management/candle_coordinator.py\n", style="white")
+
+                # Instrucciones de solución de problemas
+                content.append("\n🔧 SOLUCIÓN DE PROBLEMAS:\n", style="bold red")
+                content.append("1. Verificar imports en dashboard_definitivo.py\n", style="white")
+                content.append("2. Revisar candle_downloader_widget.py\n", style="white")
+                content.append("3. Comprobar core/integrations/\n", style="white")
+                content.append("4. Usar validador_maestro.py --datos\n", style="cyan")
+
+                return Panel(
+                    content,
+                    title="📥 [bold yellow]CANDLE DOWNLOADER - CONFIGURACIÓN[/bold yellow]",
+                    border_style="yellow",
+                    padding=(2, 4)
+                )
+
+        except Exception as e:
+            # Error crítico - panel de emergencia
+            content.append(f"❌ Error crítico en Candle Downloader: {str(e)[:50]}...\n", style="red")
+            content.append("🔧 Panel de emergencia activado\n", style="yellow")
+
+            content.append("\n📊 INFORMACIÓN DE DEBUG:\n", style="bold cyan")
+            content.append(f"• candle_downloader_available: {candle_downloader_available}\n", style="white")
+            content.append(f"• candle_downloader_widget: {candle_downloader_widget is not None}\n", style="white")
+            content.append(f"• MT5 conectado: {self.mt5_connected}\n", style="white")
+
+            content.append("\n💡 ACCIONES RECOMENDADAS:\n", style="bright_yellow")
+            content.append("1. Verificar imports del widget\n", style="white")
+            content.append("2. Revisar logs del sistema\n", style="white")
+            content.append("3. Usar validador_maestro.py\n", style="cyan")
+
+            return Panel(
+                content,
+                title="📥 [bold red]CANDLE DOWNLOADER - ERROR[/bold red]",
+                border_style="red",
+                padding=(2, 4)
+            )
+
     # Métodos de navegación
     def action_switch_hibernation(self):
         """Cambiar a pestaña de hibernación (H1)"""
@@ -1106,6 +1303,31 @@ class SentinelDashboardDefinitivo(App):
             tabs = self.query_one("#sentinel_main_tabs", TabbedContent)
             tabs.active = "tab_analytics"
             self.notify("📊 Analytics Real activado")
+        except (FileNotFoundError, PermissionError, IOError) as e:
+            self.notify(f"⚠️ Error: {e}")
+
+    def action_switch_tct(self):
+        """Cambiar a pestaña TCT Pipeline (H5)"""
+        try:
+            tabs = self.query_one("#sentinel_main_tabs", TabbedContent)
+            tabs.active = "tab_tct"
+            self.notify("⚡ TCT Pipeline activado")
+        except (FileNotFoundError, PermissionError, IOError) as e:
+            self.notify(f"⚠️ Error: {e}")
+
+    def action_switch_downloader(self):
+        """Cambiar a pestaña Candle Downloader (H6)"""
+        try:
+            tabs = self.query_one("#sentinel_main_tabs", TabbedContent)
+            tabs.active = "tab_downloader"
+
+            # Actualizar widget si está disponible
+            if candle_downloader_available and candle_downloader_widget:
+                # Refresh del widget del downloader
+                if hasattr(self, 'downloader_static'):
+                    self.downloader_static.update(self.render_downloader_panel())
+
+            self.notify("📥 Candle Downloader activado")
         except (FileNotFoundError, PermissionError, IOError) as e:
             self.notify(f"⚠️ Error: {e}")
 
@@ -1219,12 +1441,15 @@ class SentinelDashboardDefinitivo(App):
                 # ⚡ VERIFICACIÓN ADICIONAL MT5 (SPRINT 1.6 FIX)
                 try:
                     import MetaTrader5 as mt5
-                    if mt5.initialize():
+                    initialize_func = getattr(mt5, 'initialize', None)
+                    if initialize_func and initialize_func():
                         # MT5 está realmente conectado, corregir el estado
                         self.mt5_connected = True
                         enviar_senal_log("SUCCESS", "✅ MT5 detectado y conectado (verificación adicional)", "dashboard_definitivo", "mt5_connection")
                         self.update_current_price()
-                        mt5.shutdown()
+                        shutdown_func = getattr(mt5, 'shutdown', None)
+                        if shutdown_func:
+                            shutdown_func()
                     else:
                         # Modo simulado para desarrollo
                         self.simulate_pattern_detection()
@@ -1397,7 +1622,7 @@ class SentinelDashboardDefinitivo(App):
                 enviar_senal_log("SUCCESS", f"📋 ANÁLISIS ICT COMPLETADO - H4_bias: {context['h4_bias']}, M15_bias: {context['m15_bias']}, POIs: {context.get("total_pois", 0)}, Calidad: {context['analysis_quality']}", __name__, "ict")
 
                 if self.debug_mode:
-                    enviar_senal_log("INFO", f"🧠 ICT Contexto Real: {context.get('h4_bias', "dashboard_definitivo", "migration")} | {context.get('market_phase')} | POIs: {context.get('total_pois')}")
+                    enviar_senal_log("INFO", f"🧠 ICT Contexto Real: {context.get('h4_bias', 'NEUTRAL')} | {context.get('market_phase')} | POIs: {context.get('total_pois')}", "dashboard_definitivo", "migration")
 
                 return context
 
@@ -1462,7 +1687,8 @@ class SentinelDashboardDefinitivo(App):
                         enviar_senal_log("WARNING", f"⚠️ {tf_name}: No se detectaron POIs o formato inesperado", "dashboard_definitivo", "poi_detection")
 
                     if self.debug_mode:
-                        enviar_senal_log("INFO", f"🎯 POIs {tf_name}: {len(pois_tf, "dashboard_definitivo", "migration") if isinstance(pois_tf, (list, dict)) else 0} detectados")
+                        pois_count = len(pois_tf) if isinstance(pois_tf, (list, dict)) else 0
+                        enviar_senal_log("INFO", f"🎯 POIs {tf_name}: {pois_count} detectados", "dashboard_definitivo", "migration")
 
             # Filtrar POIs duplicados y ordenar por score
             unique_pois = self.filter_and_rank_pois(detected_pois)
@@ -1649,7 +1875,8 @@ class SentinelDashboardDefinitivo(App):
                 enriched_patterns.append(enriched_pattern)
 
                 if self.debug_mode:
-                    enviar_senal_log("INFO", f"🧠 {pattern.get('type', 'Pattern', "dashboard_definitivo", "migration")}: {confidence_score:.2f} confianza")
+                    pattern_type = pattern.get('type', 'Pattern')
+                    enviar_senal_log("INFO", f"🧠 {pattern_type}: {confidence_score:.2f} confianza", "dashboard_definitivo", "migration")
 
             return enriched_patterns
 
@@ -1686,7 +1913,8 @@ class SentinelDashboardDefinitivo(App):
                 if self.debug_mode:
                     grade = scored_poi.get('grade', 'C')
                     score = scored_poi.get('intelligent_score', scored_poi.get('score', 0))
-                    enviar_senal_log("INFO", f"🎯 POI {poi.get('type', 'Unknown', "dashboard_definitivo", "migration")}: {grade} ({score})")
+                    poi_type = poi.get('type', 'Unknown')
+                    enviar_senal_log("INFO", f"🎯 POI {poi_type}: {grade} ({score})", "dashboard_definitivo", "migration")
 
             enviar_senal_log("INFO", f"✅ Scoring POI completado: {len(final_scored_pois)} POIs calificados", "dashboard_definitivo", "poi_scoring")
             return final_scored_pois
@@ -1795,7 +2023,8 @@ class SentinelDashboardDefinitivo(App):
 
             # Debug output para analysis_data
             if self.debug_mode:
-                enviar_senal_log("DEBUG", f"Debug: Analysis data structure: {len(analysis_data, "dashboard_definitivo", "migration")} fields")
+                analysis_data_len = len(analysis_data) if analysis_data else 0
+                enviar_senal_log("DEBUG", f"Debug: Analysis data structure: {analysis_data_len} fields", "dashboard_definitivo", "migration")
 
             enviar_senal_log("INFO", f"🔍 Análisis integral completado: {len(patterns)} patrones, {len(pois)} POIs", "dashboard_definitivo", "analysis")
 
@@ -1849,7 +2078,8 @@ class SentinelDashboardDefinitivo(App):
                 self.create_pattern_analysis_object(best_item, veredicto)
 
         if self.debug_mode:
-            enviar_senal_log("INFO", f"📊 Estado actualizado: {self.patterns_detected} patrones, {len(pois, "dashboard_definitivo", "migration")} POIs, {self.high_probability_signals} alta prob.")
+            pois_count = len(pois) if pois else 0
+            enviar_senal_log("INFO", f"📊 Estado actualizado: {self.patterns_detected} patrones, {pois_count} POIs, {self.high_probability_signals} alta prob.", "dashboard_definitivo", "migration")
 
     def generate_alerts_complete(self, veredicto: Optional[Dict]):
         """Genera alertas inteligentes basadas en veredicto completo"""
@@ -1990,11 +2220,11 @@ class SentinelDashboardDefinitivo(App):
                     market_context = _context if _context else {}
 
                     # Ejecutar análisis Silver Bullet avanzado
-                    silver_bullet_signal = self.advanced_silver_bullet.analyze_silver_bullet_pattern(
+                    silver_bullet_signal = self.advanced_silver_bullet.analyze_silver_bullet_setup(
                         candles_m5=m5_data,
                         candles_m1=m1_data,
                         current_price=self.current_price,
-                        market_context=market_context
+                        detected_obs=self.real_market_data.get('pois_detected', [])
                     )
 
                     if silver_bullet_signal:
@@ -2008,10 +2238,10 @@ class SentinelDashboardDefinitivo(App):
                             'direction': silver_bullet_signal.direction.value,
                             'narrative': silver_bullet_signal.narrative,
                             'price_level': silver_bullet_signal.entry_price,
-                            'target_level': silver_bullet_signal.target_price,
-                            'stop_level': silver_bullet_signal.stop_loss,
-                            'session_type': silver_bullet_signal.session_type.value,
-                            'confluence_score': silver_bullet_signal.confluence_score,
+                            'target_level': getattr(silver_bullet_signal, 'target_price', silver_bullet_signal.entry_price),
+                            'stop_level': getattr(silver_bullet_signal, 'stop_loss', silver_bullet_signal.entry_price),
+                            'session_type': silver_bullet_signal.signal_type.value,
+                            'confluence_score': getattr(silver_bullet_signal, 'confluence_score', silver_bullet_signal.confidence),
                             'timing_score': getattr(silver_bullet_signal, 'timing_score', 0.0),
                             'detected_at': datetime.now(),
                             'advanced_pattern': True,

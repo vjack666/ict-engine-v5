@@ -21,21 +21,21 @@ from typing import List, Dict, Optional
 from datetime import datetime
 
 # Logger especializado
-from sistema.logging_config import get_specialized_logger
-scoring_logger = get_specialized_logger('poi')  # Usar 'poi' en lugar de 'poi_scoring'
+from sistema.logging_interface import enviar_senal_log, log_poi
+# Usar sistema de logging central
 
 class POIScoringEngine:
     """
     Motor de scoring inteligente para POIs que garantiza datos
     significativos para el dashboard.
     """
-    
+
     def __init__(self):
         """Inicializa el motor de scoring con configuraciones optimizadas."""
         self.config = {
             'DISTANCE_WEIGHTS': {
                 'VERY_CLOSE': (0, 10),      # 0-10 pips: máxima relevancia
-                'CLOSE': (10, 25),          # 10-25 pips: alta relevancia  
+                'CLOSE': (10, 25),          # 10-25 pips: alta relevancia
                 'MEDIUM': (25, 50),         # 25-50 pips: media relevancia
                 'FAR': (50, 100),           # 50-100 pips: baja relevancia
                 'VERY_FAR': (100, float('inf'))  # >100 pips: mínima relevancia
@@ -58,52 +58,52 @@ class POIScoringEngine:
                 'PRICE_IMBALANCE': 0.8
             }
         }
-        
-        scoring_logger.info("POI Scoring Engine inicializado")
 
-    def calculate_intelligent_score(self, poi: Dict, current_price: float, 
+        log_poi("INFO", "POI Scoring Engine inicializado", "poi_scoring_engine")
+
+    def calculate_intelligent_score(self, poi: Dict, current_price: float,
                                    market_context: Optional[Dict] = None) -> Dict:
         """
         Calcula un score inteligente y contextual para un POI.
-        
+
         Args:
             poi: Diccionario con datos del POI
             current_price: Precio actual del mercado
             market_context: Contexto adicional del mercado
-            
+
         Returns:
             Dict con score, grado, confianza y narrativa
         """
         try:
             # 1. SCORE BASE del POI (del sistema original)
             base_score = poi.get('score', 50)
-            
+
             # 2. SCORE POR PROXIMIDAD (factor crítico)
             distance_pips = abs(current_price - poi['price']) * 10000  # Convertir a pips
             proximity_score = self._calculate_proximity_score(distance_pips)
-            
+
             # 3. SCORE POR TIPO DE POI (algunos son más importantes)
             type_multiplier = self.config['POI_TYPE_MULTIPLIERS'].get(poi['type'], 1.0)
-            
+
             # 4. SCORE CONTEXTUAL (basado en dirección de mercado)
             context_score = self._calculate_context_score(poi, market_context)
-            
+
             # 5. SCORE FINAL COMBINADO
             final_score = (
                 base_score * 0.4 +           # 40% score original
                 proximity_score * 0.35 +     # 35% proximidad
                 context_score * 0.25         # 25% contexto
             ) * type_multiplier
-            
+
             # Limitar entre 0-100
             final_score = max(0, min(100, final_score))
-            
+
             # 6. DETERMINAR GRADO Y CONFIANZA
             grade_info = self._determine_grade(final_score)
-            
+
             # 7. GENERAR NARRATIVA INTELIGENTE
             narrative = self._generate_poi_narrative(poi, grade_info, distance_pips)
-            
+
             result = {
                 'original_score': base_score,
                 'proximity_score': proximity_score,
@@ -116,13 +116,13 @@ class POIScoringEngine:
                 'narrative': narrative,
                 'type_multiplier': type_multiplier
             }
-            
-            scoring_logger.debug("POI %s scored: %.1f (%s)", poi['type'], final_score, grade_info['grade'])
-            
+
+            log_poi("DEBUG", f"POI {poi['type']} scored: {final_score:.1f} ({grade_info['grade']})", "poi_scoring_engine")
+
             return result
-            
+
         except (ValueError, KeyError, TypeError) as e:
-            scoring_logger.error("Error calculando score inteligente: %s", e)
+            log_poi("ERROR", f"Error calculando score inteligente: {e}", "poi_scoring_engine")
             # Fallback seguro
             return {
                 'final_score': 50.0,
@@ -149,12 +149,12 @@ class POIScoringEngine:
         """Calcula score basado en contexto de mercado."""
         if not market_context:
             return 60  # Score neutro sin contexto
-        
+
         try:
             # Verificar alineación con bias del mercado
             h4_bias = market_context.get('h4_bias', 'NEUTRAL')
             poi_type = poi['type']
-            
+
             # Score mayor si POI está alineado con bias
             if ('BULLISH' in poi_type and h4_bias == 'BULLISH') or \
                ('BEARISH' in poi_type and h4_bias == 'BEARISH'):
@@ -163,7 +163,7 @@ class POIScoringEngine:
                 return 70  # Mercado neutral
             else:
                 return 55  # Contra tendencia (menos probable)
-                
+
         except (ValueError, KeyError, TypeError):
             return 60  # Score neutro en caso de error
 
@@ -176,7 +176,7 @@ class POIScoringEngine:
                     'confidence': config['confidence'],
                     'color': config['color']
                 }
-        
+
         # Fallback (no debería llegar aquí)
         return {
             'grade': 'D',
@@ -190,7 +190,7 @@ class POIScoringEngine:
             poi_type = poi['type']
             grade = grade_info['grade']
             price = poi['price']
-            
+
             # Nombres amigables para los tipos de POI
             type_names = {
                 'BULLISH_OB': 'Order Block Alcista',
@@ -200,9 +200,9 @@ class POIScoringEngine:
                 'BULLISH_BREAKER': 'Breaker Alcista',
                 'BEARISH_BREAKER': 'Breaker Bajista'
             }
-            
+
             friendly_name = type_names.get(poi_type, poi_type)
-            
+
             # Narrativa basada en grado
             if grade in ['A+', 'A']:
                 quality_desc = "de alta calidad"
@@ -213,7 +213,7 @@ class POIScoringEngine:
             else:
                 quality_desc = "de baja calidad"
                 action_desc = "Setup de respaldo"
-            
+
             # Distancia en términos comprensibles
             if distance_pips <= 10:
                 distance_desc = "muy cerca"
@@ -223,33 +223,33 @@ class POIScoringEngine:
                 distance_desc = "a distancia media"
             else:
                 distance_desc = "lejos"
-            
+
             narrative = f"{friendly_name} {quality_desc} en {price:.5f} ({distance_desc}, {distance_pips:.1f} pips). {action_desc}."
-            
+
             return narrative
-            
+
         except (ValueError, KeyError, TypeError) as e:
-            scoring_logger.warning("Error generando narrativa: %s", e)
+            log_poi("WARNING", f"Error generando narrativa: {e}", "poi_scoring_engine")
             return f"POI {poi_type} detectado en {poi.get('price', 0):.5f}"
 
-    def process_pois_for_dashboard(self, pois_list: List[Dict], current_price: float, 
+    def process_pois_for_dashboard(self, pois_list: List[Dict], current_price: float,
                                   market_context: Optional[Dict] = None) -> List[Dict]:
         """
         Procesa una lista de POIs aplicando scoring inteligente para el dashboard.
-        
+
         GARANTIZA que el dashboard SIEMPRE reciba datos procesables.
         """
         if not pois_list:
-            scoring_logger.warning("Lista de POIs vacía recibida")
+            log_poi("WARNING", "Lista de POIs vacía recibida", "poi_scoring_engine")
             return []
-        
+
         processed_pois = []
-        
+
         for poi in pois_list:
             try:
                 # Aplicar scoring inteligente
                 scoring_result = self.calculate_intelligent_score(poi, current_price, market_context)
-                
+
                 # Combinar datos originales con scoring
                 enhanced_poi = {
                     **poi,  # Datos originales
@@ -262,11 +262,11 @@ class POIScoringEngine:
                     'dashboard_ready': True,  # Flag de que está listo para dashboard
                     'last_scored': datetime.now().isoformat()
                 }
-                
+
                 processed_pois.append(enhanced_poi)
-                
+
             except (ValueError, KeyError, TypeError) as e:
-                scoring_logger.error("Error procesando POI: %s", e)
+                log_poi("ERROR", f"Error procesando POI: {e}", "poi_scoring_engine")
                 # Incluir POI con datos mínimos para evitar lista vacía
                 fallback_poi = {
                     **poi,
@@ -278,22 +278,22 @@ class POIScoringEngine:
                     'dashboard_ready': True
                 }
                 processed_pois.append(fallback_poi)
-        
+
         # Ordenar por score inteligente
         processed_pois.sort(key=lambda x: x['intelligent_score'], reverse=True)
-        
-        scoring_logger.info("✅ %s POIs procesados para dashboard", len(processed_pois))
-        
+
+        log_poi("INFO", f"✅ {len(processed_pois)} POIs procesados para dashboard", "poi_scoring_engine")
+
         return processed_pois
 
 # Instancia global del motor de scoring
 poi_scoring_engine = POIScoringEngine()
 
-def enhance_pois_for_dashboard(pois: List[Dict], current_price: float, 
+def enhance_pois_for_dashboard(pois: List[Dict], current_price: float,
                               market_context: Optional[Dict] = None) -> List[Dict]:
     """
     Función de conveniencia para mejorar POIs para el dashboard.
-    
+
     Esta función es la que usará app.py para garantizar datos de calidad.
     """
     return poi_scoring_engine.process_pois_for_dashboard(pois, current_price, market_context)

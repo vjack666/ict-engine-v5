@@ -33,7 +33,11 @@ try:
     ]
 
 except ImportError as e:
-    print(f"Warning: Error importando componentes de data_management: {e}")
+    try:
+        from sistema.logging_interface import enviar_senal_log
+        enviar_senal_log("WARNING", f"Error importando componentes de data_management: {e}", __name__, "init")
+    except ImportError:
+        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"Warning: Error importando componentes de data_management: {e}")
     __all__ = []
 
 # Información del módulo

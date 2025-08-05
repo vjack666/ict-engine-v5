@@ -52,8 +52,48 @@ FUNDEDNEXT_CONFIG = {
 }
 
 def validate_fundednext_installation() -> bool:
-    """Valida que el terminal FundedNext esté instalado."""
-    return os.path.exists(FUNDEDNEXT_MT5_PATH) and os.path.isfile(FUNDEDNEXT_MT5_PATH)
+    """
+    Valida que el terminal FundedNext esté instalado y sea accesible.
+    SOLO permite el uso del terminal FundedNext.
+    """
+    if not os.path.exists(FUNDEDNEXT_MT5_PATH):
+        return False
+    if not os.path.isfile(FUNDEDNEXT_MT5_PATH):
+        return False
+
+    # Verificación adicional del nombre del archivo
+    if "fundednext" not in FUNDEDNEXT_MT5_PATH.lower():
+        return False
+
+    return True
+
+def ensure_only_fundednext_connection():
+    """
+    Garantiza que solo se use el terminal FundedNext MT5.
+    Desconecta cualquier otra conexión MT5 activa.
+    """
+    if not mt5_available or mt5 is None:
+        return False
+
+    try:
+        # Verificar si hay alguna conexión activa
+        if hasattr(mt5, 'terminal_info'):
+            terminal_info = mt5.terminal_info()  # type: ignore
+            if terminal_info:
+                terminal_path = str(terminal_info.path).lower()
+                if "fundednext" not in terminal_path:
+                    # Hay una conexión a un terminal que NO es FundedNext
+                    enviar_senal_log("WARNING", f"🚨 TERMINAL INCORRECTO DETECTADO: {terminal_info.path}", "mt5_data_manager", "security")
+                    enviar_senal_log("WARNING", "🔒 Desconectando terminal no autorizado...", "mt5_data_manager", "security")
+                    mt5.shutdown()  # type: ignore
+                    return False
+                else:
+                    enviar_senal_log("INFO", "✅ Terminal FundedNext verificado como activo", "mt5_data_manager", "security")
+                    return True
+    except Exception as e:
+        enviar_senal_log("ERROR", f"Error verificando terminal activo: {e}", "mt5_data_manager", "security")
+
+    return False
 
 # Configuración de timeframes
 TIMEFRAME_MAPPING = {
@@ -78,6 +118,10 @@ class MT5DataManager:
         self.account_validator = get_account_validator()
         self.account_type = None
         self.account_config = None
+
+        # 🔒 VERIFICACIÓN DE SEGURIDAD INICIAL
+        ensure_only_fundednext_connection()
+
         self._check_mt5_availability()
 
     def _check_mt5_availability(self) -> None:
@@ -99,46 +143,85 @@ class MT5DataManager:
             self.available_functions[func_name] = hasattr(mt5, func_name)
 
     def connect(self) -> bool:
-        """Conecta específicamente al terminal FundedNext MT5."""
+        """
+        Conecta EXCLUSIVAMENTE al terminal FundedNext MT5.
+        NUNCA permite conexión a otros terminales MT5.
+        """
         if not mt5_available or mt5 is None:
-            enviar_senal_log("INFO", "❌ MetaTrader5 no está disponible", "mt5_data_manager", "migration")
+            enviar_senal_log("ERROR", "❌ MetaTrader5 no está disponible", "mt5_data_manager", "connection")
             return False
 
         if not validate_fundednext_installation():
-            enviar_senal_log("INFO", f"❌ Terminal FundedNext MT5 no encontrado en: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "migration")
+            enviar_senal_log("ERROR", f"❌ Terminal FundedNext MT5 no encontrado en: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "connection")
+            enviar_senal_log("ERROR", "🚨 SEGURIDAD: Solo se permite conexión a FundedNext MT5", "mt5_data_manager", "connection")
             return False
 
         try:
-            if self.available_functions.get('initialize', False):
-                enviar_senal_log("INFO", f"🔗 Conectando a FundedNext MT5: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "migration")
+            # 🔒 VERIFICACIÓN DE SEGURIDAD: Desconectar cualquier terminal previo
+            try:
+                if hasattr(mt5, 'shutdown'):
+                    mt5.shutdown()  # type: ignore
+                    enviar_senal_log("INFO", "🔒 Desconectado cualquier terminal MT5 previo", "mt5_data_manager", "security")
+            except Exception:
+                pass
 
-                # Intentar conexión con ruta específica de FundedNext
+            if self.available_functions.get('initialize', False):
+                enviar_senal_log("INFO", f"🔗 Conectando EXCLUSIVAMENTE a FundedNext MT5", "mt5_data_manager", "connection")
+                enviar_senal_log("INFO", f"📁 Ruta obligatoria: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "connection")
+
+                # 🛡️ CONEXIÓN EXCLUSIVA con ruta específica de FundedNext
                 self.is_connected = mt5.initialize(path=FUNDEDNEXT_MT5_PATH)  # type: ignore
 
                 if self.is_connected:
+                    # 🔍 VALIDACIÓN CRÍTICA: Verificar que estamos conectados al terminal correcto
+                    if not self._verify_fundednext_connection():
+                        enviar_senal_log("ERROR", "🚨 ALERTA: No se conectó al terminal FundedNext correcto", "mt5_data_manager", "security")
+                        self.disconnect()
+                        return False
+
                     # Validar tipo de cuenta después de conectar
                     self._validate_account_type()
 
-                    # Obtener información del terminal conectado
-                    try:
-                        terminal_info = mt5.terminal_info()  # type: ignore
-                        if terminal_info:
-                            enviar_senal_log("INFO", f"✅ Conectado a: {terminal_info.name}", "mt5_data_manager", "migration")
-                            enviar_senal_log("INFO", f"   Versión: {terminal_info.version}", "mt5_data_manager", "migration")
-                            enviar_senal_log("INFO", f"   Empresa: {terminal_info.company}", "mt5_data_manager", "migration")
-                            enviar_senal_log("INFO", f"   Ruta: {terminal_info.path}", "mt5_data_manager", "migration")
-                        else:
-                            enviar_senal_log("INFO", "✅ Conectado a FundedNext MT5", "mt5_data_manager", "migration")
-                    except Exception:
-                        enviar_senal_log("INFO", "✅ Conectado a FundedNext MT5 (info limitada)", "mt5_data_manager", "migration")
+                    enviar_senal_log("INFO", "✅ CONEXIÓN SEGURA ESTABLECIDA - Solo FundedNext MT5", "mt5_data_manager", "connection")
                 else:
-                    enviar_senal_log("ERROR", "❌ Error al conectar con FundedNext MT5", "mt5_data_manager", "migration")
+                    enviar_senal_log("ERROR", "❌ Error al conectar con FundedNext MT5", "mt5_data_manager", "connection")
 
                 return self.is_connected
         except (FileNotFoundError, PermissionError, IOError) as e:
-            enviar_senal_log("ERROR", f"❌ Error de conexión MT5: {e}", "mt5_data_manager", "migration")
+            enviar_senal_log("ERROR", f"❌ Error de conexión MT5: {e}", "mt5_data_manager", "connection")
 
         return False
+
+    def _verify_fundednext_connection(self) -> bool:
+        """
+        Verifica que estamos conectados específicamente al terminal FundedNext.
+
+        Returns:
+            True si la conexión es al terminal FundedNext correcto
+        """
+        try:
+            terminal_info = mt5.terminal_info()  # type: ignore
+            if terminal_info:
+                terminal_path = str(terminal_info.path).lower()
+                expected_path = FUNDEDNEXT_MT5_PATH.lower()
+
+                # Verificar que la ruta coincida con FundedNext
+                if "fundednext" in terminal_path or terminal_path == expected_path:
+                    enviar_senal_log("INFO", f"✅ Verificado: Conectado a FundedNext MT5", "mt5_data_manager", "security")
+                    enviar_senal_log("INFO", f"   Terminal: {terminal_info.name}", "mt5_data_manager", "security")
+                    enviar_senal_log("INFO", f"   Empresa: {terminal_info.company}", "mt5_data_manager", "security")
+                    enviar_senal_log("INFO", f"   Ruta: {terminal_info.path}", "mt5_data_manager", "security")
+                    return True
+                else:
+                    enviar_senal_log("ERROR", f"🚨 TERMINAL INCORRECTO: {terminal_info.path}", "mt5_data_manager", "security")
+                    enviar_senal_log("ERROR", f"🚨 SE ESPERABA: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "security")
+                    return False
+            else:
+                enviar_senal_log("ERROR", "❌ No se pudo obtener información del terminal", "mt5_data_manager", "security")
+                return False
+        except Exception as e:
+            enviar_senal_log("ERROR", f"❌ Error verificando terminal: {e}", "mt5_data_manager", "security")
+            return False
 
     def _validate_account_type(self) -> None:
         """Valida el tipo de cuenta después de conectar"""
@@ -171,8 +254,135 @@ class MT5DataManager:
             enviar_senal_log("ERROR", f"❌ Error validando tipo de cuenta: {e}", "mt5_data_manager", "migration")
             self.account_type = AccountType.UNKNOWN
 
+    def get_symbol_tick(self, symbol: str) -> Optional[Dict[str, Any]]:
+        """
+        Obtiene el tick actual de un símbolo de forma segura.
+
+        Args:
+            symbol: Símbolo a consultar (ej: "EURUSD")
+
+        Returns:
+            Diccionario con información del tick o None si falla
+        """
+        if not mt5_available or mt5 is None:
+            enviar_senal_log("ERROR", f"MT5 no disponible para obtener tick de {symbol}", "mt5_data_manager", "tick")
+            return None
+
+        if not self.is_connected:
+            enviar_senal_log("WARNING", f"MT5 no conectado para obtener tick de {symbol}", "mt5_data_manager", "tick")
+            return None
+
+        try:
+            # Verificar que la función esté disponible
+            if not hasattr(mt5, 'symbol_info_tick'):
+                enviar_senal_log("ERROR", f"Función symbol_info_tick no disponible en MT5", "mt5_data_manager", "tick")
+                return None
+
+            tick = mt5.symbol_info_tick(symbol)  # type: ignore
+            if tick is None:
+                enviar_senal_log("WARNING", f"No se pudo obtener tick para {symbol}", "mt5_data_manager", "tick")
+                return None
+
+            # Convertir a diccionario para facilitar el uso
+            return {
+                'symbol': symbol,
+                'bid': tick.bid,
+                'ask': tick.ask,
+                'last': tick.last,
+                'volume': tick.volume,
+                'time': tick.time,
+                'flags': tick.flags,
+                'volume_real': getattr(tick, 'volume_real', 0.0)
+            }
+
+        except (ImportError, AttributeError, Exception) as e:
+            enviar_senal_log("ERROR", f"Error obteniendo tick para {symbol}: {e}", "mt5_data_manager", "tick")
+            return None
+
     def get_account_info(self) -> Dict[str, Any]:
-        """Obtiene información completa de la cuenta"""
+        """
+        Obtiene información completa de la cuenta desde MT5 directamente.
+
+        Returns:
+            Diccionario con información de la cuenta MT5
+        """
+        if not mt5_available or mt5 is None:
+            return {"error": "MT5 no disponible"}
+
+        if not self.is_connected:
+            return {"error": "MT5 no conectado"}
+
+        try:
+            # Obtener información de cuenta directamente de MT5
+            account_info = mt5.account_info()  # type: ignore
+            if account_info is None:
+                return {"error": "No se pudo obtener información de la cuenta"}
+
+            # Convertir a diccionario con toda la información
+            account_data = {
+                "login": account_info.login,
+                "trade_mode": account_info.trade_mode,
+                "name": account_info.name,
+                "server": account_info.server,
+                "currency": account_info.currency,
+                "balance": account_info.balance,
+                "credit": account_info.credit,
+                "profit": account_info.profit,
+                "equity": account_info.equity,
+                "margin": account_info.margin,
+                "margin_free": account_info.margin_free,
+                "margin_level": account_info.margin_level,
+                "company": account_info.company,
+                "broker": account_info.company,  # Alias para compatibilidad
+                "leverage": account_info.leverage,
+                "trade_allowed": account_info.trade_allowed,
+                "trade_expert": account_info.trade_expert,
+                "margin_so_mode": account_info.margin_so_mode,
+                "margin_so_call": account_info.margin_so_call,
+                "margin_so_so": account_info.margin_so_so,
+                "currency_digits": account_info.currency_digits,
+                "fifo_close": account_info.fifo_close
+            }
+
+            # Agregar información del validador si está disponible
+            if self.account_validator:
+                try:
+                    validation = self.account_validator.validate_account_for_live_trading()
+                    account_data.update({
+                        "account_type": validation.get("account_type", "UNKNOWN"),
+                        "suitable_for_live": validation.get("suitable_for_live_trading", False),
+                        "risk_level": validation.get("risk_level", "UNKNOWN"),
+                        "warnings": validation.get("warnings", []),
+                        "type_description": self._get_account_type_description(account_info.trade_mode)
+                    })
+                except Exception as e:
+                    enviar_senal_log("WARNING", f"Error obteniendo validación de cuenta: {e}", "mt5_data_manager", "account_info")
+
+            return account_data
+
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error obteniendo información de cuenta MT5: {e}", "mt5_data_manager", "account_info")
+            return {"error": f"Error: {e}"}
+
+    def _get_account_type_description(self, trade_mode: int) -> str:
+        """
+        Convierte el trade_mode numérico a descripción legible.
+
+        Args:
+            trade_mode: Modo de trading de MT5
+
+        Returns:
+            Descripción del tipo de cuenta
+        """
+        trade_modes = {
+            0: "Demo Account",
+            1: "Contest Account",
+            2: "Real Account"
+        }
+        return trade_modes.get(trade_mode, f"Unknown ({trade_mode})")
+
+    def get_account_validator_info(self) -> Dict[str, Any]:
+        """Obtiene información del validador de cuenta (función original)"""
         if not self.account_validator:
             return {"error": "Validador no disponible"}
 
@@ -444,11 +654,58 @@ class MT5DataManager:
 _mt5_manager_instance: Optional[MT5DataManager] = None
 
 def get_mt5_manager() -> MT5DataManager:
-    """Obtiene la instancia global del MT5DataManager."""
+    """
+    Obtiene la instancia global del MT5DataManager.
+    GARANTIZA que solo se use el terminal FundedNext MT5.
+    """
     global _mt5_manager_instance
     if _mt5_manager_instance is None:
+        # Verificación de seguridad antes de crear la instancia
+        if not validate_fundednext_installation():
+            enviar_senal_log("ERROR", "🚨 SEGURIDAD: Terminal FundedNext MT5 no encontrado", "mt5_data_manager", "security")
+            enviar_senal_log("ERROR", f"🚨 Ruta requerida: {FUNDEDNEXT_MT5_PATH}", "mt5_data_manager", "security")
+            raise ConnectionError("SOLO se permite el uso del terminal FundedNext MT5")
+
         _mt5_manager_instance = MT5DataManager()
+        enviar_senal_log("INFO", "🔒 MT5DataManager creado con seguridad FundedNext", "mt5_data_manager", "security")
+
     return _mt5_manager_instance
+
+def force_fundednext_only_connection() -> bool:
+    """
+    Función de emergencia para garantizar conexión solo a FundedNext.
+
+    Returns:
+        True si la conexión es segura a FundedNext
+    """
+    try:
+        # Desconectar cualquier conexión activa
+        if mt5_available and mt5 is not None:
+            mt5.shutdown()  # type: ignore
+
+        # Verificar instalación FundedNext
+        if not validate_fundednext_installation():
+            enviar_senal_log("ERROR", "🚨 CRITICAL: FundedNext MT5 no disponible", "mt5_data_manager", "emergency")
+            return False
+
+        # Conectar específicamente a FundedNext
+        if mt5_available and mt5 is not None:
+            success = mt5.initialize(path=FUNDEDNEXT_MT5_PATH)  # type: ignore
+            if success:
+                terminal_info = mt5.terminal_info()  # type: ignore
+                if terminal_info and "fundednext" in str(terminal_info.path).lower():
+                    enviar_senal_log("INFO", "✅ SEGURIDAD: Conexión FundedNext verificada", "mt5_data_manager", "emergency")
+                    return True
+                else:
+                    enviar_senal_log("ERROR", "🚨 TERMINAL INCORRECTO detectado", "mt5_data_manager", "emergency")
+                    mt5.shutdown()  # type: ignore
+                    return False
+
+        return False
+
+    except Exception as e:
+        enviar_senal_log("ERROR", f"🚨 Error en conexión de emergencia: {e}", "mt5_data_manager", "emergency")
+        return False
 
 def cargar_datos_historicos_unificado(timeframe: str,
                                      lookback: int = 10000,

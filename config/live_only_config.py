@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 """
 🚀 CONFIGURACIÓN LIVE-ONLY - SPRINT LIVE.1
 =========================================
@@ -10,7 +12,7 @@ Fecha: 2025-08-03
 Versión: Live-Only v1.0
 """
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from dataclasses import dataclass
 from datetime import datetime
 import os

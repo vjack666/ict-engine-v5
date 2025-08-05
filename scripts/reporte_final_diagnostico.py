@@ -1,3 +1,5 @@
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 """
 🎉 REPORTE FINAL - ICT ENGINE v5.0 DIAGNÓSTICO COMPLETO

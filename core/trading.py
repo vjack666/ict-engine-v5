@@ -64,10 +64,9 @@ if not trading_schedule_available:
         else:
             return {'name': 'TOKYO', 'active': True}
 
-from sistema.logging_config import get_specialized_logger
 from core.smart_trading_logger import log_trading_entry_smart
 
-logger = get_specialized_logger('trading')
+# Usar el sistema de logging central
 
 if TYPE_CHECKING:
     # Módulo de gestión de riesgo opcional - fallback a None si no existe

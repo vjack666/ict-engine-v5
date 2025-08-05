@@ -27,7 +27,7 @@ from json import JSONDecodeError
 from pathlib import Path
 
 # --- Sistema de logging centralizado ---
-from sistema.logging_config import get_specialized_logger
+from sistema.logging_interface import enviar_senal_log, log_ict
 
 # --- Import de funciones POI para integración ---
 try:
@@ -61,7 +61,7 @@ except ImportError as e:
     enviar_senal_log("WARNING", f"❌ Market Status Detector no disponible: {e}", __name__, "init")
     market_status_available = False
 
-logger = get_specialized_logger('ict')
+# Usar sistema de logging central
 
 # =============================================================================
 # CONFIGURACIÓN Y CONSTANTES
