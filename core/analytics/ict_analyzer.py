@@ -15,7 +15,6 @@ from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime, timedelta
 from dataclasses import dataclass
 from enum import Enum
-
 # Sistema de logging centralizado
 try:
     from sistema.logging_interface import enviar_senal_log, log_ict

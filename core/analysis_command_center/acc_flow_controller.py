@@ -11,7 +11,6 @@ from datetime import datetime, timedelta
 from collections import deque, defaultdict
 from dataclasses import dataclass
 from enum import Enum
-
 # 🔌 IMPORTS DEL ICT ENGINE
 from sistema.logging_interface import enviar_senal_log
 

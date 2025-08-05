@@ -128,7 +128,6 @@ __protocol__ = "CAJA_NEGRA"
 # 📝 LOG DE INICIALIZACIÓN DEL MÓDULO
 try:
     from sistema.logging_interface import enviar_senal_log
-    
     enviar_senal_log(
         'INFO',
         "🧠 Analysis Command Center módulo cargado - Sistema de orquestación activado",

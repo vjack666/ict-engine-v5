@@ -14,20 +14,15 @@ Consolidado desde:
 
 Versión: v3.3.3
 """
-
 import pandas as pd
 import numpy as np
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_ict
-
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Any, Tuple, Union
 import json
 from json import JSONDecodeError
 from pathlib import Path
-
-# --- Sistema de logging centralizado ---
-from sistema.logging_interface import enviar_senal_log, log_ict
 
 # --- Import de funciones POI para integración ---
 try:

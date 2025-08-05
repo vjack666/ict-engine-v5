@@ -38,16 +38,14 @@ try:
     from core.poi_system.poi_system import get_poi_system_instance
     poi_system_available = True
 except ImportError as e:
-    print(f"⚠️ Sistema POI no disponible: {e}")
+    enviar_senal_log("WARNING", f"Sistema POI no disponible: {e}", __name__, "poi")
 
 # Import robusto de logging con fallback automático
 logging_available = False
 
 try:
-    from sistema.logging_interface import enviar_senal_log as _enviar_senal_log
-    # Adaptar la función al formato esperado
-    def enviar_senal_log(level, message, module, category):
-        return _enviar_senal_log(level, message, module, category)
+    def enviar_senal_log_adapted(level, message, module, category):
+        return enviar_senal_log(level, message, module, category)
     logging_available = True
 except ImportError as e:
     enviar_senal_log("WARNING", f"⚠️ Sistema de logging no disponible: {e}", __name__, "sistema")

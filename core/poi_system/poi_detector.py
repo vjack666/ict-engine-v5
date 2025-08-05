@@ -25,10 +25,6 @@ from datetime import datetime
 import json
 from pathlib import Path
 
-# --- Configuración de logging para POI ---
-from sistema.logging_interface import enviar_senal_log, log_poi
-# Usar sistema de logging central
-
 # =============================================================================
 # CONFIGURACIÓN Y CONSTANTES POI
 # =============================================================================

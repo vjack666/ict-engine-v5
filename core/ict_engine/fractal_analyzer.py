@@ -16,10 +16,8 @@ Versión: v1.0.0
 Autor: ICT Engine Team
 Fecha: 02 Agosto 2025
 """
-
 # MIGRADO A SLUC v2.1
 from sistema.logging_interface import enviar_senal_log
-
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta

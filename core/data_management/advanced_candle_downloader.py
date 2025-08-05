@@ -28,7 +28,6 @@ from datetime import datetime
 from dataclasses import dataclass
 from pathlib import Path
 import pandas as pd
-
 # Importaciones del sistema
 from sistema.logging_interface import enviar_senal_log
 from utils.mt5_data_manager import get_mt5_manager

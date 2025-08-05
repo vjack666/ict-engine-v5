@@ -9,15 +9,11 @@ Puede crear, actualizar y cancelar órdenes límite según las condiciones del m
 import MetaTrader5 as mt5
 from datetime import datetime
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
-
+from sistema.logging_interface import enviar_senal_log, log_trading
 from typing import Optional
 import time
 
 from sistema.config import SIMBOLO
-
-# Sistema de logging centralizado
-from sistema.logging_interface import enviar_senal_log, log_trading
 
 # RiskBot para cálculo dinámico de volumen
 from core.risk_management.riskbot_mt5 import RiskBot

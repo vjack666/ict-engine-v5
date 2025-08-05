@@ -24,10 +24,8 @@ import os
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 import copy
-
 # MIGRADO A SLUC v2.1
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
 from sistema.logging_interface import enviar_senal_log
 
 try:

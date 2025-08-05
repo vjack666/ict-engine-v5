@@ -373,12 +373,10 @@ class PrintMigrationTool:
 
             if not prints_found:
                 return
-
             # Agregar import si es necesario
             if "from sistema.logging_interface import enviar_senal_log" not in content:
                 lines = content.split('\\n')
                 import_line = "from sistema.logging_interface import enviar_senal_log"
-
                 insert_index = 0
                 for i, line in enumerate(lines):
                     if line.strip().startswith(('import ', 'from ')):

@@ -272,7 +272,6 @@ class CorrectorLogCentral:
             import_line = '# MIGRADO A SLUC v2.0\nfrom sistema.logging_interface import enviar_senal_log'
             lines.insert(insert_index, import_line)
             contenido = '\n'.join(lines)
-
         return contenido
 
     def _generar_reporte_final(self) -> Dict[str, Any]:

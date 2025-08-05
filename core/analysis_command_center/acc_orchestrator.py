@@ -11,7 +11,6 @@ import uuid
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 import pandas as pd
-
 # 🔌 IMPORTS DEL ICT ENGINE
 from sistema.logging_interface import enviar_senal_log
 from utils.mt5_data_manager import MT5DataManager

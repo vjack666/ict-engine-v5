@@ -23,7 +23,6 @@ from datetime import datetime, timedelta
 from dataclasses import dataclass, field
 from enum import Enum
 import time
-
 # Importaciones del sistema existente
 from sistema.logging_interface import enviar_senal_log
 from utils.mt5_data_manager import get_mt5_manager

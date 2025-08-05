@@ -20,7 +20,7 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 - H1: Estado de hibernación inteligente con métricas de MT5
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log, log_dashboard
 - H2: Análisis ICT profesional con datos reales completos
 - H3: 🧠 Patrones ICT con narrativa completa y plan de acción
 - H4: 📊 Analytics y métricas avanzadas del sistema
@@ -78,7 +78,6 @@ from rich.text import Text
 from rich.panel import Panel
 
 # Local imports
-from sistema.logging_interface import enviar_senal_log, log_dashboard
 from sistema.market_status_detector import MarketStatusDetector
 from utils.mt5_data_manager import get_mt5_manager
 

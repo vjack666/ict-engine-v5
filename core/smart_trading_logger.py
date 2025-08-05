@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Dict, Any  # Optional reservado para futuras extensiones
 
 # MIGRADO A SLUC v2.0 - Reservado para integración con sistema de señales
-# from sistema.logging_interface import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log
 
 # =============================================================================
 # CACHE INTELIGENTE PARA EVITAR LOGS REPETITIVOS

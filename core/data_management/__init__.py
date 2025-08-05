@@ -38,7 +38,6 @@ except ImportError as e:
         enviar_senal_log("WARNING", f"Error importando componentes de data_management: {e}", __name__, "init")
     except ImportError:
         enviar_senal_log("WARNING", f"Error importando componentes de data_management: {e}", __name__, "sistema")
-
     __all__ = []
 
 # Información del módulo

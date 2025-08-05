@@ -17,10 +17,8 @@ Versión: v2.0.0 (Migrado a SLUC v2.1)
 Fecha: 03 Agosto 2025
 Autor: ICT Engine Team
 """
-
 # MIGRADO A SLUC v2.1
 from sistema.logging_interface import enviar_senal_log
-
 # Imports del ICT Engine - manejo seguro con type checking
 from typing import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
 from datetime import datetime, timedelta

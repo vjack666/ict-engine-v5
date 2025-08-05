@@ -32,10 +32,6 @@ from .ict_types import (
     SESSION_CONFIG, get_pattern_description
 )
 
-# --- Sistema de logging centralizado ---
-from sistema.logging_interface import enviar_senal_log, log_ict
-# Usar sistema de logging central
-
 
 class ICTPatternAnalyzer:
     """

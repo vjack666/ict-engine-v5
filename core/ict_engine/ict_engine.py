@@ -13,7 +13,6 @@ from typing import Dict, List, Any, Optional
 import pandas as pd
 from dataclasses import dataclass
 from datetime import datetime
-
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log, log_ict
 
