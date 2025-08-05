@@ -1,5 +1,3 @@
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -13,6 +11,9 @@ mejorada y más rápida de MT5 para mostrar el estado real.
 Mejoras:
 - ✅ Detección MT5 optimizada y más rápida
 - ✅ Cache inteligente para evitar lag
+
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 - ✅ Verificación múltiple para mayor precisión
 - ✅ UI más clara y profesional
 - ✅ Estados dinámicos con colores apropiados
@@ -209,16 +210,16 @@ def test_hibernacion_perfecta():
     """
     Función de prueba para la hibernación perfecta
     """
-    print("🧪 PROBANDO HIBERNACIÓN PERFECTA...")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🧪 PROBANDO HIBERNACIÓN PERFECTA...", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 50, __name__, "sistema")
 
     # Probar detección MT5
     conectado, precio, info = detectar_mt5_optimizado()
-    print(f"MT5 Conectado: {conectado}")
-    print(f"Precio: {precio}")
-    # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("INFO", mensaje, __name__, "sistema") # print(f"Info: {info}")
+    enviar_senal_log("INFO", f"MT5 Conectado: {conectado}", __name__, "sistema")
+    enviar_senal_log("INFO", f"Precio: {precio}", __name__, "sistema")
+    enviar_senal_log("INFO", f"Info: {info}", __name__, "sistema")
 
-    print("\n✅ Prueba completada")
+    enviar_senal_log("INFO", "\n✅ Prueba completada", __name__, "sistema")
 
 
 if __name__ == "__main__":

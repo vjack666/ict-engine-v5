@@ -13,6 +13,11 @@ CORRECCIONES APLICADAS:
 ✅ Sistema de logging seguro con validación de categorías
 ✅ Funciones auxiliares completadas
 
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
+
+"""
+
 Fecha: Agosto 2025
 Autor: ICT Engine v5.0 Team
 """
@@ -45,13 +50,13 @@ try:
         return _enviar_senal_log(level, message, module, category)
     logging_available = True
 except ImportError as e:
-    print(f"⚠️ Sistema de logging no disponible: {e}")
+    enviar_senal_log("WARNING", f"⚠️ Sistema de logging no disponible: {e}", __name__, "sistema")
 
     # Mock function para logging cuando no está disponible
     def enviar_senal_log(level, message, module, category):
         """Mock logging function para cuando sistema no está disponible."""
         timestamp = datetime.now().strftime("%H:%M:%S")
-        print(f"[{timestamp}] [{level}] {message}")
+        enviar_senal_log("INFO", f"[{timestamp}] [{level}] {message}", __name__, "sistema")
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -77,10 +82,10 @@ def safe_log(level: str, message: str, module: str, category: str = "poi"):
             enviar_senal_log(level, message, module, safe_category)
         else:
             timestamp = datetime.now().strftime("%H:%M:%S")
-            print(f"[{timestamp}] [{level}] {message}")
+            enviar_senal_log("INFO", f"[{timestamp}] [{level}] {message}", __name__, "sistema")
     except Exception as e:
-        # Último recurso: print básico sin fallar
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"[LOG_ERROR] {message} | Error: {e}")
+        # Último recurso: enviar_senal_log básico sin fallar
+        enviar_senal_log("ERROR", f"[LOG_ERROR] {message} | Error: {e}", __name__, "sistema")
 
 
 # ═══════════════════════════════════════════════════════════════

@@ -315,7 +315,7 @@ if __name__ == "__main__":
     resultado = ejecutar_corrector_log_central()
 
     if resultado['protocolo_aplicado']:
-        print("✅ PROTOCOLO LOG CENTRAL: CORRECCIONES APLICADAS")
-        print(f"📊 Correcciones: {resultado['correcciones_realizadas']}")
+        enviar_senal_log("INFO", "✅ PROTOCOLO LOG CENTRAL: CORRECCIONES APLICADAS", __name__, "sistema")
+        enviar_senal_log("INFO", f"📊 Correcciones: {resultado['correcciones_realizadas']}", __name__, "sistema")
     else:
-        print("⚠️ PROTOCOLO LOG CENTRAL: NO SE REQUIRIERON CORRECCIONES")
+        enviar_senal_log("WARNING", "⚠️ PROTOCOLO LOG CENTRAL: NO SE REQUIRIERON CORRECCIONES", __name__, "sistema")

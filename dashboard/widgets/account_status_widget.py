@@ -272,13 +272,13 @@ if __name__ == "__main__":
         panel = widget.create_account_status_panel()
         console.print(panel)
 
-        print(f"\nStatus compacto: {widget.create_compact_status()}")
+        enviar_senal_log("INFO", f"\nStatus compacto: {widget.create_compact_status()}", __name__, "sistema")
 
         metrics = widget.get_account_metrics()
-        print(f"Métricas: {metrics}")
+        enviar_senal_log("INFO", f"Métricas: {metrics}", __name__, "sistema")
 
-        print("\n✅ Demo del widget ejecutada correctamente")
+        enviar_senal_log("INFO", "\n✅ Demo del widget ejecutada correctamente", __name__, "sistema")
 
     except Exception as e:
-        # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ Error en demo: {e}")
-        print("💡 Ejecuta desde el directorio raíz del proyecto: python dashboard/widgets/account_status_widget.py")
+        enviar_senal_log("ERROR", f"❌ Error en demo: {e}", __name__, "sistema")
+        enviar_senal_log("INFO", "💡 Ejecuta desde el directorio raíz del proyecto: python dashboard/widgets/account_status_widget.py", __name__, "sistema")

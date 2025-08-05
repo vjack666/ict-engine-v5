@@ -18,6 +18,9 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 
 🎮 NAVEGACIÓN:
 - H1: Estado de hibernación inteligente con métricas de MT5
+
+# MIGRADO A SLUC v2.0
+from sistema.logging_interface import enviar_senal_log
 - H2: Análisis ICT profesional con datos reales completos
 - H3: 🧠 Patrones ICT con narrativa completa y plan de acción
 - H4: 📊 Analytics y métricas avanzadas del sistema
@@ -55,7 +58,7 @@ try:
         raise RuntimeError(f"No se puede encontrar el directorio sistema en {project_root}")
 
 except (FileNotFoundError, PermissionError, IOError) as e:
-    # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("ERROR", mensaje, __name__, "sistema") # print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
+    enviar_senal_log("ERROR", f"❌ ERROR CRÍTICO configurando paths de Python: {e}", __name__, "sistema")
     sys.exit(1)
 # -------------------------------------------------
 

@@ -348,19 +348,19 @@ if __name__ == "__main__":
     # Demo del validador
     validator = LiveAccountValidator()
 
-    print("🔍 VALIDADOR DE CUENTA MT5 - LIVE ONLY")
-    print("=" * 50)
+    enviar_senal_log("INFO", "🔍 VALIDADOR DE CUENTA MT5 - LIVE ONLY", __name__, "sistema")
+    enviar_senal_log("INFO", "=" * 50, __name__, "sistema")
 
     account_type, account_data = validator.detect_account_type()
-    print(f"Tipo de Cuenta: {account_type.value.upper()}")
-    print(f"Número: {account_data.get('login', 'N/A')}")
-    print(f"Servidor: {account_data.get('server', 'N/A')}")
-    print(f"Broker: {account_data.get('company', 'N/A')}")
+    enviar_senal_log("INFO", f"Tipo de Cuenta: {account_type.value.upper()}", __name__, "sistema")
+    enviar_senal_log("INFO", f"Número: {account_data.get('login', 'N/A')}", __name__, "sistema")
+    enviar_senal_log("INFO", f"Servidor: {account_data.get('server', 'N/A')}", __name__, "sistema")
+    enviar_senal_log("INFO", f"Broker: {account_data.get('company', 'N/A')}", __name__, "sistema")
 
     validation = validator.validate_account_for_live_trading()
-    print(f"\n✅ Apropiada para Live: {validation['suitable_for_live_trading']}")
+    enviar_senal_log("INFO", f"✅ Apropiada para Live: {validation['suitable_for_live_trading']}", __name__, "sistema")
 
     if validation.get('warnings'):
-        print("\n⚠️ Advertencias:")
+        enviar_senal_log("WARNING", "⚠️ Advertencias:", __name__, "sistema")
         for warning in validation['warnings']:
-            # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # # TODO: Migrar a enviar_senal_log("WARNING", mensaje, __name__, "sistema") # print(f"  - {warning}")
+            enviar_senal_log("WARNING", f"  - {warning}", __name__, "sistema")
