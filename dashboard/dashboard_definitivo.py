@@ -56,7 +56,7 @@ try:
     sistema_path = project_root / "sistema"
     if not sistema_path.exists():
         raise RuntimeError(f"No se puede encontrar el directorio sistema en {project_root}")
-        
+
     print(f"✅ Path configurado correctamente: {project_root}")
 
 except Exception as e:

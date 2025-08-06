@@ -2,10 +2,10 @@
 
 ## 📋 INFORMACIÓN GENERAL
 
-**Fecha de Análisis**: 5 de Agosto de 2025  
-**Versión**: Dashboard Definitivo v5.0 🚀  
-**Estado**: ✅ **COMPLETAMENTE OPERATIVO**  
-**Archivo Principal**: `dashboard_definitivo.py`  
+**Fecha de Análisis**: 5 de Agosto de 2025
+**Versión**: Dashboard Definitivo v5.0 🚀
+**Estado**: ✅ **COMPLETAMENTE OPERATIVO**
+**Archivo Principal**: `dashboard_definitivo.py`
 **Ubicación**: `c:\Users\v_jac\Desktop\itc engine v5.0\dashboard\`
 
 ---
@@ -213,14 +213,14 @@ system_metrics = {
 
 El **Dashboard Sentinel ICT Analyzer v5.0** representa el estado del arte en interfaces de trading ICT, ofreciendo:
 
-✅ **Interface profesional** con 6 pestañas especializadas  
-✅ **Análisis ICT completo** con todos los especialistas conectados  
-✅ **Datos reales de MT5** con fallbacks inteligentes  
-✅ **Sistema de hibernación** adaptativo al estado del mercado  
-✅ **Métricas en tiempo real** y análisis de rendimiento  
-✅ **Navegación intuitiva** con hotkeys dedicados  
-✅ **Logging centralizado** con sistema SLUC v2.1  
-✅ **Error handling robusto** con múltiples niveles de fallback  
+✅ **Interface profesional** con 6 pestañas especializadas
+✅ **Análisis ICT completo** con todos los especialistas conectados
+✅ **Datos reales de MT5** con fallbacks inteligentes
+✅ **Sistema de hibernación** adaptativo al estado del mercado
+✅ **Métricas en tiempo real** y análisis de rendimiento
+✅ **Navegación intuitiva** con hotkeys dedicados
+✅ **Logging centralizado** con sistema SLUC v2.1
+✅ **Error handling robusto** con múltiples niveles de fallback
 
 El sistema está **completamente operativo** y listo para uso en producción.
 

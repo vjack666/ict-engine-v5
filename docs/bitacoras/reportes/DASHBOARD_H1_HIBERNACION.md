@@ -2,9 +2,9 @@
 
 ## 📋 INFORMACIÓN GENERAL
 
-**ID**: `tab_hibernation`  
-**Hotkey**: **H1**  
-**Método Render**: `render_hibernation_panel()`  
+**ID**: `tab_hibernation`
+**Hotkey**: **H1**
+**Método Render**: `render_hibernation_panel()`
 **Estado**: ✅ **COMPLETAMENTE OPERATIVO**
 
 ---
@@ -125,7 +125,7 @@ else:
 
 ### **Colores por Estado**
 - **🔥 OPERATIVO**: `bright_green` border, `bold green` title
-- **⚠️ LIMITADO**: `bright_yellow` border, `bold yellow` title  
+- **⚠️ LIMITADO**: `bright_yellow` border, `bold yellow` title
 - **🌙 HIBERNANDO**: `bright_blue` border, `bold blue` title
 
 ### **Panel Layout**
@@ -218,11 +218,11 @@ except (FileNotFoundError, PermissionError, IOError) as e:
 
 La **Pestaña H1 - Hibernación Real** es el **corazón del sistema de monitoreo**, proporcionando:
 
-✅ **Detección automática** del estado del mercado  
-✅ **Hibernación inteligente** durante horas no operativas  
-✅ **Monitoreo completo** de MT5 y sistemas conectados  
-✅ **Métricas en tiempo real** del rendimiento del sistema  
-✅ **Error handling robusto** con múltiples fallbacks  
-✅ **Interface clara** e informativa  
+✅ **Detección automática** del estado del mercado
+✅ **Hibernación inteligente** durante horas no operativas
+✅ **Monitoreo completo** de MT5 y sistemas conectados
+✅ **Métricas en tiempo real** del rendimiento del sistema
+✅ **Error handling robusto** con múltiples fallbacks
+✅ **Interface clara** e informativa
 
 Es la pestaña más crítica del dashboard y está **100% operativa**.

@@ -2,9 +2,9 @@
 
 ## 📋 INFORMACIÓN GENERAL
 
-**ID**: `tab_patterns`  
-**Hotkey**: **H3**  
-**Método Render**: `render_patterns_panel()`  
+**ID**: `tab_patterns`
+**Hotkey**: **H3**
+**Método Render**: `render_patterns_panel()`
 **Estado**: ✅ **COMPLETAMENTE OPERATIVO**
 
 ---
@@ -75,7 +75,7 @@ def render_patterns_panel(self):
     # Crear layout grid para organización
     main_table = Table.grid()
     main_table.add_column()
-    
+
     # Título del panel
     titulo_panel = Text("📊 ANÁLISIS DE PATRONES ICT", style="bold cyan")
     main_table.add_row(Panel(titulo_panel, style="cyan", padding=(1, 2)))
@@ -86,7 +86,7 @@ def render_patterns_panel(self):
 # Configuraciones de timeframes ICT
 timeframes_config = {
     "primario": "H1",
-    "secundario": "M15", 
+    "secundario": "M15",
     "analisis": "M5",
     "entrada": "M1"
 }
@@ -174,14 +174,14 @@ trading_sessions = {
         "overlap_ny": "13:00-17:00"
     },
     "new_york": {
-        "start": "13:00", 
+        "start": "13:00",
         "end": "22:00",
         "timezone": "GMT",
         "overlap_london": "13:00-17:00"
     },
     "tokyo": {
         "start": "00:00",
-        "end": "09:00", 
+        "end": "09:00",
         "timezone": "GMT",
         "characteristics": "Asian session"
     },
@@ -226,7 +226,7 @@ risk_table.add_column(style="white")
 
 risk_table.add_row("⚖️ GESTIÓN DE RIESGO", "")
 risk_table.add_row("• Stop Loss:", "20 pips")
-risk_table.add_row("• Take Profit:", "40 pips") 
+risk_table.add_row("• Take Profit:", "40 pips")
 risk_table.add_row("• Risk Ratio:", "[green]1:2[/green]")
 risk_table.add_row("• Max Risk:", "[red]2% per trade[/red]")
 risk_table.add_row("• Trailing Stop:", "[green]Enabled[/green]")
@@ -250,7 +250,7 @@ def calculate_position_size(account_balance, risk_percent, stop_loss_pips):
 ```python
 pattern_colors = {
     "choch": "bright_magenta",
-    "bos": "bright_blue", 
+    "bos": "bright_blue",
     "fvg_bullish": "bright_green",
     "fvg_bearish": "bright_red",
     "ob_bullish": "cyan",
@@ -311,7 +311,7 @@ status_info = Text.assemble(
 ```python
 current_bias = {
     "h4_bias": "BULLISH",
-    "h1_bias": "BULLISH", 
+    "h1_bias": "BULLISH",
     "m15_bias": "NEUTRAL",
     "m5_bias": "BEARISH",
     "overall_sentiment": "BULLISH"
@@ -455,13 +455,13 @@ def validate_timeframes(timeframes):
 
 La **Pestaña H3 - Patrones ICT** es el **centro de configuración y análisis de patrones**, proporcionando:
 
-✅ **Análisis completo de patrones ICT** (CHoCH, BOS, FVG, OB)  
-✅ **Configuración multi-timeframe** para análisis preciso  
-✅ **Gestión de riesgo integrada** con cálculos automáticos  
-✅ **Configuración de sesiones** de trading globales  
-✅ **Interface profesional** con códigos de color por patrón  
-✅ **Métricas de performance** y tracking de patrones  
-✅ **Configuraciones avanzadas** y filtros de calidad  
-✅ **Logging completo** para monitoreo y debugging  
+✅ **Análisis completo de patrones ICT** (CHoCH, BOS, FVG, OB)
+✅ **Configuración multi-timeframe** para análisis preciso
+✅ **Gestión de riesgo integrada** con cálculos automáticos
+✅ **Configuración de sesiones** de trading globales
+✅ **Interface profesional** con códigos de color por patrón
+✅ **Métricas de performance** y tracking de patrones
+✅ **Configuraciones avanzadas** y filtros de calidad
+✅ **Logging completo** para monitoreo y debugging
 
 Es la pestaña más **técnica para configuración de estrategias ICT** y está **100% operativa** con todas las configuraciones necesarias para trading profesional.
