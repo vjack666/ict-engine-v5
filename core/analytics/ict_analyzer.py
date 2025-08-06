@@ -1,3 +1,10 @@
+
+from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+from sistema.imports_interface import enviar_senal_log, get_logging, log_info, log_error
+import pandas as pd
+import numpy as np
+from enum import Enum
+
 #!/usr/bin/env python3
 """
 🧠 ICT ANALYZER CORE - Advanced Analytics Engine

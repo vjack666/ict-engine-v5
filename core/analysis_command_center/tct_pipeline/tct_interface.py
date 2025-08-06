@@ -1,3 +1,18 @@
+
+from sistema.imports_interface import Union, List, datetime, Dict, timezone, timedelta, Optional, Any, Tuple
+from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
+from sistema.imports_interface import asyncio, time, Path
+import threading
+import pandas as pd
+import numpy as np
+from core.ict_engine import (
+from core.poi_system import encontrar_pois_multiples_para_dashboard
+from .tct_measurements import TCTMeasurementEngine
+from .tct_aggregator import TCTAggregator
+from .tct_formatter import TCTFormatter
+            import pandas as pd
+            import numpy as np
+
 #!/usr/bin/env python3
 """
 🚪 TCT INTERFACE - Punto de entrada principal para el pipeline TCT

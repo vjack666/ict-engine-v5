@@ -1,12 +1,12 @@
 🔧 REPORTE DE ANÁLISIS DE IMPORTS NO UTILIZADOS
 ============================================================
-Fecha: 2025-08-06 10:36:07
+Fecha: 2025-08-06 11:05:42
 Proyecto: C:\Users\v_jac\Desktop\itc engine v5.0
 
 RESUMEN:
-- Archivos analizados: 108
-- Archivos con imports no utilizados: 66
-- Total de imports no utilizados: 188
+- Archivos analizados: 110
+- Archivos con imports no utilizados: 68
+- Total de imports no utilizados: 275
 
 DETALLES POR ARCHIVO:
 ----------------------------------------
@@ -26,7 +26,7 @@ DETALLES POR ARCHIVO:
 
 📄 config\live_only_config.py
    Imports no utilizados: 1
-   - Línea 14: from dataclasses import dataclass
+   - Línea 13: from sistema.imports_interface import Dict, Any, dataclass, datetime
 
 📄 core\limit_order_manager.py
    Imports no utilizados: 2
@@ -60,13 +60,19 @@ DETALLES POR ARCHIVO:
    - Línea 14: from sistema.logging_interface import enviar_senal_log, log_tct
 
 📄 core\analysis_command_center\tct_pipeline\tct_interface.py
-   Imports no utilizados: 6
-   - Línea 8: import asyncio
-   - Línea 13: from typing import Dict, Any, Optional, List
-   - Línea 15: from pathlib import Path
-   - Línea 18: from sistema.logging_interface import enviar_senal_log, log_tct
-   - Línea 25: from core.poi_system import encontrar_pois_multiples_para_dashboard
-   - Línea 669: from datetime import datetime, timedelta
+   Imports no utilizados: 12
+   - Línea 2: from sistema.imports_interface import Union, List, datetime, Dict, timezone, timedelta, Optional, Any, Tuple
+   - Línea 2: from sistema.imports_interface import Union, List, datetime, Dict, timezone, timedelta, Optional, Any, Tuple
+   - Línea 3: from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
+   - Línea 3: from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
+   - Línea 3: from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
+   - Línea 3: from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
+   - Línea 4: from sistema.imports_interface import asyncio, time, Path
+   - Línea 4: from sistema.imports_interface import asyncio, time, Path
+   - Línea 9: from core.poi_system import encontrar_pois_multiples_para_dashboard
+   - Línea 23: import asyncio
+   - Línea 33: from sistema.logging_interface import enviar_senal_log, log_tct
+   - Línea 40: from core.poi_system import encontrar_pois_multiples_para_dashboard
 
 📄 core\analysis_command_center\tct_pipeline\tct_measurements.py
    Imports no utilizados: 4
@@ -110,14 +116,17 @@ DETALLES POR ARCHIVO:
    - Línea 25: from dataclasses import dataclass
 
 📄 core\ict_engine\ict_detector.py
-   Imports no utilizados: 7
-   - Línea 20: from sistema.logging_interface import enviar_senal_log, log_ict
-   - Línea 21: from datetime import datetime, timedelta, timezone
-   - Línea 22: from typing import Dict, List, Optional, Any, Tuple, Union
-   - Línea 22: from typing import Dict, List, Optional, Any, Tuple, Union
-   - Línea 23: import json
-   - Línea 25: from pathlib import Path
-   - Línea 42: from core.ict_engine.fractal_analyzer import FractalAnalyzer, update_fractal_in_context
+   Imports no utilizados: 10
+   - Línea 3: from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
+   - Línea 3: from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
+   - Línea 3: from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
+   - Línea 3: from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
+   - Línea 3: from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
+   - Línea 4: from sistema.imports_interface import Path, json
+   - Línea 4: from sistema.imports_interface import Path, json
+   - Línea 30: from sistema.logging_interface import enviar_senal_log, log_ict
+   - Línea 35: from pathlib import Path
+   - Línea 52: from core.ict_engine.fractal_analyzer import FractalAnalyzer, update_fractal_in_context
 
 📄 core\ict_engine\ict_engine.py
    Imports no utilizados: 2
@@ -197,25 +206,41 @@ DETALLES POR ARCHIVO:
    - Línea 19: from dataclasses import dataclass, asdict, field
 
 📄 dashboard\dashboard_definitivo.py
-   Imports no utilizados: 6
-   - Línea 58: from sistema.logging_interface import enviar_senal_log, log_dashboard
-   - Línea 69: from textual.app import App, ComposeResult
-   - Línea 104: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
-   - Línea 155: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
-   - Línea 155: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
-   - Línea 1171: from rich.console import Group
+   Imports no utilizados: 17
+   - Línea 2: from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
+   - Línea 2: from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
+   - Línea 2: from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
+   - Línea 2: from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+   - Línea 4: from sistema.imports_interface import PATTERN_EMOJIS, TradingDirection, sys, ICTPattern, re, Path, SessionType
+   - Línea 32: from rich.console import Group
+   - Línea 92: from sistema.logging_interface import enviar_senal_log, log_dashboard
+   - Línea 138: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
+   - Línea 189: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 189: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 1205: from rich.console import Group
 
 📄 dashboard\dashboard_widgets.py
-   Imports no utilizados: 9
-   - Línea 24: from sistema.logging_interface import enviar_senal_log, log_dashboard
-   - Línea 28: from typing import Dict, Any, Optional, List
-   - Línea 28: from typing import Dict, Any, Optional, List
-   - Línea 51: from textual.containers import Vertical
-   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-   - Línea 63: from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
+   Imports no utilizados: 14
+   - Línea 2: from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
+   - Línea 2: from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
+   - Línea 2: from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
+   - Línea 2: from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
+   - Línea 3: from sistema.imports_interface import get_logging, enviar_senal_log, log_error, get_dashboard_controller, log_info
+   - Línea 3: from sistema.imports_interface import get_logging, enviar_senal_log, log_error, get_dashboard_controller, log_info
+   - Línea 3: from sistema.imports_interface import get_logging, enviar_senal_log, log_error, get_dashboard_controller, log_info
+   - Línea 4: from sistema.imports_interface import SessionType, ICTPattern, PATTERN_EMOJIS, Path, time, TradingDirection, sys, re
+   - Línea 4: from sistema.imports_interface import SessionType, ICTPattern, PATTERN_EMOJIS, Path, time, TradingDirection, sys, re
+   - Línea 13: from textual.containers import Vertical
+   - Línea 39: from sistema.logging_interface import enviar_senal_log, log_dashboard
+   - Línea 66: from textual.containers import Vertical
+   - Línea 77: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 78: from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
 
 📄 dashboard\hibernacion_perfecta.py
    Imports no utilizados: 2
@@ -298,6 +323,11 @@ DETALLES POR ARCHIVO:
    - Línea 26: from typing import List, Dict, Set, Tuple, Optional
    - Línea 27: from dataclasses import dataclass
 
+📄 scripts\migrate_to_sic.py
+   Imports no utilizados: 2
+   - Línea 14: import os
+   - Línea 17: from typing import Dict, List, Tuple, Optional
+
 📄 scripts\sprint_1_6_calibrator.py
    Imports no utilizados: 2
    - Línea 28: from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
@@ -333,6 +363,69 @@ DETALLES POR ARCHIVO:
    Imports no utilizados: 2
    - Línea 13: from typing import List, Optional, Dict, Any
    - Línea 13: from typing import List, Optional, Dict, Any
+
+📄 sistema\imports_interface.py
+   Imports no utilizados: 60
+   - Línea 18: from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
+   - Línea 18: from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
+   - Línea 18: from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
+   - Línea 18: from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
+   - Línea 18: from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
+   - Línea 19: from dataclasses import dataclass, field, asdict
+   - Línea 19: from dataclasses import dataclass, field, asdict
+   - Línea 19: from dataclasses import dataclass, field, asdict
+   - Línea 20: from datetime import datetime, timedelta, timezone
+   - Línea 20: from datetime import datetime, timedelta, timezone
+   - Línea 20: from datetime import datetime, timedelta, timezone
+   - Línea 21: from pathlib import Path
+   - Línea 22: import asyncio
+   - Línea 23: import json
+   - Línea 24: import time
+   - Línea 25: import sys
+   - Línea 26: import os
+   - Línea 27: import re
+   - Línea 34: from core.ict_engine.ict_engine import ICTEngine, get_ict_engine
+   - Línea 35: from core.ict_engine.ict_detector import ICTDetector
+   - Línea 36: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 36: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 36: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 36: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 37: from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+   - Línea 37: from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+   - Línea 38: from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
+   - Línea 39: from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
+   - Línea 40: from core.ict_engine.fractal_analyzer import FractalAnalyzer
+   - Línea 50: from core.poi_system.poi_detector import POIDetector
+   - Línea 51: from core.poi_system.poi_scoring_engine import POIScoringEngine
+   - Línea 52: from core.poi_system.poi_system import POISystem
+   - Línea 62: from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo as SentinelDashboard
+   - Línea 63: from dashboard.dashboard_controller import DashboardController
+   - Línea 64: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
+   - Línea 64: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
+   - Línea 65: from dashboard.ict_professional_widget import ICTProfessionalWidget
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 75: from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+   - Línea 76: from sistema.config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL
+   - Línea 76: from sistema.config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL
+   - Línea 77: from sistema.market_status_detector_v3 import MarketStatusDetector
+   - Línea 87: from utils.mt5_data_manager import get_mt5_manager, MT5DataManager
+   - Línea 88: from utils.logging_utils import get_logger
+   - Línea 98: from core.analysis_command_center import AnalysisOrchestrator
+   - Línea 99: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 99: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 100: from core.analysis_command_center.acc_flow_controller import AccFlowController, FlowPriority
+   - Línea 100: from core.analysis_command_center.acc_flow_controller import AccFlowController, FlowPriority
+   - Línea 101: from core.analytics.ict_analyzer import ICTAnalyzer
+   - Línea 111: from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader
+   - Línea 112: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
+   - Línea 112: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
+   - Línea 112: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
 
 📄 sistema\market_status_detector.py
    Imports no utilizados: 3

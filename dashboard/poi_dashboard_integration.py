@@ -1,3 +1,14 @@
+
+from sistema.imports_interface import List, datetime, Any, Dict, Tuple, timezone, Optional, timedelta, Union
+from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+from sistema.imports_interface import time
+from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
+import hashlib
+import traceback
+                import pandas as pd
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """

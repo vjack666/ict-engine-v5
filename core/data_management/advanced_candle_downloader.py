@@ -1,3 +1,10 @@
+
+from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+from sistema.imports_interface import get_mt5_manager, get_candle_downloader, log_info, enviar_senal_log, get_logging, log_error
+from sistema.imports_interface import asyncio, time, Path
+import threading
+import pandas as pd
+
 #!/usr/bin/env python3
 """
 📥 ADVANCED CANDLE DOWNLOADER - ICT ENGINE v5.0

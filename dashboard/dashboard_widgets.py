@@ -1,3 +1,18 @@
+
+from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
+from sistema.imports_interface import get_logging, enviar_senal_log, log_error, get_dashboard_controller, log_info
+from sistema.imports_interface import SessionType, ICTPattern, PATTERN_EMOJIS, Path, time, TradingDirection, sys, re
+from textual.widget import Widget
+from textual.widgets import Static
+from rich.layout import Layout
+from rich.panel import Panel
+from rich.text import Text
+from rich.table import Table
+from rich.align import Align
+from rich import box
+from textual.containers import Vertical
+        import random
+
 #!/usr/bin/env python3
 """
 Widgets de Dashboard para SentinelTUI

@@ -1,3 +1,37 @@
+
+from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
+from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
+from sistema.imports_interface import PATTERN_EMOJIS, TradingDirection, sys, ICTPattern, re, Path, SessionType
+import random
+import traceback
+import pandas as pd
+from textual.app import App, ComposeResult
+from textual.binding import Binding
+from textual.containers import Container
+from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
+from rich.text import Text
+from rich.panel import Panel
+from sistema.market_status_detector import MarketStatusDetector
+    from core.integrations.candle_downloader_integration import downloader_integration
+from core.poi_system import poi_detector
+from core.trading import TradingDecisionEngine
+from core.smart_trading_logger import TradingDecisionCache
+from core.limit_order_manager import LimitOrderManager
+from core.risk_management.riskbot_mt5 import RiskBot
+from config.config_manager import ConfigManager
+    from core.ict_engine import ict_types
+    from core.ict_engine import ict_detector
+    from core.ict_engine import pattern_analyzer as ict_pattern_analyzer
+    from core.ict_engine import confidence_engine
+    from core.ict_engine import ict_historical_analyzer
+    from dashboard import ict_professional_widget
+    from dashboard import dashboard_widgets
+                import MetaTrader5 as mt5
+        from rich.table import Table
+        from rich.layout import Layout
+        from rich.console import Group
+                    import MetaTrader5 as mt5
+
 #!/usr/bin/env python3
 # SENTINEL ICT ANALYZER - DASHBOARD DEFINITIVO
 
