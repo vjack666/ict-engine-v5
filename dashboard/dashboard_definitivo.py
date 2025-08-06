@@ -32,9 +32,6 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 Autor: Sistema Sentinel Grid
 """
 
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_dashboard
-
 """
 Fecha: 2025-07-27
 Versión: Dashboard Definitivo v5.0 🚀
@@ -59,10 +56,15 @@ try:
     sistema_path = project_root / "sistema"
     if not sistema_path.exists():
         raise RuntimeError(f"No se puede encontrar el directorio sistema en {project_root}")
+        
+    print(f"✅ Path configurado correctamente: {project_root}")
 
-except (FileNotFoundError, PermissionError, IOError) as e:
-    enviar_senal_log("ERROR", f"❌ ERROR CRÍTICO configurando paths de Python: {e}", __name__, "sistema")
+except Exception as e:
+    print(f"❌ ERROR CRÍTICO configurando paths de Python: {e}")
     sys.exit(1)
+
+# MIGRADO A SLUC v2.0 - IMPORTAR DESPUÉS DE CONFIGURAR PATHS
+from sistema.logging_interface import enviar_senal_log, log_dashboard
 # -------------------------------------------------
 
 # Standard library imports
