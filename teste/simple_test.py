@@ -4,8 +4,8 @@
 🧪 SIMPLE POI TEST - Identificar error exacto
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 import traceback
 
 # Agregar el directorio raíz al path
@@ -13,9 +13,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
     print("🔍 Importando módulos básicos...")
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
     from rich.table import Table
-    from datetime import datetime
+    from sistema.sic import datetime
     print("✅ Módulos básicos importados")
 
     print("🔍 Creando tabla simple...")

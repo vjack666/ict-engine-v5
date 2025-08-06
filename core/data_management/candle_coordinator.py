@@ -18,13 +18,13 @@ Creado por: Sistema de Integración v5.0
 import asyncio
 import threading
 import queue
-from typing import Dict, List, Optional, Callable, Any
-from datetime import datetime, timedelta
-from dataclasses import dataclass, field
+from sistema.sic import Dict, List, Optional, Callable, Any
+from sistema.sic import datetime, timedelta
+from sistema.sic import dataclass, field
 from enum import Enum
-import time
+from sistema.sic import time
 # Importaciones del sistema existente
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 from utils.mt5_data_manager import get_mt5_manager
 from core.analysis_command_center.acc_flow_controller import AccFlowController, FlowPriority
 

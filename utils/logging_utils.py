@@ -4,16 +4,16 @@
 """
 
 import csv
-import json
+from sistema.sic import json
 from json import JSONDecodeError
-from datetime import datetime
-from pathlib import Path
-from typing import Any, Dict, List, Optional
+from sistema.sic import datetime
+from sistema.sic import Path
+from sistema.sic import Any, Dict, List, Optional
 from rich.text import Text
 
 # MIGRADO A SLUC v2.0
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
 except ImportError:
     def enviar_senal_log(*args, **kwargs):
         """Fallback para logging_interface no disponible"""
@@ -231,7 +231,7 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
     """
     try:
         # Importar el sistema universal inteligente
-        import sys
+        from sistema.sic import sys
         import importlib.util
 
         # Calcular la ruta al archivo universal_intelligent_logger.py
@@ -316,7 +316,7 @@ def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> N
 def log_trading_event(action: str, symbol: str, price: float, volume: float, order_type: str = "") -> bool:
     """Log de eventos de trading estandarizado"""
     try:
-        from sistema.logging_interface import log_trading
+        from sistema.sic import log_trading
         log_trading("INFO", f"TRADING_EVENT: {action} {symbol} @ {price} | Volume: {volume} | Type: {order_type}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
@@ -326,7 +326,7 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
     """Log cuando una orden es ejecutada exitosamente"""
     try:
-        from sistema.logging_interface import log_trading
+        from sistema.sic import log_trading
         log_trading("INFO", f"ORDER_FILLED: {order_type} {symbol} @ {price} | Volume: {volume}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
@@ -336,7 +336,7 @@ def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
 def log_order_rejected(order_type: str, symbol: str, reason: str):
     """Log cuando una orden es rechazada"""
     try:
-        from sistema.logging_interface import log_trading
+        from sistema.sic import log_trading
         log_trading("WARNING", f"ORDER_REJECTED: {order_type} {symbol} | Reason: {reason}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:

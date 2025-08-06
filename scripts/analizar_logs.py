@@ -12,18 +12,18 @@ Uso:
     python analizar_logs.py --errors-only
 """
 
-import sys
-from pathlib import Path
-from datetime import datetime, timedelta
-import re
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import datetime, timedelta
+from sistema.sic import re
 from collections import defaultdict
-from typing import Dict, List, Tuple
+from sistema.sic import Dict, List, Tuple
 
 # 📁 Configurar paths del proyecto
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def analizar_logs_mt5(log_path: Path) -> Dict:
     """Analiza los logs de MT5"""

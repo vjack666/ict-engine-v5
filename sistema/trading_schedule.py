@@ -18,14 +18,14 @@ Versión: v1.0.0 - Professional Trading Schedule
 Fecha: Agosto 2025
 """
 
-from typing import Dict, Optional, Tuple, Any
-from datetime import datetime, timezone, timedelta
+from sistema.sic import Dict, Optional, Tuple, Any
+from sistema.sic import datetime, timezone, timedelta
 from enum import Enum
-import time
+from sistema.sic import time
 
 # MIGRADO A SLUC v2.1
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
 except ImportError:
     def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "trading_schedule", categoria: str = "general") -> None:
         """Fallback logging function"""

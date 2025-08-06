@@ -21,15 +21,15 @@ Usa TODA la infraestructura existente siguiendo el patrón exitoso del POI Integ
 - docs/bitacoras/reportes/REGISTRAR_ACCION_PROPOSITO_SISTEMA.md
 """
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 from utils.mt5_data_manager import get_mt5_manager
-from dashboard.dashboard_controller import get_dashboard_controller
+from sistema.sic import get_dashboard_controller
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
-from datetime import datetime, timedelta
-from typing import Dict, List, Tuple, Optional, Any
-import time
+from sistema.sic import datetime, timedelta
+from sistema.sic import Dict, List, Tuple, Optional, Any
+from sistema.sic import time
 
 # 🚀 INICIALIZACIÓN DEL MÓDULO USANDO INFRAESTRUCTURA EXISTENTE
 enviar_senal_log("INFO", "✅ Hibernation Widget v2.0 - Arquitectura Directa inicializado exitosamente", __name__, "module_init")

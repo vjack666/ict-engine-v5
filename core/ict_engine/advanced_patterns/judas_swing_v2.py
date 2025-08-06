@@ -18,13 +18,13 @@ Fecha: 04 Agosto 2025
 """
 
 import pandas as pd
-from datetime import datetime, time, timedelta
-from typing import Dict, Optional, Tuple
-from dataclasses import dataclass
+from sistema.sic import datetime, time, timedelta
+from sistema.sic import Dict, Optional, Tuple
+from sistema.sic import dataclass
 from enum import Enum
 
 # Sistema de logging SLUC v2.1
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # ICT Types
 from ..ict_types import TradingDirection

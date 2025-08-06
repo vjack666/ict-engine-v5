@@ -10,12 +10,12 @@ Fecha: 2025-08-06
 Versión: v1.0
 """
 
-import re
-import os
+from sistema.sic import re
+from sistema.sic import os
 import shutil
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-from datetime import datetime
+from sistema.sic import Path
+from sistema.sic import Dict, List, Tuple, Optional
+from sistema.sic import datetime
 
 class SICMigrator:
     """Migrador automático al Sistema de Imports Centralizado"""
@@ -253,7 +253,7 @@ class SICMigrator:
 
 def main():
     """Función principal del migrador"""
-    import sys
+    from sistema.sic import sys
 
     project_root = Path(__file__).parent.parent
     migrator = SICMigrator(str(project_root))

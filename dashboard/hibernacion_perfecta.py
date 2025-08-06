@@ -13,7 +13,7 @@ Mejoras:
 - ✅ Cache inteligente para evitar lag
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 - ✅ Verificación múltiple para mayor precisión
 - ✅ UI más clara y profesional
 - ✅ Estados dinámicos con colores apropiados
@@ -22,8 +22,8 @@ Autor: ICT Engine Team
 Fecha: 04 Agosto 2025
 """
 
-from datetime import datetime
-from typing import Tuple, Optional, Any
+from sistema.sic import datetime
+from sistema.sic import Tuple, Optional, Any
 from rich.text import Text
 from rich.panel import Panel
 
@@ -33,8 +33,8 @@ try:
     mt5_manager_available = True
 except ImportError:
     # Para cuando se ejecuta directamente, intentar con path
-    import sys
-    import os
+    from sistema.sic import sys
+    from sistema.sic import os
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
     try:
         from utils.mt5_data_manager import get_mt5_manager

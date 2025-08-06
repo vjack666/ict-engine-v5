@@ -6,7 +6,7 @@
 Reporte final del estado de limpieza de logs obsoletos en el proyecto
 """
 
-from pathlib import Path
+from sistema.sic import Path
 
 def main():
     print("📋 REPORTE FINAL - LIMPIEZA DE LOGS OBSOLETOS")

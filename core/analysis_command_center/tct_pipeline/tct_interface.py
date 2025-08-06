@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # === IMPORTS SIC ===
-from core.ict_engine.ict_detector import ICTDetector
-from sistema.smart_directory_logger import logger
+from sistema.sic import ICTDetector
+from sistema.sic import logger
 
 # === RESTO DE IMPORTS ===
 

@@ -5,12 +5,12 @@ ARQUITECTURA: Dataclasses para estandarizar flujo de datos entre especialistas
 PROTOCOLO: "Caja Negra" - Estructuras robustas, logging exhaustivo
 """
 
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any
-from datetime import datetime
+from sistema.sic import dataclass, field
+from sistema.sic import Dict, List, Optional, Any
+from sistema.sic import datetime
 from enum import Enum
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 class AnalysisStatus(Enum):
     """Estados posibles del análisis"""

@@ -14,18 +14,18 @@ Estrategia de corrección:
 Autor: ICT Engine v5.0 - Sistema de Corrección Automática
 """
 
-import os
-import re
-import sys
-from pathlib import Path
-from typing import List, Dict, Any, Tuple
-from datetime import datetime
+from sistema.sic import os
+from sistema.sic import re
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import List, Dict, Any, Tuple
+from sistema.sic import datetime
 
 # Añadir el directorio padre al path para imports
 sys.path.append(str(Path(__file__).parent.parent))
 
 # PROTOCOLO: Solo sistema de log centralizado
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 class CorrectorLogCentral:
     """

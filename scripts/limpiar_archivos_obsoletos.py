@@ -15,10 +15,10 @@ ANÁLISIS DE ARCHIVOS:
 """
 
 import shutil
-from pathlib import Path
+from sistema.sic import Path
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
-from typing import List, Dict, Tuple
+from sistema.sic import enviar_senal_log
+from sistema.sic import List, Dict, Tuple
 
 # Configurar paths
 PROJECT_ROOT = Path(__file__).parent

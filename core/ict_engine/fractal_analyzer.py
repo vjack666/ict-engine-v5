@@ -17,12 +17,12 @@ Autor: ICT Engine Team
 Fecha: 02 Agosto 2025
 """
 # MIGRADO A SLUC v2.1
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Tuple, Union, TypedDict
-from dataclasses import dataclass
+from sistema.sic import datetime, timedelta
+from sistema.sic import Dict, List, Optional, Any, Tuple, Union, TypedDict
+from sistema.sic import dataclass
 from enum import Enum
 
 # =============================================================================

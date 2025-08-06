@@ -1,7 +1,7 @@
 from decimal import Decimal, ROUND_HALF_UP
-from typing import Optional
+from sistema.sic import Optional
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_mt5
+from sistema.sic import enviar_senal_log, log_mt5
 
 # riskbot_mt5.py
 
@@ -9,7 +9,7 @@ from sistema.logging_interface import enviar_senal_log, log_mt5
 # SECCIÓN 1: IMPORTACIONES DE LIBRERÍAS Y MÓDULOS
 # =============================================================================
 import MetaTrader5 as mt5
-from datetime import datetime
+from sistema.sic import datetime
 import pytz
 from sistema.config import COMISION_POR_LOTE, log_debug
 from sistema.data_logger import log_posicion_cerrada, log_error_critico

@@ -9,11 +9,11 @@ Fecha: 2025-08-06
 Versión: v2.0
 """
 
-import os
+from sistema.sic import os
 import shutil
-import sys
-from pathlib import Path
-from datetime import datetime
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import datetime
 
 def verificar_estado_actual():
     """🔍 Verificar estado actual del proyecto"""

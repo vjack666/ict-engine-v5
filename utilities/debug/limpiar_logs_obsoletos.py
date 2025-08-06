@@ -9,17 +9,17 @@ reemplazándolas con enviar_senal_log del SLUC v2.0
 VERSIÓN: 1.0 - Limpieza masiva AsyncIO
 """
 
-import sys
+from sistema.sic import sys
 import asyncio
 import ast
-import re
-from pathlib import Path
+from sistema.sic import re
+from sistema.sic import Path
 
 # Configurar project root
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 class LoggingCleanupAnalyzer(ast.NodeVisitor):
     """Analizador AST para detectar referencias obsoletas de logging"""

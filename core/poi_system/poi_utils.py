@@ -17,10 +17,10 @@ Tipos de POI soportados:
 - PRICE_IMBALANCE: Desequilibrio de precio
 """
 
-from typing import List, Dict, Optional
-from datetime import datetime
+from sistema.sic import List, Dict, Optional
+from sistema.sic import datetime
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_poi
+from sistema.sic import enviar_senal_log, log_poi
 
 # =============================================================================
 # CONFIGURACIÓN DE TIPOS POI

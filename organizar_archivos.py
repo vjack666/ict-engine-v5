@@ -6,9 +6,9 @@
 Script para reorganizar archivos del directorio raíz en sus carpetas correspondientes
 """
 
-import os
+from sistema.sic import os
 import shutil
-from pathlib import Path
+from sistema.sic import Path
 
 def main():
     print("🗂️ ORGANIZANDO ARCHIVOS DEL PROYECTO")

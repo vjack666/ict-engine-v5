@@ -16,15 +16,15 @@ Autor: Sistema Sentinel v5.0
 Fecha: 2025-08-05
 """
 
-import sys
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 
 # Configurar paths
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 # Import SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def test_imports():
     """Test básico de imports"""

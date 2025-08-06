@@ -18,13 +18,13 @@ Creado por Sprint 1.3 Executor
 
 import pandas as pd
 import numpy as np
-from typing import Dict, List, Optional, Tuple, Any
-from datetime import datetime, timedelta
-from dataclasses import dataclass
+from sistema.sic import Dict, List, Optional, Tuple, Any
+from sistema.sic import datetime, timedelta
+from sistema.sic import dataclass
 from enum import Enum
 # Sistema de logging centralizado
 try:
-from sistema.logging_interface import enviar_senal_log, log_ict
+from sistema.sic import enviar_senal_log, log_ict
 except ImportError:
     def enviar_senal_log(nivel, mensaje, fuente="ict_analyzer", categoria="general", metadata=None):
         print(f"[{nivel}] {fuente}: {mensaje}")

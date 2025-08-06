@@ -8,12 +8,12 @@
 Script para clarificar exactamente qué tipo de datos está usando el sistema
 """
 
-import sys
-import os
-from datetime import datetime, timezone
+from sistema.sic import sys
+from sistema.sic import os
+from sistema.sic import datetime, timezone
 
 # Import SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # Agregar paths necesarios
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))

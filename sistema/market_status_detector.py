@@ -34,16 +34,16 @@ FECHA: 5 Agosto 2025
 VERSIÓN: v3.0 - Production Ready
 """
 
-import sys
-from datetime import datetime, timezone, timedelta
+from sistema.sic import sys
+from sistema.sic import datetime, timezone, timedelta
 import platform
-from typing import Dict, Optional, Any, Tuple
-from dataclasses import dataclass
+from sistema.sic import Dict, Optional, Any, Tuple
+from sistema.sic import dataclass
 from enum import Enum
 
 # MIGRADO A SLUC v2.1
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
 except ImportError:
     def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "market_status", categoria: str = "general") -> None:
         print(f"[{nivel}] {fuente}: {mensaje}")

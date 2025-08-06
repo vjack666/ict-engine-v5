@@ -6,8 +6,8 @@
 Test para verificar integración POI en contexto real del dashboard
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 
 # Configurar path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +19,7 @@ try:
     # Importar componentes del dashboard
     print("📦 Importando dashboard components...")
     from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
     print("✅ Componentes importados")
 
     # Simular dashboard_instance real con estructura completa

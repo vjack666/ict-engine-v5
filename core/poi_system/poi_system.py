@@ -9,13 +9,13 @@ Autor: Sistema Sentinel Grid v3.3.3.3.3
 Fecha: 2025-08-03
 """
 
-from typing import Dict, List, Any, Optional
+from sistema.sic import Dict, List, Any, Optional
 import pandas as pd
-from dataclasses import dataclass
-from datetime import datetime
+from sistema.sic import dataclass
+from sistema.sic import datetime
 import threading
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_poi
+from sistema.sic import enviar_senal_log, log_poi
 
 # =============================================================================
 # SINGLETON PATTERN PARA POI SYSTEM
@@ -104,7 +104,7 @@ class POISystemManager:
                     self._poi_detector = encontrar_pois_multiples_para_dashboard
                 except ImportError:
                     try:
-                        from core.poi_system.poi_detector import encontrar_pois_multiples_para_dashboard
+                        from sistema.sic import encontrar_pois_multiples_para_dashboard
                         self._poi_detector = encontrar_pois_multiples_para_dashboard
                     except ImportError:
                         enviar_senal_log("WARNING", "No se pudo cargar detector POI específico", "poi_system")

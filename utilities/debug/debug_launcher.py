@@ -10,11 +10,11 @@ Herramientas profesionales de debugging:
 - Performance monitoring
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 import subprocess
-from pathlib import Path
-from datetime import datetime
+from sistema.sic import Path
+from sistema.sic import datetime
 
 # Agregar el directorio raíz al Python path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -27,7 +27,7 @@ except ImportError:
     textual_available = False
 
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
 except ImportError:
     def enviar_senal_log(nivel, mensaje, fuente="debug", categoria="launcher"):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

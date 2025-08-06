@@ -28,18 +28,18 @@
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
 # Asegurar que Python pueda encontrar todos los módulos del proyecto
 # === IMPORTS SIC ===
-from config.config_manager import ConfigManager
-from dashboard.dashboard_controller import DashboardController
-from core.ict_engine.ict_detector import ICTDetector
+from sistema.sic import ConfigManager
+from sistema.sic import DashboardController
+from sistema.sic import ICTDetector
 from core.limit_order_manager import LimitOrderManager
 from sistema.market_status_detector_v3 import MarketStatusDetector
 from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
-from sistema.smart_directory_logger import logger
-from sistema.smart_directory_logger import logger
+from sistema.sic import logger
+from sistema.sic import logger
 
 # === RESTO DE IMPORTS ===
-import sys
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 
 try:
     # El directorio padre de dashboard es el proyecto principal
@@ -123,11 +123,13 @@ try:
 
     # ⏱️ TCT PIPELINE INTEGRATION - SPRINT 1.2 COMPLETADO
 
-    # Widgets del dashboard
+    # Placeholder para evitar error de sintaxis
+    pass
+    
+except ImportError as e:
+    enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
 
-    # Extraer las clases necesarias
-    ICTPattern = ict_types.ICTPattern
-    TradingDirection = ict_types.TradingDirection
+try:
     SessionType = ict_types.SessionType
     PATTERN_EMOJIS = ict_types.PATTERN_EMOJIS
 

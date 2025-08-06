@@ -3,18 +3,18 @@
 # MIGRADO COMPLETAMENTE A SLUC v2.1
 # =============================================================================
 
-import os
-import sys
+from sistema.sic import os
+from sistema.sic import sys
 import csv
 import pandas as pd
 import traceback
-from pathlib import Path
-from datetime import datetime
-from typing import List, Optional, Dict, Any
+from sistema.sic import Path
+from sistema.sic import datetime
+from sistema.sic import List, Optional, Dict, Any
 import pytz
 
 # SLUC v2.1 - Sistema de Logging Unificado y Centralizado
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 from .config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL
 
 # =============================================================================

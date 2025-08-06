@@ -5,13 +5,13 @@ Configuration Management
 Gestión centralizada de configuraciones del sistema Sentinel Grid.
 """
 
-import json
+from sistema.sic import json
 from json import JSONDecodeError
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
-from pathlib import Path
-from typing import Dict, Any
+from sistema.sic import Path
+from sistema.sic import Dict, Any
 
 # Rutas de configuración
 CONFIG_DIR = Path(__file__).parent

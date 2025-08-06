@@ -15,14 +15,14 @@ Características:
 
 import threading
 import queue
-from datetime import datetime, timedelta
-from dataclasses import dataclass, asdict, field
+from sistema.sic import datetime, timedelta
+from sistema.sic import dataclass, asdict, field
 from json import JSONDecodeError
-from typing import Dict, Any, Optional, Callable, List
-import time
+from sistema.sic import Dict, Any, Optional, Callable, List
+from sistema.sic import time
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # 🎯 INTEGRACIÓN ACC - CENTRO DE MANDO DE ANÁLISIS
 from core.analysis_command_center import AnalysisOrchestrator

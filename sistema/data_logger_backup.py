@@ -2,12 +2,12 @@
 # SECCIÓN X: INICIALIZACIÓN DEL SISTEMA DE CANDLES (ROBUSTO Y MODULAR)
 # =============================================================================
 
-import os
-from pathlib import Path
+from sistema.sic import os
+from sistema.sic import Path
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
-from typing import Optional
+from sistema.sic import Optional
 
 # Directorio de velas (candles)
 VELAS_DIR = os.path.join(os.path.dirname(__file__), '..', 'data', 'candles')
@@ -36,9 +36,9 @@ def inicializar_sistema_candles():
 # =============================================================================
 # SECCIÓN 9: CAPTURA DE SALIDA ESTÁNDAR PARA DEBUGGING DE RICH
 # =============================================================================
-import sys
+from sistema.sic import sys
 import pandas as pd
-from datetime import datetime
+from sistema.sic import datetime
 import pytz
 import csv
 
@@ -125,7 +125,7 @@ def log_dashboard_error(panel_name: str, error: Exception):
 # =============================================================================
 # SECCIÓN 1: IMPORTACIONES DE LIBRERÍAS
 # =============================================================================
-from typing import List
+from sistema.sic import List
 import traceback
 
 from .config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL

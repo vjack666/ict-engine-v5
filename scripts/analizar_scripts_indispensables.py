@@ -9,16 +9,16 @@ indispensables para la ejecución del sistema y cuáles se pueden eliminar.
 VERSIÓN: 2.0 AsyncIO Compatible
 """
 
-import sys
+from sistema.sic import sys
 import asyncio
-from pathlib import Path
+from sistema.sic import Path
 import ast
 # TODO: Eliminado - usar enviar_senal_log # import logging
 # Configurar project root
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # MIGRADO A SLUC v2.0: logger eliminado - usar enviar_senal_log
 

@@ -9,12 +9,12 @@ Autor: Sistema Sentinel Grid v3.3.3.3.3
 Fecha: 2025-08-03
 """
 
-from typing import Dict, List, Any, Optional
+from sistema.sic import Dict, List, Any, Optional
 import pandas as pd
-from dataclasses import dataclass
-from datetime import datetime
+from sistema.sic import dataclass
+from sistema.sic import datetime
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_ict
+from sistema.sic import enviar_senal_log, log_ict
 
 # Importar componentes ICT existentes
 ict_components_available = False

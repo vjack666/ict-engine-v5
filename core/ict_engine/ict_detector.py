@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # === IMPORTS SIC ===
-from core.ict_engine.ict_detector import ICTDetector
+from sistema.sic import ICTDetector
 from sistema.market_status_detector_v3 import MarketStatusDetector
-from sistema.smart_directory_logger import logger
+from sistema.sic import logger
 
 # === RESTO DE IMPORTS ===
 
@@ -25,7 +25,7 @@ Versión: v3.3.3
 
 # --- Import de funciones POI para integración ---
 try:
-    from core.poi_system.poi_detector import (
+    from sistema.sic import (
         detectar_order_blocks,
         detectar_fair_value_gaps,
         detectar_breaker_blocks,

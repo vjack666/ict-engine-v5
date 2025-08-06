@@ -8,12 +8,12 @@
 Script simplificado para probar y mejorar el motor de confianza
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 enviar_senal_log("INFO", "🎯 CONFIDENCE CALIBRATOR - Sprint 1.6", __name__, "calibracion")
 enviar_senal_log("INFO", "Meta: Mejorar confianza del 45% → 70%+", __name__, "calibracion")

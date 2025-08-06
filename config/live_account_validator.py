@@ -15,12 +15,12 @@ Fecha: 2025-08-03
 Versión: Live Account Validator v1.0
 """
 
-from typing import Dict, Optional, Tuple, Any
+from sistema.sic import Dict, Optional, Tuple, Any
 from enum import Enum
-from dataclasses import dataclass
-from datetime import datetime
+from sistema.sic import dataclass
+from sistema.sic import datetime
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # Importación segura de MetaTrader5
 mt5_available = False

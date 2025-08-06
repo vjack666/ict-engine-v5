@@ -15,18 +15,18 @@ Principios SOLID aplicados:
 - Dependency Inversion: Interfaces claras entre módulos
 """
 
-from typing import Dict, Optional, Any, Tuple, TYPE_CHECKING
-from dataclasses import dataclass
+from sistema.sic import Dict, Optional, Any, Tuple, TYPE_CHECKING
+from sistema.sic import dataclass
 from enum import Enum
-from datetime import datetime
+from sistema.sic import datetime
 import pandas as pd
-from pathlib import Path
+from sistema.sic import Path
 import MetaTrader5 as mt5
 import csv
-import os
+from sistema.sic import os
 from sistema.config import SIMBOLO
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # Trading Schedule - Import condicional
 trading_schedule_available = False

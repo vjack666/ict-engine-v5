@@ -18,10 +18,10 @@ Versión: v4.0.0 (Refactorizado para ConfidenceEngine)
 Fecha: 27 Julio 2025
 """
 # TODO: Eliminado - usar enviar_senal_log # import logging
-from typing import Optional, Dict, List, Any, Tuple
-from datetime import datetime
+from sistema.sic import Optional, Dict, List, Any, Tuple
+from sistema.sic import datetime
 # Logger usando sistema estándar SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 def log_veredicto(level, message):
     enviar_senal_log(level, message, 'veredicto_engine_v4', 'ict')
 

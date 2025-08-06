@@ -6,12 +6,12 @@ PROTOCOLO: "Caja Negra" - Consolidación inteligente de métricas
 """
 
 import datetime
-from typing import Dict, List, Optional, Any
+from sistema.sic import Dict, List, Optional, Any
 from collections import defaultdict, deque
-from dataclasses import dataclass, field
+from sistema.sic import dataclass, field
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log, log_tct
+from sistema.sic import enviar_senal_log, log_tct
 from .tct_measurements import TCTMetrics
 
 @dataclass

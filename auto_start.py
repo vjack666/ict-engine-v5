@@ -12,15 +12,15 @@ Uso:
     python auto_start.py --verbose    # Output detallado
 """
 
-import sys
-import os
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import os
+from sistema.sic import Path
 
 # 📁 Configurar paths del proyecto
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def auto_start_dashboard(debug_mode=False, verbose=False):
     """Inicia automáticamente el dashboard principal"""

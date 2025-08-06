@@ -5,9 +5,9 @@ Analiza el patrón que teníamos con 'os'
 """
 
 import ast
-from pathlib import Path
+from sistema.sic import Path
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 class SubprocessImportChecker(ast.NodeVisitor):
     def __init__(self):

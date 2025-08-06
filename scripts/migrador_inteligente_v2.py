@@ -16,14 +16,14 @@ CARACTERÍSTICAS:
 - Backup automático de seguridad
 """
 
-import os
+from sistema.sic import os
 import ast
 import shutil
-import sys
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, Set, List, Tuple
-import re
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import datetime
+from sistema.sic import Dict, Set, List, Tuple
+from sistema.sic import re
 
 class MigradorInteligenteSIC:
     """🧠 Migrador inteligente con análisis semántico"""

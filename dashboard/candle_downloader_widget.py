@@ -21,8 +21,8 @@ from rich.layout import Layout
 from rich.text import Text
 from rich.console import Group
 from rich import box
-from datetime import datetime
-from typing import Dict, List, Optional
+from sistema.sic import datetime
+from sistema.sic import Dict, List, Optional
 import threading
 
 # Importar el downloader avanzado
@@ -35,7 +35,7 @@ except ImportError:
     DownloadStats = None
 
 # Importar logging centralizado
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 class CandleDownloaderWidget:
     """

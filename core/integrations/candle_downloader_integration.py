@@ -9,11 +9,11 @@ Proporciona funciones de conveniencia para integración completa
 Creado por Sprint 1.2 Executor
 """
 
-from typing import Dict, List, Optional, Callable
-import sys
-from pathlib import Path
+from sistema.sic import Dict, List, Optional, Callable
+from sistema.sic import sys
+from sistema.sic import Path
 # Importaciones seguras - Sistema ICT Engine v5.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 try:
     from core.data_management.candle_coordinator import candle_coordinator

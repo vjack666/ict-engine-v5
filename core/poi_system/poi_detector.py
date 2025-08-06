@@ -18,12 +18,12 @@ Consolidado desde: poi_system.py, poi_multi_detector.py, poi_system_optimized.py
 import pandas as pd
 import numpy as np
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_poi
+from sistema.sic import enviar_senal_log, log_poi
 
-from typing import List, Dict, Optional, Tuple, Any
-from datetime import datetime
-import json
-from pathlib import Path
+from sistema.sic import List, Dict, Optional, Tuple, Any
+from sistema.sic import datetime
+from sistema.sic import json
+from sistema.sic import Path
 
 # =============================================================================
 # CONFIGURACIÓN Y CONSTANTES POI

@@ -20,11 +20,11 @@ Fecha: 2024
 """
 # LEGACY MIGRADO A SLUC v2.0: import logging comentado para uso interno únicamente
 import logging
-import json
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, Optional, Any
-from sistema.smart_directory_logger import SmartDirectoryLogger, smart_log
+from sistema.sic import json
+from sistema.sic import datetime
+from sistema.sic import Path
+from sistema.sic import Dict, Optional, Any
+from sistema.sic import SmartDirectoryLogger, smart_log
 
 # =============================================================================
 # CONFIGURACIÓN SLUC v2.1
@@ -188,12 +188,12 @@ def log_metrics(nivel: str, mensaje: str, fuente: str = "metrics", metadata: Opt
 
 def get_log_stats() -> Dict[str, Any]:
     """Obtener estadísticas del sistema de logging"""
-    from sistema.smart_directory_logger import get_smart_stats
+    from sistema.sic import get_smart_stats
     return get_smart_stats()
 
 def create_log_summary():
     """Crear resumen de logs organizados"""
-    from sistema.smart_directory_logger import create_summary
+    from sistema.sic import create_summary
     create_summary()
 
 def export_log_config(output_file: str = "data/logs/config/sluc_config.json"):

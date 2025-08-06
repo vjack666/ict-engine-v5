@@ -6,13 +6,13 @@ PROTOCOLO: "Caja Negra" - Control fino de ejecución, logging exhaustivo
 """
 
 import asyncio
-from typing import Dict, List, Optional, Any, Callable
-from datetime import datetime, timedelta
+from sistema.sic import Dict, List, Optional, Any, Callable
+from sistema.sic import datetime, timedelta
 from collections import deque, defaultdict
-from dataclasses import dataclass
+from sistema.sic import dataclass
 from enum import Enum
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 # 🧠 IMPORTS DEL ACC
 from .acc_data_models import (

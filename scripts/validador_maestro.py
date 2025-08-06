@@ -20,11 +20,11 @@ Uso:
     python scripts\validador_maestro.py --quick            # Validación rápida
 """
 
-import sys
+from sistema.sic import sys
 import argparse
-from datetime import datetime, timezone
-from pathlib import Path
-from typing import Dict, List, Any, Optional
+from sistema.sic import datetime, timezone
+from sistema.sic import Path
+from sistema.sic import Dict, List, Any, Optional
 
 # Agregar paths necesarios
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -247,7 +247,7 @@ class ValidadorMaestro:
         self.log("🔍 PRUEBA: Verificando logging seguro...")
 
         try:
-            from sistema.logging_interface import enviar_senal_log
+            from sistema.sic import enviar_senal_log
 
             # Test de diferentes niveles
             enviar_senal_log("INFO", "🧪 Test de logging INFO", "validador_maestro")
@@ -267,7 +267,7 @@ class ValidadorMaestro:
         self.log("⚙️ VALIDANDO CONFIG MANAGER...")
 
         try:
-            from config.config_manager import ConfigManager
+            from sistema.sic import ConfigManager
 
             config = ConfigManager()
 
@@ -301,7 +301,7 @@ class ValidadorMaestro:
         """Obtener información del sistema de trading"""
         try:
             # Importar funciones de trading
-            from config.config_manager import get_trading_config
+            from sistema.sic import get_trading_config
 
             trading_config = get_trading_config()
 
@@ -457,7 +457,7 @@ class ValidadorMaestro:
         self.log("🔍 PRUEBA: Verificando POI detector...")
 
         try:
-            from core.poi_system.poi_detector import POIDetector
+            from sistema.sic import POIDetector
 
             detector = POIDetector()
             self.log("✅ POI Detector creado", "SUCCESS")

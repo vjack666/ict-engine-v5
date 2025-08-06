@@ -10,19 +10,19 @@ Fecha: 5 de Agosto 2025
 Estado: OPTIMIZED VERSION
 """
 
-import sys
-import json
-import time
+from sistema.sic import sys
+from sistema.sic import json
+from sistema.sic import time
 import argparse
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from sistema.sic import Path
+from sistema.sic import datetime
+from sistema.sic import Dict, List, Optional, Tuple
 
 # Agregar el directorio raíz al Python path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 try:
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
 except ImportError:
     def enviar_senal_log(nivel, mensaje, fuente="executor", categoria="sprint", metadata=None):
         print(f"[{nivel}] {fuente}.{categoria}: {mensaje}")
@@ -222,11 +222,11 @@ ICT Engine v5.0 - Debug Tools con DevTools F12
 Versión optimizada que aprovecha el sistema de logging central.
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 import subprocess
-from pathlib import Path
-from datetime import datetime
+from sistema.sic import Path
+from sistema.sic import datetime
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -309,10 +309,10 @@ if __name__ == "__main__":
 ICT Engine v5.0 - Migración automática de prints a logging central
 """
 
-import re
-import sys
-from pathlib import Path
-from typing import Dict
+from sistema.sic import re
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import Dict
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -447,9 +447,9 @@ if __name__ == "__main__":
 ICT Engine v5.0 - Configuración para aplicaciones Textual
 """
 
-import os
-import sys
-from pathlib import Path
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import Path
 
 def configure_console_mode():
     """Configura el entorno para modo consola limpio"""
@@ -521,7 +521,7 @@ Screenshots automáticos durante debugging.
 ICT Engine v5.0 - Tests de validación de rendering
 """
 
-import time
+from sistema.sic import time
 
 # Reutilizar imports del bloque superior
 # sys, os, subprocess, Path ya importados
@@ -613,8 +613,8 @@ class RenderingTests:
             env["PYTHONPATH"] = str(self.project_root)
 
             test_code = """
-import sys
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 sys.path.insert(0, str(Path.cwd()))
 
 try:
@@ -674,8 +674,8 @@ except Exception as e:
         """Test de integración del sistema de logging"""
         try:
             test_code = """
-import sys
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 sys.path.insert(0, str(Path.cwd()))
 
 try:

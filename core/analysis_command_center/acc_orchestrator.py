@@ -6,18 +6,18 @@ PROTOCOLO: "Caja Negra" - Flujo coordinado, logging exhaustivo, manejo robusto d
 """
 
 import threading
-import time
+from sistema.sic import time
 import uuid
-from typing import Dict, List, Optional, Any
-from datetime import datetime
+from sistema.sic import Dict, List, Optional, Any
+from sistema.sic import datetime
 import pandas as pd
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 from utils.mt5_data_manager import MT5DataManager
-from config.config_manager import get_trading_config
+from sistema.sic import get_trading_config
 
 # 🧠 ESPECIALISTAS DE ANÁLISIS
-from core.ict_engine.ict_detector import (
+from sistema.sic import (
     MarketContext,
     OptimizedICTAnalysis,
     update_market_context,
@@ -29,7 +29,7 @@ from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
 from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
 
 # 🎯 POI SYSTEM - INTERFAZ UNIFICADA
-from core.poi_system.poi_detector import POIDetector
+from sistema.sic import POIDetector
 from core.poi_system.poi_scoring_engine import POIScoringEngine
 
 # 🎯 ACC COMPONENTS

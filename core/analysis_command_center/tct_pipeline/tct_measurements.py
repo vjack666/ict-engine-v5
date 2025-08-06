@@ -6,15 +6,15 @@ ADAPTADO PARA: Pipeline TCT en ICT Engine v3.4
 PROTOCOLO: "Caja Negra" - Telemetría exhaustiva, terminal silencioso
 """
 
-import time
+from sistema.sic import time
 import datetime
-from dataclasses import dataclass, asdict
+from sistema.sic import dataclass, asdict
 from collections import deque
-from typing import Dict, List, Optional, Any
-from pathlib import Path
+from sistema.sic import Dict, List, Optional, Any
+from sistema.sic import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log, log_tct
+from sistema.sic import enviar_senal_log, log_tct
 
 @dataclass
 class TCTMetrics:

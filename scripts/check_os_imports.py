@@ -1,13 +1,13 @@
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 #!/usr/bin/env python3
 """
 🔍 OS IMPORT CHECKER
 Verifica qué archivos tienen imports de os no utilizados
 """
 
-import re
-from pathlib import Path
+from sistema.sic import re
+from sistema.sic import Path
 
 def check_os_usage(file_path):
     """Verifica si un archivo usa realmente el módulo os"""

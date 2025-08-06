@@ -5,13 +5,13 @@ BASADO EN: Lógica de generate_health_report del health_analyzer.py
 PROTOCOLO: "Caja Negra" - Formateo inteligente para dashboard y exports
 """
 
-import json
+from sistema.sic import json
 import datetime
-from typing import Dict, Any, List
-from pathlib import Path
+from sistema.sic import Dict, Any, List
+from sistema.sic import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log, log_tct
+from sistema.sic import enviar_senal_log, log_tct
 from utils.logging_utils import save_adaptive_debug_to_csv
 from .tct_aggregator import AggregatedTCTMetrics
 

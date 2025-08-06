@@ -6,8 +6,8 @@
 Launcher optimizado para el dashboard con POI Integration
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 
 # Configurar path correcto
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +19,7 @@ print("=" * 50)
 try:
     # Verificar imports críticos primero
     print("📦 Verificando imports críticos...")
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
     from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
     print("✅ POI Integration disponible")
 

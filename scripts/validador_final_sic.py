@@ -9,11 +9,11 @@ Fecha: 2025-08-06
 Versión: v2.0
 """
 
-import os
-import sys
-from pathlib import Path
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import Path
 import importlib.util
-from datetime import datetime
+from sistema.sic import datetime
 
 def validar_archivo_python(archivo_path: Path) -> dict:
     """✅ Validar sintaxis y carga de un archivo Python"""

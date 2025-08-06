@@ -12,11 +12,11 @@ Versión: ICT Professional v1.0
 """
 
 from enum import Enum
-from typing import Dict, List, Tuple, Optional
+from sistema.sic import Dict, List, Tuple, Optional
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
-from dataclasses import dataclass
-from datetime import time
+from sistema.sic import enviar_senal_log
+from sistema.sic import dataclass
+from sistema.sic import time
 
 
 class ICTPattern(Enum):

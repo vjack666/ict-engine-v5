@@ -6,8 +6,8 @@
 Test aislado para verificar la integración POI
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -18,13 +18,13 @@ print("=" * 60)
 try:
     # Test 1: Importar módulos del sistema
     print("📦 Test 1: Importando módulos del sistema...")
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
     print("✅ sistema.logging_interface importado")
 
     from utils.mt5_data_manager import get_mt5_manager
     print("✅ utils.mt5_data_manager importado")
 
-    from dashboard.dashboard_controller import get_dashboard_controller
+    from sistema.sic import get_dashboard_controller
     print("✅ dashboard.dashboard_controller importado")
 
     print("✅ Test 1 EXITOSO - Todos los módulos del sistema importados")

@@ -6,16 +6,16 @@
 Muestra información completa del sistema y estado del proyecto.
 """
 
-import sys
+from sistema.sic import sys
 import platform
-from pathlib import Path
-from datetime import datetime
+from sistema.sic import Path
+from sistema.sic import datetime
 
 # Agregar project root al path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def mostrar_info_sistema():
     """Muestra información completa del sistema"""

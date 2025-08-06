@@ -11,9 +11,9 @@ Fecha: 2025-08-06
 Versión: v1.0
 """
 
-import os
-import sys
-from pathlib import Path
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import Path
 
 # Agregar el directorio scripts al path para importar el corrector
 scripts_dir = Path(__file__).parent

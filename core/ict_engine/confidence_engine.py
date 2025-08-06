@@ -18,10 +18,10 @@ Fecha: 03 Agosto 2025
 Autor: ICT Engine Team
 """
 # MIGRADO A SLUC v2.1
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 # Imports del ICT Engine - manejo seguro con type checking
-from typing import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
-from datetime import datetime, timedelta
+from sistema.sic import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
+from sistema.sic import datetime, timedelta
 import numpy as np
 
 # Type checking imports para evitar conflictos

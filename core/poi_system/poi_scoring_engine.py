@@ -17,10 +17,10 @@ Versión: v3.5.1 (Nueva implementación)
 Fecha: 27 Julio 2025
 """
 
-from typing import List, Dict, Optional
-from datetime import datetime
+from sistema.sic import List, Dict, Optional
+from sistema.sic import datetime
 # Logger especializado
-from sistema.logging_interface import enviar_senal_log, log_poi
+from sistema.sic import enviar_senal_log, log_poi
 # Usar sistema de logging central
 
 class POIScoringEngine:

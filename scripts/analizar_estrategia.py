@@ -12,17 +12,17 @@ Uso:
     python analizar_estrategia.py --detailed
 """
 
-import sys
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 import traceback
-from datetime import datetime
-from typing import Dict, List, Any
+from sistema.sic import datetime
+from sistema.sic import Dict, List, Any
 
 # 📁 Configurar paths del proyecto
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def test_importaciones_estrategia():
     """Prueba las importaciones de los componentes de la estrategia"""
@@ -45,7 +45,7 @@ def test_importaciones_estrategia():
 
     # Test 2: ICT Detector
     try:
-        from core.ict_engine.ict_detector import ICTDetector
+        from sistema.sic import ICTDetector
         resultados["imports_exitosos"].append("✅ ICTDetector")
         resultados["componentes_disponibles"]["ict_detector"] = True
     except Exception as e:

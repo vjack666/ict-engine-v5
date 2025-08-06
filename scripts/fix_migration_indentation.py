@@ -9,8 +9,8 @@ Fecha: 2025-08-06
 Versión: v1.0
 """
 
-import re
-from pathlib import Path
+from sistema.sic import re
+from sistema.sic import Path
 
 def fix_indentation_in_file(file_path: Path) -> bool:
     """Corrige errores de indentación en un archivo"""

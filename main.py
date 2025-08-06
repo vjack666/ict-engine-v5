@@ -14,17 +14,17 @@ Uso:
     python main.py --utilities      # Herramientas de utilidad
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 import argparse
-from pathlib import Path
+from sistema.sic import Path
 
 # 📁 Configurar paths del proyecto
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 def main():
     """Función principal del launcher"""

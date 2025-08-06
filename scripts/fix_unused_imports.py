@@ -18,14 +18,14 @@ Fecha: 2025-08-06
 Versión: v1.0
 """
 
-import os
-import sys
+from sistema.sic import os
+from sistema.sic import sys
 import ast
-import re
-from pathlib import Path
-from typing import List, Dict, Set, Tuple, Optional
-from dataclasses import dataclass
-from datetime import datetime
+from sistema.sic import re
+from sistema.sic import Path
+from sistema.sic import List, Dict, Set, Tuple, Optional
+from sistema.sic import dataclass
+from sistema.sic import datetime
 import shutil
 import argparse
 

@@ -7,9 +7,9 @@ Configuración optimizada para rendering limpio en consola
 sin interferencias de print statements o logging no controlado.
 """
 
-import os
-import sys
-from pathlib import Path
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import Path
 
 def configure_console_mode():
     """Configura el entorno para modo consola limpio"""

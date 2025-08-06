@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # === IMPORTS SIC ===
-from sistema.smart_directory_logger import logger
+from sistema.sic import logger
 
 # === RESTO DE IMPORTS ===
 

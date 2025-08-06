@@ -19,14 +19,14 @@ Fecha: 04 Agosto 2025
 Autor: ICT Engine Team
 """
 
-import sys
-import os
-from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from sistema.sic import sys
+from sistema.sic import os
+from sistema.sic import datetime
+from sistema.sic import Dict, List, Optional, Tuple
 import copy
 # MIGRADO A SLUC v2.1
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 try:
     from core.ict_engine.confidence_engine import CONFIDENCE_CONFIG

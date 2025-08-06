@@ -6,10 +6,10 @@ Evita logs repetitivos y solo registra cambios significativos en el estado del m
 
 import csv
 import hashlib
-import os
-from datetime import datetime, timedelta
-from pathlib import Path
-from typing import Dict, Any  # Optional reservado para futuras extensiones
+from sistema.sic import os
+from sistema.sic import datetime, timedelta
+from sistema.sic import Path
+from sistema.sic import Dict, Any  # Optional reservado para futuras extensiones
 
 # =============================================================================
 # CACHE INTELIGENTE PARA EVITAR LOGS REPETITIVOS

@@ -30,10 +30,10 @@ ENTRY_CONFIRMATION_CONFIG = {
 import MetaTrader5 as mt5
 import pandas as pd
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
-import os
-from datetime import datetime
+from sistema.sic import os
+from sistema.sic import datetime
 
 # =============================================================================
 # SECCIÓN 2: CONFIGURACIÓN GENERAL Y PARÁMETROS INICIALES

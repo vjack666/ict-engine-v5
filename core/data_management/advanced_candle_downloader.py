@@ -29,14 +29,14 @@ Fecha: 2025-08-05
 
 import asyncio
 import threading
-import time
-from typing import Dict, List, Optional, Callable, Any, Set
-from datetime import datetime
-from dataclasses import dataclass
-from pathlib import Path
+from sistema.sic import time
+from sistema.sic import Dict, List, Optional, Callable, Any, Set
+from sistema.sic import datetime
+from sistema.sic import dataclass
+from sistema.sic import Path
 import pandas as pd
 # Importaciones del sistema
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 from utils.mt5_data_manager import get_mt5_manager
 from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
 

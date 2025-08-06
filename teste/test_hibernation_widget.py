@@ -6,8 +6,8 @@
 Test para verificar Hibernation Widget usando arquitectura directa
 """
 
-import sys
-import os
+from sistema.sic import sys
+from sistema.sic import os
 
 # Configurar path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -19,13 +19,13 @@ try:
     # Test 1: Importar hibernation widget
     print("📦 Test 1: Importando Hibernation Widget...")
     from dashboard.hibernation_widget_v2 import crear_panel_hibernacion_inteligente, crear_tabla_hibernacion_detallada
-    from sistema.logging_interface import enviar_senal_log
+    from sistema.sic import enviar_senal_log
     print("✅ Hibernation Widget importado exitosamente")
 
     # Test 2: Verificar sistemas básicos
     print("\n🔧 Test 2: Verificando sistemas básicos...")
     from utils.mt5_data_manager import get_mt5_manager
-    from dashboard.dashboard_controller import get_dashboard_controller
+    from sistema.sic import get_dashboard_controller
 
     mt5_manager = get_mt5_manager()
     controller = get_dashboard_controller()

@@ -6,14 +6,14 @@ Fecha: 2025-07-24
 Componente: FASE 2.4 - Integración Smart Logger Completa
 """
 
-import json
+from sistema.sic import json
 from json import JSONDecodeError
 import pandas as pd
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_ict
-from datetime import datetime, timedelta
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from sistema.sic import enviar_senal_log, log_ict
+from sistema.sic import datetime, timedelta
+from sistema.sic import Path
+from sistema.sic import Dict, List, Optional, Tuple
 
 class ICTHistoricalAnalyzer:
     """

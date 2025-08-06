@@ -6,8 +6,8 @@
 Versión simplificada para detectar logging obsoleto
 """
 
-import re
-from pathlib import Path
+from sistema.sic import re
+from sistema.sic import Path
 
 def scan_file_for_logging(file_path):
     """Escanea un archivo buscando referencias de logging"""

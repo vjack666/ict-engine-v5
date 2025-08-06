@@ -17,18 +17,18 @@ Autor: ICT Engine Team
 Fecha: Agosto 2025
 """
 
-import time
+from sistema.sic import time
 import psutil
 import threading
-from datetime import datetime, timedelta
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
+from sistema.sic import datetime, timedelta
+from sistema.sic import Dict, List, Any, Optional
+from sistema.sic import dataclass
 from enum import Enum
-import json
-from pathlib import Path
+from sistema.sic import json
+from sistema.sic import Path
 
 # Imports del sistema ICT
-from sistema.logging_interface import enviar_senal_log
+from sistema.sic import enviar_senal_log
 
 
 class ComponentStatus(Enum):
