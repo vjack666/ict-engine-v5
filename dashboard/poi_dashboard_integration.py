@@ -1,16 +1,9 @@
-
-from sistema.imports_interface import List, datetime, Any, Dict, Tuple, timezone, Optional, timedelta, Union
-from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
-from sistema.imports_interface import time
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-import hashlib
-import traceback
-import pandas as pd
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# === IMPORTS SIC ===
+
+# === RESTO DE IMPORTS ===
+
 """
 🎯 POI DASHBOARD INTEGRATION v2.0 - ARQUITECTURA DIRECTA
 ========================================================
@@ -21,19 +14,6 @@ Usa TODA la infraestructura existente sin duplicar código
 - docs/bitacoras/reportes/HIBERNATION_WIDGET_V2_BITACORA_COMPLETA.md (patrón similar)
 """
 
-from sistema.logging_interface import enviar_senal_log
-from utils.mt5_data_manager import get_mt5_manager
-from core.poi_system.poi_detector import detectar_todos_los_pois
-from core.poi_system.poi_scoring_engine import POIScoringEngine
-from dashboard.dashboard_controller import get_dashboard_controller
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-from datetime import datetime
-from typing import Dict, List, Tuple, Optional, Any
-import hashlib
-import time
-import traceback
 
 # 🚀 INICIALIZACIÓN DEL MÓDULO USANDO INFRAESTRUCTURA EXISTENTE
 enviar_senal_log("INFO", "✅ POI Dashboard Integration v2.0 - Arquitectura Directa inicializado exitosamente", __name__, "module_init")
@@ -88,7 +68,6 @@ def integrar_multi_poi_en_panel_ict(dashboard_instance, timeframe='H1'):
         try:
             # Si los datos son dict, convertir a formato DataFrame-like
             if isinstance(datos_principales, dict):
-import pandas as pd
                 # Crear DataFrame desde diccionario de datos OHLC
                 df_data = pd.DataFrame(datos_principales)
                 enviar_senal_log("INFO", f"📊 Datos convertidos a DataFrame: {len(df_data)} filas", __name__, "data_conversion")

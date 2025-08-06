@@ -1,14 +1,11 @@
-
-from sistema.imports_interface import Optional, List, Any, Dict, Union, datetime, timedelta, timezone, Tuple
-from sistema.imports_interface import log_info, get_logging, enviar_senal_log, log_error, get_poi_detector, get_poi_system
-from sistema.imports_interface import Path, json
-import pandas as pd
-import numpy as np
-from json import JSONDecodeError
-from sistema.market_status_detector import MarketStatusDetector
-from sistema.trading_schedule import get_current_session_info, TradingScheduleManager
-
 #!/usr/bin/env python3
+# === IMPORTS SIC ===
+from core.ict_engine.ict_detector import ICTDetector
+from sistema.market_status_detector_v3 import MarketStatusDetector
+from sistema.smart_directory_logger import logger
+
+# === RESTO DE IMPORTS ===
+
 """
 📊 ICT DETECTOR - Sistema Consolidado de Análisis ICT
 ====================================================
@@ -24,15 +21,7 @@ Consolidado desde:
 
 Versión: v3.3.3
 """
-import pandas as pd
-import numpy as np
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_ict
-from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Any, Tuple, Union
-import json
-from json import JSONDecodeError
-from pathlib import Path
 
 # --- Import de funciones POI para integración ---
 try:
@@ -49,7 +38,6 @@ except ImportError as e:
 
 # --- Import del FractalAnalyzer ---
 try:
-    from core.ict_engine.fractal_analyzer import FractalAnalyzer, update_fractal_in_context
     fractal_analyzer_available = True
     enviar_senal_log("INFO", "✅ FractalAnalyzer importado correctamente", __name__, "init")
 except ImportError as e:
@@ -58,8 +46,6 @@ except ImportError as e:
 
 # --- Import del Market Status Detector (SPRINT 1.4 FIX) ---
 try:
-    from sistema.market_status_detector import MarketStatusDetector
-    from sistema.trading_schedule import get_current_session_info, TradingScheduleManager
     market_status_available = True
     enviar_senal_log("INFO", "✅ Market Status Detector importado correctamente", __name__, "init")
 except ImportError as e:

@@ -1,19 +1,9 @@
-
-from sistema.imports_interface import datetime, List, Dict, Tuple, Any, timedelta, Union, Optional, timezone
-from sistema.imports_interface import get_logging, enviar_senal_log, log_error, get_dashboard_controller, log_info
-from sistema.imports_interface import SessionType, ICTPattern, PATTERN_EMOJIS, Path, time, TradingDirection, sys, re
-from textual.widget import Widget
-from textual.widgets import Static
-from rich.layout import Layout
-from rich.panel import Panel
-from rich.text import Text
-from rich.table import Table
-from rich.align import Align
-from rich import box
-from textual.containers import Vertical
-import random
-
 #!/usr/bin/env python3
+# === IMPORTS SIC ===
+from sistema.smart_directory_logger import logger
+
+# === RESTO DE IMPORTS ===
+
 """
 Widgets de Dashboard para SentinelTUI
 =====================================
@@ -33,14 +23,8 @@ Fecha: 24 de Julio, 2025
 Versión: FASE 3.5 - Widget System
 """
 
-import sys
-from pathlib import Path
 # MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log, log_dashboard
 
-import time
-from datetime import datetime
-from typing import Dict, Any, Optional, List
 
 # 🔍 Logger especializado para widgets del dashboard
 # SLUC v2.0: logging centralizado
@@ -50,32 +34,19 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 # Imports de Textual
-from textual.widget import Widget
-from textual.reactive import reactive
-from textual.widgets import Static
 
 # Imports de Rich para renderizado
-from rich.layout import Layout
-from rich.panel import Panel
-from rich.text import Text
-from rich.table import Table
-from rich.align import Align
-from rich import box
 
 # Imports adicionales para widgets de hibernación
-from textual.containers import Vertical
 
 # Import del Dashboard Controller
 try:
-from dashboard.dashboard_controller import get_dashboard_controller
     dashboard_controller_available = True
 except ImportError:
     dashboard_controller_available = False
 
 # Import de componentes ICT profesionales
 try:
-from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
     ict_components_available = True
 except ImportError:
     ict_components_available = False
@@ -696,7 +667,6 @@ class HibernationViewWidget(Static):
 
     def _generate_realistic_pattern_analysis(self) -> Dict[str, Any]:
         """Genera análisis de patrón realista basado en datos actuales del mercado"""
-import random
 
         # 🎯 Patrones ICT comunes
         patterns = [

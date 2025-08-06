@@ -1,43 +1,7 @@
-
-from sistema.imports_interface import List, Dict, timedelta, timezone, Optional, datetime, Union, Tuple, Any
-from sistema.imports_interface import get_dashboard_controller, get_analysis_orchestrator, get_poi_detector, log_info, get_logging, enviar_senal_log, get_poi_system, log_error, get_mt5_manager
-from sistema.imports_interface import PATTERN_EMOJIS, TradingDirection, sys, ICTPattern, re, Path, SessionType
-import random
-import traceback
-import pandas as pd
-from textual.app import App, ComposeResult
-from textual.binding import Binding
-from textual.containers import Container
-from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
-from rich.text import Text
-from rich.panel import Panel
-from sistema.market_status_detector import MarketStatusDetector
-from core.integrations.candle_downloader_integration import downloader_integration
-from core.poi_system import poi_detector
-from core.trading import TradingDecisionEngine
-from core.smart_trading_logger import TradingDecisionCache
-from core.limit_order_manager import LimitOrderManager
-from core.risk_management.riskbot_mt5 import RiskBot
-from config.config_manager import ConfigManager
-from core.ict_engine import ict_types
-from core.ict_engine import ict_detector
-from core.ict_engine import pattern_analyzer as ict_pattern_analyzer
-from core.ict_engine import confidence_engine
-from core.ict_engine import ict_historical_analyzer
-from dashboard import ict_professional_widget
-from dashboard import dashboard_widgets
-import MetaTrader5 as mt5
-from rich.table import Table
-from rich.layout import Layout
-from rich.console import Group
-import MetaTrader5 as mt5
-
 #!/usr/bin/env python3
 # SENTINEL ICT ANALYZER - DASHBOARD DEFINITIVO
-
 # EL DASHBOARD PRINCIPAL Y ÚNICO DEL SISTEMA SENTINEL ICT ANALYZER.
 # Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
-
 #🌟 CARACTERÍSTICAS PRINCIPALES:
 #- 4 pestañas especializadas: H1 (Hibernación), H2 (ICT Pro), H3 (Patrones), H4 (Analytics)
 #- Conexión directa a MetaTrader5 FundedNext para datos reales
@@ -47,7 +11,6 @@ import MetaTrader5 as mt5
 #- Interface visual profesional con Rich y Textual
 #- Motor de análisis con datos reales de mercado
 #- Sistema de métricas y estadísticas en tiempo real
-
 #🎮 NAVEGACIÓN:
 #- H1: Estado de hibernación inteligente con métricas de MT5
 #- H2: Análisis ICT profesional con datos reales completos
@@ -61,14 +24,23 @@ import MetaTrader5 as mt5
 #- E: Export de análisis y métricas
 #- Q: Salir del sistema
 ######
-
-
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
+# Asegurar que Python pueda encontrar todos los módulos del proyecto
+# === IMPORTS SIC ===
+from config.config_manager import ConfigManager
+from dashboard.dashboard_controller import DashboardController
+from core.ict_engine.ict_detector import ICTDetector
+from core.limit_order_manager import LimitOrderManager
+from sistema.market_status_detector_v3 import MarketStatusDetector
+from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
+from sistema.smart_directory_logger import logger
+from sistema.smart_directory_logger import logger
+
+# === RESTO DE IMPORTS ===
 import sys
 from pathlib import Path
 
-# Asegurar que Python pueda encontrar todos los módulos del proyecto
 try:
     # El directorio padre de dashboard es el proyecto principal
     project_root = Path(__file__).parent.parent  # ICT Engine v5.0
@@ -89,32 +61,16 @@ except Exception as e:
     sys.exit(1)
 
 # MIGRADO A SLUC v2.0 - IMPORTAR DESPUÉS DE CONFIGURAR PATHS
-from sistema.logging_interface import enviar_senal_log, log_dashboard
 # -------------------------------------------------
 
 # Standard library imports
-import random
-import traceback
-from datetime import datetime
-from typing import Dict, List, Optional, Any
 
 # Third party imports
-import pandas as pd
-from textual.app import App, ComposeResult
-from textual.binding import Binding
-from textual.containers import Container
-from textual.widgets import Header, Footer, TabbedContent, TabPane, Static
-from rich.text import Text
-from rich.panel import Panel
 
 # Local imports
-from sistema.market_status_detector import MarketStatusDetector
-from utils.mt5_data_manager import get_mt5_manager
 
 # === SPRINT 1.2: CANDLE DOWNLOADER INTEGRATION ===
 try:
-from dashboard.candle_downloader_widget import candle_downloader_widget
-from core.integrations.candle_downloader_integration import downloader_integration
     candle_downloader_available = True
     enviar_senal_log("INFO", "✅ Candle downloader integration cargado exitosamente", "dashboard_definitivo", "candle_downloader")
 except ImportError as e:
@@ -124,18 +80,9 @@ except ImportError as e:
     downloader_integration = None
 
 # Core imports
-from core.poi_system import poi_detector
-from core.poi_system.poi_scoring_engine import POIScoringEngine
-from core.trading import TradingDecisionEngine
-from core.smart_trading_logger import TradingDecisionCache
-from core.limit_order_manager import LimitOrderManager
-from core.risk_management.riskbot_mt5 import RiskBot
-from config.config_manager import ConfigManager
-from dashboard.dashboard_controller import get_dashboard_controller
 
 # 🌙 HIBERNACIÓN PERFECTA INTEGRATION
 try:
-from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
     hibernacion_perfecta_available = True
     enviar_senal_log("INFO", "✅ Hibernación Perfecta disponible para detección MT5", "dashboard_definitivo", "migration")
 except ImportError as e:
@@ -144,7 +91,6 @@ except ImportError as e:
 
 # 🎯 MULTI-POI DASHBOARD INTEGRATION
 try:
-from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
     multi_poi_available = True
     enviar_senal_log("INFO", "✅ Multi-POI Dashboard disponible para panel ICT", "dashboard_definitivo", "migration")
 except ImportError as e:
@@ -172,25 +118,12 @@ try:
     # 🧠 CAJA NEGRA ICT COMPLETA - Motores principales
     # import sys ya importado previamente
     # sys.path.append('..') ya configurado
-from core.ict_engine import ict_types
-from core.ict_engine import ict_detector
-from core.ict_engine import pattern_analyzer as ict_pattern_analyzer
-from core.ict_engine import confidence_engine
-from core.ict_engine.veredicto_engine_v4 import VeredictoEngine
-from core.ict_engine import ict_historical_analyzer
 
     # 🚀 SPRINT 1.7 - ADVANCED PATTERNS v2.0
-from core.ict_engine.advanced_patterns import AdvancedSilverBulletDetector
-from core.ict_engine.advanced_patterns import JudasSwingAnalyzer
-from core.ict_engine.advanced_patterns import MarketStructureEngine
 
     # ⏱️ TCT PIPELINE INTEGRATION - SPRINT 1.2 COMPLETADO
-from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
-from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
 
     # Widgets del dashboard
-from dashboard import ict_professional_widget
-from dashboard import dashboard_widgets
 
     # Extraer las clases necesarias
     ICTPattern = ict_types.ICTPattern
@@ -614,7 +547,6 @@ class SentinelDashboardDefinitivo(App):
             # Fallback al método anterior si no hay MT5DataManager
             else:
                 # Método 1: Verificación directa MT5
-import MetaTrader5 as mt5
 
                 # Usar getattr para evitar errores de tipo en Pylance
                 initialize_func = getattr(mt5, 'initialize', None)
@@ -912,7 +844,6 @@ import MetaTrader5 as mt5
 
         Versión que asegura mostrar siempre la pantalla completa con datos.
         """
-from rich.table import Table
 
         try:
             # CONFIGURACIÓN: FORZAR MODO DESARROLLO PARA DATOS COMPLETOS
@@ -1122,7 +1053,6 @@ from rich.table import Table
                 # 🚀 ANÁLISIS NORMAL TCT PIPELINE
                 # Inicializar TCT Interface si no existe
                 if not hasattr(self, 'tct_interface'):
-from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
                     self.tct_interface = TCTInterface()
 
                 # Intentar ejecutar análisis en tiempo real
@@ -1201,8 +1131,6 @@ from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
 
         Renderiza panel del Candle Downloader con controles y estadísticas.
         """
-from rich.layout import Layout
-from rich.console import Group
 
         content = Text()
         content.append("📥 CANDLE DOWNLOADER - CONTROL DE DESCARGA\n\n", style="bold bright_green")
@@ -1472,7 +1400,6 @@ from rich.console import Group
             else:
                 # ⚡ VERIFICACIÓN ADICIONAL MT5 (SPRINT 1.6 FIX)
                 try:
-import MetaTrader5 as mt5
                     initialize_func = getattr(mt5, 'initialize', None)
                     if initialize_func and initialize_func():
                         # MT5 está realmente conectado, corregir el estado
@@ -1838,7 +1765,6 @@ import MetaTrader5 as mt5
                 # Convertir session type string a SessionType enum
                 session_str = self.get_current_session_type()
                 # TEMPORAL: Import local necesario por scope issue con SessionType
-from core.ict_engine.ict_types import SessionType as LocalSessionType
                 if session_str == 'LONDON':
                     self.ict_analyzer.current_session = LocalSessionType.LONDON
                 elif session_str == 'NEWYORK':

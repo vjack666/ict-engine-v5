@@ -1,48 +1,25 @@
-
-from sistema.imports_interface import Union, List, datetime, Dict, timezone, timedelta, Optional, Any, Tuple
-from sistema.imports_interface import log_error, get_logging, get_ict_detector, enviar_senal_log, log_info
-from sistema.imports_interface import asyncio, time, Path
-import threading
-import pandas as pd
-import numpy as np
-from core.ict_engine import (
-from core.poi_system import encontrar_pois_multiples_para_dashboard
-from .tct_measurements import TCTMeasurementEngine
-from .tct_aggregator import TCTAggregator
-from .tct_formatter import TCTFormatter
-import pandas as pd
-import numpy as np
-
 #!/usr/bin/env python3
+# === IMPORTS SIC ===
+from core.ict_engine.ict_detector import ICTDetector
+from sistema.smart_directory_logger import logger
+
+# === RESTO DE IMPORTS ===
+
 """
 🚪 TCT INTERFACE - Punto de entrada principal para el pipeline TCT
 BASADO EN: Lógica principal del health_analyzer.py
 PROTOCOLO: "Caja Negra" - Interfaz sin terminal, logs exhaustivos
 """
 
-import asyncio
-import threading
-import time
-import pandas as pd
-import numpy as np
-from typing import Dict, Any, Optional, List
-from datetime import datetime
-from pathlib import Path
 
 # 🔌 IMPORTS DEL ICT ENGINE
-from sistema.logging_interface import enviar_senal_log, log_tct
-from core.ict_engine import (
     MarketContext,
     OptimizedICTAnalysis,
     update_market_context,
     ConfidenceEngine
 )
-from core.poi_system import encontrar_pois_multiples_para_dashboard
 
 # 🔌 IMPORTS DEL TCT PIPELINE
-from .tct_measurements import TCTMeasurementEngine
-from .tct_aggregator import TCTAggregator
-from .tct_formatter import TCTFormatter
 
 class TCTInterface:
     """
@@ -580,7 +557,6 @@ class TCTInterface:
     def _get_current_session(self) -> str:
         """Obtiene la sesión de mercado actual basada en hora UTC"""
         try:
-from datetime import datetime, timezone
 
             utc_now = datetime.now(timezone.utc)
             hour_utc = utc_now.hour
@@ -606,7 +582,6 @@ from datetime import datetime, timezone
 
         try:
             # 🧠 USAR ICTDETECTOR REAL (el que está funcionando en Sprint 1.2)
-from core.ict_engine.ict_detector import ICTDetector
 
             ict_detector = ICTDetector()
 
@@ -679,9 +654,6 @@ from core.ict_engine.ict_detector import ICTDetector
         En producción real, esto vendría de MT5DataManager
         """
         try:
-import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
 
             # 📊 GENERAR 100 VELAS SIMULADAS REALISTAS
             num_candles = 100
