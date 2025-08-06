@@ -3,7 +3,7 @@
 # EL DASHBOARD PRINCIPAL Y ÚNICO DEL SISTEMA SENTINEL ICT ANALYZER.
 # Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 #🌟 CARACTERÍSTICAS PRINCIPALES:
-#- 7 pestañas especializadas: H1 (Hibernación), H2 (ICT Pro), H3 (Patrones), H4 (Analytics), H5 (TCT), H6 (Downloader), H7 (Problemas)
+#- 4 pestañas especializadas: H1 (Hibernación), H2 (ICT Pro), H3 (Patrones), H4 (Analytics)
 #- Conexión directa a MetaTrader5 FundedNext para datos reales
 #- Análisis inteligente con narrativas contextuales avanzadas
 #- Detección automática de patrones ICT (Silver Bullet, Judas Swing, OTE, etc.)
@@ -11,7 +11,6 @@
 #- Interface visual profesional con Rich y Textual
 #- Motor de análisis con datos reales de mercado
 #- Sistema de métricas y estadísticas en tiempo real
-#- Sistema de detección de errores jerárquico integrado
 #🎮 NAVEGACIÓN:
 #- H1: Estado de hibernación inteligente con métricas de MT5
 #- H2: Análisis ICT profesional con datos reales completos
@@ -19,101 +18,28 @@
 #- H4: 📊 Analytics y métricas avanzadas del sistema
 #- H5: ⚡ TCT Pipeline con análisis en tiempo real
 #- H6: 📥 Candle Downloader con control de descarga
-#- H7: 🚨 Sistema de Detección de Errores Jerárquico
 #- R: Refresh manual de todo el sistema y datos MT5
 #- P: Toggle análisis automático de patrones
 #- D: Debug mode para desarrollo
 #- E: Export de análisis y métricas
 #- Q: Salir del sistema
-
+######
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
-import sys
-import os
-import logging
-from pathlib import Path
-
 # Asegurar que Python pueda encontrar todos los módulos del proyecto
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# === IMPORTS TEXTUAL PRIMERO ===
-from textual.app import App, ComposeResult
-from textual.containers import TabbedContent, TabPane, Container, Horizontal, Vertical
-from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar
-from textual.binding import Binding
-from textual.message import Message
-from rich.console import Console
-from rich.table import Table  
-from rich.panel import Panel
-from rich.text import Text
-from datetime import datetime, timezone
-from typing import Dict, Any, Optional
-import asyncio
-import time
-import json
-import threading
-
-# === IMPORTS PANDAS ===
-try:
-    import pandas as pd
-    PANDAS_AVAILABLE = True
-except ImportError:
-    # Fallback para pandas
-    class MockDataFrame:
-        def __init__(self):
-            pass
-        def empty(self):
-            return True
-    class MockPandas:
-        def DataFrame(self):
-            return MockDataFrame()
-    pd = MockPandas()
-    PANDAS_AVAILABLE = False
-
-# === IMPORTS SIC V2.1 ===
-try:
-    from config.config_manager import ConfigManager
-    from dashboard.dashboard_controller import DashboardController
-    from core.ict_engine.ict_detector import ICTDetector
-    from core.limit_order_manager import LimitOrderManager
-    from sistema.market_status_detector_v3 import MarketStatusDetector
-    from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
-    from sistema.smart_directory_logger import logger
-    # Usar versión simplificada del SLUC v2.1
-    from sistema.logging_interface_simple import enviar_senal_log
-    print("✅ SIC v2.1 imports successful")
-except ImportError as e:
-    print(f"⚠️ Error importing SIC modules: {e}")
-    # Fallback imports
-    logger = logging.getLogger(__name__)
-    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-        print(f"[{nivel}] {fuente}: {mensaje}")
-        logger.info(f"[{nivel}] {mensaje}")
-
-# === IMPORTS PROBLEMAS ===
-try:
-    from dashboard.problems_tab_renderer import render_problems_tab_simple, get_problems_summary
-    print("✅ Problems tab renderer imported")
-except ImportError as e:
-    print(f"⚠️ Problems tab not available: {e}")
-    def render_problems_tab_simple():
-        return "❌ Error: Módulo de detección de problemas no disponible"
-    def get_problems_summary():
-        return {'error': 'Módulo no disponible'}
-    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-        logger.info(f"[{nivel}] {mensaje}")
-
-# === IMPORTS PROBLEMAS ===
-try:
-    from dashboard.problems_tab_renderer import render_problems_tab_simple, get_problems_summary
-except ImportError:
-    def render_problems_tab_simple():
-        return "❌ Error: Módulo de detección de problemas no disponible"
-    def get_problems_summary():
-        return {'error': 'Módulo no disponible'}
+# === IMPORTS SIC ===
+from sistema.sic import ConfigManager
+from sistema.sic import DashboardController
+from sistema.sic import ICTDetector
+from core.limit_order_manager import LimitOrderManager
+from sistema.market_status_detector_v3 import MarketStatusDetector
+from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
+from sistema.sic import logger
+from sistema.sic import logger
 
 # === RESTO DE IMPORTS ===
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import Path
 
 try:
     # El directorio padre de dashboard es el proyecto principal
@@ -204,25 +130,9 @@ except ImportError as e:
     enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
 
 try:
-    from core.ict_engine import ict_types
     SessionType = ict_types.SessionType
     PATTERN_EMOJIS = ict_types.PATTERN_EMOJIS
-except ImportError:
-    # Fallback definitions
-    class SessionType:
-        LONDON = "LONDON"
-        NEW_YORK = "NEW_YORK"
-        ASIA = "ASIA"
 
-    PATTERN_EMOJIS = {
-        "silver_bullet": "🔫",
-        "judas_swing": "⚖️",
-        "ote": "🎯",
-        "default": "📊"
-    }
-
-try:
-    from core.ict_engine import ict_pattern_analyzer, ict_detector
     # 🧠 CAJA NEGRA ICT - Clases principales
     ICTPatternAnalyzer = ict_pattern_analyzer.ICTPatternAnalyzer
     ICTDetector = ict_detector.MarketContext  # Clase principal del detector
@@ -259,31 +169,8 @@ except ImportError as e:
     enviar_senal_log("WARNING", "   • dashboard/ict_professional_widget.py", "dashboard_definitivo", "component_loading")
     enviar_senal_log("WARNING", "   • dashboard/dashboard_widgets.py", "dashboard_definitivo", "component_loading")
 
-    # === IMPORTS TEXTUAL ===
-from textual.app import App, ComposeResult
-from textual.containers import TabbedContent, TabPane, Container, Horizontal, Vertical
-from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar
-from textual.binding import Binding
-from textual.message import Message
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-import asyncio
-from datetime import datetime, timezone
-import time
-import json
-from typing import Dict, Any, Optional
-import threading
-
-# Variables globales inicializadas correctamente
-components_available = True
-
-# Test de logging SLUC v2.1
-try:
-    enviar_senal_log("INFO", "🚀 Dashboard iniciando con SLUC v2.1", "dashboard_definitivo", "initialization")
-except Exception as e:
-    print(f"Warning: Error en logging: {e}")
+    # Log del error usando SLUC v2.1
+    enviar_senal_log("ERROR", f"Error cargando componentes: {e}", "dashboard_definitivo", "component_loading")
     components_available = False
 
 
@@ -378,7 +265,6 @@ class SentinelDashboardDefinitivo(App):
         Binding("h4", "switch_analytics", "📊 Analytics", show=True),
         Binding("h5", "switch_tct", "⚡ TCT", show=True),
         Binding("h6", "switch_downloader", "📥 Downloader", show=True),
-        Binding("h7", "switch_problems", "🚨 Problemas", show=True),
         Binding("r", "refresh_system", "🔄 Refresh", show=True),
         Binding("p", "toggle_patterns", "🎯 Auto", show=True),
         Binding("d", "toggle_debug", "🐛 Debug", show=True),
@@ -781,16 +667,6 @@ class SentinelDashboardDefinitivo(App):
                         classes="downloader-panel"
                     )
                     yield self.downloader_static
-
-            # 🚨 Pestaña H7: Sistema de Detección de Errores
-            with TabPane("🚨 Problemas", id="tab_problems"):
-                with Container(classes="scrollable-container"):
-                    self.problems_static = Static(
-                        self.render_problems_panel(),
-                        id="problems_display",
-                        classes="problems-panel"
-                    )
-                    yield self.problems_static
 
         yield Footer(classes="main-footer")
 
@@ -1353,102 +1229,6 @@ class SentinelDashboardDefinitivo(App):
                 padding=(2, 4)
             )
 
-    def render_problems_panel(self):
-        """
-        🚨 PANEL SISTEMA DE DETECCIÓN DE ERRORES
-        ========================================
-
-        Renderiza panel del Sistema de Detección de Errores con análisis completo.
-        """
-
-        content = Text()
-        content.append("🚨 SISTEMA DE DETECCIÓN DE ERRORES JERÁRQUICO\n\n", style="bold bright_red")
-
-        try:
-            # Obtener resumen de problemas
-            summary = get_problems_summary()
-
-            if 'error' not in summary:
-                # 📊 Resumen ejecutivo
-                content.append("📊 RESUMEN EJECUTIVO:\n", style="bold bright_cyan")
-                content.append(f"• Total problemas: {summary.get('total_problems', 0)}\n", style="white")
-                content.append(f"• Problemas críticos: {summary.get('critical_count', 0)}\n",
-                              style="red" if summary.get('critical_count', 0) > 0 else "green")
-                content.append(f"• Problemas altos: {summary.get('high_count', 0)}\n",
-                              style="yellow" if summary.get('high_count', 0) > 0 else "green")
-                content.append(f"• Archivos analizados: {summary.get('stats', {}).get('files_analyzed', 'N/A')}\n", style="cyan")
-                content.append(f"• Último análisis: {summary.get('last_analysis', 'N/A')[:19]}\n\n", style="dim")
-
-                # 📋 Contenido detallado
-                content.append("📋 ANÁLISIS DETALLADO:\n", style="bold bright_yellow")
-                problems_content = render_problems_tab_simple()
-
-                # Limitar contenido para display
-                lines = problems_content.split('\n')
-                if len(lines) > 20:
-                    displayed_lines = lines[:20]
-                    displayed_lines.append(f"... y {len(lines) - 20} líneas más")
-                    problems_content = '\n'.join(displayed_lines)
-
-                content.append(problems_content, style="white")
-
-                # 🎮 Controles disponibles
-                content.append("\n\n🎮 CONTROLES DISPONIBLES:\n", style="bold bright_green")
-                content.append("• Presiona 'H7' para activar esta pestaña\n", style="white")
-                content.append("• Presiona 'R' para refrescar y ejecutar nueva detección\n", style="cyan")
-                content.append("• Usa scripts/ejecutar_deteccion_errores.ps1 para análisis completo\n", style="yellow")
-
-                return Panel(
-                    content,
-                    title="🚨 [bold bright_red]DETECCIÓN DE ERRORES - SISTEMA ACTIVO[/bold bright_red]",
-                    border_style="bright_red",
-                    padding=(1, 2)
-                )
-
-            else:
-                # Error en el sistema de detección
-                content.append("⚠️ Error en Sistema de Detección de Errores\n", style="yellow")
-                content.append(f"📋 Detalle: {summary.get('error', 'Error desconocido')}\n\n", style="red")
-
-                content.append("🔧 CONFIGURACIÓN MANUAL:\n", style="bold cyan")
-                content.append("• Verificar scripts/error_detection/error_detector.py\n", style="white")
-                content.append("• Revisar dashboard/problems_tab_renderer.py\n", style="white")
-                content.append("• Ejecutar test_problems_detection.py --smoke\n", style="yellow")
-
-                content.append("\n💡 SOLUCIÓN RÁPIDA:\n", style="bold bright_yellow")
-                content.append("1. Ejecutar: python scripts/error_detection/error_detector.py --quick\n", style="cyan")
-                content.append("2. Verificar: docs/bitacoras/diagnosticos/\n", style="white")
-                content.append("3. Refrescar dashboard con 'R'\n", style="green")
-
-                return Panel(
-                    content,
-                    title="🚨 [bold yellow]DETECCIÓN DE ERRORES - CONFIGURACIÓN[/bold yellow]",
-                    border_style="yellow",
-                    padding=(2, 4)
-                )
-
-        except Exception as e:
-            # Error crítico en panel de problemas
-            content.append(f"❌ Error crítico en Sistema de Detección: {str(e)[:100]}...\n", style="red")
-            content.append("🔧 Panel de emergencia activado\n\n", style="yellow")
-
-            content.append("📊 INFORMACIÓN DE DEBUG:\n", style="bold cyan")
-            content.append(f"• render_problems_tab_simple disponible: {render_problems_tab_simple is not None}\n", style="white")
-            content.append(f"• get_problems_summary disponible: {get_problems_summary is not None}\n", style="white")
-
-            content.append("\n🚨 ACCIONES DE EMERGENCIA:\n", style="bright_red")
-            content.append("1. Verificar imports en dashboard_definitivo.py\n", style="white")
-            content.append("2. Revisar problemas_tab_renderer.py\n", style="white")
-            content.append("3. Ejecutar test_problems_detection.py\n", style="cyan")
-            content.append("4. Contactar soporte técnico\n", style="yellow")
-
-            return Panel(
-                content,
-                title="🚨 [bold red]DETECCIÓN DE ERRORES - ERROR CRÍTICO[/bold red]",
-                border_style="red",
-                padding=(2, 4)
-            )
-
     # Métodos de navegación
     def action_switch_hibernation(self):
         """Cambiar a pestaña de hibernación (H1)"""
@@ -1510,20 +1290,6 @@ class SentinelDashboardDefinitivo(App):
                     self.downloader_static.update(self.render_downloader_panel())
 
             self.notify("📥 Candle Downloader activado")
-        except (FileNotFoundError, PermissionError, IOError) as e:
-            self.notify(f"⚠️ Error: {e}")
-
-    def action_switch_problems(self):
-        """Cambiar a pestaña Sistema de Detección de Errores (H7)"""
-        try:
-            tabs = self.query_one("#sentinel_main_tabs", TabbedContent)
-            tabs.active = "tab_problems"
-
-            # Actualizar panel de problemas
-            if hasattr(self, 'problems_static'):
-                self.problems_static.update(self.render_problems_panel())
-
-            self.notify("🚨 Sistema de Detección de Errores activado")
         except (FileNotFoundError, PermissionError, IOError) as e:
             self.notify(f"⚠️ Error: {e}")
 

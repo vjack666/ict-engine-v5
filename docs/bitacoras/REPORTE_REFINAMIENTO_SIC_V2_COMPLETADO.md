@@ -395,4 +395,64 @@ El **ITC Engine v5.0** ha sido **100% migrado** al **Sistema de Imports Centrali
 
 ---
 
-*🎉 EXPANSIÓN ESTRATÉGICA COMPLETADA EXITOSAMENTE - ITC ENGINE v5.0 100% CENTRALIZADO*
+## 🚨 NUEVO PROYECTO: SISTEMA DE DETECCIÓN DE ERRORES JERÁRQUICO
+
+### 📅 **INICIO DEL PROYECTO** - 2025-08-06 12:45 hrs
+
+**Contexto:** Después del éxito total de la migración SIC v2.1, ahora vamos a implementar un **Sistema de Detección de Errores Jerárquico** para mantener la calidad del código y detectar problemas automáticamente.
+
+#### 🎯 **OBJETIVOS DEL NUEVO SISTEMA:**
+
+1. **🔍 DETECCIÓN AUTOMÁTICA:**
+   - Errores de sintaxis (parse AST)
+   - Errores de imports y dependencias
+   - Riesgos de runtime (análisis estático)
+   - Problemas de calidad de código
+   - Dependencias circulares
+
+2. **📊 CLASIFICACIÓN JERÁRQUICA:**
+   - **Severidad:** CRITICAL → HIGH → MEDIUM → LOW → INFO
+   - **Categoría:** SISTEMA, TRADING, ICT_ENGINE, POI_SYSTEM, DASHBOARD
+   - **Especialización:** Trading Engine, ICT Analysis, POI System
+
+3. **📋 DOCUMENTACIÓN AUTOMÁTICA:**
+   - Bitácoras completas en `docs/bitacoras/diagnosticos/`
+   - IDs únicos para tracking
+   - Sugerencias de fix específicas
+   - Métricas y estadísticas
+
+4. **🎨 INTEGRACIÓN DASHBOARD:**
+   - Nueva pestaña "🚨 Problemas"
+   - Detección en tiempo real
+   - UI rica con Rich/Panel
+   - Resumen ejecutivo
+
+#### 🏗️ **COMPONENTES A DESARROLLAR:**
+
+| Componente | Ubicación | Función |
+|------------|-----------|---------|
+| **Motor Principal** | `scripts/error_detection/error_detector.py` | Detección y clasificación |
+| **Integración UI** | `dashboard/problems_tab_renderer.py` | Pestaña problemas |
+| **Ejecutor** | `scripts/ejecutar_deteccion_errores.sh` | Automatización |
+| **Testing** | `test_problems_detection.py` | Validación |
+
+#### 💡 **BENEFICIOS ESPERADOS:**
+
+- ✅ **Visibilidad completa** de errores del pipeline
+- ✅ **Debugging automático** y priorizado
+- ✅ **Calidad de código** mantenida automáticamente
+- ✅ **Dashboard mejorado** con información de problemas
+- ✅ **Documentación automática** de issues
+
+#### 📈 **MÉTRICAS OBJETIVO:**
+
+- **~100+ archivos** Python analizados
+- **5 métodos** de detección especializados
+- **10 categorías** de clasificación
+- **<30 segundos** tiempo de detección rápida
+
+---
+
+*🚀 Continuación del desarrollo: Sistema de Detección de Errores Jerárquico en progreso...*
+
+---
