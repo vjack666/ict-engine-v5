@@ -10,8 +10,11 @@ Versión: v1.0.0 - Integración SLUC v2.1
 Fecha: Agosto 2025
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 # CORREGIDO: Imports estándar en lugar de sistema.sic
-from typing import Dict, List, Any, Optional
+from sistema.sic import Dict, List, Any, Optional
 import datetime
 
 # Import con fallback para logging

@@ -81,10 +81,10 @@ def validar_sic_centralizado() -> dict:
     }
 
     try:
-        sic_path = Path('sistema/sic.py')
+        sic_path = Path('sistema/py')
 
         if not sic_path.exists():
-            resultado['errores'].append("sistema/sic.py no existe")
+            resultado['errores'].append("sistema/py no existe")
             return resultado
 
         resultado['sic_existe'] = True

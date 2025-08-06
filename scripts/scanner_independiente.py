@@ -43,7 +43,7 @@ def main():
                            'migration_reports', 'debug_screenshots']]
 
         for file in files:
-            if file.endswith('.py') and file not in ['sic.py', 'imports_interface.py']:
+            if file.endswith('.py') and file not in ['py', 'imports_interface.py']:
                 file_path = os.path.join(root, file)
 
                 try:

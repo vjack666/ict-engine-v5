@@ -6,6 +6,9 @@ from sistema.sic import enviar_senal_log
 Verifica qué archivos tienen imports de os no utilizados
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import re
 from sistema.sic import Path
 

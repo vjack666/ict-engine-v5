@@ -3,6 +3,9 @@
 📊 LOGGING UTILS - Utilidades de logging para sistema Sentinel
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 import csv
 from sistema.sic import json
 from json import JSONDecodeError
@@ -269,7 +272,7 @@ def save_analysis_log_to_json(component_name: str, analysis_data: Dict) -> None:
 
         analysis_type = component_mapping.get(component_name, component_name)
 
-        logged = universal_logger.log_analysis(analysis_data, analysis_type)
+        logged = universal_# Removido - usar enviar_senal_log
 
         if logged:
             enviar_senal_log("INFO", f"📊 {component_name}: Cambio significativo logueado", "logging_utils", "migration")

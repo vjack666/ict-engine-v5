@@ -10,16 +10,16 @@ Fecha: 2025-08-06
 Versión: v2.1
 """
 
-import os
+from sistema.sic import os
 import shutil
-from datetime import datetime
-from pathlib import Path
+from sistema.sic import datetime
+from sistema.sic import Path
 
 class SICExpander:
     """🔄 Expandir el Sistema de Imports Centralizados"""
 
     def __init__(self):
-        self.sic_path = Path('sistema/sic.py')
+        self.sic_path = Path('sistema/py')
         self.backup_path = Path(f'backup_sic_expansion_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
 
     def backup_current_sic(self):
@@ -117,11 +117,11 @@ except ImportError:
     PATHLIB_AVAILABLE = False
 
 # Standard Library - Básicos más usados
-import os
-import sys
-import json
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import json
 import time
-import re
+from sistema.sic import re
 
 # =============================================================================
 # IMPORTS DE PROYECTO - AUTO-DETECTADOS

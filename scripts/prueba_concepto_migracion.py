@@ -8,8 +8,11 @@ Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
 """
 
-import sys
-from pathlib import Path
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import sys
+from sistema.sic import Path
 
 # Agregar directorio raíz al path
 sys.path.insert(0, str(Path('.').resolve()))
@@ -108,10 +111,10 @@ def demo_before_after():
 
     print("\n🔴 ANTES (imports dispersos):")
     print("""
-from typing import Dict, List, Optional
-from datetime import datetime, timedelta
-from dataclasses import dataclass, field
-from pathlib import Path
+from sistema.sic import Dict, List, Optional
+from sistema.sic import datetime, timedelta
+from sistema.sic import dataclass, field
+from sistema.sic import Path
 import os, sys, json
 from core.ict_engine.ict_detector import ICTDetector
 from core.poi_system.poi_system import POISystem

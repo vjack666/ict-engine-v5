@@ -186,13 +186,13 @@ class ImportsCentral:
     """Stub para ImportsCentral mientras se migra completamente."""
     def __init__(self):
         self.available = False
-    
+
     def get_dashboard(self):
         return None
-    
+
     def get_logging(self):
         return enviar_senal_log
-    
+
     def get_mt5_manager(self):
         return None
 

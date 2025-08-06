@@ -6,6 +6,9 @@ Fecha: 2025-07-24
 Componente: FASE 2.4 - Integración Smart Logger Completa
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import json
 from json import JSONDecodeError
 import pandas as pd

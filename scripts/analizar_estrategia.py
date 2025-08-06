@@ -12,6 +12,9 @@ Uso:
     python analizar_estrategia.py --detailed
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import sys
 from sistema.sic import Path
 import traceback

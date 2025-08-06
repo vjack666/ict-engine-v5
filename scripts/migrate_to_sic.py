@@ -27,44 +27,44 @@ class SICMigrator:
         # Patrones de imports a reemplazar
         self.replacement_patterns = {
             # Tipos comunes
-            r'from typing import.*': 'from sistema.imports_interface import Dict, List, Optional, Tuple, Any, Union',
-            r'from dataclasses import.*': 'from sistema.imports_interface import dataclass, field, asdict',
-            r'from datetime import.*': 'from sistema.imports_interface import datetime, timedelta, timezone',
-            r'from pathlib import.*': 'from sistema.imports_interface import Path',
-            r'import asyncio': 'from sistema.imports_interface import asyncio',
-            r'import json': 'from sistema.imports_interface import json',
-            r'import time': 'from sistema.imports_interface import time',
-            r'import sys': 'from sistema.imports_interface import sys',
-            r'import os': 'from sistema.imports_interface import os',
-            r'import re': 'from sistema.imports_interface import re',
+            r'from typing import.*': 'from sistema.sic import Dict, List, Optional, Tuple, Any, Union',
+            r'from dataclasses import.*': 'from sistema.sic import dataclass, field, asdict',
+            r'from datetime import.*': 'from sistema.sic import datetime, timedelta, timezone',
+            r'from pathlib import.*': 'from sistema.sic import Path',
+            r'import asyncio': 'from sistema.sic import asyncio',
+            r'import json': 'from sistema.sic import json',
+            r'import time': 'from sistema.sic import time',
+            r'import sys': 'from sistema.sic import sys',
+            r'import os': 'from sistema.sic import os',
+            r'import re': 'from sistema.sic import re',
 
             # ICT Engine
-            r'from core\.ict_engine\.ict_engine import.*': 'from sistema.imports_interface import get_ict_engine',
-            r'from core\.ict_engine\.ict_detector import.*': 'from sistema.imports_interface import get_ict_detector',
-            r'from core\.ict_engine\.ict_types import.*': 'from sistema.imports_interface import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS',
+            r'from core\.ict_engine\.ict_engine import.*': 'from sistema.sic import get_ict_engine',
+            r'from core\.ict_engine\.ict_detector import.*': 'from sistema.sic import get_ict_detector',
+            r'from core\.ict_engine\.ict_types import.*': 'from sistema.sic import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS',
             r'from core\.ict_engine\.confidence_engine import.*': '# ICT Engine via SIC',
             r'from core\.ict_engine\..*': '# ICT Engine via SIC',
 
             # POI System
-            r'from core\.poi_system\..*': 'from sistema.imports_interface import get_poi_system, get_poi_detector',
+            r'from core\.poi_system\..*': 'from sistema.sic import get_poi_system, get_poi_detector',
 
             # Dashboard
-            r'from dashboard\.dashboard_definitivo import.*': 'from sistema.imports_interface import get_dashboard',
-            r'from dashboard\.dashboard_controller import.*': 'from sistema.imports_interface import get_dashboard_controller',
+            r'from dashboard\.dashboard_definitivo import.*': 'from sistema.sic import get_dashboard',
+            r'from dashboard\.dashboard_controller import.*': 'from sistema.sic import get_dashboard_controller',
             r'from dashboard\..*': '# Dashboard via SIC',
 
             # Sistema (logging)
-            r'from sistema\.logging_interface import.*': 'from sistema.imports_interface import get_logging, enviar_senal_log, log_info, log_error',
+            r'from sistema\.logging_interface import.*': 'from sistema.sic import get_logging, enviar_senal_log, log_info, log_error',
 
             # Utils
-            r'from utils\.mt5_data_manager import.*': 'from sistema.imports_interface import get_mt5_manager',
+            r'from utils\.mt5_data_manager import.*': 'from sistema.sic import get_mt5_manager',
             r'from utils\..*': '# Utils via SIC',
 
             # Data Management
-            r'from core\.data_management\..*': 'from sistema.imports_interface import get_candle_downloader',
+            r'from core\.data_management\..*': 'from sistema.sic import get_candle_downloader',
 
             # Analysis Command Center
-            r'from core\.analysis_command_center\..*': 'from sistema.imports_interface import get_analysis_orchestrator'
+            r'from core\.analysis_command_center\..*': 'from sistema.sic import get_analysis_orchestrator'
         }
 
     def create_backup(self, file_path: Path) -> Path:
@@ -153,15 +153,15 @@ class SICMigrator:
 
         if basic_types:
             unique_types = list(set(basic_types))
-            consolidated.append(f"from sistema.imports_interface import {', '.join(unique_types)}")
+            consolidated.append(f"from sistema.sic import {', '.join(unique_types)}")
 
         if functions:
             unique_functions = list(set(functions))
-            consolidated.append(f"from sistema.imports_interface import {', '.join(unique_functions)}")
+            consolidated.append(f"from sistema.sic import {', '.join(unique_functions)}")
 
         if classes:
             unique_classes = list(set(classes))
-            consolidated.append(f"from sistema.imports_interface import {', '.join(unique_classes)}")
+            consolidated.append(f"from sistema.sic import {', '.join(unique_classes)}")
 
         return consolidated
 

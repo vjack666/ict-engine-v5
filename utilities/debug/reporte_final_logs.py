@@ -6,6 +6,9 @@
 Reporte final del estado de limpieza de logs obsoletos en el proyecto
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import Path
 
 def main():
@@ -42,7 +45,7 @@ def main():
 
     print("\n🔧 ÚLTIMA CORRECCIÓN REALIZADA:")
     print("   📝 analizar_scripts_indispensables.py línea 103")
-    print("   🔄 logger.debug() → enviar_senal_log()")
+    print("   🔄 # Removido - usar enviar_senal_log → enviar_senal_log()")
     print("   ✅ Migración completada exitosamente")
 
     print("\n🚀 SISTEMA LISTO PARA EJECUCIÓN")

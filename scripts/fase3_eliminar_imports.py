@@ -10,12 +10,15 @@ Fecha: 2025-08-06
 Versión: v3.0
 """
 
-import os
-import re
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import os
+from sistema.sic import re
 import shutil
-from datetime import datetime
-from pathlib import Path
-from collections import defaultdict
+from sistema.sic import datetime
+from sistema.sic import Path
+from sistema.sic import defaultdict
 
 class MassiveImportReplacer:
     """🗑️ Reemplazador masivo de imports con SIC"""
@@ -72,8 +75,8 @@ class MassiveImportReplacer:
 
         # Archivos a excluir del reemplazo
         self.exclude_files = {
-            'sic.py', 'imports_interface.py', '__init__.py',
-            'fase1_scan_imports.py', 'fase2_expandir_sic.py', 'fase3_eliminar_imports.py',
+            'py', 'imports_interface.py', '__init__.py',
+            'fase1_scan_imports.py', 'fase2_expandir_py', 'fase3_eliminar_imports.py',
             'scanner_independiente.py'
         }
 

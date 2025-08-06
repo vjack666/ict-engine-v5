@@ -10,6 +10,9 @@ Fecha: 5 de Agosto 2025
 Estado: OPTIMIZED VERSION
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import sys
 from sistema.sic import json
 from sistema.sic import time
@@ -222,6 +225,9 @@ ICT Engine v5.0 - Debug Tools con DevTools F12
 Versión optimizada que aprovecha el sistema de logging central.
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import sys
 from sistema.sic import os
 import subprocess
@@ -308,6 +314,9 @@ if __name__ == "__main__":
 📝 PRINT MIGRATION TOOL OPTIMIZADO
 ICT Engine v5.0 - Migración automática de prints a logging central
 """
+
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
 
 from sistema.sic import re
 from sistema.sic import sys
@@ -447,6 +456,9 @@ if __name__ == "__main__":
 ICT Engine v5.0 - Configuración para aplicaciones Textual
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import os
 from sistema.sic import sys
 from sistema.sic import Path
@@ -520,6 +532,9 @@ Screenshots automáticos durante debugging.
 🧪 RENDERING TESTS OPTIMIZADO
 ICT Engine v5.0 - Tests de validación de rendering
 """
+
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
 
 from sistema.sic import time
 

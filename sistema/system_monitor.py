@@ -17,6 +17,13 @@ Autor: ICT Engine Team
 Fecha: Agosto 2025
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+
 from sistema.sic_clean import time
 import psutil
 import threading

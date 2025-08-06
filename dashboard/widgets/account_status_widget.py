@@ -16,7 +16,7 @@ Versión: Account Status Widget v1.0
 """
 
 # CORREGIDO: Imports estándar en lugar de sistema.sic
-from typing import Dict, Any, Optional
+from sistema.sic import Dict, Any, Optional
 from rich.panel import Panel
 from rich.text import Text
 from rich.columns import Columns

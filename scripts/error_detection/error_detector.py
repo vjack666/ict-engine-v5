@@ -27,18 +27,21 @@
 👤 Autor: ITC Engine v5.0 System
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 import ast
-import os
-import sys
-import json
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import json
 import time
 import importlib.util
-from pathlib import Path
-from typing import Dict, List, Tuple, Any, Optional, Set
-from datetime import datetime
-from dataclasses import dataclass, asdict
+from sistema.sic import Path
+from sistema.sic import Dict, List, Tuple, Any, Optional, Set
+from sistema.sic import datetime
+from sistema.sic import dataclass, asdict
 from enum import Enum
-import re
+from sistema.sic import re
 import traceback
 
 # Rich para UI mejorada

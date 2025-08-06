@@ -8,9 +8,12 @@ Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
 """
 
-import os
-import re
-from pathlib import Path
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import os
+from sistema.sic import re
+from sistema.sic import Path
 
 def fix_problematic_imports():
     """Corregir imports problemáticos detectados"""
@@ -38,7 +41,7 @@ def fix_problematic_imports():
         dirs[:] = [d for d in dirs if not d.startswith(('__pycache__', '.git', 'backup_', 'migration_reports'))]
 
         for file in files:
-            if file.endswith('.py') and file not in ['sic.py', 'corrector_imports_problematicos.py']:
+            if file.endswith('.py') and file not in ['py', 'corrector_imports_problematicos.py']:
                 file_path = Path(root) / file
 
                 try:

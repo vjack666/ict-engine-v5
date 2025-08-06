@@ -16,6 +16,9 @@ CARACTERÍSTICAS:
 - Backup automático de seguridad
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import os
 import ast
 import shutil
@@ -163,7 +166,7 @@ class MigradorInteligenteSIC:
 
         for dep in dependencias:
             if dep in self.mapa_sic_funcional:
-                deps_sic.add(dep)
+                deps_add(dep)
             elif any(dep.startswith(std) for std in self.imports_standard):
                 deps_standard.add(dep)
             elif any(dep.startswith(ter) for ter in self.imports_terceros):

@@ -9,6 +9,9 @@ Proporciona funciones de conveniencia para integración completa
 Creado por Sprint 1.2 Executor
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import Dict, List, Optional, Callable
 from sistema.sic import sys
 from sistema.sic import Path

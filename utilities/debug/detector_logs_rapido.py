@@ -6,6 +6,9 @@
 Versión simplificada para detectar logging obsoleto
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import re
 from sistema.sic import Path
 
@@ -19,10 +22,10 @@ def scan_file_for_logging(file_path):
             (r'import\s+logging', 'import logging'),
             (r'from\s+logging\s+import', 'from logging import'),
             (r'logging\.getLogger', 'logging.getLogger'),
-            (r'logger\.debug\s*\(', 'logger.debug()'),
-            (r'logger\.info\s*\(', 'logger.info()'),
-            (r'logger\.warning\s*\(', 'logger.warning()'),
-            (r'logger\.error\s*\(', 'logger.error()'),
+            (r'logger\.debug\s*\(', '# Removido - usar enviar_senal_log'),
+            (r'logger\.info\s*\(', '# Removido - usar enviar_senal_log'),
+            (r'logger\.warning\s*\(', '# Removido - usar enviar_senal_log'),
+            (r'logger\.error\s*\(', '# Removido - usar enviar_senal_log'),
             (r'logging\.debug\s*\(', 'logging.debug()'),
             (r'logging\.info\s*\(', 'logging.info()'),
         ]

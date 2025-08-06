@@ -9,6 +9,9 @@ indispensables para la ejecución del sistema y cuáles se pueden eliminar.
 VERSIÓN: 2.0 AsyncIO Compatible
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import sys
 import asyncio
 from sistema.sic import Path

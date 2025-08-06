@@ -9,6 +9,9 @@ reemplazándolas con enviar_senal_log del SLUC v2.0
 VERSIÓN: 1.0 - Limpieza masiva AsyncIO
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import sys
 import asyncio
 import ast
@@ -53,7 +56,7 @@ class LoggingCleanupAnalyzer(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_Assign(self, node):
-        # Detectar logger = logging.getLogger()
+        # Detectar logger = None  # Removido - usar SIC v3.0
         if (isinstance(node.value, ast.Call) and
             isinstance(node.value.func, ast.Attribute) and
             isinstance(node.value.func.value, ast.Name) and
@@ -70,7 +73,7 @@ class LoggingCleanupAnalyzer(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_Call(self, node):
-        # Detectar logger.debug(), logger.info(), etc.
+        # Detectar # Removido - usar enviar_senal_log, # Removido - usar enviar_senal_log, etc.
         if (isinstance(node.func, ast.Attribute) and
             isinstance(node.func.value, ast.Name)):
 
@@ -83,7 +86,7 @@ class LoggingCleanupAnalyzer(ast.NodeVisitor):
                     'object': 'logging'
                 })
             elif any(logger['name'] == node.func.value.id for logger in self.logger_definitions):
-                # logger.debug(), logger.info(), etc.
+                # # Removido - usar enviar_senal_log, # Removido - usar enviar_senal_log, etc.
                 self.logger_usages.append({
                     'type': 'logger_call',
                     'line': node.lineno,
@@ -201,16 +204,16 @@ class LoggingCleanupTool:
         """Análisis adicional con regex para capturas más amplias"""
 
         regex_patterns = [
-            (r'logger\.debug\s*\(', 'logger.debug() call'),
-            (r'logger\.info\s*\(', 'logger.info() call'),
-            (r'logger\.warning\s*\(', 'logger.warning() call'),
-            (r'logger\.error\s*\(', 'logger.error() call'),
-            (r'logger\.critical\s*\(', 'logger.critical() call'),
+            (r'logger\.debug\s*\(', '# Removido - usar enviar_senal_log call'),
+            (r'logger\.info\s*\(', '# Removido - usar enviar_senal_log call'),
+            (r'logger\.warning\s*\(', '# Removido - usar enviar_senal_log call'),
+            (r'logger\.error\s*\(', '# Removido - usar enviar_senal_log call'),
+            (r'logger\.critical\s*\(', '# Removido - usar enviar_senal_log call'),
             (r'logging\.debug\s*\(', 'logging.debug() call'),
             (r'logging\.info\s*\(', 'logging.info() call'),
             (r'logging\.warning\s*\(', 'logging.warning() call'),
             (r'logging\.error\s*\(', 'logging.error() call'),
-            (r'logging\.getLogger\s*\(', 'logging.getLogger() call'),
+            (r'logging\.getLogger\s*\(', 'None  # Removido - usar SIC v3.0 call'),
             (r'import\s+logging', 'import logging'),
             (r'from\s+logging\s+import', 'from logging import'),
             (r'=\s*logging\.getLogger', 'logger definition'),

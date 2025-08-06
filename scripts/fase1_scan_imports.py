@@ -10,13 +10,16 @@ Fecha: 2025-08-06
 Versión: v1.0
 """
 
-import os
-import re
-import sys
-from collections import Counter, defaultdict
-from pathlib import Path
-from datetime import datetime
-import json
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import os
+from sistema.sic import re
+from sistema.sic import sys
+from sistema.sic import Counter, defaultdict
+from sistema.sic import Path
+from sistema.sic import datetime
+from sistema.sic import json
 
 class ImportScanner:
     """🔍 Escáner inteligente de imports en el proyecto"""
@@ -68,7 +71,7 @@ class ImportScanner:
 
         # Archivos a excluir
         self.exclude_files = {
-            'sic.py', 'imports_interface.py', '__init__.py'
+            'py', 'imports_interface.py', '__init__.py'
         }
 
     def scan_file(self, file_path: Path) -> dict:

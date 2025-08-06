@@ -1,7 +1,7 @@
 
-from sistema.imports_interface import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
-from sistema.imports_interface import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
-from sistema.imports_interface import time
+from sistema.sic import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
+from sistema.sic import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
+from sistema.sic import time
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text

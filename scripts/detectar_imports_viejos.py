@@ -8,8 +8,11 @@ Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
 """
 
-import os
-from pathlib import Path
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import os
+from sistema.sic import Path
 
 def find_files_with_old_imports():
     """Encontrar archivos con imports viejos"""
@@ -33,7 +36,7 @@ def find_files_with_old_imports():
         dirs[:] = [d for d in dirs if not d.startswith(('__pycache__', '.git', 'backup_', 'migration_reports'))]
 
         for file in files:
-            if file.endswith('.py') and file not in ['sic.py', 'fase1_scan_imports.py', 'fase2_expandir_sic.py', 'fase3_eliminar_imports.py', 'validador_final_estrategia.py', 'detectar_imports_viejos.py']:
+            if file.endswith('.py') and file not in ['py', 'fase1_scan_imports.py', 'fase2_expandir_py', 'fase3_eliminar_imports.py', 'validador_final_estrategia.py', 'detectar_imports_viejos.py']:
                 file_path = Path(root) / file
 
                 try:

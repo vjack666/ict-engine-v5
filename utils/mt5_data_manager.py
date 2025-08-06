@@ -26,13 +26,13 @@ Fecha: 2025
 """
 
 # CORREGIDO: Imports estándar en lugar de sistema.sic
-from typing import Optional, Any, Dict, List
+from sistema.sic import Optional, Any, Dict, List
 import pandas as pd
 # MIGRADO A SLUC v2.0
 from sistema.logging_interface import enviar_senal_log
 from config.live_account_validator import get_account_validator, AccountType
-from pathlib import Path
-import os
+from sistema.sic import Path
+from sistema.sic import os
 
 # Importación segura de MT5 y configuración FundedNext
 try:

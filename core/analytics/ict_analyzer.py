@@ -10,28 +10,29 @@ análisis multi-timeframe y generación de señales de alta probabilidad.
 Creado por Sprint 1.3 Executor
 """
 
+# Configurar path del proyecto
+import sys
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+sys.path.insert(0, project_root)
+
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 # Imports estándar
 import pandas as pd
 import numpy as np
 from enum import Enum
 
 # Imports del SIC limpio
-from sistema.sic_clean import Dict, List, Optional, Tuple, Any
-from sistema.sic_clean import datetime, timedelta
-from sistema.sic_clean import dataclass
+from sistema.sic import Dict, List, Optional, Tuple, Any
+from sistema.sic import datetime, timedelta
+from sistema.sic import dataclass
 
-# Sistema de logging centralizado
-try:
-    from sistema.sic_clean import enviar_senal_log, log_info
-    def log_ict(mensaje, fuente="ict_analyzer", metadata=None):
-        enviar_senal_log("INFO", mensaje, fuente, "ict", metadata)
-except ImportError:
-    def enviar_senal_log(nivel, mensaje, fuente="ict_analyzer", categoria="general", metadata=None):
-        print(f"[{nivel}] {fuente}: {mensaje}")
-    def log_ict(mensaje, fuente="ict_analyzer", metadata=None):
-        print(f"[ICT] {fuente}: {mensaje}")
-    def log_info(mensaje, fuente="ict_analyzer", metadata=None):
-        print(f"[INFO] {fuente}: {mensaje}")
+# Sistema de logging centralizado - SIC v3.0
+def log_ict(mensaje, fuente="ict_analyzer", metadata=None):
+    enviar_senal_log("INFO", mensaje, fuente, "ict", metadata)
 
 class ICTPattern(Enum):
     """Enumeración de patrones ICT detectables"""

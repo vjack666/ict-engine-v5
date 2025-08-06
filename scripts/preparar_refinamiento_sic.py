@@ -93,7 +93,7 @@ def verificar_estado_actual():
     print(f"   💾 Archivos con backup: {archivos_con_backup}/{len(archivos_objetivo)}")
 
     # 4. Verificar herramientas
-    migrador_v1 = Path("scripts/migrate_to_sic.py").exists()
+    migrador_v1 = Path("scripts/migrate_to_py").exists()
     analizador = Path("scripts/fix_unused_imports.py").exists()
     corrector = Path("scripts/fix_migration_indentation.py").exists()
 

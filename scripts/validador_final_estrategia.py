@@ -9,20 +9,23 @@ Fecha: 2025-08-06
 Versión: v3.0-Final
 """
 
-import os
-import sys
-from pathlib import Path
-from datetime import datetime
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+from sistema.sic import os
+from sistema.sic import sys
+from sistema.sic import Path
+from sistema.sic import datetime
 
 def validar_sic_expandido():
     """🔍 Validar que el SIC fue expandido correctamente"""
 
     print("🔍 VALIDANDO SIC EXPANDIDO...")
 
-    sic_path = Path('sistema/sic.py')
+    sic_path = Path('sistema/py')
 
     if not sic_path.exists():
-        print("❌ ERROR: sistema/sic.py no encontrado")
+        print("❌ ERROR: sistema/py no encontrado")
         return False
 
     try:
@@ -89,7 +92,7 @@ def validar_imports_reemplazados():
         dirs[:] = [d for d in dirs if not d.startswith(('__pycache__', '.git', 'backup_'))]
 
         for file in files:
-            if file.endswith('.py') and file not in ['sic.py', 'fase1_scan_imports.py', 'fase2_expandir_sic.py', 'fase3_eliminar_imports.py', 'validador_final_estrategia.py']:
+            if file.endswith('.py') and file not in ['py', 'fase1_scan_imports.py', 'fase2_expandir_py', 'fase3_eliminar_imports.py', 'validador_final_estrategia.py']:
                 file_path = Path(root) / file
                 files_checked += 1
 

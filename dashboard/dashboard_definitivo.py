@@ -28,13 +28,18 @@
 
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
-import sys
-import os
-import logging
-from pathlib import Path
+from sistema.sic import sys
+from sistema.sic import os
+from sistema.sic import Path
 
 # Asegurar que Python pueda encontrar todos los módulos del proyecto
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+# MIGRACIÓN A SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
 
 # === IMPORTS TEXTUAL PRIMERO ===
 try:
@@ -90,11 +95,11 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
-from datetime import datetime, timezone
-from typing import Dict, Any, Optional, List, Tuple, Union
+from sistema.sic import datetime, timezone
+from sistema.sic import Dict, Any, Optional, List, Tuple, Union
 import asyncio
 import time
-import json
+from sistema.sic import json
 import threading# === IMPORTS PANDAS ===
 try:
     import pandas as pd
@@ -126,7 +131,7 @@ except ImportError:
 
 # === IMPORTS CENTRALIZADOS - USANDO IMPORTS_INTERFACE ===
 try:
-    from sistema.imports_interface import (
+    from sistema.sic import (
         ImportsCentral, get_dashboard, get_logging, get_mt5_manager,
         get_ict_components, get_system_status
     )
@@ -158,8 +163,7 @@ if not IMPORTS_CENTRAL_AVAILABLE:
         print("✅ Imports individuales exitosos")
     except ImportError as e:
         print(f"⚠️ Error importando componentes individuales: {e}")
-        # Fallback básico
-        logger = logging.getLogger(__name__)
+        # Ya no necesitamos fallback de logging - usamos SIC v3.0
 
 # === IMPORTS PROBLEMAS ===
 try:
@@ -171,8 +175,7 @@ except ImportError as e:
         return "❌ Error: Módulo de detección de problemas no disponible"
     def get_problems_summary():
         return {'error': 'Módulo no disponible'}
-    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-        logger.info(f"[{nivel}] {mensaje}")
+    # Ya no necesitamos fallback de enviar_senal_log - usamos SIC v3.0
 
 # === IMPORTS PROBLEMAS ===
 try:

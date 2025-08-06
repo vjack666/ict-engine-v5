@@ -14,6 +14,9 @@ Estrategia de corrección:
 Autor: ICT Engine v5.0 - Sistema de Corrección Automática
 """
 
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
 from sistema.sic import os
 from sistema.sic import re
 from sistema.sic import sys

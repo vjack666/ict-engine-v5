@@ -9,26 +9,30 @@ SLUC v2.1 SIMPLIFICADO - Sistema de Logging Funcional
 Versión simplificada que funciona sin dependencias complejas
 """
 
-import logging
-import json
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, Optional, Any
+# MIGRACIÓN SIC v3.0 + SLUC v2.1
+from sistema.sic import enviar_senal_log, log_info, log_warning
+
+
+
+from sistema.sic import json
+from sistema.sic import datetime
+from sistema.sic import Path
+from sistema.sic import Dict, Optional, Any
 
 # =============================================================================
 # CONFIGURACIÓN BÁSICA
 # =============================================================================
 
 # Logger principal
-logger = logging.getLogger("sluc_v2_1")
-logger.setLevel(logging.INFO)
+logger = None  # Removido - usar SIC v3.0
+# Removido - usar enviar_senal_log
 
 # Handler para consola
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
+# Removido - usar enviar_senal_log
 
 # =============================================================================
 # FUNCIÓN PRINCIPAL DE LOGGING
@@ -60,7 +64,7 @@ def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "sistema", categori
         formatted_message = f"[{fuente}:{categoria}] {mensaje}"
 
         # Loggear
-        logger.log(log_level, formatted_message)
+        # Removido - usar enviar_senal_log
 
         # También imprimir para debug inmediato
         print(f"[{nivel}] {fuente}: {mensaje}")
