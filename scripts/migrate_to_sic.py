@@ -254,23 +254,23 @@ class SICMigrator:
 def main():
     """Función principal del migrador"""
     import sys
-    
+
     project_root = Path(__file__).parent.parent
     migrator = SICMigrator(str(project_root))
-    
+
     # Determinar modo de ejecución
     dry_run_mode = '--dry-run' in sys.argv
     target_file = None
-    
+
     # Verificar si se especifica un archivo específico
     for arg in sys.argv[1:]:
         if not arg.startswith('--'):
             target_file = arg
             break
-    
+
     print("🔧 MIGRADOR AL SISTEMA DE IMPORTS CENTRALIZADO (SIC)")
     print("=" * 60)
-    
+
     if target_file:
         # Migrar archivo específico
         file_path = project_root / target_file
@@ -287,7 +287,7 @@ def main():
         # Migrar archivos de alta prioridad por defecto
         priority_files = [
             "dashboard/dashboard_definitivo.py",
-            "core/ict_engine/ict_detector.py", 
+            "core/ict_engine/ict_detector.py",
             "dashboard/dashboard_widgets.py",
             "core/analysis_command_center/tct_pipeline/tct_interface.py",
             "core/analytics/ict_analyzer.py",
@@ -295,13 +295,13 @@ def main():
             "dashboard/hibernation_widget_v2.py",
             "dashboard/poi_dashboard_integration.py"
         ]
-        
+
         print(f"\n{'🧪 MODO DRY-RUN' if dry_run_mode else '🚀 MODO MIGRACIÓN REAL'}")
         print(f"Archivos a procesar: {len(priority_files)}")
-        
+
         successful_migrations = 0
         failed_migrations = 0
-        
+
         for file_rel_path in priority_files:
             file_path = project_root / file_rel_path
             if file_path.exists():
@@ -314,7 +314,7 @@ def main():
             else:
                 print(f"⚠️  Archivo no encontrado: {file_rel_path}")
                 failed_migrations += 1
-        
+
         # Reporte final
         print(f"\n{'='*60}")
         print("📊 REPORTE FINAL DE MIGRACIÓN")
@@ -322,7 +322,7 @@ def main():
         print(f"✅ Migraciones exitosas: {successful_migrations}")
         print(f"❌ Fallos: {failed_migrations}")
         print(f"📊 Tasa de éxito: {(successful_migrations/(successful_migrations+failed_migrations))*100:.1f}%")
-        
+
         if not dry_run_mode and successful_migrations > 0:
             print(f"\n🎉 ¡{successful_migrations} archivos migrados al SIC exitosamente!")
             print(f"💾 Backups creados en: {migrator.backup_dir}")
