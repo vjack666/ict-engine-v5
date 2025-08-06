@@ -5,7 +5,7 @@ REM ==========================================
 
 echo.
 echo 🎯===============================================🎯
-echo 🚀     CORRECTOR DE IMPORTS NO UTILIZADOS     🚀  
+echo 🚀     CORRECTOR DE IMPORTS NO UTILIZADOS     🚀
 echo 🎯===============================================🎯
 echo.
 

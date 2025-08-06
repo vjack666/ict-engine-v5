@@ -10,9 +10,7 @@ Fecha: 2025-08-03
 Versión: Live-Only v1.0
 """
 
-from typing import Dict, Any
-from dataclasses import dataclass
-from datetime import datetime
+from sistema.imports_interface import Dict, Any, dataclass, datetime
 
 @dataclass
 class LiveOnlyConfig:

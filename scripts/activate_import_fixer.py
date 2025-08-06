@@ -52,7 +52,7 @@ def run_analysis_only():
     """Ejecuta solo el análisis sin correcciones"""
     print("🔍 EJECUTANDO ANÁLISIS COMPLETO")
     print("-" * 40)
-    
+
     project_root = get_project_root()
     detector = UnusedImportDetector(str(project_root))
     detector.run_analysis(fix_files=False, dry_run=False)
@@ -61,7 +61,7 @@ def run_dry_run():
     """Ejecuta dry-run para mostrar qué se corregiría"""
     print("🧪 EJECUTANDO DRY-RUN")
     print("-" * 40)
-    
+
     project_root = get_project_root()
     detector = UnusedImportDetector(str(project_root))
     detector.run_analysis(fix_files=True, dry_run=True)
@@ -73,12 +73,12 @@ def run_auto_fix():
     print("Esta opción corregirá automáticamente todos los archivos.")
     print("Se crearán backups de los archivos modificados.")
     print("")
-    
+
     response = input("¿Continuar? (s/N): ").lower().strip()
     if response not in ['s', 'si', 'sí', 'yes', 'y']:
         print("❌ Operación cancelada")
         return
-    
+
     project_root = get_project_root()
     detector = UnusedImportDetector(str(project_root))
     detector.run_analysis(fix_files=True, dry_run=False)
@@ -87,33 +87,33 @@ def fix_current_file():
     """Corrige el archivo actual (live_only_config.py)"""
     print("🎯 CORRIGIENDO ARCHIVO ESPECÍFICO")
     print("-" * 40)
-    
+
     current_file = get_project_root() / "config" / "live_only_config.py"
-    
+
     if not current_file.exists():
         print(f"❌ Archivo no encontrado: {current_file}")
         return
-    
+
     print(f"📄 Archivo: {current_file.relative_to(get_project_root())}")
-    
+
     # Crear detector para un solo archivo
     detector = UnusedImportDetector(str(get_project_root()))
     analysis = detector.analyze_file(current_file)
-    
+
     if not analysis.unused_imports:
         print("✅ No se encontraron imports no utilizados en este archivo")
         return
-    
+
     print(f"🔴 Imports no utilizados encontrados: {len(analysis.unused_imports)}")
     for imp in analysis.unused_imports:
         print(f"   - Línea {imp.line_number}: {imp.line_content.strip()}")
-    
+
     print("")
     response = input("¿Corregir este archivo? (s/N): ").lower().strip()
     if response not in ['s', 'si', 'sí', 'yes', 'y']:
         print("❌ Operación cancelada")
         return
-    
+
     if detector.fix_file(analysis, dry_run=False):
         print("✅ Archivo corregido exitosamente")
     else:
@@ -123,17 +123,17 @@ def generate_report_only():
     """Genera solo el reporte sin hacer correcciones"""
     print("📊 GENERANDO REPORTE DETALLADO")
     print("-" * 40)
-    
+
     project_root = get_project_root()
     detector = UnusedImportDetector(str(project_root))
-    
+
     # Ejecutar análisis sin correcciones
     detector.run_analysis(fix_files=False, dry_run=False)
 
 def main():
     """Función principal del activador"""
     show_banner()
-    
+
     # Verificar que estamos en el directorio correcto
     project_root = get_project_root()
     if not (project_root / "config" / "live_only_config.py").exists():
@@ -141,18 +141,18 @@ def main():
         print(f"   Directorio actual: {project_root}")
         print("   Asegúrate de ejecutar este script desde el directorio correcto")
         return
-    
+
     print(f"📁 Proyecto: {project_root.name}")
     print(f"📍 Ruta: {project_root}")
     print("")
-    
+
     while True:
         show_menu()
-        
+
         try:
             choice = input("Selecciona una opción (0-5): ").strip()
             print("")
-            
+
             if choice == "0":
                 print("👋 ¡Hasta luego!")
                 break
@@ -168,11 +168,11 @@ def main():
                 generate_report_only()
             else:
                 print("❌ Opción no válida. Por favor selecciona 0-5.")
-            
+
             print("")
             input("Presiona Enter para continuar...")
             print("\n" + "="*60 + "\n")
-            
+
         except KeyboardInterrupt:
             print("\n\n👋 ¡Hasta luego!")
             break
