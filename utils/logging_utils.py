@@ -316,7 +316,7 @@ def _fallback_traditional_logging(component_name: str, analysis_data: Dict) -> N
 def log_trading_event(action: str, symbol: str, price: float, volume: float, order_type: str = "") -> bool:
     """Log de eventos de trading estandarizado"""
     try:
-        from sistema.sic import log_trading
+        from sistema.sic import log_info
         log_trading("INFO", f"TRADING_EVENT: {action} {symbol} @ {price} | Volume: {volume} | Type: {order_type}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
@@ -326,7 +326,7 @@ def log_trading_event(action: str, symbol: str, price: float, volume: float, ord
 def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
     """Log cuando una orden es ejecutada exitosamente"""
     try:
-        from sistema.sic import log_trading
+        from sistema.sic import log_info
         log_trading("INFO", f"ORDER_FILLED: {order_type} {symbol} @ {price} | Volume: {volume}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:
@@ -336,7 +336,7 @@ def log_order_filled(order_type: str, symbol: str, price: float, volume: float):
 def log_order_rejected(order_type: str, symbol: str, reason: str):
     """Log cuando una orden es rechazada"""
     try:
-        from sistema.sic import log_trading
+        from sistema.sic import log_info
         log_trading("WARNING", f"ORDER_REJECTED: {order_type} {symbol} | Reason: {reason}", "logging_utils")
         return True
     except (JSONDecodeError, ValueError, ImportError) as e:

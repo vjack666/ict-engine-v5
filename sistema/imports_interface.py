@@ -1,30 +1,24 @@
 """
-🎯 SISTEMA DE IMPORTS CENTRALIZADO (SIC) v1.0
-================================================
+🎯 SISTEMA DE IMPORTS CENTRALIZADO (SIC) v1.0 - OBSOLETO
+=========================================================
 
-Punto único de acceso a todas las dependencias del sistema.
-Inspirado en el éxito del SLUC v2.0 (Sistema de Logging Unificado Central).
+⚠️ ARCHIVO OBSOLETO: Reemplazado por sistema/sic.py (v2.1)
 
-Esta arquitectura elimina la fragmentación de imports y centraliza todas las
-dependencias en un solo punto de control, siguiendo el mismo patrón exitoso
-que se implementó con el sistema de logging.
+Este archivo ha sido reemplazado por el nuevo SIC v2.1 expandido.
+Se mantiene por compatibilidad temporal únicamente.
+
+Para nuevos desarrollos, usar: from sistema.sic import *
 
 Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
-Versión: SIC v1.0
+Estado: OBSOLETO - MIGRADO A SIC v2.1
 Basado en: SLUC v2.0 (patrón exitoso)
 """
 
-from typing import Dict, List, Optional, Tuple, Any, Union, TYPE_CHECKING
-from dataclasses import dataclass, field, asdict
-from datetime import datetime, timedelta, timezone
-from pathlib import Path
-import asyncio
-import json
-import time
-import sys
-import os
-import re
+# === IMPORT SIC EXPANDIDO ===
+from sistema.sic import *
+
+# NOTA: Este archivo está obsoleto, usar sistema/sic.py directamente
 
 # =============================================================================
 # IMPORTS ICT ENGINE - ANÁLISIS TÉCNICO

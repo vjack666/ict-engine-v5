@@ -1,7 +1,7 @@
 from decimal import Decimal, ROUND_HALF_UP
 from sistema.sic import Optional
 # MIGRADO A SLUC v2.0
-from sistema.sic import enviar_senal_log, log_mt5
+from sistema.sic import enviar_senal_log, log_info
 
 # riskbot_mt5.py
 

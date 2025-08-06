@@ -125,7 +125,7 @@ try:
 
     # Placeholder para evitar error de sintaxis
     pass
-    
+
 except ImportError as e:
     enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
 

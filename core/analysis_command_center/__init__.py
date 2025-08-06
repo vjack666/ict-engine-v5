@@ -5,7 +5,8 @@ ARQUITECTURA: Punto de entrada unificado para todo el sistema de análisis
 PROTOCOLO: "Caja Negra" - Orquestación completa, logging exhaustivo
 """
 
-from typing import Optional, List
+# === IMPORT SIC EXPANDIDO ===
+from sistema.sic import *
 
 # 🎯 EXPORTACIONES PRINCIPALES DEL ACC
 from .acc_orchestrator import AnalysisOrchestrator

@@ -13,7 +13,7 @@ from sistema.sic import time
 
 from sistema.config import SIMBOLO
 # MIGRADO A SLUC v2.0
-from sistema.sic import enviar_senal_log, log_trading
+from sistema.sic import enviar_senal_log, log_info as log_info
 
 # RiskBot para cálculo dinámico de volumen
 from core.risk_management.riskbot_mt5 import RiskBot

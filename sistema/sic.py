@@ -5,7 +5,7 @@ Sistema centralizado y expandido para imports del ITC Engine
 
 AUTO-EXPANDIDO basado en análisis de imports más comunes del proyecto
 
-Autor: Sistema Sentinel Grid  
+Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
 Versión: v2.1 - Expandido Automáticamente
 
@@ -38,7 +38,7 @@ except ImportError:
     Set = set
     TYPING_AVAILABLE = False
 
-# Datetime - Componentes más usados  
+# Datetime - Componentes más usados
 try:
     from datetime import datetime, timedelta, timezone, time
     DATETIME_AVAILABLE = True
@@ -83,6 +83,28 @@ import json
 import time
 import re
 
+# Collections - Componentes más usados
+try:
+    from collections import Counter, defaultdict, deque
+    COLLECTIONS_AVAILABLE = True
+except ImportError:
+    class Counter(dict):
+        def most_common(self, n=None):
+            return sorted(self.items(), key=lambda x: x[1], reverse=True)[:n]
+
+    class defaultdict(dict):
+        def __init__(self, default_factory=None):
+            super().__init__()
+            self.default_factory = default_factory
+
+        def __getitem__(self, key):
+            if key not in self and self.default_factory:
+                self[key] = self.default_factory()
+            return super().__getitem__(key)
+
+    deque = list
+    COLLECTIONS_AVAILABLE = False
+
 # =============================================================================
 # IMPORTS DE PROYECTO - AUTO-DETECTADOS
 # =============================================================================
@@ -98,7 +120,7 @@ except ImportError:
     def enviar_senal_log(level, msg, module, category):
         logger.log(getattr(logging, level, logging.INFO), f"[{module}:{category}] {msg}")
     def log_info(msg): logger.info(msg)
-    def log_error(msg): logger.error(msg) 
+    def log_error(msg): logger.error(msg)
     def log_trading_decision(msg): logger.info(f"[TRADING] {msg}")
     get_logger = lambda: logger
     setup_logging = lambda: None
@@ -106,7 +128,10 @@ except ImportError:
 
 # Core ICT Engine - Componentes más usados
 try:
-    from core.ict_engine.ict_detector import ICTDetector, MarketContext, OptimizedICTAnalysis
+    from core.ict_engine.ict_detector import (
+        ICTDetector, MarketContext, OptimizedICTAnalysis,
+        update_market_context, detectar_fair_value_gaps, detectar_swing_points
+    )
     from core.ict_engine.ict_analyzer import ICTAnalyzer
     from core.ict_engine.concepts.fair_value_gap import FairValueGap
     from core.ict_engine.concepts.order_block import OrderBlock
@@ -118,6 +143,20 @@ except ImportError:
     ICTAnalyzer = None
     FairValueGap = None
     OrderBlock = None
+
+    # Fallbacks para funciones ICT
+    def update_market_context(*args, **kwargs):
+        """Fallback: actualizar contexto de mercado"""
+        return {}
+
+    def detectar_fair_value_gaps(*args, **kwargs):
+        """Fallback: detectar fair value gaps"""
+        return []
+
+    def detectar_swing_points(*args, **kwargs):
+        """Fallback: detectar swing points"""
+        return []
+
     ICT_ENGINE_AVAILABLE = False
 
 # Core POI System - Componentes más usados
@@ -166,12 +205,20 @@ except ImportError:
 
 # Config - Componentes más usados
 try:
-    from config.config_manager import ConfigManager
+    from config.config_manager import ConfigManager, get_trading_config
     from config.live_account_validator import LiveAccountValidator
     CONFIG_AVAILABLE = True
 except ImportError:
     ConfigManager = None
     LiveAccountValidator = None
+    # Fallback para get_trading_config
+    def get_trading_config():
+        return {
+            'SIMBOLO': 'XAUUSD',
+            'TIMEFRAME': 'H1',
+            'LEVERAGE': 100,
+            'RISK_PERCENT': 2.0
+        }
     CONFIG_AVAILABLE = False
 
 # =============================================================================
@@ -182,26 +229,29 @@ except ImportError:
 __all__ = [
     # Typing
     'Dict', 'List', 'Optional', 'Any', 'Tuple', 'Union', 'TYPE_CHECKING', 'Callable', 'Set',
-    
+
     # Datetime
     'datetime', 'timedelta', 'timezone', 'time',
-    
+
     # Dataclasses
     'dataclass', 'field', 'asdict',
-    
+
     # Pathlib
     'Path',
-    
+
     # Standard
     'os', 'sys', 'json', 're',
-    
+
     # Logging
     'logger', 'enviar_senal_log', 'log_info', 'log_error', 'log_trading_decision',
 ]
 
 # Add available components conditionally
 if ICT_ENGINE_AVAILABLE:
-    __all__.extend(['ICTDetector', 'MarketContext', 'OptimizedICTAnalysis', 'ICTAnalyzer', 'FairValueGap', 'OrderBlock'])
+    __all__.extend(['ICTDetector', 'MarketContext', 'OptimizedICTAnalysis', 'ICTAnalyzer', 'FairValueGap', 'OrderBlock',
+                   'update_market_context', 'detectar_fair_value_gaps', 'detectar_swing_points'])
+else:
+    __all__.extend(['update_market_context', 'detectar_fair_value_gaps', 'detectar_swing_points'])  # Fallbacks always available
 
 if POI_SYSTEM_AVAILABLE:
     __all__.extend(['POISystem', 'POIManager', 'POIDetector', 'POIAnalyzer'])
@@ -216,7 +266,9 @@ if UTILS_AVAILABLE:
     __all__.extend(['MT5DataManager', 'get_mt5_manager'])
 
 if CONFIG_AVAILABLE:
-    __all__.extend(['ConfigManager', 'LiveAccountValidator'])
+    __all__.extend(['ConfigManager', 'LiveAccountValidator', 'get_trading_config'])
+else:
+    __all__.extend(['get_trading_config'])  # Fallback always available
 
 # =============================================================================
 # FUNCIONES DE UTILIDAD EXPANDIDAS
@@ -254,12 +306,12 @@ def get_available_components():
     """📦 Obtener componentes disponibles categorizados"""
     status = get_sic_status()
     status['success_rate'] = (status['available_count'] / status['total_modules']) * 100
-    
+
     available = {}
     for category, is_available in status['availability'].items():
         if is_available:
             available[category] = True
-    
+
     return available
 
 def validate_sic_integrity():
@@ -267,23 +319,23 @@ def validate_sic_integrity():
     try:
         status = get_sic_status()
         issues = []
-        
+
         # Verificar componentes críticos
         critical_components = ['typing', 'logging']
         for component in critical_components:
             if not status['availability'][component]:
                 issues.append(f"Componente crítico no disponible: {component}")
-        
+
         # Verificar exports
         if len(__all__) < 20:
             issues.append(f"Pocos exports disponibles: {len(__all__)}")
-        
+
         return {
             'valid': len(issues) == 0,
             'issues': issues,
             'status': status
         }
-        
+
     except Exception as e:
         return {
             'valid': False,
@@ -299,13 +351,13 @@ def _initialize_sic():
     """🚀 Inicializar SIC expandido"""
     try:
         status = get_sic_status()
-        
+
         if LOGGING_AVAILABLE:
             logger.info(f"🎯 SIC v2.1 Expandido cargado - {status['available_count']}/{status['total_modules']} módulos disponibles")
             logger.info(f"📦 {len(__all__)} componentes exportados")
-        
+
         return True
-        
+
     except Exception as e:
         if LOGGING_AVAILABLE:
             logger.error(f"❌ Error inicializando SIC expandido: {e}")
