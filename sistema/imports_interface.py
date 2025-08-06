@@ -1,24 +1,36 @@
 """
-🎯 SISTEMA DE IMPORTS CENTRALIZADO (SIC) v1.0 - OBSOLETO
+🎯 SISTEMA DE IMPORTS CENTRALIZADO (SIC) v2.0 - REACTIVADO
 =========================================================
 
-⚠️ ARCHIVO OBSOLETO: Reemplazado por sistema/sic.py (v2.1)
+✅ ARCHIVO REACTIVADO: Sistema principal de imports centralizado
 
-Este archivo ha sido reemplazado por el nuevo SIC v2.1 expandido.
-Se mantiene por compatibilidad temporal únicamente.
-
-Para nuevos desarrollos, usar: from sistema.sic import *
+Este es el sistema principal de imports del ITC Engine v5.0.
+Proporciona acceso unificado a todas las dependencias.
 
 Autor: Sistema Sentinel Grid
 Fecha: 2025-08-06
-Estado: OBSOLETO - MIGRADO A SIC v2.1
+Estado: ACTIVO - Sistema Principal
 Basado en: SLUC v2.0 (patrón exitoso)
 """
 
-# === IMPORT SIC EXPANDIDO ===
-from sistema.sic import *
+# === IMPORTS BÁSICOS SEGUROS ===
+import sys
+import os
+from pathlib import Path
+from typing import Dict, List, Optional, Any, Tuple, Union
+from datetime import datetime, timedelta, timezone
+import logging
+import json
+import time
+import asyncio
+from dataclasses import dataclass, field, asdict
+import re
 
-# NOTA: Este archivo está obsoleto, usar sistema/sic.py directamente
+# === CONFIGURAR PATHS PYTHON ===
+# Asegurar que Python encuentre todos los módulos
+project_root = Path(__file__).parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # =============================================================================
 # IMPORTS ICT ENGINE - ANÁLISIS TÉCNICO

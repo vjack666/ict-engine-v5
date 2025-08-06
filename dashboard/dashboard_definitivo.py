@@ -37,23 +37,65 @@ from pathlib import Path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # === IMPORTS TEXTUAL PRIMERO ===
-from textual.app import App, ComposeResult
-from textual.containers import TabbedContent, TabPane, Container, Horizontal, Vertical
-from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar
-from textual.binding import Binding
-from textual.message import Message
+try:
+    from textual.app import App, ComposeResult
+    from textual.containers import Container, Horizontal, Vertical
+    from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar, TabbedContent, TabPane
+    from textual.binding import Binding
+    from textual.message import Message
+    TEXTUAL_AVAILABLE = True
+except ImportError:
+    try:
+        # Fallback para versiones diferentes de Textual
+        from textual.app import App, ComposeResult
+        from textual.containers import Container, Horizontal, Vertical
+        from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar
+        from textual.binding import Binding
+        from textual.message import Message
+
+        # Mock para TabbedContent si no está disponible
+        class TabbedContent:
+            def __init__(self, *args, **kwargs):
+                pass
+
+        class TabPane:
+            def __init__(self, *args, **kwargs):
+                pass
+
+        TEXTUAL_AVAILABLE = False
+    except ImportError:
+        # Fallback completo
+        class App:
+            def __init__(self):
+                pass
+
+        class ComposeResult:
+            pass
+
+        class Container:
+            def __init__(self, *args, **kwargs):
+                pass
+
+        class TabbedContent:
+            def __init__(self, *args, **kwargs):
+                pass
+
+        class TabPane:
+            def __init__(self, *args, **kwargs):
+                pass
+
+        TEXTUAL_AVAILABLE = False
+
 from rich.console import Console
-from rich.table import Table  
+from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
 from datetime import datetime, timezone
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List, Tuple, Union
 import asyncio
 import time
 import json
-import threading
-
-# === IMPORTS PANDAS ===
+import threading# === IMPORTS PANDAS ===
 try:
     import pandas as pd
     PANDAS_AVAILABLE = True
@@ -70,25 +112,52 @@ except ImportError:
     pd = MockPandas()
     PANDAS_AVAILABLE = False
 
-# === IMPORTS SIC V2.1 ===
+# === IMPORTS CENTRALIZADOS - USANDO IMPORTS_INTERFACE ===
 try:
-    from config.config_manager import ConfigManager
-    from dashboard.dashboard_controller import DashboardController
-    from core.ict_engine.ict_detector import ICTDetector
-    from core.limit_order_manager import LimitOrderManager
-    from sistema.market_status_detector_v3 import MarketStatusDetector
-    from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
-    from sistema.smart_directory_logger import logger
-    # Usar versión simplificada del SLUC v2.1
-    from sistema.logging_interface_simple import enviar_senal_log
-    print("✅ SIC v2.1 imports successful")
+    from sistema.imports_interface import (
+        ImportsCentral, get_dashboard, get_logging, get_mt5_manager,
+        get_ict_components, get_system_status, enviar_senal_log
+    )
+
+    # Instanciar el sistema centralizado
+    imports_central = ImportsCentral()
+
+    # Obtener componentes básicos
+    logging_funcs = get_logging()
+
+    # Función de logging unificada
+    if logging_funcs and 'enviar_senal_log' in logging_funcs:
+        enviar_senal_log = logging_funcs['enviar_senal_log']
+    else:
+        def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
+            print(f"[{nivel}] {fuente}: {mensaje}")
+
+    print("✅ ImportsCentral inicializado correctamente")
+    IMPORTS_CENTRAL_AVAILABLE = True
+
 except ImportError as e:
-    print(f"⚠️ Error importing SIC modules: {e}")
-    # Fallback imports
-    logger = logging.getLogger(__name__)
+    print(f"⚠️ Error con ImportsCentral: {e}")
+    IMPORTS_CENTRAL_AVAILABLE = False
+
+    # Fallback básico
     def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
         print(f"[{nivel}] {fuente}: {mensaje}")
-        logger.info(f"[{nivel}] {mensaje}")
+
+# === IMPORTS COMPONENTS INDIVIDUALES (FALLBACK) ===
+if not IMPORTS_CENTRAL_AVAILABLE:
+    try:
+        from config.config_manager import ConfigManager
+        from dashboard.dashboard_controller import DashboardController
+        from core.ict_engine.ict_detector import ICTDetector
+        from core.limit_order_manager import LimitOrderManager
+        from sistema.market_status_detector_v3 import MarketStatusDetector
+        from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
+        from sistema.smart_directory_logger import logger
+        print("✅ Imports individuales exitosos")
+    except ImportError as e:
+        print(f"⚠️ Error importando componentes individuales: {e}")
+        # Fallback básico
+        logger = logging.getLogger(__name__)
 
 # === IMPORTS PROBLEMAS ===
 try:
@@ -259,25 +328,8 @@ except ImportError as e:
     enviar_senal_log("WARNING", "   • dashboard/ict_professional_widget.py", "dashboard_definitivo", "component_loading")
     enviar_senal_log("WARNING", "   • dashboard/dashboard_widgets.py", "dashboard_definitivo", "component_loading")
 
-    # === IMPORTS TEXTUAL ===
-from textual.app import App, ComposeResult
-from textual.containers import TabbedContent, TabPane, Container, Horizontal, Vertical
-from textual.widgets import Header, Footer, Static, Button, Label, ProgressBar
-from textual.binding import Binding
-from textual.message import Message
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-import asyncio
-from datetime import datetime, timezone
-import time
-import json
-from typing import Dict, Any, Optional
-import threading
-
 # Variables globales inicializadas correctamente
-components_available = True
+components_available = False
 
 # Test de logging SLUC v2.1
 try:
