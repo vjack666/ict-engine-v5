@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+#
 🚀 SENTINEL ICT ANALYZER - DASHBOARD DEFINITIVO
 =============================================
 
@@ -28,13 +28,8 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 - D: Debug mode para desarrollo
 - E: Export de análisis y métricas
 - Q: Salir del sistema
+#
 
-Autor: Sistema Sentinel Grid
-
-Fecha: 2025-07-27
-Versión: Dashboard Definitivo v5.0 🚀
-Entorno: PRODUCCIÓN - DATOS REALES MT5
-"""
 
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO

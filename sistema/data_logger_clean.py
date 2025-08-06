@@ -329,47 +329,6 @@ def log_trade_decision(symbol: str, current_price: float, spread: float,
         enviar_senal_log("ERROR", f"Error al registrar decisión de trading: {str(e)}", "data_logger", "migration")
         add_error_to_buffer(f"Error al registrar decisión de trading: {str(e)}")
 
-def log_posicion_cerrada(symbol: str, ticket: int, tipo: str, volumen: float,
-                        precio_apertura: float, precio_cierre: float, profit: float,
-                        motivo_cierre: str):
-    """Registra una posición cerrada en el CSV de posiciones cerradas."""
-    try:
-        timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
-
-        # Asegurar que el archivo de posiciones cerradas existe
-        if not os.path.exists(POSICIONES_CERRADAS_PATH):
-            with open(POSICIONES_CERRADAS_PATH, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.writer(f)
-                writer.writerow(['timestamp', 'symbol', 'ticket', 'tipo', 'volumen',
-                               'precio_apertura', 'precio_cierre', 'profit', 'motivo_cierre'])
-
-        with open(POSICIONES_CERRADAS_PATH, 'a', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow([timestamp, symbol, ticket, tipo, volumen,
-                           precio_apertura, precio_cierre, profit, motivo_cierre])
-    except (FileNotFoundError, PermissionError, IOError) as e:
-        add_error_to_buffer(f"Error en log de posición cerrada: {e}")
-
-def log_error_critico(modulo: str, funcion: str, error: str, stack_trace: Optional[str] = None):
-    """Registra errores críticos en CSV y buffer."""
-    try:
-        timestamp = datetime.now(pytz.timezone(ZONA_HORARIA_LOCAL)).strftime('%Y-%m-%d %H:%M:%S')
-
-        # Asegurar que el archivo de errores existe
-        if not os.path.exists(ERROR_LOG_PATH):
-            with open(ERROR_LOG_PATH, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.writer(f)
-                writer.writerow(['timestamp', 'module', 'function', 'error', 'stack_trace'])
-
-        with open(ERROR_LOG_PATH, 'a', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow([timestamp, modulo, funcion, error, stack_trace or ''])
-
-        # Añadir al buffer para el dashboard
-        add_error_to_buffer(f"[{modulo}] {error}")
-    except (FileNotFoundError, PermissionError, IOError) as e:
-        enviar_senal_log("ERROR", f"Error en log_error_critico: {e}", "data_logger", "migration")
-
 # =============================================================================
 # SISTEMA DE MANEJO GLOBAL DE EXCEPCIONES
 # =============================================================================
