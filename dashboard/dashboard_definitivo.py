@@ -38,12 +38,14 @@ project_root = os.path.dirname(current_dir)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Ahora importar del SIC
-# from sistema.sic import ConfigManager  # No existe en SIC
-from config.config_manager import ConfigManager
-
-# MIGRACIÓN A SIC v3.0 + SLUC v2.1
-from sistema.sic import enviar_senal_log, log_info, log_warning
+# MIGRACIÓN A SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
+from sistema.sic import (
+    enviar_senal_log, log_info, log_warning,
+    datetime, timezone, json,
+    Dict, Any, Optional, List, Tuple, Union,
+    ImportsCentral, get_dashboard, get_logging, get_mt5_manager,
+    get_ict_components, get_system_status, ConfigManager
+)
 
 # === IMPORTS TEXTUAL PRIMERO ===
 try:
@@ -99,11 +101,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
-from sistema.sic import datetime, timezone
-from sistema.sic import Dict, Any, Optional, List, Tuple, Union
 import asyncio
 import time
-from sistema.sic import json
 import threading# === IMPORTS PANDAS ===
 try:
     import pandas as pd
@@ -122,37 +121,20 @@ except ImportError:
     PANDAS_AVAILABLE = False
 
 # === SISTEMA CENTRAL DE LOGS - CONFIGURACIÓN ÚNICA ===
-# 🔥 SOLUCIÓN DEFINITIVA: Import directo del sistema de logging
-try:
-    from sistema.logging_interface import enviar_senal_log
-    print("✅ Sistema central de logs cargado desde logging_interface")
-    LOGGING_DISPONIBLE = True
-except ImportError:
-    print("⚠️ logging_interface no disponible, usando fallback")
-    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-        print(f"[{nivel}] {fuente}: {mensaje}")
-    LOGGING_DISPONIBLE = False
+# ✅ Sistema central de logs disponible desde SIC v3.0 (ya importado arriba)
+print("✅ Sistema central de logs disponible desde SIC v3.0")
+LOGGING_DISPONIBLE = True
 
-# === IMPORTS CENTRALIZADOS - USANDO IMPORTS_INTERFACE ===
+# === IMPORTS CENTRALIZADOS - USANDO SIC v3.0 ===
 try:
-    from sistema.sic import (
-        ImportsCentral, get_dashboard, get_logging, get_mt5_manager,
-        get_ict_components, get_system_status
-    )
-
-    # Instanciar el sistema centralizado
+    # Instanciar el sistema centralizado (funciones ya importadas arriba)
     imports_central = ImportsCentral()
     print("✅ ImportsCentral inicializado correctamente")
-    IMPORTS_CENTRAL_AVAILABLE = True
     IMPORTS_CENTRAL_AVAILABLE = True
 
 except ImportError as e:
     print(f"⚠️ Error con ImportsCentral: {e}")
     IMPORTS_CENTRAL_AVAILABLE = False
-
-    # Fallback básico
-    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-        print(f"[{nivel}] {fuente}: {mensaje}")
 
 # === IMPORTS COMPONENTS INDIVIDUALES (FALLBACK) ===
 if not IMPORTS_CENTRAL_AVAILABLE:
@@ -169,22 +151,12 @@ if not IMPORTS_CENTRAL_AVAILABLE:
         print(f"⚠️ Error importando componentes individuales: {e}")
         # Ya no necesitamos fallback de logging - usamos SIC v3.0
 
-# === IMPORTS PROBLEMAS ===
+# === IMPORTS PROBLEMAS - ÚNICOS ===
 try:
     from dashboard.problems_tab_renderer import render_problems_tab_simple, get_problems_summary
     print("✅ Problems tab renderer imported")
 except ImportError as e:
     print(f"⚠️ Problems tab not available: {e}")
-    def render_problems_tab_simple():
-        return "❌ Error: Módulo de detección de problemas no disponible"
-    def get_problems_summary():
-        return {'error': 'Módulo no disponible'}
-    # Ya no necesitamos fallback de enviar_senal_log - usamos SIC v3.0
-
-# === IMPORTS PROBLEMAS ===
-try:
-    from dashboard.problems_tab_renderer import render_problems_tab_simple, get_problems_summary
-except ImportError:
     def render_problems_tab_simple():
         return "❌ Error: Módulo de detección de problemas no disponible"
     def get_problems_summary():

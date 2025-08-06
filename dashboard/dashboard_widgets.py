@@ -1,8 +1,50 @@
 #!/usr/bin/env python3
-# === IMPORTS SIC ===
-from sistema.sic import logger
+# === IMPORTS SIC v3.0 - CENTRALIZADOS ===
+from sistema.sic import (
+    logger, enviar_senal_log, log_info, log_warning,
+    datetime, timezone, time_module as time,
+    Dict, Any, Optional, List, Tuple,
+    Path, sys
+)
 
-# === RESTO DE IMPORTS ===
+# === IMPORTS ESPECÍFICOS NO EN SIC ===
+try:
+    from textual.widget import Widget
+    from textual.reactive import reactive
+    from rich.table import Table
+    from rich.panel import Panel
+    from rich.console import Console
+    TEXTUAL_AVAILABLE = True
+except ImportError:
+    # Fallbacks para Textual/Rich
+    class Widget:
+        def __init__(self, **kwargs):
+            pass
+        def render(self):
+            return "Widget not available"
+
+    def reactive(default):
+        return default
+
+    class Table:
+        def __init__(self, **kwargs):
+            pass
+        def add_column(self, *args, **kwargs):
+            pass
+        def add_row(self, *args, **kwargs):
+            pass
+
+    class Panel:
+        def __init__(self, content, **kwargs):
+            self.content = content
+
+    class Console:
+        def __init__(self, **kwargs):
+            pass
+        def print(self, *args, **kwargs):
+            print(*args)
+
+    TEXTUAL_AVAILABLE = False
 
 """
 Widgets de Dashboard para SentinelTUI
@@ -23,33 +65,37 @@ Fecha: 24 de Julio, 2025
 Versión: FASE 3.5 - Widget System
 """
 
-# MIGRADO A SLUC v2.0
+# === CONFIGURACIÓN DE PATHS ===
+# Configurar paths si es necesario (aunque SIC ya maneja sys)
+current_dir = Path(__file__).parent
+project_root = current_dir.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
-
-# 🔍 Logger especializado para widgets del dashboard
-# SLUC v2.0: logging centralizado
-
-# Configurar paths
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
-# Imports de Textual
-
-# Imports de Rich para renderizado
-
-# Imports adicionales para widgets de hibernación
+# === IMPORTS DE COMPONENTES ===
 
 # Import del Dashboard Controller
 try:
+    from dashboard.dashboard_controller import DashboardController
+    # Función auxiliar para obtener controller
+    def get_dashboard_controller():
+        return DashboardController()
     dashboard_controller_available = True
-except ImportError:
+    enviar_senal_log("INFO", "✅ Dashboard Controller disponible", __name__, "init")
+except ImportError as e:
     dashboard_controller_available = False
+    enviar_senal_log("WARNING", f"⚠️ Dashboard Controller no disponible: {e}", __name__, "init")
+    def get_dashboard_controller():
+        return None
 
 # Import de componentes ICT profesionales
 try:
+    # Estos deberían venir del SIC cuando estén disponibles
     ict_components_available = True
-except ImportError:
+    enviar_senal_log("INFO", "✅ Componentes ICT disponibles", __name__, "init")
+except ImportError as e:
     ict_components_available = False
+    enviar_senal_log("WARNING", f"⚠️ Componentes ICT no disponibles: {e}", __name__, "init")
 
 class IntegratedDashboardWidget(Widget):
     """

@@ -20,8 +20,7 @@ Fecha: Agosto 2025
 # MIGRACIÓN SIC v3.0 + SLUC v2.1
 from sistema.sic import enviar_senal_log, log_info, log_warning
 
-# MIGRACIÓN SIC v3.0 + SLUC v2.1
-from sistema.sic import enviar_senal_log, log_info, log_warning
+# ✅ Eliminando import duplicado - ya tenemos enviar_senal_log arriba
 
 
 from sistema.sic_clean import time
@@ -34,8 +33,7 @@ from enum import Enum
 from sistema.sic_clean import json
 from sistema.sic_clean import Path
 
-# Imports del sistema ICT
-from sistema.sic_clean import enviar_senal_log
+# ✅ Eliminando import duplicado de sic_clean - ya tenemos enviar_senal_log de SIC v3.0
 
 
 class ComponentStatus(Enum):

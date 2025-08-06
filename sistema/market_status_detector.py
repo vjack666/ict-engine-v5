@@ -46,12 +46,7 @@ from sistema.sic_clean import dataclass
 from enum import Enum
 
 # MIGRADO A SLUC v2.1
-try:
-    from sistema.sic_clean import enviar_senal_log
-except ImportError:
-    def enviar_senal_log(nivel: str, mensaje: str, fuente: str = "market_status", categoria: str = "general") -> None:
-        print(f"[{nivel}] {fuente}: {mensaje}")
-
+# ✅ Eliminando reimport - ya tenemos enviar_senal_log de SIC v3.0 línea 38
 try:
     from sistema.trading_schedule import TradingScheduleManager, get_current_session_info, calcular_tiempo_restante_para_proxima_sesion
     trading_schedule_available = True

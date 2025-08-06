@@ -21,13 +21,10 @@ Usa TODA la infraestructura existente siguiendo el patrón exitoso del POI Integ
 - docs/bitacoras/reportes/REGISTRAR_ACCION_PROPOSITO_SISTEMA.md
 """
 
-from sistema.sic import enviar_senal_log
+# ✅ Eliminando imports duplicados - ya tenemos todo de SIC líneas 1-3
 from utils.mt5_data_manager import get_mt5_manager
-from sistema.sic import get_dashboard_controller
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
-from sistema.sic import datetime, timedelta
+# get_dashboard_controller, enviar_senal_log, datetime, timedelta ya importados arriba
+# rich components ya importados arriba
 from sistema.sic import Dict, List, Tuple, Optional, Any
 from sistema.sic import time
 

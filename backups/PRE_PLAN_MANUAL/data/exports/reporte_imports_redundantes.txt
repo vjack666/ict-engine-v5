@@ -1,0 +1,234 @@
+🔍 REPORTE DE ANÁLISIS DE IMPORTS REDUNDANTES
+==================================================
+Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
+
+📊 RESUMEN EJECUTIVO
+--------------------
+• Archivos analizados: 22
+• Reimports detectados: 28
+• Imports directos (no SIC): 319
+• Imports faltantes en SIC: 84
+
+🔥 REIMPORTS CRÍTICOS DETECTADOS
+------------------------------
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\dashboard_definitivo.py
+   Línea 46: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+   Línea 127: from sistema.logging_interface import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+   Línea 278: enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
+   Tipo: enviar_senal_log_duplicate
+   Línea 324: enviar_senal_log("ERROR", f"❌ Error importando componentes reales: {e}", "dashboard_definitivo", "component_loading")
+   Tipo: enviar_senal_log_duplicate
+   Línea 1934: enviar_senal_log("INFO", f"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})", "dashboard_definitivo", "poi_detection")
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\candle_downloader_widget.py
+   Línea 38: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\dashboard_controller.py
+   Línea 25: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\dashboard_problems_patch.py
+   Línea 27: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\hibernacion_perfecta.py
+   Línea 16: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\hibernation_widget_v2.py
+   Línea 3: from sistema.sic import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
+   Tipo: enviar_senal_log_duplicate
+   Línea 24: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\ict_professional_widget.py
+   Línea 18: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+   Línea 23: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\problems_tab_renderer.py
+   Línea 28: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\config.py
+   Línea 33: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\data_logger.py
+   Línea 17: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\data_logger_clean.py
+   Línea 17: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\imports_interface.py
+   Línea 81: from sistema.logging_interface import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\logging_interface_simple.py
+   Línea 13: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\market_status_detector.py
+   Línea 38: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+   Línea 50: from sistema.sic_clean import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+   Línea 59: enviar_senal_log("ERROR", f"Error crítico importando TradingScheduleManager: {e}", __name__, "market_status")
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\market_status_detector_v3.py
+   Línea 46: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+   Línea 55: enviar_senal_log("ERROR", f"Error crítico importando TradingScheduleManager: {e}", __name__, "market_status")
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\system_monitor.py
+   Línea 21: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+   Línea 24: from sistema.sic import enviar_senal_log, log_info, log_warning
+   Tipo: enviar_senal_log_duplicate
+   Línea 38: from sistema.sic_clean import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+📁 C:\Users\v_jac\Desktop\itc engine v5.0\sistema\trading_schedule.py
+   Línea 28: from sistema.sic import enviar_senal_log
+   Tipo: enviar_senal_log_duplicate
+
+❌ IMPORTS FALTANTES EN SIC v3.0
+------------------------------
+• AccFlowController
+• AdvancedCandleDownloader
+• AggregatedTCTMetrics
+• Align
+• AnalysisOrchestrator
+• App
+• Binding
+• Button
+• CONFIDENCE_CONFIG
+• CandleCoordinator
+• Columns
+• ComposeResult
+• Confirm
+• Console
+• Container
+• DIRECTION_COLORS
+• DownloadRequest
+• DownloadStats
+• DownloadStatus
+• Enum
+• FlowPriority
+• Footer
+• FractalAnalyzer
+• Group
+• Header
+• Horizontal
+• ICTAnalysisResult
+• ICTAnalyzer
+• ICTPattern
+• ICTSignal
+• JSONDecodeError
+• Label
+• Layout
+• MarketPhase
+• MarketStructure
+• Message
+• PATTERN_EMOJIS
+• POIScoringEngine
+• POISystem
+• Panel
+• Progress
+• ProgressBar
+• Prompt
+• RotatingFileHandler
+• SAFE_DATA_DIR
+• SentinelDashboardDefinitivo
+• SessionType
+• SignalStrength
+• SmartDirectoryLogger
+• SpinnerColumn
+• Static
+• TCTFormatter
+• TCTInterface
+• TYPE_CHECKING
+• TabPane
+• TabbedContent
+• Table
+• Text
+• TextColumn
+• TradingDirection
+• TradingScheduleManager
+• Tree
+• Vertical
+• ZONA_HORARIA_LOCAL
+• box
+• calcular_tiempo_restante_para_proxima_sesion
+• detectar_mt5_optimizado
+• get_advanced_candle_downloader
+• get_current_session_info
+• get_ict_engine
+• get_logger
+• get_pattern_description
+• get_problems_summary
+• get_risk_reward_assessment
+• get_strength_color
+• ict_detector
+• ict_pattern_analyzer
+• ict_types
+• json
+• logger
+• render_hibernacion_perfecta
+• render_problems_tab_simple
+• smart_log
+• sys
+
+📈 ESTADÍSTICAS POR ARCHIVO
+-------------------------
+❌ NECESITA LIMPIEZA candle_downloader_widget.py: SIC(5) | Directos(8)
+❌ NECESITA LIMPIEZA dashboard_controller.py: SIC(12) | Directos(2)
+❌ NECESITA LIMPIEZA dashboard_definitivo.py: SIC(36) | Directos(98)
+✅ LIMPIO dashboard_problems_patch.py: SIC(13) | Directos(0)
+✅ LIMPIO dashboard_widgets.py: SIC(1) | Directos(0)
+❌ NECESITA LIMPIEZA hibernacion_perfecta.py: SIC(6) | Directos(4)
+❌ NECESITA LIMPIEZA hibernation_widget_v2.py: SIC(26) | Directos(7)
+❌ NECESITA LIMPIEZA ict_professional_widget.py: SIC(12) | Directos(19)
+❌ NECESITA LIMPIEZA problems_tab_renderer.py: SIC(13) | Directos(14)
+✅ LIMPIO config.py: SIC(3) | Directos(0)
+❌ NECESITA LIMPIEZA data_logger.py: SIC(9) | Directos(2)
+❌ NECESITA LIMPIEZA data_logger_clean.py: SIC(9) | Directos(2)
+❌ NECESITA LIMPIEZA imports_interface.py: SIC(0) | Directos(50)
+❌ NECESITA LIMPIEZA logging_interface.py: SIC(0) | Directos(16)
+✅ LIMPIO logging_interface_simple.py: SIC(9) | Directos(0)
+❌ NECESITA LIMPIEZA market_status_detector.py: SIC(3) | Directos(14)
+❌ NECESITA LIMPIEZA market_status_detector_v3.py: SIC(10) | Directos(4)
+❌ NECESITA LIMPIEZA sic.py: SIC(0) | Directos(40)
+❌ NECESITA LIMPIEZA sic_v3_limpio.py: SIC(0) | Directos(20)
+❌ NECESITA LIMPIEZA smart_directory_logger.py: SIC(0) | Directos(6)
+❌ NECESITA LIMPIEZA system_monitor.py: SIC(6) | Directos(12)
+❌ NECESITA LIMPIEZA trading_schedule.py: SIC(9) | Directos(1)
+
+💡 RECOMENDACIONES PRIORITARIAS
+------------------------------
+1. 🔥 ELIMINAR reimports de enviar_senal_log
+2. 📦 AGREGAR exports faltantes a SIC v3.0:
+   • CandleCoordinator
+   • Footer
+   • FractalAnalyzer
+   • ICTPattern
+   • SentinelDashboardDefinitivo
+   • SessionType
+   • TabPane
+   • get_current_session_info
+   • get_logger
+   • logger
+   ... y 74 más
+
+3. 🧹 CONVERTIR todos los imports directos a SIC
+4. ✅ VALIDAR que no hay dependencias circulares

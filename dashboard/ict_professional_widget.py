@@ -19,8 +19,7 @@ from sistema.sic import enviar_senal_log, log_info, log_warning
 
 from rich.panel import Panel
 from rich.table import Table
-# MIGRADO A SLUC v2.0
-from sistema.sic import enviar_senal_log
+# ✅ Eliminando reimport - ya tenemos enviar_senal_log línea 18
 
 # 🎯 INTEGRACIÓN POI SYSTEM - VALIDADO AL 100%
 from sistema.sic import (

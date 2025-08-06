@@ -164,6 +164,26 @@ dashboard_available = False
 utils_available = False
 config_available = False
 
+# =============================================================================
+# CONFIG MANAGER
+# =============================================================================
+try:
+    from config.config_manager import ConfigManager
+    config_available = True
+except ImportError:
+    ConfigManager = None
+    config_available = False
+
+# =============================================================================
+# DASHBOARD CONTROLLER
+# =============================================================================
+try:
+    from dashboard.dashboard_controller import DashboardController
+    dashboard_controller_available = True
+except ImportError:
+    DashboardController = None
+    dashboard_controller_available = False
+
 # Funciones stub para sistemas no disponibles
 def analyze_market_context(*args, **kwargs):
     """Stub para análisis de contexto de mercado."""
@@ -194,6 +214,112 @@ class ImportsCentral:
         return enviar_senal_log
 
     def get_mt5_manager(self):
+        return None
+
+# =============================================================================
+# FUNCIONES GET_* REQUERIDAS POR DASHBOARD
+# =============================================================================
+
+def get_dashboard():
+    """Obtiene instancia del dashboard principal."""
+    try:
+        from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
+        return SentinelDashboardDefinitivo
+    except ImportError:
+        return None
+
+def get_trading_config():
+    """Obtiene configuración de trading."""
+    try:
+        from config.config_manager import ConfigManager
+        return ConfigManager()
+    except ImportError:
+        return None
+
+def get_logging():
+    """Obtiene función de logging centralizada."""
+    return enviar_senal_log
+
+def get_mt5_manager():
+    """Obtiene el manager de MT5."""
+    try:
+        from utilities.mt5_interface import MT5Manager
+        return MT5Manager()
+    except ImportError:
+        return None
+
+def get_dashboard_controller():
+    """Obtiene el controlador del dashboard."""
+    try:
+        from dashboard.dashboard_controller import DashboardController
+        return DashboardController
+    except ImportError:
+        return None
+
+def get_ict_components():
+    """Obtiene componentes ICT."""
+    try:
+        from core.ict_engine.ict_detector import ICTDetector
+        return ICTDetector
+    except ImportError:
+        return None
+
+def get_system_status():
+    """Obtiene estado del sistema."""
+    return get_sic_status()
+
+# =============================================================================
+# WIDGETS Y COMPONENTES FALTANTES
+# =============================================================================
+
+# TCT Interface
+try:
+    from core.analysis_command_center.tct_pipeline.tct_interface import TCTInterface
+    tct_interface_available = True
+except ImportError:
+    TCTInterface = None
+    tct_interface_available = False
+
+# Trading Decision Engine
+try:
+    from core.trading import TradingDecisionEngine, TradingDecisionCache
+    trading_engine_available = True
+except ImportError:
+    TradingDecisionEngine = None
+    TradingDecisionCache = None
+    trading_engine_available = False
+
+# Risk Bot
+try:
+    from core.risk_management import RiskBot
+    risk_bot_available = True
+except ImportError:
+    RiskBot = None
+    risk_bot_available = False
+
+# Hibernation Widget
+try:
+    from dashboard.hibernation_widget_v2 import HibernationWidget
+    hibernation_widget_available = True
+except ImportError:
+    HibernationWidget = None
+    hibernation_widget_available = False
+
+# Rendering functions
+def render_hibernacion_perfecta(*args, **kwargs):
+    """Renderiza tab de hibernación perfecta."""
+    try:
+        from dashboard.hibernacion_perfecta import render_hibernacion_perfecta as rhp
+        return rhp(*args, **kwargs)
+    except ImportError:
+        return None
+
+def render_problems_tab_simple(*args, **kwargs):
+    """Renderiza tab de problemas simplificado."""
+    try:
+        from dashboard.problems_tab_renderer import render_problems_tab_simple as rpts
+        return rpts(*args, **kwargs)
+    except ImportError:
         return None
 
 # Detección POI
@@ -303,14 +429,22 @@ __all__ = [
 
     # UTILS Y FUNCIONES
     'get_dashboard', 'get_trading_config', 'get_mt5_manager', 'get_ict_components',
-    'get_dashboard_controller', 'get_system_status',
+    'get_dashboard_controller', 'get_system_status', 'get_logging',
+
+    # RENDERING FUNCTIONS
+    'render_hibernacion_perfecta', 'render_problems_tab_simple',
+
+    # TCT INTERFACE
+    'TCTInterface',
 
     # Estado
     'get_sic_status', 'get_available_functions', 'get_available_classes', 'test_sic_imports',
 
     # Variables de estado
     'logging_available', 'ict_engine_available', 'poi_system_available',
-    'dashboard_available', 'utils_available', 'config_available'
+    'dashboard_available', 'utils_available', 'config_available',
+    'tct_interface_available', 'trading_engine_available', 'risk_bot_available',
+    'hibernation_widget_available'
 ]
 
 if __name__ == "__main__":

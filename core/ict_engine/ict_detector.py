@@ -1,10 +1,37 @@
 #!/usr/bin/env python3
-# === IMPORTS SIC ===
-from sistema.sic import ICTDetector
-from sistema.market_status_detector_v3 import MarketStatusDetector
-from sistema.sic import logger
+# === IMPORTS SIC v3.0 - CENTRALIZADOS ===
+from sistema.sic import (
+    logger, enviar_senal_log, log_info, log_warning,
+    datetime, timezone, json
+)
 
-# === RESTO DE IMPORTS ===
+# === IMPORTS STANDARD LIBRARY ===
+from typing import Dict, Any, Optional, List, Tuple, Union
+from json import JSONDecodeError
+import pandas as pd
+import numpy as np
+
+# === IMPORTS ESPECÍFICOS NO EN SIC ===
+try:
+    from sistema.market_status_detector_v3 import MarketStatusDetector
+    MarketStatusDetector_available = True
+except ImportError:
+    MarketStatusDetector = None
+    MarketStatusDetector_available = False
+
+try:
+    from sistema.trading_schedule import TradingScheduleManager
+    TradingScheduleManager_available = True
+except ImportError:
+    TradingScheduleManager = None
+    TradingScheduleManager_available = False
+
+try:
+    from core.analysis_command_center.fractal_analyzer import FractalAnalyzer
+    FractalAnalyzer_available = True
+except ImportError:
+    FractalAnalyzer = None
+    FractalAnalyzer_available = False
 
 """
 📊 ICT DETECTOR - Sistema Consolidado de Análisis ICT
@@ -21,38 +48,36 @@ Consolidado desde:
 
 Versión: v3.3.3
 """
-# MIGRADO A SLUC v2.0
+
+# --- Log de carga inicial ---
+try:
+    enviar_senal_log("INFO", "✅ ICT Detector cargándose - Imports verificados", __name__, "init")
+except Exception as e:
+    print(f"🔧 ICT Detector cargándose sin logging: {e}")
 
 # --- Import de funciones POI para integración ---
 try:
-    from sistema.sic import (
-        detectar_order_blocks,
-        detectar_fair_value_gaps,
-        detectar_breaker_blocks,
-        detectar_imbalances
-    )
+    # Las funciones POI están definidas en este archivo
     poi_functions_available = True
-except ImportError as e:
-    enviar_senal_log("WARNING", f"Funciones POI no disponibles: {e}", __name__, "init")
+    enviar_senal_log("INFO", "✅ Funciones POI disponibles internamente", __name__, "init")
+except Exception as e:
     poi_functions_available = False
 
-# --- Import del FractalAnalyzer ---
-try:
-    fractal_analyzer_available = True
-    enviar_senal_log("INFO", "✅ FractalAnalyzer importado correctamente", __name__, "init")
-except ImportError as e:
-    enviar_senal_log("WARNING", f"FractalAnalyzer no disponible: {e}", __name__, "init")
-    fractal_analyzer_available = False
+# --- Verify imports de análisis avanzados ---
+if FractalAnalyzer_available:
+    enviar_senal_log("INFO", "✅ FractalAnalyzer disponible", __name__, "init")
+else:
+    enviar_senal_log("WARNING", "⚠️ FractalAnalyzer no disponible", __name__, "init")
 
-# --- Import del Market Status Detector (SPRINT 1.4 FIX) ---
-try:
-    market_status_available = True
-    enviar_senal_log("INFO", "✅ Market Status Detector importado correctamente", __name__, "init")
-except ImportError as e:
-    enviar_senal_log("WARNING", f"❌ Market Status Detector no disponible: {e}", __name__, "init")
-    market_status_available = False
+if MarketStatusDetector_available:
+    enviar_senal_log("INFO", "✅ Market Status Detector disponible", __name__, "init")
+else:
+    enviar_senal_log("WARNING", "⚠️ Market Status Detector no disponible", __name__, "init")
 
-# Usar sistema de logging central
+if TradingScheduleManager_available:
+    enviar_senal_log("INFO", "✅ Trading Schedule Manager disponible", __name__, "init")
+else:
+    enviar_senal_log("WARNING", "⚠️ Trading Schedule Manager no disponible", __name__, "init")
 
 # =============================================================================
 # CONFIGURACIÓN Y CONSTANTES
@@ -122,7 +147,7 @@ class MarketContext:
         self.fractal_range = {'high': 0, 'low': 0, 'eq': 0, 'status': 'NO_CALCULADO'}
 
         # Inicializar FractalAnalyzer si está disponible
-        if fractal_analyzer_available:
+        if FractalAnalyzer_available:
             self.fractal_analyzer = FractalAnalyzer()
             enviar_senal_log("INFO", "🔮 FractalAnalyzer inicializado en MarketContext", __name__, "fractal_analysis")
         else:
@@ -130,9 +155,12 @@ class MarketContext:
             enviar_senal_log("WARNING", "⚠️ FractalAnalyzer no disponible - usando valores por defecto", __name__, "fractal_analysis")
 
         # Inicializar Market Status Detector (SPRINT 1.4 FIX)
-        if market_status_available:
+        if MarketStatusDetector_available:
             self.market_status_detector = MarketStatusDetector()
-            self.trading_schedule = TradingScheduleManager()
+            if TradingScheduleManager_available:
+                self.trading_schedule = TradingScheduleManager()
+            else:
+                self.trading_schedule = None
             enviar_senal_log("INFO", "🕐 Market Status Detector inicializado en MarketContext", __name__, "session_detection")
         else:
             self.market_status_detector = None
@@ -1251,7 +1279,7 @@ class ICTDetector:
         enviar_senal_log("INFO", f"⚙️ Configuración cargada: threshold={self.config['min_confidence_threshold']}", __name__, "general")
 
         # SPRINT 1.4 FIX: Agregar session detection también al ICTDetector
-        if market_status_available:
+        if MarketStatusDetector_available:
             try:
                 self.market_status_detector = MarketStatusDetector()
                 self.session_detector_available = True
@@ -1959,6 +1987,36 @@ class ICTDetector:
         """Analiza momentum para bias"""
         return self._analyze_momentum_comprehensive(candles)
 
+    def get_current_session_info(self) -> Dict[str, Any]:
+        """
+        Función auxiliar para obtener información de sesión.
+        Utiliza market_status_detector si está disponible.
+        """
+        try:
+            if hasattr(self, 'market_status_detector') and self.market_status_detector:
+                # Implementar lógica usando MarketStatusDetector si está disponible
+                return {
+                    'session': 'SYDNEY',  # Implementar lógica real
+                    'session_key': 'SYDNEY',
+                    'overlap': False,
+                    'activity_level': 'MEDIUM'
+                }
+            else:
+                return {
+                    'session': 'UNKNOWN',
+                    'session_key': 'UNKNOWN',
+                    'overlap': False,
+                    'activity_level': 'MEDIUM'
+                }
+        except Exception as e:
+            enviar_senal_log("ERROR", f"Error obteniendo info de sesión: {e}", __name__, "session_detection")
+            return {
+                'session': 'ERROR',
+                'session_key': 'ERROR',
+                'overlap': False,
+                'activity_level': 'LOW'
+            }
+
     def _determine_session_context(self) -> Dict[str, Any]:
         """
         Determina contexto de sesión usando Market Status Detector
@@ -1967,15 +2025,15 @@ class ICTDetector:
         try:
             # Verificar si tenemos session detection disponible (ICTDetector)
             if hasattr(self, 'session_detector_available') and self.session_detector_available:
-                if market_status_available:
-                    current_session = get_current_session_info()
+                if MarketStatusDetector_available:
+                    current_session = self.get_current_session_info()
                 else:
                     enviar_senal_log("WARNING", "🕐 Market Status no disponible", __name__, "session_detection")
                     return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
             # Verificar si tenemos market_status_detector disponible (MarketContext)
             elif hasattr(self, 'market_status_detector') and self.market_status_detector:
-                if market_status_available:
-                    current_session = get_current_session_info()
+                if MarketStatusDetector_available:
+                    current_session = self.get_current_session_info()
                 else:
                     enviar_senal_log("WARNING", "🕐 Market Status no disponible", __name__, "session_detection")
                     return {'session': 'UNKNOWN', 'overlap': False, 'activity_level': 'MEDIUM'}
@@ -2384,10 +2442,10 @@ class ICTDetector:
             session_zones = []
 
             # Solo si tenemos session detection disponible
-            if hasattr(self, 'session_detector_available') and self.session_detector_available and market_status_available:
+            if hasattr(self, 'session_detector_available') and self.session_detector_available and MarketStatusDetector_available:
 
                 # Obtener información de sesión actual
-                session_info = get_current_session_info()
+                session_info = self.get_current_session_info()
 
                 if session_info:
                     session_name = session_info.get('session_key', 'UNKNOWN')

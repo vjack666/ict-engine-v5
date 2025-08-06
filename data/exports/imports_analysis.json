@@ -1,114 +1,106 @@
 {
   "missing_in_sic": [
-    "get_current_session_info",
-    "get_logger",
-    "Footer",
-    "logger",
-    "ICTPattern",
     "TabPane",
-    "FractalAnalyzer",
-    "CandleCoordinator",
-    "SentinelDashboardDefinitivo",
-    "SessionType",
-    "box",
-    "smart_log",
-    "TYPE_CHECKING",
-    "SmartDirectoryLogger",
-    "RotatingFileHandler",
-    "TradingDirection",
-    "Console",
-    "get_pattern_description",
-    "POISystem",
-    "App",
-    "ict_pattern_analyzer",
-    "calcular_tiempo_restante_para_proxima_sesion",
-    "SignalStrength",
-    "ZONA_HORARIA_LOCAL",
-    "DownloadRequest",
-    "MarketPhase",
-    "Group",
-    "Horizontal",
-    "Confirm",
-    "Align",
-    "Layout",
-    "ict_types",
-    "Panel",
-    "ict_detector",
-    "Message",
-    "get_ict_engine",
-    "get_risk_reward_assessment",
-    "render_problems_tab_simple",
-    "DIRECTION_COLORS",
-    "Table",
-    "TabbedContent",
-    "Static",
-    "ProgressBar",
-    "ICTSignal",
-    "TradingScheduleManager",
-    "FlowPriority",
-    "ICTAnalyzer",
-    "ICTAnalysisResult",
-    "Binding",
-    "Columns",
-    "DownloadStats",
-    "detectar_mt5_optimizado",
-    "DownloadStatus",
-    "get_strength_color",
-    "AccFlowController",
-    "Container",
-    "SpinnerColumn",
-    "Tree",
-    "TCTFormatter",
-    "Vertical",
-    "Enum",
-    "render_hibernacion_perfecta",
-    "Prompt",
-    "get_problems_summary",
-    "sys",
-    "get_advanced_candle_downloader",
-    "POIScoringEngine",
-    "JSONDecodeError",
-    "json",
-    "AdvancedCandleDownloader",
-    "Text",
     "TCTInterface",
-    "Header",
-    "TextColumn",
-    "Progress",
-    "AggregatedTCTMetrics",
+    "render_hibernacion_perfecta",
+    "Vertical",
+    "get_strength_color",
+    "Static",
+    "DownloadStats",
+    "POIScoringEngine",
+    "Align",
+    "FlowPriority",
+    "ict_detector",
     "PATTERN_EMOJIS",
-    "CONFIDENCE_CONFIG",
-    "Button",
-    "Label",
-    "ComposeResult",
-    "SAFE_DATA_DIR",
+    "calcular_tiempo_restante_para_proxima_sesion",
+    "SmartDirectoryLogger",
+    "AccFlowController",
+    "render_problems_tab_simple",
+    "POISystem",
+    "get_problems_summary",
+    "ict_pattern_analyzer",
+    "Table",
+    "SpinnerColumn",
     "AnalysisOrchestrator",
-    "MarketStructure"
+    "ComposeResult",
+    "TradingDirection",
+    "JSONDecodeError",
+    "Text",
+    "get_current_session_info",
+    "Console",
+    "get_ict_engine",
+    "TextColumn",
+    "Horizontal",
+    "SignalStrength",
+    "detectar_mt5_optimizado",
+    "get_advanced_candle_downloader",
+    "Message",
+    "SAFE_DATA_DIR",
+    "Group",
+    "FractalAnalyzer",
+    "Tree",
+    "ICTAnalyzer",
+    "RotatingFileHandler",
+    "AggregatedTCTMetrics",
+    "AdvancedCandleDownloader",
+    "Binding",
+    "App",
+    "Panel",
+    "MarketPhase",
+    "reactive",
+    "box",
+    "Footer",
+    "DownloadStatus",
+    "Label",
+    "TradingScheduleManager",
+    "get_logger",
+    "ICTSignal",
+    "Button",
+    "CandleCoordinator",
+    "smart_log",
+    "Header",
+    "TCTFormatter",
+    "TabbedContent",
+    "get_pattern_description",
+    "get_risk_reward_assessment",
+    "ict_types",
+    "ProgressBar",
+    "Enum",
+    "Columns",
+    "SentinelDashboardDefinitivo",
+    "ICTAnalysisResult",
+    "json",
+    "ZONA_HORARIA_LOCAL",
+    "Confirm",
+    "SessionType",
+    "Prompt",
+    "TYPE_CHECKING",
+    "DIRECTION_COLORS",
+    "logger",
+    "DownloadRequest",
+    "Layout",
+    "Progress",
+    "ICTPattern",
+    "Widget",
+    "Container",
+    "sys",
+    "MarketStructure",
+    "CONFIDENCE_CONFIG"
   ],
   "reimports_by_file": {
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\dashboard_definitivo.py": [
       {
-        "line": 46,
-        "content": "from sistema.sic import enviar_senal_log, log_info, log_warning",
-        "type": "enviar_senal_log_duplicate"
-      },
-      {
-        "line": 127,
-        "content": "from sistema.logging_interface import enviar_senal_log",
-        "type": "enviar_senal_log_duplicate"
-      },
-      {
-        "line": 278,
+        "line": 253,
         "content": "enviar_senal_log(\"WARNING\", f\"Algunos imports opcionales no disponibles: {e}\", __name__, \"imports\")",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 324,
+        "line": 299,
         "content": "enviar_senal_log(\"ERROR\", f\"❌ Error importando componentes reales: {e}\", \"dashboard_definitivo\", \"component_loading\")",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 1934,
+        "line": 1909,
         "content": "enviar_senal_log(\"INFO\", f\"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})\", \"dashboard_definitivo\", \"poi_detection\")",
         "type": "enviar_senal_log_duplicate"
       }
@@ -148,8 +140,8 @@
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 24,
-        "content": "from sistema.sic import enviar_senal_log",
+        "line": 26,
+        "content": "# get_dashboard_controller, enviar_senal_log, datetime, timedelta ya importados arriba",
         "type": "enviar_senal_log_duplicate"
       }
     ],
@@ -160,8 +152,8 @@
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 23,
-        "content": "from sistema.sic import enviar_senal_log",
+        "line": 22,
+        "content": "# ✅ Eliminando reimport - ya tenemos enviar_senal_log línea 18",
         "type": "enviar_senal_log_duplicate"
       }
     ],
@@ -214,12 +206,12 @@
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 50,
-        "content": "from sistema.sic_clean import enviar_senal_log",
+        "line": 49,
+        "content": "# ✅ Eliminando reimport - ya tenemos enviar_senal_log de SIC v3.0 línea 38",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 59,
+        "line": 54,
         "content": "enviar_senal_log(\"ERROR\", f\"Error crítico importando TradingScheduleManager: {e}\", __name__, \"market_status\")",
         "type": "enviar_senal_log_duplicate"
       }
@@ -243,13 +235,13 @@
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 24,
-        "content": "from sistema.sic import enviar_senal_log, log_info, log_warning",
+        "line": 23,
+        "content": "# ✅ Eliminando import duplicado - ya tenemos enviar_senal_log arriba",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 38,
-        "content": "from sistema.sic_clean import enviar_senal_log",
+        "line": 36,
+        "content": "# ✅ Eliminando import duplicado de sic_clean - ya tenemos enviar_senal_log de SIC v3.0",
         "type": "enviar_senal_log_duplicate"
       }
     ],
@@ -275,336 +267,315 @@
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 43
+        "line": 51
       },
       {
         "type": "from_import",
         "module": "rich.console",
         "name": "Console",
         "alias": null,
-        "line": 98
+        "line": 103
       },
       {
         "type": "from_import",
         "module": "rich.table",
         "name": "Table",
         "alias": null,
-        "line": 99
+        "line": 104
       },
       {
         "type": "from_import",
         "module": "rich.panel",
         "name": "Panel",
         "alias": null,
-        "line": 100
+        "line": 105
       },
       {
         "type": "from_import",
         "module": "rich.text",
         "name": "Text",
         "alias": null,
-        "line": 101
+        "line": 106
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 50
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 50
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabbedContent",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabPane",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 53
+        "line": 58
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 54
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.logging_interface",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 127
+        "line": 59
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "render_problems_tab_simple",
         "alias": null,
-        "line": 174
+        "line": 159
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "get_problems_summary",
         "alias": null,
-        "line": 174
-      },
-      {
-        "type": "from_import",
-        "module": "dashboard.problems_tab_renderer",
-        "name": "render_problems_tab_simple",
-        "alias": null,
-        "line": 186
-      },
-      {
-        "type": "from_import",
-        "module": "dashboard.problems_tab_renderer",
-        "name": "get_problems_summary",
-        "alias": null,
-        "line": 186
+        "line": 159
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_types",
         "alias": null,
-        "line": 281
+        "line": 256
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_pattern_analyzer",
         "alias": null,
-        "line": 299
+        "line": 274
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_detector",
         "alias": null,
-        "line": 299
+        "line": 274
       },
       {
         "type": "from_import",
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 160
+        "line": 145
       },
       {
         "type": "from_import",
         "module": "dashboard.dashboard_controller",
         "name": "DashboardController",
         "alias": null,
-        "line": 161
+        "line": 146
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_detector",
         "name": "ICTDetector",
         "alias": null,
-        "line": 162
+        "line": 147
       },
       {
         "type": "from_import",
         "module": "core.limit_order_manager",
         "name": "LimitOrderManager",
         "alias": null,
-        "line": 163
+        "line": 148
       },
       {
         "type": "from_import",
         "module": "sistema.market_status_detector_v3",
         "name": "MarketStatusDetector",
         "alias": null,
-        "line": 164
+        "line": 149
       },
       {
         "type": "from_import",
         "module": "core.analysis_command_center.tct_pipeline.tct_interface",
         "name": "TCTInterface",
         "alias": null,
-        "line": 165
+        "line": 150
       },
       {
         "type": "from_import",
         "module": "sistema.smart_directory_logger",
         "name": "logger",
         "alias": null,
-        "line": 166
+        "line": 151
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 59
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 59
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 62
+        "line": 67
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 63
+        "line": 68
       },
       {
         "type": "from_import",
@@ -618,336 +589,315 @@
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 43
+        "line": 51
       },
       {
         "type": "from_import",
         "module": "rich.console",
         "name": "Console",
         "alias": null,
-        "line": 98
+        "line": 103
       },
       {
         "type": "from_import",
         "module": "rich.table",
         "name": "Table",
         "alias": null,
-        "line": 99
+        "line": 104
       },
       {
         "type": "from_import",
         "module": "rich.panel",
         "name": "Panel",
         "alias": null,
-        "line": 100
+        "line": 105
       },
       {
         "type": "from_import",
         "module": "rich.text",
         "name": "Text",
         "alias": null,
-        "line": 101
+        "line": 106
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 50
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 50
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 51
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabbedContent",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabPane",
         "alias": null,
-        "line": 52
+        "line": 57
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 53
+        "line": 58
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 54
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.logging_interface",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 127
+        "line": 59
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "render_problems_tab_simple",
         "alias": null,
-        "line": 174
+        "line": 159
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "get_problems_summary",
         "alias": null,
-        "line": 174
-      },
-      {
-        "type": "from_import",
-        "module": "dashboard.problems_tab_renderer",
-        "name": "render_problems_tab_simple",
-        "alias": null,
-        "line": 186
-      },
-      {
-        "type": "from_import",
-        "module": "dashboard.problems_tab_renderer",
-        "name": "get_problems_summary",
-        "alias": null,
-        "line": 186
+        "line": 159
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_types",
         "alias": null,
-        "line": 281
+        "line": 256
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_pattern_analyzer",
         "alias": null,
-        "line": 299
+        "line": 274
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_detector",
         "alias": null,
-        "line": 299
+        "line": 274
       },
       {
         "type": "from_import",
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 160
+        "line": 145
       },
       {
         "type": "from_import",
         "module": "dashboard.dashboard_controller",
         "name": "DashboardController",
         "alias": null,
-        "line": 161
+        "line": 146
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_detector",
         "name": "ICTDetector",
         "alias": null,
-        "line": 162
+        "line": 147
       },
       {
         "type": "from_import",
         "module": "core.limit_order_manager",
         "name": "LimitOrderManager",
         "alias": null,
-        "line": 163
+        "line": 148
       },
       {
         "type": "from_import",
         "module": "sistema.market_status_detector_v3",
         "name": "MarketStatusDetector",
         "alias": null,
-        "line": 164
+        "line": 149
       },
       {
         "type": "from_import",
         "module": "core.analysis_command_center.tct_pipeline.tct_interface",
         "name": "TCTInterface",
         "alias": null,
-        "line": 165
+        "line": 150
       },
       {
         "type": "from_import",
         "module": "sistema.smart_directory_logger",
         "name": "logger",
         "alias": null,
-        "line": 166
+        "line": 151
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 59
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 59
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 60
+        "line": 65
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 61
+        "line": 66
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 62
+        "line": 67
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 63
+        "line": 68
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\sic.py": [
@@ -1420,6 +1370,50 @@
         "line": 28
       }
     ],
+    "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\dashboard_widgets.py": [
+      {
+        "type": "from_import",
+        "module": "textual.widget",
+        "name": "Widget",
+        "alias": null,
+        "line": 12
+      },
+      {
+        "type": "from_import",
+        "module": "textual.reactive",
+        "name": "reactive",
+        "alias": null,
+        "line": 13
+      },
+      {
+        "type": "from_import",
+        "module": "rich.table",
+        "name": "Table",
+        "alias": null,
+        "line": 14
+      },
+      {
+        "type": "from_import",
+        "module": "rich.panel",
+        "name": "Panel",
+        "alias": null,
+        "line": 15
+      },
+      {
+        "type": "from_import",
+        "module": "rich.console",
+        "name": "Console",
+        "alias": null,
+        "line": 16
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_controller",
+        "name": "DashboardController",
+        "alias": null,
+        "line": 79
+      }
+    ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\hibernacion_perfecta.py": [
       {
         "type": "from_import",
@@ -1478,27 +1472,6 @@
         "name": "get_mt5_manager",
         "alias": null,
         "line": 25
-      },
-      {
-        "type": "from_import",
-        "module": "rich.table",
-        "name": "Table",
-        "alias": null,
-        "line": 27
-      },
-      {
-        "type": "from_import",
-        "module": "rich.panel",
-        "name": "Panel",
-        "alias": null,
-        "line": 28
-      },
-      {
-        "type": "from_import",
-        "module": "rich.text",
-        "name": "Text",
-        "alias": null,
-        "line": 29
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\ict_professional_widget.py": [
@@ -1521,119 +1494,119 @@
         "module": "rich.layout",
         "name": "Layout",
         "alias": null,
-        "line": 33
+        "line": 32
       },
       {
         "type": "from_import",
         "module": "rich.text",
         "name": "Text",
         "alias": null,
-        "line": 34
+        "line": 33
       },
       {
         "type": "from_import",
         "module": "rich.console",
         "name": "Group",
         "alias": null,
-        "line": 35
+        "line": 34
       },
       {
         "type": "from_import",
         "module": "rich",
         "name": "box",
         "alias": null,
-        "line": 36
+        "line": 35
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "ICTPattern",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "MarketPhase",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "SessionType",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "SignalStrength",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "TradingDirection",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "ICTSignal",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "MarketStructure",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "ICTAnalysisResult",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "PATTERN_EMOJIS",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "DIRECTION_COLORS",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "get_pattern_description",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "get_strength_color",
         "alias": null,
-        "line": 45
+        "line": 44
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_types",
         "name": "get_risk_reward_assessment",
         "alias": null,
-        "line": 45
+        "line": 44
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\problems_tab_renderer.py": [
@@ -2193,31 +2166,24 @@
       },
       {
         "type": "from_import",
-        "module": "sistema.sic_clean",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 50
-      },
-      {
-        "type": "from_import",
         "module": "sistema.trading_schedule",
         "name": "TradingScheduleManager",
         "alias": null,
-        "line": 56
+        "line": 51
       },
       {
         "type": "from_import",
         "module": "sistema.trading_schedule",
         "name": "get_current_session_info",
         "alias": null,
-        "line": 56
+        "line": 51
       },
       {
         "type": "from_import",
         "module": "sistema.trading_schedule",
         "name": "calcular_tiempo_restante_para_proxima_sesion",
         "alias": null,
-        "line": 56
+        "line": 51
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\market_status_detector_v3.py": [
@@ -2442,84 +2408,77 @@
         "module": "sistema.sic_clean",
         "name": "time",
         "alias": null,
-        "line": 27
+        "line": 26
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "datetime",
         "alias": null,
-        "line": 30
+        "line": 29
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "timedelta",
         "alias": null,
-        "line": 30
+        "line": 29
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "Dict",
         "alias": null,
-        "line": 31
+        "line": 30
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "List",
         "alias": null,
-        "line": 31
+        "line": 30
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "Any",
         "alias": null,
-        "line": 31
+        "line": 30
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "Optional",
         "alias": null,
-        "line": 31
+        "line": 30
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "dataclass",
         "alias": null,
-        "line": 32
+        "line": 31
       },
       {
         "type": "from_import",
         "module": "enum",
         "name": "Enum",
         "alias": null,
-        "line": 33
+        "line": 32
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "json",
         "alias": null,
-        "line": 34
+        "line": 33
       },
       {
         "type": "from_import",
         "module": "sistema.sic_clean",
         "name": "Path",
         "alias": null,
-        "line": 35
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic_clean",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 38
+        "line": 34
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\trading_schedule.py": [
@@ -2539,252 +2498,252 @@
         "module": "sistema.sic",
         "name": "enviar_senal_log",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "log_info",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "log_warning",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "datetime",
         "alias": null,
-        "line": 102
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "timezone",
         "alias": null,
-        "line": 102
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Dict",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Any",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Optional",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "List",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Tuple",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Union",
-        "alias": null,
-        "line": 103
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "json",
         "alias": null,
-        "line": 106
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Dict",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Any",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Optional",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "List",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Tuple",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Union",
+        "alias": null,
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "ImportsCentral",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_dashboard",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_logging",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_mt5_manager",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_ict_components",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_system_status",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "enviar_senal_log",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "log_info",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "log_warning",
         "alias": null,
-        "line": 46
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "datetime",
         "alias": null,
-        "line": 102
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "timezone",
         "alias": null,
-        "line": 102
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Dict",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Any",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Optional",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "List",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Tuple",
-        "alias": null,
-        "line": 103
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "Union",
-        "alias": null,
-        "line": 103
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "json",
         "alias": null,
-        "line": 106
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Dict",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Any",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Optional",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "List",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Tuple",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Union",
+        "alias": null,
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "ImportsCentral",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_dashboard",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_logging",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_mt5_manager",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_ict_components",
         "alias": null,
-        "line": 138
+        "line": 42
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_system_status",
         "alias": null,
-        "line": 138
+        "line": 42
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\candle_downloader_widget.py": [
@@ -3010,6 +2969,97 @@
         "name": "logger",
         "alias": null,
         "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "enviar_senal_log",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "log_info",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "log_warning",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "datetime",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "timezone",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "time_module",
+        "alias": "time",
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Dict",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Any",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Optional",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "List",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Tuple",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "Path",
+        "alias": null,
+        "line": 3
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "sys",
+        "alias": null,
+        "line": 3
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\hibernacion_perfecta.py": [
@@ -3172,72 +3222,44 @@
       {
         "type": "from_import",
         "module": "sistema.sic",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 24
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "get_dashboard_controller",
-        "alias": null,
-        "line": 26
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "datetime",
-        "alias": null,
-        "line": 30
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "timedelta",
-        "alias": null,
-        "line": 30
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
         "name": "Dict",
         "alias": null,
-        "line": 31
+        "line": 28
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "List",
         "alias": null,
-        "line": 31
+        "line": 28
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "Tuple",
         "alias": null,
-        "line": 31
+        "line": 28
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "Optional",
         "alias": null,
-        "line": 31
+        "line": 28
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "Any",
         "alias": null,
-        "line": 31
+        "line": 28
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "time",
         "alias": null,
-        "line": 32
+        "line": 29
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\ict_professional_widget.py": [
@@ -3265,65 +3287,58 @@
       {
         "type": "from_import",
         "module": "sistema.sic",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 23
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
         "name": "detectar_todos_los_pois",
         "alias": null,
-        "line": 26
+        "line": 25
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "encontrar_pois_multiples_para_dashboard",
         "alias": null,
-        "line": 26
+        "line": 25
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "POIDetector",
         "alias": null,
-        "line": 26
+        "line": 25
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "POI_TYPES",
         "alias": null,
-        "line": 26
+        "line": 25
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "datetime",
         "alias": null,
-        "line": 37
+        "line": 36
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "Dict",
         "alias": null,
-        "line": 39
+        "line": 38
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "List",
         "alias": null,
-        "line": 39
+        "line": 38
       },
       {
         "type": "from_import",
         "module": "sistema.sic",
         "name": "Optional",
         "alias": null,
-        "line": 39
+        "line": 38
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\problems_tab_renderer.py": [
@@ -3753,27 +3768,6 @@
         "name": "log_warning",
         "alias": null,
         "line": 21
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "enviar_senal_log",
-        "alias": null,
-        "line": 24
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "log_info",
-        "alias": null,
-        "line": 24
-      },
-      {
-        "type": "from_import",
-        "module": "sistema.sic",
-        "name": "log_warning",
-        "alias": null,
-        "line": 24
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\trading_schedule.py": [
@@ -3845,7 +3839,7 @@
   "summary": {
     "total_files": 22,
     "files_with_reimports": 17,
-    "files_with_direct_imports": 18,
-    "total_missing_exports": 84
+    "files_with_direct_imports": 19,
+    "total_missing_exports": 86
   }
 }

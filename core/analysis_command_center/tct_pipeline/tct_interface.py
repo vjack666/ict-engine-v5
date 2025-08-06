@@ -1,25 +1,44 @@
 #!/usr/bin/env python3
-# === IMPORTS SIC ===
-from sistema.sic import ICTDetector
-from sistema.sic import logger
+# === IMPORTS SIC v3.0 - CENTRALIZADOS ===
+from sistema.sic import (
+    ICTDetector, logger, enviar_senal_log, log_info, log_warning,
+    datetime, timezone, time_module as time,
+    Dict, Any, Optional, List, Tuple, Union
+)
 
-# === RESTO DE IMPORTS ===
+# === IMPORTS ESPECÍFICOS NO EN SIC ===
+try:
+    # Estos componentes deben importarse específicamente o estar en SIC
+    from core.ict_engine.ict_detector import MarketContext, update_market_context
+    from core.ict_engine.ict_analysis_optimized import OptimizedICTAnalysis
+    from core.ict_engine.confidence_engine import ConfidenceEngine
+    from core.analysis_command_center.tct_pipeline.tct_measurement_engine import TCTMeasurementEngine
+    from core.analysis_command_center.tct_pipeline.tct_aggregation_engine import TCTAggregationEngine
+    from core.analysis_command_center.tct_pipeline.tct_formatter import TCTFormatter
+    enviar_senal_log("INFO", "✅ Componentes TCT importados correctamente", __name__, "init")
+except ImportError as e:
+    enviar_senal_log("WARNING", f"⚠️ Algunos componentes TCT no disponibles: {e}", __name__, "init")
+    # Crear stubs para componentes faltantes
+    class MarketContext:
+        pass
+    class OptimizedICTAnalysis:
+        pass
+    class ConfidenceEngine:
+        pass
+    class TCTMeasurementEngine:
+        pass
+    class TCTAggregationEngine:
+        pass
+    class TCTFormatter:
+        pass
+    def update_market_context(*args, **kwargs):
+        return None
 
 """
 🚪 TCT INTERFACE - Punto de entrada principal para el pipeline TCT
 BASADO EN: Lógica principal del health_analyzer.py
 PROTOCOLO: "Caja Negra" - Interfaz sin terminal, logs exhaustivos
 """
-
-
-# 🔌 IMPORTS DEL ICT ENGINE
-    MarketContext,
-    OptimizedICTAnalysis,
-    update_market_context,
-    ConfidenceEngine
-)
-
-# 🔌 IMPORTS DEL TCT PIPELINE
 
 class TCTInterface:
     """
@@ -48,7 +67,15 @@ class TCTInterface:
 
         # 🔧 COMPONENTES DEL PIPELINE
         self.measurement_engine = TCTMeasurementEngine()
-        self.aggregator = TCTAggregator()
+        self.aggregator = TCTAggregationEngine()
+        self.formatter = TCTFormatter()
+
+        # 🔧 ICT ENGINE COMPONENTS
+        self.market_context = MarketContext()
+        self.ict_analysis = OptimizedICTAnalysis()
+        self.confidence_engine = ConfidenceEngine()
+
+        enviar_senal_log("INFO", "✅ TCTInterface inicializado correctamente", __name__, "init")
         self.formatter = TCTFormatter()
 
         # 🏃 CONTROL DE EJECUCIÓN
