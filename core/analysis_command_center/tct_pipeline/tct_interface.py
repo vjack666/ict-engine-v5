@@ -10,8 +10,8 @@ from core.poi_system import encontrar_pois_multiples_para_dashboard
 from .tct_measurements import TCTMeasurementEngine
 from .tct_aggregator import TCTAggregator
 from .tct_formatter import TCTFormatter
-            import pandas as pd
-            import numpy as np
+import pandas as pd
+import numpy as np
 
 #!/usr/bin/env python3
 """
@@ -580,7 +580,7 @@ class TCTInterface:
     def _get_current_session(self) -> str:
         """Obtiene la sesión de mercado actual basada en hora UTC"""
         try:
-            from datetime import datetime, timezone
+from datetime import datetime, timezone
 
             utc_now = datetime.now(timezone.utc)
             hour_utc = utc_now.hour
@@ -606,7 +606,7 @@ class TCTInterface:
 
         try:
             # 🧠 USAR ICTDETECTOR REAL (el que está funcionando en Sprint 1.2)
-            from core.ict_engine.ict_detector import ICTDetector
+from core.ict_engine.ict_detector import ICTDetector
 
             ict_detector = ICTDetector()
 
@@ -679,9 +679,9 @@ class TCTInterface:
         En producción real, esto vendría de MT5DataManager
         """
         try:
-            import pandas as pd
-            import numpy as np
-            from datetime import datetime, timedelta
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
 
             # 📊 GENERAR 100 VELAS SIMULADAS REALISTAS
             num_candles = 100

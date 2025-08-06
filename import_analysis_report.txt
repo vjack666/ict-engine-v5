@@ -1,12 +1,12 @@
 🔧 REPORTE DE ANÁLISIS DE IMPORTS NO UTILIZADOS
 ============================================================
-Fecha: 2025-08-06 11:05:42
+Fecha: 2025-08-06 11:11:19
 Proyecto: C:\Users\v_jac\Desktop\itc engine v5.0
 
 RESUMEN:
 - Archivos analizados: 110
 - Archivos con imports no utilizados: 68
-- Total de imports no utilizados: 275
+- Total de imports no utilizados: 302
 
 DETALLES POR ARCHIVO:
 ----------------------------------------
@@ -82,18 +82,34 @@ DETALLES POR ARCHIVO:
    - Línea 17: from sistema.logging_interface import enviar_senal_log, log_tct
 
 📄 core\analytics\ict_analyzer.py
-   Imports no utilizados: 3
-   - Línea 14: from typing import Dict, List, Optional, Tuple, Any
-   - Línea 15: from datetime import datetime, timedelta
-   - Línea 16: from dataclasses import dataclass
+   Imports no utilizados: 8
+   - Línea 2: from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+   - Línea 2: from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+   - Línea 2: from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+   - Línea 2: from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+   - Línea 2: from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
+   - Línea 3: from sistema.imports_interface import enviar_senal_log, get_logging, log_info, log_error
+   - Línea 3: from sistema.imports_interface import enviar_senal_log, get_logging, log_info, log_error
+   - Línea 3: from sistema.imports_interface import enviar_senal_log, get_logging, log_info, log_error
 
 📄 core\data_management\advanced_candle_downloader.py
-   Imports no utilizados: 5
-   - Línea 23: import asyncio
-   - Línea 26: from typing import Dict, List, Optional, Callable, Any, Set
-   - Línea 28: from dataclasses import dataclass
-   - Línea 29: from pathlib import Path
-   - Línea 34: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
+   Imports no utilizados: 16
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 2: from sistema.imports_interface import Dict, timedelta, List, field, datetime, dataclass, asdict, Any, Tuple, timezone, Optional, Union
+   - Línea 3: from sistema.imports_interface import get_mt5_manager, get_candle_downloader, log_info, enviar_senal_log, get_logging, log_error
+   - Línea 3: from sistema.imports_interface import get_mt5_manager, get_candle_downloader, log_info, enviar_senal_log, get_logging, log_error
+   - Línea 3: from sistema.imports_interface import get_mt5_manager, get_candle_downloader, log_info, enviar_senal_log, get_logging, log_error
+   - Línea 3: from sistema.imports_interface import get_mt5_manager, get_candle_downloader, log_info, enviar_senal_log, get_logging, log_error
+   - Línea 4: from sistema.imports_interface import asyncio, time, Path
+   - Línea 4: from sistema.imports_interface import asyncio, time, Path
+   - Línea 30: import asyncio
+   - Línea 33: from typing import Dict, List, Optional, Callable, Any, Set
+   - Línea 41: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
 
 📄 core\data_management\candle_coordinator.py
    Imports no utilizados: 5
@@ -248,14 +264,16 @@ DETALLES POR ARCHIVO:
    - Línea 26: from typing import Tuple, Optional, Any
 
 📄 dashboard\hibernation_widget_v2.py
-   Imports no utilizados: 7
-   - Línea 22: from datetime import datetime, timedelta
-   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 24: import time
+   Imports no utilizados: 9
+   - Línea 2: from sistema.imports_interface import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
+   - Línea 2: from sistema.imports_interface import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
+   - Línea 2: from sistema.imports_interface import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
+   - Línea 3: from sistema.imports_interface import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
+   - Línea 4: from sistema.imports_interface import time
+   - Línea 31: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 32: import time
 
 📄 dashboard\ict_professional_widget.py
    Imports no utilizados: 3
@@ -264,14 +282,23 @@ DETALLES POR ARCHIVO:
    - Línea 36: from typing import Dict, List, Optional
 
 📄 dashboard\poi_dashboard_integration.py
-   Imports no utilizados: 7
-   - Línea 19: from rich.panel import Panel
-   - Línea 20: from rich.text import Text
-   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
-   - Línea 23: import hashlib
-   - Línea 24: import time
+   Imports no utilizados: 16
+   - Línea 2: from sistema.imports_interface import List, datetime, Any, Dict, Tuple, timezone, Optional, timedelta, Union
+   - Línea 2: from sistema.imports_interface import List, datetime, Any, Dict, Tuple, timezone, Optional, timedelta, Union
+   - Línea 2: from sistema.imports_interface import List, datetime, Any, Dict, Tuple, timezone, Optional, timedelta, Union
+   - Línea 3: from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+   - Línea 3: from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+   - Línea 3: from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+   - Línea 3: from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+   - Línea 3: from sistema.imports_interface import get_poi_detector, log_error, get_poi_system, log_info, get_dashboard_controller, enviar_senal_log, get_mt5_manager, get_logging
+   - Línea 4: from sistema.imports_interface import time
+   - Línea 6: from rich.panel import Panel
+   - Línea 7: from rich.text import Text
+   - Línea 8: import hashlib
+   - Línea 30: from rich.panel import Panel
+   - Línea 31: from rich.text import Text
+   - Línea 34: import hashlib
+   - Línea 35: import time
 
 📄 dashboard\__init__.py
    Imports no utilizados: 5

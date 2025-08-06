@@ -7,7 +7,7 @@ from rich.panel import Panel
 from rich.text import Text
 import hashlib
 import traceback
-                import pandas as pd
+import pandas as pd
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -88,7 +88,7 @@ def integrar_multi_poi_en_panel_ict(dashboard_instance, timeframe='H1'):
         try:
             # Si los datos son dict, convertir a formato DataFrame-like
             if isinstance(datos_principales, dict):
-                import pandas as pd
+import pandas as pd
                 # Crear DataFrame desde diccionario de datos OHLC
                 df_data = pd.DataFrame(datos_principales)
                 enviar_senal_log("INFO", f"📊 Datos convertidos a DataFrame: {len(df_data)} filas", __name__, "data_conversion")

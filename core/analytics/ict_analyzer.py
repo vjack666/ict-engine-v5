@@ -24,7 +24,7 @@ from dataclasses import dataclass
 from enum import Enum
 # Sistema de logging centralizado
 try:
-    from sistema.logging_interface import enviar_senal_log, log_ict
+from sistema.logging_interface import enviar_senal_log, log_ict
 except ImportError:
     def enviar_senal_log(nivel, mensaje, fuente="ict_analyzer", categoria="general", metadata=None):
         print(f"[{nivel}] {fuente}: {mensaje}")

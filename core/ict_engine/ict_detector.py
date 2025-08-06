@@ -5,8 +5,8 @@ from sistema.imports_interface import Path, json
 import pandas as pd
 import numpy as np
 from json import JSONDecodeError
-    from sistema.market_status_detector import MarketStatusDetector
-    from sistema.trading_schedule import get_current_session_info, TradingScheduleManager
+from sistema.market_status_detector import MarketStatusDetector
+from sistema.trading_schedule import get_current_session_info, TradingScheduleManager
 
 #!/usr/bin/env python3
 """

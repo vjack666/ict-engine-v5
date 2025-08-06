@@ -11,7 +11,7 @@ from rich.table import Table
 from rich.align import Align
 from rich import box
 from textual.containers import Vertical
-        import random
+import random
 
 #!/usr/bin/env python3
 """
@@ -67,15 +67,15 @@ from textual.containers import Vertical
 
 # Import del Dashboard Controller
 try:
-    from dashboard.dashboard_controller import get_dashboard_controller
+from dashboard.dashboard_controller import get_dashboard_controller
     dashboard_controller_available = True
 except ImportError:
     dashboard_controller_available = False
 
 # Import de componentes ICT profesionales
 try:
-    from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
-    from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
+from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
     ict_components_available = True
 except ImportError:
     ict_components_available = False
@@ -696,7 +696,7 @@ class HibernationViewWidget(Static):
 
     def _generate_realistic_pattern_analysis(self) -> Dict[str, Any]:
         """Genera análisis de patrón realista basado en datos actuales del mercado"""
-        import random
+import random
 
         # 🎯 Patrones ICT comunes
         patterns = [
