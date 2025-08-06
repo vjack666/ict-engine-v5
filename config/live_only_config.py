@@ -13,7 +13,6 @@ Versión: Live-Only v1.0
 from typing import Dict, Any
 from dataclasses import dataclass
 from datetime import datetime
-import os
 
 @dataclass
 class LiveOnlyConfig:

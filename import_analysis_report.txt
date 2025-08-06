@@ -1,0 +1,398 @@
+🔧 REPORTE DE ANÁLISIS DE IMPORTS NO UTILIZADOS
+============================================================
+Fecha: 2025-08-06 10:36:07
+Proyecto: C:\Users\v_jac\Desktop\itc engine v5.0
+
+RESUMEN:
+- Archivos analizados: 108
+- Archivos con imports no utilizados: 66
+- Total de imports no utilizados: 188
+
+DETALLES POR ARCHIVO:
+----------------------------------------
+
+📄 launch_dashboard.py
+   Imports no utilizados: 2
+   - Línea 22: from sistema.logging_interface import enviar_senal_log
+   - Línea 23: from dashboard.poi_dashboard_integration import integrar_multi_poi_en_panel_ict
+
+📄 organizar_archivos.py
+   Imports no utilizados: 1
+   - Línea 9: import os
+
+📄 config\live_account_validator.py
+   Imports no utilizados: 1
+   - Línea 20: from dataclasses import dataclass
+
+📄 config\live_only_config.py
+   Imports no utilizados: 1
+   - Línea 14: from dataclasses import dataclass
+
+📄 core\limit_order_manager.py
+   Imports no utilizados: 2
+   - Línea 12: import time
+   - Línea 16: from sistema.logging_interface import enviar_senal_log, log_trading
+
+📄 core\trading.py
+   Imports no utilizados: 2
+   - Línea 18: from typing import Dict, Optional, Any, Tuple, TYPE_CHECKING
+   - Línea 19: from dataclasses import dataclass
+
+📄 core\analysis_command_center\acc_data_models.py
+   Imports no utilizados: 1
+   - Línea 8: from dataclasses import dataclass, field
+
+📄 core\analysis_command_center\acc_flow_controller.py
+   Imports no utilizados: 2
+   - Línea 9: from typing import Dict, List, Optional, Any, Callable
+   - Línea 12: from dataclasses import dataclass
+
+📄 core\analysis_command_center\tct_pipeline\tct_aggregator.py
+   Imports no utilizados: 2
+   - Línea 11: from dataclasses import dataclass, field
+   - Línea 14: from sistema.logging_interface import enviar_senal_log, log_tct
+
+📄 core\analysis_command_center\tct_pipeline\tct_formatter.py
+   Imports no utilizados: 4
+   - Línea 10: from typing import Dict, Any, List
+   - Línea 10: from typing import Dict, Any, List
+   - Línea 10: from typing import Dict, Any, List
+   - Línea 14: from sistema.logging_interface import enviar_senal_log, log_tct
+
+📄 core\analysis_command_center\tct_pipeline\tct_interface.py
+   Imports no utilizados: 6
+   - Línea 8: import asyncio
+   - Línea 13: from typing import Dict, Any, Optional, List
+   - Línea 15: from pathlib import Path
+   - Línea 18: from sistema.logging_interface import enviar_senal_log, log_tct
+   - Línea 25: from core.poi_system import encontrar_pois_multiples_para_dashboard
+   - Línea 669: from datetime import datetime, timedelta
+
+📄 core\analysis_command_center\tct_pipeline\tct_measurements.py
+   Imports no utilizados: 4
+   - Línea 11: from dataclasses import dataclass, asdict
+   - Línea 13: from typing import Dict, List, Optional, Any
+   - Línea 13: from typing import Dict, List, Optional, Any
+   - Línea 17: from sistema.logging_interface import enviar_senal_log, log_tct
+
+📄 core\analytics\ict_analyzer.py
+   Imports no utilizados: 3
+   - Línea 14: from typing import Dict, List, Optional, Tuple, Any
+   - Línea 15: from datetime import datetime, timedelta
+   - Línea 16: from dataclasses import dataclass
+
+📄 core\data_management\advanced_candle_downloader.py
+   Imports no utilizados: 5
+   - Línea 23: import asyncio
+   - Línea 26: from typing import Dict, List, Optional, Callable, Any, Set
+   - Línea 28: from dataclasses import dataclass
+   - Línea 29: from pathlib import Path
+   - Línea 34: from core.data_management.candle_coordinator import CandleCoordinator, DownloadRequest, DownloadStatus
+
+📄 core\data_management\candle_coordinator.py
+   Imports no utilizados: 5
+   - Línea 18: import asyncio
+   - Línea 21: from typing import Dict, List, Optional, Callable, Any
+   - Línea 22: from datetime import datetime, timedelta
+   - Línea 23: from dataclasses import dataclass, field
+   - Línea 29: from core.analysis_command_center.acc_flow_controller import AccFlowController, FlowPriority
+
+📄 core\ict_engine\confidence_engine.py
+   Imports no utilizados: 3
+   - Línea 23: from typing import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
+   - Línea 23: from typing import Dict, List, Optional, Tuple, Any, TYPE_CHECKING
+   - Línea 24: from datetime import datetime, timedelta
+
+📄 core\ict_engine\fractal_analyzer.py
+   Imports no utilizados: 3
+   - Línea 23: from datetime import datetime, timedelta
+   - Línea 24: from typing import Dict, List, Optional, Any, Tuple, Union, TypedDict
+   - Línea 25: from dataclasses import dataclass
+
+📄 core\ict_engine\ict_detector.py
+   Imports no utilizados: 7
+   - Línea 20: from sistema.logging_interface import enviar_senal_log, log_ict
+   - Línea 21: from datetime import datetime, timedelta, timezone
+   - Línea 22: from typing import Dict, List, Optional, Any, Tuple, Union
+   - Línea 22: from typing import Dict, List, Optional, Any, Tuple, Union
+   - Línea 23: import json
+   - Línea 25: from pathlib import Path
+   - Línea 42: from core.ict_engine.fractal_analyzer import FractalAnalyzer, update_fractal_in_context
+
+📄 core\ict_engine\ict_engine.py
+   Imports no utilizados: 2
+   - Línea 14: from dataclasses import dataclass
+   - Línea 17: from sistema.logging_interface import enviar_senal_log, log_ict
+
+📄 core\ict_engine\ict_historical_analyzer.py
+   Imports no utilizados: 3
+   - Línea 13: from sistema.logging_interface import enviar_senal_log, log_ict
+   - Línea 16: from typing import Dict, List, Optional, Tuple
+   - Línea 16: from typing import Dict, List, Optional, Tuple
+
+📄 core\ict_engine\ict_types.py
+   Imports no utilizados: 2
+   - Línea 17: from sistema.logging_interface import enviar_senal_log
+   - Línea 18: from dataclasses import dataclass
+
+📄 core\ict_engine\pattern_analyzer.py
+   Imports no utilizados: 2
+   - Línea 21: from datetime import datetime, time, timedelta
+   - Línea 23: from sistema.logging_interface import enviar_senal_log, log_ict
+
+📄 core\ict_engine\veredicto_engine_v4.py
+   Imports no utilizados: 2
+   - Línea 21: from typing import Optional, Dict, List, Any, Tuple
+   - Línea 21: from typing import Optional, Dict, List, Any, Tuple
+
+📄 core\ict_engine\advanced_patterns\judas_swing_v2.py
+   Imports no utilizados: 1
+   - Línea 23: from dataclasses import dataclass
+
+📄 core\ict_engine\advanced_patterns\market_structure_v2.py
+   Imports no utilizados: 1
+   - Línea 23: from dataclasses import dataclass
+
+📄 core\ict_engine\advanced_patterns\silver_bullet_v2.py
+   Imports no utilizados: 1
+   - Línea 23: from dataclasses import dataclass
+
+📄 core\integrations\candle_downloader_integration.py
+   Imports no utilizados: 4
+   - Línea 12: from typing import Dict, List, Optional, Callable
+   - Línea 12: from typing import Dict, List, Optional, Callable
+   - Línea 13: import sys
+   - Línea 14: from pathlib import Path
+
+📄 core\poi_system\poi_detector.py
+   Imports no utilizados: 3
+   - Línea 23: from typing import List, Dict, Optional, Tuple, Any
+   - Línea 25: import json
+   - Línea 26: from pathlib import Path
+
+📄 core\poi_system\poi_scoring_engine.py
+   Imports no utilizados: 1
+   - Línea 23: from sistema.logging_interface import enviar_senal_log, log_poi
+
+📄 core\poi_system\poi_system.py
+   Imports no utilizados: 2
+   - Línea 14: from dataclasses import dataclass
+   - Línea 18: from sistema.logging_interface import enviar_senal_log, log_poi
+
+📄 core\poi_system\poi_utils.py
+   Imports no utilizados: 1
+   - Línea 23: from sistema.logging_interface import enviar_senal_log, log_poi
+
+📄 core\risk_management\riskbot_mt5.py
+   Imports no utilizados: 1
+   - Línea 4: from sistema.logging_interface import enviar_senal_log, log_mt5
+
+📄 dashboard\candle_downloader_widget.py
+   Imports no utilizados: 2
+   - Línea 25: from typing import Dict, List, Optional
+   - Línea 25: from typing import Dict, List, Optional
+
+📄 dashboard\dashboard_controller.py
+   Imports no utilizados: 1
+   - Línea 19: from dataclasses import dataclass, asdict, field
+
+📄 dashboard\dashboard_definitivo.py
+   Imports no utilizados: 6
+   - Línea 58: from sistema.logging_interface import enviar_senal_log, log_dashboard
+   - Línea 69: from textual.app import App, ComposeResult
+   - Línea 104: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta, detectar_mt5_optimizado
+   - Línea 155: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 155: from core.analysis_command_center.tct_pipeline import TCTFormatter, AggregatedTCTMetrics
+   - Línea 1171: from rich.console import Group
+
+📄 dashboard\dashboard_widgets.py
+   Imports no utilizados: 9
+   - Línea 24: from sistema.logging_interface import enviar_senal_log, log_dashboard
+   - Línea 28: from typing import Dict, Any, Optional, List
+   - Línea 28: from typing import Dict, Any, Optional, List
+   - Línea 51: from textual.containers import Vertical
+   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 62: from core.ict_engine.ict_types import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 63: from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
+
+📄 dashboard\hibernacion_perfecta.py
+   Imports no utilizados: 2
+   - Línea 26: from typing import Tuple, Optional, Any
+   - Línea 26: from typing import Tuple, Optional, Any
+
+📄 dashboard\hibernation_widget_v2.py
+   Imports no utilizados: 7
+   - Línea 22: from datetime import datetime, timedelta
+   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 23: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 24: import time
+
+📄 dashboard\ict_professional_widget.py
+   Imports no utilizados: 3
+   - Línea 32: from rich.console import Group
+   - Línea 36: from typing import Dict, List, Optional
+   - Línea 36: from typing import Dict, List, Optional
+
+📄 dashboard\poi_dashboard_integration.py
+   Imports no utilizados: 7
+   - Línea 19: from rich.panel import Panel
+   - Línea 20: from rich.text import Text
+   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 22: from typing import Dict, List, Tuple, Optional, Any
+   - Línea 23: import hashlib
+   - Línea 24: import time
+
+📄 dashboard\__init__.py
+   Imports no utilizados: 5
+   - Línea 30: from core.ict_engine import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 30: from core.ict_engine import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 30: from core.ict_engine import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 30: from core.ict_engine import ICTPattern, TradingDirection, SessionType, PATTERN_EMOJIS
+   - Línea 31: from core.ict_engine import ICTPatternAnalyzer
+
+📄 dashboard\widgets\account_status_widget.py
+   Imports no utilizados: 2
+   - Línea 21: from rich.columns import Columns
+   - Línea 22: from rich.table import Table
+
+📄 scripts\activate_import_fixer.py
+   Imports no utilizados: 1
+   - Línea 14: import os
+
+📄 scripts\analizar_estrategia.py
+   Imports no utilizados: 5
+   - Línea 19: from typing import Dict, List, Any
+   - Línea 19: from typing import Dict, List, Any
+   - Línea 19: from typing import Dict, List, Any
+   - Línea 48: from core.ict_engine.ict_detector import ICTDetector
+   - Línea 66: from core.ict_engine.confidence_engine import ConfidenceEngine
+
+📄 scripts\analizar_logs.py
+   Imports no utilizados: 4
+   - Línea 17: from datetime import datetime, timedelta
+   - Línea 19: from collections import defaultdict
+   - Línea 20: from typing import Dict, List, Tuple
+   - Línea 20: from typing import Dict, List, Tuple
+
+📄 scripts\corrector_log_central.py
+   Imports no utilizados: 1
+   - Línea 17: import os
+
+📄 scripts\diagnosticar_estrategia.py
+   Imports no utilizados: 2
+   - Línea 16: from datetime import datetime
+   - Línea 74: from core.ict_engine.ict_engine import ICTEngine, get_ict_engine
+
+📄 scripts\fix_unused_imports.py
+   Imports no utilizados: 6
+   - Línea 22: import sys
+   - Línea 23: import ast
+   - Línea 26: from typing import List, Dict, Set, Tuple, Optional
+   - Línea 26: from typing import List, Dict, Set, Tuple, Optional
+   - Línea 26: from typing import List, Dict, Set, Tuple, Optional
+   - Línea 27: from dataclasses import dataclass
+
+📄 scripts\sprint_1_6_calibrator.py
+   Imports no utilizados: 2
+   - Línea 28: from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+   - Línea 28: from core.ict_engine.confidence_engine import ConfidenceEngine, CONFIDENCE_CONFIG
+
+📄 scripts\validador_log_central.py
+   Imports no utilizados: 2
+   - Línea 17: import os
+   - Línea 21: from typing import List, Dict, Any, Optional
+
+📄 scripts\validador_maestro.py
+   Imports no utilizados: 5
+   - Línea 27: from typing import Dict, List, Any, Optional
+   - Línea 175: from utils.mt5_data_manager import get_mt5_manager, MT5DataManager
+   - Línea 356: from dashboard.hibernacion_perfecta import render_hibernacion_perfecta
+   - Línea 445: from core.poi_system import poi_detector, poi_scoring_engine, poi_system
+   - Línea 445: from core.poi_system import poi_detector, poi_scoring_engine, poi_system
+
+📄 scripts\validate_candle_downloader_final.py
+   Imports no utilizados: 5
+   - Línea 35: from dashboard.candle_downloader_widget import candle_downloader_widget
+   - Línea 39: from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader
+   - Línea 43: from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
+   - Línea 95: from dashboard.candle_downloader_widget import candle_downloader_widget
+   - Línea 116: from dashboard.dashboard_definitivo import SentinelDashboardDefinitivo
+
+📄 sistema\data_logger.py
+   Imports no utilizados: 2
+   - Línea 13: from typing import List, Optional, Dict, Any
+   - Línea 13: from typing import List, Optional, Dict, Any
+
+📄 sistema\data_logger_clean.py
+   Imports no utilizados: 2
+   - Línea 13: from typing import List, Optional, Dict, Any
+   - Línea 13: from typing import List, Optional, Dict, Any
+
+📄 sistema\market_status_detector.py
+   Imports no utilizados: 3
+   - Línea 37: import sys
+   - Línea 40: from typing import Dict, Optional, Any, Tuple
+   - Línea 41: from dataclasses import dataclass
+
+📄 sistema\market_status_detector_v3.py
+   Imports no utilizados: 5
+   - Línea 37: import sys
+   - Línea 38: from datetime import datetime, timezone, timedelta
+   - Línea 38: from datetime import datetime, timezone, timedelta
+   - Línea 40: from typing import Dict, Optional, Any, Tuple
+   - Línea 41: from dataclasses import dataclass
+
+📄 sistema\system_monitor.py
+   Imports no utilizados: 1
+   - Línea 25: from dataclasses import dataclass
+
+📄 sistema\trading_schedule.py
+   Imports no utilizados: 3
+   - Línea 21: from typing import Dict, Optional, Tuple, Any
+   - Línea 22: from datetime import datetime, timezone, timedelta
+   - Línea 24: import time
+
+📄 teste\simple_test.py
+   Imports no utilizados: 1
+   - Línea 18: from datetime import datetime
+
+📄 utilities\debug\debug_launcher.py
+   Imports no utilizados: 3
+   - Línea 23: from textual.app import App
+   - Línea 24: from textual.widgets import Static
+   - Línea 38: import dashboard.dashboard_definitivo
+
+📄 utilities\debug\organizar_archivos.py
+   Imports no utilizados: 1
+   - Línea 9: import os
+
+📄 utilities\debug\reporte_final_logs.py
+   Imports no utilizados: 1
+   - Línea 9: from pathlib import Path
+
+📄 utilities\sprint\sprint_1_1_consolidator.py
+   Imports no utilizados: 2
+   - Línea 10: from typing import Dict, List
+   - Línea 10: from typing import Dict, List
+
+📄 utilities\sprint\sprint_1_1_executor.py
+   Imports no utilizados: 4
+   - Línea 19: from typing import Dict, List, Optional, Tuple
+   - Línea 19: from typing import Dict, List, Optional, Tuple
+   - Línea 644: from textual.app import App
+   - Línea 645: from textual.widgets import Static
+
+📄 utils\logging_utils.py
+   Imports no utilizados: 2
+   - Línea 11: from typing import Any, Dict, List, Optional
+   - Línea 234: import sys
+
+📄 utils\system_diagnostics.py
+   Imports no utilizados: 1
+   - Línea 13: from typing import Dict, List, Any, Optional
