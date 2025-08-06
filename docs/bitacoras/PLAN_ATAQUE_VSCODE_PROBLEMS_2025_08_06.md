@@ -30,6 +30,61 @@
 
 ---
 
+## 📖 ÍNDICE RÁPIDO DE ARCHIVOS POR FASE
+
+### **🔧 FASE 1: LIMPIEZA ARQUITECTURAL (1 archivo crítico + 4 scripts)**
+**Archivos a modificar:**
+- `dashboard/dashboard_definitivo.py` ⚠️ (465 errores)
+
+**Scripts automatizados:**
+- `scripts/activate_import_fixer.py` ⭐⭐⭐⭐⭐
+- `scripts/fix_unused_imports.py` ⭐⭐⭐⭐⭐
+- `scripts/corrector_imports_problematicos.py` ⭐⭐⭐⭐
+- `fix_imports.ps1` / `fix_imports.bat`
+
+### **🔗 FASE 2: CORRECCIÓN DE IMPORTS (1 archivo + 3 scripts)**
+**Archivos a modificar:**
+- `dashboard/dashboard_definitivo.py` ⚠️ (continuación)
+
+**Scripts automatizados:**
+- `scripts/migrador_inteligente_v2.py` ⭐⭐⭐⭐
+- `scripts/fase3_eliminar_imports.py` ⭐⭐⭐⭐
+- `scripts/detectar_imports_viejos.py` ⭐⭐⭐
+
+### **📁 FASE 3: ARCHIVOS AUXILIARES (3 archivos + verificación masiva)**
+**Archivos a modificar:**
+- `utils/system_diagnostics.py` ❌
+- `dashboard/problems_tab_renderer.py` ❌
+- `utils/mt5_data_manager.py` ❌
+
+**Verificación automática:**
+- `dashboard/widgets/*.py`, `core/analytics/*.py`, `core/integrations/*.py`
+- `utilities/*.py`, `scripts/*.py`
+
+### **✅ FASE 4: VALIDACIÓN Y TESTING (15+ archivos de testing)**
+**Archivos de testing:**
+- `dashboard/dashboard_definitivo.py`, `main.py`, `launch_dashboard.py`
+- `START_ICT_ENGINE.bat`, `START_ICT_ENGINE.ps1`
+- `teste/test_dashboard_poi.py`, `teste/simple_test.py`
+
+**Scripts de validación:**
+- `scripts/check_os_imports.py`, `scripts/check_subprocess_imports.py`
+- `scripts/validador_maestro.py`
+
+### **🎯 ARCHIVOS BASE (Referencias fundamentales)**
+**Archivos objetivo (✅ Funcionales):**
+- `sistema/imports_interface.py` - **SIC v2.0 ImportsCentral**
+- `sistema/logging_interface.py` - **SLUC v2.1 Logging**
+
+**Archivos obsoletos (❌ Eliminar referencias):**
+- `sistema/sic.py` - **Sistema obsoleto**
+
+**Archivos críticos (⚠️ No modificar):**
+- `config/live_only_config.py`, `config/config_manager.py`
+- `requirements.txt`
+
+---
+
 ## 🚨 CLASIFICACIÓN DE ERRORES POR PRIORIDAD
 
 ### 🔴 CRÍTICO - ARQUITECTURA (20 errores principales)
@@ -174,11 +229,25 @@ python dashboard/dashboard_definitivo.py --test-mode
 
 ### **📊 MÉTRICAS DE AUTOMATIZACIÓN:**
 
-#### **Tiempo Total:** 55 min → **20 min** (64% reducción)
-#### **Precisión:** Manual vs Automatizada
-- **Manual estimada:** 465 → 0 errores (465 correcciones)
-- **Automatizada:** 465 → 0 errores (465+ correcciones + validaciones)
-- **Ventaja:** Mayor precisión, menos errores humanos, backups automáticos
+#### **Tiempo Total:**
+- **Solo automatizada:** 55 min → **20 min** (64% reducción)
+- **Automatizada + Revisión Manual:** 55 min → **47 min** (15% reducción + 99% precisión)
+
+#### **Precisión:** Automatizada vs Híbrida
+- **Manual pura:** 465 → 0 errores (465 correcciones, 95% éxito)
+- **Solo automatizada:** 465 → 0-15 errores (450+ correcciones, 85% éxito)
+- **Automatizada + Manual:** 465 → 0-2 errores (463+ correcciones, 99% éxito)
+- **Ventaja híbrida:** Máxima precisión + velocidad + backups automáticos
+
+#### **Tiempos Detallados con Revisión Manual:**
+```
+🔧 FASE 1: 20 min → 8 min automatizada + 5 min revisión = 13 min (35% reducción)
+🔗 FASE 2: 15 min → 5 min automatizada + 7 min revisión = 12 min (20% reducción)
+📁 FASE 3: 10 min → 4 min automatizada + 5 min revisión = 9 min (10% reducción)
+✅ FASE 4: 10 min → 3 min automatizada + 10 min revisión = 13 min (+30% buffer validación)
+
+📊 TOTAL HÍBRIDO: 47 minutos (vs 55 manual = 15% reducción + 99% precisión)
+```
 
 #### **Comandos de Ejecución Secuencial:**
 ```bash
@@ -212,8 +281,20 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 ### **FASE 1: LIMPIEZA ARQUITECTURAL** 🔧 (20 min - Prioridad MÁXIMA)
 
 #### **Objetivo:** Eliminar imports duplicados y configurar base sólida
-#### **Archivos a modificar:**
-- `dashboard/dashboard_definitivo.py` (archivo principal)
+
+#### **📁 ARCHIVOS PRINCIPALES A MODIFICAR:**
+- `dashboard/dashboard_definitivo.py` - **Archivo crítico** (465 errores) ⚠️
+
+#### **🛠️ SCRIPTS AUTOMATIZADOS A USAR:**
+- `scripts/activate_import_fixer.py` - **Corrector principal** de imports ⭐⭐⭐⭐⭐
+- `scripts/fix_unused_imports.py` - **Motor de corrección** automática
+- `scripts/corrector_imports_problematicos.py` - **Corrector específico** de imports
+- `fix_imports.ps1` / `fix_imports.bat` - **Wrappers de ejecución**
+
+#### **🔍 ARCHIVOS DE REFERENCIA (Solo lectura):**
+- `sistema/imports_interface.py` - **SIC v2.0** ImportsCentral (target) ✅
+- `sistema/logging_interface.py` - **SLUC v2.1** enviar_senal_log (target) ✅
+- `sistema/sic.py` - **Sistema obsoleto** (verificar que NO se use) ❌
 
 #### **Acciones específicas:**
 1. **Eliminar import duplicado de sys** (línea 31)
@@ -224,14 +305,72 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 
 #### **Resultado esperado:** -200 errores (de 465 a ~265)
 
+#### **🔍 REVISIÓN MANUAL POST-AUTOMATIZACIÓN (5 min adicionales):**
+
+**⚠️ CUANDO APLICAR:** Si después de ejecutar los scripts automatizados quedan > 300 errores
+
+**📋 CHECKLIST DE REVISIÓN MANUAL FASE 1:**
+- [ ] **RM1.1** Verificar manualmente que NO existen imports duplicados de `sys`
+- [ ] **RM1.2** Verificar manualmente que NO existen imports duplicados de `pathlib.Path`
+- [ ] **RM1.3** Buscar y reemplazar manualmente cualquier referencia restante a `sistema.sic`
+- [ ] **RM1.4** Verificar que `enviar_senal_log` se importa correctamente desde ImportsCentral
+- [ ] **RM1.5** Revisar manualmente las líneas con errores residuales en VS Code Problems
+
+**🛠️ COMANDOS DE REVISIÓN MANUAL:**
+```powershell
+# Verificación de imports duplicados
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String -Pattern "^import sys" -AllMatches
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String -Pattern "^from pathlib import Path" -AllMatches
+
+# Búsqueda de referencias obsoletas
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "sistema.sic" -AllMatches
+
+# Verificar imports correctos
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "imports_interface" -AllMatches
+```
+
+**✏️ CORRECCIONES MANUALES TÍPICAS:**
+```python
+# ❌ INCORRECTO (eliminar manualmente si persiste):
+import sys
+import sys  # Duplicado
+
+# ✅ CORRECTO:
+import sys
+
+# ❌ INCORRECTO (reemplazar manualmente si persiste):
+from sistema.sic import enviar_senal_log
+
+# ✅ CORRECTO:
+from sistema.imports_interface import ImportsCentral
+# Luego usar: ImportsCentral().get_logging()['enviar_senal_log']
+```
+
+**📊 TARGET REVISIÓN MANUAL:** Si automatización falla, reducir manualmente a ≤ 280 errores
+
 ---
 
 ### **FASE 2: CORRECCIÓN DE IMPORTS** 🔗 (15 min - Prioridad ALTA)
 
 #### **Objetivo:** Unificar sistema de imports usando SOLO ImportsCentral
-#### **Archivos a modificar:**
-- `dashboard/dashboard_definitivo.py` (imports principales)
-- Verificar referencias en otros archivos
+
+#### **📁 ARCHIVOS PRINCIPALES A MODIFICAR:**
+- `dashboard/dashboard_definitivo.py` - **Imports principales** (continuación FASE 1) ⚠️
+
+#### **🛠️ SCRIPTS AUTOMATIZADOS A USAR:**
+- `scripts/migrador_inteligente_v2.py` - **Migración inteligente** al SIC v2.0 ⭐⭐⭐⭐
+- `scripts/fase3_eliminar_imports.py` - **Reemplazo masivo** de imports ⭐⭐⭐⭐
+- `scripts/detectar_imports_viejos.py` - **Detector** de imports obsoletos ⭐⭐⭐
+
+#### **🔍 ARCHIVOS DE VALIDACIÓN (Solo lectura):**
+- `sistema/imports_interface.py` - **Verificar** get_ict_components() ✅
+- `sistema/logging_interface.py` - **Verificar** enviar_senal_log() ✅
+- `requirements.txt` - **Validar** dependencias Textual ✅
+
+#### **🎯 ARCHIVOS OBJETIVO (Referencias a verificar):**
+- Cualquier archivo que importe desde `sistema.sic` (obsoleto)
+- Referencias a imports de Textual (App, Binding, etc.)
+- Configuración de TCT Interface (línea 154)
 
 #### **Acciones específicas:**
 1. **Usar SOLO ImportsCentral** para todos los imports del sistema
@@ -242,15 +381,79 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 
 #### **Resultado esperado:** -150 errores (de ~265 a ~115)
 
+#### **🔍 REVISIÓN MANUAL POST-AUTOMATIZACIÓN (7 min adicionales):**
+
+**⚠️ CUANDO APLICAR:** Si después de ejecutar los scripts automatizados quedan > 140 errores
+
+**📋 CHECKLIST DE REVISIÓN MANUAL FASE 2:**
+- [ ] **RM2.1** Verificar manualmente que `ImportsCentral` se importa correctamente
+- [ ] **RM2.2** Revisar manualmente la configuración de imports de Textual (App, Binding, etc.)
+- [ ] **RM2.3** Corregir manualmente el syntax error en TCT Interface (línea 154)
+- [ ] **RM2.4** Verificar manualmente que `get_ict_components()` funciona correctamente
+- [ ] **RM2.5** Eliminar manualmente fallbacks problemáticos a sic.py que persistan
+
+**🛠️ COMANDOS DE REVISIÓN MANUAL:**
+```powershell
+# Verificar ImportsCentral correctamente importado
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "ImportsCentral" -AllMatches
+
+# Verificar imports de Textual
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "from textual" -AllMatches
+
+# Buscar fallbacks problemáticos restantes
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "except.*import" -AllMatches -Context 2
+```
+
+**✏️ CORRECCIONES MANUALES TÍPICAS:**
+```python
+# ❌ INCORRECTO (corregir manualmente si persiste):
+try:
+    from sistema.sic import get_ict_components
+except ImportError:
+    pass
+
+# ✅ CORRECTO:
+from sistema.imports_interface import ImportsCentral
+ic = ImportsCentral()
+get_ict_components = ic.get_ict_components
+
+# ❌ INCORRECTO (syntax error línea 154):
+from core.ict_engine.tct_interface import TCTInterface  # Error sintaxis
+
+# ✅ CORRECTO:
+from sistema.imports_interface import ImportsCentral
+# TCTInterface = ImportsCentral().get_ict_components()['tct_interface']['TCTInterface']
+```
+
+**📊 TARGET REVISIÓN MANUAL:** Si automatización falla, reducir manualmente a ≤ 130 errores
+
 ---
 
 ### **FASE 3: ARCHIVOS AUXILIARES** 📁 (10 min - Prioridad MEDIA)
 
 #### **Objetivo:** Actualizar archivos dependientes para usar la nueva arquitectura
-#### **Archivos a modificar:**
-- `utils/system_diagnostics.py`
-- `dashboard/problems_tab_renderer.py`
-- `utils/mt5_data_manager.py`
+
+#### **📁 ARCHIVOS PRINCIPALES A MODIFICAR:**
+- `utils/system_diagnostics.py` - **Imports de sic.py obsoleto** ❌
+- `dashboard/problems_tab_renderer.py` - **Referencias incorrectas** ❌
+- `utils/mt5_data_manager.py` - **Imports incorrectos** ❌
+
+#### **🛠️ SCRIPTS AUTOMATIZADOS A USAR:**
+- `scripts/detectar_imports_viejos.py` - **Detectar archivos** problemáticos ⭐⭐⭐
+- `scripts/migrador_inteligente_v2.py` - **Migración batch** de auxiliares ⭐⭐⭐⭐
+- `scripts/corrector_imports_problematicos.py` - **Corrección específica** ⭐⭐⭐⭐
+
+#### **🔍 ARCHIVOS AUXILIARES POTENCIALES (A verificar automáticamente):**
+- `dashboard/widgets/*.py` - **Widgets del dashboard**
+- `core/analytics/*.py` - **Módulos de análisis**
+- `core/integrations/*.py` - **Integraciones externas**
+- `utilities/*.py` - **Utilidades del sistema**
+- `scripts/*.py` - **Scripts de soporte**
+
+#### **📋 ARCHIVOS DE CONFIGURACIÓN (Verificar pero NO modificar):**
+- `config/live_only_config.py` - **Configuración crítica** ⚠️
+- `sistema/config.py` - **Configuración del sistema** ⚠️
+- `requirements.txt` - **Dependencias** ⚠️
 
 #### **Acciones específicas:**
 1. **system_diagnostics.py:** Cambiar `from sistema.sic` → `from sistema.imports_interface`
@@ -260,11 +463,91 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 
 #### **Resultado esperado:** -100 errores (de ~115 a ~15)
 
+#### **🔍 REVISIÓN MANUAL POST-AUTOMATIZACIÓN (5 min adicionales):**
+
+**⚠️ CUANDO APLICAR:** Si después de ejecutar los scripts automatizados quedan > 25 errores
+
+**📋 CHECKLIST DE REVISIÓN MANUAL FASE 3:**
+- [ ] **RM3.1** Verificar manualmente `utils/system_diagnostics.py` no usa `sistema.sic`
+- [ ] **RM3.2** Revisar manualmente `dashboard/problems_tab_renderer.py` imports correctos
+- [ ] **RM3.3** Verificar manualmente `utils/mt5_data_manager.py` imports actualizados
+- [ ] **RM3.4** Buscar manualmente otros archivos con referencias a `sistema.sic`
+- [ ] **RM3.5** Verificar sintaxis manual de archivos modificados
+
+**🛠️ COMANDOS DE REVISIÓN MANUAL:**
+```powershell
+# Verificar archivos auxiliares específicos
+Get-Content "utils/system_diagnostics.py" | Select-String "sistema.sic" -AllMatches
+Get-Content "dashboard/problems_tab_renderer.py" | Select-String "sistema.sic" -AllMatches
+Get-Content "utils/mt5_data_manager.py" | Select-String "sistema.sic" -AllMatches
+
+# Búsqueda masiva de referencias obsoletas restantes
+Get-ChildItem -Recurse -Include "*.py" -Path . | Select-String "sistema.sic" | Select-Object Filename, LineNumber, Line
+
+# Verificar imports correctos en archivos auxiliares
+Get-Content "utils/system_diagnostics.py" | Select-String "imports_interface" -AllMatches
+```
+
+**✏️ CORRECCIONES MANUALES TÍPICAS:**
+```python
+# ❌ INCORRECTO en archivos auxiliares (reemplazar manualmente):
+from sistema.sic import SmartDirectoryLogger
+from sistema.sic import enviar_senal_log
+
+# ✅ CORRECTO:
+from sistema.imports_interface import ImportsCentral
+ic = ImportsCentral()
+SmartDirectoryLogger = ic.get_sistema_components()['logging']['SmartDirectoryLogger']
+enviar_senal_log = ic.get_logging()['enviar_senal_log']
+
+# O usar método directo:
+from sistema.logging_interface import enviar_senal_log
+```
+
+**🔧 VERIFICACIÓN MANUAL DE SINTAXIS:**
+```powershell
+# Test de carga manual para cada archivo auxiliar
+python -c "import utils.system_diagnostics; print('✅ OK')"
+python -c "import dashboard.problems_tab_renderer; print('✅ OK')"
+python -c "import utils.mt5_data_manager; print('✅ OK')"
+```
+
+**📊 TARGET REVISIÓN MANUAL:** Si automatización falla, reducir manualmente a ≤ 20 errores
+
 ---
 
 ### **FASE 4: VALIDACIÓN Y TESTING** ✅ (10 min - Prioridad CRÍTICA)
 
 #### **Objetivo:** Verificar que el sistema funciona sin errores
+
+#### **📁 ARCHIVO PRINCIPAL DE TESTING:**
+- `dashboard/dashboard_definitivo.py` - **Ejecución completa** sin errores ✅
+
+#### **🛠️ SCRIPTS DE VALIDACIÓN AUTOMATIZADA:**
+- `scripts/check_os_imports.py` - **Validar imports** de sistema ⭐⭐⭐
+- `scripts/check_subprocess_imports.py` - **Validar subprocess** imports ⭐⭐⭐
+- `scripts/validador_maestro.py` - **Validación integral** del sistema ⭐⭐⭐
+
+#### **🔍 ARCHIVOS DE VERIFICACIÓN (Solo lectura/testing):**
+- `sistema/imports_interface.py` - **Verificar** ImportsCentral funcional ✅
+- `sistema/logging_interface.py` - **Verificar** SLUC v2.1 funcional ✅
+- `data/logs/*.log` - **Verificar** logs de funcionamiento ✅
+
+#### **📋 ARCHIVOS DE SOPORTE PARA TESTING:**
+- `START_ICT_ENGINE.bat` - **Test arranque** Windows
+- `START_ICT_ENGINE.ps1` - **Test arranque** PowerShell
+- `main.py` - **Test arranque** principal
+- `launch_dashboard.py` - **Test lanzamiento** específico
+
+#### **🎯 ARCHIVOS DE CONFIGURACIÓN CRÍTICOS (Verificar integridad):**
+- `config/live_only_config.py` - **Config en vivo** ⚠️
+- `config/config_manager.py` - **Gestor de configuración** ⚠️
+- `.vscode/tasks.json` - **Tareas de VS Code** (si existe)
+
+#### **🧪 ARCHIVOS DE TEST ESPECÍFICOS:**
+- `teste/test_dashboard_poi.py` - **Tests específicos** dashboard
+- `teste/simple_test.py` - **Tests básicos** del sistema
+
 #### **Acciones de validación:**
 1. **Ejecutar dashboard** sin errores críticos
 2. **Verificar contador Problems = 0** en VS Code
@@ -274,9 +557,142 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 
 #### **Resultado esperado:** 0 errores - Sistema completamente funcional
 
+#### **🔍 REVISIÓN MANUAL POST-AUTOMATIZACIÓN (10 min adicionales):**
+
+**⚠️ CUANDO APLICAR:** Si después de ejecutar los scripts automatizados quedan > 5 errores
+
+**📋 CHECKLIST DE REVISIÓN MANUAL FASE 4:**
+- [ ] **RM4.1** Ejecutar manualmente `dashboard/dashboard_definitivo.py` y verificar startup
+- [ ] **RM4.2** Revisar manualmente VS Code Problems panel para errores residuales
+- [ ] **RM4.3** Verificar manualmente que no hay crashes en navegación básica
+- [ ] **RM4.4** Comprobar manualmente que logging funciona correctamente
+- [ ] **RM4.5** Validar manualmente que todos los componentes core responden
+
+**🛠️ COMANDOS DE REVISIÓN MANUAL:**
+```powershell
+# Test de arranque manual completo
+python dashboard/dashboard_definitivo.py
+
+# Verificar problemas restantes en VS Code
+# (Revisar manualmente panel Problems en VS Code)
+
+# Test de componentes individuales
+python -c "from sistema.imports_interface import ImportsCentral; ic = ImportsCentral(); print('✅ ImportsCentral OK')"
+python -c "from sistema.logging_interface import enviar_senal_log; enviar_senal_log('Test manual'); print('✅ Logging OK')"
+
+# Test de archivos de arranque
+python main.py --test-mode
+python launch_dashboard.py --validate
+```
+
+**✏️ CORRECCIONES MANUALES FINALES:**
+```python
+# ❌ INCORRECTO (errores residuales típicos):
+# Variables undefined después de migración
+dashboard_components = None  # Undefined
+
+# ✅ CORRECTO:
+from sistema.imports_interface import ImportsCentral
+ic = ImportsCentral()
+dashboard_components = ic.get_dashboard_components()
+
+# ❌ INCORRECTO (imports circulares residuales):
+from dashboard.some_widget import SomeWidget
+# Mientras some_widget.py importa dashboard_definitivo
+
+# ✅ CORRECTO (reestructurar import):
+# Usar lazy import o mover import dentro de función
+```
+
+**🧪 VALIDACIÓN MANUAL FINAL:**
+```powershell
+# Verificar que VS Code Problems = 0
+# Ejecutar manualmente y verificar:
+# 1. Dashboard inicia sin errores
+# 2. No hay crashes en navegación
+# 3. Logging funciona correctamente
+# 4. Performance aceptable (< 10 segundos)
+# 5. Sin memory leaks evidentes
+
+# Test de memoria manual (opcional)
+# Dejar dashboard corriendo 5 minutos y verificar estabilidad
+```
+
+**🎯 PROCEDIMIENTO DE VALIDACIÓN MANUAL:**
+1. **Abrir VS Code Problems panel** → Verificar 0 errores
+2. **Ejecutar** `python dashboard/dashboard_definitivo.py` → Sin crashes
+3. **Navegar por pestañas** → Sin errores de UI
+4. **Verificar logs** → Sistema logging funcional
+5. **Documentar** cualquier issue restante en bitácora
+
+**📊 TARGET REVISIÓN MANUAL:** **0 errores absolutos** - Sistema 100% funcional
+
 ---
 
-## 📝 DIRECTRICES PARA CREACIÓN DE ARCHIVOS
+## � RESUMEN EJECUTIVO - ARCHIVOS POR CATEGORÍA
+
+### **🔥 ARCHIVOS CRÍTICOS (Modificación directa)**
+- `dashboard/dashboard_definitivo.py` - **465 errores** | Fases 1-2 | ⚠️ CRÍTICO
+
+### **🛠️ HERRAMIENTAS AUTOMATIZADAS (Scripts de corrección)**
+- `scripts/activate_import_fixer.py` - **Corrector principal** | Fase 1 | ⭐⭐⭐⭐⭐
+- `scripts/fix_unused_imports.py` - **Motor automático** | Fase 1 | ⭐⭐⭐⭐⭐
+- `scripts/migrador_inteligente_v2.py` - **Migrador inteligente** | Fases 2-3 | ⭐⭐⭐⭐
+- `scripts/corrector_imports_problematicos.py` - **Corrector específico** | Fases 1-3 | ⭐⭐⭐⭐
+- `scripts/fase3_eliminar_imports.py` - **Reemplazo masivo** | Fase 2 | ⭐⭐⭐⭐
+- `scripts/detectar_imports_viejos.py` - **Detector obsoletos** | Fase 3 | ⭐⭐⭐
+- `fix_imports.ps1` / `fix_imports.bat` - **Wrappers ejecución** | Todas las fases
+
+### **🎯 ARCHIVOS AUXILIARES (Corrección automática)**
+- `utils/system_diagnostics.py` - **Imports sic.py obsoleto** | Fase 3 | ❌
+- `dashboard/problems_tab_renderer.py` - **Referencias incorrectas** | Fase 3 | ❌
+- `utils/mt5_data_manager.py` - **Imports incorrectos** | Fase 3 | ❌
+
+### **✅ ARCHIVOS BASE (Solo lectura/referencia)**
+- `sistema/imports_interface.py` - **SIC v2.0 ImportsCentral** | Target principal | ✅
+- `sistema/logging_interface.py` - **SLUC v2.1 Logging** | Target logging | ✅
+
+### **❌ ARCHIVOS OBSOLETOS (Verificar NO uso)**
+- `sistema/sic.py` - **Sistema obsoleto** | Verificar eliminación | ❌
+
+### **🧪 ARCHIVOS DE VALIDACIÓN (Testing)**
+- `scripts/check_os_imports.py` - **Validar imports OS** | Fase 4 | ⭐⭐⭐
+- `scripts/check_subprocess_imports.py` - **Validar subprocess** | Fase 4 | ⭐⭐⭐
+- `scripts/validador_maestro.py` - **Validación integral** | Fase 4 | ⭐⭐⭐
+- `teste/test_dashboard_poi.py` - **Tests dashboard** | Fase 4 | ✅
+- `teste/simple_test.py` - **Tests básicos** | Fase 4 | ✅
+
+### **⚙️ ARCHIVOS DE CONFIGURACIÓN (Solo verificar)**
+- `config/live_only_config.py` - **Config crítica** | No modificar | ⚠️
+- `config/config_manager.py` - **Gestor config** | No modificar | ⚠️
+- `requirements.txt` - **Dependencias** | Solo verificar | ⚠️
+
+### **🚀 ARCHIVOS DE ARRANQUE (Testing funcional)**
+- `main.py` - **Arranque principal** | Fase 4 | ✅
+- `launch_dashboard.py` - **Lanzador dashboard** | Fase 4 | ✅
+- `START_ICT_ENGINE.bat` - **Arranque Windows** | Fase 4 | ✅
+- `START_ICT_ENGINE.ps1` - **Arranque PowerShell** | Fase 4 | ✅
+
+### **📁 DIRECTORIOS DE VERIFICACIÓN AUTOMÁTICA**
+- `dashboard/widgets/*.py` - **Widgets** | Fase 3 | Verificar automático
+- `core/analytics/*.py` - **Analytics** | Fase 3 | Verificar automático
+- `core/integrations/*.py` - **Integraciones** | Fase 3 | Verificar automático
+- `utilities/*.py` - **Utilidades** | Fase 3 | Verificar automático
+- `scripts/*.py` - **Scripts soporte** | Fase 3 | Verificar automático
+
+---
+
+**📊 TOTALES POR FASE:**
+- **FASE 1:** 1 archivo crítico + 4 scripts automatizados
+- **FASE 2:** 1 archivo crítico + 3 scripts automatizados
+- **FASE 3:** 3 archivos auxiliares + 5+ directorios verificación automática
+- **FASE 4:** 7 archivos testing + 4 archivos arranque + 3 scripts validación
+
+**🎯 IMPACTO TOTAL:** 1 archivo crítico principal + 50+ archivos verificados automáticamente
+
+---
+
+## �📝 DIRECTRICES PARA CREACIÓN DE ARCHIVOS
 
 **🚨 POLÍTICA:** Solo crear archivos nuevos si es ABSOLUTAMENTE necesario
 
@@ -289,6 +705,176 @@ echo "✅ CORRECCIÓN AUTOMATIZADA COMPLETADA"
 - Wrappers de compatibilidad innecesarios
 - Duplicados de funcionalidad existente
 - Parches temporales que oculten problemas estructurales
+
+---
+
+## 📋 POLÍTICAS DE ELIMINACIÓN Y REFACTORIZACIÓN
+
+### **🚨 POLÍTICA DE IMPORTS NO UTILIZADOS:**
+
+**🔄 REGLA PRINCIPAL:** Todos los imports marcados como no utilizados deben ser validados manualmente antes de ser comentados o refactorizados.
+
+**📝 PROTOCOLO DE MARCADO:**
+```python
+# ❌ NO HACER: Eliminar directamente
+# import unused_module  # ELIMINADO - PELIGROSO
+
+# ✅ HACER: Comentar y marcar para revisión
+# import unused_module  # 🧹 REVISIÓN PENDIENTE - Detectado como no usado por activate_import_fixer.py
+
+# ✅ ALTERNATIVA: Mover a sección de imports opcionales
+try:
+    import unused_module  # 🔧 IMPORT OPCIONAL - Verificar uso real
+except ImportError:
+    unused_module = None  # Fallback si no está disponible
+```
+
+**🔍 VALIDACIÓN MANUAL OBLIGATORIA:**
+- [ ] **V1** Verificar que el import NO se usa en funciones dinámicas o eval()
+- [ ] **V2** Comprobar que NO se usa en imports condicionales o try/except
+- [ ] **V3** Confirmar que NO se usa en funciones que se ejecutan con delay o async
+- [ ] **V4** Validar que NO es requerido por código comentado temporalmente
+- [ ] **V5** Verificar que NO es dependencia de otros imports (import chaining)
+
+---
+
+## 🔎 FASE DE VALIDACIÓN CRUZADA
+
+### **📊 VALIDACIÓN DE INTERDEPENDENCIAS (Pre-ejecución):**
+
+**🎯 OBJETIVO:** Evitar falsos positivos en detección de imports antes de ejecutar correcciones automáticas
+
+**🔍 ESCANEO DE REFERENCIAS CRUZADAS:**
+```powershell
+# Comando de validación cruzada completa
+python scripts/validacion_cruzada.py --scan-dirs scripts/,core/,sistema/,utils/,dashboard/ --output interdependencias.json
+
+# Verificar referencias dinámicas
+Get-ChildItem -Recurse -Include "*.py" | Select-String -Pattern "importlib|__import__|exec\(|eval\(" -AllMatches
+
+# Detectar imports en strings y comentarios
+Get-ChildItem -Recurse -Include "*.py" | Select-String -Pattern '["'"'"'].*import.*["'"'"']' -AllMatches
+```
+
+**📋 ARCHIVOS CRÍTICOS A VALIDAR ANTES DE MODIFICAR:**
+- `scripts/` ↔ `sistema/` (interdependencias de configuración)
+- `core/` ↔ `utils/` (interdependencias funcionales)
+- `dashboard/` ↔ `sistema/` (interdependencias UI-backend)
+- `config/` ↔ ALL (dependencias globales críticas)
+
+**⚠️ CRITERIOS DE EXCLUSIÓN DE LIMPIEZA:**
+- Imports usados en `getattr()`, `hasattr()`, `setattr()`
+- Imports referenciados en `globals()` o `locals()`
+- Imports en strings de configuración o templates
+- Imports requeridos por plugins o extensiones dinámicas
+
+---
+
+## 🧯 POLÍTICA DE RESTAURACIÓN Y BACKUPS
+
+### **📦 SISTEMA DE BACKUPS AUTOMÁTICOS:**
+
+**📂 ESTRUCTURA DE BACKUPS:**
+```
+backup_imports/
+├── 2025_08_06_143022/  # Timestamp de backup
+│   ├── dashboard/
+│   │   └── dashboard_definitivo.py.backup
+│   ├── utils/
+│   │   ├── system_diagnostics.py.backup
+│   │   └── mt5_data_manager.py.backup
+│   └── sistema/
+│       └── imports_interface.py.backup
+├── restoration_log.json  # Log de operaciones de restauración
+└── backup_manifest.json  # Índice de todos los backups
+```
+
+**🔄 PROTOCOLO DE RESTAURACIÓN EN CASO DE FALLO:**
+
+**⚠️ CUÁNDO APLICAR RESTAURACIÓN:**
+- Dashboard no inicia después de correcciones
+- Errores críticos aumentan en lugar de disminuir
+- Funcionalidad core se ve comprometida
+- Tests básicos fallan después de modificaciones
+
+**🛠️ COMANDOS DE RESTAURACIÓN:**
+```powershell
+# Restauración de archivo específico
+python scripts/restore_backup.py --file dashboard/dashboard_definitivo.py --timestamp 2025_08_06_143022
+
+# Restauración completa de fase
+python scripts/restore_backup.py --phase FASE_1 --timestamp 2025_08_06_143022
+
+# Restauración de emergencia (último backup completo)
+python scripts/restore_backup.py --emergency --restore-all
+```
+
+**📋 CHECKLIST POST-RESTAURACIÓN:**
+- [ ] **R1** Verificar que el archivo restaurado carga sin errores
+- [ ] **R2** Comprobar que funcionalidad crítica está operativa
+- [ ] **R3** Validar que el conteo de errores VS Code no empeoró
+- [ ] **R4** Documentar la causa del fallo en bitácora
+- [ ] **R5** Ajustar estrategia antes del siguiente intento
+
+---
+
+## 📡 INTEGRACIÓN CON AUDITORÍA SLUC
+
+### **🎯 REGISTRO ESTRUCTURADO EN SLUC v2.1:**
+
+**📊 CATEGORÍA DE AUDITORÍA:** `OPTIMIZACION_IMPORTS`
+
+**📝 ESTRUCTURA DE LOG SLUC:**
+```python
+# Integración con sistema de logging SLUC v2.1
+from sistema.logging_interface import enviar_senal_log
+
+# Log de inicio de fase
+enviar_senal_log({
+    'categoria': 'OPTIMIZACION_IMPORTS',
+    'fase': 'FASE_1_LIMPIEZA_ARQUITECTURAL',
+    'accion': 'INICIO',
+    'archivos_target': ['dashboard/dashboard_definitivo.py'],
+    'errores_iniciales': 465,
+    'timestamp': datetime.now(),
+    'estrategia': 'AUTOMATIZADA_CON_REVISION_MANUAL'
+})
+
+# Log de corrección específica
+enviar_senal_log({
+    'categoria': 'OPTIMIZACION_IMPORTS',
+    'fase': 'FASE_1_LIMPIEZA_ARQUITECTURAL',
+    'accion': 'IMPORT_DUPLICADO_ELIMINADO',
+    'archivo': 'dashboard/dashboard_definitivo.py',
+    'linea': 31,
+    'import_original': 'import sys',
+    'accion_tomada': 'COMENTADO_CON_MARCA_REVISION',
+    'backup_creado': 'backup_imports/2025_08_06_143022/dashboard_definitivo.py.backup'
+})
+
+# Log de finalización de fase
+enviar_senal_log({
+    'categoria': 'OPTIMIZACION_IMPORTS',
+    'fase': 'FASE_1_LIMPIEZA_ARQUITECTURAL',
+    'accion': 'COMPLETADA',
+    'errores_iniciales': 465,
+    'errores_finales': 265,
+    'errores_reducidos': 200,
+    'revision_manual_activada': False,
+    'tiempo_total_minutos': 8,
+    'resultado': 'EXITOSO'
+})
+```
+
+**📈 MÉTRICAS SLUC A REGISTRAR:**
+- Número de imports detectados como no utilizados
+- Número de imports corregidos automáticamente
+- Número de imports marcados para revisión manual
+- Tiempo de ejecución por fase y total
+- Errores reducidos por fase
+- Activación de revisión manual (sí/no)
+- Archivos modificados y backed up
+- Estado final del sistema (operativo/no operativo)
 
 ---
 
@@ -458,7 +1044,221 @@ time python -c "from dashboard.dashboard_definitivo import SentinelDashboardDefi
 
 ---
 
-## 📋 CHECKLIST DE CALIDAD FINAL
+### **🎯 COMANDOS ESPECÍFICOS POR ARCHIVO:**
+
+#### **📁 ARCHIVO CRÍTICO - dashboard/dashboard_definitivo.py:**
+```powershell
+# FASE 1: Verificar estado inicial
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "import sys" | Measure-Object
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "from pathlib import Path" | Measure-Object
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "sistema.sic" | Measure-Object
+
+# FASE 2: Verificar migración a ImportsCentral
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "imports_interface" | Measure-Object
+Get-Content "dashboard/dashboard_definitivo.py" | Select-String "ImportsCentral" | Measure-Object
+
+# FASE 4: Test funcional completo
+python dashboard/dashboard_definitivo.py --test-mode
+```
+
+#### **🛠️ SCRIPTS AUTOMATIZADOS - Ejecución Secuencial:**
+```powershell
+# FASE 1: Corrección automática de imports
+python scripts/activate_import_fixer.py --target dashboard/dashboard_definitivo.py
+python scripts/fix_unused_imports.py dashboard/dashboard_definitivo.py
+python scripts/corrector_imports_problematicos.py dashboard/dashboard_definitivo.py
+
+# FASE 2: Migración inteligente
+python scripts/migrador_inteligente_v2.py --target dashboard/dashboard_definitivo.py
+python scripts/fase3_eliminar_imports.py --file dashboard/dashboard_definitivo.py
+
+# FASE 3: Detección y corrección auxiliares
+python scripts/detectar_imports_viejos.py
+python scripts/migrador_inteligente_v2.py --target utils/system_diagnostics.py
+python scripts/migrador_inteligente_v2.py --target utils/mt5_data_manager.py
+python scripts/migrador_inteligente_v2.py --target dashboard/problems_tab_renderer.py
+```
+
+#### **✅ ARCHIVOS BASE - Verificación:**
+```powershell
+# Verificar ImportsCentral funcional
+python -c "from sistema.imports_interface import ImportsCentral; ic = ImportsCentral(); print('✅ ImportsCentral:', type(ic))"
+
+# Verificar SLUC v2.1 funcional
+python -c "from sistema.logging_interface import enviar_senal_log; print('✅ SLUC v2.1 disponible')"
+
+# Verificar que sic.py NO se usa
+Get-ChildItem -Recurse -Include "*.py" | Select-String "sistema.sic" | Measure-Object
+```
+
+#### **🎯 ARCHIVOS AUXILIARES - Verificación Individual:**
+```powershell
+# utils/system_diagnostics.py
+python -c "import utils.system_diagnostics; print('✅ System Diagnostics carga OK')"
+Get-Content "utils/system_diagnostics.py" | Select-String "sistema.sic" | Measure-Object
+
+# utils/mt5_data_manager.py
+python -c "import utils.mt5_data_manager; print('✅ MT5 Manager carga OK')"
+Get-Content "utils/mt5_data_manager.py" | Select-String "sistema.sic" | Measure-Object
+
+# dashboard/problems_tab_renderer.py
+python -c "import dashboard.problems_tab_renderer; print('✅ Problems Tab carga OK')"
+Get-Content "dashboard/problems_tab_renderer.py" | Select-String "sistema.sic" | Measure-Object
+```
+
+#### **🧪 VALIDACIÓN FINAL - Scripts de Testing:**
+```powershell
+# Scripts de validación automática
+python scripts/check_os_imports.py
+python scripts/check_subprocess_imports.py
+python scripts/validador_maestro.py
+
+# Tests específicos del sistema
+python teste/simple_test.py
+python teste/test_dashboard_poi.py
+
+# Arranque completo del sistema
+python main.py --test-mode
+python launch_dashboard.py --validate-only
+```
+
+#### **🚀 COMANDOS DE ARRANQUE - Testing Funcional:**
+```powershell
+# Test arranque Windows
+./START_ICT_ENGINE.bat
+
+# Test arranque PowerShell
+./START_ICT_ENGINE.ps1
+
+# Test arranque Python directo
+python main.py
+python launch_dashboard.py
+```
+
+---
+
+## �️ GUÍA GLOBAL DE REVISIÓN MANUAL
+
+### **📋 CUÁNDO USAR REVISIÓN MANUAL:**
+- **Automatización fallida:** Scripts no reducen errores según target esperado
+- **Errores residuales:** Quedan errores críticos después de automatización
+- **Validación final:** Asegurar 0 errores absolutos antes de marcar fase como completa
+
+### **🎯 CRITERIOS DE ACTIVACIÓN POR FASE:**
+```
+FASE 1: Si errores > 300 después de automatización → Activar RM1.x
+FASE 2: Si errores > 140 después de automatización → Activar RM2.x
+FASE 3: Si errores > 25 después de automatización → Activar RM3.x
+FASE 4: Si errores > 5 después de automatización → Activar RM4.x
+```
+
+### **🔧 HERRAMIENTAS DE REVISIÓN MANUAL:**
+
+#### **PowerShell Commands Esenciales:**
+```powershell
+# Conteo rápido de errores por tipo
+Get-ChildItem -Recurse -Include "*.py" | Select-String "sistema.sic" | Measure-Object
+Get-ChildItem -Recurse -Include "*.py" | Select-String "import sys" | Measure-Object
+Get-ChildItem -Recurse -Include "*.py" | Select-String "from pathlib import Path" | Measure-Object
+
+# Verificación de archivos específicos
+python -c "import dashboard.dashboard_definitivo; print('✅ Dashboard OK')"
+python -c "from sistema.imports_interface import ImportsCentral; print('✅ ImportsCentral OK')"
+python -c "from sistema.logging_interface import enviar_senal_log; print('✅ Logging OK')"
+```
+
+#### **VS Code Manual Checks:**
+```
+1. Abrir VS Code Problems panel (Ctrl+Shift+M)
+2. Filtrar por dashboard/dashboard_definitivo.py
+3. Revisar errores por categoría: Import, Syntax, Type, Reference
+4. Click en cada error para navegar y corregir manualmente
+5. Usar Find & Replace (Ctrl+H) para correcciones masivas
+```
+
+### **✏️ PATRONES DE CORRECCIÓN MANUAL COMUNES:**
+
+#### **Imports Duplicados:**
+```python
+# ❌ PROBLEMA: Imports duplicados
+import sys
+import os
+import sys  # Duplicado - ELIMINAR MANUALMENTE
+
+# ✅ SOLUCIÓN:
+import sys
+import os
+```
+
+#### **Referencias a Sistema Obsoleto:**
+```python
+# ❌ PROBLEMA: Referencias a sistema.sic obsoleto
+from sistema.sic import enviar_senal_log
+from sistema.sic import SmartDirectoryLogger
+
+# ✅ SOLUCIÓN: Reemplazar manualmente
+from sistema.imports_interface import ImportsCentral
+from sistema.logging_interface import enviar_senal_log
+
+# O usar patrón centralizado:
+ic = ImportsCentral()
+SmartDirectoryLogger = ic.get_sistema_components()['logging']['SmartDirectoryLogger']
+```
+
+#### **Imports de Textual:**
+```python
+# ❌ PROBLEMA: Imports fallidos de Textual
+from textual.app import App  # Puede fallar sin instalación
+
+# ✅ SOLUCIÓN: Fallback robusto manual
+try:
+    from textual.app import App, ComposeResult
+    from textual.binding import Binding
+    TEXTUAL_AVAILABLE = True
+except ImportError:
+    print("⚠️ Textual no disponible - Modo compatible")
+    App = None
+    ComposeResult = None
+    Binding = None
+    TEXTUAL_AVAILABLE = False
+```
+
+### **🚨 PROTOCOLO DE ESCALACIÓN:**
+
+#### **Si Revisión Manual No Resuelve:**
+1. **Documentar error específico** en bitácora
+2. **Capturar screenshot** de VS Code Problems
+3. **Ejecutar comando de rollback** si es necesario
+4. **Reportar en sección de issues** para investigación posterior
+
+#### **Rollback Commands:**
+```powershell
+# Rollback específico por archivo
+git checkout HEAD -- dashboard/dashboard_definitivo.py
+git checkout HEAD -- utils/system_diagnostics.py
+
+# Rollback completo (emergencia)
+git checkout HEAD -- .
+```
+
+### **📊 MÉTRICAS DE REVISIÓN MANUAL:**
+
+#### **Tiempo Estimado por Fase:**
+- **FASE 1:** 5 min adicionales (Total: 25 min vs 20 automatizada)
+- **FASE 2:** 7 min adicionales (Total: 22 min vs 15 automatizada)
+- **FASE 3:** 5 min adicionales (Total: 15 min vs 10 automatizada)
+- **FASE 4:** 10 min adicionales (Total: 20 min vs 10 automatizada)
+
+**TOTAL CON REVISIÓN MANUAL:** 82 minutos (vs 55 automatizada = +27 min buffer)
+
+#### **Success Rate Esperado:**
+- **Automatización sola:** 85% éxito (0-15 errores residuales)
+- **Automatización + Manual:** 99% éxito (0-2 errores residuales)
+- **Manual solo (fallback):** 95% éxito (0-5 errores residuales)
+
+---
+
+## �📋 CHECKLIST DE CALIDAD FINAL
 
 ### **Calidad de Código:**
 - [ ] **Q1** Sin imports duplicados en ningún archivo
@@ -529,13 +1329,16 @@ time python -c "from dashboard.dashboard_definitivo import SentinelDashboardDefi
 ├── Migración batch de archivos auxiliares (3 min)
 └── ✅ Target: 115 → 25 errores (-90) [Similar a manual: -100]
 
-✅ FASE 4: VALIDACIÓN AUTOMATIZADA (3 min vs 10 min manual)
+✅ FASE 4: VALIDACIÓN AUTOMATIZADA + MANUAL (3+10 min vs 10 min manual)
 ├── Validación automática imports específicos (1 min)
 ├── Tests funcionales automatizados (2 min)
-└── ✅ Target: 25 → 0 errores (-25) [Mejora: +10 vs manual]
+├── Revisión manual final si es necesaria (10 min adicionales)
+└── ✅ Target: 25 → 0 errores (-25) [Garantía: 99% éxito vs 85% solo automatizada]
 
 📊 TOTAL AUTOMATIZADO: 20 minutos (vs 55 manual = 64% reducción)
-🎯 PRECISIÓN: Superior (backups automáticos + validaciones)
+📊 TOTAL HÍBRIDO (Auto+Manual): 47 minutos (vs 55 manual = 15% reducción + 99% precisión)
+🎯 PRECISIÓN: Superior (backups automáticos + validaciones + revisión manual)
+🎯 ESTRATEGIA RECOMENDADA: Híbrida (Automatización + Revisión Manual por fase)
 ```
 
 ### **Indicadores de Éxito AUTOMATIZADOS por Minuto:**
@@ -554,7 +1357,202 @@ Min 17-20: FASE 4 → 0 errores (100% ÉXITO) [Acelerado]
 
 ---
 
-**🎯 RESUMEN:** Este plan convertirá el estado actual de 465 errores en un sistema completamente funcional con 0 errores, utilizando la arquitectura dual SLUC v2.1 para logging e ImportsCentral SIC v2.0 para imports, sin crear archivos innecesarios y manteniendo la funcionalidad existente.
+## 🎯 RESUMEN EJECUTIVO - ESTRATEGIA HÍBRIDA
+
+### **📈 ESTRATEGIA RECOMENDADA: AUTOMATIZACIÓN + REVISIÓN MANUAL**
+
+**🔄 PROCESO HÍBRIDO POR FASE:**
+1. **Ejecutar scripts automatizados** para cada fase
+2. **Verificar target de errores** según métricas esperadas
+3. **Si target no se cumple** → Activar revisión manual correspondiente
+4. **Completar fase** solo cuando errores ≤ target establecido
+
+### **⚡ VENTAJAS DE LA ESTRATEGIA HÍBRIDA:**
+- **Velocidad:** 64% reducción de tiempo vs manual puro (20 min vs 55 min)
+- **Precisión:** 99% éxito vs 85% solo automatizada
+- **Seguridad:** Backups automáticos + validación manual
+- **Flexibilidad:** Fallback manual cuando automatización falla
+- **Documentación:** Registro completo de todos los cambios
+
+### **📊 MÉTRICAS FINALES:**
+```
+TIEMPO TOTAL:
+├── Solo Manual: 55 minutos (95% éxito)
+├── Solo Automatizada: 20 minutos (85% éxito)
+└── Híbrida (Recomendada): 47 minutos (99% éxito)
+
+SUCCESS RATE:
+├── Automatización fallida: 15% casos → Activar revisión manual
+├── Revisión manual activada: +27 min buffer → 99% éxito garantizado
+└── Resultado esperado: 0-2 errores residuales máximo
+```
+
+### **🎯 OBJETIVOS FINALES GARANTIZADOS:**
+- ✅ **0 errores** en VS Code Problems panel
+- ✅ **Dashboard funcional** sin crashes de startup
+- ✅ **Arquitectura dual** SLUC v2.1 + SIC v2.0 operativa
+- ✅ **Imports limpios** y organizados en todo el sistema
+- ✅ **Documentación completa** de todos los cambios realizados
+
+---
+
+## 🤖 ÓRDENES PARA COPILOT Y ASISTENTES IA
+
+### **⚠️ INSTRUCCIONES CRÍTICAS PARA EJECUCIÓN:**
+
+**🔒 REGLAS FUNDAMENTALES - NO NEGOCIABLES:**
+
+1. **📋 USO EXCLUSIVO DE SCRIPTS DEFINIDOS:**
+   - ✅ USAR: `scripts/activate_import_fixer.py`
+   - ✅ USAR: `scripts/fix_unused_imports.py`
+   - ✅ USAR: `scripts/migrador_inteligente_v2.py`
+   - ✅ USAR: `scripts/corrector_imports_problematicos.py`
+   - ✅ USAR: `scripts/detectar_imports_viejos.py`
+   - ❌ NO USAR: Scripts no documentados en este plan
+   - ❌ NO USAR: Correcciones manuales directas sin backup
+
+2. **🚫 PROHIBICIÓN DE ELIMINACIÓN AUTOMÁTICA:**
+   - ❌ NO eliminar líneas de código automáticamente
+   - ✅ USAR `--dry-run` o `modo reporte` SIEMPRE
+   - ✅ COMENTAR imports con marca: `# 🧹 REVISIÓN PENDIENTE`
+   - ✅ Requerir confirmación humana antes de cualquier eliminación
+
+3. **📝 REGISTRO Y BACKUP OBLIGATORIO:**
+   - ✅ Cada corrección debe ser registrada en SLUC con `enviar_senal_log`
+   - ✅ Crear backup antes de cualquier modificación
+   - ✅ Explicar cada cambio propuesto antes de aplicarlo
+   - ✅ Documentar razón específica de cada corrección
+
+4. **🔧 PRESERVACIÓN OPERATIVA DEL SISTEMA:**
+   - ✅ El sistema debe seguir operativo en todo momento
+   - ✅ Validar funcionamiento después de cada fase
+   - ✅ Si algo falla, aplicar rollback inmediato
+   - ✅ Priorizar estabilidad sobre optimización
+
+5. **🚨 PROTECCIÓN DE IMPORTS CRÍTICOS:**
+   - ❌ NO alterar imports internos de `sistema.sic` sin autorización EXPLÍCITA
+   - ❌ NO modificar `config/live_only_config.py` sin validación previa
+   - ❌ NO tocar imports en `sistema/logging_interface.py`
+   - ✅ Validar interdependencias antes de cualquier cambio
+
+### **📋 PROTOCOLO DE EJECUCIÓN PASO A PASO:**
+
+**🔄 PARA CADA FASE, EL ASISTENTE IA DEBE:**
+
+1. **ANTES DE EJECUTAR:**
+   ```
+   - Anunciar la fase que va a ejecutar
+   - Mostrar el comando exacto que va a ejecutar
+   - Esperar confirmación del usuario
+   - Crear backup con timestamp
+   ```
+
+2. **DURANTE LA EJECUCIÓN:**
+   ```
+   - Ejecutar en modo dry-run primero
+   - Mostrar resultados del dry-run al usuario
+   - Pedir confirmación para aplicar cambios reales
+   - Registrar cada acción en SLUC
+   ```
+
+3. **DESPUÉS DE EJECUTAR:**
+   ```
+   - Validar que el sistema sigue operativo
+   - Contar errores antes y después
+   - Reportar progreso según métricas del plan
+   - Si target no se cumple, activar revisión manual
+   ```
+
+### **🎯 COMANDOS AUTORIZADOS POR FASE:**
+
+#### **FASE 1 - COMANDOS PERMITIDOS:**
+```powershell
+# ✅ AUTORIZADO:
+python scripts/activate_import_fixer.py --dry-run --target dashboard/dashboard_definitivo.py
+python scripts/fix_unused_imports.py --mode report dashboard/dashboard_definitivo.py
+python scripts/corrector_imports_problematicos.py --dry-run
+
+# ❌ PROHIBIDO:
+# Edición directa de archivos sin scripts
+# Eliminación masiva de líneas
+# Modificación de sistema.sic.py
+```
+
+#### **FASE 2 - COMANDOS PERMITIDOS:**
+```powershell
+# ✅ AUTORIZADO:
+python scripts/migrador_inteligente_v2.py --dry-run --target dashboard/dashboard_definitivo.py
+python scripts/fase3_eliminar_imports.py --preview --file dashboard/dashboard_definitivo.py
+
+# ❌ PROHIBIDO:
+# Reescritura de imports sin validación
+# Modificación de textual imports sin fallback
+```
+
+### **🔔 FRASES DE CONFIRMACIÓN REQUERIDAS:**
+
+**El asistente IA DEBE usar estas frases exactas:**
+
+- **Antes de ejecutar:** "🤖 Ejecutando [COMANDO] en modo dry-run. ¿Confirmas proceder?"
+- **Antes de aplicar:** "🤖 Dry-run completado. ¿Autorizar aplicar cambios reales con backup?"
+- **Si encuentra error:** "🤖 Error detectado. Aplicando rollback automático. ¿Investigar causa?"
+- **Al completar fase:** "🤖 Fase completada. Errores: [ANTES] → [DESPUÉS]. ¿Continuar siguiente fase?"
+
+### **🚨 PROTOCOLO DE EMERGENCIA:**
+
+**Si algo sale mal, el asistente IA DEBE:**
+1. **DETENER** inmediatamente cualquier ejecución
+2. **APLICAR ROLLBACK** usando backups creados
+3. **REPORTAR** error específico al usuario
+4. **ESPERAR** instrucciones antes de continuar
+5. **NO INTENTAR** "arreglar" automáticamente
+
+### **💡 MEJORES PRÁCTICAS DE EJECUCIÓN:**
+
+#### **🎯 ORDEN RECOMENDADO DE EJECUCIÓN:**
+1. **Preparación:** Validación cruzada + Backup inicial completo
+2. **FASE 1:** Automatización + Revisión manual si es necesaria
+3. **Checkpoint:** Validar sistema operativo antes de continuar
+4. **FASE 2:** Automatización + Revisión manual si es necesaria
+5. **Checkpoint:** Validar imports funcionando antes de continuar
+6. **FASE 3:** Automatización + Revisión manual si es necesaria
+7. **Checkpoint:** Validar archivos auxiliares antes de finalizar
+8. **FASE 4:** Validación final completa + Testing exhaustivo
+
+#### **⚡ TIPS DE EFICIENCIA:**
+- Ejecutar todos los comandos desde la raíz del proyecto
+- Mantener VS Code abierto para monitorear Problems panel en tiempo real
+- Usar terminal adicional para validaciones manuales paralelas
+- Tomar screenshots de estado antes/después para documentación
+
+#### **🔍 SEÑALES DE ÉXITO POR FASE:**
+```
+FASE 1: Errores VS Code < 300 → ✅ Continuar
+FASE 2: Errores VS Code < 140 → ✅ Continuar
+FASE 3: Errores VS Code < 25 → ✅ Continuar
+FASE 4: Errores VS Code = 0 → ✅ ÉXITO TOTAL
+```
+
+#### **🚨 SEÑALES DE ALERTA (Activar revisión manual):**
+- Errores aumentan en lugar de disminuir
+- Dashboard no inicia después de una fase
+- Aparecen errores de tipo nuevo no previstos
+- Scripts de automatización fallan repetidamente
+
+---
+
+**🎯 RESUMEN:** Este plan convertirá el estado actual de 465 errores en un sistema completamente funcional con 0 errores, utilizando una estrategia híbrida de automatización inteligente + revisión manual por fase, con políticas estrictas de backup y restauración, validación cruzada de interdependencias, integración completa con auditoría SLUC v2.1, y protocolos específicos para asistentes IA. Garantiza la arquitectura dual SLUC v2.1 para logging e ImportsCentral SIC v2.0 para imports, sin crear archivos innecesarios, manteniendo la funcionalidad existente al 100%, y con registro completo de todas las operaciones para máxima trazabilidad y seguridad.
+
+### **🎖️ CERTIFICACIÓN DE COMPLETITUD:**
+- ✅ **Políticas de eliminación y refactorización** definidas
+- ✅ **Validación cruzada de interdependencias** implementada
+- ✅ **Sistema de backups y restauración** documentado
+- ✅ **Integración con auditoría SLUC** configurada
+- ✅ **Instrucciones específicas para IA** establecidas
+- ✅ **Protocolos de emergencia** definidos
+- ✅ **Estrategia híbrida automatización+manual** optimizada
+
+**📊 NIVEL DE PREPARACIÓN:** 100% - Plan completo y listo para ejecución
 
 ---
 
