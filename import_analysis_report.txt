@@ -1,12 +1,12 @@
 🔧 REPORTE DE ANÁLISIS DE IMPORTS NO UTILIZADOS
 ============================================================
-Fecha: 2025-08-06 11:11:19
+Fecha: 2025-08-06 11:20:35
 Proyecto: C:\Users\v_jac\Desktop\itc engine v5.0
 
 RESUMEN:
-- Archivos analizados: 110
-- Archivos con imports no utilizados: 68
-- Total de imports no utilizados: 302
+- Archivos analizados: 111
+- Archivos con imports no utilizados: 69
+- Total de imports no utilizados: 303
 
 DETALLES POR ARCHIVO:
 ----------------------------------------
@@ -340,6 +340,10 @@ DETALLES POR ARCHIVO:
    Imports no utilizados: 2
    - Línea 16: from datetime import datetime
    - Línea 74: from core.ict_engine.ict_engine import ICTEngine, get_ict_engine
+
+📄 scripts\fix_migration_indentation.py
+   Imports no utilizados: 1
+   - Línea 12: import re
 
 📄 scripts\fix_unused_imports.py
    Imports no utilizados: 6

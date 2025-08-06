@@ -17,11 +17,11 @@ def fix_indentation_in_file(file_path: Path) -> bool:
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        
+
         # Detectar y corregir líneas con indentación incorrecta en imports
         lines = content.split('\n')
         fixed_lines = []
-        
+
         for line in lines:
             # Si es una línea de import con indentación incorrecta
             if line.strip().startswith(('import ', 'from ')) and line.startswith('    '):
@@ -31,17 +31,17 @@ def fix_indentation_in_file(file_path: Path) -> bool:
                 print(f"   ✅ Corregido: {line.strip()}")
             else:
                 fixed_lines.append(line)
-        
+
         # Escribir archivo corregido
         new_content = '\n'.join(fixed_lines)
-        
+
         if new_content != content:
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
             return True
-        
+
         return False
-        
+
     except Exception as e:
         print(f"❌ Error procesando {file_path}: {e}")
         return False
@@ -49,7 +49,7 @@ def fix_indentation_in_file(file_path: Path) -> bool:
 def main():
     """Función principal del corrector"""
     project_root = Path(__file__).parent.parent
-    
+
     # Archivos migrados que necesitan corrección
     migrated_files = [
         "dashboard/dashboard_definitivo.py",
@@ -61,12 +61,12 @@ def main():
         "dashboard/hibernation_widget_v2.py",
         "dashboard/poi_dashboard_integration.py"
     ]
-    
+
     print("🔧 CORRECTOR DE INDENTACIÓN POST-MIGRACIÓN")
     print("=" * 50)
-    
+
     fixed_count = 0
-    
+
     for file_rel_path in migrated_files:
         file_path = project_root / file_rel_path
         if file_path.exists():
@@ -78,7 +78,7 @@ def main():
                 print(f"   ✅ No requiere corrección")
         else:
             print(f"⚠️  Archivo no encontrado: {file_rel_path}")
-    
+
     print(f"\n{'='*50}")
     print(f"📊 REPORTE FINAL")
     print(f"{'='*50}")
