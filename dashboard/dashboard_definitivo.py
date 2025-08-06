@@ -1,34 +1,32 @@
 #!/usr/bin/env python3
-#
-🚀 SENTINEL ICT ANALYZER - DASHBOARD DEFINITIVO
-=============================================
+# SENTINEL ICT ANALYZER - DASHBOARD DEFINITIVO
 
-EL DASHBOARD PRINCIPAL Y ÚNICO DEL SISTEMA SENTINEL ICT ANALYZER.
-Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
+# EL DASHBOARD PRINCIPAL Y ÚNICO DEL SISTEMA SENTINEL ICT ANALYZER.
+# Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 
-🌟 CARACTERÍSTICAS PRINCIPALES:
-- 4 pestañas especializadas: H1 (Hibernación), H2 (ICT Pro), H3 (Patrones), H4 (Analytics)
-- Conexión directa a MetaTrader5 FundedNext para datos reales
-- Análisis inteligente con narrativas contextuales avanzadas
-- Detección automática de patrones ICT (Silver Bullet, Judas Swing, OTE, etc.)
-- Sistema de alertas multinivel para oportunidades de alta probabilidad
-- Interface visual profesional con Rich y Textual
-- Motor de análisis con datos reales de mercado
-- Sistema de métricas y estadísticas en tiempo real
+#🌟 CARACTERÍSTICAS PRINCIPALES:
+#- 4 pestañas especializadas: H1 (Hibernación), H2 (ICT Pro), H3 (Patrones), H4 (Analytics)
+#- Conexión directa a MetaTrader5 FundedNext para datos reales
+#- Análisis inteligente con narrativas contextuales avanzadas
+#- Detección automática de patrones ICT (Silver Bullet, Judas Swing, OTE, etc.)
+#- Sistema de alertas multinivel para oportunidades de alta probabilidad
+#- Interface visual profesional con Rich y Textual
+#- Motor de análisis con datos reales de mercado
+#- Sistema de métricas y estadísticas en tiempo real
 
-🎮 NAVEGACIÓN:
-- H1: Estado de hibernación inteligente con métricas de MT5
-- H2: Análisis ICT profesional con datos reales completos
-- H3: 🧠 Patrones ICT con narrativa completa y plan de acción
-- H4: 📊 Analytics y métricas avanzadas del sistema
-- H5: ⚡ TCT Pipeline con análisis en tiempo real
-- H6: 📥 Candle Downloader con control de descarga
-- R: Refresh manual de todo el sistema y datos MT5
-- P: Toggle análisis automático de patrones
-- D: Debug mode para desarrollo
-- E: Export de análisis y métricas
-- Q: Salir del sistema
-#
+#🎮 NAVEGACIÓN:
+#- H1: Estado de hibernación inteligente con métricas de MT5
+#- H2: Análisis ICT profesional con datos reales completos
+#- H3: 🧠 Patrones ICT con narrativa completa y plan de acción
+#- H4: 📊 Analytics y métricas avanzadas del sistema
+#- H5: ⚡ TCT Pipeline con análisis en tiempo real
+#- H6: 📥 Candle Downloader con control de descarga
+#- R: Refresh manual de todo el sistema y datos MT5
+#- P: Toggle análisis automático de patrones
+#- D: Debug mode para desarrollo
+#- E: Export de análisis y métricas
+#- Q: Salir del sistema
+######
 
 
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---

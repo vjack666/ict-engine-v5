@@ -214,7 +214,59 @@ except (FileNotFoundError, PermissionError, IOError) as e:
 
 ---
 
-## 🎯 CONCLUSIONES
+## � **HIBERNATION WIDGET v2.0 INTEGRATION**
+
+### **Nueva Arquitectura Directa**
+**Fecha de implementación**: Agosto 6, 2025
+
+El sistema ahora incluye el **Hibernation Widget v2.0** (`hibernation_widget_v2.py`) que proporciona:
+
+- ✅ **Arquitectura directa** - 100% infraestructura existente
+- ✅ **Integración completa** con Dashboard Controller
+- ✅ **Método `registrar_accion`** para coordinación
+- ✅ **SLUC v2.0 logging** exhaustivo
+- ✅ **Rich UI components** profesionales
+
+### **Funciones del Widget v2.0**
+
+#### **`crear_panel_hibernacion_inteligente()`**
+- Panel principal con detección automática de estados
+- Integración real_market_data desde dashboard_instance
+- Coordinación completa con Dashboard Controller
+
+#### **`crear_tabla_hibernacion_detallada()`**
+- Diagnóstico completo de sistemas (MT5/Controller/Data)
+- Vista tabular alternativa para análisis detallado
+
+#### **Controller Integration**
+```python
+controller.registrar_accion("HIBERNATION_STATUS_UPDATE", {
+    'market_status': market_status,
+    'current_price': current_price,
+    'hibernation_active': True,
+    'source': 'HIBERNATION_WIDGET_V2'
+})
+```
+
+### **Beneficios del Widget v2.0**
+- 🎯 **Tracking centralizado** de estados hibernación
+- 📊 **Métricas automáticas** de actividad
+- 🔍 **Debugging facilitado** con logging exhaustivo
+- 🔄 **Coordinación mejorada** con controller
+- 🎨 **UI profesional** con Rich components
+
+---
+
+## 📚 **DOCUMENTACIÓN ACTUALIZADA**
+
+### **Documentos Relacionados**
+- [`HIBERNATION_WIDGET_V2_BITACORA_COMPLETA.md`](./HIBERNATION_WIDGET_V2_BITACORA_COMPLETA.md) - Bitácora técnica completa del widget
+- [`HIBERNATION_WIDGET_V2_CHECKLIST_COMPLETO.md`](../checklists/HIBERNATION_WIDGET_V2_CHECKLIST_COMPLETO.md) - Checklist técnico exhaustivo
+- [`REGISTRAR_ACCION_PROPOSITO_SISTEMA.md`](./REGISTRAR_ACCION_PROPOSITO_SISTEMA.md) - Integración con Dashboard Controller
+
+---
+
+## �🎯 CONCLUSIONES
 
 La **Pestaña H1 - Hibernación Real** es el **corazón del sistema de monitoreo**, proporcionando:
 
@@ -224,5 +276,9 @@ La **Pestaña H1 - Hibernación Real** es el **corazón del sistema de monitoreo
 ✅ **Métricas en tiempo real** del rendimiento del sistema
 ✅ **Error handling robusto** con múltiples fallbacks
 ✅ **Interface clara** e informativa
+✅ **Widget v2.0** con arquitectura directa integrada
+✅ **Coordinación total** con Dashboard Controller
 
-Es la pestaña más crítica del dashboard y está **100% operativa**.
+Es la pestaña más crítica del dashboard y está **100% operativa** con la nueva integración v2.0 completamente funcional.
+
+**📊 Última actualización**: 6 de Agosto, 2025 - Hibernation Widget v2.0 integrado

@@ -1,227 +1,314 @@
-# ICT Engine v5.0 - Sistema de Trading Profesional ICT
+# 🎯 ICT ENGINE v5.0 - Sistema de Trading Profesional
 
-## 🎯 Descripción General
+Sistema avanzado de análisis y trading basado en patrones ICT (Inner Circle Trader) con dashboard interactivo y gestión automatizada de posiciones.
 
-ICT Engine v5.0 es un sistema profesional de análisis y trading basado en la metodología Inner Circle Trader (ICT). Combina detección automática de patrones, análisis de estructura de mercado y gestión avanzada de riesgo para proporcionar señales de trading de alta probabilidad.
+## 🚀 Características Principales
 
-## 📚 **DOCUMENTACIÓN ORGANIZADA**
+- **🎯 Análisis ICT Completo**: Detección automática de patrones Silver Bullet, Judas Swing, Order Blocks, etc.
+- **📊 Dashboard Interactivo**: Interface profesional con Textual UI para monitoreo en tiempo real
+- **💹 Trading Automatizado**: Ejecución automática de señales con gestión avanzada de riesgo
+- **🌙 Sistema de Hibernación**: Operación inteligente según horarios de mercado
+- **📱 Notificaciones**: Alertas por Telegram, email y push notifications
+- **🔧 Debug Tools**: Herramientas profesionales de debugging y desarrollo
 
-### **🔧 CONFIGURACIÓN**
-- [`CONFIGURACION_VSCODE_MENOS_ESTRICTO.md`](configuracion/CONFIGURACION_VSCODE_MENOS_ESTRICTO.md) - Configuración optimizada de VS Code
+## 📁 Estructura del Proyecto
 
-### **📊 BITÁCORAS**
-- [`BITACORA_CONFIGURACION_VSCODE.md`](bitacoras/BITACORA_CONFIGURACION_VSCODE.md) - Bitácora de configuración del entorno
-- [`BITACORA_DIAGNOSTICO_DASHBOARD.md`](bitacoras/BITACORA_DIAGNOSTICO_DASHBOARD.md) - Diagnóstico del sistema dashboard
-- [`BITACORA_SEGUIMIENTO_ICT.md`](bitacoras/BITACORA_SEGUIMIENTO_ICT.md) - Seguimiento del progreso del proyecto
-
-### **📈 PLANIFICACIÓN**
-- [`PLAN_TRABAJO_COMPLETO_ICT.md`](planificacion/PLAN_TRABAJO_COMPLETO_ICT.md) - Plan completo de desarrollo del proyecto
-
-## 📊 **ESTADO ACTUAL DEL SISTEMA**
-
-### ✅ **ÚLTIMAS ACTUALIZACIONES (01 Agosto 2025 - 19:30 hrs)**
-
-**🔧 LOGGING SYSTEM COMPLETAMENTE CORREGIDO**
-- ✅ Todas las categorías de logging corregidas en POI Black Box Diagnostics
-- ✅ Logs guardándose correctamente en `data/logs/poi/`
-- ✅ Sin errores SLUC ERROR - Dashboard ejecuta limpiamente
-- ✅ Sistema de diagnósticos automáticos 100% funcional
-
-**🎨 INTERFAZ VISUAL RESTAURADA**
-- ✅ Pantalla "🔧 DEVELOPMENT MODE" recuperada (formato original)
-- ✅ Grid POI con datos completos y formateado preferido
-- ✅ Dashboard Multi-POI funcionando al 100% con interfaz hermosa
-- ✅ Sistema de caja negra conservado y funcional
-
-**📈 MÉTRICAS DE SISTEMA**
 ```
-✅ Sistema POI: Funcionando al 100%
-✅ Multi-POI Dashboard: Funcionando al 100%
-✅ Dashboard Principal: Ejecutándose sin errores
-✅ Sistema de Logs: Guardándose en data/logs/poi/
-✅ Caja Negra ICT: POIs completamente integrados
-✅ Logging Categories: 24 correcciones aplicadas exitosamente
+ICT Engine v5.0/
+├── 🚀 main.py                     # Launcher principal con auto-descarga
+├── 📋 requirements.txt            # Dependencias
+├── 🚫 .gitignore                 # Archivos excluidos
+│
+├── 📊 dashboard/                  # Dashboard interactivo
+│   ├── dashboard_definitivo.py   # Dashboard principal
+│   ├── widgets/                  # Widgets especializados
+│   └── ...
+│
+├── 🧠 core/                      # Motor central del sistema
+│   ├── ict_engine/               # Análisis ICT
+│   ├── poi_system/               # Sistema POI
+│   ├── risk_management/          # Gestión de riesgo
+│   ├── data_management/          # ✨ Gestión de datos y velas
+│   ├── integrations/             # ✨ Integraciones del sistema
+│   └── ...
+│
+├── 🧪 tests/                     # ✨ Pruebas y testing
+│   ├── test_candle_integration.py # Tests de integración de velas
+│   ├── test_ict_engine.py        # Tests del motor ICT
+│   └── README.md                 # Documentación de tests
+│
+├── 📚 docs/                      # Documentación
+│   ├── reports/                  # ✨ Reportes y auditorías
+│   │   ├── RESOLUCION_DIAGNOSTICO_CANDLE_DOWNLOADER.md
+│   │   ├── CONFIDENCE_ENGINE_AUDIT_REPORT.md
+│   │   └── sprint_reports.json
+│   ├── architecture/             # Documentación técnica
+│   └── ...
+│
+├── ⚙️ config/                    # Configuración del sistema
+├── 🛠️ utils/                     # Utilidades
+├── 🔧 scripts/                   # Scripts de automatización
+├── 🐛 debugging/                 # Herramientas de debug
+└── 🏗️ deployment/               # Scripts de despliegue
+│   └── ...
+│
+├── 🔧 utils/                     # Utilidades centrales
+│   ├── mt5_data_manager.py       # Gestor de datos MT5 con auto-descarga
+│   └── ...
+│
+├── ⚙️ sistema/                   # Sistema base
+│   ├── logging_interface.py     # Sistema de logging
+│   └── ...
+│
+├── 🛠️ config/                    # Configuración
+│   ├── config_manager.py        # Gestor de configuración
+│   └── ...
+│
+├── 📊 data/                      # Datos del sistema
+│   ├── candles/                  # Datos históricos (auto-generados)
+│   ├── logs/                     # Logs del sistema
+│   └── exports/                  # Exportaciones
+│
+├── 📚 docs/                      # Documentación
+│   ├── reports/                  # Reportes de auditoría y sprints
+│   ├── project_management/       # Gestión de proyecto
+│   ├── architecture/             # Documentación técnica
+│   └── ...
+│
+├── 🔍 debugging/                 # Herramientas de debugging
+├── 🛠️ utilities/                 # Utilidades de desarrollo
+└── 📝 scripts/                   # Scripts de mantenimiento
 ```
+├──
+├── 📊 dashboard/                  # Dashboard principal
+│   ├── dashboard_definitivo.py   # App principal
+│   ├── dashboard_widgets.py      # Widgets modulares
+│   └── dashboard_controller.py   # Controlador central
+├──
+├── 🧠 core/                       # Lógica principal
+│   ├── ict_engine/               # Motor ICT
+│   ├── poi_system/               # Sistema POI
+│   ├── risk_management/          # Gestión de riesgo
+│   └── trading.py                # Motor de trading
+├──
+├── ⚙️ sistema/                    # Sistema base
+│   ├── logging_interface.py     # SLUC v2.0 Logging
+│   └── emoji_logger.py          # Logger con emojis
+├──
+├── 📁 config/                     # Configuraciones
+│   ├── config_manager.py        # Gestor de config
+│   ├── config_main.json         # Config principal
+│   └── config_user.json         # Config usuario
+├──
+├── 🛠️ utilities/                  # Herramientas
+│   ├── debug/                    # Debug tools
+│   ├── migration/                # Migración de código
+│   └── sprint/                   # Gestión de sprints
+├──
+│   ├── integration/              # Tests integración
+│   └── fixtures/                 # Datos de prueba
+├──
+├── 📋 scripts/                    # Scripts utilidad
+│   └── system_info.py           # Info del sistema
+├──
+├── 📚 docs/                       # Documentación
+│   ├── README.md                 # Documentación general
+│   └── architecture/             # Arquitectura
+├──
+├── 💾 data/                       # Datos del sistema
+│   └── logs/                     # Logs estructurados
+├──
+└── 🗂️ temp/                       # Archivos temporales
+```
+
+## 🔧 Instalación y Configuración
+
+### 1. **Clonar el Repositorio**
+```bash
+git clone [repository-url]
+cd "itc engine v5.0"
+```
+
+### 2. **Instalar Dependencias**
+```bash
+# Crear entorno virtual (recomendado)
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
+
+# Instalar dependencias
+pip install -r requirements.txt
+```
+
+### 3. **Configurar VS Code (Opcional)**
+```bash
+# Usar configuración menos estricta
+# Ver: CONFIGURACION_VSCODE_MENOS_ESTRICTO.md
+```
+
+## 🚀 Uso del Sistema
+
+### **Launcher Principal**
+```bash
+# 🎯 Menú interactivo
+python main.py
+
+# 🚀 Dashboard directo
+python main.py --dashboard
+
+# 🔧 Herramientas de debug
+python main.py --debug
+
+# 🛠️ Ver utilidades
+python main.py --utilities
+
+# 🧪 Ejecutar tests
+python main.py --tests
+```
+
+### **Componentes Individuales**
+```bash
+# 📊 Dashboard principal
+python dashboard/dashboard_definitivo.py
+
+# 🔧 Debug tools
+python utilities/debug/debug_launcher.py
+
+# 📝 Migración de prints
+python utilities/migration/print_migration_tool.py --scan-only
+
+# 📊 Consolidador de sprint
+python utilities/sprint/sprint_1_1_consolidator.py
+```
+
+## 🧪 Testing
+
+### **Ejecutar Tests**
+```bash
+# 🧪 Todos los tests
+python -m pytest tests/
+
+# 📊 Test de integración de velas (completo)
+python tests/test_candle_integration.py
+
+# 🚀 Test del motor ICT
+python tests/test_ict_engine.py
+
+# 🏷️ Tests específicos desde main.py
+python main.py --tests
+```
+
+### **Verificación del Sistema**
+```bash
+# 📊 Estado de componentes
+python tests/test_candle_integration.py
+
+# 🔗 Verificar integración completa
+cd tests
+python test_candle_integration.py
+```
+
+### **Crear Nuevos Tests**
+```bash
+# 📁 Agregar en /tests/
+# - test_[component].py para tests específicos
+# - Seguir estructura existente
+# - Documentar en tests/README.md
+```
+
+## 🛠️ Herramientas de Desarrollo
+
+### **Debug Tools**
+```bash
+# 🔧 Debug Launcher con F12
+python utilities/debug/debug_launcher.py
+
+# 📸 Screenshots de debug
+# Presiona 'S' en debug launcher
+
+# 📋 DevTools F12
+# Presiona F12 en debug launcher
+```
+
+### **Code Quality**
+```bash
+# 📝 Migración de prints
+python utilities/migration/print_migration_tool.py --dry-run
+
+# 🧹 Linting
+pylint core/
+pylint dashboard/
+
+# 🎨 Formateo
+black core/ dashboard/ sistema/
+```
+
+### **Sprint Management**
+```bash
+# 📊 Estado del sprint actual
+python utilities/sprint/sprint_1_1_consolidator.py
+
+# 📋 Validación completa
+python utilities/sprint/sprint_1_1_consolidator.py --validation-only
+
+# 🧪 Tests de integración
+python utilities/sprint/sprint_1_1_consolidator.py --integration-only
+```
+
+## 📊 Roadmap de Desarrollo
+
+### **🟢 Sprint 1.1: Debug System & Clean Code** *(COMPLETADO)*
+- ✅ Debug Launcher con DevTools F12
+- ✅ Migración de print statements a enviar_senal_log()
+- ✅ Console mode para desarrollo
+- ✅ Screenshot capability
+- ✅ Testing de rendering limpio
+
+### **🟡 Sprint 1.2: Trading Engine Foundation** *(EN PROGRESO)*
+- 🔄 Trading engine con ejecución automática
+- 🔄 Grid Trading básico
+- 🔄 Position Manager para múltiples posiciones
+- 🔄 Trailing stop avanzado
+
+### **🟡 Sprint 2.1: Hibernación Inteligente** *(PLANIFICADO)*
+- 🌙 Sistema de hibernación automática
+- ⏰ Gestión de horarios de trading
+- 🔄 Transiciones automáticas entre fases
+- 📊 Monitoreo de recursos
+
+### **🟡 Sprint 3.1: Trading Profesional** *(PLANIFICADO)*
+- 💹 Ejecución automática de señales
+- 📈 Analytics y performance
+- 🎯 Risk management avanzado
+- 📊 Portfolio management
+
+## 📚 Documentación
+
+- **📋 [Plan Completo](PLAN_TRABAJO_COMPLETO_ICT.md)**: Roadmap detallado del proyecto
+- **🔧 [Config VS Code](BITACORA_CONFIGURACION_VSCODE.md)**: Configuración de desarrollo
+- **📊 [Diagnóstico](BITACORA_DIAGNOSTICO_DASHBOARD.md)**: Diagnóstico del dashboard
+- **📈 [Seguimiento](BITACORA_SEGUIMIENTO_ICT.md)**: Tracking del progreso
+- **🛠️ [VS Code Simple](CONFIGURACION_VSCODE_MENOS_ESTRICTO.md)**: Config simplificada
+
+## 🤝 Contribución
+
+1. **Fork** el proyecto
+2. **Crear** branch para feature (`git checkout -b feature/nueva-funcionalidad`)
+3. **Commit** cambios (`git commit -am 'Agregar nueva funcionalidad'`)
+4. **Push** al branch (`git push origin feature/nueva-funcionalidad`)
+5. **Crear** Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 📞 Contacto y Soporte
+
+- **📧 Email**: [email del desarrollador]
+- **💬 Discord**: [servidor de Discord]
+- **📱 Telegram**: [canal de Telegram]
 
 ---
 
-## 🏗️ Arquitectura del Sistema
-
-### Componentes Principales
-
-```
-ICT Engine v3.44/
-├── core/                           # Motor principal del sistema
-│   ├── ict_engine/                 # Lógica ICT core
-│   │   ├── pattern_analyzer.py     # Analizador de patrones ICT
-│   │   ├── ict_detector.py         # Detector de setups ICT
-│   │   ├── confidence_engine.py    # Motor de confianza
-│   │   └── veredicto_engine_v4.py  # Motor de decisiones
-│   ├── poi_system/                 # Sistema de Puntos de Interés
-│   │   ├── poi_detector.py         # Detector de POIs
-│   │   └── poi_scoring_engine.py   # Sistema de puntuación
-│   ├── analysis_command_center/    # Centro de comando de análisis
-│   │   └── tct_pipeline/           # Pipeline de análisis técnico
-│   └── risk_management/            # Gestión de riesgo
-├── dashboard/                      # Interfaz de usuario
-├── sistema/                        # Sistema base y logging
-├── config/                         # Configuraciones
-└── utils/                          # Utilidades
-```
-
-## 🔥 Características Principales
-
-### 1. Detección Automática de Patrones ICT
-- **Silver Bullet**: Patrón de máxima probabilidad (10:00-11:00 GMT)
-- **Judas Swing**: Detección de manipulación matutina
-- **Liquidity Grab**: Identificación de barridos de liquidez
-- **Optimal Trade Entry (OTE)**: Entradas óptimas en retrocesos
-- **Power of Three**: Patrones de distribución de NY
-
-### 2. Sistema de POIs (Puntos de Interés)
-- Order Blocks (Bullish/Bearish)
-- Fair Value Gaps (FVG)
-- Zonas de liquidez institucional
-- Niveles de soporte/resistencia dinámicos
-- Sistema de puntuación automático
-
-### 3. Análisis de Estructura de Mercado
-- Identificación de fases de mercado (Acumulación, Manipulación, Distribución)
-- Análisis de tendencia primaria y secundaria
-- Evaluación de calidad estructural
-- Detección de cambios de character
-
-### 4. Gestión Avanzada de Riesgo
-- Cálculo automático de Risk:Reward
-- Ajuste dinámico de posiciones
-- Múltiples niveles de take profit
-- Stop loss inteligente basado en estructura
-
-### 5. Sistema de Logging Centralizado (SLUC v2.0)
-- Logging estructurado con categorías
-- Registros de rendimiento en tiempo real
-- Bitácoras de decisiones del sistema
-- Logs de errores y debugging
-
-## 🎮 Uso del Sistema
-
-### Inicialización
-```python
-from core.ict_engine.pattern_analyzer import ICTPatternAnalyzer
-from core.poi_system.poi_detector import POIDetector
-
-# Inicializar componentes
-analyzer = ICTPatternAnalyzer()
-poi_detector = POIDetector()
-
-# Actualizar datos
-analyzer.update_data(current_price, pois, candles_data)
-
-# Realizar análisis
-result = analyzer.analyze_current_structure()
-```
-
-### Interpretación de Resultados
-```python
-# Acceder a señal principal
-primary_signal = result.primary_signal
-print(f"Patrón: {primary_signal.pattern.value}")
-print(f"Dirección: {primary_signal.direction.value}")
-print(f"Fortaleza: {primary_signal.strength}%")
-
-# Plan de acción
-for step in primary_signal.action_plan:
-    print(step)
-```
-
-## 📊 Tipos de Señales
-
-### Fortaleza de Señal
-- **HIGH (80-95%)**: Señales de máxima confianza
-- **MEDIUM (60-79%)**: Señales moderadas
-- **LOW (40-59%)**: Señales de baja confianza
-
-### Patrones Detectados
-1. **Silver Bullet** (75-95% fortaleza)
-2. **Judas Swing** (70-88% fortaleza)
-3. **Liquidity Grab** (80-92% fortaleza)
-4. **Optimal Trade Entry** (65-85% fortaleza)
-5. **Power of Three** (70-90% fortaleza)
-
-## 🕐 Contexto Temporal
-
-### Sesiones de Trading
-- **Asian Session**: 00:00-08:00 GMT (Acumulación)
-- **London Session**: 08:00-16:00 GMT (Manipulación/Distribución)
-- **NY Session**: 13:00-21:00 GMT (Distribución)
-- **London-NY Overlap**: 13:00-16:00 GMT (Máxima liquidez)
-
-### Ventanas Críticas
-- **Silver Bullet**: 10:00-11:00 GMT
-- **Judas Swing**: Primeras 2-3 horas de sesión principal
-- **Power of Three**: 13:30-15:00 GMT (NY)
-
-## ⚙️ Configuración
-
-### Variables de Entorno
-```python
-# config/config.py
-SYMBOL = "EURUSD"
-TIMEFRAMES = ["M1", "M5", "M15", "H1"]
-MIN_SIGNAL_STRENGTH = 60.0
-MAX_SIGNALS_PER_ANALYSIS = 3
-```
-
-### Logging
-```python
-# sistema/logging_config.py
-LOG_LEVEL = "INFO"
-LOG_FORMAT = "structured"
-ENABLE_EMOJI_LOGS = True
-```
-
-## 🔧 Mantenimiento
-
-### Monitoreo del Sistema
-- Verificar logs en `docs/logs/`
-- Revisar bitácoras en `docs/bitacoras/`
-- Monitorear rendimiento en dashboard
-
-### Troubleshooting
-1. **Señales débiles**: Verificar calidad de POIs
-2. **Errores de conexión**: Revisar configuración MT5
-3. **Logs faltantes**: Verificar permisos de escritura
-
-## 📈 Métricas de Rendimiento
-
-### KPIs del Sistema
-- **Precisión de Señales**: Target >75%
-- **Risk:Reward Promedio**: Target >1:2
-- **Tiempo de Respuesta**: <500ms
-- **Uptime del Sistema**: >99%
-
-## 🚀 Roadmap
-
-### v3.45 (Próxima)
-- [ ] Integración con múltiples brokers
-- [ ] ML para optimización de patrones
-- [ ] API REST para acceso externo
-- [ ] Dashboard web avanzado
-
-### v4.0 (Futuro)
-- [ ] Trading automatizado completo
-- [ ] Backtesting histórico
-- [ ] Optimización genética de parámetros
-- [ ] Clustering de patrones
-
-## 📞 Soporte
-
-Para soporte técnico o reportar bugs:
-- Revisar logs en `docs/logs/system_status.log`
-- Consultar bitácoras en `docs/bitacoras/`
-- Verificar documentación en `docs/architecture/`
-
----
-
-**ICT Engine v5.0** - Desarrollado con metodología Inner Circle Trader
-*Última actualización: 01 Agosto 2025 - Sistema de Logging Corregido*
+*🎯 ICT Engine v5.0 - Sistema de Trading Profesional*
+*Última actualización: Agosto 2025*

@@ -4,6 +4,10 @@
 🎯 POI DASHBOARD INTEGRATION v2.0 - ARQUITECTURA DIRECTA
 ========================================================
 Usa TODA la infraestructura existente sin duplicar código
+
+📚 DOCUMENTACIÓN RELACIONADA:
+- docs/bitacoras/reportes/REGISTRAR_ACCION_PROPOSITO_SISTEMA.md
+- docs/bitacoras/reportes/HIBERNATION_WIDGET_V2_BITACORA_COMPLETA.md (patrón similar)
 """
 
 from sistema.logging_interface import enviar_senal_log
@@ -156,8 +160,11 @@ def integrar_multi_poi_en_panel_ict(dashboard_instance, timeframe='H1'):
                 controller_data = {
                     'total_pois': total_pois,
                     'timeframes': timeframes_disponibles,
-                    'status': 'SUCCESS'
+                    'status': 'SUCCESS',
+                    'source': 'POI_DASHBOARD_INTEGRATION'
                 }
+                # 🎯 REGISTRAR ACCIÓN: Notifica al controller sobre integración POI exitosa
+                # Propósito: Tracking de éxito de integración, métricas de POI detectados, coordinación dashboard
                 controller.registrar_accion(f"POI_INTEGRATION_SUCCESS_{timeframe}", controller_data)
                 enviar_senal_log("INFO", "📡 Estado reportado al Dashboard Controller exitosamente", __name__, "controller_sync")
             except Exception as e:

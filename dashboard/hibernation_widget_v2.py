@@ -4,6 +4,13 @@
 🌙 HIBERNATION WIDGET v2.0 - ARQUITECTURA DIRECTA
 =================================================
 Usa TODA la infraestructura existente siguiendo el patrón exitoso del POI Integration
+
+📚 DOCUMENTACIÓN COMPLETA:
+- docs/bitacoras/reportes/HIBERNATION_WIDGET_V2_BITACORA_COMPLETA.md
+- docs/bitacoras/checklists/HIBERNATION_WIDGET_V2_CHECKLIST_COMPLETO.md
+- docs/bitacoras/reportes/HIBERNATION_WIDGET_V2_INDICE_DOCUMENTACION.md
+- docs/bitacoras/reportes/DASHBOARD_H1_HIBERNACION.md (actualizado)
+- docs/bitacoras/reportes/REGISTRAR_ACCION_PROPOSITO_SISTEMA.md
 """
 
 from sistema.logging_interface import enviar_senal_log
@@ -57,8 +64,11 @@ def crear_panel_hibernacion_inteligente(dashboard_instance) -> Panel:
         # 3️⃣ ESTADO MT5 Y MERCADO
         if mt5_manager:
             try:
-                # Verificar estado MT5 real
-                mt5_status = mt5_manager.verificar_conexion() if hasattr(mt5_manager, 'verificar_conexion') else True
+                # Verificar estado MT5 real usando métodos disponibles
+                # El MT5DataManager no tiene verificar_conexion, pero podemos usar get_account_info
+                account_info = mt5_manager.get_account_info() if hasattr(mt5_manager, 'get_account_info') else None
+                mt5_status = account_info is not None and len(account_info) > 0
+
                 if mt5_status:
                     market_status = "🟢 ACTIVO"
                     trading_hours = determinar_horario_trading()
@@ -86,8 +96,11 @@ def crear_panel_hibernacion_inteligente(dashboard_instance) -> Panel:
                     'market_status': market_status,
                     'current_price': current_price,
                     'hibernation_active': True,
-                    'timestamp': datetime.now().isoformat()
+                    'timestamp': datetime.now().isoformat(),
+                    'source': 'HIBERNATION_WIDGET_V2'
                 }
+                # 🎯 REGISTRAR ACCIÓN: Notifica al controller sobre actualización de estado hibernación
+                # Propósito: Tracking de cambios de estado del mercado, coordinación sistema hibernación
                 controller.registrar_accion("HIBERNATION_STATUS_UPDATE", controller_data)
                 enviar_senal_log("INFO", "📡 Estado hibernación reportado al Dashboard Controller", __name__, "controller_sync")
             except Exception as e:

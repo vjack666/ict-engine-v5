@@ -447,6 +447,84 @@ class DashboardController:
             if len(self.state.recent_logs) > 50:
                 self.state.recent_logs = self.state.recent_logs[-50:]
 
+    def registrar_accion(self, action_name: str, action_data: Optional[Dict[str, Any]] = None):
+        """
+        🎯 REGISTRA ACCIONES DE WIDGETS/MÓDULOS EN EL SISTEMA
+
+        Propósito en el sistema:
+        - Tracking centralizado de acciones importantes de diferentes módulos
+        - Coordinación entre widgets y el controller principal
+        - Métricas de sistema para análisis y debugging
+        - Historial de eventos para troubleshooting
+
+        Args:
+            action_name: Nombre de la acción (ej: "POI_INTEGRATION_SUCCESS_H1", "HIBERNATION_STATUS_UPDATE")
+            action_data: Datos adicionales de la acción (opcional)
+        """
+        try:
+            # Crear registro de acción completo
+            action_record = {
+                'action': action_name,
+                'data': action_data or {},
+                'timestamp': datetime.now().isoformat(),
+                'source': action_data.get('source', 'UNKNOWN') if action_data else 'UNKNOWN'
+            }
+
+            # Registrar en logs con categoría específica
+            enviar_senal_log(
+                "ACTION",
+                f"🎯 Acción registrada: {action_name}",
+                __name__,
+                "action_tracking"
+            )
+
+            # Si hay datos adicionales, loggear el detalle
+            if action_data:
+                data_summary = {}
+                for key, value in action_data.items():
+                    if isinstance(value, (dict, list)):
+                        data_summary[key] = f"{type(value).__name__}({len(value)})"
+                    else:
+                        data_summary[key] = str(value)[:50]  # Truncar valores largos
+
+                enviar_senal_log(
+                    "DEBUG",
+                    f"📊 Datos de acción {action_name}: {data_summary}",
+                    __name__,
+                    "action_tracking"
+                )
+
+            # Agregar a log entries para historial
+            self.add_log_entry("ACTION", f"Acción: {action_name}", "CONTROLLER")
+
+            # Crear alerta si es acción importante
+            if any(keyword in action_name.upper() for keyword in ['SUCCESS', 'ERROR', 'CRITICAL', 'WARNING']):
+                alert_type = "SUCCESS" if "SUCCESS" in action_name.upper() else "WARNING"
+                self.add_alert(f"Acción registrada: {action_name}", alert_type)
+
+            # Incrementar métricas
+            if not hasattr(self, 'actions_registered'):
+                self.actions_registered = 0
+            self.actions_registered += 1
+
+            enviar_senal_log(
+                "SUCCESS",
+                f"✅ Acción '{action_name}' registrada exitosamente (Total: {getattr(self, 'actions_registered', 1)})",
+                __name__,
+                "action_tracking"
+            )
+
+        except Exception as e:
+            # Error handling robusto
+            enviar_senal_log(
+                "ERROR",
+                f"❌ Error registrando acción '{action_name}': {e}",
+                __name__,
+                "action_tracking"
+            )
+            # Registrar error como log entry también
+            self.add_log_entry("ERROR", f"Error registrando acción: {action_name} - {e}", "CONTROLLER")
+
     def update_market_data(self, market_data: Dict[str, Any]):
         """
         Actualiza el estado con nuevos datos del mercado y notifica a dashboards

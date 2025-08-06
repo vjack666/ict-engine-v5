@@ -100,7 +100,7 @@ class ScriptAnalyzer:
             if docstring:
                 return docstring[:100] + "..."
         except (SyntaxError, ValueError) as e:
-            logger.debug("Error parsing docstring for script: %s", e)
+            enviar_senal_log("DEBUG", f"Error parsing docstring for script: {e}", "script_analyzer", "docstring_parsing")
         return "Sin docstring"
 
     def _categorize_script(self, script_info: dict):
