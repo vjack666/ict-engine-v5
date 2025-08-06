@@ -1,8 +1,19 @@
 # 📚 ÍNDICE DE BITÁCORAS ICT ENGINE v5.0 - ESTRUCTURA REORGANIZADA
 
-**Fecha de Actualización:** 04 Agosto 2025 - 15:30 hrs
+**Fecha de Actualización:** 06 Agosto 2025 - 16:45 hrs
 **Estado:** ✅ **ESTRUCTURA COMPLETAMENTE REORGANIZADA Y OPTIMIZADA**
-**Versión:** Limpia y eficiente - Solo archivos relevantes
+**Versión:** Actualizada con Plan de Ataque VS Code Problems
+
+---
+
+## 🚨 **DOCUMENTOS CRÍTICOS ACTIVOS**
+
+### 🎯 **PLAN DE ATAQUE ACTUAL**
+- 🚨 `PLAN_ATAQUE_VSCODE_PROBLEMS_2025_08_06.md` - **PLAN ACTIVO** - Resolución 465 errores VS Code
+
+### 📋 **BITÁCORAS PRINCIPALES ACTUALIZADAS**
+- 🎯 `REPORTE_REFINAMIENTO_SIC_V2_COMPLETADO.md` - **ACTUALIZADO** con nuevas directivas
+- 📊 `current/BITACORA_GENERAL_PROYECTO.md` - **DOCUMENTO MAESTRO DEL PROYECTO**
 
 ---
 

@@ -7,6 +7,12 @@
 **Fase:** 🎯 Sistema SIC v2.0 Operativo y Optimizado
 **Resultado:** 🏆 ÉXITO TOTAL - Listo para Producción
 
+## 🚨 ACTUALIZACIÓN CRÍTICA - PLAN DE ATAQUE VS CODE PROBLEMS
+
+**Nueva Fase:** 🔧 **CORRECCIÓN ARQUITECTURAL MASIVA** - 465 Errores VS Code
+**Objetivo:** Llegar a **0 problemas** en la pestaña Problems de VS Code
+**Estrategia:** Arquitectura dual **SLUC v2.1 (Logs) + SIC v2.0 (Imports)**
+
 ## 🎉 RESUMEN EJECUTIVO FINAL
 
 El **Refinamiento Quirúrgico del Sistema de Imports Centralizados (SIC) v2.0** ha sido completado exitosamente, resultando en un sistema robusto, optimizado y listo para producción.
@@ -19,12 +25,28 @@ El **Refinamiento Quirúrgico del Sistema de Imports Centralizados (SIC) v2.0** 
 - **✅ Documentación Exhaustiva**: Proceso completamente documentado
 - **✅ Herramientas Automatizadas**: 7 scripts desarrollados y validados
 
+### 🚨 PROBLEMAS DETECTADOS - NUEVA FASE DE CORRECCIÓN
+
+**📊 ANÁLISIS VS CODE PROBLEMS:**
+- **Total errores detectados:** 465 problemas críticos
+- **Archivo principal afectado:** `dashboard/dashboard_definitivo.py`
+- **Causa raíz:** Referencias a `sistema.sic.py` obsoleto en lugar de `imports_interface.py`
+
+**🔴 ERRORES CRÍTICOS IDENTIFICADOS:**
+1. **Import duplicado de sys** (línea 31)
+2. **Import duplicado de Path** (línea 185)
+3. **enviar_senal_log undefined** (múltiples líneas)
+4. **Referencias incorrectas a sic.py** obsoleto
+5. **Textual components undefined** (App, Binding, etc.)
+6. **TCT Interface syntax error** (línea 154)
+
 ## 📈 MÉTRICAS FINALES DEFINITIVAS
 
 ### 🎯 Archivos Refinados Exitosamente (5/5)
 1. **dashboard/dashboard_definitivo.py** - 141.21 KB, 2750 líneas ✅
    - Imports SIC: 8 precisos (vs 30+ anteriores)
    - Optimización: 75% reducción de imports
+   - **🚨 ESTADO ACTUAL:** 465 errores detectados - Requiere corrección urgente
 
 2. **core/ict_engine/ict_detector.py** - 112.2 KB, 2657 líneas ✅
    - Imports SIC: 3 esenciales
@@ -37,10 +59,50 @@ El **Refinamiento Quirúrgico del Sistema de Imports Centralizados (SIC) v2.0** 
 4. **core/analysis_command_center/tct_pipeline/tct_interface.py** - 26.51 KB, 719 líneas ✅
    - Imports SIC: 2 específicos
    - Integración: Perfecta con SIC
+   - **🚨 PROBLEMA:** Syntax error línea 16 - Requiere corrección
 
 5. **dashboard/poi_dashboard_integration.py** - 16.66 KB, 349 líneas ✅
    - Imports SIC: 0 (no requeridos)
    - Estado: Optimizado al máximo
+
+### 📋 BITÁCORA DE ARCHIVOS EXISTENTES - ACTUALIZADA
+
+**✅ ARCHIVOS FUNCIONALES:**
+- `sistema/imports_interface.py` - **SIC v2.0** (ImportsCentral) ✅
+- `sistema/logging_interface.py` - **SLUC v2.1** (enviar_senal_log) ✅
+
+**❌ ARCHIVOS PROBLEMÁTICOS DETECTADOS:**
+- `dashboard/dashboard_definitivo.py` - **465 errores** ❌
+- `sistema/sic.py` - **Archivo obsoleto** causando conflictos ❌
+- `dashboard/problems_tab_renderer.py` - **Referencias incorrectas** ❌
+- `utils/system_diagnostics.py` - **Imports de sic.py obsoleto** ❌
+- `utils/mt5_data_manager.py` - **Imports incorrectos** ❌
+
+### ⚡ PLAN DE ATAQUE ESTRUCTURADO
+
+#### **FASE 1: LIMPIEZA ARQUITECTURAL (20 min)**
+1. **🔧 Corregir dashboard_definitivo.py:**
+   - Eliminar imports duplicados (sys, Path)
+   - Reemplazar todas las referencias `sistema.sic` por `sistema.imports_interface`
+   - Configurar enviar_senal_log correctamente desde ImportsCentral
+
+#### **FASE 2: CORRECCIÓN DE IMPORTS (15 min)**
+2. **🔗 Unificar sistema de imports:**
+   - Usar **SOLO** ImportsCentral para todos los imports
+   - Eliminar fallbacks problemáticos a sic.py
+   - Configurar Textual imports con fallback robusto
+
+#### **FASE 3: ARCHIVOS AUXILIARES (10 min)**
+3. **📁 Actualizar archivos dependientes:**
+   - `utils/system_diagnostics.py` - cambiar de sic.py a imports_interface.py
+   - `dashboard/problems_tab_renderer.py` - actualizar imports
+   - `utils/mt5_data_manager.py` - actualizar imports
+
+#### **FASE 4: VALIDACIÓN (10 min)**
+4. **✅ Testing y verificación:**
+   - Ejecutar dashboard sin errores
+   - Verificar que contador Problems = 0
+   - Validar ambos sistemas (SLUC + SIC) funcionando
 
 ### 🧠 Métricas del Migrador Inteligente v2.0
 - **Análisis Semántico**: 290+ dependencias analizadas por archivo

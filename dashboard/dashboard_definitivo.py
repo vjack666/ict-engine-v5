@@ -182,7 +182,6 @@ except ImportError:
         return {'error': 'Módulo no disponible'}
 
 # === RESTO DE IMPORTS ===
-from pathlib import Path
 
 try:
     # El directorio padre de dashboard es el proyecto principal
@@ -259,9 +258,6 @@ try:
     # Ya importado arriba
 
     # 🧠 CAJA NEGRA ICT COMPLETA - Motores principales
-    # import sys ya importado previamente
-    # sys.path.append('..') ya configurado
-
     # 🚀 SPRINT 1.7 - ADVANCED PATTERNS v2.0
 
     # ⏱️ TCT PIPELINE INTEGRATION - SPRINT 1.2 COMPLETADO
