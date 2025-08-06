@@ -30,9 +30,7 @@ Conectado a datos reales de MT5 con análisis ICT completo y avanzado.
 - Q: Salir del sistema
 
 Autor: Sistema Sentinel Grid
-"""
 
-"""
 Fecha: 2025-07-27
 Versión: Dashboard Definitivo v5.0 🚀
 Entorno: PRODUCCIÓN - DATOS REALES MT5
