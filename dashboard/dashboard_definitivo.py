@@ -28,15 +28,19 @@
 
 # --- CONFIGURACIÓN CRÍTICA DE PATHS PYTHON ---
 # DEBE IR ANTES DE CUALQUIER IMPORT DEL PROYECTO
-from sistema.sic import sys
-from sistema.sic import os
-from sistema.sic import Path
+import sys
+import os
+from pathlib import Path
 
 # Asegurar que Python pueda encontrar todos los módulos del proyecto
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(current_dir)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
+
+# Ahora importar del SIC
+# from sistema.sic import ConfigManager  # No existe en SIC
+from config.config_manager import ConfigManager
 
 # MIGRACIÓN A SIC v3.0 + SLUC v2.1
 from sistema.sic import enviar_senal_log, log_info, log_warning

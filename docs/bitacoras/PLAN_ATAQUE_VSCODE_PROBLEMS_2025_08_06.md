@@ -27,6 +27,171 @@
 - Script automatizado de migración masiva
 - Validación continua de errores
 
+---
+
+## 📊 ANÁLISIS COMPLETO DE IMPORTS - CLASIFICACIÓN ÓPTIMA
+
+**🔍 Fecha de Análisis:** 06 Agosto 2025 - 18:30
+**📈 Resumen Ejecutivo:**
+- **22 archivos** analizados
+- **28 reimports** críticos detectados
+- **319 imports directos** (deben migrar a SIC)
+- **84 imports faltantes** en SIC v3.0
+
+### 🚨 **CATEGORÍA 1: REIMPORTS CRÍTICOS (ELIMINAR INMEDIATAMENTE)**
+
+**🔥 Problema:** `enviar_senal_log` importado múltiples veces en el mismo archivo
+
+**Archivos Afectados:**
+```python
+# ❌ CRÍTICO: dashboard_definitivo.py (5 reimports)
+# Línea 46: from sistema.sic import enviar_senal_log
+# Línea 127: from sistema.logging_interface import enviar_senal_log  # DUPLICADO
+
+# ❌ CRÍTICO: system_monitor.py (3 reimports)
+# Líneas 21, 24, 38: imports múltiples de enviar_senal_log
+
+# ❌ CRÍTICO: market_status_detector.py (3 reimports)
+# Líneas 38, 50, 59: imports múltiples de enviar_senal_log
+```
+
+### 🎯 **CATEGORÍA 2: IMPORTS FALTANTES EN SIC v3.0 (AGREGAR URGENTE)**
+
+#### **Grupo A: Dashboard/UI Components (Priority 1)**
+```python
+# TEXTUAL/UI FRAMEWORK
+'App', 'Button', 'Label', 'Footer', 'Header', 'Panel', 'Static'
+'Container', 'Horizontal', 'Vertical', 'Align', 'Layout', 'Group'
+'TabbedContent', 'TabPane', 'Table', 'Tree', 'Text', 'Columns'
+'Progress', 'ProgressBar', 'SpinnerColumn', 'TextColumn'
+'Console', 'Prompt', 'Confirm', 'Message', 'Binding'
+
+# DASHBOARD PRINCIPAL
+'SentinelDashboardDefinitivo'  # Clase principal del dashboard
+```
+
+#### **Grupo B: ICT Analysis Engine (Priority 1)**
+```python
+# ICT CORE COMPONENTS
+'ICTAnalyzer', 'ICTPattern', 'ICTSignal', 'ICTAnalysisResult'
+'ict_detector', 'ict_pattern_analyzer', 'ict_types'
+'get_ict_engine', 'get_pattern_description'
+
+# PATTERN ANALYSIS
+'FractalAnalyzer', 'POISystem', 'POIScoringEngine'
+'MarketPhase', 'MarketStructure', 'SignalStrength'
+'TradingDirection', 'FlowPriority'
+```
+
+#### **Grupo C: Trading/MT5 Infrastructure (Priority 2)**
+```python
+# MT5 INTEGRATION
+'detectar_mt5_optimizado', 'TradingScheduleManager'
+'get_current_session_info', 'SessionType'
+'calcular_tiempo_restante_para_proxima_sesion'
+
+# DOWNLOAD SYSTEM
+'CandleCoordinator', 'AdvancedCandleDownloader'
+'get_advanced_candle_downloader'
+'DownloadRequest', 'DownloadStats', 'DownloadStatus'
+```
+
+#### **Grupo D: Logging/Monitoring (Priority 2)**
+```python
+# ADVANCED LOGGING
+'get_logger', 'logger', 'smart_log'
+'SmartDirectoryLogger', 'RotatingFileHandler'
+
+# SYSTEM MONITORING
+'AccFlowController', 'AnalysisOrchestrator'
+'TCTInterface', 'TCTFormatter', 'AggregatedTCTMetrics'
+```
+
+#### **Grupo E: Utils/Helpers (Priority 3)**
+```python
+# STANDARD LIBRARY
+'json', 'sys', 'JSONDecodeError', 'Enum', 'TYPE_CHECKING'
+
+# VISUAL/STYLING
+'box', 'DIRECTION_COLORS', 'PATTERN_EMOJIS', 'CONFIDENCE_CONFIG'
+'get_strength_color', 'get_risk_reward_assessment'
+
+# CONFIGURATION
+'SAFE_DATA_DIR', 'ZONA_HORARIA_LOCAL'
+
+# RENDERERS
+'render_hibernacion_perfecta', 'render_problems_tab_simple'
+'get_problems_summary'
+```
+
+### 📁 **CATEGORÍA 3: ARCHIVOS POR ESTADO DE LIMPIEZA**
+
+#### **✅ ARCHIVOS LIMPIOS (Solo SIC):**
+```python
+✅ dashboard_problems_patch.py    # SIC(13) | Directos(0)
+✅ dashboard_widgets.py          # SIC(1)  | Directos(0)
+✅ config.py                     # SIC(3)  | Directos(0)
+✅ logging_interface_simple.py   # SIC(9)  | Directos(0)
+```
+
+#### **🔥 ARCHIVOS CRÍTICOS (Muchos imports directos):**
+```python
+❌ dashboard_definitivo.py       # SIC(36) | Directos(98)  ⭐ PRIORIDAD 1
+❌ imports_interface.py          # SIC(0)  | Directos(50) ⭐ PRIORIDAD 1
+❌ sic.py                        # SIC(0)  | Directos(40) ⭐ PRIORIDAD 1
+❌ ict_professional_widget.py    # SIC(12) | Directos(19) ⭐ PRIORIDAD 2
+❌ problems_tab_renderer.py      # SIC(13) | Directos(14) ⭐ PRIORIDAD 2
+```
+
+#### **⚠️ ARCHIVOS MODERADOS (Pocos imports directos):**
+```python
+⚠️ candle_downloader_widget.py   # SIC(5)  | Directos(8)
+⚠️ hibernation_widget_v2.py      # SIC(26) | Directos(7)
+⚠️ hibernacion_perfecta.py       # SIC(6)  | Directos(4)
+⚠️ market_status_detector_v3.py  # SIC(10) | Directos(4)
+```
+
+### 🎯 **PLAN DE ACCIÓN INMEDIATO**
+
+#### **PASO 1: Eliminar Reimports (15 min)**
+```bash
+# Buscar y eliminar todas las líneas duplicadas:
+grep -r "enviar_senal_log" --include="*.py" . | grep -E "(import|from)"
+```
+
+#### **PASO 2: Expandir SIC v3.0 (45 min)**
+```python
+# Agregar al sistema/sic.py __all__:
+__all__ += [
+    # Dashboard/UI (Grupo A) - 25 exports
+    'App', 'Button', 'Label', 'SentinelDashboardDefinitivo',
+
+    # ICT Engine (Grupo B) - 15 exports
+    'ICTAnalyzer', 'ICTPattern', 'ict_detector',
+
+    # Trading/MT5 (Grupo C) - 10 exports
+    'detectar_mt5_optimizado', 'TradingScheduleManager',
+
+    # Logging (Grupo D) - 8 exports
+    'get_logger', 'smart_log', 'SmartDirectoryLogger',
+
+    # Utils (Grupo E) - 26 exports
+    'json', 'sys', 'box', 'render_hibernacion_perfecta'
+]
+```
+
+#### **PASO 3: Migrar Archivos Críticos (60 min)**
+```python
+# Orden de migración:
+1. dashboard_definitivo.py      # ⭐ MÁXIMA PRIORIDAD
+2. imports_interface.py         # ⭐ INFRAESTRUCTURA
+3. sic.py                       # ⭐ SELF-REFERENCE
+4. ict_professional_widget.py   # 🎯 FUNCIONALIDAD
+5. problems_tab_renderer.py     # 🎯 DEBUGGING
+```
+
+**🎯 Objetivo:** Pasar de **84 imports faltantes** a **0 imports faltantes** en 2 horas
+
 ## 🚀 PLAN DE MIGRACIÓN MASIVA - TODOS LOS ARCHIVOS
 
 ### 📊 INVENTARIO DE ARCHIVOS A MIGRAR
@@ -2079,3 +2244,6 @@ PRÓXIMO: Corregir dashboard_definitivo.py imports de logging
 
 *Bitácora generada automáticamente - ICT Engine v5.0*
 *Plan de Ataque VS Code Problems - 06 Agosto 2025*
+
+ 
+ 

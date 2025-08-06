@@ -186,13 +186,13 @@ class ImportsCentral:
     """Stub para ImportsCentral mientras se migra completamente."""
     def __init__(self):
         self.available = False
-    
+
     def get_dashboard(self):
         return None
-    
+
     def get_logging(self):
         return enviar_senal_log
-    
+
     def get_mt5_manager(self):
         return None
 
@@ -280,8 +280,30 @@ __all__ = [
     # Análisis
     'analyze_market_context', 'detect_ict_concepts', 'detect_order_blocks',
 
-    # Clases
+    # Clases principales
     'POIDetector', 'POIAnalyzer', 'DashboardWidget', 'SystemMonitor', 'ImportsCentral',
+
+    # CONFIG Y MANAGEMENT
+    'ConfigManager', 'DashboardController',
+
+    # ICT ENGINE
+    'ICTDetector', 'ICTEngine', 'ICTPatternAnalyzer', 'ConfidenceEngine', 'VeredictoEngine',
+    'ICTHistoricalAnalyzer', 'PatternAnalyzer',
+
+    # MT5 Y DATA
+    'MT5Connector', 'MT5DataManager', 'CandleDownloader', 'MarketStatusDetector',
+
+    # DASHBOARD WIDGETS
+    'ICTProfessionalWidget', 'HibernationWidget', 'HibernationStatusWidget', 'CountdownWidget',
+    'POIDashboardIntegration',
+
+    # TRADING
+    'TradingEngine', 'TradingDecisionEngine', 'TradingDecisionCache', 'RiskManager', 'RiskBot',
+    'LimitOrderManager', 'OrderManager',
+
+    # UTILS Y FUNCIONES
+    'get_dashboard', 'get_trading_config', 'get_mt5_manager', 'get_ict_components',
+    'get_dashboard_controller', 'get_system_status',
 
     # Estado
     'get_sic_status', 'get_available_functions', 'get_available_classes', 'test_sic_imports',
