@@ -112,27 +112,29 @@ except ImportError:
     pd = MockPandas()
     PANDAS_AVAILABLE = False
 
+# === SISTEMA CENTRAL DE LOGS - CONFIGURACIÓN ÚNICA ===
+# 🔥 SOLUCIÓN DEFINITIVA: Import directo del sistema de logging
+try:
+    from sistema.logging_interface import enviar_senal_log
+    print("✅ Sistema central de logs cargado desde logging_interface")
+    LOGGING_DISPONIBLE = True
+except ImportError:
+    print("⚠️ logging_interface no disponible, usando fallback")
+    def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
+        print(f"[{nivel}] {fuente}: {mensaje}")
+    LOGGING_DISPONIBLE = False
+
 # === IMPORTS CENTRALIZADOS - USANDO IMPORTS_INTERFACE ===
 try:
     from sistema.imports_interface import (
         ImportsCentral, get_dashboard, get_logging, get_mt5_manager,
-        get_ict_components, get_system_status, enviar_senal_log
+        get_ict_components, get_system_status
     )
 
     # Instanciar el sistema centralizado
     imports_central = ImportsCentral()
-
-    # Obtener componentes básicos
-    logging_funcs = get_logging()
-
-    # Función de logging unificada
-    if logging_funcs and 'enviar_senal_log' in logging_funcs:
-        enviar_senal_log = logging_funcs['enviar_senal_log']
-    else:
-        def enviar_senal_log(nivel, mensaje, fuente="dashboard", categoria="general"):
-            print(f"[{nivel}] {fuente}: {mensaje}")
-
     print("✅ ImportsCentral inicializado correctamente")
+    IMPORTS_CENTRAL_AVAILABLE = True
     IMPORTS_CENTRAL_AVAILABLE = True
 
 except ImportError as e:

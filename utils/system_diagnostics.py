@@ -10,15 +10,16 @@ Versión: v1.0.0 - Integración SLUC v2.1
 Fecha: Agosto 2025
 """
 
-from sistema.sic import Dict, List, Any, Optional
-from sistema.sic import datetime
+# CORREGIDO: Imports estándar en lugar de sistema.sic
+from typing import Dict, List, Any, Optional
+import datetime
 
 # Import con fallback para logging
 try:
-    from sistema.sic import sys
-    from sistema.sic import os
+    import sys
+    import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from sistema.sic import enviar_senal_log
+    from sistema.logging_interface import enviar_senal_log
 except ImportError:
     def enviar_senal_log(nivel: str, mensaje: str, fuente: str, categoria: str):
         """Fallback logging function"""

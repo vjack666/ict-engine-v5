@@ -20,11 +20,19 @@ Fecha: 2024
 """
 # LEGACY MIGRADO A SLUC v2.0: import logging comentado para uso interno únicamente
 import logging
-from sistema.sic import json
-from sistema.sic import datetime
-from sistema.sic import Path
-from sistema.sic import Dict, Optional, Any
-from sistema.sic import SmartDirectoryLogger, smart_log
+# CORREGIDO: Imports estándar en lugar de sistema.sic
+import json
+import datetime
+from pathlib import Path
+from typing import Dict, Optional, Any
+# Importar desde local si existe
+try:
+    from sistema.smart_directory_logger import SmartDirectoryLogger, smart_log
+except ImportError:
+    # Implementación básica si no existe
+    def smart_log(*args, **kwargs): pass
+    class SmartDirectoryLogger:
+        def __init__(self, *args, **kwargs): pass
 
 # =============================================================================
 # CONFIGURACIÓN SLUC v2.1
@@ -188,13 +196,19 @@ def log_metrics(nivel: str, mensaje: str, fuente: str = "metrics", metadata: Opt
 
 def get_log_stats() -> Dict[str, Any]:
     """Obtener estadísticas del sistema de logging"""
-    from sistema.sic import get_smart_stats
-    return get_smart_stats()
+    try:
+        from sistema.smart_directory_logger import get_smart_stats
+        return get_smart_stats()
+    except ImportError:
+        return {"status": "stats_not_available"}
 
 def create_log_summary():
     """Crear resumen de logs organizados"""
-    from sistema.sic import create_summary
-    create_summary()
+    try:
+        from sistema.smart_directory_logger import create_summary
+        create_summary()
+    except ImportError:
+        pass
 
 def export_log_config(output_file: str = "data/logs/config/sluc_config.json"):
     """Exportar configuración actual del sistema de logging en formato JSON"""

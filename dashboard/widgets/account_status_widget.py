@@ -1,5 +1,5 @@
-# MIGRADO A SLUC v2.0
-from sistema.sic import enviar_senal_log
+# MIGRADO A SLUC v2.0 - CORREGIDO
+from sistema.logging_interface import enviar_senal_log
 """
 🚀 WIDGET DE STATUS DE CUENTA - LIVE ONLY
 ========================================
@@ -15,21 +15,22 @@ Fecha: 2025-08-03
 Versión: Account Status Widget v1.0
 """
 
-from sistema.sic import Dict, Any, Optional
+# CORREGIDO: Imports estándar en lugar de sistema.sic
+from typing import Dict, Any, Optional
 from rich.panel import Panel
 from rich.text import Text
 from rich.columns import Columns
 from rich.table import Table
 from rich.console import Console
-from sistema.sic import datetime
+import datetime
 
 # Importación condicional para evitar errores en demo
 try:
     from config.live_account_validator import get_account_validator, AccountType
 except ImportError:
     # Para cuando se ejecuta directamente
-    from sistema.sic import sys
-    from sistema.sic import os
+    import sys
+    import os
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
     from config.live_account_validator import get_account_validator, AccountType
 

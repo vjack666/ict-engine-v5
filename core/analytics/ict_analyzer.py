@@ -1,10 +1,4 @@
 
-from sistema.imports_interface import field, timezone, asdict, Tuple, datetime, timedelta, Dict, Any, Union, Optional, List, dataclass
-from sistema.imports_interface import enviar_senal_log, get_logging, log_info, log_error
-import pandas as pd
-import numpy as np
-from enum import Enum
-
 #!/usr/bin/env python3
 """
 🧠 ICT ANALYZER CORE - Advanced Analytics Engine
@@ -16,20 +10,28 @@ análisis multi-timeframe y generación de señales de alta probabilidad.
 Creado por Sprint 1.3 Executor
 """
 
+# Imports estándar
 import pandas as pd
 import numpy as np
-from sistema.sic import Dict, List, Optional, Tuple, Any
-from sistema.sic import datetime, timedelta
-from sistema.sic import dataclass
 from enum import Enum
+
+# Imports del SIC limpio
+from sistema.sic_clean import Dict, List, Optional, Tuple, Any
+from sistema.sic_clean import datetime, timedelta
+from sistema.sic_clean import dataclass
+
 # Sistema de logging centralizado
 try:
-from sistema.sic import enviar_senal_log, log_ict
+    from sistema.sic_clean import enviar_senal_log, log_info
+    def log_ict(mensaje, fuente="ict_analyzer", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "ict", metadata)
 except ImportError:
     def enviar_senal_log(nivel, mensaje, fuente="ict_analyzer", categoria="general", metadata=None):
         print(f"[{nivel}] {fuente}: {mensaje}")
-    def log_ict(nivel, mensaje, fuente="ict_analyzer", metadata=None):
-        print(f"[ICT-{nivel}] {fuente}: {mensaje}")
+    def log_ict(mensaje, fuente="ict_analyzer", metadata=None):
+        print(f"[ICT] {fuente}: {mensaje}")
+    def log_info(mensaje, fuente="ict_analyzer", metadata=None):
+        print(f"[INFO] {fuente}: {mensaje}")
 
 class ICTPattern(Enum):
     """Enumeración de patrones ICT detectables"""

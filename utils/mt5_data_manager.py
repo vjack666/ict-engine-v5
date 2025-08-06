@@ -25,13 +25,14 @@ Autor: Sistema Sentinel Grid v3.3.3.3.3
 Fecha: 2025
 """
 
-from sistema.sic import Optional, Any, Dict, List
+# CORREGIDO: Imports estándar en lugar de sistema.sic
+from typing import Optional, Any, Dict, List
 import pandas as pd
 # MIGRADO A SLUC v2.0
-from sistema.sic import enviar_senal_log
+from sistema.logging_interface import enviar_senal_log
 from config.live_account_validator import get_account_validator, AccountType
-from sistema.sic import Path
-from sistema.sic import os
+from pathlib import Path
+import os
 
 # Importación segura de MT5 y configuración FundedNext
 try:
@@ -526,8 +527,8 @@ class MT5DataManager:
 
             # Si falla, intentar con copy_rates_from
             if rates is None and self.available_functions.get('copy_rates_from', False):
-                from sistema.sic import datetime
-                end_time = datetime.now()
+                import datetime
+                end_time = datetime.datetime.now()
                 rates = mt5.copy_rates_from(symbol, timeframe_const, end_time, count)  # type: ignore
 
             if rates is not None and len(rates) > 0:

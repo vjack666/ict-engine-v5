@@ -78,12 +78,68 @@ except ImportError:
 # =============================================================================
 sistema_available = True
 try:
-    from sistema.logging_interface import enviar_senal_log, log_info, log_error, log_ict, log_poi, log_dashboard, log_mt5, log_tct
+    from sistema.logging_interface import enviar_senal_log
     from sistema.config import SAFE_DATA_DIR, ZONA_HORARIA_LOCAL
     from sistema.market_status_detector_v3 import MarketStatusDetector
+
+    # Funciones de logging adaptadas
+    def log_info(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "sic", metadata)
+
+    def log_error(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("ERROR", mensaje, fuente, "sic", metadata)
+
+    def log_ict(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "ict", metadata)
+
+    def log_poi(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "poi", metadata)
+
+    def log_dashboard(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "dashboard", metadata)
+
+    def log_mt5(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "mt5", metadata)
+
+    def log_tct(mensaje, fuente="imports_interface", metadata=None):
+        enviar_senal_log("INFO", mensaje, fuente, "tct", metadata)
+
 except ImportError:
     sistema_available = False
     print("⚠️  Sistema components no disponibles")
+
+    # Fallback básico (sin reimport de logging)
+    import logging as system_logging
+    logger = system_logging.getLogger(__name__)
+
+    def enviar_senal_log(nivel, mensaje, fuente="sistema", categoria="general", metadata=None):
+        level = getattr(system_logging, nivel.upper(), system_logging.INFO)
+        logger.log(level, f"[{fuente}:{categoria}] {mensaje}")
+
+    def log_info(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}] {mensaje}")
+
+    def log_error(mensaje, fuente="imports_interface", metadata=None):
+        logger.error(f"[{fuente}] {mensaje}")
+
+    def log_ict(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}:ict] {mensaje}")
+
+    def log_poi(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}:poi] {mensaje}")
+
+    def log_dashboard(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}:dashboard] {mensaje}")
+
+    def log_mt5(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}:mt5] {mensaje}")
+
+    def log_tct(mensaje, fuente="imports_interface", metadata=None):
+        logger.info(f"[{fuente}:tct] {mensaje}")
+
+    SAFE_DATA_DIR = "data"
+    ZONA_HORARIA_LOCAL = "UTC"
+    MarketStatusDetector = None
 
 # =============================================================================
 # IMPORTS UTILS - UTILIDADES

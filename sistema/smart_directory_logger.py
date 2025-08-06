@@ -32,13 +32,14 @@ FECHA: 02 Agosto 2025
 """
 # LEGACY SISTEM INTERNO: import logging solo para infraestructura interna
 import logging
-from sistema.sic import json
-from sistema.sic import os
-from sistema.sic import re
+# CORREGIDO: Imports estándar en lugar de sistema.sic
+import json
+import os
+import re
 import threading
-from sistema.sic import datetime
-from sistema.sic import Path
-from sistema.sic import Dict, Any, Optional, List
+import datetime
+from pathlib import Path
+from typing import Dict, Any, Optional, List
 from logging.handlers import RotatingFileHandler
 
 class SmartDirectoryMapper:
