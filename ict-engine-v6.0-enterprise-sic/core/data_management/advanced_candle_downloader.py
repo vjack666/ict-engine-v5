@@ -89,17 +89,22 @@ except ImportError:
 
 # Imports SIC v3.1 Enterprise (usando try/except para compatibilidad)
 try:
-    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface
+    from sistema.sic_v3_1.enterprise_interface import SICv31Enterprise
     from sistema.sic_v3_1.advanced_debug import AdvancedDebugger
     SIC_V3_1_AVAILABLE = True
-except ImportError:
+    print("✅ [SIC Integration] SIC v3.1 Enterprise cargado exitosamente")
+except ImportError as e:
     SIC_V3_1_AVAILABLE = False
+    print(f"⚠️ [SIC Integration] SIC v3.1 no disponible: {e}")
     # Fallback para desarrollo
-    class SICEnterpriseInterface:
+    class SICv31Enterprise:
         def __init__(self): pass
         def smart_import(self, module_name): return None
         def get_lazy_loading_manager(self): return None
         def get_predictive_cache_manager(self): return None
+        def get_system_stats(self): return {'sic_version': 'fallback', 'status': 'inactive'}
+        def get_monitor(self): return None
+        def get_debugger(self): return None
     
     class AdvancedDebugger:
         def __init__(self, config=None): pass
@@ -110,7 +115,7 @@ except ImportError:
         def log_error(self, *args, **kwargs): pass
 
 # El SIC v3.1 gestionará estos imports de forma inteligente
-sic = SICEnterpriseInterface()
+sic = SICv31Enterprise()
 
 # Configurar debugging avanzado
 debugger = AdvancedDebugger({
@@ -250,6 +255,9 @@ class AdvancedCandleDownloader:
         self.lock = threading.Lock()
         self.worker_thread = None
         self.stop_event = threading.Event()
+        
+        # Asignar instancia SIC como atributo de clase
+        self.sic = sic
         
         # Inicializar componentes SIC v3.1
         self._initialize_sic_integration()
@@ -712,30 +720,41 @@ class AdvancedCandleDownloader:
             # 🚨 ESTRATEGIA MEJORADA: Diferentes métodos para diferentes timeframes
             rates = None
             
-            # Para timeframes altos (H1, H4, D1), usar copy_rates_from en lugar de range
-            if timeframe in ['H1', 'H4', 'D1']:
-                self._log_info(f"📥 Descargando {symbol} {timeframe} usando copy_rates_from (timeframes altos)...")
-                
-                # Calcular cuántas velas necesitamos
-                if timeframe == 'H1':
-                    count = min(1000, 24 * 5)  # 5 días máximo
-                elif timeframe == 'H4':
-                    count = min(500, 6 * 5)    # 5 días máximo  
-                else:  # D1
-                    count = min(100, 30)       # 30 días máximo
-                
-                # Usar copy_rates_from con fecha de fin
+            # 🚀 ESTRATEGIA ICT COMPLIANT: Usar copy_rates_from para TODOS los timeframes
+            # Esto garantiza obtener suficientes datos históricos
+            
+            self._log_info(f"📥 Descargando {symbol} {timeframe} usando copy_rates_from (ICT COMPLIANT)...")
+            
+            # Calcular velas necesarias según estándares ICT
+            if timeframe == 'M1':
+                count = min(5000, 60 * 24 * 7)    # 7 días de M1
+            elif timeframe == 'M5':
+                count = min(4000, 12 * 24 * 14)   # 14 días de M5  
+            elif timeframe == 'M15':
+                count = min(3000, 4 * 24 * 21)    # 21 días de M15 (más datos)
+            elif timeframe == 'M30':
+                count = min(2500, 2 * 24 * 30)    # 30 días de M30
+            elif timeframe == 'H1':
+                count = min(2000, 24 * 60)        # 60 días de H1
+            elif timeframe == 'H4':
+                count = min(1500, 6 * 90)         # 90 días de H4
+            else:  # D1
+                count = min(1000, 365)            # 1 año de D1
+            
+            self._log_info(f"📊 ICT TARGET: {count} velas para análisis institucional completo")
+            
+            # SIEMPRE usar copy_rates_from desde fecha actual hacia atrás
+            from datetime import datetime
+            rates = mt5.copy_rates_from(symbol, mt5_timeframe, datetime.now(), count)
+            
+            # Fallback si no funciona
+            if rates is None or len(rates) == 0:
+                self._log_warning(f"⚠️ Fallback: intentando con end_date específica...")
                 rates = mt5.copy_rates_from(symbol, mt5_timeframe, end_date, count)
                 
-                if rates is None or len(rates) == 0:
-                    # Fallback: intentar con fecha actual
-                    self._log_warning(f"Reintentando {timeframe} con fecha actual...")
-                    from datetime import datetime
-                    rates = mt5.copy_rates_from(symbol, mt5_timeframe, datetime.now(), count)
-                    
-            else:
-                # Para timeframes bajos (M1, M5, M15, M30), usar copy_rates_range
-                self._log_info(f"📥 Descargando {symbol} {timeframe} usando copy_rates_range (timeframes bajos)...")
+            # Último fallback: usar copy_rates_range solo si todo falla
+            if rates is None or len(rates) == 0:
+                self._log_warning(f"⚠️ Último fallback: copy_rates_range...")
                 rates = mt5.copy_rates_range(symbol, mt5_timeframe, start_date, end_date)
             
             # Verificar resultados
@@ -1043,7 +1062,8 @@ class AdvancedCandleDownloader:
                 
                 for config in common_configs:
                     cache_key = f"download_config_{hash(str(config))}"
-                    cache_manager.predict_and_cache(cache_key, config)
+                    # Usar cache_module en lugar de predict_and_cache
+                    cache_manager.cache_module(cache_key, module_obj=config)
                 
                 self._log_info("Cache predictivo configurado")
             else:
@@ -1540,8 +1560,8 @@ class AdvancedCandleDownloader:
             
             # Agregar estadísticas SIC si disponibles
             try:
-                if hasattr(sic, 'get_stats') and callable(getattr(sic, 'get_stats', None)):
-                    status['sic_stats'] = sic.get_stats()
+                if hasattr(sic, 'get_system_stats') and callable(getattr(sic, 'get_system_stats', None)):
+                    status['sic_stats'] = sic.get_system_stats()
                 else:
                     status['sic_stats'] = {
                         'cache_hits': self._cache_stats.get('hits', 0),

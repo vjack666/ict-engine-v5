@@ -46,13 +46,13 @@ from enum import Enum
 
 # Imports SIC v3.1 Enterprise
 try:
-    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface
+    from sistema.sic_v3_1.enterprise_interface import SICv31Enterprise
     from sistema.sic_v3_1.advanced_debug import AdvancedDebugger
     SIC_V3_1_AVAILABLE = True
 except ImportError:
     SIC_V3_1_AVAILABLE = False
     # Fallback para desarrollo
-    class SICEnterpriseInterface:
+    class SICv31Enterprise:
         def __init__(self): pass
 
 # Sistema de logging

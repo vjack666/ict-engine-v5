@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-08-07T12:42:10.803825",
+  "summary": {
+    "total_tests": 15,
+    "passed": 2,
+    "failed": 13,
+    "success_rate": 13.333333333333334,
+    "total_duration": 2.43806791305542
+  },
+  "results": [
+    {
+      "name": "test_market_structure_analyzer",
+      "success": false,
+      "duration": 0.4519994258880615,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_market_structure_analyzer.py\", line 372, in <module>\n    print(\"\\U0001f9ea ICT ENGINE v6.0 - MARKET STRUCTURE ANALYZER TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_market_structure_analyzer.py"
+    },
+    {
+      "name": "test_mt5_data_manager",
+      "success": false,
+      "duration": 0.34437060356140137,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_mt5_data_manager.py\", line 36, in <module>\n    from utils.mt5_data_manager import (\n    ...<12 lines>...\n    )\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\utils\\mt5_data_manager.py\", line 49, in <module>\n    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\__init__.py\", line 20, in <module>\n    from .sic_v3_1 import (\n    ...<7 lines>...\n    )\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\sic_v3_1\\__init__.py\", line 214, in <module>\n    print(\"\\U0001f680 SIC v3.1 Enterprise - Sistema de Imports Inteligente\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_mt5_data_manager.py"
+    },
+    {
+      "name": "test_real_system",
+      "success": false,
+      "duration": 0.21147704124450684,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_real_system.py\", line 19, in <module>\n    from core.analysis.market_structure_analyzer import get_market_structure_analyzer\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\core\\analysis\\__init__.py\", line 5, in <module>\n    from .market_structure_analyzer import MarketStructureAnalyzer, get_market_structure_analyzer\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\core\\analysis\\market_structure_analyzer.py\", line 49, in <module>\n    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\__init__.py\", line 20, in <module>\n    from .sic_v3_1 import (\n    ...<7 lines>...\n    )\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\sic_v3_1\\__init__.py\", line 214, in <module>\n    print(\"\\U0001f680 SIC v3.1 Enterprise - Sistema de Imports Inteligente\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_real_system.py"
+    },
+    {
+      "name": "test_simple_poi",
+      "success": true,
+      "duration": 0.17015552520751953,
+      "stdout": "=== TEST SIMPLE POI SYSTEM ===\nERROR: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "stderr": "",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_simple_poi.py"
+    },
+    {
+      "name": "test_fundednext_system",
+      "success": false,
+      "duration": 0.15844464302062988,
+      "stdout": "",
+      "stderr": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_fundednext_system.py:2: SyntaxWarning: invalid escape sequence '\\P'\n  \"\"\"\nTraceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_fundednext_system.py\", line 22, in <module>\n    from core.analysis.market_structure_analyzer import get_market_structure_analyzer\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\core\\analysis\\__init__.py\", line 5, in <module>\n    from .market_structure_analyzer import MarketStructureAnalyzer, get_market_structure_analyzer\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\core\\analysis\\market_structure_analyzer.py\", line 49, in <module>\n    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\__init__.py\", line 20, in <module>\n    from .sic_v3_1 import (\n    ...<7 lines>...\n    )\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\sistema\\sic_v3_1\\__init__.py\", line 214, in <module>\n    print(\"\\U0001f680 SIC v3.1 Enterprise - Sistema de Imports Inteligente\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_fundednext_system.py"
+    },
+    {
+      "name": "test_poi_system_integration",
+      "success": false,
+      "duration": 0.15639710426330566,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_poi_system_integration.py\", line 362, in <module>\n    print(\"\\U0001f680 Iniciando test completo del POI System...\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_poi_system_integration.py"
+    },
+    {
+      "name": "test_pattern_detector_integration",
+      "success": false,
+      "duration": 0.1562976837158203,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_pattern_detector_integration.py\", line 304, in <module>\n    print(\"\\U0001f680 Iniciando test completo del Pattern Detector...\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_pattern_detector_integration.py"
+    },
+    {
+      "name": "test_integration_downloader_market_structure",
+      "success": false,
+      "duration": 0.12845158576965332,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_integration_downloader_market_structure.py\", line 177, in <module>\n    print(\"\\U0001f9ea ICT ENGINE v6.0 - INTEGRATION TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_integration_downloader_market_structure.py"
+    },
+    {
+      "name": "test_enterprise_performance",
+      "success": false,
+      "duration": 0.11928725242614746,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_enterprise_performance.py\", line 393, in <module>\n    success_rate, performance_score = main()\n                                      ~~~~^^\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_enterprise_performance.py\", line 332, in main\n    print(\"\\U0001f680 ICT ENTERPRISE PERFORMANCE TEST\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_enterprise_performance.py\", line 397, in <module>\n    print(f\"\\U0001f4a5 ERROR CRÍTICO en testing: {e}\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f4a5' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_enterprise_performance.py"
+    },
+    {
+      "name": "test_sic_complete",
+      "success": false,
+      "duration": 0.1110069751739502,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\test_sic_complete.py\", line 433, in <module>\n    success = main()\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\test_sic_complete.py\", line 367, in main\n    print(\"\\U0001f680 ICT ENGINE v6.0 ENTERPRISE SIC - TEST SUITE\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\test_sic_complete.py"
+    },
+    {
+      "name": "test_storage_inteligente",
+      "success": false,
+      "duration": 0.10352182388305664,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_storage_inteligente.py\", line 234, in <module>\n    print(\"\\U0001f5c4\\ufe0f ICT ENGINE v6.0 - TEST STORAGE INTELIGENTE\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_storage_inteligente.py"
+    },
+    {
+      "name": "test_advanced_candle_downloader",
+      "success": false,
+      "duration": 0.10202193260192871,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_advanced_candle_downloader.py\", line 147, in <module>\n    print(\"\\U0001f680 ICT ENGINE v6.0 ENTERPRISE - TEST SUITE\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_advanced_candle_downloader.py"
+    },
+    {
+      "name": "test_ict_optimal_downloader",
+      "success": false,
+      "duration": 0.10062932968139648,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_ict_optimal_downloader.py\", line 201, in <module>\n    print(\"\\U0001f3db\\ufe0f ICT ENGINE v6.0 - TEST OPTIMAL DOWNLOADER\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_ict_optimal_downloader.py"
+    },
+    {
+      "name": "test_critical_timeframes",
+      "success": false,
+      "duration": 0.08164024353027344,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_critical_timeframes.py\", line 87, in <module>\n    success = test_critical_timeframes()\n  File \"C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_critical_timeframes.py\", line 17, in test_critical_timeframes\n    print(\"\\U0001f6a8 TEST CRÍTICO: TIMEFRAMES H1 y H4\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f6a8' in position 0: character maps to <undefined>\n",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_critical_timeframes.py"
+    },
+    {
+      "name": "test_general",
+      "success": true,
+      "duration": 0.042366743087768555,
+      "stdout": "",
+      "stderr": "",
+      "file_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\test_general.py"
+    }
+  ]
+}

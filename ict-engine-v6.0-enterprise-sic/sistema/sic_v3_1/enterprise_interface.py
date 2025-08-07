@@ -255,6 +255,22 @@ class SICv31Enterprise:
             }
         }
     
+    def get_lazy_loading_manager(self):
+        """🔄 Obtiene el gestor de lazy loading"""
+        return self._lazy_manager
+    
+    def get_predictive_cache_manager(self):
+        """🧠 Obtiene el gestor de cache predictivo"""
+        return self._cache_manager
+    
+    def get_monitor(self):
+        """📊 Obtiene el monitor del sistema"""
+        return self._monitor
+    
+    def get_debugger(self):
+        """🔧 Obtiene el debugger avanzado"""
+        return self._debugger
+    
     def enable_debug_mode(self, level: str = 'info'):
         """
         🔧 Habilita el modo debug avanzado

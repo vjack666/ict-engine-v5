@@ -185,6 +185,24 @@ class PredictiveCacheManager:
         # Cargar estadísticas previas si existen
         if self._enable_persistence:
             self._load_persistence_data()
+        
+        # 🔥 WARM-UP AUTOMÁTICO de módulos críticos
+        self._warm_up_critical_modules()
+    
+    def _warm_up_critical_modules(self):
+        """🔥 Warm-up automático de módulos críticos del sistema"""
+        critical_modules = ['sys', 'os', 'time', 'datetime', 'pathlib', 'json', 'threading']
+        
+        for module_name in critical_modules:
+            try:
+                # Importar y cachear módulos críticos
+                module_obj = __import__(module_name)
+                self.cache_module(module_name, module_obj=module_obj)
+                print(f"🔥 [Cache Warm-up] {module_name} pre-cacheado")
+            except Exception as e:
+                print(f"⚠️ [Cache Warm-up] Error pre-cacheando {module_name}: {e}")
+        
+        print("🔥 [Predictive Cache] Warm-up de módulos críticos completado")
     
     def cache_module(self, module_name: str, 
                     from_list: Optional[List[str]] = None,
@@ -574,6 +592,11 @@ class PredictiveCacheManager:
             return
         
         try:
+            # Verificar que las funciones built-in estén disponibles
+            if not hasattr(__builtins__, 'open') and 'open' not in dir(__builtins__):
+                print("⚠️ [Predictive Cache] Built-in 'open' no disponible durante shutdown")
+                return
+            
             data = {
                 'stats': self._stats,
                 'module_relationships': {
@@ -583,11 +606,15 @@ class PredictiveCacheManager:
                 'saved_at': time.time()
             }
             
-            with open(self._persistence_file, 'w') as f:
+            # Usar import explícito para asegurar disponibilidad
+            import builtins
+            with builtins.open(str(self._persistence_file), 'w') as f:
                 json.dump(data, f, indent=2)
             
             print("💾 [Predictive Cache] Datos de persistencia guardados")
             
+        except (NameError, AttributeError) as e:
+            print(f"⚠️ [Predictive Cache] Built-ins no disponibles durante shutdown: {e}")
         except Exception as e:
             print(f"❌ Error guardando persistencia: {e}")
     
