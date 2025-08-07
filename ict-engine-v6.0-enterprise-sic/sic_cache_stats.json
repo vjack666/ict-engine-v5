@@ -1,0 +1,13 @@
+{
+  "stats": {
+    "cache_hits": 3,
+    "cache_misses": 3,
+    "predictions_made": 0,
+    "predictions_correct": 0,
+    "total_size_bytes": 216,
+    "cleanup_runs": 0,
+    "entries_evicted": 0
+  },
+  "module_relationships": {},
+  "saved_at": 1754579799.0626385
+}
