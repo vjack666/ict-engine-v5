@@ -1,3 +1,43 @@
 [2025-08-07 13:31:33] [ICT_Engine] [INFO] [DIAGNOSTIC] Test logging central
 [2025-08-07 13:57:53] [ICT_Engine] [INFO] [CORE] 🧪 Test Market Structure Analyzer - setup completado
 [2025-08-07 14:02:11] [ICT_Engine] [INFO] [CORE] 🧪 Test Pattern Detector - setup completado
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=70.0%, lookback=50
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 76.8%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: True
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0612s
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - TEST0
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 73.2%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0415s
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - TEST1
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 73.2%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0543s
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - TEST2
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 73.2%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0365s
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - TEST3
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 73.2%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0417s
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - TEST4
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: bos_bullish
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Confianza: 73.2%
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0501s

@@ -13,7 +13,7 @@ Versión: v6.0.0-enterprise
 """
 
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time as dt_time
 from typing import Dict, List, Optional, Tuple, Any, Union
 from dataclasses import dataclass, field
 from enum import Enum
@@ -48,6 +48,25 @@ class PatternType(Enum):
     MORNING_REVERSAL = "morning_reversal"
     ORDER_BLOCK = "order_block"
     MITIGATION_BLOCK = "mitigation_block"
+    FAIR_VALUE_GAP = "fair_value_gap"
+
+
+class JudasSwingType(Enum):
+    """🎭 Tipos específicos de Judas Swing v6.0"""
+    MORNING_REVERSAL = "morning_reversal"        # 8-9 AM reversión
+    LONDON_CLOSE_JUDAS = "london_close_judas"    # 10-11 AM false break
+    NY_OPEN_JUDAS = "ny_open_judas"             # 1-2 PM false break
+    AFTERNOON_JUDAS = "afternoon_judas"          # 2-4 PM reversión
+    UNKNOWN = "unknown"
+
+
+class BreakoutType(Enum):
+    """🚨 Tipos de ruptura y false breakouts v6.0"""
+    FALSE_BREAKOUT_HIGH = "false_breakout_high"
+    FALSE_BREAKOUT_LOW = "false_breakout_low"
+    LIQUIDITY_GRAB_HIGH = "liquidity_grab_high"
+    LIQUIDITY_GRAB_LOW = "liquidity_grab_low"
+    NO_BREAKOUT = "no_breakout"
     BREAKER_BLOCK = "breaker_block"
     FAIR_VALUE_GAP = "fair_value_gap"
     INSTITUTIONAL_ORDER_FLOW = "institutional_order_flow"
@@ -454,116 +473,295 @@ class PatternDetector:
         return patterns
     
     def _detect_judas_swing(self, data: pd.DataFrame, symbol: str, timeframe: str) -> List[PatternSignal]:
-        """Detectar patrones Judas Swing"""
+        """
+        🎭 DETECCIÓN JUDAS SWING v6.0 ENTERPRISE
+        ========================================
+        
+        Migración completa desde Judas Swing v2.0 con todas las funcionalidades:
+        - False breakouts automáticos
+        - Liquidity grab detection
+        - Session timing validation
+        - Market maker manipulation patterns
+        """
         patterns = []
         
         try:
             if len(data) < 30:
                 return patterns
             
-            # Buscar falsa ruptura en primeras horas de sesión
-            recent_data = data.tail(20)
+            # ⏰ VALIDAR TIMING DE SESIÓN CRÍTICA
+            timing_score, session_type = self._validate_judas_session_timing()
+            if timing_score < 0.4:
+                return patterns
             
-            # Identificar swing high/low reciente
-            highs = recent_data['high'].rolling(window=5, center=True).max()
-            lows = recent_data['low'].rolling(window=5, center=True).min()
+            # 🔍 DETECTAR FALSE BREAKOUTS
+            breakout_score, breakout_type, break_price = self._detect_false_breakout_v6(data)
+            if breakout_score < 0.5:
+                return patterns
             
-            # Buscar ruptura y retorno
-            for i in range(10, len(recent_data) - 5):
-                current_high = recent_data['high'].iloc[i]
-                current_low = recent_data['low'].iloc[i]
-                
-                # Verificar ruptura de high anterior
-                prev_high = highs.iloc[i-5:i].max()
-                if current_high > prev_high:
-                    # Verificar retorno al rango
-                    subsequent_lows = recent_data['low'].iloc[i+1:i+5]
-                    if len(subsequent_lows) > 0 and subsequent_lows.min() < prev_high:
-                        # Posible Judas Swing bearish
-                        direction = TradingDirection.SELL
-                        entry_zone = (prev_high - 0.0010, prev_high + 0.0010)
-                        stop_loss = current_high + 0.0015
-                        take_profit_1 = prev_high - 0.0040
-                        
-                        risk = abs(np.mean(entry_zone) - stop_loss)
-                        reward = abs(take_profit_1 - np.mean(entry_zone))
-                        risk_reward = reward / risk if risk > 0 else 0
-                        
-                        strength = 72.0
-                        if self._is_session_opening():
-                            strength += 8.0
-                        
-                        signal = PatternSignal(
-                            pattern_type=PatternType.JUDAS_SWING,
-                            direction=direction,
-                            confidence=PatternConfidence.HIGH if strength >= 75 else PatternConfidence.MEDIUM,
-                            strength=min(strength, 92.0),
-                            timestamp=datetime.now(),
-                            symbol=symbol,
-                            timeframe=timeframe,
-                            entry_zone=entry_zone,
-                            stop_loss=stop_loss,
-                            take_profit_1=take_profit_1,
-                            risk_reward_ratio=risk_reward,
-                            probability=strength,
-                            session=self._get_current_session(),
-                            narrative=f"Judas Swing {direction.value} detectado. Falsa ruptura seguida de retorno al rango original. Smart Money manipulando retail.",
-                            confluences=["false_breakout", "session_opening"],
-                            invalidation_criteria=f"Nueva ruptura en misma dirección que la falsa original",
-                            time_sensitivity="ALTA - Mejor en primeras 2 horas de sesión",
-                            analysis_id=f"JS_{symbol}_{int(datetime.now().timestamp())}"
-                        )
-                        
-                        patterns.append(signal)
-                        break
-                
-                # Verificar ruptura de low anterior (inverso)
-                prev_low = lows.iloc[i-5:i].min()
-                if current_low < prev_low:
-                    subsequent_highs = recent_data['high'].iloc[i+1:i+5]
-                    if len(subsequent_highs) > 0 and subsequent_highs.max() > prev_low:
-                        # Judas Swing bullish
-                        direction = TradingDirection.BUY
-                        entry_zone = (prev_low - 0.0010, prev_low + 0.0010)
-                        stop_loss = current_low - 0.0015
-                        take_profit_1 = prev_low + 0.0040
-                        
-                        risk = abs(np.mean(entry_zone) - stop_loss)
-                        reward = abs(take_profit_1 - np.mean(entry_zone))
-                        risk_reward = reward / risk if risk > 0 else 0
-                        
-                        strength = 72.0
-                        if self._is_session_opening():
-                            strength += 8.0
-                        
-                        signal = PatternSignal(
-                            pattern_type=PatternType.JUDAS_SWING,
-                            direction=direction,
-                            confidence=PatternConfidence.HIGH if strength >= 75 else PatternConfidence.MEDIUM,
-                            strength=min(strength, 92.0),
-                            timestamp=datetime.now(),
-                            symbol=symbol,
-                            timeframe=timeframe,
-                            entry_zone=entry_zone,
-                            stop_loss=stop_loss,
-                            take_profit_1=take_profit_1,
-                            risk_reward_ratio=risk_reward,
-                            probability=strength,
-                            session=self._get_current_session(),
-                            narrative=f"Judas Swing {direction.value} detectado. Falsa ruptura seguida de retorno al rango original. Smart Money manipulando retail.",
-                            confluences=["false_breakout", "session_opening"],
-                            invalidation_criteria=f"Nueva ruptura en misma dirección que la falsa original",
-                            time_sensitivity="ALTA - Mejor en primeras 2 horas de sesión",
-                            analysis_id=f"JS_{symbol}_{int(datetime.now().timestamp())}"
-                        )
-                        
-                        patterns.append(signal)
-                        break
-                        
+            # 💧 ANALIZAR LIQUIDITY GRAB
+            current_price = data['close'].iloc[-1]
+            liquidity_score, liquidity_grabbed = self._analyze_liquidity_grab_v6(data, break_price, current_price)
+            
+            # 🏗️ CONFIRMAR ESTRUCTURA DE REVERSIÓN
+            structure_score, reversal_direction, reversal_target = self._confirm_reversal_structure_v6(data, breakout_type)
+            
+            # 📊 SCORING FINAL JUDAS SWING v6.0
+            timing_weight = 0.35
+            breakout_weight = 0.30
+            structure_weight = 0.25
+            liquidity_weight = 0.10
+            
+            final_confidence = (
+                timing_score * timing_weight +
+                breakout_score * breakout_weight +
+                structure_score * structure_weight +
+                liquidity_score * liquidity_weight
+            ) * 100
+            
+            # Validar umbral de confianza
+            if final_confidence < 70.0:
+                return patterns
+            
+            # 🎯 CREAR SEÑAL JUDAS SWING v6.0
+            judas_type = self._classify_judas_swing_type(session_type, breakout_type)
+            
+            # Determinar entry zone alrededor del breakout level
+            spread_margin = 0.0010  # 10 pips margin
+            if reversal_direction == TradingDirection.SELL:
+                entry_zone = (break_price - spread_margin, break_price + spread_margin)
+                stop_loss = break_price + (break_price * 0.0020)  # 20 pips stop
+                take_profit_1 = reversal_target
+            else:
+                entry_zone = (break_price - spread_margin, break_price + spread_margin)
+                stop_loss = break_price - (break_price * 0.0020)  # 20 pips stop
+                take_profit_1 = reversal_target
+            
+            # Calcular risk/reward
+            risk = abs(np.mean(entry_zone) - stop_loss)
+            reward = abs(take_profit_1 - np.mean(entry_zone))
+            risk_reward = reward / risk if risk > 0 else 0
+            
+            # Narrative institucional
+            narrative_parts = [
+                f"🎭 Judas Swing {judas_type.value} detectado",
+                f"False breakout @ {break_price:.5f}",
+                f"Smart Money manipulation confirmada"
+            ]
+            
+            if liquidity_grabbed:
+                narrative_parts.append("💧 Liquidity grab ejecutado por institucionales")
+            
+            confluences = ["false_breakout", session_type, "smart_money_manipulation"]
+            if liquidity_grabbed:
+                confluences.append("liquidity_grab")
+            if structure_score > 0.7:
+                confluences.append("structure_confirmation")
+            
+            signal = PatternSignal(
+                pattern_type=PatternType.JUDAS_SWING,
+                direction=reversal_direction,
+                confidence=PatternConfidence.HIGH if final_confidence >= 80 else PatternConfidence.MEDIUM,
+                strength=min(final_confidence, 95.0),
+                timestamp=datetime.now(),
+                symbol=symbol,
+                timeframe=timeframe,
+                entry_zone=entry_zone,
+                stop_loss=stop_loss,
+                take_profit_1=take_profit_1,
+                risk_reward_ratio=risk_reward,
+                probability=final_confidence,
+                session=session_type,
+                narrative=" | ".join(narrative_parts),
+                confluences=confluences,
+                invalidation_criteria=f"Nueva ruptura definitiva por encima/debajo de {break_price:.5f}",
+                time_sensitivity="CRÍTICA - Ejecutar en los próximos 30-60 minutos",
+                analysis_id=f"JUDAS_{symbol}_{judas_type.value}_{int(datetime.now().timestamp())}",
+                metadata={
+                    "judas_swing_type": judas_type.value,
+                    "breakout_type": breakout_type.value,
+                    "false_break_price": break_price,
+                    "liquidity_grabbed": liquidity_grabbed,
+                    "timing_score": timing_score,
+                    "breakout_score": breakout_score,
+                    "structure_score": structure_score,
+                    "liquidity_score": liquidity_score,
+                    "session_context": session_type,
+                    "smart_money_confirmation": True
+                }
+            )
+            
+            patterns.append(signal)
+            
+            return patterns
+            
         except Exception as e:
-            print(f"[WARNING] Error detectando Judas Swing: {e}")
+            print(f"[ERROR] Error detectando Judas Swing v6.0: {e}")
+            return patterns
+
+    def _validate_judas_session_timing(self) -> Tuple[float, str]:
+        """⏰ Valida timing para Judas Swing patterns"""
+        current_time = datetime.now().time()
         
-        return patterns
+        # Definir sesiones críticas
+        morning_session = (dt_time(8, 0), dt_time(9, 30))
+        london_close = (dt_time(10, 0), dt_time(11, 30))
+        ny_open = (dt_time(13, 0), dt_time(14, 30))
+        afternoon = (dt_time(14, 0), dt_time(16, 0))
+        
+        # Verificar en qué sesión estamos
+        if morning_session[0] <= current_time <= morning_session[1]:
+            return 0.9, "morning_session"
+        elif london_close[0] <= current_time <= london_close[1]:
+            return 0.8, "london_close"
+        elif ny_open[0] <= current_time <= ny_open[1]:
+            return 0.85, "ny_open"
+        elif afternoon[0] <= current_time <= afternoon[1]:
+            return 0.7, "afternoon"
+        else:
+            return 0.3, "low_probability_session"
+
+    def _detect_false_breakout_v6(self, data: pd.DataFrame) -> Tuple[float, BreakoutType, float]:
+        """🚨 Detecta false breakouts v6.0"""
+        try:
+            if len(data) < 20:
+                return 0.0, BreakoutType.NO_BREAKOUT, 0.0
+
+            recent = data.tail(20)
+            
+            # Encontrar swing highs y lows
+            swing_high = recent['high'].rolling(window=5, center=True).max()
+            swing_low = recent['low'].rolling(window=5, center=True).min()
+            
+            resistance_level = swing_high.max()
+            support_level = swing_low.min()
+            current_price = recent['close'].iloc[-1]
+            
+            # Detectar false breakout al alza
+            if self._check_false_breakout_high_v6(recent, resistance_level):
+                score = self._score_false_breakout_v6(recent, resistance_level, True)
+                return score, BreakoutType.FALSE_BREAKOUT_HIGH, resistance_level
+            
+            # Detectar false breakout a la baja
+            elif self._check_false_breakout_low_v6(recent, support_level):
+                score = self._score_false_breakout_v6(recent, support_level, False)
+                return score, BreakoutType.FALSE_BREAKOUT_LOW, support_level
+            
+            return 0.4, BreakoutType.NO_BREAKOUT, current_price
+            
+        except Exception:
+            return 0.0, BreakoutType.NO_BREAKOUT, 0.0
+
+    def _check_false_breakout_high_v6(self, candles: pd.DataFrame, resistance: float) -> bool:
+        """Verifica false breakout al alza v6.0"""
+        try:
+            for i in range(len(candles) - 5, len(candles)):
+                if i >= 0 and candles['high'].iloc[i] > resistance:
+                    # Verificar si hay retorno rápido
+                    subsequent_closes = candles['close'].iloc[i+1:i+4]
+                    if len(subsequent_closes) > 0 and subsequent_closes.min() < resistance:
+                        return True
+            return False
+        except Exception:
+            return False
+
+    def _check_false_breakout_low_v6(self, candles: pd.DataFrame, support: float) -> bool:
+        """Verifica false breakout a la baja v6.0"""
+        try:
+            for i in range(len(candles) - 5, len(candles)):
+                if i >= 0 and candles['low'].iloc[i] < support:
+                    subsequent_closes = candles['close'].iloc[i+1:i+4]
+                    if len(subsequent_closes) > 0 and subsequent_closes.max() > support:
+                        return True
+            return False
+        except Exception:
+            return False
+
+    def _score_false_breakout_v6(self, candles: pd.DataFrame, level: float, is_high: bool) -> float:
+        """Scoring de false breakout v6.0"""
+        try:
+            score = 0.6
+            
+            # Analizar velocidad de retorno
+            if is_high:
+                max_penetration = candles['high'].max() - level
+                if max_penetration < level * 0.001:  # Penetración mínima
+                    score += 0.2
+            else:
+                max_penetration = level - candles['low'].min()
+                if max_penetration < level * 0.001:
+                    score += 0.2
+            
+            return min(score, 1.0)
+            
+        except Exception:
+            return 0.5
+
+    def _analyze_liquidity_grab_v6(self, data: pd.DataFrame, break_price: float, current_price: float) -> Tuple[float, bool]:
+        """💧 Analiza liquidity grab v6.0"""
+        try:
+            if break_price == 0 or current_price == 0:
+                return 0.3, False
+
+            distance = abs(current_price - break_price) / break_price
+            
+            if distance > 0.002:  # 20 pips
+                return 0.8, True
+            elif distance > 0.0015:  # 15 pips
+                return 0.6, True
+            else:
+                return 0.3, False
+                
+        except Exception:
+            return 0.3, False
+
+    def _confirm_reversal_structure_v6(self, data: pd.DataFrame, breakout_type: BreakoutType) -> Tuple[float, TradingDirection, float]:
+        """🏗️ Confirma estructura de reversión v6.0"""
+        try:
+            if len(data) < 10:
+                return 0.3, TradingDirection.NEUTRAL, 0.0
+
+            recent = data.tail(10)
+            current_price = recent['close'].iloc[-1]
+            
+            if breakout_type in [BreakoutType.FALSE_BREAKOUT_HIGH, BreakoutType.LIQUIDITY_GRAB_HIGH]:
+                direction = TradingDirection.SELL
+                target = recent['low'].min() * 0.999
+            elif breakout_type in [BreakoutType.FALSE_BREAKOUT_LOW, BreakoutType.LIQUIDITY_GRAB_LOW]:
+                direction = TradingDirection.BUY
+                target = recent['high'].max() * 1.001
+            else:
+                return 0.3, TradingDirection.NEUTRAL, current_price
+
+            # Verificar confirmación en últimas velas
+            last_3 = recent.tail(3)
+            
+            if direction == TradingDirection.SELL:
+                bearish_candles = sum(1 for _, candle in last_3.iterrows() 
+                                    if candle['close'] < candle['open'])
+                score = 0.5 + (bearish_candles * 0.15)
+            else:
+                bullish_candles = sum(1 for _, candle in last_3.iterrows() 
+                                    if candle['close'] > candle['open'])
+                score = 0.5 + (bullish_candles * 0.15)
+            
+            return min(score, 1.0), direction, target
+            
+        except Exception:
+            return 0.3, TradingDirection.NEUTRAL, 0.0
+
+    def _classify_judas_swing_type(self, session_type: str, breakout_type: BreakoutType) -> JudasSwingType:
+        """🎭 Clasifica tipo de Judas Swing"""
+        if session_type == "morning_session":
+            return JudasSwingType.MORNING_REVERSAL
+        elif session_type == "london_close":
+            return JudasSwingType.LONDON_CLOSE_JUDAS
+        elif session_type == "ny_open":
+            return JudasSwingType.NY_OPEN_JUDAS
+        elif session_type == "afternoon":
+            return JudasSwingType.AFTERNOON_JUDAS
+        else:
+            return JudasSwingType.UNKNOWN
     
     def _detect_liquidity_grab(self, data: pd.DataFrame, symbol: str, timeframe: str) -> List[PatternSignal]:
         """Detectar patrones Liquidity Grab"""
