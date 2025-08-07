@@ -188,3 +188,17 @@
 [2025-08-07 18:31:02] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Fair_Value_Gaps completada
 [2025-08-07 18:31:02] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Judas_Swing completada
 [2025-08-07 18:31:02] [EnhancedBacktestEngine] [INFO] [CORE] 📄 Reporte de backtesting guardado: backtesting_results\backtest_report_20250807_183102.txt
+[2025-08-07 18:52:50] [EnhancedBacktestEngine] [INFO] [CORE] 🚀 EnhancedBacktestEngine inicializado con 5 estrategias
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Silver_Bullet_Theory completada
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Fair_Value_Gaps completada
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Optimal_Trade_Entry completada
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Order_Block_Breaker completada
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Judas_Swing completada
+[2025-08-07 18:52:51] [EnhancedBacktestEngine] [INFO] [CORE] 📄 Reporte de backtesting guardado: backtesting_results\backtest_report_20250807_185251.txt
+[2025-08-07 18:55:02] [EnhancedBacktestEngine] [INFO] [CORE] 🚀 EnhancedBacktestEngine inicializado con 5 estrategias
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Optimal_Trade_Entry completada
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Fair_Value_Gaps completada
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Judas_Swing completada
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Silver_Bullet_Theory completada
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] ✅ Estrategia Order_Block_Breaker completada
+[2025-08-07 18:55:03] [EnhancedBacktestEngine] [INFO] [CORE] 📄 Reporte de backtesting guardado: backtesting_results\backtest_report_20250807_185503.txt
