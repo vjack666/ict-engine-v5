@@ -143,7 +143,7 @@ def run_ict_backtest_example():
         
         print("✅ Reportes generados:")
         print(f"   - HTML interactivo: {report_path}")
-        print(f"   - CSV de trades detallado")
+        print(f"   - CSV de trades detallado con trazabilidad completa")
         print(f"   - JSON summary")
         print(f"   - Equity curve data")
         print()
