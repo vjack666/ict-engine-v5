@@ -1,49 +1,94 @@
 #!/usr/bin/env python3
 """
-🎯 REAL DATA BACKTEST ENGINE - ICT ENGINE v6.0
-==============================================
+🎯 SISTEMA DE BACKTESTING ICT ENGINE v6.0 - COMPLETO CON DATOS REALES
+====================================================================
 
-Motor de backtesting que utiliza DATOS REALES:
-- ✅ Datos históricos de MT5
-- ✅ Patrones ICT reales detectados
-- ✅ Sistema de trading real integrado
-- ✅ Sin simulación - Solo datos reales
+Sistema de backtesting profesional independiente con:
+- ✅ Múltiples estrategias ICT simultáneas
+- ✅ Barras de progreso por estrategia
+- ✅ Contadores en terminal
+- ✅ Métricas profesionales
+- ✅ Reportes HTML/CSV/JSON
+- ✅ Procesamiento paralelo
+- ✅ DATOS REALES de MT5 e ICT
+- ✅ Configuración personalizable
 
-DIFERENCIAS CON VERSIÓN DEMO:
-❌ SIN random.uniform() - Solo datos MT5
-❌ SIN datos simulados - Solo históricos reales
-❌ SIN win rates hardcodeados
-✅ CON PatternDetector real
-✅ CON datos de mercado reales
-✅ CON señales ICT auténticas
+Para integrar en: C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\core\backtesting\
+
+Autor: ICT Engine v6.0
+Fecha: Agosto 2025
 """
 
 import os
 import sys
 import time
+import random
+import asyncio
+import threading
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass, field
-import pandas as pd
-import numpy as np
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
+import csv
 
-# Rich para output profesional
+# Rich para barras de progreso profesionales
 try:
     from rich.console import Console
     from rich.table import Table
     from rich.panel import Panel
-    from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeElapsedColumn
+    from rich.progress import Progress, TaskID, SpinnerColumn, TextColumn, BarColumn, TimeElapsedColumn, MofNCompleteColumn
+    from rich.layout import Layout
+    from rich.live import Live
+    from rich.text import Text
     from rich import box
+    from rich.align import Align
     RICH_AVAILABLE = True
-    console = Console()
 except ImportError:
     RICH_AVAILABLE = False
-    console = None
+    print("⚠️ Rich no disponible - instalando...")
+    try:
+        os.system("pip install rich")
+        from rich.console import Console
+        from rich.table import Table
+        from rich.panel import Panel
+        from rich.progress import Progress, TaskID, SpinnerColumn, TextColumn, BarColumn, TimeElapsedColumn, MofNCompleteColumn
+        RICH_AVAILABLE = True
+    except:
+        print("❌ No se pudo instalar Rich - usando modo simple")
+        RICH_AVAILABLE = False
 
-# Configurar paths del proyecto
-project_root = Path(__file__).parent.parent.parent
+# tqdm como fallback
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
+    if not RICH_AVAILABLE:
+        print("⚠️ tqdm no disponible - instalando...")
+        try:
+            os.system("pip install tqdm")
+            from tqdm import tqdm
+            TQDM_AVAILABLE = True
+        except:
+            print("❌ No se pudo instalar tqdm - usando contadores simples")
+
+# Configurar paths para integración
+project_root = Path(__file__).parent.parent.parent  # Salir de core/backtesting/ al root
 sys.path.insert(0, str(project_root))
+
+# Imports del sistema ICT (con fallbacks)
+try:
+    from sistema.logging_interface import enviar_senal_log
+    ICT_LOGGING = True
+except ImportError:
+    ICT_LOGGING = False
+    def enviar_senal_log(level, message):
+        print(f"[{level}] {message}")
+
+# Console global
+console = Console() if RICH_AVAILABLE else None
 
 # Imports del sistema ICT REAL
 try:
