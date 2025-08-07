@@ -25,14 +25,9 @@ Autor: Sistema Sentinel Grid v3.3.3.3.3
 Fecha: 2025
 """
 
-# CORREGIDO: Imports estándar en lugar de sistema.sic
-from sistema.sic import Optional, Any, Dict, List
-import pandas as pd
-# MIGRADO A SLUC v2.0
-from sistema.logging_interface import enviar_senal_log
-from config.live_account_validator import get_account_validator, AccountType
-from sistema.sic import Path
-from sistema.sic import os
+# CORREGIDO: Imports centralizados desde SIC v3.0
+from sistema.sic import Optional, Any, Dict, List, pd, Path, os
+from sistema.sic import enviar_senal_log, get_account_validator, AccountType
 
 # Importación segura de MT5 y configuración FundedNext
 try:

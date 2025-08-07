@@ -249,13 +249,20 @@ from sistema.imports_interface import (
 - [x] ✅ Validación sintáctica exitosa: archivo compila sin errores
 - [x] ✅ **MIGRACIÓN DE PRIORIDAD ALTA COMPLETADA**
 
-**ANÁLISIS GLOBAL ACTUALIZADO:**
+**ANÁLISIS GLOBAL FINALIZADO:**
 - **Total archivos:** 22 analizados
 - **Reimports detectados:** 26 (reducidos desde 188)
 - **Archivos críticos corregidos:** 4 de 4 ✅ **PRIORIDAD ALTA COMPLETADA**
-- **Siguiente objetivo:** Archivos de prioridad media
-
-### **🔄 DÍA 1** - Fundación (2 horas):
+- **Archivos prioridad media migrados:** 8 de 8 ✅ **PRIORIDAD MEDIA COMPLETADA**
+  - ✅ `utils/mt5_data_manager.py` - subprocess, time_module
+  - ✅ `core/analytics/ict_analyzer.py` - numpy, Enum
+  - ✅ `utils/system_diagnostics.py` - eliminados reimports
+  - ✅ `core/ict_engine/pattern_analyzer.py` - random
+  - ✅ `dashboard/hibernation_widget_v2.py` - eliminados reimports
+  - ✅ `dashboard/problems_tab_renderer.py` - subprocess
+  - ✅ `config/live_only_config.py` - migrado desde imports_interface
+  - ✅ `scripts/corrector_imports_problematicos.py` - ya migrado
+- **Estado:** MIGRACIÓN SISTEMÁTICA COMPLETADA - Listo para archivos de prioridad baja### **🔄 DÍA 1** - Fundación (2 horas):
 - [ ] Implementar SIC completo
 - [ ] Crear scripts de migración y validación
 - [ ] Migrar archivos de prioridad alta

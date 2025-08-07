@@ -10,7 +10,8 @@ Fecha: 2025-08-03
 Versión: Live-Only v1.0
 """
 
-from sistema.imports_interface import Dict, Any, dataclass, datetime
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
+from sistema.sic import Dict, Any, dataclass, datetime
 
 @dataclass
 class LiveOnlyConfig:

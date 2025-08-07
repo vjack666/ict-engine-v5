@@ -17,13 +17,10 @@ Fecha: 25 de Julio, 2025
 Versión: ICT Professional v1.0
 """
 
-import random
-from sistema.sic import datetime, time, timedelta
-# MIGRADO A SLUC v2.0
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
+from sistema.sic import random, datetime, time, timedelta, time_module
 from sistema.sic import enviar_senal_log, log_ict
-
-from sistema.sic import Dict, List, Tuple, Optional
-import pandas as pd
+from sistema.sic import Dict, List, Tuple, Optional, pd
 
 # Imports de tipos ICT
 from .ict_types import (

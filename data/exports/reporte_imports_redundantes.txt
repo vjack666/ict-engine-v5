@@ -6,18 +6,18 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 --------------------
 • Archivos analizados: 22
 • Reimports detectados: 26
-• Imports directos (no SIC): 314
-• Imports faltantes en SIC: 86
+• Imports directos (no SIC): 340
+• Imports faltantes en SIC: 84
 
 🔥 REIMPORTS CRÍTICOS DETECTADOS
 ------------------------------
 
 📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\dashboard_definitivo.py
-   Línea 253: enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
+   Línea 250: enviar_senal_log("WARNING", f"Algunos imports opcionales no disponibles: {e}", __name__, "imports")
    Tipo: enviar_senal_log_duplicate
-   Línea 299: enviar_senal_log("ERROR", f"❌ Error importando componentes reales: {e}", "dashboard_definitivo", "component_loading")
+   Línea 296: enviar_senal_log("ERROR", f"❌ Error importando componentes reales: {e}", "dashboard_definitivo", "component_loading")
    Tipo: enviar_senal_log_duplicate
-   Línea 1909: enviar_senal_log("INFO", f"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})", "dashboard_definitivo", "poi_detection")
+   Línea 1906: enviar_senal_log("INFO", f"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})", "dashboard_definitivo", "poi_detection")
    Tipo: enviar_senal_log_duplicate
 
 📁 C:\Users\v_jac\Desktop\itc engine v5.0\dashboard\candle_downloader_widget.py
@@ -133,6 +133,7 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 • JSONDecodeError
 • Label
 • Layout
+• MT5Manager
 • MarketPhase
 • MarketStructure
 • Message
@@ -152,7 +153,6 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 • SpinnerColumn
 • Static
 • TCTFormatter
-• TCTInterface
 • TYPE_CHECKING
 • TabPane
 • TabbedContent
@@ -182,8 +182,6 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 • json
 • logger
 • reactive
-• render_hibernacion_perfecta
-• render_problems_tab_simple
 • smart_log
 • sys
 
@@ -191,7 +189,7 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 -------------------------
 ❌ NECESITA LIMPIEZA candle_downloader_widget.py: SIC(5) | Directos(8)
 ❌ NECESITA LIMPIEZA dashboard_controller.py: SIC(12) | Directos(2)
-❌ NECESITA LIMPIEZA dashboard_definitivo.py: SIC(36) | Directos(92)
+❌ NECESITA LIMPIEZA dashboard_definitivo.py: SIC(38) | Directos(90)
 ✅ LIMPIO dashboard_problems_patch.py: SIC(13) | Directos(0)
 ❌ NECESITA LIMPIEZA dashboard_widgets.py: SIC(14) | Directos(6)
 ❌ NECESITA LIMPIEZA hibernacion_perfecta.py: SIC(6) | Directos(4)
@@ -206,7 +204,7 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 ✅ LIMPIO logging_interface_simple.py: SIC(9) | Directos(0)
 ❌ NECESITA LIMPIEZA market_status_detector.py: SIC(3) | Directos(13)
 ❌ NECESITA LIMPIEZA market_status_detector_v3.py: SIC(10) | Directos(4)
-❌ NECESITA LIMPIEZA sic.py: SIC(0) | Directos(40)
+❌ NECESITA LIMPIEZA sic.py: SIC(0) | Directos(68)
 ❌ NECESITA LIMPIEZA sic_v3_limpio.py: SIC(0) | Directos(20)
 ❌ NECESITA LIMPIEZA smart_directory_logger.py: SIC(0) | Directos(6)
 ❌ NECESITA LIMPIEZA system_monitor.py: SIC(3) | Directos(11)
@@ -216,17 +214,17 @@ Fecha: C:\Users\v_jac\Desktop\itc engine v5.0
 ------------------------------
 1. 🔥 ELIMINAR reimports de enviar_senal_log
 2. 📦 AGREGAR exports faltantes a SIC v3.0:
-   • Align
-   • DownloadStats
-   • FlowPriority
+   • Confirm
+   • ICTPattern
+   • MarketPhase
    • POIScoringEngine
-   • Static
-   • TCTInterface
-   • TabPane
-   • Vertical
+   • SessionType
+   • TCTFormatter
+   • TradingDirection
+   • calcular_tiempo_restante_para_proxima_sesion
    • get_strength_color
-   • render_hibernacion_perfecta
-   ... y 76 más
+   • ict_types
+   ... y 74 más
 
 3. 🧹 CONVERTIR todos los imports directos a SIC
 4. ✅ VALIDAR que no hay dependencias circulares

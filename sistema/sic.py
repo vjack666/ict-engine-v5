@@ -24,6 +24,8 @@ import sys
 import json
 import time as time_module
 import re
+import random
+import subprocess
 from pathlib import Path
 
 # Typing - sin redefinir constantes
@@ -89,6 +91,54 @@ except ImportError:
         pass
 
     collections_available = False
+
+# =============================================================================
+# EXTERNAL LIBRARIES - DEPENDENCIAS FRECUENTES
+# =============================================================================
+
+# Pandas para análisis de datos
+try:
+    import pandas as pd
+    pandas_available = True
+except ImportError:
+    # Fallback básico para pandas
+    class PandasFallback:
+        def DataFrame(self, *args, **kwargs):
+            return []
+        def read_csv(self, *args, **kwargs):
+            return []
+        def to_datetime(self, *args, **kwargs):
+            return None
+    pd = PandasFallback()
+    pandas_available = False
+
+# NumPy para operaciones numéricas
+try:
+    import numpy as np
+    numpy_available = True
+except ImportError:
+    # Fallback básico para numpy
+    class NumpyFallback:
+        def array(self, *args, **kwargs):
+            return []
+        def zeros(self, *args, **kwargs):
+            return []
+        def mean(self, *args, **kwargs):
+            return 0
+        def std(self, *args, **kwargs):
+            return 0
+    np = NumpyFallback()
+    numpy_available = False
+
+# Enum para enumeraciones
+try:
+    from enum import Enum
+    enum_available = True
+except ImportError:
+    class Enum:
+        """Fallback básico para Enum."""
+        pass
+    enum_available = False
 
 # =============================================================================
 # SISTEMA DE LOGGING CENTRALIZADO
@@ -165,7 +215,7 @@ utils_available = False
 config_available = False
 
 # =============================================================================
-# CONFIG MANAGER
+# CONFIG MANAGER Y VALIDADORES
 # =============================================================================
 try:
     from config.config_manager import ConfigManager
@@ -173,6 +223,27 @@ try:
 except ImportError:
     ConfigManager = None
     config_available = False
+
+# Account Validator y AccountType
+try:
+    from config.live_account_validator import get_account_validator, AccountType
+    account_validator_available = True
+except ImportError:
+    def get_account_validator():
+        """Fallback para account validator."""
+        class FallbackValidator:
+            def validate_account(self):
+                return {"status": "fallback", "account_type": "unknown"}
+        return FallbackValidator()
+
+    class AccountType:
+        """Fallback para AccountType enum."""
+        DEMO = "demo"
+        REAL = "real"
+        CONTEST = "contest"
+        UNKNOWN = "unknown"
+
+    account_validator_available = False
 
 # =============================================================================
 # DASHBOARD CONTROLLER
@@ -399,6 +470,13 @@ __all__ = [
     'Dict', 'List', 'Optional', 'Any', 'Tuple', 'Union', 'Callable', 'Set',
     'datetime', 'timedelta', 'timezone', 'time', 'Path',
     'dataclass', 'field', 'defaultdict', 'Counter', 'deque', 'asdict',
+    'os', 'sys', 'json', 're', 'random', 'time_module', 'subprocess',
+
+    # Pandas y análisis de datos
+    'pd', 'pandas_available', 'np', 'numpy_available', 'Enum', 'enum_available',
+
+    # Config y validación
+    'get_account_validator', 'AccountType', 'account_validator_available',
 
     # Logging
     'enviar_senal_log', 'log_info', 'log_warning', 'get_smart_stats', 'create_summary', 'log_ict',

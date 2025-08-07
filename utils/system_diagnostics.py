@@ -10,23 +10,12 @@ Versión: v1.0.0 - Integración SLUC v2.1
 Fecha: Agosto 2025
 """
 
-# MIGRACIÓN SIC v3.0 + SLUC v2.1
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
 from sistema.sic import enviar_senal_log, log_info, log_warning
+from sistema.sic import Dict, List, Any, Optional, datetime, sys, os
 
-# CORREGIDO: Imports estándar en lugar de sistema.sic
-from sistema.sic import Dict, List, Any, Optional
-import datetime
-
-# Import con fallback para logging
-try:
-    import sys
-    import os
-    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from sistema.logging_interface import enviar_senal_log
-except ImportError:
-    def enviar_senal_log(nivel: str, mensaje: str, fuente: str, categoria: str):
-        """Fallback logging function"""
-        enviar_senal_log("INFO", f"[{nivel}] {fuente}: {mensaje}", "system_diagnostics", "migration")
+# Configurar path del proyecto - Ya disponible en SIC
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 class POIBlackBoxDiagnostics:

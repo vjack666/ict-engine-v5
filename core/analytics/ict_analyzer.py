@@ -10,25 +10,17 @@ análisis multi-timeframe y generación de señales de alta probabilidad.
 Creado por Sprint 1.3 Executor
 """
 
-# Configurar path del proyecto
-import sys
-import os
+# Configurar path del proyecto - MIGRADO A SIC v3.0
+from sistema.sic import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(os.path.dirname(current_dir))
 sys.path.insert(0, project_root)
 
-# MIGRACIÓN SIC v3.0 + SLUC v2.1
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
 from sistema.sic import enviar_senal_log, log_info, log_warning
-
-# Imports estándar
-import pandas as pd
-import numpy as np
-from enum import Enum
-
-# Imports del SIC limpio
+from sistema.sic import pd, np, Enum
 from sistema.sic import Dict, List, Optional, Tuple, Any
-from sistema.sic import datetime, timedelta
-from sistema.sic import dataclass
+from sistema.sic import datetime, timedelta, dataclass
 
 # Sistema de logging centralizado - SIC v3.0
 def log_ict(mensaje, fuente="ict_analyzer", metadata=None):

@@ -24,17 +24,10 @@
 👤 Autor: ITC Engine v5.0 System
 """
 
-# MIGRACIÓN SIC v3.0 + SLUC v2.1
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
 from sistema.sic import enviar_senal_log, log_info, log_warning
-
-from sistema.sic import json
-from sistema.sic import os
-from sistema.sic import sys
-from sistema.sic import Path
-from sistema.sic import Dict, List, Any, Optional, Tuple
-from sistema.sic import datetime
-import subprocess
-import time
+from sistema.sic import json, os, sys, Path, subprocess, time_module
+from sistema.sic import Dict, List, Any, Optional, Tuple, datetime
 
 # Importaciones de Rich para UI
 try:

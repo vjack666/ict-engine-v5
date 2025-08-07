@@ -1,7 +1,9 @@
 
-from sistema.sic import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta
+# MIGRACIÓN SIC v3.0 + SLUC v2.1 - IMPORTS CENTRALIZADOS
+from sistema.sic import Dict, Optional, Union, Tuple, Any, datetime, List, timezone, timedelta, time
 from sistema.sic import get_dashboard_controller, enviar_senal_log, get_mt5_manager, log_info, get_logging, log_error
-from sistema.sic import time
+
+# Rich components - por migrar a SIC posteriormente
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
@@ -21,12 +23,9 @@ Usa TODA la infraestructura existente siguiendo el patrón exitoso del POI Integ
 - docs/bitacoras/reportes/REGISTRAR_ACCION_PROPOSITO_SISTEMA.md
 """
 
-# ✅ Eliminando imports duplicados - ya tenemos todo de SIC líneas 1-3
-from utils.mt5_data_manager import get_mt5_manager
+# ✅ Todos los imports centralizados en SIC v3.0 - sin duplicados
 # get_dashboard_controller, enviar_senal_log, datetime, timedelta ya importados arriba
 # rich components ya importados arriba
-from sistema.sic import Dict, List, Tuple, Optional, Any
-from sistema.sic import time
 
 # 🚀 INICIALIZACIÓN DEL MÓDULO USANDO INFRAESTRUCTURA EXISTENTE
 enviar_senal_log("INFO", "✅ Hibernation Widget v2.0 - Arquitectura Directa inicializado exitosamente", __name__, "module_init")

@@ -1,106 +1,104 @@
 {
   "missing_in_sic": [
-    "TabPane",
-    "TCTInterface",
-    "render_hibernacion_perfecta",
-    "Vertical",
-    "get_strength_color",
-    "Static",
-    "DownloadStats",
-    "POIScoringEngine",
-    "Align",
-    "FlowPriority",
-    "ict_detector",
-    "PATTERN_EMOJIS",
+    "SessionType",
     "calcular_tiempo_restante_para_proxima_sesion",
-    "SmartDirectoryLogger",
-    "AccFlowController",
-    "render_problems_tab_simple",
-    "POISystem",
-    "get_problems_summary",
-    "ict_pattern_analyzer",
-    "Table",
-    "SpinnerColumn",
-    "AnalysisOrchestrator",
-    "ComposeResult",
+    "ict_types",
+    "POIScoringEngine",
+    "Confirm",
     "TradingDirection",
-    "JSONDecodeError",
-    "Text",
-    "get_current_session_info",
-    "Console",
-    "get_ict_engine",
-    "TextColumn",
-    "Horizontal",
-    "SignalStrength",
-    "detectar_mt5_optimizado",
-    "get_advanced_candle_downloader",
-    "Message",
-    "SAFE_DATA_DIR",
-    "Group",
-    "FractalAnalyzer",
-    "Tree",
-    "ICTAnalyzer",
-    "RotatingFileHandler",
-    "AggregatedTCTMetrics",
-    "AdvancedCandleDownloader",
-    "Binding",
-    "App",
-    "Panel",
+    "ICTPattern",
     "MarketPhase",
-    "reactive",
-    "box",
+    "TCTFormatter",
+    "get_strength_color",
+    "Enum",
+    "get_problems_summary",
     "Footer",
+    "ict_pattern_analyzer",
+    "Prompt",
+    "Console",
+    "reactive",
+    "ProgressBar",
+    "box",
+    "SentinelDashboardDefinitivo",
+    "Message",
+    "MT5Manager",
+    "DownloadStats",
+    "TabPane",
+    "ComposeResult",
+    "SignalStrength",
+    "AnalysisOrchestrator",
+    "FractalAnalyzer",
+    "Widget",
+    "AdvancedCandleDownloader",
+    "Header",
+    "TabbedContent",
+    "Binding",
+    "ICTAnalysisResult",
+    "CONFIDENCE_CONFIG",
     "DownloadStatus",
-    "Label",
-    "TradingScheduleManager",
-    "get_logger",
+    "Vertical",
     "ICTSignal",
+    "get_risk_reward_assessment",
+    "Table",
+    "PATTERN_EMOJIS",
+    "Text",
+    "Label",
+    "Columns",
+    "Horizontal",
+    "smart_log",
+    "App",
+    "DownloadRequest",
+    "get_ict_engine",
+    "AccFlowController",
+    "get_current_session_info",
+    "TradingScheduleManager",
+    "Group",
+    "json",
+    "FlowPriority",
+    "Align",
+    "AggregatedTCTMetrics",
+    "ZONA_HORARIA_LOCAL",
+    "SmartDirectoryLogger",
+    "Panel",
+    "detectar_mt5_optimizado",
+    "ICTAnalyzer",
+    "SAFE_DATA_DIR",
+    "logger",
+    "RotatingFileHandler",
     "Button",
     "CandleCoordinator",
-    "smart_log",
-    "Header",
-    "TCTFormatter",
-    "TabbedContent",
-    "get_pattern_description",
-    "get_risk_reward_assessment",
-    "ict_types",
-    "ProgressBar",
-    "Enum",
-    "Columns",
-    "SentinelDashboardDefinitivo",
-    "ICTAnalysisResult",
-    "json",
-    "ZONA_HORARIA_LOCAL",
-    "Confirm",
-    "SessionType",
-    "Prompt",
-    "TYPE_CHECKING",
-    "DIRECTION_COLORS",
-    "logger",
-    "DownloadRequest",
-    "Layout",
-    "Progress",
-    "ICTPattern",
-    "Widget",
-    "Container",
+    "get_advanced_candle_downloader",
     "sys",
+    "POISystem",
+    "DIRECTION_COLORS",
+    "Container",
+    "Layout",
+    "TextColumn",
+    "Tree",
+    "get_logger",
+    "JSONDecodeError",
+    "Static",
+    "TYPE_CHECKING",
+    "ict_detector",
+    "SpinnerColumn",
     "MarketStructure",
-    "CONFIDENCE_CONFIG"
+    "Progress",
+    "get_pattern_description"
   ],
   "reimports_by_file": {
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\dashboard\\dashboard_definitivo.py": [
       {
-        "line": 253,
+        "line": 250,
         "content": "enviar_senal_log(\"WARNING\", f\"Algunos imports opcionales no disponibles: {e}\", __name__, \"imports\")",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 299,
+        "line": 296,
         "content": "enviar_senal_log(\"ERROR\", f\"❌ Error importando componentes reales: {e}\", \"dashboard_definitivo\", \"component_loading\")",
         "type": "enviar_senal_log_duplicate"
       },
       {
-        "line": 1909,
+        "line": 1906,
         "content": "enviar_senal_log(\"INFO\", f\"✅ {tf_name}: {len(all_pois_from_tf)} POIs agregados (Total acumulado: {len(detected_pois)})\", \"dashboard_definitivo\", \"poi_detection\")",
         "type": "enviar_senal_log_duplicate"
       }
@@ -264,318 +262,311 @@
       },
       {
         "type": "from_import",
-        "module": "config.config_manager",
-        "name": "ConfigManager",
-        "alias": null,
-        "line": 51
-      },
-      {
-        "type": "from_import",
         "module": "rich.console",
         "name": "Console",
         "alias": null,
-        "line": 103
+        "line": 100
       },
       {
         "type": "from_import",
         "module": "rich.table",
         "name": "Table",
         "alias": null,
-        "line": 104
+        "line": 101
       },
       {
         "type": "from_import",
         "module": "rich.panel",
         "name": "Panel",
         "alias": null,
-        "line": 105
+        "line": 102
       },
       {
         "type": "from_import",
         "module": "rich.text",
         "name": "Text",
         "alias": null,
-        "line": 106
+        "line": 103
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 55
+        "line": 52
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 55
+        "line": 52
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabbedContent",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabPane",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 58
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 59
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "render_problems_tab_simple",
         "alias": null,
-        "line": 159
+        "line": 156
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "get_problems_summary",
         "alias": null,
-        "line": 159
+        "line": 156
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_types",
         "alias": null,
-        "line": 256
+        "line": 253
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_pattern_analyzer",
         "alias": null,
-        "line": 274
+        "line": 271
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_detector",
         "alias": null,
-        "line": 274
+        "line": 271
       },
       {
         "type": "from_import",
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 145
+        "line": 142
       },
       {
         "type": "from_import",
         "module": "dashboard.dashboard_controller",
         "name": "DashboardController",
         "alias": null,
-        "line": 146
+        "line": 143
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_detector",
         "name": "ICTDetector",
         "alias": null,
-        "line": 147
+        "line": 144
       },
       {
         "type": "from_import",
         "module": "core.limit_order_manager",
         "name": "LimitOrderManager",
         "alias": null,
-        "line": 148
+        "line": 145
       },
       {
         "type": "from_import",
         "module": "sistema.market_status_detector_v3",
         "name": "MarketStatusDetector",
         "alias": null,
-        "line": 149
+        "line": 146
       },
       {
         "type": "from_import",
         "module": "core.analysis_command_center.tct_pipeline.tct_interface",
         "name": "TCTInterface",
         "alias": null,
-        "line": 150
+        "line": 147
       },
       {
         "type": "from_import",
         "module": "sistema.smart_directory_logger",
         "name": "logger",
         "alias": null,
-        "line": 151
+        "line": 148
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 64
+        "line": 61
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 64
+        "line": 61
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 67
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 68
+        "line": 65
       },
       {
         "type": "from_import",
@@ -586,318 +577,311 @@
       },
       {
         "type": "from_import",
-        "module": "config.config_manager",
-        "name": "ConfigManager",
-        "alias": null,
-        "line": 51
-      },
-      {
-        "type": "from_import",
         "module": "rich.console",
         "name": "Console",
         "alias": null,
-        "line": 103
+        "line": 100
       },
       {
         "type": "from_import",
         "module": "rich.table",
         "name": "Table",
         "alias": null,
-        "line": 104
+        "line": 101
       },
       {
         "type": "from_import",
         "module": "rich.panel",
         "name": "Panel",
         "alias": null,
-        "line": 105
+        "line": 102
       },
       {
         "type": "from_import",
         "module": "rich.text",
         "name": "Text",
         "alias": null,
-        "line": 106
+        "line": 103
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 55
+        "line": 52
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 55
+        "line": 52
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 56
+        "line": 53
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabbedContent",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "TabPane",
         "alias": null,
-        "line": 57
+        "line": 54
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 58
+        "line": 55
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 59
+        "line": 56
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "render_problems_tab_simple",
         "alias": null,
-        "line": 159
+        "line": 156
       },
       {
         "type": "from_import",
         "module": "dashboard.problems_tab_renderer",
         "name": "get_problems_summary",
         "alias": null,
-        "line": 159
+        "line": 156
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_types",
         "alias": null,
-        "line": 256
+        "line": 253
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_pattern_analyzer",
         "alias": null,
-        "line": 274
+        "line": 271
       },
       {
         "type": "from_import",
         "module": "core.ict_engine",
         "name": "ict_detector",
         "alias": null,
-        "line": 274
+        "line": 271
       },
       {
         "type": "from_import",
         "module": "config.config_manager",
         "name": "ConfigManager",
         "alias": null,
-        "line": 145
+        "line": 142
       },
       {
         "type": "from_import",
         "module": "dashboard.dashboard_controller",
         "name": "DashboardController",
         "alias": null,
-        "line": 146
+        "line": 143
       },
       {
         "type": "from_import",
         "module": "core.ict_engine.ict_detector",
         "name": "ICTDetector",
         "alias": null,
-        "line": 147
+        "line": 144
       },
       {
         "type": "from_import",
         "module": "core.limit_order_manager",
         "name": "LimitOrderManager",
         "alias": null,
-        "line": 148
+        "line": 145
       },
       {
         "type": "from_import",
         "module": "sistema.market_status_detector_v3",
         "name": "MarketStatusDetector",
         "alias": null,
-        "line": 149
+        "line": 146
       },
       {
         "type": "from_import",
         "module": "core.analysis_command_center.tct_pipeline.tct_interface",
         "name": "TCTInterface",
         "alias": null,
-        "line": 150
+        "line": 147
       },
       {
         "type": "from_import",
         "module": "sistema.smart_directory_logger",
         "name": "logger",
         "alias": null,
-        "line": 151
+        "line": 148
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "App",
         "alias": null,
-        "line": 64
+        "line": 61
       },
       {
         "type": "from_import",
         "module": "textual.app",
         "name": "ComposeResult",
         "alias": null,
-        "line": 64
+        "line": 61
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Container",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Horizontal",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.containers",
         "name": "Vertical",
         "alias": null,
-        "line": 65
+        "line": 62
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Header",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Footer",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Static",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Button",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "Label",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.widgets",
         "name": "ProgressBar",
         "alias": null,
-        "line": 66
+        "line": 63
       },
       {
         "type": "from_import",
         "module": "textual.binding",
         "name": "Binding",
         "alias": null,
-        "line": 67
+        "line": 64
       },
       {
         "type": "from_import",
         "module": "textual.message",
         "name": "Message",
         "alias": null,
-        "line": 68
+        "line": 65
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\sic.py": [
@@ -1043,6 +1027,104 @@
       },
       {
         "type": "from_import",
+        "module": "config.config_manager",
+        "name": "ConfigManager",
+        "alias": null,
+        "line": 171
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_controller",
+        "name": "DashboardController",
+        "alias": null,
+        "line": 181
+      },
+      {
+        "type": "from_import",
+        "module": "core.analysis_command_center.tct_pipeline.tct_interface",
+        "name": "TCTInterface",
+        "alias": null,
+        "line": 277
+      },
+      {
+        "type": "from_import",
+        "module": "core.trading",
+        "name": "TradingDecisionEngine",
+        "alias": null,
+        "line": 285
+      },
+      {
+        "type": "from_import",
+        "module": "core.trading",
+        "name": "TradingDecisionCache",
+        "alias": null,
+        "line": 285
+      },
+      {
+        "type": "from_import",
+        "module": "core.risk_management",
+        "name": "RiskBot",
+        "alias": null,
+        "line": 294
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.hibernation_widget_v2",
+        "name": "HibernationWidget",
+        "alias": null,
+        "line": 302
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_definitivo",
+        "name": "SentinelDashboardDefinitivo",
+        "alias": null,
+        "line": 226
+      },
+      {
+        "type": "from_import",
+        "module": "config.config_manager",
+        "name": "ConfigManager",
+        "alias": null,
+        "line": 234
+      },
+      {
+        "type": "from_import",
+        "module": "utilities.mt5_interface",
+        "name": "MT5Manager",
+        "alias": null,
+        "line": 246
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_controller",
+        "name": "DashboardController",
+        "alias": null,
+        "line": 254
+      },
+      {
+        "type": "from_import",
+        "module": "core.ict_engine.ict_detector",
+        "name": "ICTDetector",
+        "alias": null,
+        "line": 262
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.hibernacion_perfecta",
+        "name": "render_hibernacion_perfecta",
+        "alias": "rhp",
+        "line": 312
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.problems_tab_renderer",
+        "name": "render_problems_tab_simple",
+        "alias": "rpts",
+        "line": 320
+      },
+      {
+        "type": "from_import",
         "module": "pathlib",
         "name": "Path",
         "alias": null,
@@ -1180,6 +1262,104 @@
         "name": "deque",
         "alias": null,
         "line": 72
+      },
+      {
+        "type": "from_import",
+        "module": "config.config_manager",
+        "name": "ConfigManager",
+        "alias": null,
+        "line": 171
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_controller",
+        "name": "DashboardController",
+        "alias": null,
+        "line": 181
+      },
+      {
+        "type": "from_import",
+        "module": "core.analysis_command_center.tct_pipeline.tct_interface",
+        "name": "TCTInterface",
+        "alias": null,
+        "line": 277
+      },
+      {
+        "type": "from_import",
+        "module": "core.trading",
+        "name": "TradingDecisionEngine",
+        "alias": null,
+        "line": 285
+      },
+      {
+        "type": "from_import",
+        "module": "core.trading",
+        "name": "TradingDecisionCache",
+        "alias": null,
+        "line": 285
+      },
+      {
+        "type": "from_import",
+        "module": "core.risk_management",
+        "name": "RiskBot",
+        "alias": null,
+        "line": 294
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.hibernation_widget_v2",
+        "name": "HibernationWidget",
+        "alias": null,
+        "line": 302
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_definitivo",
+        "name": "SentinelDashboardDefinitivo",
+        "alias": null,
+        "line": 226
+      },
+      {
+        "type": "from_import",
+        "module": "config.config_manager",
+        "name": "ConfigManager",
+        "alias": null,
+        "line": 234
+      },
+      {
+        "type": "from_import",
+        "module": "utilities.mt5_interface",
+        "name": "MT5Manager",
+        "alias": null,
+        "line": 246
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.dashboard_controller",
+        "name": "DashboardController",
+        "alias": null,
+        "line": 254
+      },
+      {
+        "type": "from_import",
+        "module": "core.ict_engine.ict_detector",
+        "name": "ICTDetector",
+        "alias": null,
+        "line": 262
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.hibernacion_perfecta",
+        "name": "render_hibernacion_perfecta",
+        "alias": "rhp",
+        "line": 312
+      },
+      {
+        "type": "from_import",
+        "module": "dashboard.problems_tab_renderer",
+        "name": "render_problems_tab_simple",
+        "alias": "rpts",
+        "line": 320
       }
     ],
     "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\sistema\\logging_interface.py": [
@@ -2622,6 +2802,13 @@
       {
         "type": "from_import",
         "module": "sistema.sic",
+        "name": "ConfigManager",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
         "name": "enviar_senal_log",
         "alias": null,
         "line": 42
@@ -2742,6 +2929,13 @@
         "type": "from_import",
         "module": "sistema.sic",
         "name": "get_system_status",
+        "alias": null,
+        "line": 42
+      },
+      {
+        "type": "from_import",
+        "module": "sistema.sic",
+        "name": "ConfigManager",
         "alias": null,
         "line": 42
       }
@@ -3840,6 +4034,6 @@
     "total_files": 22,
     "files_with_reimports": 17,
     "files_with_direct_imports": 19,
-    "total_missing_exports": 86
+    "total_missing_exports": 84
   }
 }
