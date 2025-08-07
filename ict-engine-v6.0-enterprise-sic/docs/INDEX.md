@@ -9,7 +9,9 @@
 | 📋 Categoría | 📄 Documento | 🎯 Propósito | 🔥 Prioridad |
 |--------------|--------------|---------------|---------------|
 | **🚀 Inicio** | [README.md](README.md) | Documentación principal del proyecto | 🔥 CRÍTICA |
-| **🛣️ Planificación** | [roadmap_v6.md](roadmap_v6.md) | Roadmap detallado y cronograma | 🔥 CRÍTICA |
+| **� Estado Actual** | [ESTADO_ACTUAL_SISTEMA_v6.md](ESTADO_ACTUAL_SISTEMA_v6.md) | Estado actualizado del sistema | 🔥 CRÍTICA |
+| **📖 Bitácora** | [BITACORA_DESARROLLO_SMART_MONEY_v6.md](BITACORA_DESARROLLO_SMART_MONEY_v6.md) | Desarrollo Smart Money completo | 🔥 CRÍTICA |
+| **�🛣️ Planificación** | [roadmap_v6.md](roadmap_v6.md) | Roadmap detallado y cronograma | 🔥 CRÍTICA |
 | **👥 Desarrollo** | [CONTRIBUTING.md](CONTRIBUTING.md) | Guía de contribución y standards | 🔥 CRÍTICA |
 | **🔧 Setup** | [DEVELOPMENT_SETUP.md](DEVELOPMENT_SETUP.md) | Configuración del entorno | 🔥 CRÍTICA |
 | **📡 Componentes** | [mt5_data_manager_v6.md](mt5_data_manager_v6.md) | MT5DataManager - FUNDAMENTAL #1 | 🔥 CRÍTICA |
