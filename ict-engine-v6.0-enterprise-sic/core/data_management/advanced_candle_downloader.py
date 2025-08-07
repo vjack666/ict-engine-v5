@@ -725,21 +725,22 @@ class AdvancedCandleDownloader:
             
             self._log_info(f"📥 Descargando {symbol} {timeframe} usando copy_rates_from (ICT COMPLIANT)...")
             
-            # Calcular velas necesarias según estándares ICT
+            # 🏛️ Calcular velas necesarias según estándares ICT CORREGIDOS
+            # Asegurar MÍNIMO 3000 velas para TODOS los timeframes ICT críticos
             if timeframe == 'M1':
-                count = min(5000, 60 * 24 * 7)    # 7 días de M1
+                count = 5000                       # 5000 M1 para análisis scalping
             elif timeframe == 'M5':
-                count = min(4000, 12 * 24 * 14)   # 14 días de M5  
+                count = 4000                       # 4000 M5 para análisis intraday
             elif timeframe == 'M15':
-                count = min(3000, 4 * 24 * 21)    # 21 días de M15 (más datos)
+                count = 5000                       # 5000 M15 para análisis ICT principal
             elif timeframe == 'M30':
-                count = min(2500, 2 * 24 * 30)    # 30 días de M30
+                count = 4000                       # 4000 M30 para contexto
             elif timeframe == 'H1':
-                count = min(2000, 24 * 60)        # 60 días de H1
+                count = 5000                       # 🔥 CORREGIDO: 5000 H1 (antes 1440)
             elif timeframe == 'H4':
-                count = min(1500, 6 * 90)         # 90 días de H4
+                count = 3000                       # 🔥 CORREGIDO: 3000 H4 (antes 540) 
             else:  # D1
-                count = min(1000, 365)            # 1 año de D1
+                count = 2000                       # 2000 D1 para análisis de largo plazo
             
             self._log_info(f"📊 ICT TARGET: {count} velas para análisis institucional completo")
             

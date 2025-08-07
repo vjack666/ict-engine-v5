@@ -1385,26 +1385,41 @@ class PatternDetector:
             # Create enhanced pattern with improved strength
             enhanced_strength = min(pattern.strength * strength_multiplier, 100.0)
             
-            # Add multi-TF metadata
-            enhanced_metadata = pattern.metadata.copy() if pattern.metadata else {}
-            enhanced_metadata.update({
+            # Create enhanced pattern with all required fields
+            enhanced_pattern = PatternSignal(
+                pattern_type=pattern.pattern_type,
+                direction=pattern.direction,
+                confidence=pattern.confidence,
+                strength=enhanced_strength,
+                timestamp=pattern.timestamp,
+                symbol=pattern.symbol,
+                timeframe=pattern.timeframe,
+                entry_zone=pattern.entry_zone,
+                stop_loss=pattern.stop_loss,
+                take_profit_1=pattern.take_profit_1,
+                take_profit_2=pattern.take_profit_2,
+                risk_reward_ratio=pattern.risk_reward_ratio,
+                probability=pattern.probability,
+                session=pattern.session,
+                narrative=pattern.narrative + f" | Multi-TF Enhanced (+{(strength_multiplier-1)*100:.0f}%)",
+                confluences=pattern.confluences + confirmations,
+                invalidation_criteria=pattern.invalidation_criteria,
+                optimal_entry_time=pattern.optimal_entry_time,
+                time_sensitivity=pattern.time_sensitivity,
+                max_hold_time=pattern.max_hold_time,
+                analysis_id=pattern.analysis_id,
+                raw_data=pattern.raw_data.copy() if pattern.raw_data else {}
+            )
+            
+            # Add multi-TF metadata to raw_data
+            enhanced_pattern.raw_data.update({
                 'multi_tf_confirmations': confirmations,
                 'htf_analyzed': list(htf_timeframes),
                 'strength_enhancement': strength_multiplier - 1.0,
                 'original_strength': pattern.strength
             })
             
-            # Return enhanced pattern
-            return PatternSignal(
-                pattern_type=pattern.pattern_type,
-                timestamp=pattern.timestamp,
-                price=pattern.price,
-                strength=enhanced_strength,
-                direction=pattern.direction,
-                timeframe=pattern.timeframe,
-                symbol=pattern.symbol,
-                metadata=enhanced_metadata
-            )
+            return enhanced_pattern
             
         except Exception as e:
             print(f"[DEBUG] Error applying multi-TF enhancement: {e}")
@@ -1438,10 +1453,10 @@ class PatternDetector:
             
             # Find closest HTF candle to pattern time
             time_diffs = abs(htf_data.index - pattern_time)
-            closest_idx = time_diffs.idxmin()
+            closest_pos = time_diffs.argmin()  # 🔧 FIX: usar argmin() en lugar de idxmin()
             
             # Get context window
-            closest_pos = htf_data.index.get_loc(closest_idx)
+            # closest_pos ya es la posición numérica, no necesitamos get_loc()
             start_pos = max(0, closest_pos - 10)
             end_pos = min(len(htf_data), closest_pos + 5)
             
@@ -1455,9 +1470,9 @@ class PatternDetector:
             pattern_direction = pattern.direction
             
             # Bullish pattern should align with bullish HTF trend
-            if pattern_direction == TradingDirection.LONG and htf_trend == "BULLISH":
+            if pattern_direction == TradingDirection.BUY and htf_trend == "BULLISH":
                 return True
-            elif pattern_direction == TradingDirection.SHORT and htf_trend == "BEARISH":
+            elif pattern_direction == TradingDirection.SELL and htf_trend == "BEARISH":
                 return True
             elif htf_trend == "NEUTRAL":  # Neutral HTF allows both directions
                 return True
