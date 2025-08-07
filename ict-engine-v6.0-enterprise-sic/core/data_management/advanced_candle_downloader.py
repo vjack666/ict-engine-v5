@@ -900,15 +900,12 @@ class AdvancedCandleDownloader:
             raise
 
     def _get_pandas(self):
-        """🐼 Obtiene pandas usando SIC v3.1"""
+        """🐼 Obtiene pandas usando importación directa"""
         if self._pandas_module is None:
             try:
-                if SIC_V3_1_AVAILABLE:
-                    from sistema.sic_v3_1 import smart_import
-                    self._pandas_module = smart_import('pandas', alias='pd')
-                else:
-                    import pandas as pd
-                    self._pandas_module = pd
+                import pandas as pd
+                self._pandas_module = pd
+                self._log_info(f"✅ Pandas cargado correctamente")
             except Exception as e:
                 self._log_error(f"Error importando pandas: {e}")
                 raise

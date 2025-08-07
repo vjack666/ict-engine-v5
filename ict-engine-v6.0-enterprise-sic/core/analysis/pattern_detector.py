@@ -253,6 +253,7 @@ class PatternDetector:
     
     def detect_patterns(
         self, 
+        data: Optional[pd.DataFrame] = None,
         symbol: str = "EURUSD", 
         timeframe: str = "M15",
         lookback_days: int = 7
@@ -261,6 +262,7 @@ class PatternDetector:
         Detectar patrones ICT en los datos de mercado
         
         Args:
+            data: DataFrame con datos OHLCV (opcional, si no se proporciona se descarga)
             symbol: Símbolo a analizar
             timeframe: Marco temporal
             lookback_days: Días de historia a analizar
@@ -271,8 +273,10 @@ class PatternDetector:
         start_time = time.time()
         
         try:
-            # Obtener datos de mercado
-            data = self._get_market_data(symbol, timeframe, lookback_days)
+            # Usar datos proporcionados o descargar
+            if data is None:
+                data = self._get_market_data(symbol, timeframe, lookback_days)
+                
             if data is None or data.empty:
                 print(f"[WARNING] Sin datos para {symbol} {timeframe}")
                 return []

@@ -41,3 +41,129 @@
 [2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
 [2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Smart Money: False
 [2025-08-07 15:07:39] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.0501s
+[2025-08-07 17:09:35] [ICT_Engine] [INFO] [CORE] Test de logging
+[2025-08-07 17:09:35] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-07 17:09:35] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-07 17:09:35] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-07 17:09:35] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=70.0%, lookback=50
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:24:35] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:24:35] [BacktestEngine] [ERROR] [CORE] ❌ Error descargando datos: 'dict' object has no attribute 'empty'
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:29:22] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:29:22] [BacktestEngine] [ERROR] [CORE] ❌ Error descargando datos: 'dict' object has no attribute 'empty'
+[2025-08-07 17:29:31] [ICTBacktestExample] [INFO] [CORE] 📋 Creando configuración...
+[2025-08-07 17:29:31] [ICTBacktestExample] [INFO] [CORE] 🚀 Inicializando Backtest Engine v6.0...
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-08 to 2025-08-07
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:29:31] [ICTBacktestExample] [INFO] [CORE] ⚡ Ejecutando backtest...
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:29:31] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:29:31] [BacktestEngine] [ERROR] [CORE] ❌ Error descargando datos: 'dict' object has no attribute 'empty'
+[2025-08-07 17:29:31] [ICTBacktestExample] [ERROR] [CORE] ❌ Error en backtest example: No se pudieron descargar los datos de mercado
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE] 🎯 ICT Backtest Runner v6.0 Enterprise
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE] ==================================================
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE] 📊 Configuration:
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Risk per Trade: 1.0%
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Smart Money: ❌ Disabled
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE]    Multi-TF: ❌ Disabled
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE] 🚀 Inicializando Backtest Engine...
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:31:02] [BacktestRunner] [INFO] [CORE] ⚡ Ejecutando backtest...
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:31:02] [BacktestEngine] [INFO] [CORE] 🔄 Procesando 5000 velas...
+[2025-08-07 17:31:02] [BacktestRunner] [ERROR] [CORE] ❌ Error durante el backtest: PatternDetector.detect_patterns() got multiple values for argument 'symbol'
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE]    Period: 2025-08-04 to 2025-08-07
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:32:10] [BacktestEngine] [INFO] [CORE] 🔄 Procesando 5000 velas...
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE]    Period: 2025-08-04 to 2025-08-07
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:32:58] [BacktestEngine] [INFO] [CORE] 🔄 Procesando 5000 velas...
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE]    Period: 2025-08-04 to 2025-08-07
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:36:37] [BacktestEngine] [INFO] [CORE] 🔄 Procesando 5000 velas...
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:37:28] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE] 🎯 ICT Backtest Runner v6.0 Enterprise
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE] ==================================================
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE] 📊 Configuration:
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Risk per Trade: 1.0%
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Smart Money: ❌ Disabled
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE]    Multi-TF: ❌ Disabled
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE] 🚀 Inicializando Backtest Engine...
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] 🎯 Inicializando Backtest Engine v6.0 Enterprise...
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] ✅ Backtest Engine v6.0 Enterprise inicializado
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE]    Symbol: EURUSD
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE]    Primary TF: M15
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE]    Context TFs: ['H1', 'H4', 'D1']
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE]    Period: 2025-07-31 to 2025-08-07
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE]    Initial Balance: $10,000.00
+[2025-08-07 17:37:43] [BacktestRunner] [INFO] [CORE] ⚡ Ejecutando backtest...
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] 🚀 Iniciando backtest...
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] 📥 Descargando datos de mercado...
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] ✅ Datos primarios descargados: 5000 velas M15
+[2025-08-07 17:37:43] [BacktestEngine] [INFO] [CORE] 🔄 Procesando 5000 velas...
