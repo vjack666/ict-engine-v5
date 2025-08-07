@@ -1,0 +1,283 @@
+{
+  "performance_mode": "ENTERPRISE_MAXIMUM",
+  "optimization_level": "EXTREME",
+  "created_at": "2025-08-07T12:24:35.306543",
+  "system_specs": {
+    "cores": 20,
+    "ram_gb": 15,
+    "disk_gb": 520
+  },
+  "storage": {
+    "mode": "FULL_STORAGE_ENTERPRISE",
+    "compression": "SMART_GZIP",
+    "partitioning": "TIMEFRAME_SYMBOL",
+    "indexing": "B_TREE_OPTIMIZED",
+    "cache_strategy": "PREDICTIVE_PRELOAD",
+    "backup_rotation": 7,
+    "archive_after_days": 30,
+    "max_file_size_mb": 100,
+    "concurrent_writes": 4,
+    "memory_mapping": true,
+    "critical_timeframes": [
+      "M1",
+      "M5",
+      "M15",
+      "M30",
+      "H1",
+      "H4",
+      "D1"
+    ],
+    "ict_symbols": [
+      "EURUSD",
+      "GBPUSD",
+      "XAUUSD",
+      "USDJPY",
+      "AUDUSD",
+      "USDCAD",
+      "USDCHF",
+      "NZDUSD"
+    ],
+    "paths": {
+      "cache_dir": "data/candles/cache",
+      "archive_dir": "data/candles/archive",
+      "realtime_dir": "data/candles/realtime",
+      "analysis_dir": "data/candles/analysis"
+    }
+  },
+  "cache": {
+    "total_size_mb": 2048,
+    "distribution": {
+      "candle_data": 819,
+      "ict_patterns": 512,
+      "analysis_results": 307,
+      "predictions": 204,
+      "metadata": 102,
+      "buffer": 102
+    },
+    "strategy": "LRU_INTELLIGENT",
+    "preload_symbols": [
+      "EURUSD",
+      "GBPUSD",
+      "XAUUSD"
+    ],
+    "preload_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "compression": "LZ4_FAST",
+    "eviction_policy": "ICT_PRIORITY",
+    "persistence": true,
+    "threads": 2,
+    "memory_mapping": true,
+    "predictive_loading": true,
+    "cleanup_interval_minutes": 30,
+    "max_age_hours": 24,
+    "cache_layers": {
+      "L1_memory": 409,
+      "L2_ssd": 409,
+      "L3_disk": "unlimited"
+    }
+  },
+  "threading": {
+    "strategy": "ENTERPRISE_PARALLEL",
+    "max_workers": 15,
+    "thread_distribution": {
+      "download_threads": 6,
+      "analysis_threads": 4,
+      "cache_threads": 2,
+      "io_threads": 2,
+      "background_threads": 1
+    },
+    "queue_size": 1000,
+    "timeout_seconds": 30,
+    "priority_scheduling": true,
+    "affinity_optimization": true,
+    "load_balancing": "INTELLIGENT",
+    "resource_monitoring": true,
+    "adaptive_scaling": true,
+    "thread_pools": {
+      "download_pool": 6,
+      "analysis_pool": 4,
+      "cache_pool": 2,
+      "io_pool": 2
+    }
+  },
+  "memory": {
+    "strategy": "ENTERPRISE_MANAGED",
+    "limits": {
+      "max_process_gb": 4,
+      "cache_gb": 2,
+      "buffer_gb": 0.5,
+      "analysis_gb": 1
+    },
+    "garbage_collection": "AGGRESSIVE_OPTIMIZED",
+    "memory_mapping": true,
+    "swap_management": "INTELLIGENT",
+    "leak_detection": true,
+    "compression": "SMART_MEMORY",
+    "lazy_loading": true,
+    "preallocation": true,
+    "monitoring": {
+      "interval_seconds": 10,
+      "alert_threshold_percent": 85,
+      "cleanup_threshold_percent": 90
+    },
+    "optimization": {
+      "pandas_memory": "OPTIMIZED",
+      "numpy_memory": "ALIGNED",
+      "string_interning": true,
+      "object_pooling": true
+    }
+  },
+  "ict_patterns": {
+    "priority_patterns": [
+      "liquidity_sweep",
+      "order_block",
+      "fair_value_gap",
+      "breaker_block",
+      "mitigation_block",
+      "balanced_price_range",
+      "optimal_trade_entry",
+      "change_of_character",
+      "break_of_structure",
+      "shift_in_market_structure"
+    ],
+    "critical_timeframes": {
+      "M1": {
+        "priority": 5,
+        "cache_duration_hours": 2
+      },
+      "M5": {
+        "priority": 4,
+        "cache_duration_hours": 4
+      },
+      "M15": {
+        "priority": 2,
+        "cache_duration_hours": 8
+      },
+      "M30": {
+        "priority": 3,
+        "cache_duration_hours": 12
+      },
+      "H1": {
+        "priority": 1,
+        "cache_duration_hours": 24
+      },
+      "H4": {
+        "priority": 1,
+        "cache_duration_hours": 48
+      },
+      "D1": {
+        "priority": 2,
+        "cache_duration_hours": 168
+      }
+    },
+    "ict_symbols": {
+      "EURUSD": {
+        "priority": 1,
+        "session_focus": [
+          "London",
+          "New_York"
+        ]
+      },
+      "GBPUSD": {
+        "priority": 2,
+        "session_focus": [
+          "London"
+        ]
+      },
+      "XAUUSD": {
+        "priority": 1,
+        "session_focus": [
+          "New_York",
+          "Asian"
+        ]
+      },
+      "USDJPY": {
+        "priority": 3,
+        "session_focus": [
+          "Asian",
+          "New_York"
+        ]
+      },
+      "AUDUSD": {
+        "priority": 4,
+        "session_focus": [
+          "Asian"
+        ]
+      },
+      "USDCAD": {
+        "priority": 4,
+        "session_focus": [
+          "New_York"
+        ]
+      },
+      "USDCHF": {
+        "priority": 5,
+        "session_focus": [
+          "London"
+        ]
+      },
+      "NZDUSD": {
+        "priority": 5,
+        "session_focus": [
+          "Asian"
+        ]
+      }
+    },
+    "analysis_depth": {
+      "lookback_bars": {
+        "M1": 1440,
+        "M5": 2016,
+        "M15": 2016,
+        "M30": 1440,
+        "H1": 720,
+        "H4": 720,
+        "D1": 365
+      },
+      "pattern_recognition": "DEEP_LEARNING",
+      "confluence_analysis": true,
+      "multi_timeframe": true,
+      "session_analysis": true
+    },
+    "optimization": {
+      "parallel_analysis": true,
+      "vectorized_calculations": true,
+      "cython_acceleration": false,
+      "gpu_acceleration": false,
+      "just_in_time_compilation": true
+    }
+  },
+  "network": {
+    "connection_strategy": "ENTERPRISE_ROBUST",
+    "timeout_seconds": 10,
+    "retry_attempts": 5,
+    "retry_backoff": "EXPONENTIAL",
+    "connection_pooling": true,
+    "keep_alive": true,
+    "compression": "FAST",
+    "batch_requests": true,
+    "concurrent_connections": 3,
+    "buffer_size_kb": 64,
+    "tcp_optimization": {
+      "tcp_nodelay": true,
+      "tcp_keepalive": true,
+      "send_buffer_kb": 32,
+      "recv_buffer_kb": 32
+    },
+    "mt5_optimization": {
+      "symbol_refresh_interval": 300,
+      "data_request_batching": true,
+      "parallel_symbol_requests": true,
+      "cache_symbol_info": true,
+      "preload_critical_symbols": true
+    },
+    "error_handling": {
+      "circuit_breaker": true,
+      "graceful_degradation": true,
+      "automatic_reconnection": true,
+      "health_monitoring": true
+    }
+  }
+}

@@ -143,7 +143,7 @@ class MT5ConnectionInfo:
     connection_time: Optional[datetime] = None
     
     # Nuevos campos v6.0
-    sic_integration: bool = False
+    sic_integration: bool = True  # Habilitado por defecto en v6.0
     lazy_loading_enabled: bool = False
     cache_enabled: bool = False
     debug_level: str = "info"
@@ -1080,7 +1080,21 @@ class MT5DataManager:
     def get_performance_report(self) -> Dict[str, Any]:
         """📈 Genera reporte de performance completo"""
         if not self._performance_metrics:
-            return {'error': 'No performance data available'}
+            return {
+                'total_operations': 0,
+                'total_duration': 0,
+                'connection_attempts': self._connection_attempts,
+                'successful_downloads': self._successful_downloads,
+                'cache_performance': {
+                    'hits': self._cache_hits,
+                    'misses': self._cache_misses,
+                    'hit_ratio': 0
+                },
+                'operation_stats': {},
+                'sic_integration_active': SIC_V3_1_AVAILABLE,
+                'mt5_available': MT5_AVAILABLE,
+                'debug_events': debugger.get_debug_summary()['debug_stats']['total_events'] if self._enable_debug else 0
+            }
         
         # Calcular métricas agregadas
         operations_by_type = {}
