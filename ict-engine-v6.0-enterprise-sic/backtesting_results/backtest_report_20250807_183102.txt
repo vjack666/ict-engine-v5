@@ -1,0 +1,63 @@
+🎯 REPORTE COMPLETO DE BACKTESTING ICT ENGINE v6.0
+============================================================
+📅 Período: 2024-01-01 → 2024-12-31
+💰 Balance Inicial: $10,000.00
+📊 Estrategias Testeadas: 5
+📋 Trades Detallados: 4547
+✅ Sistema de Reporte Detallado: ACTIVADO
+
+
+📊 ESTRATEGIA: Optimal_Trade_Entry
+----------------------------------------
+   Trades Totales: 900
+   Trades Ganadores: 679
+   Trades Perdedores: 221
+   Win Rate: 75.4%
+   Profit Total: $16,594.83
+   Pips Totales: 16594.8
+   Profit Factor: 5.96
+   Duración Promedio: 12:18:48
+
+📊 ESTRATEGIA: Silver_Bullet_Theory
+----------------------------------------
+   Trades Totales: 930
+   Trades Ganadores: 663
+   Trades Perdedores: 267
+   Win Rate: 71.3%
+   Profit Total: $16,307.78
+   Pips Totales: 16307.8
+   Profit Factor: 5.19
+   Duración Promedio: 12:47:40.645161
+
+📊 ESTRATEGIA: Order_Block_Breaker
+----------------------------------------
+   Trades Totales: 902
+   Trades Ganadores: 665
+   Trades Perdedores: 237
+   Win Rate: 73.7%
+   Profit Total: $16,327.44
+   Pips Totales: 16327.4
+   Profit Factor: 5.66
+   Duración Promedio: 12:44:22.084257
+
+📊 ESTRATEGIA: Fair_Value_Gaps
+----------------------------------------
+   Trades Totales: 903
+   Trades Ganadores: 654
+   Trades Perdedores: 249
+   Win Rate: 72.4%
+   Profit Total: $16,338.13
+   Pips Totales: 16338.1
+   Profit Factor: 5.54
+   Duración Promedio: 12:38:32.292359
+
+📊 ESTRATEGIA: Judas_Swing
+----------------------------------------
+   Trades Totales: 912
+   Trades Ganadores: 629
+   Trades Perdedores: 283
+   Win Rate: 69.0%
+   Profit Total: $14,748.24
+   Pips Totales: 14748.2
+   Profit Factor: 4.78
+   Duración Promedio: 12:28:05.526316
