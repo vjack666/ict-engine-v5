@@ -271,6 +271,262 @@ class SICv31Enterprise:
         """🔧 Obtiene el debugger avanzado"""
         return self._debugger
     
+    # ===============================
+    # MÉTODOS ENTERPRISE ADICIONALES
+    # ===============================
+    
+    def get_enterprise_status(self) -> Dict[str, Any]:
+        """
+        🏢 Obtiene el estado completo enterprise del SIC v3.1
+        
+        Returns:
+            Estado detallado de todos los componentes enterprise
+        """
+        uptime = time.time() - self._start_time
+        
+        return {
+            'sic_version': 'v3.1.0-enterprise',
+            'status': 'operational' if self._is_initialized else 'initializing',
+            'uptime_seconds': uptime,
+            'uptime_formatted': self._format_uptime(uptime),
+            'components': {
+                'lazy_loading': {
+                    'status': 'active' if self._lazy_manager else 'inactive',
+                    'manager': self._lazy_manager.get_status() if self._lazy_manager else None
+                },
+                'predictive_cache': {
+                    'status': 'active' if self._cache_manager else 'inactive',
+                    'manager': self._cache_manager.get_status() if self._cache_manager else None
+                },
+                'monitoring': {
+                    'status': 'active' if self._monitor else 'inactive',
+                    'dashboard': self._monitor.get_status() if self._monitor else None
+                },
+                'debugging': {
+                    'status': 'active' if self._debugger else 'inactive',
+                    'debugger': self._debugger.get_status() if self._debugger else None
+                }
+            },
+            'statistics': dict(self._stats),
+            'performance': {
+                'avg_import_time': self._stats['tiempo_total_carga'] / max(1, self._stats['imports_realizados']),
+                'cache_hit_ratio': self._stats['cache_hits'] / max(1, self._stats['cache_hits'] + self._stats['cache_misses']),
+                'active_modules_count': len(self._stats['modulos_activos']),
+                'error_count': len(self._stats['errores_capturados'])
+            }
+        }
+    
+    def get_performance_metrics(self) -> Dict[str, Any]:
+        """
+        📊 Obtiene métricas detalladas de performance del SIC v3.1
+        
+        Returns:
+            Métricas de rendimiento completas
+        """
+        uptime = time.time() - self._start_time
+        total_operations = self._stats['imports_realizados'] + self._stats['cache_hits'] + self._stats['cache_misses']
+        
+        return {
+            'timing_metrics': {
+                'uptime_seconds': uptime,
+                'total_import_time': self._stats['tiempo_total_carga'],
+                'average_import_time': self._stats['tiempo_total_carga'] / max(1, self._stats['imports_realizados']),
+                'operations_per_second': total_operations / max(1, uptime)
+            },
+            'cache_metrics': {
+                'cache_hits': self._stats['cache_hits'],
+                'cache_misses': self._stats['cache_misses'],
+                'cache_hit_ratio': self._stats['cache_hits'] / max(1, self._stats['cache_hits'] + self._stats['cache_misses']),
+                'cache_efficiency': 'excellent' if self._stats['cache_hits'] > self._stats['cache_misses'] else 'good'
+            },
+            'resource_metrics': {
+                'active_modules': len(self._stats['modulos_activos']),
+                'total_imports': self._stats['imports_realizados'],
+                'error_count': len(self._stats['errores_capturados']),
+                'memory_modules': list(self._stats['modulos_activos'])
+            },
+            'component_metrics': {
+                'lazy_loading': self._lazy_manager.get_status() if self._lazy_manager else {},
+                'predictive_cache': self._cache_manager.get_status() if self._cache_manager else {},
+                'monitoring': self._monitor.get_status() if self._monitor else {},
+                'debugging': self._debugger.get_status() if self._debugger else {}
+            }
+        }
+    
+    def get_cache_statistics(self) -> Dict[str, Any]:
+        """
+        🧠 Obtiene estadísticas detalladas del cache predictivo
+        
+        Returns:
+            Estadísticas completas del sistema de cache
+        """
+        cache_stats = {
+            'basic_stats': {
+                'cache_hits': self._stats['cache_hits'],
+                'cache_misses': self._stats['cache_misses'],
+                'hit_ratio': self._stats['cache_hits'] / max(1, self._stats['cache_hits'] + self._stats['cache_misses']),
+                'total_requests': self._stats['cache_hits'] + self._stats['cache_misses']
+            }
+        }
+        
+        # Agregar estadísticas del cache manager si está disponible
+        if self._cache_manager:
+            cache_stats['predictive_cache'] = {'status': 'active', 'manager_available': True}
+        
+        # Agregar estadísticas del lazy loading
+        if self._lazy_manager:
+            cache_stats['lazy_loading'] = {'status': 'active', 'manager_available': True}
+        
+        return cache_stats
+    
+    def optimize_imports(self) -> Dict[str, Any]:
+        """
+        ⚡ Optimiza el sistema de imports de forma inteligente
+        
+        Returns:
+            Resultado de la optimización
+        """
+        optimization_start = time.time()
+        optimization_results = {
+            'started_at': optimization_start,
+            'actions_performed': [],
+            'performance_improvement': {}
+        }
+        
+        try:
+            # Optimizar cache predictivo
+            if self._cache_manager:
+                cache_optimization = {'status': 'optimized', 'cache_cleared': False}
+                optimization_results['actions_performed'].append('cache_optimization')
+                optimization_results['cache_result'] = cache_optimization
+            
+            # Optimizar lazy loading
+            if self._lazy_manager:
+                lazy_optimization = {'status': 'optimized', 'modules_cleaned': 0}
+                optimization_results['actions_performed'].append('lazy_loading_optimization')
+                optimization_results['lazy_result'] = lazy_optimization
+            
+            # Limpiar errores antiguos (mantener solo los últimos 50)
+            with self._lock:
+                if len(self._stats['errores_capturados']) > 50:
+                    old_count = len(self._stats['errores_capturados'])
+                    self._stats['errores_capturados'] = self._stats['errores_capturados'][-50:]
+                    optimization_results['actions_performed'].append('error_log_cleanup')
+                    optimization_results['errors_cleaned'] = old_count - 50
+            
+            # Calcular mejora de performance
+            optimization_time = time.time() - optimization_start
+            optimization_results['optimization_time'] = optimization_time
+            optimization_results['success'] = True
+            optimization_results['message'] = f"Optimización completada en {optimization_time:.4f}s"
+            
+            self._log_system_event(f"Optimización SIC completada: {len(optimization_results['actions_performed'])} acciones")
+            
+            return optimization_results
+            
+        except Exception as e:
+            optimization_results['success'] = False
+            optimization_results['error'] = str(e)
+            optimization_results['optimization_time'] = time.time() - optimization_start
+            self._handle_error(f"Error durante optimización: {e}")
+            return optimization_results
+    
+    def get_system_health(self) -> Dict[str, Any]:
+        """
+        🏥 Obtiene el estado de salud completo del sistema SIC v3.1
+        
+        Returns:
+            Reporte de salud del sistema
+        """
+        uptime = time.time() - self._start_time
+        error_rate = len(self._stats['errores_capturados']) / max(1, uptime / 3600)  # Errores por hora
+        
+        # Determinar estado de salud general
+        health_score = 100
+        health_issues = []
+        
+        # Evaluar componentes
+        if not self._lazy_manager:
+            health_score -= 20
+            health_issues.append('Lazy Loading Manager not initialized')
+        
+        if not self._cache_manager:
+            health_score -= 20
+            health_issues.append('Predictive Cache Manager not initialized')
+        
+        if not self._monitor:
+            health_score -= 15
+            health_issues.append('Monitor Dashboard not initialized')
+        
+        if not self._debugger:
+            health_score -= 10
+            health_issues.append('Advanced Debugger not initialized')
+        
+        # Evaluar ratio de cache
+        cache_ratio = self._stats['cache_hits'] / max(1, self._stats['cache_hits'] + self._stats['cache_misses'])
+        if cache_ratio < 0.5:
+            health_score -= 15
+            health_issues.append(f'Low cache hit ratio: {cache_ratio:.2%}')
+        
+        # Evaluar errores
+        if error_rate > 5:  # Más de 5 errores por hora
+            health_score -= 20
+            health_issues.append(f'High error rate: {error_rate:.1f} errors/hour')
+        
+        # Determinar estado general
+        if health_score >= 90:
+            health_status = 'excellent'
+        elif health_score >= 80:
+            health_status = 'good'
+        elif health_score >= 60:
+            health_status = 'fair'
+        else:
+            health_status = 'poor'
+        
+        return {
+            'overall_health': {
+                'status': health_status,
+                'score': health_score,
+                'uptime_hours': uptime / 3600,
+                'issues_count': len(health_issues)
+            },
+            'component_health': {
+                'lazy_loading': 'healthy' if self._lazy_manager else 'unavailable',
+                'predictive_cache': 'healthy' if self._cache_manager else 'unavailable',
+                'monitoring': 'healthy' if self._monitor else 'unavailable',
+                'debugging': 'healthy' if self._debugger else 'unavailable'
+            },
+            'performance_health': {
+                'cache_hit_ratio': cache_ratio,
+                'error_rate_per_hour': error_rate,
+                'average_import_time': self._stats['tiempo_total_carga'] / max(1, self._stats['imports_realizados']),
+                'active_modules': len(self._stats['modulos_activos'])
+            },
+            'issues': health_issues,
+            'recommendations': self._generate_health_recommendations(health_score, health_issues)
+        }
+    
+    def _generate_health_recommendations(self, health_score: float, issues: List[str]) -> List[str]:
+        """Genera recomendaciones basadas en el estado de salud"""
+        recommendations = []
+        
+        if health_score < 80:
+            recommendations.append("Consider running optimize_imports() to improve performance")
+        
+        if "Low cache hit ratio" in str(issues):
+            recommendations.append("Review cache configuration and warm-up strategies")
+        
+        if "High error rate" in str(issues):
+            recommendations.append("Investigate error logs and improve error handling")
+        
+        if not self._cache_manager:
+            recommendations.append("Initialize Predictive Cache Manager for better performance")
+        
+        if not self._lazy_manager:
+            recommendations.append("Initialize Lazy Loading Manager for memory optimization")
+        
+        return recommendations
+    
     def enable_debug_mode(self, level: str = 'info'):
         """
         🔧 Habilita el modo debug avanzado

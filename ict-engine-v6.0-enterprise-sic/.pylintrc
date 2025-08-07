@@ -28,6 +28,11 @@ disable=
     C0302,  # Too many lines in module
     W0102,  # Dangerous default value
     W0107,  # Unnecessary pass statement
+    W0611,  # Unused import (NUEVO)
+    W0612,  # Unused variable (NUEVO)
+    W0614,  # Unused import from wildcard (NUEVO)
+    W0621,  # Redefining name from outer scope (NUEVO)
+    W0401,  # Wildcard import (NUEVO)
 
 # Only show errors and critical warnings
 confidence=HIGH

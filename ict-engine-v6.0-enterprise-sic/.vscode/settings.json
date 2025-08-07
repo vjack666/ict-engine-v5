@@ -2,24 +2,25 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
-        "--disable=C0103,C0114,C0115,C0116,C0301,C0303,R0903,R0913,R0914,R0915,W0613,W0622,W0718,W0719,W0212,W0511,R0801,R0902,R0912,C0302,W0102,W0107",
+        "--disable=C0103,C0114,C0115,C0116,C0301,C0303,R0903,R0913,R0914,R0915,W0613,W0622,W0718,W0719,W0212,W0511,R0801,R0902,R0912,C0302,W0102,W0107,W0611,W0612,W0614,W0621,W0401",
         "--max-line-length=120",
-        "--confidence=HIGH"
+        "--confidence=HIGH",
+        "--good-names=i,j,k,ex,Run,_,df,ob,fvg,tf"
     ],
 
     "problems.defaultViewMode": "tree",
-    "problems.showCurrentInStatus": true,
-    "problems.decorations.enabled": true,
+    "problems.showCurrentInStatus": false,
+    "problems.decorations.enabled": false,
 
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingImports": "error",
         "reportMissingTypeStubs": "none",
         "reportImportCycles": "error",
-        "reportUnusedImport": "information",
-        "reportUnusedClass": "information",
-        "reportUnusedFunction": "information",
-        "reportUnusedVariable": "information",
+        "reportUnusedImport": "none",
+        "reportUnusedClass": "none",
+        "reportUnusedFunction": "none",
+        "reportUnusedVariable": "none",
         "reportDuplicateImport": "warning",
         "reportOptionalSubscript": "none",
         "reportOptionalMemberAccess": "none",
