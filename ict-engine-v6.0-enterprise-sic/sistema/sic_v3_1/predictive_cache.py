@@ -586,17 +586,21 @@ class PredictiveCacheManager:
         except Exception as e:
             print(f"❌ Error cargando persistencia: {e}")
     
-    def _save_persistence_data(self):
-        """Guarda datos de persistencia"""
+    def _save_persistence_data(self, force_save: bool = False):
+        """
+        Guarda datos de persistencia de forma segura
+        
+        Args:
+            force_save: Fuerza el guardado incluso durante shutdown
+        """
         if not self._enable_persistence:
             return
         
+        # Durante shutdown, solo guardar si se fuerza explícitamente
+        if not force_save and self._is_shutting_down():
+            return
+        
         try:
-            # Verificar que las funciones built-in estén disponibles
-            if not hasattr(__builtins__, 'open') and 'open' not in dir(__builtins__):
-                print("⚠️ [Predictive Cache] Built-in 'open' no disponible durante shutdown")
-                return
-            
             data = {
                 'stats': self._stats,
                 'module_relationships': {
@@ -606,21 +610,61 @@ class PredictiveCacheManager:
                 'saved_at': time.time()
             }
             
-            # Usar import explícito para asegurar disponibilidad
-            import builtins
-            with builtins.open(str(self._persistence_file), 'w') as f:
+            # Guardar usando la función open estándar
+            with open(str(self._persistence_file), 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=2)
             
-            print("💾 [Predictive Cache] Datos de persistencia guardados")
+            if not self._is_shutting_down():
+                print("💾 [Predictive Cache] Datos de persistencia guardados")
             
-        except (NameError, AttributeError) as e:
-            print(f"⚠️ [Predictive Cache] Built-ins no disponibles durante shutdown: {e}")
         except Exception as e:
-            print(f"❌ Error guardando persistencia: {e}")
+            if not self._is_shutting_down():
+                print(f"❌ Error guardando persistencia: {e}")
+    
+    def _is_shutting_down(self) -> bool:
+        """
+        Detecta si Python está en proceso de shutdown
+        
+        Returns:
+            True si está en shutdown, False en caso contrario
+        """
+        try:
+            # Verificar si los built-ins básicos están disponibles
+            import sys
+            return (
+                not hasattr(__builtins__, 'open') or
+                'open' not in dir(__builtins__) or
+                getattr(sys, 'is_finalizing', lambda: False)()
+            )
+        except:
+            return True
+    
+    def graceful_shutdown(self):
+        """
+        Realiza un shutdown graceful del cache predictivo
+        
+        Este método debe ser llamado explícitamente antes del cierre
+        para guardar los datos de persistencia de forma segura.
+        """
+        try:
+            if self._enable_persistence:
+                self._save_persistence_data(force_save=True)
+                print("🔄 [Predictive Cache] Shutdown graceful completado")
+        except Exception as e:
+            print(f"⚠️ [Predictive Cache] Error durante shutdown graceful: {e}")
     
     def __del__(self):
-        """Destructor que guarda datos de persistencia"""
-        if hasattr(self, '_enable_persistence') and self._enable_persistence:
+        """
+        Destructor que intenta guardado final
+        
+        Note: Durante shutdown de Python, este método puede ejecutarse
+        cuando algunos built-ins ya no están disponibles. Para un guardado
+        seguro, use graceful_shutdown() explícitamente.
+        """
+        # Solo intentar guardado si no estamos en shutdown
+        if (hasattr(self, '_enable_persistence') and 
+            self._enable_persistence and 
+            not self._is_shutting_down()):
             self._save_persistence_data()
 
 

@@ -590,16 +590,26 @@ class SICv31Enterprise:
         """Apaga el sistema SIC v3.1 limpiamente"""
         self._log_system_event("Iniciando shutdown del SIC v3.1 Enterprise")
         
-        if self._monitor:
-            self._monitor.shutdown()
-        
-        if self._cache_manager:
-            self._cache_manager.clear_cache()
-        
-        if self._debugger:
-            self._debugger.save_session_log()
-        
-        self._log_system_event("SIC v3.1 Enterprise shutdown completado")
+        try:
+            # Shutdown graceful del cache predictivo primero
+            if self._cache_manager:
+                self._cache_manager.graceful_shutdown()
+            
+            # Shutdown del monitor
+            if self._monitor:
+                self._monitor.shutdown()
+            
+            # Guardar logs del debugger
+            if self._debugger:
+                self._debugger.save_session_log()
+            
+            self._log_system_event("SIC v3.1 Enterprise shutdown completado")
+            
+        except Exception as e:
+            print(f"⚠️ Error durante shutdown SIC v3.1: {e}")
+            
+        finally:
+            self._is_initialized = False
 
 
 # Instance global del SIC v3.1 Enterprise
