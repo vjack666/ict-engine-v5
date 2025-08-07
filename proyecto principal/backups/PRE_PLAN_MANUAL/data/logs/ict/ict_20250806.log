@@ -1,0 +1,110 @@
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:11:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:12:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:13:33 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:03 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:14:33 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:14:34 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:15:03 | WARNING  | SMART.ICT.CORE.POI_SYSTEM.POI_DETECTOR | [WARNING] Dataset insuficiente para análisis OB: solo 10 velas (mínimo 20)
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para JUDAS_SWING (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | ERROR    | SMART.ICT.CORE.ICT_ENGINE.CONFIDENCE_ENGINE | Error calculando score base: '>=' not supported between instances of 'str' and 'int'
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para MARKET_STRUCTURE_V2 (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para LIQUIDITY_GRAB (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 09:15:04 | WARNING  | SMART.ICT.CORE.ICT_ENGINE.ICT_HISTORICAL_ANALYZER | [COLD_START] [SYMBOL] Datos insuficientes para ORDER_BLOCK (0 muestras), usando peso base: 1.0
+2025-08-06 11:19:17 | WARNING  | SMART.ICT.ICT_ENGINE      | Componentes ICT no disponibles: cannot import name 'log_info' from partially initialized module 'sistema.imports_interface' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\imports_interface.py)
+2025-08-06 11:19:17 | WARNING  | SMART.ICT.CORE.ICT_ENGINE | Error importando componentes ICT: cannot import name 'log_info' from partially initialized module 'sistema.imports_interface' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\imports_interface.py)
+2025-08-06 11:29:39 | WARNING  | SMART.ICT.ICT_ENGINE      | Componentes ICT no disponibles: cannot import name 'log_info' from partially initialized module 'sistema.imports_interface' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\imports_interface.py)
+2025-08-06 11:29:39 | WARNING  | SMART.ICT.CORE.ICT_ENGINE | Error importando componentes ICT: cannot import name 'log_info' from partially initialized module 'sistema.imports_interface' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\imports_interface.py)
+2025-08-06 11:42:07 | WARNING  | SMART.ICT.ICT_ENGINE      | Componentes ICT no disponibles: cannot import name 'ICTDetector' from partially initialized module 'core.ict_engine.ict_detector' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\core\ict_engine\ict_detector.py)
+2025-08-06 11:42:07 | WARNING  | SMART.ICT.CORE.ICT_ENGINE | Error importando componentes ICT: cannot import name 'ICTDetector' from partially initialized module 'core.ict_engine.ict_detector' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\core\ict_engine\ict_detector.py)
+2025-08-06 11:42:07 | WARNING  | SMART.ICT.__INIT__        | [WARNING] Warning: No se pudieron importar algunos componentes ICT: cannot import name 'logger' from 'sistema.smart_directory_logger' (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\smart_directory_logger.py)
+2025-08-06 11:42:22 | WARNING  | SMART.ICT.ICT_ENGINE      | Componentes ICT no disponibles: cannot import name 'ICTDetector' from partially initialized module 'core.ict_engine.ict_detector' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\core\ict_engine\ict_detector.py)
+2025-08-06 11:42:22 | WARNING  | SMART.ICT.CORE.ICT_ENGINE | Error importando componentes ICT: cannot import name 'ICTDetector' from partially initialized module 'core.ict_engine.ict_detector' (most likely due to a circular import) (C:\Users\v_jac\Desktop\itc engine v5.0\core\ict_engine\ict_detector.py)
+2025-08-06 11:42:22 | WARNING  | SMART.ICT.__INIT__        | [WARNING] Warning: No se pudieron importar algunos componentes ICT: cannot import name 'logger' from 'sistema.smart_directory_logger' (C:\Users\v_jac\Desktop\itc engine v5.0\sistema\smart_directory_logger.py)
+2025-08-06 15:56:09 | WARNING  | SMART.ICT.SIC             | ICT Engine no disponible: name 'enviar_senal_log' is not defined
