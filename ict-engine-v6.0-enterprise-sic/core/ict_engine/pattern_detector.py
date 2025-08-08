@@ -93,6 +93,18 @@ except ImportError:
     UNIFIED_MEMORY_AVAILABLE = False
     print("⚠️ Sistema de Memoria Unificada no disponible")
 
+# ✅ FASE 2: Sistema de Memoria Unificada v6.1 Enterprise (FASE 2)
+try:
+    from core.analysis.unified_memory_system import (
+        get_unified_memory_system,
+        UnifiedMemorySystem
+    )
+    UNIFIED_MEMORY_SYSTEM_AVAILABLE = True
+    print("✅ [SIC Integration] UnifiedMemorySystem FASE 2 cargado")
+except ImportError:
+    UNIFIED_MEMORY_SYSTEM_AVAILABLE = False
+    print("⚠️ UnifiedMemorySystem FASE 2 no disponible")
+
 # ===============================
 # TIPOS Y ENUMS ICT PATTERNS
 # ===============================
@@ -271,7 +283,9 @@ class ICTPatternDetector:
         self._market_structure: Optional[MarketStructureAnalyzerV6] = None
         self._downloader: Optional[AdvancedCandleDownloader] = None
         self._sic: Optional[SICv31Enterprise] = None
-        self._unified_memory = None  # Sistema de Memoria Unificada v6.0
+        self._unified_memory = None  # Sistema de Memoria Unificada v6.0 (FASE 1)
+        self._unified_memory_system = None  # Sistema de Memoria Unificada v6.1 (FASE 2) (FASE 1)
+        self._unified_memory_system = None  # Sistema de Memoria Unificada v6.1 (FASE 2)
         
         # Threading
         self._lock = threading.Lock()
@@ -294,6 +308,21 @@ class ICTPatternDetector:
             if UNIFIED_MEMORY_AVAILABLE:
                 self._unified_memory = get_unified_market_memory()
                 self._log_info("🧠 Sistema de Memoria Unificada v6.0 conectado (SIC + SLUC)")
+            
+            # ✅ FASE 2: Configurar UnifiedMemorySystem v6.1 (Trader Real)
+            if UNIFIED_MEMORY_SYSTEM_AVAILABLE:
+                self._unified_memory_system = get_unified_memory_system()
+                self._log_info("🧠 UnifiedMemorySystem v6.1 FASE 2 conectado (Trader Real)")
+            
+            # ✅ FASE 2: Configurar UnifiedMemorySystem v6.1 (Trader Real)
+            if UNIFIED_MEMORY_SYSTEM_AVAILABLE:
+                self._unified_memory_system = get_unified_memory_system()
+                self._log_info("🧠 UnifiedMemorySystem v6.1 FASE 2 conectado (Trader Real)")
+            
+            # ✅ FASE 2: Configurar UnifiedMemorySystem v6.1 (Trader Real)
+            if UNIFIED_MEMORY_SYSTEM_AVAILABLE:
+                self._unified_memory_system = get_unified_memory_system()
+                self._log_info("🧠 UnifiedMemorySystem v6.1 FASE 2 conectado (Trader Real)")
             
             # Configurar Market Structure Analyzer
             if MARKET_STRUCTURE_AVAILABLE:
@@ -1007,6 +1036,191 @@ class ICTPatternDetector:
                 
         except Exception:
             return "NEUTRAL"
+
+    # ===============================
+    # 🧠 MÉTODOS MEMORY-AWARE FASE 3
+    # ===============================
+    
+    def detect_bos_with_memory(self, data=None, timeframe: str = "M15", symbol: str = "EURUSD") -> dict:
+        """
+        🎯 BOS Detection con memoria histórica (FASE 3)
+        ✅ REGLA #2: Memoria crítica aplicada
+        """
+        try:
+            # 1. Detección tradicional usando detect_patterns
+            traditional_result = self.detect_patterns(
+                symbol=symbol,
+                timeframe=timeframe,
+                lookback_days=3
+            )
+            
+            # Extraer BOS info del resultado
+            traditional_bos = {
+                'detected': len(traditional_result.order_blocks) > 0,
+                'order_blocks': traditional_result.order_blocks,
+                'confidence': traditional_result.quality_score / 100.0,
+                'strength': min(1.0, len(traditional_result.order_blocks) / 5.0)
+            }
+            
+            # 2. Enhancement con memoria FASE 2
+            if self._unified_memory_system and UNIFIED_MEMORY_SYSTEM_AVAILABLE:
+                # Obtener contexto histórico
+                historical_context = self._unified_memory_system.get_historical_insight(
+                    f"BOS patterns {timeframe}", timeframe
+                )
+                
+                # Mejorar con memoria
+                enhanced_bos = self._enhance_with_memory(traditional_bos, historical_context, "BOS")
+                
+                # Registrar en memoria para aprendizaje futuro
+                if enhanced_bos.get('detected', False):
+                    self._unified_memory_system.market_context.add_bos_event({
+                        'timestamp': datetime.now(),
+                        'timeframe': timeframe,
+                        'symbol': symbol,
+                        'data': enhanced_bos,
+                        'confidence': enhanced_bos.get('confidence', 0.0)
+                    })
+                
+                self._log_info(f"🧠 BOS con memoria histórica aplicada - Confianza: {enhanced_bos.get('confidence', 0):.2f}")
+                return enhanced_bos
+            else:
+                # Fallback a detección tradicional
+                self._log_warning("🧠 UnifiedMemorySystem no disponible, usando detección tradicional")
+                return traditional_bos
+                
+        except Exception as e:
+            self._log_error(f"Error en BOS con memoria: {e}")
+            return {'detected': False, 'error': str(e)}
+    
+    def detect_choch_with_memory(self, data=None, timeframe: str = "M15", symbol: str = "EURUSD") -> dict:
+        """
+        🎯 CHoCH Detection con memoria histórica (FASE 3)
+        ✅ REGLA #2: Memoria crítica aplicada
+        """
+        try:
+            # 1. Detección tradicional usando detect_patterns
+            traditional_result = self.detect_patterns(
+                symbol=symbol,
+                timeframe=timeframe,
+                lookback_days=3
+            )
+            
+            # Extraer CHoCH info del resultado (usando FVGs como proxy)
+            traditional_choch = {
+                'detected': len(traditional_result.fair_value_gaps) > 0,
+                'fair_value_gaps': traditional_result.fair_value_gaps,
+                'confidence': traditional_result.quality_score / 100.0,
+                'strength': min(1.0, len(traditional_result.fair_value_gaps) / 3.0)
+            }
+            
+            # 2. Enhancement con memoria FASE 2
+            if self._unified_memory_system and UNIFIED_MEMORY_SYSTEM_AVAILABLE:
+                # Obtener contexto histórico
+                historical_context = self._unified_memory_system.get_historical_insight(
+                    f"CHoCH patterns {timeframe}", timeframe
+                )
+                
+                # Mejorar con memoria
+                enhanced_choch = self._enhance_with_memory(traditional_choch, historical_context, "CHoCH")
+                
+                # Registrar en memoria para aprendizaje futuro
+                if enhanced_choch.get('detected', False):
+                    self._unified_memory_system.market_context.add_choch_event({
+                        'timestamp': datetime.now(),
+                        'timeframe': timeframe,
+                        'symbol': symbol,
+                        'data': enhanced_choch,
+                        'confidence': enhanced_choch.get('confidence', 0.0)
+                    })
+                
+                self._log_info(f"🧠 CHoCH con memoria histórica aplicada - Confianza: {enhanced_choch.get('confidence', 0):.2f}")
+                return enhanced_choch
+            else:
+                # Fallback a detección tradicional
+                self._log_warning("🧠 UnifiedMemorySystem no disponible, usando detección tradicional")
+                return traditional_choch
+                
+        except Exception as e:
+            self._log_error(f"Error en CHoCH con memoria: {e}")
+            return {'detected': False, 'error': str(e)}
+    
+    def _enhance_with_memory(self, current_detection: dict, historical_context: dict, pattern_type: str) -> dict:
+        """
+        🧠 Mejora detección actual con contexto histórico (FASE 3)
+        ✅ REGLA #2: Memoria como trader real
+        """
+        try:
+            if not current_detection:
+                return current_detection
+            
+            enhanced = current_detection.copy()
+            
+            # Ajuste de confianza basado en histórico
+            if historical_context and historical_context.get('similar_patterns'):
+                historical_success_rate = historical_context.get('success_rate', 0.5)
+                confidence_multiplier = 0.5 + 0.5 * historical_success_rate
+                
+                # Aplicar multiplicador
+                original_confidence = enhanced.get('confidence', 0.5)
+                enhanced['confidence'] = min(1.0, original_confidence * confidence_multiplier)
+                
+                # Agregar información de memoria
+                enhanced['memory_enhanced'] = True
+                enhanced['historical_success_rate'] = historical_success_rate
+                enhanced['confidence_adjustment'] = confidence_multiplier
+            
+            # Filtro de falsos positivos conocidos
+            if self._is_known_false_positive(current_detection, historical_context):
+                enhanced['confidence'] *= 0.3
+                enhanced['warnings'] = enhanced.get('warnings', [])
+                enhanced['warnings'].append("Pattern similar a falso positivo histórico")
+                enhanced['false_positive_risk'] = True
+            
+            # Evaluación de calidad basada en experiencia
+            if self._unified_memory_system:
+                quality_assessment = self._unified_memory_system.confidence_evaluator.assess_market_confidence(enhanced)
+                enhanced['trader_confidence'] = quality_assessment
+            
+            return enhanced
+            
+        except Exception as e:
+            self._log_error(f"Error en enhancement con memoria: {e}")
+            return current_detection
+    
+    def _is_known_false_positive(self, current_detection: dict, historical_context: dict) -> bool:
+        """
+        🔍 Detecta si el pattern actual es similar a falsos positivos conocidos
+        """
+        try:
+            if not historical_context or not current_detection:
+                return False
+            
+            # Verificar patrones fallidos históricos
+            failed_patterns = historical_context.get('failed_patterns', [])
+            if not failed_patterns:
+                return False
+            
+            # Comparar características básicas
+            current_confidence = current_detection.get('confidence', 0.5)
+            current_strength = current_detection.get('strength', 0.5)
+            
+            for failed_pattern in failed_patterns:
+                failed_confidence = failed_pattern.get('confidence', 0.5)
+                failed_strength = failed_pattern.get('strength', 0.5)
+                
+                # Si confianza y fuerza son muy similares, puede ser falso positivo
+                confidence_diff = abs(current_confidence - failed_confidence)
+                strength_diff = abs(current_strength - failed_strength)
+                
+                if confidence_diff < 0.1 and strength_diff < 0.1:
+                    return True
+            
+            return False
+            
+        except Exception as e:
+            self._log_error(f"Error verificando falsos positivos: {e}")
+            return False
 
     # ===============================
     # MÉTODOS DE LOGGING

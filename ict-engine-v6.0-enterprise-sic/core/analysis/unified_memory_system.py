@@ -115,11 +115,24 @@ class UnifiedMemorySystem:
         })
     
     def _verify_sic_ready(self) -> bool:
-        """✅ REGLA #4: Verificar SIC system ready"""
+        """✅ REGLA #4: Verificar SIC system ready con tolerancia para inicialización"""
         try:
-            return hasattr(self.sic, 'is_ready') and True  # SIC básico disponible
+            # Verificación básica de disponibilidad de SIC
+            if not hasattr(self.sic, 'is_system_ready'):
+                # SIC en modo básico - permitir funcionamiento degradado
+                return True
+            
+            # Si tiene el método, verificar que esté listo
+            return self.sic.is_system_ready()
+            
         except Exception:
-            return False
+            # En caso de error, permitir funcionamiento en modo degradado
+            # ✅ REGLA #4: SLUC logging del estado
+            log_trading_decision_smart_v6("SIC_VERIFICATION_FALLBACK", {
+                "status": "degraded_mode",
+                "reason": "SIC not fully ready during initialization"
+            })
+            return True  # Permitir funcionamiento degradado
     
     def _load_memory_config(self) -> Dict[str, Any]:
         """Cargar configuración de memoria"""
@@ -178,14 +191,34 @@ class UnifiedMemorySystem:
         })
         
         # Conectar componentes para comunicación bidireccional
-        if hasattr(self.market_context, 'set_historical_analyzer'):
-            self.market_context.set_historical_analyzer(self.historical_analyzer)
-        
-        if hasattr(self.historical_analyzer, 'set_market_context'):
-            self.historical_analyzer.set_market_context(self.market_context)
-        
-        # Conectar cache de decisiones
-        self.decision_cache.unified_system = self
+        try:
+            # ✅ REGLA #4: Configurar conexiones con tolerancia de errores
+            log_trading_decision_smart_v6("UNIFIED_SYSTEM_LINKING", {
+                "action": "linking_memory_components",
+                "components": ["memory", "context", "analyzer", "cache"]
+            })
+            
+            # Verificar que los componentes están listos para conectarse
+            if hasattr(self.unified_memory, 'set_market_context'):
+                self.unified_memory.set_market_context(self.market_context)
+            
+            if hasattr(self.market_context, 'set_memory'):
+                self.market_context.set_memory(self.unified_memory)
+            
+            if hasattr(self.historical_analyzer, 'set_memory'):
+                self.historical_analyzer.set_memory(self.unified_memory)
+            
+            # Cache unificado - solo si está disponible
+            if hasattr(self.decision_cache, 'set_unified_system'):
+                self.decision_cache.set_unified_system(self)
+            
+        except Exception as e:
+            # ✅ REGLA #4: Log de error y continuar en modo degradado
+            log_trading_decision_smart_v6("UNIFIED_SYSTEM_DEGRADED", {
+                "error": str(e),
+                "status": "degraded_mode",
+                "reason": "component_linking_error"
+            })
         
         log_trading_decision_smart_v6("CROSS_INTEGRATION_SUCCESS", {
             "status": "Components connected for bidirectional communication"

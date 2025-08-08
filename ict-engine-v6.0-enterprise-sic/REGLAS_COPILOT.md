@@ -84,6 +84,9 @@
 
 📝 DOCUMENTACIÓN DE VICTORIA:
 - ✅ Agregar entrada en bitácora principal
+- ✅ Actualizar TODOS los documentos en docs/ (carpeta por carpeta)
+- ✅ Actualizar TODAS las subcarpetas de docs/
+- ✅ Buscar y actualizar CADA archivo relevante (*.md)
 - ✅ Timestamp y duración de implementación
 - ✅ Lecciones aprendidas y mejoras
 - ✅ Impacto en sistema general
@@ -92,7 +95,8 @@
 🚨 CRÍTICO - NO CONTINUAR SIN:
 - ❌ NO pasar a siguiente fase sin marcar checks
 - ❌ NO implementar nuevo código sin test real
-- ❌ NO cerrar tarea sin actualizar bitácora
+- ❌ NO cerrar tarea sin actualizar TODOS los docs/
+- ❌ NO continuar sin validar CADA subcarpeta docs/
 - ❌ NO continuar sin validar integración completa
 ```
 
@@ -129,7 +133,153 @@
 - [Mejora sugerida]
 ```
 
-### 🔢 **REGLA #6: CONTROL DE VERSIONES INTELIGENTE**
+### � **REGLA #5 (MEJORADA): CONTROL DE PROGRESO Y DOCUMENTACIÓN COMPLETA**
+
+⚡ **OBJETIVO:** Al terminar cualquier fase, componente o tarea, actualizar TODAS las bitácoras y documentos relevantes, carpeta por carpeta, archivo por archivo.
+
+📋 **PROCESO OBLIGATORIO:**
+
+🔍 BÚSQUEDA EXHAUSTIVA:
+- ✅ Escanear TODA la carpeta docs/ y subcarpetas
+- ✅ Identificar CADA archivo .md relevante
+- ✅ Verificar documentos en TODAS las subcarpetas
+- ✅ No omitir ningún archivo de documentación
+
+📝 DOCUMENTACIÓN DE VICTORIA:
+- ✅ Agregar entrada en bitácora principal
+- ✅ Actualizar TODOS los documentos en docs/ (carpeta por carpeta)
+- ✅ Actualizar TODAS las subcarpetas de docs/
+- ✅ Buscar y actualizar CADA archivo relevante (*.md)
+- ✅ Marcar checkboxes correspondientes en planes
+- ✅ Timestamp y duración de implementación
+- ✅ Lecciones aprendidas y mejoras
+- ✅ Impacto en sistema general
+- ✅ Próximos pasos sugeridos
+
+🎯 VALIDACIÓN OBLIGATORIA:
+- ✅ Crear script de validación para verificar 100% cobertura
+- ✅ Confirmar que TODOS los archivos .md fueron actualizados
+- ✅ Verificar que planes principales estén marcados como completados
+- ✅ Asegurar consistencia en TODA la documentación
+
+🚨 CRÍTICO - NO CONTINUAR SIN:
+- ❌ NO pasar a siguiente fase sin marcar checks
+- ❌ NO implementar nuevo código sin test real
+- ❌ NO cerrar tarea sin actualizar TODOS los docs/
+- ❌ NO continuar sin validar CADA subcarpeta docs/
+- ❌ NO continuar sin script de validación 100% ✅
+- ❌ NO continuar sin validar integración completa
+
+### 🎯 **TEMPLATE ACTUALIZACIÓN BITÁCORA:**
+```markdown
+## ✅ [FECHA] - [COMPONENTE] COMPLETADO
+
+### 🏆 **VICTORIA LOGRADA:**
+- **Componente:** [Nombre del componente]
+- **Fase:** [Número de fase]
+- **Duración:** [Tiempo tomado]
+- **Performance:** [Métricas obtenidas]
+
+### 🧪 **TESTS REALIZADOS:**
+- ✅ Test unitario: [Resultado]
+- ✅ Test integración: [Resultado]  
+- ✅ Test datos reales: [Resultado]
+- ✅ Test performance: [<5s ✅/❌]
+
+### 📊 **MÉTRICAS FINALES:**
+- Response time: [X]s
+- Memory usage: [X]MB
+- Success rate: [X]%
+- Integration score: [X]/10
+
+### 📋 **CHECKLIST - COMPLETADO:**
+- [x] ✅ [Lista de tareas completadas]
+
+**🎉 [FASE/COMPONENTE] COMPLETADA EXITOSAMENTE**
+```
+
+---
+
+## 📋 **REGLA #9: REVISIÓN MANUAL OBLIGATORIA**
+
+### 🎯 **PRINCIPIO:**
+**"TODA FASE COMPLETADA REQUIERE REVISIÓN MANUAL DE BITÁCORAS Y CHECKLIST COMPLETO"**
+
+### 📋 **APLICACIÓN OBLIGATORIA:**
+**ANTES de marcar cualquier fase como completada:**
+
+#### **9.1 Revisión Manual de Bitácoras:**
+```bash
+# Verificar TODOS los archivos .md del proyecto
+grep -r "\[ \]" docs/ --include="*.md"  # Buscar checkboxes incompletos
+grep -r "PENDIENTE\|TODO\|FALTA" docs/ --include="*.md"  # Buscar pendientes
+```
+
+#### **9.2 Actualización Manual Requerida:**
+- [ ] **Plan Principal:** `MEMORIA_TRADER_REAL_PLAN_COMPLETO.md`
+- [ ] **Bitácora Smart Money:** `BITACORA_DESARROLLO_SMART_MONEY_v6.md` 
+- [ ] **REGLAS COPILOT:** `REGLAS_COPILOT.md`
+- [ ] **README Principal:** `README.md`
+- [ ] **Documentación Técnica:** Todos los archivos en `docs/`
+
+#### **9.3 Checklist de Validación:**
+```markdown
+### ✅ CHECKLIST REGLA #9 - REVISIÓN MANUAL COMPLETADA:
+- [ ] 🔍 Revisión manual de bitácoras realizada
+- [ ] 📝 Plan principal actualizado con nueva fase
+- [ ] 📋 Todos los checkboxes verificados manualmente
+- [ ] 🧪 Tests documentados con resultados reales
+- [ ] 📊 Métricas finales actualizadas
+- [ ] 🎯 Próximos pasos claramente definidos
+- [ ] 📄 Documentación técnica sincronizada
+- [ ] ✅ REGLA #5 aplicada a TODOS los archivos .md
+```
+
+#### **9.4 Script de Validación Automática:**
+```python
+# Crear script: validate_manual_review.py
+def validate_all_md_files():
+    """Valida que todos los .md estén actualizados según REGLA #9"""
+    # Verificar checkboxes incompletos
+    # Verificar pendientes no resueltos  
+    # Verificar fechas de actualización
+    # Generar reporte de completitud
+```
+
+### 🚨 **PROHIBIDO:**
+- ❌ Marcar fases como completadas sin revisión manual
+- ❌ Dejar checkboxes incompletos en documentación
+- ❌ Scripts automáticos sin validación manual posterior
+- ❌ Archivos .md desactualizados o inconsistentes
+
+### ✅ **OBLIGATORIO:**
+- ✅ Revisión manual de TODOS los archivos .md
+- ✅ Actualización sincronizada de bitácoras
+- ✅ Checklist completo antes de marcar como completado
+- ✅ Script de validación + verificación manual
+
+---
+
+**Versión:** 1.1  
+**Estado:** 📋 **ACTIVO Y OBLIGATORIO PARA COPILOT**
+
+---
+
+## 🔄 **ACTUALIZACIÓN DE REGLAS**
+
+Este archivo debe actualizarse cuando:
+- Se implementen nuevos componentes críticos
+- Se identifiquen nuevos patrones de duplicación
+- Se cambien prioridades del proyecto
+- Se agreguen nuevas reglas de arquitectura
+- Se detecten problemas recurrentes
+
+**Próxima revisión:** Post-implementación memoria trader real
+```
+
+---
+
+## �🔢 **REGLA #6: CONTROL DE VERSIONING INTELIGENTE**
 ```
 🎯 AL COMPLETAR FASES/COMPONENTES MAYORES:
 
