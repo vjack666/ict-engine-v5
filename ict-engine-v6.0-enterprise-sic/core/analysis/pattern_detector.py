@@ -179,6 +179,8 @@ class PatternDetector:
         # Componentes
         self._downloader = None
         self._smart_money_analyzer = None
+        self._multi_tf_analyzer = None  # 🚀 NUEVO: Multi-Timeframe Analyzer
+        self._data_manager = None       # 🎯 NUEVO: ICT Data Manager
         self._initialize_components()
         
         # Cache para optimización
@@ -186,6 +188,8 @@ class PatternDetector:
         self._cache_ttl = timedelta(minutes=5)
         
         print(f"[INFO] Pattern Detector v6.0 Enterprise inicializado")
+        print(f"[INFO] Multi-Timeframe capability: {'ENABLED' if self._multi_tf_analyzer else 'DISABLED'}")
+        print(f"[INFO] Data Manager: {'ENABLED' if self._data_manager else 'DISABLED'}")
         print(f"[INFO] Configuración: {len(self.config)} parámetros cargados")
     
     def _load_default_config(self) -> Dict[str, Any]:
@@ -244,6 +248,28 @@ class PatternDetector:
                 print("[INFO] Smart Money Analyzer v6.0 conectado - análisis institucional disponible")
             else:
                 print("[WARNING] Smart Money Analyzer no disponible - funcionalidad limitada")
+            
+            # 🚀 NUEVO: Inicializar Multi-Timeframe Analyzer
+            try:
+                from .multi_timeframe_analyzer import OptimizedICTAnalysisEnterprise
+                self._multi_tf_analyzer = OptimizedICTAnalysisEnterprise()
+                print("[INFO] 🚀 Multi-Timeframe Analyzer Enterprise v6.0 conectado - pipeline H4→M15→M5 disponible")
+                self.config['multi_timeframe_enabled'] = True
+            except ImportError as e:
+                print(f"[WARNING] Multi-Timeframe Analyzer no disponible: {e}")
+                print("[INFO] Funcionando en modo single-timeframe")
+                self.config['multi_timeframe_enabled'] = False
+
+            # 🎯 NUEVO: Inicializar ICT Data Manager
+            try:
+                from core.data_management.ict_data_manager import ICTDataManager
+                self._data_manager = ICTDataManager(downloader=self._downloader)
+                print("[INFO] 🎯 ICT Data Manager conectado - gestión inteligente de datos habilitada")
+                self.config['data_manager_enabled'] = True
+            except ImportError as e:
+                print(f"[WARNING] ICT Data Manager no disponible: {e}")
+                print("[INFO] Usando gestión de datos básica")
+                self.config['data_manager_enabled'] = False
             
             self.is_initialized = True
             
@@ -509,6 +535,223 @@ class PatternDetector:
                 "confidence": 0.0,
                 "status": "ERROR"
             }
+
+    def detect_bos_multi_timeframe(self, symbol: str, timeframes: Optional[List[str]] = None, mode: str = 'auto') -> Dict[str, Any]:
+        """
+        🚀 DETECTAR BOS MULTI-TIMEFRAME - VERSIÓN CON DATOS REALES
+        
+        Detecta BOS usando análisis multi-timeframe con datos reales optimizados.
+        Integra ICTDataManager para gestión inteligente de datos.
+        
+        Args:
+            symbol: Par de trading (ej. 'EURUSD')
+            timeframes: Lista de timeframes a analizar (opcional, usa default H4→M15→M5)
+            mode: Modo de análisis ('auto', 'live_ready', 'full', 'minimal')
+            
+        Returns:
+            Dict con análisis multi-timeframe BOS y señales confirmadas
+        """
+        try:
+            # 1. 🎯 VERIFICAR DISPONIBILIDAD DE COMPONENTES
+            if not hasattr(self, '_multi_tf_analyzer') or self._multi_tf_analyzer is None:
+                return {
+                    "pattern_type": "BOS_MULTI_TIMEFRAME",
+                    "detected": False,
+                    "reason": "Multi-timeframe analyzer not available",
+                    "analysis": {},
+                    "confidence": 0.0,
+                    "status": "ANALYZER_NOT_AVAILABLE"
+                }
+            
+            # 2. 📊 CONFIGURAR TIMEFRAMES (usar jerarquía ICT H4→M15→M5)
+            if timeframes is None:
+                timeframes = ['H4', 'M15', 'M5']  # Jerarquía ICT estándar
+            
+            print(f"[INFO] 🔍 Iniciando análisis BOS multi-timeframe REAL para {symbol} en {timeframes}")
+            print(f"[INFO] 🎯 Modo de análisis: {mode}")
+            
+            # 3. 🎯 GESTIÓN INTELIGENTE DE DATOS
+            if hasattr(self, '_data_manager') and self._data_manager is not None:
+                # Usar ICT Data Manager para datos optimizados
+                print(f"[INFO] 📊 Usando ICT Data Manager para optimización de datos")
+                
+                # Verificar disponibilidad de datos
+                data_readiness = self._data_manager.get_data_readiness(symbol, timeframes)
+                print(f"[INFO] � Disponibilidad de datos: {data_readiness['analysis_capability']}")
+                
+                # Ajustar modo según disponibilidad de datos
+                if mode == 'auto':
+                    if data_readiness['analysis_capability'] == 'FULL':
+                        adjusted_mode = 'full'
+                    elif data_readiness['analysis_capability'] == 'PARTIAL':
+                        adjusted_mode = 'live_ready'
+                    else:
+                        adjusted_mode = 'minimal'
+                    
+                    print(f"[INFO] 🤖 Modo AUTO ajustado a: {adjusted_mode}")
+                    mode = adjusted_mode
+                
+                # Iniciar warm-up si es necesario
+                if not self._data_manager.warm_up_completed:
+                    print(f"[INFO] �🚀 Iniciando warm-up de datos para análisis rápido...")
+                    warm_up_result = self._data_manager.warm_up_cache(
+                        symbols=[symbol],
+                        timeframes=timeframes
+                    )
+                    
+                    if warm_up_result['success']:
+                        print(f"[INFO] ✅ Warm-up completado en {warm_up_result['warm_up_time']:.1f}s")
+                    else:
+                        print(f"[WARNING] ⚠️ Warm-up parcial - continuando con datos disponibles")
+            
+            # 4. 🚀 EJECUTAR ANÁLISIS MULTI-TIMEFRAME
+            multi_tf_analysis = self._multi_tf_analyzer.analyze_symbol(
+                symbol=symbol,
+                timeframes=timeframes,
+                mode=mode
+            )
+            
+            if not multi_tf_analysis or multi_tf_analysis.get('status') != 'SUCCESS':
+                return {
+                    "pattern_type": "BOS_MULTI_TIMEFRAME", 
+                    "detected": False,
+                    "reason": f"Multi-timeframe analysis failed: {multi_tf_analysis.get('error', 'Unknown error')}",
+                    "analysis": multi_tf_analysis or {},
+                    "confidence": 0.0,
+                    "status": "ANALYSIS_FAILED",
+                    "mode_used": mode
+                }
+            
+            # 5. 🎯 PROCESAR RESULTADOS POR TIMEFRAME
+            tf_results = multi_tf_analysis.get('timeframe_results', {})
+            bos_signals = []
+            overall_confidence = 0.0
+            
+            for tf, result in tf_results.items():
+                if result.get('analysis') and result['analysis'].get('bos_detected'):
+                    bos_data = result['analysis']['bos_analysis']
+                    
+                    # Crear señal BOS para este timeframe
+                    bos_signal = {
+                        'timeframe': tf,
+                        'direction': bos_data.get('direction', 'UNKNOWN'),
+                        'strength': bos_data.get('strength', 0.0),
+                        'break_level': bos_data.get('break_level', 0.0),
+                        'target_level': bos_data.get('target_level', 0.0),
+                        'confluence_count': bos_data.get('confluence_count', 0),
+                        'narrative': bos_data.get('narrative', ''),
+                        'session_alignment': result.get('session_context', {}),
+                        'momentum_score': bos_data.get('momentum_score', 0.0),
+                        'data_quality': multi_tf_analysis.get('data_quality', 'UNKNOWN')
+                    }
+                    
+                    bos_signals.append(bos_signal)
+                    overall_confidence = max(overall_confidence, bos_signal['strength'])
+            
+            # 6. 📈 EVALUAR ALINEACIÓN MULTI-TIMEFRAME
+            alignment_analysis = self._evaluate_multi_tf_alignment(bos_signals, multi_tf_analysis)
+            
+            # 7. 🎯 GENERAR RESULTADO CONSOLIDADO
+            if bos_signals:
+                # Encontrar señal de mayor timeframe (H4 tiene prioridad)
+                tf_priority = {'H4': 3, 'M15': 2, 'M5': 1}
+                primary_signal = max(bos_signals, key=lambda x: tf_priority.get(x['timeframe'], 0))
+                
+                return {
+                    "pattern_type": "BOS_MULTI_TIMEFRAME",
+                    "detected": True,
+                    "primary_signal": primary_signal,
+                    "all_signals": bos_signals,
+                    "alignment_analysis": alignment_analysis,
+                    "overall_confidence": overall_confidence,
+                    "timeframe_count": len(bos_signals),
+                    "raw_analysis": multi_tf_analysis,
+                    "execution_summary": {
+                        "total_timeframes_analyzed": len(timeframes),
+                        "bos_detected_count": len(bos_signals),
+                        "highest_confidence_tf": primary_signal['timeframe'],
+                        "session_context": multi_tf_analysis.get('session_context', {}),
+                        "performance_metrics": multi_tf_analysis.get('performance_metrics', {}),
+                        "mode_used": mode,
+                        "data_quality": multi_tf_analysis.get('data_quality', 'UNKNOWN'),
+                        "data_source": "REAL_DATA" if hasattr(self, '_data_manager') and self._data_manager else "SIMULATED_DATA"
+                    },
+                    "status": "BOS_MULTI_TF_DETECTED"
+                }
+            else:
+                return {
+                    "pattern_type": "BOS_MULTI_TIMEFRAME",
+                    "detected": False,
+                    "reason": "No BOS detected in any timeframe",
+                    "analysis": multi_tf_analysis,
+                    "timeframe_results": tf_results,
+                    "confidence": 0.0,
+                    "execution_summary": {
+                        "total_timeframes_analyzed": len(timeframes),
+                        "bos_detected_count": 0,
+                        "session_context": multi_tf_analysis.get('session_context', {}),
+                        "performance_metrics": multi_tf_analysis.get('performance_metrics', {}),
+                        "mode_used": mode,
+                        "data_quality": multi_tf_analysis.get('data_quality', 'UNKNOWN'),
+                        "data_source": "REAL_DATA" if hasattr(self, '_data_manager') and self._data_manager else "SIMULATED_DATA"
+                    },
+                    "status": "NO_BOS_MULTI_TF"
+                }
+                
+        except Exception as e:
+            print(f"[ERROR] Error en detect_bos_multi_timeframe: {e}")
+            return {
+                "pattern_type": "BOS_MULTI_TIMEFRAME",
+                "detected": False,
+                "reason": f"Multi-timeframe analysis error: {str(e)}",
+                "analysis": {},
+                "confidence": 0.0,
+                "mode_attempted": mode,
+                "status": "ERROR"
+            }
+
+    def _evaluate_multi_tf_alignment(self, bos_signals: List[Dict], raw_analysis: Dict) -> Dict[str, Any]:
+        """🎯 Evalúa la alineación de señales BOS entre timeframes"""
+        try:
+            if not bos_signals:
+                return {"alignment": "NO_SIGNALS", "score": 0.0, "confluences": []}
+            
+            # Analizar direcciones
+            directions = [signal['direction'] for signal in bos_signals]
+            direction_counts = {d: directions.count(d) for d in set(directions)}
+            dominant_direction = max(direction_counts.keys(), key=lambda x: direction_counts[x])
+            
+            # Calcular alineación
+            aligned_signals = [s for s in bos_signals if s['direction'] == dominant_direction]
+            alignment_ratio = len(aligned_signals) / len(bos_signals)
+            
+            # Evaluar confluencias
+            confluences = []
+            if alignment_ratio >= 0.67:  # 2/3 o más alineados
+                confluences.append("DIRECTIONAL_ALIGNMENT")
+            
+            if len(bos_signals) >= 2:
+                confluences.append("MULTI_TIMEFRAME_CONFIRMATION")
+            
+            # Evaluar fortaleza promedio
+            avg_strength = sum(s['strength'] for s in aligned_signals) / len(aligned_signals)
+            if avg_strength >= 75.0:
+                confluences.append("HIGH_STRENGTH_CONSENSUS")
+            
+            return {
+                "alignment": "STRONG" if alignment_ratio >= 0.67 else "WEAK",
+                "alignment_ratio": alignment_ratio,
+                "dominant_direction": dominant_direction,
+                "aligned_count": len(aligned_signals),
+                "total_signals": len(bos_signals),
+                "average_strength": avg_strength,
+                "confluences": confluences,
+                "score": alignment_ratio * avg_strength / 100.0
+            }
+            
+        except Exception as e:
+            print(f"[ERROR] Error evaluating multi-TF alignment: {e}")
+            return {"alignment": "ERROR", "score": 0.0, "confluences": []}
 
     def _detect_swing_points_for_bos(self, candles: pd.DataFrame, window: int = 5) -> Dict[str, List[Dict]]:
         """🎯 Detecta swing points para análisis BOS (lógica MIGRADA)"""

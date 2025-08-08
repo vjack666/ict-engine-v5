@@ -14,3 +14,964 @@
 [2025-08-08 09:48:19] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
 [2025-08-08 09:48:19] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
 [2025-08-08 09:48:19] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=70.0%, lookback=50
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 10:36:35] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5']
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para H4: 240 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M15: 480 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M5: 720 velas
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:36:35] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5']
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para H4: 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M15: 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M5: 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5']
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para H4: 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M15: 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M5: 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.34621 > 1.34669
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para USDJPY - TF: ['H4', 'M15', 'M5']
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: USDJPY H4 - 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para H4: 240 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: USDJPY M15 - 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M15: 480 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: USDJPY M5 - 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [multi_tf] Datos simulados generados para M5: 720 velas
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 157.84928 > 157.84976
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:36:36] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 10:46:54] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: auto
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Modo AUTO: detectando mejor estrategia para EURUSD
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] AUTO: Datos completos detectados, usando modo FULL
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:46:54] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:46:55] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:46:55] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:01] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para GBPUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 180 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.27008 > 1.27026
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para GBPUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 360 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.29568 - 1.30327
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para GBPUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 480 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 720 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.34621 > 1.34669
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:02] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:03] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 10:47:06] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: auto
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Modo AUTO: detectando mejor estrategia para EURUSD
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] AUTO: Datos completos detectados, usando modo FULL
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:06] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:07] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:07] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para GBPUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.27008 > 1.27026
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para GBPUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.29568 - 1.30327
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para GBPUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD H4 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 480 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M5 - 720 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.34621 > 1.34669
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: minimal
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para H4: 60 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M5: 180 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.286%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.09077 > 1.09095
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: live_ready
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo LIVE_READY: análisis rápido para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para H4: 120 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M15: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos LIVE_READY generados para M5: 360 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (1.192%, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m15_structure] M15 Structure: CONSOLIDATION between 1.11271 - 1.11937
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: M15 en consolidation, sin análisis LTF
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:08] [ICT_Engine] [WARNING] [overall_direction] CONFLICTO H4 (BULLISH) vs M15 (consolidation): score reducido a 0.300
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] M5 NEUTRAL: sin contribución
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: NEUTRAL (score: 0.300, confianza: LOW)
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: consolidation, Overall: NEUTRAL
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:08] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
