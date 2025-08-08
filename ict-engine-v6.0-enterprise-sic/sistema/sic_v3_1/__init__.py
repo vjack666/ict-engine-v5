@@ -11,13 +11,13 @@ Este paquete proporciona capacidades avanzadas de gestión de imports:
 - Debug Avanzado
 - Interface Enterprise
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Versión: v3.1.0-enterprise
 Fecha: Agosto 2025
 """
 
 __version__ = "3.1.0-enterprise"
-__author__ = "ICT Engine v6.0 Team"
+__author__ = "ICT Engine v6.1.0 Team"
 
 # Imports principales del SIC v3.1
 from .enterprise_interface import SICv31Enterprise, get_sic_instance, smart_import, sic_import

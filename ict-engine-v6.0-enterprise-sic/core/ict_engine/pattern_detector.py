@@ -35,8 +35,8 @@ para identificación automática de:
 5. Correlación multi-timeframe
 6. Validación de calidad enterprise
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025 - Fase 2.2 Cronograma
 """
 
@@ -70,7 +70,7 @@ except ImportError:
     def enviar_senal_log(level, message, module, category):
         print(f"[{level}] {module}.{category}: {message}")
 
-# Componentes ICT Engine v6.0
+# Componentes ICT Engine v6.1.0
 try:
     from core.analysis.market_structure_analyzer_v6 import MarketStructureAnalyzerV6, MarketStructureSignalV6
     from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader

@@ -9,7 +9,7 @@ Script de investigación que:
 3. Analiza por qué no se detectan BOS en datos reales
 4. Proporciona diagnósticos detallados y recomendaciones
 
-Autor: ICT Engine v6.0 Enterprise  
+Autor: ICT Engine v6.1.0 Enterprise  
 Fecha: 2025-01-07
 Propósito: Solucionar el problema de BOS non-detection
 """

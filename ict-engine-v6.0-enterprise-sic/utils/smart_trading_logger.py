@@ -4,10 +4,10 @@
 🔧 SMART TRADING LOGGER - ICT ENGINE v6.0 ENTERPRISE
 ====================================================
 
-Sistema de logging centralizado para ICT Engine v6.0.
+Sistema de logging centralizado para ICT Engine v6.1.0.
 Integrado con SIC v3.1 Enterprise.
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import logging
@@ -17,7 +17,7 @@ from datetime import datetime
 from typing import Optional, Dict, Any
 
 class SmartTradingLogger:
-    """🔧 Logger inteligente para ICT Engine v6.0"""
+    """🔧 Logger inteligente para ICT Engine v6.1.0"""
     
     def __init__(self, name: str = "ICT_Engine", level: str = "INFO"):
         """

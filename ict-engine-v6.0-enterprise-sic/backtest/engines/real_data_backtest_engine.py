@@ -14,7 +14,7 @@ Sistema de backtesting que usa DATOS REALES y COMPONENTES REALES:
 
 Integración completa con tu sistema existente ICT Engine v5.0
 
-Autor: ICT Engine v6.0 Enterprise
+Autor: ICT Engine v6.1.0 Enterprise
 Fecha: Agosto 2025
 """
 
@@ -54,7 +54,7 @@ except ImportError:
 
 # Imports de TU sistema ICT Engine real
 try:
-    # Sistema de logging SLUC v2.0
+    # Sistema de logging SLUC v2.1
     from sistema.logging_interface import enviar_senal_log
     
     # MT5 Data Manager real

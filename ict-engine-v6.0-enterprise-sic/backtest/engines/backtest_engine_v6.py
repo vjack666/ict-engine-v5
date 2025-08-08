@@ -3,7 +3,7 @@
 📈 BACKTEST ENGINE v6.0 ENTERPRISE
 ==================================
 
-Sistema de backtesting profesional para ICT Engine v6.0 Enterprise.
+Sistema de backtesting profesional para ICT Engine v6.1.0 Enterprise.
 Valida estrategias Smart Money + Silver Bullet con datos históricos reales.
 
 Características:
@@ -14,7 +14,7 @@ Características:
 ✅ Performance attribution por patrón ICT
 ✅ Reportes enterprise con visualizaciones
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: 7 de Agosto 2025
 Versión: 6.0.0
 """
@@ -104,7 +104,7 @@ class BacktestResults:
 
 class ICTBacktestEngine:
     """
-    🚀 Motor de backtesting enterprise para ICT Engine v6.0
+    🚀 Motor de backtesting enterprise para ICT Engine v6.1.0
     
     Funcionalidades:
     - Backtesting con datos históricos MT5 reales
@@ -171,7 +171,7 @@ class ICTBacktestEngine:
                                  start_date: str = '2024-01-01', 
                                  end_date: str = '2024-12-31') -> BacktestResults:
         """
-        🎯 Ejecutar backtesting comprehensivo del ICT Engine v6.0
+        🎯 Ejecutar backtesting comprehensivo del ICT Engine v6.1.0
         
         Args:
             symbol: Par de divisas a testear

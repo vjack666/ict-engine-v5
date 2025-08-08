@@ -20,8 +20,8 @@ Características v6.0 Enterprise:
 - Cache predictivo de configuraciones
 - Monitoreo en tiempo real
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 

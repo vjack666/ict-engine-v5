@@ -24,8 +24,8 @@ Funcionalidades Core:
 - Validación de cuenta y permisos
 - Manejo robusto de errores con diagnóstico
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 Prioridad: CRÍTICA - COMPONENTE FUNDAMENTAL
 """
@@ -242,7 +242,7 @@ class MT5DataManager:
     📡 GESTOR FUNDAMENTAL MT5 v6.0 ENTERPRISE
     ========================================
     
-    EL COMPONENTE MÁS CRÍTICO del ICT Engine v6.0 Enterprise.
+    EL COMPONENTE MÁS CRÍTICO del ICT Engine v6.1.0 Enterprise.
     Sin este gestor, NINGÚN otro componente puede funcionar.
     
     🔥 **Características Enterprise:**
@@ -1206,9 +1206,9 @@ def create_connection_info() -> MT5ConnectionInfo:
 
 def descargar_y_guardar_m1(symbol: str = "EURUSD", lookback: int = 200000) -> bool:
     """
-    🚀 FUNCIÓN DE COMPATIBILIDAD SIC v3.0/v6.0
+    🚀 FUNCIÓN DE COMPATIBILIDAD SIC v3.1/v6.0
     Descarga y guarda las velas de M1 manteniendo compatibilidad
-    ✅ ACTUALIZADA: Para ICT Engine v6.0 Enterprise
+    ✅ ACTUALIZADA: Para ICT Engine v6.1.0 Enterprise
     """
     try:
         manager = get_mt5_manager()

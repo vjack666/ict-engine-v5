@@ -11,7 +11,7 @@ Diagnóstico detallado de problemas actuales del sistema:
 - Estructura de archivos
 - Configuraciones
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import sys

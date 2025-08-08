@@ -3,7 +3,7 @@
 🏗️ MARKET STRUCTURE ANALYZER - ICT ENGINE v6.0 Enterprise SIC
 =============================================================
 
-Analizador avanzado de estructura de mercado para ICT Engine v6.0 Enterprise
+Analizador avanzado de estructura de mercado para ICT Engine v6.1.0 Enterprise
 que proporciona detección automática de:
 
 📊 **Análisis de Estructura ICT:**
@@ -27,8 +27,8 @@ que proporciona detección automática de:
 4. Análisis de confluencias multi-timeframe
 5. Generación de señales estructurales
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 

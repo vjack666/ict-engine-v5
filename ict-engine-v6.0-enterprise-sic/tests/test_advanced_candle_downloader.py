@@ -3,10 +3,10 @@
 Test para AdvancedCandleDownloader v6.0 Enterprise
 =================================================
 
-Tests del primer componente migrado al ICT Engine v6.0 Enterprise SIC.
+Tests del primer componente migrado al ICT Engine v6.1.0 Enterprise SIC.
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 

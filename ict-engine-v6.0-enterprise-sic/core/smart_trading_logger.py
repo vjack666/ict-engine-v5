@@ -4,10 +4,10 @@
 🔧 SMART TRADING LOGGER - ICT ENGINE v6.0 ENTERPRISE
 ====================================================
 
-Sistema de logging centralizado para ICT Engine v6.0.
+Sistema de logging centralizado para ICT Engine v6.1.0.
 Integrado con SIC v3.1 Enterprise.
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import logging
@@ -17,7 +17,7 @@ from datetime import datetime
 from typing import Optional, Dict, Any
 
 class SmartTradingLogger:
-    """🔧 Logger inteligente para ICT Engine v6.0"""
+    """🔧 Logger inteligente para ICT Engine v6.1.0"""
     
     def __init__(self, name: str = "ICT_Engine", level: str = "INFO"):
         """
@@ -447,6 +447,99 @@ class TradingDecisionCacheV6:
 
 # Instancia global del cache enterprise
 _trading_decision_cache_v6: Optional[TradingDecisionCacheV6] = None
+
+def get_trading_decision_cache(cache_config: Optional[Dict[str, Any]] = None) -> TradingDecisionCacheV6:
+    """🔧 Obtener instancia del Trading Decision Cache v6.0"""
+    global _trading_decision_cache_v6
+    
+    if _trading_decision_cache_v6 is None:
+        _trading_decision_cache_v6 = TradingDecisionCacheV6(cache_config)
+    
+    return _trading_decision_cache_v6
+
+# Función de compatibilidad con sistema legacy
+TradingDecisionCache = TradingDecisionCacheV6
+
+# Instancia global para compatibilidad legacy
+trading_cache = get_trading_decision_cache()
+
+# =============================================================================
+# ENHANCED LOGGING FUNCTIONS v6.0
+# =============================================================================
+
+def log_trading_decision_smart_v6(event_type: str, data: Dict[str, Any],
+                                 level: str = "INFO", force_important: bool = False,
+                                 symbol: str = "EURUSD") -> bool:
+    """
+    💾 Logger inteligente v6.0 que solo registra cambios significativos.
+    
+    Migrado y mejorado desde proyecto principal con funcionalidades enterprise:
+    - Cache inteligente multi-timeframe
+    - Detección de cambios Smart Money
+    - Auto-cleanup configurable
+    - Métricas de cache avanzadas
+    
+    Returns:
+        bool: True si se loggeó, False si se cacheó
+    """
+    cache = get_trading_decision_cache()
+    
+    # Verificar si realmente debemos loggear este evento
+    should_log = cache.should_log_event(event_type, data, force_important)
+    
+    if not should_log:
+        return False  # Evento cacheado, no loggeado
+    
+    try:
+        logger = get_smart_logger()
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        # Formatear mensaje según tipo de evento
+        if event_type == "BOS_DETECTION":
+            message = (f"🎯 BOS {symbol}: {data.get('direction', 'N/A')} | "
+                      f"TF: {data.get('timeframe', 'N/A')} | "
+                      f"Strength: {data.get('strength', 'N/A')} | "
+                      f"Price: {data.get('price', 'N/A')}")
+            
+        elif event_type == "CHOCH_DETECTION":
+            message = (f"🔄 CHoCH {symbol}: {data.get('direction', 'N/A')} | "
+                      f"TF: {data.get('timeframe', 'N/A')} | "
+                      f"Strength: {data.get('strength', 'N/A')} | "
+                      f"Price: {data.get('price', 'N/A')}")
+            
+        elif event_type == "SMART_MONEY_ANALYSIS":
+            message = (f"🧠 Smart Money {symbol}: {data.get('bias', 'N/A')} | "
+                      f"Institutional Flow: {data.get('flow_strength', 'N/A')} | "
+                      f"Confidence: {data.get('confidence', 'N/A')}")
+            
+        elif event_type == "MULTI_TIMEFRAME_ANALYSIS":
+            message = (f"📊 Multi-TF {symbol}: H4={data.get('h4_bias', 'N/A')} | "
+                      f"M15={data.get('m15_structure', 'N/A')} | "
+                      f"M5={data.get('m5_confirmation', 'N/A')}")
+            
+        else:
+            # Formato genérico
+            message = f"📈 {event_type} {symbol}: {json.dumps(data, default=str)}"
+        
+        # Log según nivel
+        if level.upper() == "DEBUG":
+            logger.debug(message, component="trading_decision")
+        elif level.upper() == "WARNING":
+            logger.warning(message, component="trading_decision")
+        elif level.upper() == "ERROR":
+            logger.error(message, component="trading_decision")
+        else:
+            logger.info(message, component="trading_decision")
+        
+        return True  # Evento loggeado exitosamente
+        
+    except Exception as e:
+        # En caso de error en logging, usar print como fallback
+        print(f"[{timestamp}] ERROR - logging_error: {e}")
+        return False
+
+# Alias para compatibilidad
+log_trading_decision_smart = log_trading_decision_smart_v6
 
 def get_trading_decision_cache() -> TradingDecisionCacheV6:
     """🔧 Obtener instancia del Trading Decision Cache v6.0"""

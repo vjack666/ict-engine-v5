@@ -3,7 +3,7 @@
 🎯 POI SYSTEM v6.0 ENTERPRISE - POINTS OF INTEREST
 ==================================================
 
-Sistema avanzado de Points of Interest (POI) para ICT Engine v6.0 Enterprise.
+Sistema avanzado de Points of Interest (POI) para ICT Engine v6.1.0 Enterprise.
 Identifica y gestiona puntos clave de interés en el mercado donde es probable 
 que instituciones tengan órdenes o donde el precio reaccione.
 
@@ -14,9 +14,9 @@ Características Enterprise:
 - Integración con Pattern Detector y Market Structure
 - Performance optimizado para análisis en tiempo real
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025
-Versión: v6.0.0-enterprise
+Versión: v6.1.0-enterprise
 """
 
 import time

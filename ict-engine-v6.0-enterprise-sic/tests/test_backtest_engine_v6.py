@@ -3,10 +3,10 @@
 🧪 TEST BACKTEST ENGINE v6.0 ENTERPRISE
 ======================================
 
-Test comprehensivo para el sistema de backtesting ICT Engine v6.0.
+Test comprehensivo para el sistema de backtesting ICT Engine v6.1.0.
 Valida funcionalidad completa, integración con componentes ICT, y performance.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: 7 de Agosto 2025
 """
 

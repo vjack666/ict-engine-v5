@@ -12,7 +12,7 @@ Sistema de backtesting profesional con:
 - ✅ Reportes profesionales de resultados
 - ✅ Sistema de reporte detallado integrado
 
-Autor: ICT Engine v6.0 Enterprise System
+Autor: ICT Engine v6.1.0 Enterprise System
 Fecha: Agosto 2025
 Versión: 6.0.0
 """

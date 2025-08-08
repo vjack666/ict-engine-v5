@@ -10,7 +10,7 @@ Test final que verifica que todos los componentes están sincronizados:
 3. Downloader con integración SIC completa
 4. Persistencia sin errores de 'open'
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import sys

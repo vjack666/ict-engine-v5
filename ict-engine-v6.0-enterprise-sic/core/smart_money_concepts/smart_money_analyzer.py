@@ -16,9 +16,9 @@ market maker y optimización dinámica de killzones.
 - Volume Analysis Integration
 - Multi-timeframe Validation
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025
-Versión: v6.0.0-enterprise
+Versión: v6.1.0-enterprise
 """
 
 import time

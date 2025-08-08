@@ -23,7 +23,7 @@ PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 class SystemVerifier:
-    """Verificador completo del sistema ICT Engine v6.0"""
+    """Verificador completo del sistema ICT Engine v6.1.0"""
     
     def __init__(self):
         """Inicializar verificador"""

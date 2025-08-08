@@ -1,6 +1,6 @@
 """
 Smart Import System v3.1 Enterprise
-Sistema inteligente de importación para ICT Engine v6.0
+Sistema inteligente de importación para ICT Engine v6.1.0
 
 Características:
 - Importación condicional y lazy loading
@@ -19,7 +19,7 @@ from utils.smart_trading_logger import SmartTradingLogger
 
 class SmartImporter:
     """
-    Sistema de importación inteligente para ICT Engine v6.0
+    Sistema de importación inteligente para ICT Engine v6.1.0
     """
     
     def __init__(self):

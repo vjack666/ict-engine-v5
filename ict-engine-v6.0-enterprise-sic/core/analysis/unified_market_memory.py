@@ -3,7 +3,7 @@
 🧠 UNIFIED MARKET MEMORY v6.0 ENTERPRISE - SISTEMA CENTRAL DE MEMORIA
 =====================================================================
 
-Sistema unificado de memoria de mercado para ICT Engine v6.0 Enterprise.
+Sistema unificado de memoria de mercado para ICT Engine v6.1.0 Enterprise.
 Integra todos los componentes de memoria en un sistema central cohesivo.
 
 Funcionalidades Enterprise v6.0:
@@ -15,7 +15,7 @@ Funcionalidades Enterprise v6.0:
 - ✅ Configuración enterprise avanzada
 - ✅ Performance optimizado para producción
 
-Versión: v6.0.0-enterprise-unified-memory
+Versión: v6.1.0-enterprise-unified-memory
 Fecha: 8 de Agosto 2025 - 21:00 GMT
 """
 
@@ -33,7 +33,7 @@ from core.smart_trading_logger import SmartTradingLogger, TradingDecisionCacheV6
 
 class UnifiedMarketMemory:
     """
-    🧠 Sistema unificado de memoria de mercado para ICT Engine v6.0 Enterprise.
+    🧠 Sistema unificado de memoria de mercado para ICT Engine v6.1.0 Enterprise.
     
     Funciona como la mente completa de un trader real profesional:
     - Integra memoria de contexto + análisis histórico + cache de decisiones

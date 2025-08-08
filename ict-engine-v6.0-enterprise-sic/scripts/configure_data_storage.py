@@ -12,7 +12,7 @@ Modos de operación:
 - FULL_STORAGE: Almacenamiento completo (análisis profundo)
 - BACKUP_MODE: Solo respaldos críticos
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
 """
 

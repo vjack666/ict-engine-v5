@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-Core Module - ICT Engine v6.0 Enterprise SIC
+Core Module - ICT Engine v6.1.0 Enterprise SIC
 ============================================
 
-Módulo core del ICT Engine v6.0 que contiene la lógica principal
+Módulo core del ICT Engine v6.1.0 que contiene la lógica principal
 de trading y gestión de datos integrada con SIC v3.1 Enterprise.
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 
 __version__ = "6.0.0-enterprise"
-__author__ = "ICT Engine v6.0 Enterprise Team"
+__author__ = "ICT Engine v6.1.0 Enterprise Team"
 
 # Exports principales del módulo core
 __all__ = [
@@ -26,7 +26,7 @@ __all__ = [
 MODULE_INFO = {
     'name': 'core',
     'version': __version__,
-    'description': 'Core functionality for ICT Engine v6.0 Enterprise',
+    'description': 'Core functionality for ICT Engine v6.1.0 Enterprise',
     'sic_integration': 'v3.1',
     'components': [
         'data_management',

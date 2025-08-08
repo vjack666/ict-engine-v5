@@ -6,7 +6,7 @@
 Test específico para validar la implementación de detect_choch()
 en PatternDetector v6.0 Enterprise.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 8, 2025
 """
 

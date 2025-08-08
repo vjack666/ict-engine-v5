@@ -1,8 +1,8 @@
 """
-Tests - ICT Engine v6.0 Enterprise SIC
+Tests - ICT Engine v6.1.0 Enterprise SIC
 ======================================
 
-Suite de tests para el ICT Engine v6.0 Enterprise y el
+Suite de tests para el ICT Engine v6.1.0 Enterprise y el
 Sistema de Imports Inteligente (SIC) v3.1.
 
 Esta carpeta contiene todos los tests del proyecto:
@@ -18,13 +18,13 @@ Estructura de tests:
 - test_monitor_dashboard.py: Tests del dashboard de monitoreo
 - test_advanced_debug.py: Tests del debugger avanzado
 
-Autor: ICT Engine v6.0 Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 
 __version__ = "6.0.0-enterprise"
-__author__ = "ICT Engine v6.0 Team"
+__author__ = "ICT Engine v6.1.0 Team"
 
 import sys
 from pathlib import Path
@@ -60,7 +60,7 @@ def run_all_tests():
     Returns:
         True si todos los tests pasan
     """
-    print("🧪 Ejecutando todos los tests del ICT Engine v6.0 Enterprise...")
+    print("🧪 Ejecutando todos los tests del ICT Engine v6.1.0 Enterprise...")
     
     try:
         # Importar y ejecutar el test principal
@@ -91,7 +91,7 @@ def get_test_info():
 
 
 # Banner de la suite de tests
-print("🧪 ICT Engine v6.0 Enterprise - Test Suite")
+print("🧪 ICT Engine v6.1.0 Enterprise - Test Suite")
 print(f"   Versión: {__version__}")
 print("   Componentes: SIC v3.1, SLUC v2.1 (próximamente)")
 

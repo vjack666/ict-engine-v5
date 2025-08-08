@@ -1233,7 +1233,7 @@ class MarketStructureAnalyzerV6:
         try:
             return {
                 'system': 'Market Structure Analyzer v6.0 Enterprise',
-                'version': 'v6.0.0-enterprise',
+                'version': 'v6.1.0-enterprise',
                 'sic_bridge': self.sic_bridge.active_system,
                 'session_context': self.session_context,
                 'market_condition': self.market_condition,

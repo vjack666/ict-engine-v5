@@ -5,7 +5,7 @@
 
 Test para verificar que los errores de TimedeltaIndex y metadata están corregidos.
 
-Autor: ICT Engine v6.0 Enterprise
+Autor: ICT Engine v6.1.0 Enterprise
 Fecha: 2025-01-08
 """
 

@@ -6,7 +6,7 @@
 Configuración basada en las leyes ICT para funcionamiento óptimo
 del sistema de análisis institucional.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
 """
 

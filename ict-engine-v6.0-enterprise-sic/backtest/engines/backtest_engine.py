@@ -2,12 +2,12 @@
 🎯 ICT Backtest Engine v6.0 Enterprise
 ======================================
 
-Motor principal de backtesting que integra completamente con el ICT Engine v6.0.
+Motor principal de backtesting que integra completamente con el ICT Engine v6.1.0.
 Utiliza Pattern Detector, Smart Money Concepts y Multi-Timeframe Analysis para
 ejecutar backtests profesionales y detallados.
 
 Features:
-- Integración nativa con ICT Engine v6.0
+- Integración nativa con ICT Engine v6.1.0
 - Multi-timeframe backtesting
 - Smart Money Concepts integration
 - Real data simulation

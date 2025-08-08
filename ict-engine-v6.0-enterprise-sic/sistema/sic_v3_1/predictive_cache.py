@@ -10,7 +10,7 @@ Este módulo implementa un sistema avanzado de caché que:
 - Optimiza la performance basándose en patrones de uso
 - Gestiona automáticamente el tamaño del caché
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Versión: v3.1.0  
 Fecha: Agosto 2025
 """

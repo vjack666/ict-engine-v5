@@ -14,7 +14,7 @@ Funcionalidades:
 - Guardado organizado por símbolo y timeframe
 - Reportes detallados de descarga
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
 """
 

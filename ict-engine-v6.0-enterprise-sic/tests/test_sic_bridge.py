@@ -4,7 +4,7 @@
 ==========================================================
 
 Test exhaustivo del SIC Bridge que conecta:
-- SIC v3.0 (proyecto principal) - Sistema probado
+- SIC v3.1 (proyecto principal) - Sistema probado
 - SIC v3.1 Enterprise (nuevo) - Optimizaciones
 
 Ejecutar: python test_sic_bridge.py
@@ -39,7 +39,7 @@ def test_bridge_instantiation(BridgeClass):
         bridge = BridgeClass()
         print("✅ Instanciación SIC Bridge: SUCCESS")
         print(f"   Sistema activo: {bridge.active_system}")
-        print(f"   SIC v3.0 disponible: {bridge.sic_v30 is not None}")
+        print(f"   SIC v3.1 disponible: {bridge.sic_v30 is not None}")
         print(f"   SIC v3.1 disponible: {bridge.sic_v31 is not None}")
         return True, bridge
     except Exception as e:
@@ -281,7 +281,7 @@ def generate_bridge_report(test_results):
         bridge = test_results['bridge_instance']
         print(f"\n🔧 DETALLES DEL BRIDGE:")
         print(f"   Sistema activo: {getattr(bridge, 'active_system', 'N/A')}")
-        print(f"   SIC v3.0: {'✅' if getattr(bridge, 'sic_v30', None) else '❌'}")
+        print(f"   SIC v3.1: {'✅' if getattr(bridge, 'sic_v30', None) else '❌'}")
         print(f"   SIC v3.1: {'✅' if getattr(bridge, 'sic_v31', None) else '❌'}")
     
     return success_percentage, verdict

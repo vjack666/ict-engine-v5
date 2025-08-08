@@ -4,10 +4,10 @@
 ✅ TEST VALIDACIÓN ICT COMPLIANCE FINAL
 ======================================
 
-Validación completa del sistema ICT Engine v6.0 Enterprise
+Validación completa del sistema ICT Engine v6.1.0 Enterprise
 tras la reparación de datos históricos insuficientes.
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import subprocess
@@ -114,7 +114,7 @@ def validar_ict_compliance():
             print(f"\n{'='*70}")
             if errores == 0:
                 print("🎉 VALIDACIÓN EXITOSA - SISTEMA COMPLETAMENTE FUNCIONAL")
-                print("✅ ICT Engine v6.0 Enterprise listo para trading institucional")
+                print("✅ ICT Engine v6.1.0 Enterprise listo para trading institucional")
                 if warnings > 0:
                     print(f"⚠️ {warnings} advertencia(s) menor(es) - No críticas")
             else:

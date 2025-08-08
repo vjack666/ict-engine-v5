@@ -14,7 +14,7 @@ Características Enterprise:
 - Debug Avanzado
 - Interface API Limpia
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Versión: v3.1.0-enterprise
 Fecha: Agosto 2025
 """

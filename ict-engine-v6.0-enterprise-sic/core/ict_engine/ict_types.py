@@ -2,7 +2,7 @@
 ICT Types v6.0 Enterprise - Estructuras de Datos ICT Fundamentales
 ================================================================
 
-Definición de tipos, enums y dataclasses para el ICT Engine v6.0 Enterprise.
+Definición de tipos, enums y dataclasses para el ICT Engine v6.1.0 Enterprise.
 Integrado con SIC v3.1 Enterprise y SLUC v2.1 para máxima compatibilidad.
 
 Características v6.0:
@@ -13,8 +13,8 @@ Características v6.0:
 - Performance optimizado
 - Documentación enterprise
 
-Autor: ICT Engine v6.0 Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 

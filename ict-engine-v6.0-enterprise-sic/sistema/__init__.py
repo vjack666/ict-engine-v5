@@ -1,16 +1,16 @@
 """
-Sistema Core - ICT Engine v6.0 Enterprise
+Sistema Core - ICT Engine v6.1.0 Enterprise
 =========================================
 
 Módulo principal del sistema que contiene todos los componentes core
-del ICT Engine v6.0 Enterprise, incluyendo el SIC v3.1 y SLUC v2.1.
+del ICT Engine v6.1.0 Enterprise, incluyendo el SIC v3.1 y SLUC v2.1.
 
 Componentes:
 - SIC v3.1 Enterprise: Sistema de Imports Inteligente
 - SLUC v2.1: Sistema de Logging Universal Centralizado
 
-Autor: ICT Engine v6.0 Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 
@@ -113,7 +113,7 @@ def system_quick_test():
 
 
 # Banner del sistema
-print("🏗️ ICT Engine v6.0 Enterprise - Sistema Core")
+print("🏗️ ICT Engine v6.1.0 Enterprise - Sistema Core")
 print(f"   Versión: {__version__}")
 print("   Componentes: SIC v3.1, SLUC v2.1 (próximamente)")
 

@@ -7,7 +7,7 @@ Validación exhaustiva del sistema de análisis multi-timeframe:
 - Confirmaciones ICT
 - Performance optimization
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Fecha: 2025-01-06
 """
 

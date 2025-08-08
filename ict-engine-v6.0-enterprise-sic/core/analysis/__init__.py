@@ -1,5 +1,5 @@
 """
-Core Analysis Module - ICT Engine v6.0 Enterprise
+Core Analysis Module - ICT Engine v6.1.0 Enterprise
 """
 
 from .market_structure_analyzer import MarketStructureAnalyzer, get_market_structure_analyzer

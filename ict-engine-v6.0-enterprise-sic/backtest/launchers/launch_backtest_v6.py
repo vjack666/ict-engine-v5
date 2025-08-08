@@ -3,10 +3,10 @@
 🚀 BACKTEST LAUNCHER v6.0 ENTERPRISE
 ===================================
 
-Launcher profesional para el sistema de backtesting ICT Engine v6.0.
+Launcher profesional para el sistema de backtesting ICT Engine v6.1.0.
 Interfaz fácil para ejecutar backtests con diferentes configuraciones.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: 7 de Agosto 2025
 """
 

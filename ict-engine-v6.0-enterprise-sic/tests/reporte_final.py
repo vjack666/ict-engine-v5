@@ -7,7 +7,7 @@
 Test general ágil que ejecuta los tests más importantes
 y genera un reporte ejecutivo del estado del sistema.
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import subprocess

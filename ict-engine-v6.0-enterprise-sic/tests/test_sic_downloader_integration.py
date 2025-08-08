@@ -10,7 +10,7 @@ Identifica y repara problemas de:
 - Cache miss en sistema predictivo
 - Conexión SIC-Downloader
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 """
 
 import sys

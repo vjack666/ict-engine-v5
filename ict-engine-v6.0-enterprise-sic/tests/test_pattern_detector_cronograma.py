@@ -6,7 +6,7 @@
 
 Test de validación del Pattern Detector según cronograma Fase 2.2
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Fecha: Agosto 8, 2025 - Fase 2.2 Cronograma
 """
 

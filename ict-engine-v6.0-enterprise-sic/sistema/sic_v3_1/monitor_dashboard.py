@@ -10,7 +10,7 @@ Este módulo proporciona:
 - Alertas inteligentes sobre problemas
 - Reportes detallados de uso
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Versión: v3.1.0
 Fecha: Agosto 2025
 """

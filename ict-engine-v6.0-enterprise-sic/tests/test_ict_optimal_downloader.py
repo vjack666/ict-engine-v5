@@ -7,7 +7,7 @@ Test para verificar que el Advanced Candle Downloader funciona con
 configuración ICT óptima y descarga las cantidades correctas de velas
 según las leyes institucionales.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
 """
 

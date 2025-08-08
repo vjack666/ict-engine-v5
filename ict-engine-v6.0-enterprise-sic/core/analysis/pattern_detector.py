@@ -7,9 +7,9 @@ Motor avanzado de detección de patrones ICT para trading institucional.
 Implementa los patrones más efectivos de la metodología Inner Circle Trader
 con precisión enterprise y rendimiento optimizado.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025
-Versión: v6.0.0-enterprise
+Versión: v6.1.0-enterprise
 """
 
 import time

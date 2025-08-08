@@ -14,7 +14,7 @@ from datetime import datetime
 import json
 
 class ICTSystemDiagnostic:
-    """Diagnóstico completo del sistema ICT Engine v6.0"""
+    """Diagnóstico completo del sistema ICT Engine v6.1.0"""
     
     def __init__(self):
         self.project_root = Path.cwd()
@@ -297,7 +297,7 @@ class ICTSystemDiagnostic:
                     recovery_commands.append(f"echo '⚠️  CRÍTICO: {file} faltante - requiere recuperación manual'")
                 elif '__init__.py' in file:
                     recovery_commands.append(f"touch '{file}'")
-                    recovery_commands.append(f"echo '# ICT Engine v6.0 Enterprise Module' > '{file}'")
+                    recovery_commands.append(f"echo '# ICT Engine v6.1.0 Enterprise Module' > '{file}'")
         
         # Comandos para archivos vacíos
         if len(self.empty_files) > 0:
@@ -306,7 +306,7 @@ class ICTSystemDiagnostic:
             
             for file in self.empty_files:
                 if '__init__.py' in file:
-                    recovery_commands.append(f"echo '# ICT Engine v6.0 Enterprise Module' > '{file}'")
+                    recovery_commands.append(f"echo '# ICT Engine v6.1.0 Enterprise Module' > '{file}'")
                 else:
                     recovery_commands.append(f"echo '⚠️  VACÍO: {file} - requiere recuperación manual'")
         
@@ -314,7 +314,7 @@ class ICTSystemDiagnostic:
         recovery_file = self.project_root / 'recovery_plan.sh'
         with open(recovery_file, 'w', encoding='utf-8') as f:
             f.write("#!/bin/bash\n")
-            f.write("# ICT Engine v6.0 - Plan de Recuperación Automático\n")
+            f.write("# ICT Engine v6.1.0 - Plan de Recuperación Automático\n")
             f.write(f"# Generado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write('\n'.join(recovery_commands))
         
@@ -326,7 +326,7 @@ class ICTSystemDiagnostic:
                       for cmd in recovery_commands if not cmd.startswith('#')]
         
         with open(recovery_ps_file, 'w', encoding='utf-8') as f:
-            f.write("# ICT Engine v6.0 - Plan de Recuperación PowerShell\n")
+            f.write("# ICT Engine v6.1.0 - Plan de Recuperación PowerShell\n")
             f.write(f"# Generado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write('\n'.join(ps_commands))
         

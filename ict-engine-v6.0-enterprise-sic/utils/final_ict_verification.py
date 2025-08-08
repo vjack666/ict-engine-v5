@@ -3,7 +3,7 @@
 🎯 VERIFICACIÓN FINAL ICT - Confirmación de funcionamiento óptimo
 ===============================================================
 
-Test final para confirmar que el ICT Engine v6.0 Enterprise está
+Test final para confirmar que el ICT Engine v6.1.0 Enterprise está
 funcionando de manera óptima según las leyes ICT institucionales.
 
 - Verificación de configuración ICT
@@ -11,7 +11,7 @@ funcionando de manera óptima según las leyes ICT institucionales.
 - Validación de cumplimiento institucional
 - Confirmación de datos reales FundedNext
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
 """
 
@@ -156,7 +156,7 @@ def final_ict_verification():
         
         if passed_checks >= 4:  # Al menos 4 de 5 checks
             print(f"\n🎉 SISTEMA ICT CERTIFICADO PARA TRADING INSTITUCIONAL")
-            print(f"   El ICT Engine v6.0 Enterprise está funcionando óptimamente")
+            print(f"   El ICT Engine v6.1.0 Enterprise está funcionando óptimamente")
             print(f"   Listo para análisis de mercado según leyes ICT")
             return True
         else:

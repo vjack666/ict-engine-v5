@@ -1,0 +1,3 @@
+2025-08-06 09:10:02 | ERROR    | SMART.MT5.DASHBOARD_DEFINITIVO | [FAILED] Error conectando MT5 Manager
+2025-08-06 11:42:07 | WARNING  | SMART.MT5.CORE.RISK_MANAGEMENT.RISKBOT_MT5 | Balance inválido: 0.0, usando volumen mínimo
+2025-08-06 11:42:22 | WARNING  | SMART.MT5.CORE.RISK_MANAGEMENT.RISKBOT_MT5 | Balance inválido: 0.0, usando volumen mínimo

@@ -4,7 +4,7 @@
 ==============================================================
 
 Bridge inteligente que conecta:
-- SIC v3.0 existente (proyecto principal) - Sistema probado 14/14 tests
+- SIC v3.1 existente (proyecto principal) - Sistema probado 14/14 tests
 - SIC v3.1 Enterprise (nuevo) - Optimizaciones enterprise
 
 Características:
@@ -31,7 +31,7 @@ def setup_bridge_paths():
     """Configurar paths para acceder tanto al proyecto principal como al v6.0"""
     current_dir = Path(__file__).parent
     
-    # Path al proyecto principal (SIC v3.0)
+    # Path al proyecto principal (SIC v3.1)
     proyecto_principal = current_dir.parent.parent / "proyecto principal"
     if proyecto_principal.exists():
         sys.path.insert(0, str(proyecto_principal))
@@ -45,7 +45,7 @@ setup_bridge_paths()
 
 class SICBridge:
     """
-    Bridge inteligente entre SIC v3.0 y SIC v3.1 Enterprise
+    Bridge inteligente entre SIC v3.1 y SIC v3.1 Enterprise
     
     Funcionalidades:
     - Auto-detección de sistemas disponibles
@@ -70,9 +70,9 @@ class SICBridge:
         """Inicializar ambos sistemas SIC"""
         print("🌉 Inicializando SIC Bridge...")
         
-        # Intentar cargar SIC v3.0 (proyecto principal)
+        # Intentar cargar SIC v3.1 (proyecto principal)
         try:
-            # Intenta múltiples ubicaciones para SIC v3.0
+            # Intenta múltiples ubicaciones para SIC v3.1
             paths_to_try = [
                 "sistema.sic",  # Ubicación actual
                 "docs.sistema.sic",  # Proyecto principal
@@ -85,16 +85,16 @@ class SICBridge:
                     # Verificar que tenga las funciones esperadas
                     if hasattr(sic_module, 'get_all_functions') or hasattr(sic_module, 'SIC'):
                         self.sic_v30 = sic_module
-                        print(f"✅ SIC v3.0 cargado desde: {path}")
+                        print(f"✅ SIC v3.1 cargado desde: {path}")
                         break
                 except ImportError:
                     continue
             
             if not self.sic_v30:
-                print("⚠️ SIC v3.0 no encontrado en ubicaciones estándar")
+                print("⚠️ SIC v3.1 no encontrado en ubicaciones estándar")
                 
         except Exception as e:
-            print(f"⚠️ Error cargando SIC v3.0: {e}")
+            print(f"⚠️ Error cargando SIC v3.1: {e}")
         
         # Intentar cargar SIC v3.1 Enterprise
         try:
@@ -112,7 +112,7 @@ class SICBridge:
             print("🚀 Sistema activo: SIC v3.1 Enterprise")
         elif self.sic_v30:
             self.active_system = "v3.0"
-            print("🔄 Sistema activo: SIC v3.0 (fallback)")
+            print("🔄 Sistema activo: SIC v3.1 (fallback)")
         else:
             self.active_system = "none"
             print("❌ Ningún sistema SIC disponible")
@@ -120,7 +120,7 @@ class SICBridge:
     def get_all_functions(self) -> Dict[str, Any]:
         """
         Obtener todas las funciones disponibles
-        Compatibility method para SIC v3.0
+        Compatibility method para SIC v3.1
         """
         start_time = time.time()
         
@@ -136,7 +136,7 @@ class SICBridge:
                 self.performance_stats['v31_calls'] += 1
                 
             elif self.active_system == "v3.0" and self.sic_v30:
-                # Usar SIC v3.0
+                # Usar SIC v3.1
                 if hasattr(self.sic_v30, 'get_all_functions'):
                     result = self.sic_v30.get_all_functions()
                 else:
@@ -212,7 +212,7 @@ class SICBridge:
             return importlib.import_module(module_name)
     
     def _v30_import(self, module_name: str):
-        """Import usando SIC v3.0"""
+        """Import usando SIC v3.1"""
         # Usar el sistema v3.0 existente si está disponible
         return importlib.import_module(module_name)
     
@@ -277,7 +277,7 @@ def get_sic_bridge() -> SICBridge:
 
 # Funciones de compatibilidad para código existente
 def get_all_functions() -> Dict[str, Any]:
-    """Compatibility function para SIC v3.0"""
+    """Compatibility function para SIC v3.1"""
     bridge = get_sic_bridge()
     return bridge.get_all_functions()
 

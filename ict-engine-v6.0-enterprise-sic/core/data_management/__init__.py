@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Data Management Module - ICT Engine v6.0 Enterprise SIC
+Data Management Module - ICT Engine v6.1.0 Enterprise SIC
 =======================================================
 
 Módulo de gestión de datos integrado con SIC v3.1 Enterprise.
@@ -13,13 +13,13 @@ Componentes:
 - DataProcessor: Procesamiento avanzado de datos
 - CacheManager: Gestión de cache predictivo
 
-Autor: ICT Engine v6.0 Enterprise Team
-Versión: v6.0.0-enterprise
+Autor: ICT Engine v6.1.0 Enterprise Team
+Versión: v6.1.0-enterprise
 Fecha: Agosto 2025
 """
 
 __version__ = "6.0.0-enterprise"
-__author__ = "ICT Engine v6.0 Enterprise Team"
+__author__ = "ICT Engine v6.1.0 Enterprise Team"
 
 # Importaciones principales (lazy loading habilitado)
 try:

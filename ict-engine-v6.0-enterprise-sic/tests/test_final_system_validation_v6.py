@@ -12,7 +12,7 @@ Test final comprehensivo que valida TODO el sistema:
 
 Este es el test FINAL antes de deployment.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025
 """
 

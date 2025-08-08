@@ -13,7 +13,7 @@ Características:
 - Mejora continua automática
 - Compatible con trading en vivo
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Versión: 1.0.0
 Fecha: 2025-08-08
 """

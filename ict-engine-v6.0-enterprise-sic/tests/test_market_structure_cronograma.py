@@ -6,7 +6,7 @@
 
 Test de validación del Market Structure Analyzer según roadmap v6.0
 
-Autor: ICT Engine v6.0 Team
+Autor: ICT Engine v6.1.0 Team
 Fecha: Agosto 8, 2025
 """
 

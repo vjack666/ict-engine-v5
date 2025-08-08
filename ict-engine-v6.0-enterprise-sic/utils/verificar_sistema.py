@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🔧 ICT Engine v6.0 Enterprise SIC - Verificación de Sistema
+🔧 ICT Engine v6.1.0 Enterprise SIC - Verificación de Sistema
 ==========================================================
 
 Este script verifica que todo el sistema esté funcionando correctamente.
@@ -91,7 +91,7 @@ def main():
     print("   2. La configuración menos estricta ya está aplicada")
     print("   3. Los tests están en la carpeta 'tests/'")
     print("   4. Ejecutar: python -m pytest tests/ -v")
-    print("\n🚀 ¡Tu ICT Engine v6.0 Enterprise SIC está listo!")
+    print("\n🚀 ¡Tu ICT Engine v6.1.0 Enterprise SIC está listo!")
     
     return True
 

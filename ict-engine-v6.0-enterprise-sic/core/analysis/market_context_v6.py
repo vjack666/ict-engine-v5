@@ -15,7 +15,7 @@ Funcionalidades Enterprise:
 - ✅ Memoria histórica de patrones ICT
 - ✅ Comportamiento de trader real
 
-Versión: v6.0.0-enterprise-memory
+Versión: v6.1.0-enterprise-memory
 Fecha: 8 de Agosto 2025 - 20:15 GMT
 """
 
@@ -32,7 +32,7 @@ from core.smart_trading_logger import SmartTradingLogger
 
 class MarketContextV6:
     """
-    🧠 Memoria central del mercado para ICT Engine v6.0 Enterprise.
+    🧠 Memoria central del mercado para ICT Engine v6.1.0 Enterprise.
     
     Funciona como la memoria de un trader real profesional:
     - Recuerda condiciones de mercado pasadas

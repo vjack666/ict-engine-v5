@@ -9,7 +9,7 @@ reportado por el usuario en timeframes H1/H4.
 ANTES: H1 descargaba solo 1440 velas, H4 solo 540 velas
 DESPUÉS: H1 descarga 5000 velas, H4 descarga 3000 velas
 
-Autor: ICT Engine v6.0 Enterprise
+Autor: ICT Engine v6.1.0 Enterprise
 Fecha: 2025-01-08
 """
 

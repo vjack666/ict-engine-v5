@@ -15,7 +15,7 @@ Funcionalidades Enterprise v6.0:
 - ✅ Performance scoring dinámico
 - ✅ Comportamiento de trader real con experiencia
 
-Versión: v6.0.0-enterprise-historical-memory
+Versión: v6.1.0-enterprise-historical-memory
 Fecha: 8 de Agosto 2025 - 20:30 GMT
 """
 
@@ -33,7 +33,7 @@ from core.smart_trading_logger import SmartTradingLogger
 
 class ICTHistoricalAnalyzerV6:
     """
-    📈 Análisis histórico enterprise con memoria persistente para ICT Engine v6.0.
+    📈 Análisis histórico enterprise con memoria persistente para ICT Engine v6.1.0.
     
     Funciona como la memoria histórica de un trader real profesional:
     - Analiza performance de patrones ICT históricos

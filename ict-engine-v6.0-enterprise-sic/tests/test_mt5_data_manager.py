@@ -4,7 +4,7 @@
 ==========================================
 
 Suite de tests completa para el componente FUNDAMENTAL #1
-del ICT Engine v6.0 Enterprise SIC.
+del ICT Engine v6.1.0 Enterprise SIC.
 
 Tests incluidos:
 - Inicialización y configuración
@@ -16,7 +16,7 @@ Tests incluidos:
 - Performance y métricas
 - Compatibilidad legacy
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Prioridad: CRÍTICA - COMPONENTE FUNDAMENTAL
 """
 

@@ -1000,4 +1000,4 @@ if __name__ == "__main__":
     print("  ✅ Lessons learned automation")
     print("  ✅ Strategic recommendations")
     print("  ✅ CSV export para análisis externo")
-    print("\n🎯 Listo para integrar con ICT Engine v6.0 Enterprise!")
+    print("\n🎯 Listo para integrar con ICT Engine v6.1.0 Enterprise!")

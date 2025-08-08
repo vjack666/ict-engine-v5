@@ -312,7 +312,7 @@ class ReportGenerator:
                 {self._generate_monte_carlo_section(monte_carlo)}
                 
                 <div class="footer">
-                    <p>📈 ICT Engine v6.0 Enterprise • Advanced Trading System Analysis</p>
+                    <p>📈 ICT Engine v6.1.0 Enterprise • Advanced Trading System Analysis</p>
                     <p>This report was generated automatically by the ICT Backtest Engine v6.0</p>
                 </div>
             </div>
@@ -351,7 +351,7 @@ class ReportGenerator:
         return f"""
         <div class="section">
             <h2>🎯 Pattern Performance Analysis</h2>
-            <p>Detailed breakdown of performance by pattern type detected by the ICT Engine v6.0.</p>
+            <p>Detailed breakdown of performance by pattern type detected by the ICT Engine v6.1.0.</p>
             
             <table>
                 <thead>

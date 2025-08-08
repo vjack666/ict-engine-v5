@@ -6,7 +6,7 @@
 Test de integración que verifica que el downloader puede proporcionar
 datos reales compatibles con Market Structure Analysis.
 
-Autor: ICT Engine v6.0 Enterprise Team
+Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025
 """
 
