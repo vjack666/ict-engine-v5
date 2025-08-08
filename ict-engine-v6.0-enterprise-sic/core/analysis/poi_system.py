@@ -1058,6 +1058,10 @@ def get_poi_system(config: Optional[Dict[str, Any]] = None) -> POISystem:
     return POISystem(config)
 
 
+# Alias para compatibilidad con tests existentes
+POIDetector = POISystem
+
+
 if __name__ == "__main__":
     # Test básico del POI System
     print("🎯 POI System v6.0 Enterprise - Test")
