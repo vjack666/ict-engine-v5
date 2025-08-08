@@ -65,7 +65,9 @@ v6.0.4-enterprise-mt5-validated (Lunes post-validación)ITÁCORA DE DESARROLLO -
 3. **Order Blocks** ← **EN PLANIFICACIÓN**
 
 ### 📋 **PLAN ORDER BLOCKS CREADO:**
-**Archivo:** `docs/04-development-logs/ORDER_BLOCKS_IMPLEMENTATION_PLAN.md`
+**Ubicación Correcta:** `docs/04-development-logs/order-blocks/`
+**Archivo Principal:** `ORDER_BLOCKS_IMPLEMENTATION_PLAN.md`
+**Organización:** ✅ **Carpeta especializada creada siguiendo estructura**
 
 #### **🔍 INVESTIGACIÓN MANUAL (REGLA #9) - COMPLETADA:**
 - ✅ **4 implementaciones existentes identificadas:**

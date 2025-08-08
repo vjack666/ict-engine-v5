@@ -25,6 +25,12 @@
 - Logs de implementación y validación
 - Tests y resultados de detección
 
+#### 📦 **[order-blocks/](./order-blocks/)**
+**Patrones Order Blocks ICT - Protocolo 3/9**
+- `ORDER_BLOCKS_IMPLEMENTATION_PLAN.md` - Plan de implementación unificada
+- Análisis de implementaciones existentes
+- Documentación de unificación y memoria
+
 #### ⚡ **[performance/](./performance/)**
 **Optimización y rendimiento del sistema**
 - Métricas de performance
