@@ -200,67 +200,201 @@
 
 ---
 
-## 📋 **REGLA #9: REVISIÓN MANUAL OBLIGATORIA**
+## 📋 **REGLA #9: REVISIÓN MANUAL EXHAUSTIVA - NO SCRIPTS**
 
-### 🎯 **PRINCIPIO:**
-**"TODA FASE COMPLETADA REQUIERE REVISIÓN MANUAL DE BITÁCORAS Y CHECKLIST COMPLETO"**
+### 🎯 **PRINCIPIO CRÍTICO:**
+**"REVISIÓN MANUAL ARCHIVO POR ARCHIVO - LOS SCRIPTS NO SON FIABLES"**
 
-### 📋 **APLICACIÓN OBLIGATORIA:**
-**ANTES de marcar cualquier fase como completada:**
+### � **APLICACIÓN OBLIGATORIA:**
+**AL COMPLETAR CUALQUIER FASE O ACTUALIZACIÓN IMPORTANTE:**
 
-#### **9.1 Revisión Manual de Bitácoras:**
-```bash
-# Verificar TODOS los archivos .md del proyecto
-grep -r "\[ \]" docs/ --include="*.md"  # Buscar checkboxes incompletos
-grep -r "PENDIENTE\|TODO\|FALTA" docs/ --include="*.md"  # Buscar pendientes
+#### **9.1 PROCESO MANUAL EXHAUSTIVO - SIN SCRIPTS:**
+```
+🔍 REVISIÓN MANUAL REQUERIDA:
+1. ✅ LEER archivo por archivo desde docs/01-getting-started/ hasta docs/components/
+2. ✅ VERIFICAR estado real vs documentado
+3. ✅ ACTUALIZAR checkboxes manualmente según realidad del código
+4. ✅ COMPARAR bitácoras vs implementación real
+5. ✅ VALIDAR que no hay inconsistencias
+6. ❌ NO usar scripts automáticos para marcado
 ```
 
-#### **9.2 Actualización Manual Requerida:**
-- [ ] **Plan Principal:** `MEMORIA_TRADER_REAL_PLAN_COMPLETO.md`
-- [ ] **Bitácora Smart Money:** `BITACORA_DESARROLLO_SMART_MONEY_v6.md` 
-- [ ] **REGLAS COPILOT:** `REGLAS_COPILOT.md`
-- [ ] **README Principal:** `README.md`
-- [ ] **Documentación Técnica:** Todos los archivos en `docs/`
+#### **9.2 LISTA COMPLETA DE ARCHIVOS A REVISAR MANUALMENTE:**
+```
+📁 ARCHIVOS CRÍTICOS - REVISIÓN MANUAL OBLIGATORIA:
 
-#### **9.3 Checklist de Validación:**
+docs/01-getting-started/
+├── DEVELOPMENT_SETUP.md
+├── INDEX.md  
+├── PLAN_MIGRACION_BOS.md
+└── README.md
+
+docs/02-architecture/
+├── ANALISIS_NODOS_BOS.md
+├── CHOCH_COMPLETION_SUMMARY.md
+├── CHOCH_INVESTIGATION_REPORT.md
+├── ESTADO_ACTUAL_SISTEMA_v6.md
+├── ESTADO_REAL_VERIFICADO_v6.md
+├── ESTRUCTURA_FINAL.md
+├── MEMORIA_Y_CONTEXTO_TRADER_REAL.md
+├── PLAN_DESARROLLO_REAL_ICT.md
+├── PLAN_MIGRACION_MEMORIA.md
+└── roadmap_v6.md
+
+docs/03-integration-plans/ (TODOS LOS .md)
+docs/04-development-logs/ (TODOS LOS .md + SUBDIRECTORIOS)
+docs/05-user-guides/ (TODOS LOS .md)
+docs/06-reports/ (TODOS LOS .md)
+docs/components/ (TODOS LOS .md)
+```
+
+#### **9.3 PROCESO DE VERIFICACIÓN MANUAL:**
+```
+🔍 PARA CADA ARCHIVO .md:
+1. ✅ ABRIR archivo y LEER contenido completo
+2. ✅ VERIFICAR si checkboxes reflejan realidad del código
+3. ✅ COMPARAR fechas vs trabajo real realizado
+4. ✅ ACTUALIZAR estado según implementación verificada
+5. ✅ MARCAR versión y fecha de revisión manual
+6. ✅ DOCUMENTAR cambios realizados
+```
+
+#### **9.4 CHECKLIST MANUAL - NO AUTOMÁTICO:**
 ```markdown
-### ✅ CHECKLIST REGLA #9 - REVISIÓN MANUAL COMPLETADA:
-- [ ] 🔍 Revisión manual de bitácoras realizada
-- [ ] 📝 Plan principal actualizado con nueva fase
-- [ ] 📋 Todos los checkboxes verificados manualmente
-- [ ] 🧪 Tests documentados con resultados reales
-- [ ] 📊 Métricas finales actualizadas
-- [ ] 🎯 Próximos pasos claramente definidos
-- [ ] 📄 Documentación técnica sincronizada
-- [ ] ✅ REGLA #5 aplicada a TODOS los archivos .md
+### ✅ CHECKLIST REGLA #9 - REVISIÓN MANUAL EXHAUSTIVA:
+- [ ] 🔍 TODOS los archivos docs/01-getting-started/ revisados
+- [ ] 🔍 TODOS los archivos docs/02-architecture/ revisados  
+- [ ] � TODOS los archivos docs/03-integration-plans/ revisados
+- [ ] 🔍 TODOS los archivos docs/04-development-logs/ revisados
+- [ ] 🔍 TODOS los archivos docs/05-user-guides/ revisados
+- [ ] 🔍 TODOS los archivos docs/06-reports/ revisados
+- [ ] � TODOS los archivos docs/components/ revisados
+- [ ] 📝 Bitácora principal actualizada manualmente
+- [ ] 📋 Checkboxes verificados vs código real
+- [ ] 🧪 Tests documentados con resultados verificados
+- [ ] 📊 Métricas actualizadas según realidad
+- [ ] 🎯 Inconsistencias encontradas y corregidas
+- [ ] 📄 REGLA #10 aplicada (versión actualizada)
+- [ ] ✅ 100% revisión manual sin scripts automáticos
 ```
 
-#### **9.4 Script de Validación Automática:**
-```python
-# Crear script: validate_manual_review.py
-def validate_all_md_files():
-    """Valida que todos los .md estén actualizados según REGLA #9"""
-    # Verificar checkboxes incompletos
-    # Verificar pendientes no resueltos  
-    # Verificar fechas de actualización
-    # Generar reporte de completitud
-```
+### 🚨 **ESTRICTAMENTE PROHIBIDO:**
+- ❌ **Scripts automáticos** para marcar checkboxes
+- ❌ **Herramientas automáticas** sin verificación manual
+- ❌ **Marcado en lote** sin revisar archivo por archivo
+- ❌ **Confianza en scripts** para estado del proyecto
+- ❌ **Actualización masiva** sin lectura individual
 
-### 🚨 **PROHIBIDO:**
-- ❌ Marcar fases como completadas sin revisión manual
-- ❌ Dejar checkboxes incompletos en documentación
-- ❌ Scripts automáticos sin validación manual posterior
-- ❌ Archivos .md desactualizados o inconsistentes
+### ✅ **ESTRICTAMENTE OBLIGATORIO:**
+- ✅ **Lectura manual** de cada archivo .md
+- ✅ **Verificación individual** archivo por archivo
+- ✅ **Comparación manual** código vs documentación
+- ✅ **Actualización consciente** basada en realidad
+- ✅ **REGLA #10** aplicada en cada actualización
 
-### ✅ **OBLIGATORIO:**
-- ✅ Revisión manual de TODOS los archivos .md
-- ✅ Actualización sincronizada de bitácoras
-- ✅ Checklist completo antes de marcar como completado
-- ✅ Script de validación + verificación manual
+### 💡 **RAZÓN DE ESTA REGLA:**
+**"Los scripts fallan al detectar realidad vs documentación. Solo la revisión manual exhaustiva garantiza precisión."**
 
 ---
 
-**Versión:** 1.1  
+## 📝 **REGLA #10: CONTROL DE VERSIONES EN BITÁCORAS**
+
+### 🎯 **PRINCIPIO DE VERSIONADO:**
+**"CADA ACTUALIZACIÓN IMPORTANTE DEBE INCREMENTAR LA VERSIÓN EN BITÁCORAS"**
+
+### 📋 **SISTEMA DE VERSIONADO OBLIGATORIO:**
+
+#### **10.1 Formato de Versión en Bitácoras:**
+```markdown
+**Versión Actual:** v6.0.X-enterprise-[estado-funcionalidad]
+
+Ejemplos:
+- v6.0.0-enterprise-foundation          (Solo infraestructura)
+- v6.0.1-enterprise-bos-choch          (BOS + CHoCH implementados)
+- v6.0.2-enterprise-memory-aware       (Con sistema de memoria)
+- v6.0.3-enterprise-real-data-validated (Con validación MT5)
+- v6.0.4-enterprise-production-ready   (Listo para producción)
+```
+
+#### **10.2 Cuándo Incrementar Versión:**
+```
+🔄 INCREMENTAR VERSIÓN CUANDO:
+- ✅ FASE completa implementada y validada
+- ✅ Funcionalidad principal agregada (BOS, CHoCH, Memory, etc.)
+- ✅ Testing completo realizado y pasado
+- ✅ Arquitectura mejorada significativamente
+- ✅ Performance optimizada
+- ✅ Integración enterprise completada
+
+❌ NO incrementar por:
+- ❌ Correcciones menores de bugs
+- ❌ Actualizaciones de documentación solamente
+- ❌ Cambios de configuración simples
+```
+
+#### **10.3 Archivos que DEBEN Actualizar Versión:**
+```
+📝 ARCHIVOS CON VERSIONADO OBLIGATORIO:
+- BITACORA_DESARROLLO_SMART_MONEY_v6.md
+- MEMORIA_TRADER_REAL_PLAN_COMPLETO.md  
+- README.md (versión del proyecto)
+- REGLAS_COPILOT.md (versión de reglas)
+- PLAN_DESARROLLO_REAL_ICT.md
+- roadmap_v6.md
+```
+
+#### **10.4 Registro de Cambios en Versión:**
+```markdown
+### 📋 CHANGELOG v6.0.X:
+**[Fecha] - v6.0.X-enterprise-[estado]**
+- ✅ [Funcionalidad implementada]
+- ✅ [Testing completado]
+- ✅ [Performance alcanzada]
+- ✅ [Integración realizada]
+
+**Breaking Changes:**
+- ⚠️ [Cambios incompatibles]
+
+**Deprecated:**
+- 🗑️ [Funcionalidades obsoletas]
+```
+
+#### **10.5 Validación de Versión:**
+```
+🔍 ANTES DE INCREMENTAR VERSIÓN:
+1. ✅ REGLA #9 aplicada (revisión manual completa)
+2. ✅ Funcionalidad completamente implementada
+3. ✅ Tests pasando al 100%
+4. ✅ Documentación sincronizada
+5. ✅ Performance validada
+6. ✅ Sin TODOs o pendientes críticos
+```
+
+### 🎯 **TEMPLATE DE ACTUALIZACIÓN DE VERSIÓN:**
+```markdown
+**[FECHA] - ACTUALIZACIÓN v6.0.X → v6.0.Y**
+
+### 🏆 **NUEVA VERSIÓN:**
+**Versión Actual:** v6.0.Y-enterprise-[nuevo-estado]
+
+### 📋 **CAMBIOS PRINCIPALES:**
+- ✅ [Funcionalidad 1 completada]
+- ✅ [Funcionalidad 2 implementada]
+- ✅ [Testing validado]
+
+### 🧪 **VALIDACIÓN:**
+- ✅ REGLA #9: Revisión manual completa
+- ✅ REGLA #10: Versión incrementada correctamente
+- ✅ Tests: X/X passing
+- ✅ Performance: <Xs enterprise
+
+### 🎯 **PRÓXIMO OBJETIVO:**
+v6.0.Z-enterprise-[siguiente-estado]
+```
+
+---
+
+**Versión REGLAS:** 2.0  
 **Estado:** 📋 **ACTIVO Y OBLIGATORIO PARA COPILOT**
 
 ---
