@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-08-08T17:44:18.318711+00:00",
+  "market_context": {
+    "market_bias": "BULLISH",
+    "confidence_level": 0.0,
+    "analysis_quality": "MEDIUM",
+    "market_phase": "RANGING",
+    "timeframe_bias": {
+      "W1": "NEUTRAL",
+      "D1": "NEUTRAL",
+      "H4": "NEUTRAL",
+      "H1": "NEUTRAL",
+      "M15": "NEUTRAL",
+      "M5": "NEUTRAL",
+      "M1": "NEUTRAL"
+    }
+  },
+  "pattern_memory": {
+    "previous_pois": [],
+    "bos_events": [],
+    "choch_events": [],
+    "swing_points": {
+      "recent_highs": [],
+      "recent_lows": [],
+      "last_high": null,
+      "last_low": null
+    }
+  },
+  "smart_money_memory": {
+    "institutional_bias": "BULLISH",
+    "liquidity_pools": [],
+    "market_maker_activity": {},
+    "killzone_efficiency": {},
+    "institutional_flow": "NEUTRAL"
+  },
+  "killzone_memory": {
+    "asian_session": {
+      "efficiency": 0.65,
+      "recent_performance": []
+    },
+    "london_session": {
+      "efficiency": 0.85,
+      "recent_performance": []
+    },
+    "newyork_session": {
+      "efficiency": 0.9,
+      "recent_performance": []
+    },
+    "overlap_sessions": {
+      "efficiency": 0.95,
+      "recent_performance": []
+    }
+  }
+}

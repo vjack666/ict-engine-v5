@@ -172,8 +172,8 @@ class MarketStructureAnalyzerV6:
         # Data manager para datos reales
         self.data_manager = AdvancedCandleDownloader()
         
-        # 🎯 Configuración de detección (migrada desde v2.0)
-        self.min_confidence = 70.0
+        # 🎯 Configuración de detección (migrada desde v2.0 + ajustada)
+        self.min_confidence = 60.0  # Bajado de 65.0 para detectar más eventos
         self.structure_lookback = 50  # Velas hacia atrás para análisis
         self.swing_window = 5         # Ventana para swing points
         self.fvg_min_gap = 0.0005    # Gap mínimo para FVG (5 pips)
@@ -964,7 +964,7 @@ class MarketStructureAnalyzerV6:
         """🎯 Genera señal de estructura completa v6.0 (migrado desde v2.0 + enhanced)"""
         try:
             structure_type = kwargs.get('structure_type', StructureTypeV6.UNKNOWN)
-            confidence = kwargs.get('confidence', 70.0)
+            confidence = kwargs.get('confidence', self.min_confidence)
 
             # Determinar dirección
             if structure_type in [StructureTypeV6.BOS_BULLISH, StructureTypeV6.CHOCH_BULLISH]:

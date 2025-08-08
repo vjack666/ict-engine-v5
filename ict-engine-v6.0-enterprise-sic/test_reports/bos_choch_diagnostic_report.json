@@ -1,0 +1,127 @@
+{
+  "report_type": "BOS_CHoCH_Diagnostic_Analysis", 
+  "timestamp": "2025-08-08_13:00",
+  "version": "v6.0",
+  "memory_integration": "UNIFIED_MEMORY_ACTIVE",
+  
+  "summary": {
+    "total_patterns_detected": 22041,
+    "total_bos": 0,
+    "total_choch": 0,
+    "efficiency_bos_choch": "0.0%",
+    "memory_coherence": 0.850,
+    "total_memory_analyses": 11
+  },
+  
+  "detailed_results": {
+    "EURUSD": {
+      "H4": {"patterns": 1777, "bos": 0, "choch": 0, "swing_points": "194H/186L"},
+      "H1": {"patterns": 2625, "bos": 0, "choch": 0, "swing_points": "310H/307L"},
+      "M15": {"patterns": 2117, "bos": 0, "choch": 0, "swing_points": "293H/295L"},
+      "total": {"patterns": 6519, "bos": 0, "choch": 0}
+    },
+    "GBPUSD": {
+      "H4": {"patterns": 1776, "bos": 0, "choch": 0, "swing_points": "186H/185L"},
+      "H1": {"patterns": 2774, "bos": 0, "choch": 0, "swing_points": "294H/295L"},
+      "M15": {"patterns": 2287, "bos": 0, "choch": 0, "swing_points": "300H/291L"},
+      "total": {"patterns": 6837, "bos": 0, "choch": 0}
+    },
+    "USDJPY": {
+      "H4": {"patterns": 1950, "bos": 0, "choch": 0, "swing_points": "176H/183L"},
+      "H1": {"patterns": 3269, "bos": 0, "choch": 0, "swing_points": "297H/297L"},
+      "M15": {"patterns": 3466, "bos": 0, "choch": 0, "swing_points": "267H/276L"},
+      "total": {"patterns": 8685, "bos": 0, "choch": 0}
+    }
+  },
+  
+  "market_structure_analysis": {
+    "EURUSD": {
+      "H4": {"structure": "bos_bullish", "score": 0.80, "confidence": "67.3%"},
+      "H1": {"structure": "bos_bearish", "score": 0.80, "confidence": "63.8%"},
+      "M15": {"structure": "consolidation", "score": 0.40, "confidence": "insufficient"}
+    },
+    "GBPUSD": {
+      "H4": {"structure": "unknown", "score": 0.00, "confidence": "insufficient"},
+      "H1": {"structure": "bos_bullish", "score": 0.80, "confidence": "67.7%"},
+      "M15": {"structure": "bos_bearish", "score": 0.80, "confidence": "65.4%"}
+    },
+    "USDJPY": {
+      "H4": {"structure": "unknown", "score": 0.00, "confidence": "insufficient"},
+      "H1": {"structure": "consolidation", "score": 0.40, "confidence": "insufficient"},
+      "M15": {"structure": "bos_bullish", "score": 0.80, "confidence": "64.9%"}
+    }
+  },
+  
+  "diagnostic_issues": {
+    "primary_issue": "BOS_CHoCH_NOT_BEING_COUNTED",
+    "possible_causes": [
+      "Market Structure Analyzer detecta patrones BOS/bearish/bullish pero no los cuenta como eventos",
+      "Confianza insuficiente: Todas las detecciones están <70% requerido",
+      "Posible desconexión entre detección y conteo",
+      "Estructura detectada pero no registrada como evento BOS/CHoCH"
+    ],
+    "evidence": {
+      "structures_detected": true,
+      "confidence_threshold": "70%_required",
+      "actual_confidence": "63.8%-67.7%_range",
+      "swing_points_adequate": true,
+      "patterns_abundant": "22041_total"
+    }
+  },
+  
+  "pattern_distribution": {
+    "order_blocks": {
+      "EURUSD": 5053,
+      "GBPUSD": 5227,
+      "USDJPY": 5811,
+      "total": 16091
+    },
+    "fair_value_gaps": {
+      "EURUSD": 1466,
+      "GBPUSD": 1610,
+      "USDJPY": 2874,
+      "total": 5950
+    }
+  },
+  
+  "memory_status": {
+    "unified_memory": "ACTIVE",
+    "quality": "DEVELOPING",
+    "coherence": 0.85,
+    "update_frequency": "per_timeframe",
+    "insights_generated": "contextual_bias_bullish"
+  },
+  
+  "data_quality": {
+    "connection": "FUNDEDNEXT_MT5_REAL",
+    "account": "1511236436",
+    "balance": "9996.5_USD",
+    "data_grade": "INSTITUTIONAL_OPTIMAL",
+    "candle_count": "3000-5000_per_timeframe"
+  },
+  
+  "recommendations": {
+    "immediate": [
+      "Revisar lógica de conteo BOS/CHoCH en MarketStructureAnalyzer",
+      "Verificar umbral de confianza (70%) vs detecciones reales",
+      "Validar conexión entre estructura detectada y evento registrado"
+    ],
+    "investigation": [
+      "Analizar por qué structures como 'bos_bullish' no generan eventos BOS",
+      "Revisar si el problema está en la lógica de validación o conteo",
+      "Comparar con implementación anterior que sí detectaba BOS/CHoCH"
+    ],
+    "optimization": [
+      "Ajustar umbrales de confianza si son demasiado restrictivos",
+      "Mejorar validación de estructura para mayor precisión",
+      "Implementar logging detallado del proceso BOS/CHoCH"
+    ]
+  },
+  
+  "next_actions": [
+    "Inspeccionar código MarketStructureAnalyzer para lógica BOS/CHoCH",
+    "Verificar si método count_bos_choch existe y funciona",
+    "Comparar con versión anterior que detectaba eventos",
+    "Crear test específico con datos conocidos que deberían generar BOS/CHoCH"
+  ]
+}

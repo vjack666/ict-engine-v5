@@ -1,0 +1,13 @@
+{
+  "initialization_time": "2025-08-08 17:43:45.756037+00:00",
+  "last_update": "2025-08-08 17:44:18.318685+00:00",
+  "memory_sessions": 0,
+  "total_analyses": 2,
+  "memory_quality": "ACTIVE",
+  "coherence_score": 0.85,
+  "active_components": {
+    "market_context": true,
+    "historical_analyzer": true,
+    "decision_cache": true
+  }
+}

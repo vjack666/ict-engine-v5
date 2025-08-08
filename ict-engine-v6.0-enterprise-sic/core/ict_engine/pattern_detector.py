@@ -72,13 +72,26 @@ except ImportError:
 
 # Componentes ICT Engine v6.0
 try:
-    from core.analysis.market_structure_analyzer import MarketStructureAnalyzer, MarketStructureSignal
+    from core.analysis.market_structure_analyzer_v6 import MarketStructureAnalyzerV6, MarketStructureSignalV6
     from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader
     from utils.mt5_data_manager import MT5DataManager
     MARKET_STRUCTURE_AVAILABLE = True
 except ImportError:
     MARKET_STRUCTURE_AVAILABLE = False
     print("⚠️ Market Structure Analyzer no disponible")
+
+# Sistema de Memoria Unificada v6.0 Enterprise (SIC + SLUC)
+try:
+    from core.analysis.unified_market_memory import (
+        get_unified_market_memory,
+        update_market_memory, 
+        get_trading_insights
+    )
+    UNIFIED_MEMORY_AVAILABLE = True
+    print("✅ [SIC Integration] Sistema de Memoria Unificada v6.0 cargado")
+except ImportError:
+    UNIFIED_MEMORY_AVAILABLE = False
+    print("⚠️ Sistema de Memoria Unificada no disponible")
 
 # ===============================
 # TIPOS Y ENUMS ICT PATTERNS
@@ -255,9 +268,10 @@ class ICTPatternDetector:
         self.performance_metrics: List[Dict[str, Any]] = []
         
         # Componentes
-        self._market_structure: Optional[MarketStructureAnalyzer] = None
+        self._market_structure: Optional[MarketStructureAnalyzerV6] = None
         self._downloader: Optional[AdvancedCandleDownloader] = None
         self._sic: Optional[SICv31Enterprise] = None
+        self._unified_memory = None  # Sistema de Memoria Unificada v6.0
         
         # Threading
         self._lock = threading.Lock()
@@ -276,9 +290,14 @@ class ICTPatternDetector:
                 self._sic = SICv31Enterprise()
                 self._log_info("SIC v3.1 Enterprise integrado")
             
+            # Configurar Sistema de Memoria Unificada v6.0 (SIC + SLUC)
+            if UNIFIED_MEMORY_AVAILABLE:
+                self._unified_memory = get_unified_market_memory()
+                self._log_info("🧠 Sistema de Memoria Unificada v6.0 conectado (SIC + SLUC)")
+            
             # Configurar Market Structure Analyzer
             if MARKET_STRUCTURE_AVAILABLE:
-                self._market_structure = MarketStructureAnalyzer()
+                self._market_structure = MarketStructureAnalyzerV6()
                 self._log_info("Market Structure Analyzer conectado")
             
             # Configurar Advanced Candle Downloader
@@ -319,9 +338,9 @@ class ICTPatternDetector:
             if self._market_structure:
                 try:
                     market_structure = self._market_structure.analyze_market_structure(
-                        symbol=symbol, 
-                        timeframe=timeframe, 
-                        lookback_days=lookback_days
+                        candles_m15=candles_data,
+                        current_price=float(candles_data['close'].iloc[-1]) if not candles_data.empty else 0.0,
+                        symbol=symbol
                     )
                 except Exception as e:
                     self._log_warning(f"Error en análisis de estructura: {e}")
@@ -352,10 +371,14 @@ class ICTPatternDetector:
                 processing_time=time.time() - start_time
             )
             
-            # 8. 💾 ACTUALIZAR ESTADO
+            # 8. 🧠 ACTUALIZAR MEMORIA UNIFICADA (SIC + SLUC)
+            if self._unified_memory and UNIFIED_MEMORY_AVAILABLE:
+                self._update_unified_memory_with_patterns(result, symbol, timeframe)
+            
+            # 9. 💾 ACTUALIZAR ESTADO
             self._update_detector_state(result)
             
-            # 9. 📊 MÉTRICAS DE PERFORMANCE
+            # 10. 📊 MÉTRICAS DE PERFORMANCE
             self._update_performance_metrics(result)
             
             self._log_info(f"🎯 Patterns detectados: {result.total_patterns} "
@@ -370,7 +393,7 @@ class ICTPatternDetector:
     
     def _detect_order_blocks(self, 
                            candles, 
-                           market_structure: Optional[MarketStructureSignal] = None) -> List[OrderBlock]:
+                           market_structure: Optional[MarketStructureSignalV6] = None) -> List[OrderBlock]:
         """📦 Detecta Order Blocks ICT"""
         order_blocks = []
         
@@ -495,7 +518,7 @@ class ICTPatternDetector:
     def _detect_breaker_block(self, 
                             candles, 
                             candle_index: int, 
-                            market_structure: Optional[MarketStructureSignal] = None) -> Optional[OrderBlock]:
+                            market_structure: Optional[MarketStructureSignalV6] = None) -> Optional[OrderBlock]:
         """💥 Detecta Breaker Block (Order Block que se rompe y cambia de rol)"""
         try:
             # Lógica simplificada para Breaker Block
@@ -518,7 +541,7 @@ class ICTPatternDetector:
     
     def _detect_fair_value_gaps(self, 
                               candles, 
-                              market_structure: Optional[MarketStructureSignal] = None) -> List[FairValueGap]:
+                              market_structure: Optional[MarketStructureSignalV6] = None) -> List[FairValueGap]:
         """💎 Detecta Fair Value Gaps ICT"""
         fvgs = []
         
@@ -879,6 +902,115 @@ class ICTPatternDetector:
         except Exception as e:
             self._log_error(f"Error obteniendo patterns activos: {e}")
             return {'order_blocks': [], 'fair_value_gaps': [], 'total_active': 0}
+    
+    # ===============================
+    # INTEGRACIÓN MEMORIA UNIFICADA (SIC + SLUC)
+    # ===============================
+    
+    def _update_unified_memory_with_patterns(self, 
+                                           result: PatternDetectionResult, 
+                                           symbol: str, 
+                                           timeframe: str) -> None:
+        """
+        🧠 Actualiza el Sistema de Memoria Unificada con los patterns detectados
+        
+        Integra los patterns ICT detectados con el sistema de memoria v6.0
+        usando SIC + SLUC para análisis contextual inteligente.
+        
+        Args:
+            result: Resultado de la detección de patterns
+            symbol: Símbolo analizado
+            timeframe: Timeframe del análisis
+        """
+        try:
+            if not self._unified_memory:
+                return
+            
+            # 📊 Preparar datos para memoria unificada
+            analysis_data = {
+                'symbol': symbol,
+                'timeframes_analyzed': [timeframe],
+                'current_price': 0.0,  # Se actualizará con datos reales
+                'market_bias': self._determine_pattern_bias(result),
+                'timeframe_results': {
+                    timeframe: {
+                        'bias': self._determine_pattern_bias(result),
+                        'strength': result.quality_score / 100.0,
+                        'analysis': {
+                            'total_patterns': result.total_patterns,
+                            'order_blocks_count': len(result.order_blocks),
+                            'fvg_count': len(result.fair_value_gaps),
+                            'pattern_quality': result.quality_score,
+                            'processing_time': result.processing_time
+                        }
+                    }
+                },
+                'smart_money_analysis': {
+                    'institutional_bias': self._determine_institutional_bias(result),
+                    'pattern_efficiency': {
+                        f'{timeframe}_session': min(result.quality_score / 100.0, 1.0)
+                    }
+                }
+            }
+            
+            # 🔄 Actualizar memoria usando SIC + SLUC
+            update_result = update_market_memory(analysis_data)
+            
+            self._log_info(f"🧠 Memoria unificada actualizada - Symbol: {symbol}, "
+                          f"Quality: {update_result.get('memory_quality', 'N/A')}, "
+                          f"Coherence: {update_result.get('coherence_score', 'N/A')}")
+            
+        except Exception as e:
+            self._log_error(f"Error actualizando memoria unificada: {e}")
+    
+    def _determine_pattern_bias(self, result: PatternDetectionResult) -> str:
+        """📈 Determina el bias del mercado basado en patterns detectados"""
+        try:
+            bullish_patterns = 0
+            bearish_patterns = 0
+            
+            # Contar Order Blocks
+            for ob in result.order_blocks:
+                if ob.ob_type == OrderBlockType.BULLISH_OB:
+                    bullish_patterns += 1
+                elif ob.ob_type == OrderBlockType.BEARISH_OB:
+                    bearish_patterns += 1
+            
+            # Contar Fair Value Gaps
+            for fvg in result.fair_value_gaps:
+                if fvg.fvg_type == FVGType.BULLISH_FVG:
+                    bullish_patterns += 1
+                elif fvg.fvg_type == FVGType.BEARISH_FVG:
+                    bearish_patterns += 1
+            
+            # Determinar bias
+            if bullish_patterns > bearish_patterns:
+                return "BULLISH"
+            elif bearish_patterns > bullish_patterns:
+                return "BEARISH"
+            else:
+                return "NEUTRAL"
+                
+        except Exception:
+            return "NEUTRAL"
+    
+    def _determine_institutional_bias(self, result: PatternDetectionResult) -> str:
+        """🏛️ Determina el bias institucional basado en la calidad de patterns"""
+        try:
+            if result.quality_score >= 75.0:
+                return self._determine_pattern_bias(result)
+            elif result.quality_score >= 50.0:
+                bias = self._determine_pattern_bias(result)
+                return bias if bias != "NEUTRAL" else "NEUTRAL"
+            else:
+                return "NEUTRAL"
+                
+        except Exception:
+            return "NEUTRAL"
+
+    # ===============================
+    # MÉTODOS DE LOGGING
+    # ===============================
     
     # ===============================
     # MÉTODOS DE LOGGING

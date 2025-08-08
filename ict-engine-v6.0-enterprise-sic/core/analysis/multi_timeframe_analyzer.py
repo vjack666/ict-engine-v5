@@ -692,9 +692,13 @@ class OptimizedICTAnalysisEnterprise:
             timeframe_data = {}
             for tf in timeframes:
                 periods = minimal_periods.get(tf, 240)
-                simulated_data = self._generate_demo_data(symbol, tf, periods)
-                timeframe_data[tf] = simulated_data
-                log_info(f"Datos LIVE_READY generados para {tf}: {len(simulated_data)} velas")
+                real_data = self._get_real_data(symbol, tf, periods)
+                if real_data is not None:
+                    timeframe_data[tf] = real_data
+                    log_info(f"Datos reales cargados para {tf}: {len(real_data)} velas")
+                else:
+                    log_warning(f"No se pudieron cargar datos reales para {tf}")
+                    continue
             
             # Ejecutar análisis ICT rápido
             df_h4 = timeframe_data.get('H4')
@@ -735,9 +739,13 @@ class OptimizedICTAnalysisEnterprise:
             timeframe_data = {}
             for tf in timeframes:
                 periods = ultra_minimal.get(tf, 120)
-                simulated_data = self._generate_demo_data(symbol, tf, periods)
-                timeframe_data[tf] = simulated_data
-                log_info(f"Datos MINIMAL generados para {tf}: {len(simulated_data)} velas")
+                real_data = self._get_real_data(symbol, tf, periods)
+                if real_data is not None:
+                    timeframe_data[tf] = real_data
+                    log_info(f"Datos reales MINIMAL cargados para {tf}: {len(real_data)} velas")
+                else:
+                    log_warning(f"No se pudieron cargar datos reales para {tf}")
+                    continue
             
             # Solo análisis H4 + M15 para velocidad máxima
             df_h4 = timeframe_data.get('H4')
@@ -816,9 +824,13 @@ class OptimizedICTAnalysisEnterprise:
             timeframe_data = {}
             for tf in timeframes:
                 periods = {'H4': 240, 'M15': 480, 'M5': 720}.get(tf, 480)
-                simulated_data = self._generate_demo_data(symbol, tf, periods)
-                timeframe_data[tf] = simulated_data
-                log_info(f"Datos FULL generados para {tf}: {len(simulated_data)} velas")
+                real_data = self._get_real_data(symbol, tf, periods)
+                if real_data is not None and len(real_data) > 0:
+                    timeframe_data[tf] = real_data
+                    log_info(f"Datos reales FULL cargados para {tf}: {len(real_data)} velas")
+                else:
+                    log_warning(f"No se pudieron cargar datos reales para {tf}")
+                    continue
             
             # Ejecutar análisis completo
             df_h4 = timeframe_data.get('H4')
@@ -939,87 +951,39 @@ class OptimizedICTAnalysisEnterprise:
             'timestamp': datetime.now().isoformat()
         }
 
-    def _generate_demo_data(self, symbol: str, timeframe: str, periods: int = 480) -> pd.DataFrame:
-        """🎯 Genera datos simulados para demostración Enterprise"""
+    def _get_real_data(self, symbol: str, timeframe: str, periods: int = 480) -> pd.DataFrame:
+        """📊 Obtener datos reales MT5 con solicitud automática si no existen"""
         try:
-            import pandas as pd
-            import numpy as np
-            from datetime import datetime, timedelta
+            from core.data_management.advanced_candle_downloader import AdvancedCandleDownloader
             
-            # Base price para diferentes pares
-            base_prices = {
-                'EURUSD': 1.0950,
-                'GBPUSD': 1.2750,
-                'USDJPY': 149.50,
-                'AUDUSD': 0.6650,
-                'USDCHF': 0.9150
-            }
+            # Inicializar downloader para datos reales
+            downloader = AdvancedCandleDownloader()
             
-            base_price = base_prices.get(symbol.upper(), 1.0000)
+            log_info(f"Solicitando datos reales MT5: {symbol} {timeframe} - {periods} velas")
             
-            # Generar timestamps
-            freq_map = {'H4': '4H', 'M15': '15min', 'M5': '5min'}
-            freq = freq_map.get(timeframe, '15min')
+            # Descargar datos reales de MT5
+            result = downloader.download_candles(
+                symbol=symbol,
+                timeframe=timeframe
+            )
             
-            end_time = datetime.now()
-            dates = pd.date_range(end=end_time, periods=periods, freq=freq)
+            if result is None:
+                log_warning(f"No se pudieron obtener datos para {symbol} {timeframe}")
+                return pd.DataFrame()  # Retornar DataFrame vacío en lugar de None
             
-            # Generar precios simulados con tendencia y volatilidad
-            np.random.seed(42)  # Para resultados reproducibles
+            # Extraer DataFrame de datos
+            if isinstance(result, dict) and 'data' in result:
+                df = result['data']
+                if df is not None and len(df) > 0:
+                    log_info(f"Datos reales obtenidos: {symbol} {timeframe} - {len(df)} velas")
+                    return df
             
-            prices = []
-            current_price = base_price
-            
-            # Volatilidad por timeframe
-            volatilities = {'H4': 0.004, 'M15': 0.0015, 'M5': 0.0008}
-            volatility = volatilities.get(timeframe, 0.0015)
-            
-            for i in range(periods):
-                # Simular movimiento browniano con tendencia ligera
-                change = np.random.normal(0, volatility)
-                if i > periods * 0.7:  # Crear tendencia en últimos 30%
-                    change += volatility * 0.2  # Tendencia alcista ligera
-                
-                current_price = current_price * (1 + change)
-                prices.append(current_price)
-            
-            # Crear OHLC data
-            ohlc_data = []
-            for i, price in enumerate(prices):
-                # Open
-                if i == 0:
-                    open_price = base_price
-                else:
-                    open_price = ohlc_data[i-1]['close']
-                
-                # High/Low con noise
-                noise = np.random.normal(0, volatility/3)
-                high = price + abs(noise)
-                low = price - abs(noise)
-                
-                # Asegurar coherencia OHLC
-                high = max(high, open_price, price)
-                low = min(low, open_price, price)
-                
-                ohlc_data.append({
-                    'open': open_price,
-                    'high': high,
-                    'low': low,
-                    'close': price,
-                    'volume': np.random.randint(100, 1000)
-                })
-            
-            df = pd.DataFrame(ohlc_data, index=dates)
-            log_info(f"Datos demo generados: {symbol} {timeframe} - {len(df)} velas")
-            
-            return df
+            log_warning(f"Formato de datos inesperado para {symbol} {timeframe}")
+            return pd.DataFrame()  # Retornar DataFrame vacío en lugar de None
             
         except Exception as e:
-            log_error(f"Error generando datos demo: {e}")
-            # Retornar DataFrame mínimo
-            return pd.DataFrame({
-                'open': [1.0], 'high': [1.0], 'low': [1.0], 'close': [1.0], 'volume': [100]
-            })
+            log_error(f"Error obteniendo datos reales MT5: {e}")
+            return pd.DataFrame()  # Retornar DataFrame vacío en lugar de None
 
 def get_ict_config():
     """Obtener configuración ICT enterprise"""

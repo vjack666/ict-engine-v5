@@ -975,3 +975,455 @@
 [2025-08-08 10:47:09] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
 [2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
 [2025-08-08 10:47:09] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:16:40] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:16:40] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:16:43] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:16:43] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:18:13] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:18:13] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:18:13] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:18:13] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:18:13] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:18:14] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:18:14] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:18:14] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:18:14] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:18:17] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:18:17] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:24:58] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:24:58] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:25:02] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:25:02] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:33:38] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 11:33:38] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:34:22] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD H4 - 240 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para H4: 240 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 480 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M5 - 720 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M5: 720 velas
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.391%, strength: 1.000)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.15615 > 1.15664
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0020)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.245
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.905, confianza: HIGH)
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 11:34:22] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['M15'] - Modo: minimal
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 11:34:23] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['M15'] - Modo: minimal
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para GBPUSD
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 120 velas
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para USDJPY - TF: ['M15'] - Modo: full
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para USDJPY
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: USDJPY M15 - 480 velas
+[2025-08-08 11:34:24] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:45:53] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['M15'] - Modo: minimal
+[2025-08-08 11:45:53] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 11:45:54] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: EURUSD M15 - 120 velas
+[2025-08-08 11:45:54] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 11:46:04] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para GBPUSD - TF: ['M15'] - Modo: minimal
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para GBPUSD
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: GBPUSD M15 - 120 velas
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Datos MINIMAL generados para M15: 120 velas
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para USDJPY - TF: ['M15'] - Modo: full
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para USDJPY
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Datos demo generados: USDJPY M15 - 480 velas
+[2025-08-08 11:46:05] [ICT_Engine] [INFO] [multi_tf] Datos FULL generados para M15: 480 velas
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:56:05] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:56:05] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:56:20] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:56:20] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 11:56:41] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15'] - Modo: minimal
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Modo MINIMAL: análisis ultra-rápido para EURUSD
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Solicitando datos reales MT5: EURUSD H4 - 60 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Datos reales obtenidos: EURUSD H4 - 3000 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Datos reales MINIMAL cargados para H4: 3000 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Solicitando datos reales MT5: EURUSD M15 - 120 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Datos reales obtenidos: EURUSD M15 - 5000 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [multi_tf] Datos reales MINIMAL cargados para M15: 5000 velas
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.501%, strength: 1.000)
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 11:56:41] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.16486 > 1.16550
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado
+[2025-08-08 12:06:52] [ICT_Engine] [WARNING] [init] ⚠️ Usando fallback enums
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargado completamente
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] 📊 Pipeline H4→M15→M5 disponible
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] 🎯 Jerarquía ICT enterprise implementada
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] 🚀 Listo para análisis multi-timeframe
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] OptimizedICTAnalysisEnterprise inicializado
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [init] Cache: True, Mode: enterprise
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Iniciando análisis multi-timeframe para EURUSD - TF: ['H4', 'M15', 'M5'] - Modo: full
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Modo FULL: análisis completo para EURUSD
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Solicitando datos reales MT5: EURUSD H4 - 240 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales obtenidos: EURUSD H4 - 3000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales FULL cargados para H4: 3000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Solicitando datos reales MT5: EURUSD M15 - 480 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales obtenidos: EURUSD M15 - 5000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales FULL cargados para M15: 5000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Solicitando datos reales MT5: EURUSD M5 - 720 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales obtenidos: EURUSD M5 - 4000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [multi_tf] Datos reales FULL cargados para M5: 4000 velas
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] === INICIANDO ANÁLISIS ICT COMPLETO MULTI-TIMEFRAME ===
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] PASO 1: Analizando H4 Bias (Authority)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [h4_bias] Analizando 20 velas H4 para bias
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [h4_bias] H4 Bias: BULLISH (0.499%, strength: 1.000)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] PASO 2: Analizando M15 Structure (Confirmation)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [m15_structure] Analizando 50 velas M15 para estructura
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [m15_structure] M15 Structure: BULLISH break at 1.16558 > 1.16600
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] PASO 3: Analizando M5 LTF Confirmation (Timing)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [m5_confirmation] Analizando 20 velas M5 para confirmación LTF
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [m5_confirmation] M5 Confirmation: BULLISH débil (momentum: 0.0006)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] PASO 4: Determinando Overall Direction con jerarquía ICT
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [overall_direction] Iniciando determinación dirección con jerarquía ICT
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [overall_direction] H4 BULLISH: +0.600 (peso: 0.6, strength: 1.000)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [overall_direction] M15 BULLISH (alineado): +0.240
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [overall_direction] M5 BULLISH: +0.060
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [overall_direction] DIRECCIÓN FINAL: BULLISH (score: 0.900, confianza: HIGH)
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] === ANÁLISIS COMPLETO FINALIZADO ===
+[2025-08-08 12:06:52] [ICT_Engine] [INFO] [pipeline] H4: BULLISH, M15: bullish_structure, Overall: BULLISH
+[2025-08-08 12:40:57] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:41:31] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 12:43:45] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 12:43:45] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-08 12:43:45] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [market_memory] 📈 Cambio de bias detectado: NEUTRAL → BULLISH
+[2025-08-08 12:43:45] [ICT_Engine] [ERROR] [market_memory] Error actualizando market context: 'SmartTradingLogger' object has no attribute 'log_debug'
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - EURUSD: 3 TFs, Correlations: 1
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - EURUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [market_memory] 💾 Estado de memoria persistido en cache/memory\market_context_state.json
+[2025-08-08 12:43:45] [ICT_Engine] [INFO] [historical_memory] 💾 Cache de memoria exportado a cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - EURUSD: 3 TFs, Correlations: 1
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - EURUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [market_memory] 💾 Estado de memoria persistido en cache/memory\market_context_state.json
+[2025-08-08 12:44:18] [ICT_Engine] [INFO] [historical_memory] 💾 Cache de memoria exportado a cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 12:51:44] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 12:51:45] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:51:45] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 12:58:19] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 12:58:23] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - EURUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:58:23] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - EURUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:58:38] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - EURUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:58:38] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - EURUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:58:57] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - EURUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:58:57] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - EURUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:59:16] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - GBPUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:59:16] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - GBPUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:59:37] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - GBPUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:59:37] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - GBPUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 12:59:57] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - GBPUSD: 1 TFs, Correlations: 0
+[2025-08-08 12:59:57] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - GBPUSD: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 13:00:09] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - USDJPY: 1 TFs, Correlations: 0
+[2025-08-08 13:00:09] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - USDJPY: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 13:00:31] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - USDJPY: 1 TFs, Correlations: 0
+[2025-08-08 13:00:31] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - USDJPY: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 13:00:54] [ICT_Engine] [INFO] [historical_memory] 🔗 Análisis multi-timeframe completado - USDJPY: 1 TFs, Correlations: 0
+[2025-08-08 13:00:54] [ICT_Engine] [INFO] [unified_memory] Insights contextuales generados - USDJPY: Bias: BULLISH, Confidence: 0.85
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=70.0%, lookback=50
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:04:07] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:25:57] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:31:30] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:31:30] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:31:30] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:31:30] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:34:19] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:34:22] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:34:29] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - GBPUSD
+[2025-08-08 13:34:38] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - GBPUSD
+[2025-08-08 13:34:53] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - USDJPY
+[2025-08-08 13:35:02] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - USDJPY
+[2025-08-08 13:37:28] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:37:28] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:37:28] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:37:28] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:37:48] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:37:48] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:37:48] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:37:48] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:37:49] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:38:38] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:38:38] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:38:38] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:38:38] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:38:38] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:39:20] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:39:20] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:39:20] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:39:20] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=65.0%, lookback=50
+[2025-08-08 13:39:20] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-08 13:41:46] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:41:47] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:41:47] [ICT_Engine] [INFO] [CORE]    Confianza: 64.8%
+[2025-08-08 13:41:47] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:41:47] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:41:47] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.1165s
+[2025-08-08 13:41:49] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-08 13:41:51] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:41:51] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-08 13:41:51] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:41:51] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:41:51] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 2.0533s
+[2025-08-08 13:41:54] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - GBPUSD
+[2025-08-08 13:41:55] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:41:55] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-08 13:41:55] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:41:55] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:41:55] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.1873s
+[2025-08-08 13:41:57] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - GBPUSD
+[2025-08-08 13:42:00] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:42:00] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-08 13:42:00] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:42:00] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:42:00] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 2.4538s
+[2025-08-08 13:42:03] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - USDJPY
+[2025-08-08 13:42:04] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:42:04] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-08 13:42:04] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:42:04] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:42:04] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.0476s
+[2025-08-08 13:42:05] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - USDJPY
+[2025-08-08 13:42:07] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-08 13:42:07] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-08 13:42:07] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-08 13:42:07] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-08 13:42:07] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.4590s

@@ -27,6 +27,19 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 import json
 
+# Integración SIC + SLUC para Memoria Unificada v6.0
+try:
+    from core.analysis.unified_market_memory import (
+        get_unified_market_memory,
+        update_market_memory,
+        get_trading_insights
+    )
+    UNIFIED_MEMORY_AVAILABLE = True
+    print("✅ [SIC Integration] Sistema de Memoria Unificada v6.0 conectado")
+except ImportError:
+    UNIFIED_MEMORY_AVAILABLE = False
+    print("⚠️ Sistema de Memoria Unificada no disponible")
+
 # Configuración ICT Enterprise
 ICT_DATA_CONFIG = {
     # Símbolos por prioridad ICT
@@ -86,6 +99,15 @@ class ICTDataManager:
         # Cache de resultados
         self.available_data = {}
         self.last_update = {}
+        
+        # Sistema de Memoria Unificada v6.0 (SIC + SLUC)
+        self.unified_memory = None
+        if UNIFIED_MEMORY_AVAILABLE:
+            try:
+                self.unified_memory = get_unified_market_memory()
+                print("🧠 ICTDataManager: Memoria Unificada v6.0 conectada (SIC + SLUC)")
+            except Exception as e:
+                print(f"⚠️ Error conectando Memoria Unificada: {e}")
         
         # Métricas
         self.performance_metrics = {

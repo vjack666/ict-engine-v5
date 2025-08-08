@@ -1,0 +1,196 @@
+{
+  "export_timestamp": "2025-08-08T17:44:18.325792+00:00",
+  "cache_data": {
+    "poi_analysis_EURUSD_H4": {
+      "symbol": "EURUSD",
+      "timeframe": "H4",
+      "total_samples": 0,
+      "analysis_timestamp": "2025-08-08T17:44:18.320036+00:00",
+      "performance_stats": {
+        "success_rate": 0.5,
+        "confidence": 0.5
+      },
+      "memory_quality": "COLD_START",
+      "recommendations": [
+        "Necesita acumular datos hist\u00f3ricos"
+      ]
+    },
+    "poi_analysis_EURUSD_M15": {
+      "symbol": "EURUSD",
+      "timeframe": "M15",
+      "total_samples": 0,
+      "analysis_timestamp": "2025-08-08T17:44:18.320091+00:00",
+      "performance_stats": {
+        "success_rate": 0.5,
+        "confidence": 0.5
+      },
+      "memory_quality": "COLD_START",
+      "recommendations": [
+        "Necesita acumular datos hist\u00f3ricos"
+      ]
+    },
+    "poi_analysis_EURUSD_M5": {
+      "symbol": "EURUSD",
+      "timeframe": "M5",
+      "total_samples": 0,
+      "analysis_timestamp": "2025-08-08T17:44:18.320135+00:00",
+      "performance_stats": {
+        "success_rate": 0.5,
+        "confidence": 0.5
+      },
+      "memory_quality": "COLD_START",
+      "recommendations": [
+        "Necesita acumular datos hist\u00f3ricos"
+      ]
+    }
+  },
+  "timeframe_analyzers": {
+    "W1": {
+      "performance_cache": {},
+      "last_analysis": null,
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "D1": {
+      "performance_cache": {},
+      "last_analysis": null,
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "H4": {
+      "performance_cache": {
+        "EURUSD": {
+          "symbol": "EURUSD",
+          "timeframe": "H4",
+          "total_samples": 0,
+          "analysis_timestamp": "2025-08-08T17:44:18.320036+00:00",
+          "performance_stats": {
+            "success_rate": 0.5,
+            "confidence": 0.5
+          },
+          "memory_quality": "COLD_START",
+          "recommendations": [
+            "Necesita acumular datos hist\u00f3ricos"
+          ]
+        }
+      },
+      "last_analysis": {
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "total_samples": 0,
+        "analysis_timestamp": "2025-08-08T17:44:18.320036+00:00",
+        "performance_stats": {
+          "success_rate": 0.5,
+          "confidence": 0.5
+        },
+        "memory_quality": "COLD_START",
+        "recommendations": [
+          "Necesita acumular datos hist\u00f3ricos"
+        ]
+      },
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "H1": {
+      "performance_cache": {},
+      "last_analysis": null,
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "M15": {
+      "performance_cache": {
+        "EURUSD": {
+          "symbol": "EURUSD",
+          "timeframe": "M15",
+          "total_samples": 0,
+          "analysis_timestamp": "2025-08-08T17:44:18.320091+00:00",
+          "performance_stats": {
+            "success_rate": 0.5,
+            "confidence": 0.5
+          },
+          "memory_quality": "COLD_START",
+          "recommendations": [
+            "Necesita acumular datos hist\u00f3ricos"
+          ]
+        }
+      },
+      "last_analysis": {
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "total_samples": 0,
+        "analysis_timestamp": "2025-08-08T17:44:18.320091+00:00",
+        "performance_stats": {
+          "success_rate": 0.5,
+          "confidence": 0.5
+        },
+        "memory_quality": "COLD_START",
+        "recommendations": [
+          "Necesita acumular datos hist\u00f3ricos"
+        ]
+      },
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "M5": {
+      "performance_cache": {
+        "EURUSD": {
+          "symbol": "EURUSD",
+          "timeframe": "M5",
+          "total_samples": 0,
+          "analysis_timestamp": "2025-08-08T17:44:18.320135+00:00",
+          "performance_stats": {
+            "success_rate": 0.5,
+            "confidence": 0.5
+          },
+          "memory_quality": "COLD_START",
+          "recommendations": [
+            "Necesita acumular datos hist\u00f3ricos"
+          ]
+        }
+      },
+      "last_analysis": {
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "total_samples": 0,
+        "analysis_timestamp": "2025-08-08T17:44:18.320135+00:00",
+        "performance_stats": {
+          "success_rate": 0.5,
+          "confidence": 0.5
+        },
+        "memory_quality": "COLD_START",
+        "recommendations": [
+          "Necesita acumular datos hist\u00f3ricos"
+        ]
+      },
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    },
+    "M1": {
+      "performance_cache": {},
+      "last_analysis": null,
+      "pattern_success_rates": {},
+      "adaptive_weights": {}
+    }
+  },
+  "smart_money_history": {
+    "killzone_performance": {},
+    "institutional_patterns": {},
+    "liquidity_efficiency": {},
+    "session_success_rates": {}
+  },
+  "config": {
+    "min_samples": 5,
+    "success_threshold": 0.7,
+    "time_decay_factor": 0.1,
+    "max_lookback_days": 30,
+    "weight_multipliers": {
+      "BOS": 1.0,
+      "CHOCH": 1.1,
+      "ORDER_BLOCK": 1.0,
+      "FAIR_VALUE_GAP": 1.1,
+      "LIQUIDITY_POOL": 1.2,
+      "POI": 0.9,
+      "DISPLACEMENT": 1.3
+    }
+  }
+}

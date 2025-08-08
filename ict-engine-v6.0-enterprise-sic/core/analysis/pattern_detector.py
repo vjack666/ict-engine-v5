@@ -710,6 +710,328 @@ class PatternDetector:
                 "status": "ERROR"
             }
 
+    def detect_choch(self, symbol: str, timeframes: Optional[List[str]] = None, mode: str = 'auto') -> Dict[str, Any]:
+        """
+        🔄 DETECTAR CHANGE OF CHARACTER (CHoCH) - ICT v6.0 ENTERPRISE
+        ============================================================
+        
+        Implementa detección de Change of Character (CHoCH) con análisis multi-timeframe
+        según metodología ICT. CHoCH identifica cambios en el carácter del mercado que
+        indican reversiones de tendencia.
+        
+        CHoCH vs BOS:
+        - CHoCH: Cambio de carácter/reversión (trend contrario + swing break)
+        - BOS: Break of structure/continuación (mismo trend + swing break)
+        
+        Args:
+            symbol: Par de divisas (ej. "EURUSD", "GBPUSD")
+            timeframes: Lista de timeframes ['H4', 'M15', 'M5'] (opcional)
+            mode: Modo de análisis ('minimal', 'live_ready', 'full', 'auto')
+            
+        Returns:
+            Dict con información completa de CHoCH detectado
+            
+        Ejemplos:
+            >>> detector = PatternDetector()
+            >>> result = detector.detect_choch("EURUSD", mode='live_ready')
+            >>> if result['detected']:
+            >>>     print(f"CHoCH {result['direction']} detectado con {result['confidence']:.1f}% confianza")
+        """
+        try:
+            print(f"\n🔄 [CHoCH DETECTOR v6.0] Analizando {symbol}...")
+            start_time = time.time()
+            
+            # 1. 🎯 CONFIGURAR TIMEFRAMES ICT PARA CHoCH
+            if timeframes is None:
+                timeframes = ['H4', 'M15', 'M5']  # Pipeline ICT estándar
+                
+            print(f"   📊 Timeframes: {timeframes}")
+            print(f"   ⚙️  Modo: {mode}")
+            
+            # 2. 🔄 ANÁLISIS MULTI-TIMEFRAME CHoCH
+            choch_signals = []
+            tf_results = {}
+            multi_tf_analysis = {
+                "session_context": {"session": "analysis", "timestamp": time.time()},
+                "performance_metrics": {},
+                "data_quality": "UNKNOWN"
+            }
+            
+            for tf in timeframes:
+                tf_start = time.time()
+                print(f"   🔍 Analizando {tf}...")
+                
+                # Obtener datos de mercado
+                market_data = self._get_market_data(symbol, tf, days=10)
+                if market_data is None or market_data.empty:
+                    print(f"   ❌ Sin datos para {tf}")
+                    tf_results[tf] = {"detected": False, "reason": "No data"}
+                    continue
+                
+                # Detectar CHoCH en timeframe específico
+                choch_result = self._detect_choch_single_tf(market_data, symbol, tf, mode)
+                tf_results[tf] = choch_result
+                
+                # Si detectamos CHoCH, agregar a señales
+                if choch_result.get('detected', False):
+                    choch_signal = {
+                        "timeframe": tf,
+                        "direction": choch_result['direction'],
+                        "confidence": choch_result['confidence'],
+                        "break_level": choch_result['break_level'],
+                        "target_level": choch_result['target_level'],
+                        "structure_type": choch_result['structure_type'],
+                        "trend_change": choch_result['trend_change'],
+                        "swing_data": choch_result.get('swing_data', {}),
+                        "analysis_time": time.time() - tf_start
+                    }
+                    choch_signals.append(choch_signal)
+                    print(f"   ✅ CHoCH {choch_result['direction']} detectado en {tf} ({choch_result['confidence']:.1f}%)")
+                else:
+                    print(f"   ⚪ Sin CHoCH en {tf}")
+            
+            # 3. 🎯 CALCULAR CONFIANZA GENERAL
+            overall_confidence = 0.0
+            if choch_signals:
+                # Prioridad por timeframe: H4 > M15 > M5
+                tf_weights = {'H4': 0.5, 'M15': 0.3, 'M5': 0.2}
+                weighted_conf = sum(tf_weights.get(signal['timeframe'], 0.1) * signal['confidence'] 
+                                  for signal in choch_signals)
+                overall_confidence = min(weighted_conf * 100, 100.0)
+            
+            # 4. 📈 EVALUAR ALINEACIÓN MULTI-TIMEFRAME CHoCH
+            alignment_analysis = self._evaluate_choch_alignment(choch_signals, tf_results)
+            
+            # 5. 🎯 GENERAR RESULTADO CONSOLIDADO
+            total_time = time.time() - start_time
+            
+            if choch_signals:
+                # Encontrar señal de mayor timeframe (H4 tiene prioridad)
+                tf_priority = {'H4': 3, 'M15': 2, 'M5': 1}
+                primary_signal = max(choch_signals, key=lambda x: tf_priority.get(x['timeframe'], 0))
+                
+                print(f"   🎉 CHoCH DETECTADO! Dirección: {primary_signal['direction']}, Confianza: {overall_confidence:.1f}%")
+                
+                return {
+                    "pattern_type": "CHOCH_MULTI_TIMEFRAME",
+                    "detected": True,
+                    "direction": primary_signal['direction'],
+                    "confidence": overall_confidence,
+                    "primary_signal": primary_signal,
+                    "all_signals": choch_signals,
+                    "alignment_analysis": alignment_analysis,
+                    "timeframe_count": len(choch_signals),
+                    "trend_change_confirmed": alignment_analysis.get('trend_change_confirmed', False),
+                    "execution_summary": {
+                        "total_timeframes_analyzed": len(timeframes),
+                        "choch_detected_count": len(choch_signals),
+                        "highest_confidence_tf": primary_signal['timeframe'],
+                        "analysis_time": total_time,
+                        "session_context": multi_tf_analysis.get('session_context', {}),
+                        "mode_used": mode,
+                        "data_source": "REAL_DATA" if hasattr(self, '_data_manager') and self._data_manager else "SIMULATED_DATA"
+                    },
+                    "tf_results": tf_results,
+                    "status": "CHOCH_MULTI_TF_DETECTED"
+                }
+            else:
+                print(f"   ⚪ Sin CHoCH detectado en {symbol}")
+                return {
+                    "pattern_type": "CHOCH_MULTI_TIMEFRAME", 
+                    "detected": False,
+                    "reason": "No CHoCH detected in any timeframe",
+                    "confidence": 0.0,
+                    "analysis": tf_results,
+                    "execution_summary": {
+                        "total_timeframes_analyzed": len(timeframes),
+                        "choch_detected_count": 0,
+                        "analysis_time": total_time,
+                        "session_context": multi_tf_analysis.get('session_context', {}),
+                        "mode_used": mode,
+                        "data_source": "REAL_DATA" if hasattr(self, '_data_manager') and self._data_manager else "SIMULATED_DATA"
+                    },
+                    "status": "NO_CHOCH_MULTI_TF"
+                }
+                
+        except Exception as e:
+            print(f"[ERROR] Error en detect_choch: {e}")
+            return {
+                "pattern_type": "CHOCH_MULTI_TIMEFRAME",
+                "detected": False,
+                "reason": f"CHoCH analysis error: {str(e)}",
+                "confidence": 0.0,
+                "error": str(e),
+                "status": "ERROR"
+            }
+
+    def _detect_choch_single_tf(self, candles: pd.DataFrame, symbol: str, timeframe: str, mode: str) -> Dict[str, Any]:
+        """
+        🔄 Detecta CHoCH en un timeframe específico
+        
+        Lógica CHoCH basada en ICT:
+        - CHoCH Bullish: Trend bajista + price > prev_low + last_low > prev_low (HL pattern)
+        - CHoCH Bearish: Trend alcista + price < prev_high + last_high < prev_high (LH pattern)
+        """
+        try:
+            if candles is None or candles.empty or len(candles) < 10:
+                return {"detected": False, "reason": "Insufficient data"}
+            
+            # 1. 🔍 DETECTAR SWING POINTS PARA CHoCH
+            swing_data = self._detect_swing_points_for_bos(candles, window=5)
+            swing_highs = swing_data.get('highs', [])
+            swing_lows = swing_data.get('lows', [])
+            
+            if len(swing_highs) < 2 or len(swing_lows) < 2:
+                return {"detected": False, "reason": "Insufficient swing points"}
+            
+            # 2. 📈 OBTENER SWING POINTS RELEVANTES
+            last_high = swing_highs[-1]
+            prev_high = swing_highs[-2] if len(swing_highs) > 1 else swing_highs[-1]
+            last_low = swing_lows[-1] 
+            prev_low = swing_lows[-2] if len(swing_lows) > 1 else swing_lows[-1]
+            current_price = float(candles.iloc[-1]['close'])
+            
+            # 3. 🎯 DETERMINAR TREND ACTUAL (simulado por ahora)
+            # En implementación real, esto vendría del market structure analyzer
+            recent_highs = [h['price'] for h in swing_highs[-3:]]
+            recent_lows = [l['price'] for l in swing_lows[-3:]]
+            
+            # Trend simple basado en swing points recientes
+            if len(recent_highs) >= 2 and len(recent_lows) >= 2:
+                if recent_highs[-1] > recent_highs[-2] and recent_lows[-1] > recent_lows[-2]:
+                    current_trend = "BULLISH"
+                elif recent_highs[-1] < recent_highs[-2] and recent_lows[-1] < recent_lows[-2]:
+                    current_trend = "BEARISH"
+                else:
+                    current_trend = "NEUTRAL"
+            else:
+                current_trend = "NEUTRAL"
+            
+            # 4. 🔄 APLICAR LÓGICA CHoCH (migrada desde market_structure_analyzer_v6.py)
+            
+            # CHoCH BULLISH: Trend bajista + rompe low anterior + HL pattern
+            if (current_trend == "BEARISH" and
+                current_price > prev_low['price'] and 
+                last_low['price'] > prev_low['price']):
+                
+                confidence = 90.0  # CHoCH tiene alta confianza
+                break_level = prev_low['price']
+                target_level = last_high['price']
+                
+                return {
+                    "detected": True,
+                    "direction": "BULLISH",
+                    "structure_type": "CHOCH_BULLISH",
+                    "confidence": confidence,
+                    "break_level": break_level,
+                    "target_level": target_level,
+                    "trend_change": f"{current_trend} -> BULLISH",
+                    "swing_data": {
+                        "last_high": last_high,
+                        "prev_high": prev_high,
+                        "last_low": last_low,
+                        "prev_low": prev_low,
+                        "current_price": current_price
+                    },
+                    "narrative": f"CHoCH Bullish: Trend bajista roto, precio rompe {break_level:.5f}, target {target_level:.5f}"
+                }
+            
+            # CHoCH BEARISH: Trend alcista + rompe high anterior + LH pattern  
+            elif (current_trend == "BULLISH" and
+                  current_price < prev_high['price'] and
+                  last_high['price'] < prev_high['price']):
+                
+                confidence = 90.0  # CHoCH tiene alta confianza
+                break_level = prev_high['price']
+                target_level = last_low['price']
+                
+                return {
+                    "detected": True,
+                    "direction": "BEARISH", 
+                    "structure_type": "CHOCH_BEARISH",
+                    "confidence": confidence,
+                    "break_level": break_level,
+                    "target_level": target_level,
+                    "trend_change": f"{current_trend} -> BEARISH",
+                    "swing_data": {
+                        "last_high": last_high,
+                        "prev_high": prev_high, 
+                        "last_low": last_low,
+                        "prev_low": prev_low,
+                        "current_price": current_price
+                    },
+                    "narrative": f"CHoCH Bearish: Trend alcista roto, precio rompe {break_level:.5f}, target {target_level:.5f}"
+                }
+            
+            # 5. ⚪ NO HAY CHoCH
+            return {
+                "detected": False,
+                "reason": f"No CHoCH pattern (trend: {current_trend}, price: {current_price:.5f})",
+                "swing_data": {
+                    "last_high": last_high,
+                    "prev_high": prev_high,
+                    "last_low": last_low, 
+                    "prev_low": prev_low,
+                    "current_price": current_price,
+                    "current_trend": current_trend
+                }
+            }
+            
+        except Exception as e:
+            return {
+                "detected": False,
+                "reason": f"CHoCH detection error: {str(e)}",
+                "error": str(e)
+            }
+
+    def _evaluate_choch_alignment(self, choch_signals: List[Dict], tf_results: Dict) -> Dict[str, Any]:
+        """🎯 Evalúa la alineación de señales CHoCH entre timeframes"""
+        try:
+            if not choch_signals:
+                return {"alignment": "NO_SIGNALS", "score": 0.0, "trend_change_confirmed": False}
+                
+            # Analizar direcciones CHoCH
+            directions = [signal['direction'] for signal in choch_signals]
+            unique_directions = set(directions)
+            
+            # Alineación perfecta = todas las direcciones iguales
+            if len(unique_directions) == 1:
+                alignment_score = 1.0
+                alignment_status = "PERFECT_ALIGNMENT"
+                trend_change_confirmed = True
+            elif len(unique_directions) == 2:
+                alignment_score = 0.6
+                alignment_status = "PARTIAL_ALIGNMENT" 
+                trend_change_confirmed = False
+            else:
+                alignment_score = 0.3
+                alignment_status = "POOR_ALIGNMENT"
+                trend_change_confirmed = False
+                
+            # Analizar confluencias CHoCH
+            confluences = []
+            if len(choch_signals) > 1:
+                confluences.append(f"CHoCH detectado en {len(choch_signals)} timeframes")
+                confluences.append(f"Direcciones: {', '.join(directions)}")
+                
+            return {
+                "alignment": alignment_status,
+                "score": alignment_score,
+                "trend_change_confirmed": trend_change_confirmed,
+                "confluences": confluences,
+                "direction_consensus": list(unique_directions)[0] if len(unique_directions) == 1 else "MIXED",
+                "timeframe_count": len(choch_signals),
+                "total_timeframes": len(tf_results)
+            }
+            
+        except Exception as e:
+            return {
+                "alignment": "ERROR",
+                "score": 0.0,
+                "error": str(e),
+                "trend_change_confirmed": False
+            }
+
     def _evaluate_multi_tf_alignment(self, bos_signals: List[Dict], raw_analysis: Dict) -> Dict[str, Any]:
         """🎯 Evalúa la alineación de señales BOS entre timeframes"""
         try:
