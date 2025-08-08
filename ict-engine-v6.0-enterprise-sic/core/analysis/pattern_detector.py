@@ -348,6 +348,298 @@ class PatternDetector:
         except Exception as e:
             print(f"[ERROR] Error en detección de patrones: {e}")
             return []
+
+    def detect_bos(self, market_data: Dict[str, Any], structure_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        🚀 DETECTAR BREAK OF STRUCTURE (BOS) - MIGRADO desde market_structure_v2.py
+        
+        Detecta roturas de estructura (BOS) usando la lógica ICT migrada del sistema principal.
+        
+        Args:
+            market_data: Datos de mercado con OHLCV
+            structure_data: Datos de estructura de mercado (opcional)
+            
+        Returns:
+            Dict con información de BOS detectado
+        """
+        try:
+            # Extraer datos necesarios
+            candles = market_data.get('candles')
+            symbol = market_data.get('symbol', 'UNKNOWN')
+            timeframe = market_data.get('timeframe', 'M15')
+            
+            if candles is None or candles.empty:
+                return {
+                    "pattern_type": "BOS",
+                    "detected": False,
+                    "reason": "No data available",
+                    "patterns": [],
+                    "confidence": 0.0,
+                    "status": "NO_DATA"
+                }
+            
+            # 1. 🎯 DETECTAR SWING POINTS (usando lógica migrada)
+            swing_points = self._detect_swing_points_for_bos(candles)
+            swing_highs = swing_points.get('highs', [])
+            swing_lows = swing_points.get('lows', [])
+            
+            if len(swing_highs) < 2 or len(swing_lows) < 2:
+                return {
+                    "pattern_type": "BOS",
+                    "detected": False,
+                    "reason": "Insufficient swing points",
+                    "patterns": [],
+                    "confidence": 0.0,
+                    "status": "INSUFFICIENT_DATA"
+                }
+            
+            # 2. 🔍 APLICAR ALGORITMO BOS (lógica MIGRADA desde market_structure_v2.py)
+            current_price = float(candles['close'].iloc[-1])
+            bos_patterns = []
+            
+            # Obtener últimos swing points
+            last_high = swing_highs[-1]
+            prev_high = swing_highs[-2] if len(swing_highs) > 1 else swing_highs[-1]
+            last_low = swing_lows[-1]
+            prev_low = swing_lows[-2] if len(swing_lows) > 1 else swing_lows[-1]
+            
+            # 🚀 BOS ALCISTA (MIGRADO): current_price > last_high AND last_high > prev_high
+            if current_price > last_high['price'] and last_high['price'] > prev_high['price']:
+                bos_bullish = {
+                    'type': 'BOS_BULLISH',
+                    'direction': 'BULLISH',
+                    'strength': 80.0,
+                    'break_level': last_high['price'],
+                    'target_level': last_high['price'] * 1.002,  # Target 20 pips arriba
+                    'swing_broken': last_high,
+                    'prev_swing': prev_high,
+                    'current_price': current_price,
+                    'timestamp': candles.index[-1],
+                    'narrative': f"BOS Bullish @ {last_high['price']:.5f} - Target {last_high['price'] * 1.002:.5f}"
+                }
+                bos_patterns.append(bos_bullish)
+                print(f"[DEBUG] 🔍 BOS BULLISH detectado @ {last_high['price']:.5f}")
+            
+            # 🚀 BOS BAJISTA (MIGRADO): current_price < last_low AND last_low < prev_low  
+            elif current_price < last_low['price'] and last_low['price'] < prev_low['price']:
+                bos_bearish = {
+                    'type': 'BOS_BEARISH',
+                    'direction': 'BEARISH',
+                    'strength': 80.0,
+                    'break_level': last_low['price'],
+                    'target_level': last_low['price'] * 0.998,  # Target 20 pips abajo
+                    'swing_broken': last_low,
+                    'prev_swing': prev_low,
+                    'current_price': current_price,
+                    'timestamp': candles.index[-1],
+                    'narrative': f"BOS Bearish @ {last_low['price']:.5f} - Target {last_low['price'] * 0.998:.5f}"
+                }
+                bos_patterns.append(bos_bearish)
+                print(f"[DEBUG] 🔍 BOS BEARISH detectado @ {last_low['price']:.5f}")
+            
+            # 3. 📊 VALIDAR Y CONFIRMAR BOS
+            confirmed_patterns = []
+            for pattern in bos_patterns:
+                # Aplicar filtros de confirmación
+                if self._validate_bos_pattern(pattern, candles):
+                    # Aplicar momentum analysis (lógica migrada)
+                    momentum_score = self._analyze_bos_momentum(candles, pattern['type'])
+                    pattern['momentum_score'] = momentum_score
+                    pattern['strength'] = min(95.0, pattern['strength'] * momentum_score)
+                    
+                    confirmed_patterns.append(pattern)
+            
+            # 4. 🎯 GENERAR SEÑAL BOS
+            if confirmed_patterns:
+                best_pattern = max(confirmed_patterns, key=lambda x: x['strength'])
+                confidence = best_pattern['strength']
+                
+                # Crear PatternSignal enterprise
+                pattern_signal = PatternSignal(
+                    pattern_type=PatternType.SILVER_BULLET,  # Usar enum disponible
+                    strength=confidence,
+                    direction=best_pattern['direction'],
+                    entry_price=best_pattern['break_level'],
+                    target_price=best_pattern['target_level'],
+                    stop_loss=self._calculate_bos_stop_loss(best_pattern),
+                    timeframe=timeframe,
+                    symbol=symbol,
+                    timestamp=best_pattern['timestamp'],
+                    narrative=best_pattern['narrative'],
+                    confluences=['BOS_PATTERN', 'STRUCTURE_BREAK'],
+                    risk_reward_ratio=self._calculate_bos_rr(best_pattern)
+                )
+                
+                return {
+                    "pattern_type": "BOS",
+                    "detected": True,
+                    "patterns": confirmed_patterns,
+                    "best_pattern": best_pattern,
+                    "signal": pattern_signal,
+                    "confidence": confidence,
+                    "swing_analysis": {
+                        "highs_count": len(swing_highs),
+                        "lows_count": len(swing_lows),
+                        "last_high": last_high,
+                        "last_low": last_low
+                    },
+                    "status": "BOS_DETECTED"
+                }
+            else:
+                return {
+                    "pattern_type": "BOS",
+                    "detected": False,
+                    "reason": "No BOS patterns confirmed",
+                    "patterns": bos_patterns,  # Incluir patrones no confirmados para debug
+                    "confidence": 0.0,
+                    "swing_analysis": {
+                        "highs_count": len(swing_highs),
+                        "lows_count": len(swing_lows)
+                    },
+                    "status": "NO_BOS_CONFIRMED"
+                }
+                
+        except Exception as e:
+            print(f"[ERROR] Error en detect_bos: {e}")
+            return {
+                "pattern_type": "BOS",
+                "detected": False,
+                "reason": f"Error: {str(e)}",
+                "patterns": [],
+                "confidence": 0.0,
+                "status": "ERROR"
+            }
+
+    def _detect_swing_points_for_bos(self, candles: pd.DataFrame, window: int = 5) -> Dict[str, List[Dict]]:
+        """🎯 Detecta swing points para análisis BOS (lógica MIGRADA)"""
+        try:
+            swing_highs = []
+            swing_lows = []
+
+            if len(candles) < window * 2 + 1:
+                return {'highs': swing_highs, 'lows': swing_lows}
+
+            # Detectar swing highs (lógica MIGRADA desde market_structure_v2.py)
+            for i in range(window, len(candles) - window):
+                current_high = candles.iloc[i]['high']
+
+                # Verificar que sea el máximo en la ventana
+                is_swing_high = True
+                for j in range(i - window, i + window + 1):
+                    if j != i and candles.iloc[j]['high'] >= current_high:
+                        is_swing_high = False
+                        break
+
+                if is_swing_high:
+                    swing_highs.append({
+                        'index': i,
+                        'price': current_high,
+                        'timestamp': candles.index[i] if hasattr(candles.index[i], 'timestamp') else i
+                    })
+
+            # Detectar swing lows (lógica MIGRADA desde market_structure_v2.py)
+            for i in range(window, len(candles) - window):
+                current_low = candles.iloc[i]['low']
+
+                # Verificar que sea el mínimo en la ventana
+                is_swing_low = True
+                for j in range(i - window, i + window + 1):
+                    if j != i and candles.iloc[j]['low'] <= current_low:
+                        is_swing_low = False
+                        break
+
+                if is_swing_low:
+                    swing_lows.append({
+                        'index': i,
+                        'price': current_low,
+                        'timestamp': candles.index[i] if hasattr(candles.index[i], 'timestamp') else i
+                    })
+
+            print(f"[DEBUG] 🎯 Swing points BOS: {len(swing_highs)} highs, {len(swing_lows)} lows")
+            return {'highs': swing_highs, 'lows': swing_lows}
+
+        except Exception as e:
+            print(f"[ERROR] Error detectando swing points para BOS: {e}")
+            return {'highs': [], 'lows': []}
+
+    def _validate_bos_pattern(self, pattern: Dict[str, Any], candles: pd.DataFrame) -> bool:
+        """✅ Valida patrón BOS con filtros ICT"""
+        try:
+            # Filtro 1: Verificar que el break sea convincente (>5 pips)
+            break_size = abs(pattern['current_price'] - pattern['break_level'])
+            min_break_size = 0.0005  # 5 pips para EURUSD
+            
+            if break_size < min_break_size:
+                return False
+            
+            # Filtro 2: Verificar momentum en la dirección del break
+            recent_candles = candles.tail(3)
+            if pattern['type'] == 'BOS_BULLISH':
+                bullish_momentum = sum(1 for _, row in recent_candles.iterrows() if row['close'] > row['open'])
+                if bullish_momentum < 2:  # Al menos 2 de 3 velas alcistas
+                    return False
+            else:  # BOS_BEARISH
+                bearish_momentum = sum(1 for _, row in recent_candles.iterrows() if row['close'] < row['open'])
+                if bearish_momentum < 2:  # Al menos 2 de 3 velas bajistas
+                    return False
+            
+            return True
+            
+        except Exception:
+            return False
+
+    def _analyze_bos_momentum(self, candles: pd.DataFrame, bos_type: str) -> float:
+        """💨 Analiza momentum para BOS (lógica MIGRADA)"""
+        try:
+            if len(candles) < 10:
+                return 0.5
+
+            recent = candles.tail(10)
+            price_change = (recent['close'].iloc[-1] - recent['close'].iloc[0]) / recent['close'].iloc[0]
+            momentum_score = 0.5
+
+            # Analizar según tipo de BOS (adaptado de market_structure_v2.py)
+            if bos_type == 'BOS_BULLISH':
+                if price_change > 0:
+                    momentum_score += 0.3
+                if price_change > 0.001:  # >10 pips
+                    momentum_score += 0.2
+            elif bos_type == 'BOS_BEARISH':
+                if price_change < 0:
+                    momentum_score += 0.3
+                if price_change < -0.001:  # <-10 pips
+                    momentum_score += 0.2
+
+            return min(1.0, momentum_score)
+
+        except Exception:
+            return 0.5
+
+    def _calculate_bos_stop_loss(self, pattern: Dict[str, Any]) -> float:
+        """🛡️ Calcula stop loss para BOS"""
+        try:
+            if pattern['type'] == 'BOS_BULLISH':
+                # Stop debajo del swing low previo
+                return pattern['prev_swing']['price'] * 0.999  # -10 pips buffer
+            else:  # BOS_BEARISH
+                # Stop arriba del swing high previo
+                return pattern['prev_swing']['price'] * 1.001  # +10 pips buffer
+        except Exception:
+            return pattern['break_level']
+
+    def _calculate_bos_rr(self, pattern: Dict[str, Any]) -> float:
+        """📊 Calcula risk/reward ratio para BOS"""
+        try:
+            entry = pattern['break_level']
+            target = pattern['target_level']
+            stop = self._calculate_bos_stop_loss(pattern)
+            
+            reward = abs(target - entry)
+            risk = abs(entry - stop)
+            
+            return reward / risk if risk > 0 else 1.0
+        except Exception:
+            return 1.0
     
     def _get_market_data(self, symbol: str, timeframe: str, days: int) -> Optional[pd.DataFrame]:
         """

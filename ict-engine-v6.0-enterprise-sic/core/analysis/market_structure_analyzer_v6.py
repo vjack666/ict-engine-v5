@@ -449,8 +449,8 @@ class MarketStructureAnalyzerV6:
                 target_level = self._calculate_liquidity_target(candles, current_price)
                 self.logger.debug(f"🔍 LIQUIDITY GRAB v6.0 detectado @ {break_level:.5f}")
 
-            # DETECTAR RANGO (lógica migrada desde v2.0)
-            elif self._is_range_bound(swing_highs, swing_lows):
+            # DETECTAR RANGO (MIGRADO COMPLETO desde market_structure_v2.py)
+            elif self._is_range_bound_v6(swing_highs, swing_lows):
                 structure_score = 0.6
                 structure_type = StructureTypeV6.RANGE_BOUND
                 break_level = (last_high['price'] + last_low['price']) / 2
@@ -462,6 +462,62 @@ class MarketStructureAnalyzerV6:
         except Exception as e:
             self.logger.error(f"❌ Error detectando cambio estructural v6.0: {e}")
             return 0.0, StructureTypeV6.UNKNOWN, 0.0, 0.0
+
+    def _is_range_bound_v6(self, swing_highs: List[Dict], swing_lows: List[Dict]) -> bool:
+        """🔍 Detecta si el mercado está en rango (MIGRADO desde market_structure_v2.py)"""
+        try:
+            if len(swing_highs) < 3 or len(swing_lows) < 3:
+                return False
+
+            # Verificar si los últimos 3 highs están cerca (lógica MIGRADA)
+            recent_highs = [sh['price'] for sh in swing_highs[-3:]]
+            high_range = max(recent_highs) - min(recent_highs)
+            avg_high = sum(recent_highs) / len(recent_highs)
+
+            # Verificar si los últimos 3 lows están cerca (lógica MIGRADA)
+            recent_lows = [sl['price'] for sl in swing_lows[-3:]]
+            low_range = max(recent_lows) - min(recent_lows)
+            avg_low = sum(recent_lows) / len(recent_lows)
+
+            # Si la variación es menor al 0.3% del precio promedio, es rango
+            avg_price = (avg_high + avg_low) / 2
+            high_variation = high_range / avg_price if avg_price > 0 else 1
+            low_variation = low_range / avg_price if avg_price > 0 else 1
+
+            return high_variation < 0.003 and low_variation < 0.003
+
+        except Exception:
+            return False
+
+    def _analyze_momentum_v6(self, candles: pd.DataFrame, structure_type: StructureTypeV6) -> float:
+        """💨 Analiza momentum para confirmación (MIGRADO desde market_structure_v2.py)"""
+        try:
+            if len(candles) < 20:
+                return 0.5
+
+            recent = candles.tail(10)
+
+            # Calcular momentum básico (lógica MIGRADA)
+            price_change = (recent['close'].iloc[-1] - recent['close'].iloc[0]) / recent['close'].iloc[0]
+            momentum_score = 0.5
+
+            # Analizar según tipo de estructura (adaptado a StructureTypeV6)
+            if structure_type in [StructureTypeV6.BOS_BULLISH, StructureTypeV6.CHOCH_BULLISH]:
+                if price_change > 0:
+                    momentum_score += 0.3
+                if price_change > 0.001:  # >10 pips
+                    momentum_score += 0.2
+
+            elif structure_type in [StructureTypeV6.BOS_BEARISH, StructureTypeV6.CHOCH_BEARISH]:
+                if price_change < 0:
+                    momentum_score += 0.3
+                if price_change < -0.001:  # <-10 pips
+                    momentum_score += 0.2
+
+            return min(1.0, momentum_score)
+
+        except Exception:
+            return 0.5
 
     def _detect_liquidity_grab(self, candles: pd.DataFrame, swing_highs: List[Dict], swing_lows: List[Dict], current_price: float) -> bool:
         """🔍 Detecta liquidity grab v6.0 (nueva funcionalidad)"""
