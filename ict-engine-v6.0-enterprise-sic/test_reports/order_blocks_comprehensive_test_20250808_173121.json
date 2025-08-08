@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-08-08T17:31:21.766224",
+  "version": "v6.0.3-enterprise-memory-validated",
+  "target_version": "v6.0.4-enterprise-order-blocks-ready",
+  "tests_completed": [],
+  "tests_failed": [
+    "imports_sic_sluc"
+  ],
+  "performance_metrics": {},
+  "reglas_copilot": [
+    "#2",
+    "#4",
+    "#7",
+    "#9",
+    "#10"
+  ]
+}
