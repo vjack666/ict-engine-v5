@@ -1,0 +1,64 @@
+{
+  "stats": {
+    "cache_hits": 0,
+    "cache_misses": 1,
+    "predictions_made": 0,
+    "predictions_correct": 0,
+    "total_size_bytes": 504,
+    "cleanup_runs": 0,
+    "entries_evicted": 0
+  },
+  "module_relationships": {
+    "os": [
+      "datetime",
+      "time",
+      "sys",
+      "json",
+      "pathlib"
+    ],
+    "sys": [
+      "os",
+      "pathlib",
+      "datetime",
+      "time"
+    ],
+    "time": [
+      "datetime",
+      "sys",
+      "threading",
+      "os",
+      "json",
+      "pathlib"
+    ],
+    "datetime": [
+      "time",
+      "sys",
+      "threading",
+      "os",
+      "json",
+      "pathlib"
+    ],
+    "pathlib": [
+      "datetime",
+      "time",
+      "sys",
+      "threading",
+      "os",
+      "json"
+    ],
+    "json": [
+      "datetime",
+      "time",
+      "threading",
+      "os",
+      "pathlib"
+    ],
+    "threading": [
+      "datetime",
+      "pathlib",
+      "time",
+      "json"
+    ]
+  },
+  "saved_at": 1754595289.3078265
+}

@@ -1,0 +1,176 @@
+📊 REPORTE DETALLADO DE ESTRATEGIAS EJECUTADAS
+======================================================================
+
+🎯 PERFORMANCE POR ESTRATEGIA:
+--------------------------------------------------
+
+📈 FVG_BEARISH:
+   Trades: 95
+   Win Rate: 67.4%
+   Avg PnL: $9.34
+   Total PnL: $887.51
+   Avg Quality Score: 73.2/100
+   Best Trade: $42.66
+   Worst Trade: $-31.33
+
+📈 FVG_BULLISH:
+   Trades: 80
+   Win Rate: 68.8%
+   Avg PnL: $9.15
+   Total PnL: $731.90
+   Avg Quality Score: 71.3/100
+   Best Trade: $41.82
+   Worst Trade: $-31.46
+
+📈 JUDAS_SWING_LONDON:
+   Trades: 117
+   Win Rate: 76.1%
+   Avg PnL: $12.79
+   Total PnL: $1496.53
+   Avg Quality Score: 74.9/100
+   Best Trade: $42.61
+   Worst Trade: $-31.07
+
+📈 BULLISH_OB:
+   Trades: 82
+   Win Rate: 74.4%
+   Avg PnL: $13.09
+   Total PnL: $1073.37
+   Avg Quality Score: 74.6/100
+   Best Trade: $42.77
+   Worst Trade: $-28.82
+
+📈 ORDER_BLOCK_BULLISH:
+   Trades: 125
+   Win Rate: 78.4%
+   Avg PnL: $13.24
+   Total PnL: $1655.09
+   Avg Quality Score: 77.4/100
+   Best Trade: $42.67
+   Worst Trade: $-31.66
+
+📈 CHANGE_OF_CHARACTER:
+   Trades: 88
+   Win Rate: 73.9%
+   Avg PnL: $12.57
+   Total PnL: $1106.52
+   Avg Quality Score: 73.7/100
+   Best Trade: $42.49
+   Worst Trade: $-30.38
+
+📈 MULTI_CONFLUENCE_SUPREME:
+   Trades: 57
+   Win Rate: 68.4%
+   Avg PnL: $5.34
+   Total PnL: $304.47
+   Avg Quality Score: 76.8/100
+   Best Trade: $39.15
+   Worst Trade: $-30.32
+
+📈 BEARISH_OB:
+   Trades: 87
+   Win Rate: 80.5%
+   Avg PnL: $15.21
+   Total PnL: $1323.14
+   Avg Quality Score: 77.7/100
+   Best Trade: $42.27
+   Worst Trade: $-31.43
+
+📈 LIQUIDITY_SWEEP:
+   Trades: 76
+   Win Rate: 73.7%
+   Avg PnL: $9.30
+   Total PnL: $707.03
+   Avg Quality Score: 75.6/100
+   Best Trade: $42.47
+   Worst Trade: $-29.29
+
+📈 SMART_MONEY_INSTITUTIONAL:
+   Trades: 126
+   Win Rate: 77.0%
+   Avg PnL: $11.45
+   Total PnL: $1443.23
+   Avg Quality Score: 77.0/100
+   Best Trade: $42.93
+   Worst Trade: $-30.58
+
+📈 BREAK_OF_STRUCTURE:
+   Trades: 86
+   Win Rate: 68.6%
+   Avg PnL: $7.25
+   Total PnL: $623.22
+   Avg Quality Score: 72.4/100
+   Best Trade: $42.51
+   Worst Trade: $-31.18
+
+📈 SILVER_BULLET_CLASSIC:
+   Trades: 127
+   Win Rate: 74.0%
+   Avg PnL: $12.67
+   Total PnL: $1609.00
+   Avg Quality Score: 75.7/100
+   Best Trade: $42.94
+   Worst Trade: $-31.66
+
+🔄 ANÁLISIS DE CONFLUENCIAS:
+----------------------------------------
+   RISK_REWARD_FAVORABLE: Win Rate 72.7% | Avg PnL $9.62
+   PATTERN_QUALITY_HIGH: Win Rate 73.7% | Avg PnL $10.95
+   STRUCTURE_ALIGNMENT: Win Rate 78.4% | Avg PnL $13.24
+   LIQUIDITY_POOL_PROXIMITY: Win Rate 74.2% | Avg PnL $11.12
+   INSTITUTIONAL_FLOW: Win Rate 74.2% | Avg PnL $11.12
+   SESSION_OPTIMIZATION: Win Rate 74.0% | Avg PnL $12.67
+   VOLUME_CONFIRMATION: Win Rate 78.4% | Avg PnL $13.24
+   MULTI_TIMEFRAME_SYNC: Win Rate 74.0% | Avg PnL $12.67
+
+🕐 PERFORMANCE POR SESIÓN:
+-----------------------------------
+   ASIAN: 1146 trades | WR: 73.9% | PnL: $12961.01
+
+🏆 TOP 5 MEJORES TRADES:
+------------------------------
+   #1: ICT_20240129_000000_SIL
+       Estrategia: SILVER_BULLET_CLASSIC
+       Patrón: SILVER_BULLET | Confianza: 65.9%
+       Confluencias: 2 | Score: 0.73
+       PnL: $42.94 | Pips: 49.9
+       R:R: 3.32 | Calidad: 83/100
+   #2: ICT_20240305_000000_CHA
+       Estrategia: SMART_MONEY_INSTITUTIONAL
+       Patrón: CHANGE_OF_CHARACTER | Confianza: 72.5%
+       Confluencias: 3 | Score: 0.66
+       PnL: $42.93 | Pips: 49.9
+       R:R: 3.43 | Calidad: 83/100
+   #3: ICT_20240328_000000_BUL
+       Estrategia: BULLISH_OB
+       Patrón: BULLISH_OB | Confianza: 67.7%
+       Confluencias: 3 | Score: 0.71
+       PnL: $42.77 | Pips: 49.8
+       R:R: 1.59 | Calidad: 73/100
+   #4: ICT_20240213_000000_SIL
+       Estrategia: SILVER_BULLET_CLASSIC
+       Patrón: SILVER_BULLET | Confianza: 68.0%
+       Confluencias: 2 | Score: 0.71
+       PnL: $42.69 | Pips: 49.7
+       R:R: 2.50 | Calidad: 78/100
+   #5: ICT_20240302_000000_ORD
+       Estrategia: ORDER_BLOCK_BULLISH
+       Patrón: ORDER_BLOCK_BULLISH | Confianza: 94.3%
+       Confluencias: 5 | Score: 0.82
+       PnL: $42.67 | Pips: 49.7
+       R:R: 2.07 | Calidad: 94/100
+
+💡 LECCIONES MÁS FRECUENTES:
+-----------------------------------
+   431x: Smart Money enhancement added value
+   413x: High confluence trades perform better
+   299x: Trade did not reach profit target
+   299x: Stop loss hit - consider tighter risk management
+   299x: Asian session trades require extra caution
+
+🎯 RECOMENDACIONES ESTRATÉGICAS:
+----------------------------------------
+   1. Enfocar en BEARISH_OB - Win Rate: 80.5%
+   2. Priorizar trades con STRUCTURE_ALIGNMENT - Win Rate: 78.4%
+   3. Trades con calidad ≥70 tienen 99.9% win rate - Mantener estándares altos
+   4. Sesión ASIAN es más exitosa - Concentrar esfuerzos

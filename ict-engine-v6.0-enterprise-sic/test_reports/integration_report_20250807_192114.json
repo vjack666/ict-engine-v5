@@ -1,0 +1,113 @@
+{
+  "timestamp": "2025-08-07T19:21:14.011805",
+  "integration_info": {
+    "version": "v6.0.0-integration",
+    "mode": "AUTOMATIC_PATH_DETECTION"
+  },
+  "project_structure": {
+    "base_path": "C:\\Users\\v_jac\\Desktop",
+    "component_paths_found": 0,
+    "specific_files_found": 6,
+    "configured_paths": 3
+  },
+  "component_status": {
+    "total_components": 8,
+    "available_components": 1,
+    "missing_components": 7,
+    "integration_percentage": 12.5
+  },
+  "available_components": [
+    "mt5_data_manager"
+  ],
+  "missing_components": [
+    "logging_interface",
+    "poi_detector",
+    "poi_scoring_engine",
+    "ict_detector",
+    "pattern_analyzer",
+    "confidence_engine",
+    "veredicto_engine"
+  ],
+  "component_details": {
+    "mt5_data_manager": {
+      "available": true,
+      "import_path": "utils.mt5_data_manager",
+      "attempts": [
+        "utils.mt5_data_manager",
+        "mt5_data_manager"
+      ]
+    },
+    "logging_interface": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "sistema.logging_interface",
+        "logging_interface"
+      ]
+    },
+    "poi_detector": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.poi_system.poi_detector",
+        "poi_system.poi_detector",
+        "poi_detector"
+      ]
+    },
+    "poi_scoring_engine": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.poi_system.poi_scoring_engine",
+        "poi_system.poi_scoring_engine",
+        "poi_scoring_engine"
+      ]
+    },
+    "ict_detector": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.ict_engine.ict_detector",
+        "ict_engine.ict_detector",
+        "ict_detector"
+      ]
+    },
+    "pattern_analyzer": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.ict_engine.pattern_analyzer",
+        "ict_engine.pattern_analyzer",
+        "pattern_analyzer"
+      ]
+    },
+    "confidence_engine": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.ict_engine.confidence_engine",
+        "ict_engine.confidence_engine",
+        "confidence_engine"
+      ]
+    },
+    "veredicto_engine": {
+      "available": false,
+      "import_path": null,
+      "attempts": [
+        "core.ict_engine.veredicto_engine",
+        "ict_engine.veredicto_engine",
+        "veredicto_engine"
+      ]
+    }
+  },
+  "configured_paths": [
+    "C:\\Users\\v_jac\\Desktop",
+    "C:\\Users\\v_jac\\Desktop\\proyecto principal",
+    "C:\\Users\\v_jac\\Desktop\\ict-engine-v6.0-enterprise-sic"
+  ],
+  "next_steps": [
+    "\u2705 Usar 1 componentes disponibles para backtesting",
+    "\ud83d\udd0d Localizar 7 componentes faltantes",
+    "\ud83d\udd04 Ejecutar backtesting h\u00edbrido (real + simulado)"
+  ]
+}

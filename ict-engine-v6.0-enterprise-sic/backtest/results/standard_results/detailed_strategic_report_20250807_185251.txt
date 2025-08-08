@@ -1,0 +1,176 @@
+📊 REPORTE DETALLADO DE ESTRATEGIAS EJECUTADAS
+======================================================================
+
+🎯 PERFORMANCE POR ESTRATEGIA:
+--------------------------------------------------
+
+📈 LIQUIDITY_SWEEP:
+   Trades: 88
+   Win Rate: 69.3%
+   Avg PnL: $7.87
+   Total PnL: $692.62
+   Avg Quality Score: 73.8/100
+   Best Trade: $41.27
+   Worst Trade: $-31.98
+
+📈 MULTI_CONFLUENCE_SUPREME:
+   Trades: 59
+   Win Rate: 62.7%
+   Avg PnL: $7.42
+   Total PnL: $437.59
+   Avg Quality Score: 75.4/100
+   Best Trade: $39.89
+   Worst Trade: $-30.17
+
+📈 JUDAS_SWING_LONDON:
+   Trades: 117
+   Win Rate: 63.2%
+   Avg PnL: $7.29
+   Total PnL: $852.40
+   Avg Quality Score: 73.0/100
+   Best Trade: $42.99
+   Worst Trade: $-31.87
+
+📈 SILVER_BULLET_CLASSIC:
+   Trades: 119
+   Win Rate: 68.9%
+   Avg PnL: $8.53
+   Total PnL: $1014.69
+   Avg Quality Score: 75.7/100
+   Best Trade: $42.63
+   Worst Trade: $-31.77
+
+📈 ORDER_BLOCK_BULLISH:
+   Trades: 128
+   Win Rate: 70.3%
+   Avg PnL: $8.73
+   Total PnL: $1117.75
+   Avg Quality Score: 75.7/100
+   Best Trade: $41.72
+   Worst Trade: $-30.38
+
+📈 BEARISH_OB:
+   Trades: 93
+   Win Rate: 61.3%
+   Avg PnL: $3.93
+   Total PnL: $365.93
+   Avg Quality Score: 72.1/100
+   Best Trade: $38.72
+   Worst Trade: $-31.33
+
+📈 BREAK_OF_STRUCTURE:
+   Trades: 96
+   Win Rate: 70.8%
+   Avg PnL: $9.56
+   Total PnL: $917.64
+   Avg Quality Score: 74.0/100
+   Best Trade: $42.09
+   Worst Trade: $-30.92
+
+📈 FVG_BEARISH:
+   Trades: 88
+   Win Rate: 77.3%
+   Avg PnL: $13.94
+   Total PnL: $1226.59
+   Avg Quality Score: 77.0/100
+   Best Trade: $42.83
+   Worst Trade: $-31.99
+
+📈 FVG_BULLISH:
+   Trades: 98
+   Win Rate: 73.5%
+   Avg PnL: $9.55
+   Total PnL: $935.76
+   Avg Quality Score: 74.1/100
+   Best Trade: $41.20
+   Worst Trade: $-31.90
+
+📈 BULLISH_OB:
+   Trades: 79
+   Win Rate: 70.9%
+   Avg PnL: $9.62
+   Total PnL: $759.61
+   Avg Quality Score: 74.1/100
+   Best Trade: $42.58
+   Worst Trade: $-31.92
+
+📈 SMART_MONEY_INSTITUTIONAL:
+   Trades: 134
+   Win Rate: 79.9%
+   Avg PnL: $13.91
+   Total PnL: $1863.69
+   Avg Quality Score: 77.3/100
+   Best Trade: $42.77
+   Worst Trade: $-31.97
+
+📈 CHANGE_OF_CHARACTER:
+   Trades: 81
+   Win Rate: 67.9%
+   Avg PnL: $9.13
+   Total PnL: $739.24
+   Avg Quality Score: 71.6/100
+   Best Trade: $42.94
+   Worst Trade: $-31.99
+
+🔄 ANÁLISIS DE CONFLUENCIAS:
+----------------------------------------
+   MULTI_TIMEFRAME_SYNC: Win Rate 68.9% | Avg PnL $8.53
+   LIQUIDITY_POOL_PROXIMITY: Win Rate 71.4% | Avg PnL $9.72
+   VOLUME_CONFIRMATION: Win Rate 70.3% | Avg PnL $8.73
+   PATTERN_QUALITY_HIGH: Win Rate 69.6% | Avg PnL $9.80
+   SESSION_OPTIMIZATION: Win Rate 68.9% | Avg PnL $8.53
+   RISK_REWARD_FAVORABLE: Win Rate 69.2% | Avg PnL $8.92
+   INSTITUTIONAL_FLOW: Win Rate 71.4% | Avg PnL $9.72
+   STRUCTURE_ALIGNMENT: Win Rate 70.3% | Avg PnL $8.73
+
+🕐 PERFORMANCE POR SESIÓN:
+-----------------------------------
+   ASIAN: 1180 trades | WR: 70.1% | PnL: $10923.53
+
+🏆 TOP 5 MEJORES TRADES:
+------------------------------
+   #1: ICT_20240323_000000_JUD
+       Estrategia: JUDAS_SWING_LONDON
+       Patrón: JUDAS_SWING | Confianza: 87.2%
+       Confluencias: 3 | Score: 0.79
+       PnL: $42.99 | Pips: 50.0
+       R:R: 1.70 | Calidad: 76/100
+   #2: ICT_20240229_000000_CHA
+       Estrategia: CHANGE_OF_CHARACTER
+       Patrón: CHANGE_OF_CHARACTER | Confianza: 72.6%
+       Confluencias: 3 | Score: 0.89
+       PnL: $42.94 | Pips: 49.9
+       R:R: 3.02 | Calidad: 89/100
+   #3: ICT_20240317_000000_FVG
+       Estrategia: FVG_BEARISH
+       Patrón: FVG_BEARISH | Confianza: 60.5%
+       Confluencias: 0 | Score: 0.50
+       PnL: $42.83 | Pips: 49.8
+       R:R: 2.31 | Calidad: 71/100
+   #4: ICT_20240310_000000_BEA
+       Estrategia: SMART_MONEY_INSTITUTIONAL
+       Patrón: BEARISH_OB | Confianza: 80.8%
+       Confluencias: 3 | Score: 0.78
+       PnL: $42.77 | Pips: 49.8
+       R:R: 1.58 | Calidad: 79/100
+   #5: ICT_20240129_000000_FVG
+       Estrategia: FVG_BEARISH
+       Patrón: FVG_BEARISH | Confianza: 94.7%
+       Confluencias: 3 | Score: 0.68
+       PnL: $42.72 | Pips: 49.7
+       R:R: 2.07 | Calidad: 85/100
+
+💡 LECCIONES MÁS FRECUENTES:
+-----------------------------------
+   421x: Smart Money enhancement added value
+   380x: High confluence trades perform better
+   353x: Trade did not reach profit target
+   353x: Stop loss hit - consider tighter risk management
+   353x: Asian session trades require extra caution
+
+🎯 RECOMENDACIONES ESTRATÉGICAS:
+----------------------------------------
+   1. Enfocar en SMART_MONEY_INSTITUTIONAL - Win Rate: 79.9%
+   2. Priorizar trades con LIQUIDITY_POOL_PROXIMITY - Win Rate: 71.4%
+   3. Trades con calidad ≥70 tienen 99.9% win rate - Mantener estándares altos
+   4. Sesión ASIAN es más exitosa - Concentrar esfuerzos

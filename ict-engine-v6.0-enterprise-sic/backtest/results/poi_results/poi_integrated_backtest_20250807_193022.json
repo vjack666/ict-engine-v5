@@ -1,0 +1,81 @@
+{
+  "timestamp": "2025-08-07T19:30:22.915554",
+  "engine_info": {
+    "engine": "POIIntegratedBacktestEngine",
+    "version": "v6.0.1-poi-integrated",
+    "mode": "POI_REAL_INTEGRATION"
+  },
+  "configuration": {
+    "symbol": "EURUSD",
+    "period": {
+      "start": "2024-01-01T00:00:00",
+      "end": "2024-02-29T00:00:00",
+      "duration_days": 59
+    },
+    "timeframes": [
+      "M15",
+      "H1"
+    ],
+    "strategies_tested": 2
+  },
+  "components_status": {
+    "mt5_manager": true,
+    "poi_detector": false,
+    "user_logging": false,
+    "ict_detector": false,
+    "confidence_engine": false,
+    "veredicto_engine": false
+  },
+  "performance": {
+    "total_trades": 0,
+    "total_profit": 0,
+    "avg_win_rate": 0.0,
+    "avg_confidence": 0.0,
+    "roi": 0.0
+  },
+  "poi_analysis": {
+    "quality_distribution": {},
+    "detection_mode": "FALLBACK_SIMPLE"
+  },
+  "strategies": {
+    "Order_Block_Trading": {
+      "strategy": "Order_Block_Trading",
+      "total_trades": 0,
+      "winning_trades": 0,
+      "losing_trades": 0,
+      "win_rate": 0,
+      "total_profit": 0,
+      "net_profit": 0,
+      "roi": 0,
+      "avg_confidence": 0,
+      "poi_quality_distribution": {}
+    },
+    "Fair_Value_Gap_Trading": {
+      "strategy": "Fair_Value_Gap_Trading",
+      "total_trades": 0,
+      "winning_trades": 0,
+      "losing_trades": 0,
+      "win_rate": 0,
+      "total_profit": 0,
+      "net_profit": 0,
+      "roi": 0,
+      "avg_confidence": 0,
+      "poi_quality_distribution": {}
+    }
+  },
+  "best_strategy": {
+    "name": "Order_Block_Trading",
+    "profit": 0,
+    "win_rate": 0,
+    "trades": 0
+  },
+  "system_notes": {
+    "data_source": "MT5_REAL",
+    "poi_detection": "SIMPLIFIED_FALLBACK",
+    "future_integrations": [
+      "ICTDetector",
+      "ConfidenceEngine",
+      "VeredictoEngine"
+    ]
+  }
+}

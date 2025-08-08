@@ -1,0 +1,39 @@
+{
+  "timestamp": 1754595289.3175685,
+  "formatted_timestamp": "2025-08-07 14:34:49",
+  "summary": {
+    "debug_stats": {
+      "total_events": 0,
+      "errors_logged": 0,
+      "warnings_logged": 0,
+      "performance_samples": 0,
+      "dependency_analyses": 0
+    },
+    "performance_summary": {},
+    "recent_events_count": 0,
+    "recent_errors_count": 0,
+    "problematic_modules": [],
+    "debug_level": "info",
+    "total_modules_analyzed": 0
+  },
+  "system_info": {
+    "python_version": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "win32",
+    "modules_loaded": 134,
+    "python_path": [
+      "",
+      "C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\python313.zip",
+      "C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\DLLs",
+      "C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313\\Lib",
+      "C:\\Users\\v_jac\\AppData\\Local\\Programs\\Python\\Python313"
+    ],
+    "timestamp": 1754595289.3101199,
+    "memory_mb": 23.68359375,
+    "cpu_percent": 0.0,
+    "threads": 4
+  },
+  "event_timeline": {},
+  "recent_events": [],
+  "error_history": [],
+  "dependency_graph_size": 0
+}
