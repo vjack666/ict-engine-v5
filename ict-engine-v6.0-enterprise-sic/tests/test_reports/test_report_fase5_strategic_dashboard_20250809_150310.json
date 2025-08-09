@@ -1,0 +1,318 @@
+{
+  "test_session": {
+    "start_time": "2025-08-09T15:03:10.927216",
+    "end_time": "2025-08-09T15:03:10.954334",
+    "duration_seconds": 0.027118,
+    "fase": "FASE 5 - Advanced Patterns Migration",
+    "target_architecture": "Enterprise v6.0 SIC"
+  },
+  "statistics": {
+    "total_tests": 23,
+    "passed_tests": 11,
+    "failed_tests": 12,
+    "success_rate": 47.82608695652174,
+    "total_execution_time": 0.027118
+  },
+  "results_by_category": {
+    "silver_bullet": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "breaker_blocks": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "liquidity_analyzer": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "confluence_engine": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "integration": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "success_rate": 50.0
+    },
+    "performance": {
+      "total": 3,
+      "passed": 2,
+      "failed": 1,
+      "success_rate": 66.66666666666666
+    },
+    "error_handling": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    },
+    "edge_cases": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "test_name": "SB_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_silver_bullet_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927464",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "BB_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_breaker_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927595",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "LA_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_liquidity_analyzer' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927719",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "CE_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_confluence_engine' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927827",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "INTEGRATION_MODULES",
+      "success": false,
+      "message": "Error en integraci\u00f3n de m\u00f3dulos: name 'create_test_silver_bullet_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927936",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "INTEGRATION_DATA_FLOW",
+      "success": true,
+      "message": "Flujo de datos entre m\u00f3dulos funcionando",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.927990",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REAL_DATA_AVAILABLE",
+      "success": true,
+      "message": "M\u00f3dulos enterprise no disponibles - test con datos simulados",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.928139",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REAL_DATA_PERFORMANCE",
+      "success": true,
+      "message": "Performance con datos realistas aceptable",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.938162",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_RICH_UI",
+      "success": false,
+      "message": "Error en Rich UI: name 'RICH_AVAILABLE' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.938587",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_STRATEGY_BOXES",
+      "success": true,
+      "message": "Strategy boxes configurados: 8 estrategias",
+      "details": {
+        "strategies_count": 8
+      },
+      "timestamp": "2025-08-09T15:03:10.938644",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_REGLA11_COMPLIANCE",
+      "success": true,
+      "message": "REGLA #11 compliance: BOS 85.0% >= 80%, CHoCH 80.0% >= 75%",
+      "details": {
+        "bos_target": 85.0,
+        "choch_target": 80.0,
+        "regla11_compliant": true
+      },
+      "timestamp": "2025-08-09T15:03:10.938679",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_DETECTORS_AVAILABLE",
+      "success": false,
+      "message": "Error en detectores: name 'ICTPatternDetector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.938705",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_METRICS_SIMULATION",
+      "success": true,
+      "message": "Simulaci\u00f3n de m\u00e9tricas de dashboard exitosa",
+      "details": {
+        "simulated_metrics": {
+          "BOS Detector": {
+            "patterns": 150,
+            "precision": 82.5
+          },
+          "CHoCH Detector": {
+            "patterns": 120,
+            "precision": 78.0
+          },
+          "Smart Money": {
+            "patterns": 200,
+            "precision": 85.0
+          }
+        }
+      },
+      "timestamp": "2025-08-09T15:03:10.938737",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "DASHBOARD_REGLA11_ENFORCEMENT",
+      "success": true,
+      "message": "REGLA #11 enforcement: 3 m\u00f3dulos listos para testing real",
+      "details": {
+        "ready_modules": [
+          "BOS Detector",
+          "CHoCH Detector",
+          "Smart Money"
+        ],
+        "total_modules": 8,
+        "compliance_ratio": 0.375
+      },
+      "timestamp": "2025-08-09T15:03:10.938793",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REGLA11_PHASE1_VALIDATION",
+      "success": true,
+      "message": "REGLA #11 Fase 1: Validaci\u00f3n de completitud exitosa",
+      "details": {
+        "validation_checklist": {
+          "detect_methods_implemented": true,
+          "enterprise_classes_initialized": true,
+          "memory_integration_verified": true,
+          "sic_sluc_connected": true,
+          "performance_under_5s": true,
+          "zero_import_errors": true
+        }
+      },
+      "timestamp": "2025-08-09T15:03:10.939104",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REGLA11_PHASE2_BOS_STRATEGY",
+      "success": true,
+      "message": "REGLA #11 Fase 2: Estrategia BOS cumple targets",
+      "details": {
+        "bos_metrics": {
+          "bos_detection_accuracy": 82.5,
+          "choch_detection_accuracy": 78.0,
+          "bos_vs_choch_differentiation": 87.5,
+          "timeframe_validation": 75.0,
+          "institutional_classification": 82.0,
+          "memory_enhanced_detection": 15.2
+        }
+      },
+      "timestamp": "2025-08-09T15:03:10.939150",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REGLA11_PHASE3_REAL_TESTING",
+      "success": true,
+      "message": "REGLA #11 Fase 3: Protocolo testing real exitoso",
+      "details": {
+        "protocol_steps": {
+          "pre_validation": true,
+          "enterprise_integration": true,
+          "memory_system_active": true,
+          "bos_specific_testing": true,
+          "real_data_execution": true,
+          "results_validation": true
+        }
+      },
+      "timestamp": "2025-08-09T15:03:10.939199",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "PERFORMANCE_SILVER_BULLET",
+      "success": false,
+      "message": "Error en benchmark SB: name 'create_test_silver_bullet_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.950876",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "PERFORMANCE_MEMORY",
+      "success": true,
+      "message": "Uso de memoria dentro de l\u00edmites aceptables",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.951081",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "ERROR_HANDLING_EMPTY_DATA",
+      "success": false,
+      "message": "Fall\u00f3 con datos vac\u00edos: name 'create_test_silver_bullet_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.951461",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "ERROR_HANDLING_INVALID_PARAMS",
+      "success": false,
+      "message": "Fall\u00f3 con par\u00e1metros inv\u00e1lidos: name 'create_test_breaker_detector' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.951518",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "EDGE_CASE_EXTREME_PRICES",
+      "success": false,
+      "message": "Fall\u00f3 con precios extremos: name 'create_test_liquidity_analyzer' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.952877",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "EDGE_CASE_DATA_GAPS",
+      "success": false,
+      "message": "Fall\u00f3 con gaps en datos: name 'create_test_confluence_engine' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T15:03:10.954163",
+      "execution_time": 0.0
+    }
+  ],
+  "recommendations": [
+    "Revisar y corregir tests fallidos antes de continuar a producci\u00f3n",
+    "Mejorar cobertura de tests para alcanzar >90% success rate"
+  ],
+  "next_steps": [
+    "\ud83d\udd27 Corregir tests fallidos identificados",
+    "\ud83d\udd27 Refactorizar m\u00f3dulos con bajo performance",
+    "\ud83d\udd27 Mejorar error handling en componentes cr\u00edticos",
+    "\ud83d\udd27 Re-ejecutar test suite despu\u00e9s de correcciones"
+  ]
+}

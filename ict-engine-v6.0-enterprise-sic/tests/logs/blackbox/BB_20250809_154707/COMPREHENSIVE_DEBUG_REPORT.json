@@ -1,0 +1,514 @@
+{
+  "session_info": {
+    "session_id": "BB_20250809_154707",
+    "start_time": "2025-08-09T15:47:07.325143",
+    "end_time": "2025-08-09T15:47:16.044620",
+    "duration_seconds": 8.719456434249878,
+    "purpose": "Diagnosticar problemas de pestañas en ICT Dashboard"
+  },
+  "summary_counters": {
+    "function_calls": 17,
+    "ui_events": 14,
+    "data_operations": 4,
+    "errors": 0,
+    "warnings": 0,
+    "renders_success": 4,
+    "renders_failed": 0
+  },
+  "success_rates": {
+    "render_success_rate": 100.0,
+    "error_rate": 0.0
+  },
+  "recent_events": [
+    {
+      "timestamp": "2025-08-09T15:47:07.351495",
+      "session_time": 0.026361703872680664,
+      "function": "ProgressDashboard.__init__",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 2
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.366753",
+      "session_time": 0.041655540466308594,
+      "function": "compose",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 3
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.448981",
+      "session_time": 0.12384986877441406,
+      "function": "on_mount",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 4
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450567",
+      "session_time": 0.1254289150238037,
+      "function": "refresh_all_displays",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 5
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450789",
+      "session_time": 0.12564873695373535,
+      "function": "render_overview",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 6
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450920",
+      "session_time": 0.125779390335083,
+      "function": "get_overall_stats",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 7
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451131",
+      "session_time": 0.1259908676147461,
+      "function": "get_overall_stats",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 2.193450927734375e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 8
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451314",
+      "method": "render_overview",
+      "status": "SUCCESS",
+      "content_length": 1062,
+      "content_preview": "[bold cyan]🔧 ICT ENGINE PROGRESS DASHBOARD[/bold cyan]\n\n[bold white]SESSION INFO:[/bold white]\n• Session: [bold blue]ICT_20250809_154707[/bold blue]\n• Running time: [bold green]0.1s[/bold green]\n• Tot",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451586",
+      "session_time": 0.12644553184509277,
+      "function": "render_overview",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 0.00045108795166015625,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 9
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.453831",
+      "session_time": 0.1286916732788086,
+      "function": "render_modules",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 10
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.454059",
+      "method": "render_modules",
+      "status": "SUCCESS",
+      "content_length": 1645,
+      "content_preview": "[bold cyan]🔍 ICT MODULES DETAILED STATUS[/bold cyan]\n\n[bold white]MODULE STATUS TABLE:[/bold white]\n┌─────────────────────┬─────────────┬─────────────┬─────────────┐\n│ Module              │ Status    ",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.454264",
+      "session_time": 0.12912416458129883,
+      "function": "render_modules",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 0.00014734268188476562,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 11
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456147",
+      "session_time": 0.13100624084472656,
+      "function": "render_performance",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 12
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456213",
+      "session_time": 0.1310722827911377,
+      "function": "get_overall_stats",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 13
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456538",
+      "session_time": 0.13140034675598145,
+      "function": "get_overall_stats",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 1.4543533325195312e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 14
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456638",
+      "method": "render_performance",
+      "status": "SUCCESS",
+      "content_length": 736,
+      "content_preview": "[bold cyan]📈 PERFORMANCE METRICS[/bold cyan]\n\n[bold white]SYSTEM PERFORMANCE:[/bold white]\n• Session duration: [bold green]0.1s[/bold green]\n• Processing speed: [bold blue]746.92 files/sec[/bold blue]",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456894",
+      "session_time": 0.13175344467163086,
+      "function": "render_performance",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 0.00042629241943359375,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 15
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.457837",
+      "session_time": 0.13269567489624023,
+      "function": "render_reports",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 16
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.457908",
+      "method": "render_reports",
+      "status": "SUCCESS",
+      "content_length": 959,
+      "content_preview": "[bold cyan]📋 REPORTS & EXPORT[/bold cyan]\n\n[bold white]SESSION INFORMATION:[/bold white]\n• Session ID: [bold blue]ICT_20250809_154707[/bold blue]\n• Timestamp: [bold green]2025-08-09 15:47:07[/bold gre",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.458024",
+      "session_time": 0.13288307189941406,
+      "function": "render_reports",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 2.09808349609375e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 17
+    }
+  ],
+  "critical_errors": [],
+  "ui_events": [
+    {
+      "timestamp": "2025-08-09T15:47:07.369164",
+      "component": "compose",
+      "action": "success",
+      "state": {
+        "tabs_created": 4
+      },
+      "success": true,
+      "error": null,
+      "event_number": 4
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450350",
+      "component": "mount",
+      "action": "start",
+      "state": {
+        "action": "initial_render"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 5
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450663",
+      "component": "refresh",
+      "action": "start",
+      "state": {
+        "action": "refresh_all_displays"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 6
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.450861",
+      "component": "overview_tab",
+      "action": "render_start",
+      "state": {
+        "modules_count": 6
+      },
+      "success": true,
+      "error": null,
+      "event_number": 7
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451511",
+      "tab_name": "overview",
+      "render_method": "render_overview",
+      "success": true,
+      "content_length": 1062,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.453638",
+      "component": "overview_display",
+      "action": "update",
+      "state": {
+        "status": "success"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 8
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.453909",
+      "component": "modules_tab",
+      "action": "render_start",
+      "state": {
+        "modules_to_process": 6
+      },
+      "success": true,
+      "error": null,
+      "event_number": 9
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.454174",
+      "tab_name": "modules",
+      "render_method": "render_modules",
+      "success": true,
+      "content_length": 1645,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456026",
+      "component": "modules_display",
+      "action": "update",
+      "state": {
+        "status": "success"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 10
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456823",
+      "tab_name": "performance",
+      "render_method": "render_performance",
+      "success": true,
+      "content_length": 736,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.457745",
+      "component": "performance_display",
+      "action": "update",
+      "state": {
+        "status": "success"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 11
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.457961",
+      "tab_name": "reports",
+      "render_method": "render_reports",
+      "success": true,
+      "content_length": 959,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.458927",
+      "component": "reports_display",
+      "action": "update",
+      "state": {
+        "status": "success"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 12
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.458995",
+      "component": "refresh",
+      "action": "completed",
+      "state": {
+        "all_displays": "updated"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 13
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.459037",
+      "component": "mount",
+      "action": "completed",
+      "state": {
+        "displays_refreshed": true
+      },
+      "success": true,
+      "error": null,
+      "event_number": 14
+    }
+  ],
+  "data_operations": [
+    {
+      "timestamp": "2025-08-09T15:47:07.352057",
+      "operation": "dashboard_init",
+      "input_type": "dict",
+      "input_size": 6,
+      "output_type": "str",
+      "output_size": 28,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 1
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451007",
+      "operation": "overall_stats",
+      "input_type": "dict",
+      "input_size": 7,
+      "output_type": "str",
+      "output_size": 22,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 2
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.451209",
+      "operation": "overview_input",
+      "input_type": "dict",
+      "input_size": 7,
+      "output_type": "str",
+      "output_size": 13,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 3
+    },
+    {
+      "timestamp": "2025-08-09T15:47:07.456308",
+      "operation": "overall_stats",
+      "input_type": "dict",
+      "input_size": 7,
+      "output_type": "str",
+      "output_size": 22,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 4
+    }
+  ],
+  "log_files": {
+    "main": "logs\\blackbox\\BB_20250809_154707\\blackbox_main.log",
+    "ui": "logs\\blackbox\\BB_20250809_154707\\blackbox_ui.log",
+    "data": "logs\\blackbox\\BB_20250809_154707\\blackbox_data.log",
+    "render": "logs\\blackbox\\BB_20250809_154707\\blackbox_render.log",
+    "errors": "logs\\blackbox\\BB_20250809_154707\\blackbox_errors.log",
+    "performance": "logs\\blackbox\\BB_20250809_154707\\blackbox_performance.log",
+    "functions": "logs\\blackbox\\BB_20250809_154707\\blackbox_functions.log"
+  },
+  "recommendations": [
+    "✅ No se detectaron problemas críticos en esta sesión."
+  ]
+}

@@ -582,3 +582,124 @@
 [2025-08-09 11:36:40] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.7608s
 [2025-08-09 11:36:43] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "CHoCH patterns M15", "timeframe": "M15", "trader_method": "experience_recall"}
 [2025-08-09 11:36:43] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "CHoCH patterns M15", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:58:06] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 11:58:11] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-09 11:58:44] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_SYSTEM_CREATE EURUSD: {"component": "UnifiedMemorySystem", "version": "v6.1.0-enterprise", "fase": "FASE 2"}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_INIT_START EURUSD: {"component": "UnifiedMemorySystem", "version": "v6.1.0-enterprise", "fase": "FASE 2 - Memoria Unificada", "config_path": "config/memory_config.json"}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 MEMORY_CONFIG_LOADED EURUSD: {"config_file": "config/memory_config.json", "keys_loaded": 11}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 CROSS_INTEGRATION_START EURUSD: {"components": ["MarketContext", "HistoricalAnalyzer", "DecisionCache", "UnifiedMemory"]}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_SYSTEM_LINKING EURUSD: {"action": "linking_memory_components", "components": ["memory", "context", "analyzer", "cache"]}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 CROSS_INTEGRATION_SUCCESS EURUSD: {"status": "Components connected for bidirectional communication"}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_INIT_SUCCESS EURUSD: {"component": "UnifiedMemorySystem", "status": "TRADER_READY", "experience_level": 1.0, "components_integrated": 7, "sic_active": true, "sluc_active": true}
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 11:58:45] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 11:58:46] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - AUDUSD
+[2025-08-09 11:58:47] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:58:47] [ICT_Engine] [INFO] [CORE]    Confianza: 64.8%
+[2025-08-09 11:58:47] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:58:47] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:58:47] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.8780s
+[2025-08-09 11:58:48] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns H4", "timeframe": "H4", "trader_method": "experience_recall"}
+[2025-08-09 11:58:48] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns H4", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:58:48] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - AUDUSD
+[2025-08-09 11:58:50] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:58:50] [ICT_Engine] [INFO] [CORE]    Confianza: 63.7%
+[2025-08-09 11:58:50] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:58:50] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:58:50] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.4129s
+[2025-08-09 11:58:52] [ICT_Engine] [INFO] [market_memory] 📈 Cambio de bias detectado: BULLISH → BEARISH
+[2025-08-09 11:58:52] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns M15", "timeframe": "M15", "trader_method": "experience_recall"}
+[2025-08-09 11:58:52] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns M15", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:58:52] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-09 11:58:53] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:58:53] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-09 11:58:53] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:58:53] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:58:53] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.4491s
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [market_memory] 📈 Cambio de bias detectado: BEARISH → BULLISH
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns H1", "timeframe": "H1", "trader_method": "experience_recall"}
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns H1", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE]    Confianza: 67.8%
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:58:56] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 0.8251s
+[2025-08-09 11:58:58] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns H4", "timeframe": "H4", "trader_method": "experience_recall"}
+[2025-08-09 11:58:58] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns H4", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:58:58] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-09 11:58:59] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:58:59] [ICT_Engine] [INFO] [CORE]    Confianza: 63.7%
+[2025-08-09 11:58:59] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:58:59] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:58:59] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.3738s
+[2025-08-09 11:59:02] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns M15", "timeframe": "M15", "trader_method": "experience_recall"}
+[2025-08-09 11:59:02] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns M15", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:59:02] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - EURUSD
+[2025-08-09 11:59:03] [ICT_Engine] [INFO] [CORE] 🎯 Estructura v6.0 detectada: liquidity_grab
+[2025-08-09 11:59:03] [ICT_Engine] [INFO] [CORE]    Confianza: 63.7%
+[2025-08-09 11:59:03] [ICT_Engine] [INFO] [CORE]    ICT Compliance: False
+[2025-08-09 11:59:03] [ICT_Engine] [INFO] [CORE]    Smart Money: False
+[2025-08-09 11:59:03] [ICT_Engine] [INFO] [CORE]    Tiempo análisis: 1.1038s
+[2025-08-09 11:59:04] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_REQUEST EURUSD: {"query": "BOS patterns M5", "timeframe": "M5", "trader_method": "experience_recall"}
+[2025-08-09 11:59:04] [ICT_Engine] [INFO] [trading_decision] 📈 HISTORICAL_INSIGHT_GENERATED EURUSD: {"query": "BOS patterns M5", "confidence": 0.385, "trader_experience_applied": true}
+[2025-08-09 11:59:04] [ICT_Engine] [INFO] [CORE] 🏗️ Iniciando análisis Market Structure v6.0 - GBPUSD
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [market_memory] 📚 Estado de memoria restaurado desde cache/memory\market_context_state.json
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [historical_memory] 📚 Cache de memoria importado desde cache\memory\historical_analysis\historical_analysis_cache.json
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 0.850
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_SYSTEM_CREATE EURUSD: {"component": "UnifiedMemorySystem", "version": "v6.1.0-enterprise", "fase": "FASE 2"}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_INIT_START EURUSD: {"component": "UnifiedMemorySystem", "version": "v6.1.0-enterprise", "fase": "FASE 2 - Memoria Unificada", "config_path": "config/memory_config.json"}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 MEMORY_CONFIG_LOADED EURUSD: {"config_file": "config/memory_config.json", "keys_loaded": 11}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 CROSS_INTEGRATION_START EURUSD: {"components": ["MarketContext", "HistoricalAnalyzer", "DecisionCache", "UnifiedMemory"]}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_SYSTEM_LINKING EURUSD: {"action": "linking_memory_components", "components": ["memory", "context", "analyzer", "cache"]}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 CROSS_INTEGRATION_SUCCESS EURUSD: {"status": "Components connected for bidirectional communication"}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [trading_decision] 📈 UNIFIED_MEMORY_INIT_SUCCESS EURUSD: {"component": "UnifiedMemorySystem", "status": "TRADER_READY", "experience_level": 1.0, "components_integrated": 7, "sic_active": true, "sluc_active": true}
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] 🏗️ Inicializando Market Structure Analyzer v6.0 Enterprise
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE] ✅ Market Structure Analyzer v6.0 Enterprise inicializado
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    SIC Bridge: v3.1
+[2025-08-09 12:01:49] [ICT_Engine] [INFO] [CORE]    Configuración: confidence=60.0%, lookback=50

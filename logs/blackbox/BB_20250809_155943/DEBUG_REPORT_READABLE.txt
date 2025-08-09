@@ -1,0 +1,36 @@
+
+🔴 ICT DASHBOARD BLACKBOX REPORT
+================================
+
+Session ID: BB_20250809_155943
+Duration: 0.01 seconds
+Purpose: Diagnosticar problemas de pestañas en ICT Dashboard
+
+📊 SUMMARY COUNTERS:
+- Function calls: 1
+- UI events: 1
+- Data operations: 1
+- Successful renders: 1
+- Failed renders: 0
+- Errors: 1
+- Warnings: 0
+
+📈 SUCCESS RATES:
+- Render success rate: 100.0%
+- Error rate: 100.0%
+
+🚨 CRITICAL ERRORS: 1
+
+1. Test context: Test error for BlackBox
+
+💡 RECOMMENDATIONS:
+- 🚨 Tasa de errores alta: 100.0%. Revisar robustez del código.
+
+📁 LOG FILES:
+- MAIN: logs\blackbox\BB_20250809_155943\blackbox_main.log
+- UI: logs\blackbox\BB_20250809_155943\blackbox_ui.log
+- DATA: logs\blackbox\BB_20250809_155943\blackbox_data.log
+- RENDER: logs\blackbox\BB_20250809_155943\blackbox_render.log
+- ERRORS: logs\blackbox\BB_20250809_155943\blackbox_errors.log
+- PERFORMANCE: logs\blackbox\BB_20250809_155943\blackbox_performance.log
+- FUNCTIONS: logs\blackbox\BB_20250809_155943\blackbox_functions.log
