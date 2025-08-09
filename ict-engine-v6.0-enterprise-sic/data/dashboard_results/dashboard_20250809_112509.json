@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-08-09T11:25:09.590069",
+  "total_processing_time": 21.11840510368347,
+  "total_data_points": 457660,
+  "total_patterns": 2404,
+  "total_signals": 1202,
+  "modules": [
+    {
+      "name": "Pattern Detector",
+      "patterns_detected": 1202,
+      "signals_generated": 601,
+      "processing_time": 0.00150299072265625,
+      "data_points": 65380,
+      "precision_score": 77.0,
+      "coverage_score": 72.5,
+      "confidence_level": 95.0,
+      "false_positives": 138,
+      "true_positives": 462
+    },
+    {
+      "name": "Breaker Blocks",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "processing_time": 0.0012896060943603516,
+      "data_points": 65380,
+      "precision_score": 80.0,
+      "coverage_score": 45.0,
+      "confidence_level": 95.0,
+      "false_positives": 0,
+      "true_positives": 0
+    },
+    {
+      "name": "Silver Bullet",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "processing_time": 0.0012669563293457031,
+      "data_points": 65380,
+      "precision_score": 85.0,
+      "coverage_score": 30.0,
+      "confidence_level": 95.0,
+      "false_positives": 0,
+      "true_positives": 0
+    },
+    {
+      "name": "Liquidity Analyzer",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "processing_time": 0.001249551773071289,
+      "data_points": 65380,
+      "precision_score": 75.0,
+      "coverage_score": 70.0,
+      "confidence_level": 95.0,
+      "false_positives": 0,
+      "true_positives": 0
+    },
+    {
+      "name": "Displacement",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "processing_time": 19.359907627105713,
+      "data_points": 65380,
+      "precision_score": 80.0,
+      "coverage_score": 85.0,
+      "confidence_level": 95.0,
+      "false_positives": 0,
+      "true_positives": 0
+    },
+    {
+      "name": "Multi-Pattern",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "processing_time": 0.005143165588378906,
+      "data_points": 65380,
+      "precision_score": 90.0,
+      "coverage_score": 40.0,
+      "confidence_level": 95.0,
+      "false_positives": 0,
+      "true_positives": 0
+    },
+    {
+      "name": "Smart Money",
+      "patterns_detected": 1202,
+      "signals_generated": 601,
+      "processing_time": 0.002532482147216797,
+      "data_points": 65380,
+      "precision_score": 81.0,
+      "coverage_score": 67.5,
+      "confidence_level": 95.0,
+      "false_positives": 114,
+      "true_positives": 486
+    }
+  ],
+  "overall_precision": 79.0,
+  "overall_coverage": 70.0,
+  "performance_grade": "B+ (GOOD)",
+  "improvement_vs_last": null
+}
