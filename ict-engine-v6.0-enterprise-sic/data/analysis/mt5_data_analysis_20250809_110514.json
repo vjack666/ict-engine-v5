@@ -1,0 +1,1849 @@
+{
+  "files_inventory": {
+    "total_files": 117,
+    "symbols": [
+      "AUDUSD",
+      "EURUSD",
+      "GBPUSD",
+      "USDCHF",
+      "USDJPY",
+      "XAUUSD"
+    ],
+    "timeframes": [
+      "H1",
+      "H4",
+      "M15",
+      "M5"
+    ],
+    "dates": [
+      "20250807",
+      "20250808"
+    ],
+    "files_by_symbol": {
+      "AUDUSD": [
+        "AUDUSD_H4_20250808_104701.csv",
+        "AUDUSD_H4_20250808_104702.csv",
+        "AUDUSD_H4_20250808_104707.csv",
+        "AUDUSD_H4_20250808_104708.csv",
+        "AUDUSD_H4_20250808_113424.csv",
+        "AUDUSD_H4_20250808_114605.csv",
+        "AUDUSD_M15_20250808_104702.csv",
+        "AUDUSD_M15_20250808_104703.csv",
+        "AUDUSD_M15_20250808_104707.csv",
+        "AUDUSD_M15_20250808_104708.csv",
+        "AUDUSD_M15_20250808_113424.csv",
+        "AUDUSD_M15_20250808_114604.csv"
+      ],
+      "EURUSD": [
+        "EURUSD_H1_20250807_122850.csv",
+        "EURUSD_H1_20250808_104701.csv",
+        "EURUSD_H1_20250808_104702.csv",
+        "EURUSD_H1_20250808_104707.csv",
+        "EURUSD_H1_20250808_104708.csv",
+        "EURUSD_H1_20250808_113423.csv",
+        "EURUSD_H1_20250808_114604.csv",
+        "EURUSD_H1_20250808_160930.csv",
+        "EURUSD_H1_20250808_161106.csv",
+        "EURUSD_H4_20250807_122850.csv",
+        "EURUSD_H4_20250808_104700.csv",
+        "EURUSD_H4_20250808_104702.csv",
+        "EURUSD_H4_20250808_104707.csv",
+        "EURUSD_H4_20250808_104708.csv",
+        "EURUSD_H4_20250808_115641.csv",
+        "EURUSD_H4_20250808_120652.csv",
+        "EURUSD_M15_20250807_121803.csv",
+        "EURUSD_M15_20250807_122850.csv",
+        "EURUSD_M15_20250807_172435.csv",
+        "EURUSD_M15_20250807_172922.csv",
+        "EURUSD_M15_20250807_172931.csv",
+        "EURUSD_M15_20250807_173102.csv",
+        "EURUSD_M15_20250807_173210.csv",
+        "EURUSD_M15_20250807_173258.csv",
+        "EURUSD_M15_20250807_173637.csv",
+        "EURUSD_M15_20250807_173728.csv",
+        "EURUSD_M15_20250807_173743.csv",
+        "EURUSD_M15_20250807_194750.csv",
+        "EURUSD_M15_20250807_194824.csv",
+        "EURUSD_M15_20250808_104700.csv",
+        "EURUSD_M15_20250808_104702.csv",
+        "EURUSD_M15_20250808_104707.csv",
+        "EURUSD_M15_20250808_104708.csv",
+        "EURUSD_M15_20250808_113423.csv",
+        "EURUSD_M15_20250808_114553.csv",
+        "EURUSD_M15_20250808_115641.csv",
+        "EURUSD_M15_20250808_120652.csv",
+        "EURUSD_M15_20250808_133728.csv",
+        "EURUSD_M15_20250808_133748.csv",
+        "EURUSD_M15_20250808_133838.csv",
+        "EURUSD_M15_20250808_133920.csv",
+        "EURUSD_M15_20250808_160930.csv",
+        "EURUSD_M15_20250808_161106.csv",
+        "EURUSD_M15_20250808_173533.csv",
+        "EURUSD_M15_20250808_175513.csv",
+        "EURUSD_M15_20250808_175524.csv",
+        "EURUSD_M15_20250808_175658.csv",
+        "EURUSD_M15_20250808_175826.csv",
+        "EURUSD_M5_20250808_104700.csv",
+        "EURUSD_M5_20250808_104702.csv",
+        "EURUSD_M5_20250808_104707.csv",
+        "EURUSD_M5_20250808_104708.csv",
+        "EURUSD_M5_20250808_113423.csv",
+        "EURUSD_M5_20250808_114604.csv",
+        "EURUSD_M5_20250808_120652.csv"
+      ],
+      "GBPUSD": [
+        "GBPUSD_H1_20250807_122850.csv",
+        "GBPUSD_H1_20250808_104701.csv",
+        "GBPUSD_H1_20250808_104702.csv",
+        "GBPUSD_H1_20250808_104707.csv",
+        "GBPUSD_H1_20250808_104708.csv",
+        "GBPUSD_H1_20250808_113423.csv",
+        "GBPUSD_H1_20250808_114604.csv",
+        "GBPUSD_H1_20250808_160930.csv",
+        "GBPUSD_H1_20250808_161106.csv",
+        "GBPUSD_H4_20250807_122850.csv",
+        "GBPUSD_M15_20250807_122850.csv",
+        "GBPUSD_M15_20250808_113423.csv",
+        "GBPUSD_M15_20250808_114604.csv",
+        "GBPUSD_M15_20250808_160930.csv",
+        "GBPUSD_M15_20250808_161107.csv",
+        "GBPUSD_M5_20250808_104701.csv",
+        "GBPUSD_M5_20250808_104702.csv",
+        "GBPUSD_M5_20250808_104707.csv",
+        "GBPUSD_M5_20250808_104708.csv",
+        "GBPUSD_M5_20250808_113423.csv",
+        "GBPUSD_M5_20250808_114604.csv"
+      ],
+      "USDCHF": [
+        "USDCHF_H4_20250808_104702.csv",
+        "USDCHF_H4_20250808_104703.csv",
+        "USDCHF_H4_20250808_104707.csv",
+        "USDCHF_H4_20250808_104708.csv",
+        "USDCHF_H4_20250808_113424.csv",
+        "USDCHF_H4_20250808_114605.csv",
+        "USDCHF_M15_20250808_104702.csv",
+        "USDCHF_M15_20250808_104703.csv",
+        "USDCHF_M15_20250808_104707.csv",
+        "USDCHF_M15_20250808_104708.csv",
+        "USDCHF_M15_20250808_113424.csv",
+        "USDCHF_M15_20250808_114604.csv"
+      ],
+      "USDJPY": [
+        "USDJPY_H4_20250808_104701.csv",
+        "USDJPY_H4_20250808_104702.csv",
+        "USDJPY_H4_20250808_104707.csv",
+        "USDJPY_H4_20250808_104708.csv",
+        "USDJPY_H4_20250808_113423.csv",
+        "USDJPY_H4_20250808_114604.csv",
+        "USDJPY_M15_20250808_104701.csv",
+        "USDJPY_M15_20250808_104702.csv",
+        "USDJPY_M15_20250808_104707.csv",
+        "USDJPY_M15_20250808_104708.csv",
+        "USDJPY_M15_20250808_113423.csv",
+        "USDJPY_M15_20250808_113424.csv",
+        "USDJPY_M15_20250808_114604.csv",
+        "USDJPY_M15_20250808_114605.csv"
+      ],
+      "XAUUSD": [
+        "XAUUSD_H1_20250807_122856.csv",
+        "XAUUSD_H4_20250807_122856.csv",
+        "XAUUSD_M15_20250807_122855.csv"
+      ]
+    },
+    "files_by_timeframe": {
+      "H4": [
+        "AUDUSD_H4_20250808_104701.csv",
+        "AUDUSD_H4_20250808_104702.csv",
+        "AUDUSD_H4_20250808_104707.csv",
+        "AUDUSD_H4_20250808_104708.csv",
+        "AUDUSD_H4_20250808_113424.csv",
+        "AUDUSD_H4_20250808_114605.csv",
+        "EURUSD_H4_20250807_122850.csv",
+        "EURUSD_H4_20250808_104700.csv",
+        "EURUSD_H4_20250808_104702.csv",
+        "EURUSD_H4_20250808_104707.csv",
+        "EURUSD_H4_20250808_104708.csv",
+        "EURUSD_H4_20250808_115641.csv",
+        "EURUSD_H4_20250808_120652.csv",
+        "GBPUSD_H4_20250807_122850.csv",
+        "USDCHF_H4_20250808_104702.csv",
+        "USDCHF_H4_20250808_104703.csv",
+        "USDCHF_H4_20250808_104707.csv",
+        "USDCHF_H4_20250808_104708.csv",
+        "USDCHF_H4_20250808_113424.csv",
+        "USDCHF_H4_20250808_114605.csv",
+        "USDJPY_H4_20250808_104701.csv",
+        "USDJPY_H4_20250808_104702.csv",
+        "USDJPY_H4_20250808_104707.csv",
+        "USDJPY_H4_20250808_104708.csv",
+        "USDJPY_H4_20250808_113423.csv",
+        "USDJPY_H4_20250808_114604.csv",
+        "XAUUSD_H4_20250807_122856.csv"
+      ],
+      "M15": [
+        "AUDUSD_M15_20250808_104702.csv",
+        "AUDUSD_M15_20250808_104703.csv",
+        "AUDUSD_M15_20250808_104707.csv",
+        "AUDUSD_M15_20250808_104708.csv",
+        "AUDUSD_M15_20250808_113424.csv",
+        "AUDUSD_M15_20250808_114604.csv",
+        "EURUSD_M15_20250807_121803.csv",
+        "EURUSD_M15_20250807_122850.csv",
+        "EURUSD_M15_20250807_172435.csv",
+        "EURUSD_M15_20250807_172922.csv",
+        "EURUSD_M15_20250807_172931.csv",
+        "EURUSD_M15_20250807_173102.csv",
+        "EURUSD_M15_20250807_173210.csv",
+        "EURUSD_M15_20250807_173258.csv",
+        "EURUSD_M15_20250807_173637.csv",
+        "EURUSD_M15_20250807_173728.csv",
+        "EURUSD_M15_20250807_173743.csv",
+        "EURUSD_M15_20250807_194750.csv",
+        "EURUSD_M15_20250807_194824.csv",
+        "EURUSD_M15_20250808_104700.csv",
+        "EURUSD_M15_20250808_104702.csv",
+        "EURUSD_M15_20250808_104707.csv",
+        "EURUSD_M15_20250808_104708.csv",
+        "EURUSD_M15_20250808_113423.csv",
+        "EURUSD_M15_20250808_114553.csv",
+        "EURUSD_M15_20250808_115641.csv",
+        "EURUSD_M15_20250808_120652.csv",
+        "EURUSD_M15_20250808_133728.csv",
+        "EURUSD_M15_20250808_133748.csv",
+        "EURUSD_M15_20250808_133838.csv",
+        "EURUSD_M15_20250808_133920.csv",
+        "EURUSD_M15_20250808_160930.csv",
+        "EURUSD_M15_20250808_161106.csv",
+        "EURUSD_M15_20250808_173533.csv",
+        "EURUSD_M15_20250808_175513.csv",
+        "EURUSD_M15_20250808_175524.csv",
+        "EURUSD_M15_20250808_175658.csv",
+        "EURUSD_M15_20250808_175826.csv",
+        "GBPUSD_M15_20250807_122850.csv",
+        "GBPUSD_M15_20250808_113423.csv",
+        "GBPUSD_M15_20250808_114604.csv",
+        "GBPUSD_M15_20250808_160930.csv",
+        "GBPUSD_M15_20250808_161107.csv",
+        "USDCHF_M15_20250808_104702.csv",
+        "USDCHF_M15_20250808_104703.csv",
+        "USDCHF_M15_20250808_104707.csv",
+        "USDCHF_M15_20250808_104708.csv",
+        "USDCHF_M15_20250808_113424.csv",
+        "USDCHF_M15_20250808_114604.csv",
+        "USDJPY_M15_20250808_104701.csv",
+        "USDJPY_M15_20250808_104702.csv",
+        "USDJPY_M15_20250808_104707.csv",
+        "USDJPY_M15_20250808_104708.csv",
+        "USDJPY_M15_20250808_113423.csv",
+        "USDJPY_M15_20250808_113424.csv",
+        "USDJPY_M15_20250808_114604.csv",
+        "USDJPY_M15_20250808_114605.csv",
+        "XAUUSD_M15_20250807_122855.csv"
+      ],
+      "H1": [
+        "EURUSD_H1_20250807_122850.csv",
+        "EURUSD_H1_20250808_104701.csv",
+        "EURUSD_H1_20250808_104702.csv",
+        "EURUSD_H1_20250808_104707.csv",
+        "EURUSD_H1_20250808_104708.csv",
+        "EURUSD_H1_20250808_113423.csv",
+        "EURUSD_H1_20250808_114604.csv",
+        "EURUSD_H1_20250808_160930.csv",
+        "EURUSD_H1_20250808_161106.csv",
+        "GBPUSD_H1_20250807_122850.csv",
+        "GBPUSD_H1_20250808_104701.csv",
+        "GBPUSD_H1_20250808_104702.csv",
+        "GBPUSD_H1_20250808_104707.csv",
+        "GBPUSD_H1_20250808_104708.csv",
+        "GBPUSD_H1_20250808_113423.csv",
+        "GBPUSD_H1_20250808_114604.csv",
+        "GBPUSD_H1_20250808_160930.csv",
+        "GBPUSD_H1_20250808_161106.csv",
+        "XAUUSD_H1_20250807_122856.csv"
+      ],
+      "M5": [
+        "EURUSD_M5_20250808_104700.csv",
+        "EURUSD_M5_20250808_104702.csv",
+        "EURUSD_M5_20250808_104707.csv",
+        "EURUSD_M5_20250808_104708.csv",
+        "EURUSD_M5_20250808_113423.csv",
+        "EURUSD_M5_20250808_114604.csv",
+        "EURUSD_M5_20250808_120652.csv",
+        "GBPUSD_M5_20250808_104701.csv",
+        "GBPUSD_M5_20250808_104702.csv",
+        "GBPUSD_M5_20250808_104707.csv",
+        "GBPUSD_M5_20250808_104708.csv",
+        "GBPUSD_M5_20250808_113423.csv",
+        "GBPUSD_M5_20250808_114604.csv"
+      ]
+    },
+    "file_details": [
+      {
+        "filename": "AUDUSD_H4_20250808_104701.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202751,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_H4_20250808_104702.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202735,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_H4_20250808_104707.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202735,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_H4_20250808_104708.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202735,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_H4_20250808_113424.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202736,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_H4_20250808_114605.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202736,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_104702.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323277,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_104703.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323297,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_104707.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323297,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_104708.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323297,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_113424.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323304,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "AUDUSD_M15_20250808_114604.csv",
+        "symbol": "AUDUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323303,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_H1_20250807_122850.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250807",
+        "size_bytes": 8049,
+        "size_mb": 0.01
+      },
+      {
+        "filename": "EURUSD_H1_20250808_104701.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_104702.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_104707.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_104708.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_113423.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_114604.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332239,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_160930.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332241,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H1_20250808_161106.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332241,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "EURUSD_H4_20250807_122850.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250807",
+        "size_bytes": 2081,
+        "size_mb": 0.0
+      },
+      {
+        "filename": "EURUSD_H4_20250808_104700.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202704,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_H4_20250808_104702.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202704,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_H4_20250808_104707.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202704,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_H4_20250808_104708.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202704,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_H4_20250808_115641.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202706,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_H4_20250808_120652.csv",
+        "symbol": "EURUSD",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 203472,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "EURUSD_M15_20250807_121803.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 698685,
+        "size_mb": 0.67
+      },
+      {
+        "filename": "EURUSD_M15_20250807_122850.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 698685,
+        "size_mb": 0.67
+      },
+      {
+        "filename": "EURUSD_M15_20250807_172435.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323694,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_172922.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323694,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_172931.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323694,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173102.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173210.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173258.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173637.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173728.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_173743.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323696,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_194750.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323701,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250807_194824.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 323701,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_104700.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_104702.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_104707.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_104708.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_113423.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_114553.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325121,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_115641.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323706,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_120652.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325119,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_133728.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323707,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_133748.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323707,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_133838.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323707,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_133920.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323707,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_160930.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323700,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_161106.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323700,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_173533.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323702,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_175513.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323702,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_175524.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323702,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_175658.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323702,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M15_20250808_175826.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323702,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "EURUSD_M5_20250808_104700.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257037,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_104702.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257037,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_104707.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257037,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_104708.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257037,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_113423.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257033,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_114604.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257032,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "EURUSD_M5_20250808_120652.csv",
+        "symbol": "EURUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257208,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_H1_20250807_122850.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250807",
+        "size_bytes": 8032,
+        "size_mb": 0.01
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_104701.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332513,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_104702.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332513,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_104707.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332513,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_104708.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332513,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_113423.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332513,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_114604.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 334338,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_160930.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332516,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H1_20250808_161106.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H1",
+        "date": "20250808",
+        "size_bytes": 332516,
+        "size_mb": 0.32
+      },
+      {
+        "filename": "GBPUSD_H4_20250807_122850.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "H4",
+        "date": "20250807",
+        "size_bytes": 2100,
+        "size_mb": 0.0
+      },
+      {
+        "filename": "GBPUSD_M15_20250807_122850.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 699812,
+        "size_mb": 0.67
+      },
+      {
+        "filename": "GBPUSD_M15_20250808_113423.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 324158,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "GBPUSD_M15_20250808_114604.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 324158,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "GBPUSD_M15_20250808_160930.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 324155,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "GBPUSD_M15_20250808_161107.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 324155,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_104701.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257698,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_104702.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257698,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_104707.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257698,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_104708.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257698,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_113423.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257696,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "GBPUSD_M5_20250808_114604.csv",
+        "symbol": "GBPUSD",
+        "timeframe": "M5",
+        "date": "20250808",
+        "size_bytes": 257695,
+        "size_mb": 0.25
+      },
+      {
+        "filename": "USDCHF_H4_20250808_104702.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_H4_20250808_104703.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_H4_20250808_104707.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_H4_20250808_104708.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_H4_20250808_113424.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_H4_20250808_114605.csv",
+        "symbol": "USDCHF",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 202160,
+        "size_mb": 0.19
+      },
+      {
+        "filename": "USDCHF_M15_20250808_104702.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323468,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDCHF_M15_20250808_104703.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323468,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDCHF_M15_20250808_104707.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323468,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDCHF_M15_20250808_104708.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323468,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDCHF_M15_20250808_113424.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323466,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDCHF_M15_20250808_114604.csv",
+        "symbol": "USDCHF",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 323466,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_H4_20250808_104701.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204498,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_H4_20250808_104702.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204498,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_H4_20250808_104707.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204498,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_H4_20250808_104708.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204498,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_H4_20250808_113423.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204498,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_H4_20250808_114604.csv",
+        "symbol": "USDJPY",
+        "timeframe": "H4",
+        "date": "20250808",
+        "size_bytes": 204954,
+        "size_mb": 0.2
+      },
+      {
+        "filename": "USDJPY_M15_20250808_104701.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325470,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_104702.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325470,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_104707.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325470,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_104708.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325470,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_113423.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325474,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_113424.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325474,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_114604.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325476,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "USDJPY_M15_20250808_114605.csv",
+        "symbol": "USDJPY",
+        "timeframe": "M15",
+        "date": "20250808",
+        "size_bytes": 325476,
+        "size_mb": 0.31
+      },
+      {
+        "filename": "XAUUSD_H1_20250807_122856.csv",
+        "symbol": "XAUUSD",
+        "timeframe": "H1",
+        "date": "20250807",
+        "size_bytes": 8185,
+        "size_mb": 0.01
+      },
+      {
+        "filename": "XAUUSD_H4_20250807_122856.csv",
+        "symbol": "XAUUSD",
+        "timeframe": "H4",
+        "date": "20250807",
+        "size_bytes": 2147,
+        "size_mb": 0.0
+      },
+      {
+        "filename": "XAUUSD_M15_20250807_122855.csv",
+        "symbol": "XAUUSD",
+        "timeframe": "M15",
+        "date": "20250807",
+        "size_bytes": 682214,
+        "size_mb": 0.65
+      }
+    ]
+  },
+  "symbols_analysis": {
+    "AUDUSD": {
+      "timeframes": [
+        "H4",
+        "M15"
+      ],
+      "total_files": 12,
+      "total_candles": 48000,
+      "date_range": {
+        "min": "2023-08-30T20:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "file_sizes": [
+        202751,
+        202735,
+        202735,
+        202735,
+        202736,
+        202736,
+        323277,
+        323297,
+        323297,
+        323297,
+        323304,
+        323303
+      ],
+      "timeframe_details": {
+        "H4": {
+          "files": 6,
+          "candles": 18000,
+          "avg_candles_per_file": 3000
+        },
+        "M15": {
+          "files": 6,
+          "candles": 30000,
+          "avg_candles_per_file": 5000
+        }
+      },
+      "avg_file_size_mb": 0.25
+    },
+    "EURUSD": {
+      "timeframes": [
+        "H1",
+        "H4",
+        "M15",
+        "M5"
+      ],
+      "total_files": 55,
+      "total_candles": 257702,
+      "date_range": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T22:45:00"
+      },
+      "file_sizes": [
+        8049,
+        332239,
+        332239,
+        332239,
+        332239,
+        332239,
+        332239,
+        332241,
+        332241,
+        2081,
+        202704,
+        202704,
+        202704,
+        202704,
+        202706,
+        203472,
+        698685,
+        698685,
+        323694,
+        323694,
+        323694,
+        323696,
+        323696,
+        323696,
+        323696,
+        323696,
+        323696,
+        323701,
+        323701,
+        323706,
+        323706,
+        323706,
+        323706,
+        323706,
+        325121,
+        323706,
+        325119,
+        323707,
+        323707,
+        323707,
+        323707,
+        323700,
+        323700,
+        323702,
+        323702,
+        323702,
+        323702,
+        323702,
+        257037,
+        257037,
+        257037,
+        257037,
+        257033,
+        257032,
+        257208
+      ],
+      "timeframe_details": {
+        "H1": {
+          "files": 9,
+          "candles": 40120,
+          "avg_candles_per_file": 4458
+        },
+        "H4": {
+          "files": 7,
+          "candles": 18030,
+          "avg_candles_per_file": 2576
+        },
+        "M15": {
+          "files": 32,
+          "candles": 171552,
+          "avg_candles_per_file": 5361
+        },
+        "M5": {
+          "files": 7,
+          "candles": 28000,
+          "avg_candles_per_file": 4000
+        }
+      },
+      "avg_file_size_mb": 0.29
+    },
+    "GBPUSD": {
+      "timeframes": [
+        "H1",
+        "H4",
+        "M15",
+        "M5"
+      ],
+      "total_files": 21,
+      "total_candles": 94926,
+      "date_range": {
+        "min": "2024-10-18T08:00:00",
+        "max": "2025-08-08T21:00:00"
+      },
+      "file_sizes": [
+        8032,
+        332513,
+        332513,
+        332513,
+        332513,
+        332513,
+        334338,
+        332516,
+        332516,
+        2100,
+        699812,
+        324158,
+        324158,
+        324155,
+        324155,
+        257698,
+        257698,
+        257698,
+        257698,
+        257696,
+        257695
+      ],
+      "timeframe_details": {
+        "H1": {
+          "files": 9,
+          "candles": 40120,
+          "avg_candles_per_file": 4458
+        },
+        "H4": {
+          "files": 1,
+          "candles": 30,
+          "avg_candles_per_file": 30
+        },
+        "M15": {
+          "files": 5,
+          "candles": 30776,
+          "avg_candles_per_file": 6155
+        },
+        "M5": {
+          "files": 6,
+          "candles": 24000,
+          "avg_candles_per_file": 4000
+        }
+      },
+      "avg_file_size_mb": 0.28
+    },
+    "USDCHF": {
+      "timeframes": [
+        "H4",
+        "M15"
+      ],
+      "total_files": 12,
+      "total_candles": 48000,
+      "date_range": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "file_sizes": [
+        202160,
+        202160,
+        202160,
+        202160,
+        202160,
+        202160,
+        323468,
+        323468,
+        323468,
+        323468,
+        323466,
+        323466
+      ],
+      "timeframe_details": {
+        "H4": {
+          "files": 6,
+          "candles": 18000,
+          "avg_candles_per_file": 3000
+        },
+        "M15": {
+          "files": 6,
+          "candles": 30000,
+          "avg_candles_per_file": 5000
+        }
+      },
+      "avg_file_size_mb": 0.25
+    },
+    "USDJPY": {
+      "timeframes": [
+        "H4",
+        "M15"
+      ],
+      "total_files": 14,
+      "total_candles": 58000,
+      "date_range": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "file_sizes": [
+        204498,
+        204498,
+        204498,
+        204498,
+        204498,
+        204954,
+        325470,
+        325470,
+        325470,
+        325470,
+        325474,
+        325474,
+        325476,
+        325476
+      ],
+      "timeframe_details": {
+        "H4": {
+          "files": 6,
+          "candles": 18000,
+          "avg_candles_per_file": 3000
+        },
+        "M15": {
+          "files": 8,
+          "candles": 40000,
+          "avg_candles_per_file": 5000
+        }
+      },
+      "avg_file_size_mb": 0.26
+    },
+    "XAUUSD": {
+      "timeframes": [
+        "H1",
+        "H4",
+        "M15"
+      ],
+      "total_files": 3,
+      "total_candles": 10350,
+      "date_range": {
+        "min": "2025-03-04T11:30:00",
+        "max": "2025-08-07T17:15:00"
+      },
+      "file_sizes": [
+        8185,
+        2147,
+        682214
+      ],
+      "timeframe_details": {
+        "H1": {
+          "files": 1,
+          "candles": 120,
+          "avg_candles_per_file": 120
+        },
+        "H4": {
+          "files": 1,
+          "candles": 30,
+          "avg_candles_per_file": 30
+        },
+        "M15": {
+          "files": 1,
+          "candles": 10200,
+          "avg_candles_per_file": 10200
+        }
+      },
+      "avg_file_size_mb": 0.22
+    }
+  },
+  "timeframes_analysis": {
+    "H4": {
+      "symbols": [
+        "AUDUSD",
+        "EURUSD",
+        "GBPUSD",
+        "USDCHF",
+        "USDJPY",
+        "XAUUSD"
+      ],
+      "total_files": 27,
+      "total_candles": 72090,
+      "avg_candles_per_file": 2670,
+      "symbols_details": {
+        "AUDUSD": {
+          "files": 6,
+          "candles": 18000
+        },
+        "EURUSD": {
+          "files": 7,
+          "candles": 18030
+        },
+        "GBPUSD": {
+          "files": 1,
+          "candles": 30
+        },
+        "USDCHF": {
+          "files": 6,
+          "candles": 18000
+        },
+        "USDJPY": {
+          "files": 6,
+          "candles": 18000
+        },
+        "XAUUSD": {
+          "files": 1,
+          "candles": 30
+        }
+      }
+    },
+    "M15": {
+      "symbols": [
+        "AUDUSD",
+        "EURUSD",
+        "GBPUSD",
+        "USDCHF",
+        "USDJPY",
+        "XAUUSD"
+      ],
+      "total_files": 58,
+      "total_candles": 312528,
+      "avg_candles_per_file": 5388,
+      "symbols_details": {
+        "AUDUSD": {
+          "files": 6,
+          "candles": 30000
+        },
+        "EURUSD": {
+          "files": 32,
+          "candles": 171552
+        },
+        "GBPUSD": {
+          "files": 5,
+          "candles": 30776
+        },
+        "USDCHF": {
+          "files": 6,
+          "candles": 30000
+        },
+        "USDJPY": {
+          "files": 8,
+          "candles": 40000
+        },
+        "XAUUSD": {
+          "files": 1,
+          "candles": 10200
+        }
+      }
+    },
+    "H1": {
+      "symbols": [
+        "EURUSD",
+        "GBPUSD",
+        "XAUUSD"
+      ],
+      "total_files": 19,
+      "total_candles": 80360,
+      "avg_candles_per_file": 4229,
+      "symbols_details": {
+        "EURUSD": {
+          "files": 9,
+          "candles": 40120
+        },
+        "GBPUSD": {
+          "files": 9,
+          "candles": 40120
+        },
+        "XAUUSD": {
+          "files": 1,
+          "candles": 120
+        }
+      }
+    },
+    "M5": {
+      "symbols": [
+        "EURUSD",
+        "GBPUSD"
+      ],
+      "total_files": 13,
+      "total_candles": 52000,
+      "avg_candles_per_file": 4000,
+      "symbols_details": {
+        "EURUSD": {
+          "files": 7,
+          "candles": 28000
+        },
+        "GBPUSD": {
+          "files": 6,
+          "candles": 24000
+        }
+      }
+    }
+  },
+  "quality_analysis": {
+    "total_files_analyzed": 10,
+    "files_with_errors": 0,
+    "files_with_gaps": 10,
+    "files_with_incomplete_data": 0,
+    "average_data_completeness": 100.0,
+    "quality_issues": [
+      "AUDUSD_H4_20250808_104701.csv: 103 time gaps",
+      "AUDUSD_H4_20250808_104702.csv: 102 time gaps",
+      "AUDUSD_H4_20250808_104707.csv: 102 time gaps",
+      "AUDUSD_H4_20250808_104708.csv: 102 time gaps",
+      "AUDUSD_H4_20250808_113424.csv: 102 time gaps",
+      "AUDUSD_H4_20250808_114605.csv: 102 time gaps",
+      "AUDUSD_M15_20250808_104702.csv: 11 time gaps",
+      "AUDUSD_M15_20250808_104703.csv: 10 time gaps",
+      "AUDUSD_M15_20250808_104707.csv: 10 time gaps",
+      "AUDUSD_M15_20250808_104708.csv: 10 time gaps"
+    ],
+    "sample_analysis": {
+      "AUDUSD_H4_20250808_104701.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "103"
+      },
+      "AUDUSD_H4_20250808_104702.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "102"
+      },
+      "AUDUSD_H4_20250808_104707.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "102"
+      },
+      "AUDUSD_H4_20250808_104708.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "102"
+      },
+      "AUDUSD_H4_20250808_113424.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "102"
+      },
+      "AUDUSD_H4_20250808_114605.csv": {
+        "rows": 3000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "102"
+      },
+      "AUDUSD_M15_20250808_104702.csv": {
+        "rows": 5000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "11"
+      },
+      "AUDUSD_M15_20250808_104703.csv": {
+        "rows": 5000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "10"
+      },
+      "AUDUSD_M15_20250808_104707.csv": {
+        "rows": 5000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "10"
+      },
+      "AUDUSD_M15_20250808_104708.csv": {
+        "rows": 5000,
+        "columns": 9,
+        "completeness_pct": 100.0,
+        "missing_cols": [],
+        "ohlc_issues": 0,
+        "time_gaps": "10"
+      }
+    }
+  },
+  "temporal_coverage": {
+    "overall_date_range": {
+      "min": "2023-08-30T20:00:00",
+      "max": "2025-08-08T22:45:00"
+    },
+    "coverage_days": 709,
+    "coverage_by_symbol": {
+      "AUDUSD": {
+        "min": "2023-08-30T20:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "EURUSD": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T22:45:00"
+      },
+      "GBPUSD": {
+        "min": "2024-10-18T08:00:00",
+        "max": "2025-08-08T21:00:00"
+      },
+      "USDCHF": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "USDJPY": {
+        "min": "2023-09-04T16:00:00",
+        "max": "2025-08-08T16:45:00"
+      },
+      "XAUUSD": {
+        "min": "2025-03-04T11:30:00",
+        "max": "2025-08-07T17:15:00"
+      }
+    },
+    "coverage_by_timeframe": {
+      "H4": {
+        "min": "2023-08-30T20:00:00",
+        "max": "2025-08-08T16:00:00"
+      },
+      "M15": {
+        "min": "2025-03-04T11:30:00",
+        "max": "2025-08-08T22:45:00"
+      },
+      "H1": {
+        "min": "2024-10-18T08:00:00",
+        "max": "2025-08-08T21:00:00"
+      },
+      "M5": {
+        "min": "2025-07-21T16:10:00",
+        "max": "2025-08-08T17:05:00"
+      }
+    },
+    "gaps_analysis": {}
+  },
+  "ict_patterns_readiness": {
+    "silver_bullet_readiness": 100,
+    "breaker_blocks_readiness": 100,
+    "liquidity_readiness": 100,
+    "multi_timeframe_readiness": 100,
+    "overall_readiness": 100.0,
+    "requirements_check": {
+      "M15_candles": {
+        "actual": 312528,
+        "required": 1000,
+        "met": true
+      },
+      "H1_candles": {
+        "actual": 80360,
+        "required": 500,
+        "met": true
+      },
+      "H4_candles": {
+        "actual": 72090,
+        "required": 200,
+        "met": true
+      },
+      "symbols_count": {
+        "actual": 6,
+        "required": 3,
+        "met": true
+      }
+    },
+    "recommendations_ict": []
+  },
+  "recommendations": [
+    "✅ Datos MT5 reales disponibles - excelente base",
+    "🔍 Calidad de datos verificada",
+    "📊 Múltiples timeframes disponibles",
+    "🎯 Suficientes datos para simulación ICT básica"
+  ],
+  "summary": {
+    "simulation_readiness": "HIGH",
+    "data_quality": "EXCELLENT",
+    "ict_patterns_support": "GOOD",
+    "recommendation": "PROCEDER CON SIMULACIÓN",
+    "confidence_level": 85
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "test_session": {
+    "start_time": "2025-08-09T09:59:52.965459",
+    "end_time": "2025-08-09T09:59:53.002904",
+    "duration_seconds": 0.037445,
+    "fase": "FASE 5 - Advanced Patterns Migration",
+    "target_architecture": "Enterprise v6.0 SIC"
+  },
+  "statistics": {
+    "total_tests": 14,
+    "passed_tests": 4,
+    "failed_tests": 10,
+    "success_rate": 28.57142857142857,
+    "total_execution_time": 0.037445
+  },
+  "results_by_category": {
+    "silver_bullet": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "breaker_blocks": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "liquidity_analyzer": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "confluence_engine": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "success_rate": 0.0
+    },
+    "integration": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "success_rate": 50.0
+    },
+    "performance": {
+      "total": 3,
+      "passed": 2,
+      "failed": 1,
+      "success_rate": 66.66666666666666
+    },
+    "error_handling": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    },
+    "edge_cases": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "test_name": "SB_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_silver_bullet' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.965694",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "BB_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_breaker_blocks' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966008",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "LA_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_liquidity_analyzer' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966247",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "CE_INIT",
+      "success": false,
+      "message": "Error en inicializaci\u00f3n: name 'create_test_confluence_engine' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966421",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "INTEGRATION_MODULES",
+      "success": false,
+      "message": "Error en integraci\u00f3n de m\u00f3dulos: name 'create_test_silver_bullet' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966590",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "INTEGRATION_DATA_FLOW",
+      "success": true,
+      "message": "Flujo de datos entre m\u00f3dulos funcionando",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966637",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REAL_DATA_AVAILABLE",
+      "success": true,
+      "message": "M\u00f3dulos enterprise no disponibles - test con datos simulados",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.966815",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "REAL_DATA_PERFORMANCE",
+      "success": true,
+      "message": "Performance con datos realistas aceptable",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.975978",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "PERFORMANCE_SILVER_BULLET",
+      "success": false,
+      "message": "Error en benchmark SB: name 'create_test_silver_bullet' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.993583",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "PERFORMANCE_MEMORY",
+      "success": true,
+      "message": "Uso de memoria dentro de l\u00edmites aceptables",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.994553",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "ERROR_HANDLING_EMPTY_DATA",
+      "success": false,
+      "message": "Fall\u00f3 con datos vac\u00edos: name 'create_test_silver_bullet' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.995303",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "ERROR_HANDLING_INVALID_PARAMS",
+      "success": false,
+      "message": "Fall\u00f3 con par\u00e1metros inv\u00e1lidos: name 'create_test_breaker_blocks' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:52.995572",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "EDGE_CASE_EXTREME_PRICES",
+      "success": false,
+      "message": "Fall\u00f3 con precios extremos: name 'create_test_liquidity_analyzer' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:53.000006",
+      "execution_time": 0.0
+    },
+    {
+      "test_name": "EDGE_CASE_DATA_GAPS",
+      "success": false,
+      "message": "Fall\u00f3 con gaps en datos: name 'create_test_confluence_engine' is not defined",
+      "details": {},
+      "timestamp": "2025-08-09T09:59:53.002593",
+      "execution_time": 0.0
+    }
+  ],
+  "recommendations": [
+    "Revisar y corregir tests fallidos antes de continuar a producci\u00f3n",
+    "Mejorar cobertura de tests para alcanzar >90% success rate"
+  ],
+  "next_steps": [
+    "\ud83d\udd27 Corregir tests fallidos identificados",
+    "\ud83d\udd27 Refactorizar m\u00f3dulos con bajo performance",
+    "\ud83d\udd27 Mejorar error handling en componentes cr\u00edticos",
+    "\ud83d\udd27 Re-ejecutar test suite despu\u00e9s de correcciones"
+  ]
+}

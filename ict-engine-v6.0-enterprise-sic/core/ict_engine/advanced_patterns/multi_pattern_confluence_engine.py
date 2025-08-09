@@ -32,22 +32,28 @@ try:
     from core.data_management.unified_memory_system import UnifiedMemorySystem
     from core.ict_engine.ict_types import TradingDirection
     from core.ict_engine.advanced_patterns.silver_bullet_enterprise import (
-        SilverBulletEnterprise, SilverBulletSignal
+        SilverBulletDetectorEnterprise
     )
     from core.ict_engine.advanced_patterns.breaker_blocks_enterprise import (
-        BreakerBlocksEnterprise, BreakerBlockSignal
+        BreakerBlockDetectorEnterprise, BreakerBlockSignal
     )
     from core.ict_engine.advanced_patterns.liquidity_analyzer_enterprise import (
-        LiquidityAnalyzerEnterprise, LiquidityPool, LiquiditySweepSignal
+        LiquidityAnalyzerEnterprise
     )
 except ImportError:
     # Fallback para testing
     print("[WARNING] Enterprise modules not available - using fallback")
-    SmartTradingLogger = None
-    UnifiedMemorySystem = None
+    SmartTradingLogger = Any
+    UnifiedMemorySystem = Any
+    BreakerBlockSignal = Any
     
     # Fallback TradingDirection for testing
-    from enum import Enum
+    class TradingDirection(Enum):
+        BUY = "buy"
+        SELL = "sell"
+        BULLISH = "bullish"
+        BEARISH = "bearish"
+        NEUTRAL = "neutral"
     class TradingDirection(Enum):
         BUY = "buy"
         SELL = "sell"
@@ -89,11 +95,11 @@ class TradeRiskLevel(Enum):
 @dataclass
 class ConfluenceFactors:
     """🎯 Factores de confluencia detectados"""
-    # Pattern signals
-    silver_bullet_signal: Optional[SilverBulletSignal] = None
-    breaker_block_signal: Optional[BreakerBlockSignal] = None
-    liquidity_pools: List[LiquidityPool] = field(default_factory=list)
-    liquidity_sweeps: List[LiquiditySweepSignal] = field(default_factory=list)
+    # Pattern signals - usando Any para type safety según REGLA #14
+    silver_bullet_signal: Optional[Any] = None
+    breaker_block_signal: Optional[Any] = None
+    liquidity_pools: List[Any] = field(default_factory=list)
+    liquidity_sweeps: List[Any] = field(default_factory=list)
     
     # Market structure
     trend_alignment: bool = False
@@ -134,37 +140,37 @@ class ConfluenceTradeSignal:
     take_profit_3: Optional[float] = None
     
     # Risk management
-    risk_level: TradeRiskLevel
-    risk_reward_ratio: float
-    position_size_pct: float
-    max_acceptable_loss_pct: float
+    risk_level: TradeRiskLevel = TradeRiskLevel.MODERATE
+    risk_reward_ratio: float = 2.0
+    position_size_pct: float = 1.0  # Default 1% position size
+    max_acceptable_loss_pct: float = 1.0
     
     # Confluence analysis
-    confluence_score: float           # 0.0 - 10.0
-    confluence_factors: ConfluenceFactors
-    total_confluences: int
-    critical_confluences: int
+    confluence_score: float = 0.0           # 0.0 - 10.0
+    confluence_factors: ConfluenceFactors = field(default_factory=ConfluenceFactors)
+    total_confluences: int = 0
+    critical_confluences: int = 0
     
     # Probability & confidence
-    win_probability: float           # 0.0 - 1.0
-    confidence_score: float          # 0.0 - 1.0
-    expected_value: float            # Esperanza matemática
+    win_probability: float = 0.5           # 0.0 - 1.0
+    confidence_score: float = 0.5          # 0.0 - 1.0
+    expected_value: float = 0.0            # Esperanza matemática
     
     # Timing & execution
-    optimal_entry_timeframe: str
-    max_wait_time_minutes: int
-    invalidation_conditions: List[str]
+    optimal_entry_timeframe: str = "M15"
+    max_wait_time_minutes: int = 30
+    invalidation_conditions: List[str] = field(default_factory=list)
     
     # Narrative & context
-    trade_narrative: str
-    market_context: str
-    key_levels: Dict[str, float]
+    trade_narrative: str = ""
+    market_context: str = ""
+    key_levels: Dict[str, float] = field(default_factory=dict)
     
     # Metadata
-    timestamp: datetime
-    symbol: str
-    timeframe: str
-    analysis_session_id: str
+    timestamp: datetime = field(default_factory=datetime.now)
+    symbol: str = ""
+    timeframe: str = ""
+    analysis_session_id: str = ""
 
 
 class MultiPatternConfluenceEngine:
@@ -1001,7 +1007,11 @@ class MultiPatternConfluenceEngine:
         if confluence_group.get('liquidity_sweeps'):
             patterns.append("Liquidity Sweep")
         
-        direction_text = "COMPRA" if direction == TradingDirection.BUY if TradingDirection else True else "VENTA"
+        # 📌 REGLA #14: Expresión condicional corregida
+        try:
+            direction_text = "COMPRA" if direction == TradingDirection.BUY else "VENTA"
+        except:
+            direction_text = "NEUTRAL"
         
         return f"Confluencia {direction_text} detectada con patrones: {', '.join(patterns)}"
 

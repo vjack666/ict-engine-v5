@@ -631,6 +631,156 @@ MODIFICAR TEST cuando:
 - ❌ NO modificar sin documentar la razón
 ```
 
+### 🧪 **REGLA #12: TEST PRINCIPAL DE FASES ENTERPRISE - EVOLUCIÓN CONTINUA**
+
+### 🎯 **PRINCIPIO FUNDAMENTAL:**
+**"CADA NUEVA FASE DEBE ACTUALIZAR EL TEST PRINCIPAL ENTERPRISE PARA VALIDACIÓN CONTINUA"**
+
+#### **12.1 Test Principal Enterprise Obligatorio:**
+```
+📁 ARCHIVO PRINCIPAL: test_fases_advanced_patterns_enterprise.py
+🎯 PROPÓSITO: Test maestro que evoluciona con cada fase completada
+🔄 ACTUALIZACIÓN: Obligatoria al completar cualquier fase nueva
+📊 CRITERIO ÉXITO: >90% pass rate + 100% core modules
+```
+
+#### **12.2 Evolución Automática del Test:**
+```
+🔄 AL COMPLETAR NUEVA FASE:
+1. ✅ Agregar módulos nuevos al test principal
+2. ✅ Incluir funciones/clases implementadas en la fase
+3. ✅ Actualizar casos de prueba para nuevos patterns
+4. ✅ Verificar integración con sistema existente
+5. ✅ Validar performance de componentes nuevos
+6. ✅ Asegurar compatibilidad backward con fases anteriores
+
+🧪 ESTRUCTURA EVOLUTIVA OBLIGATORIA:
+- ✅ test_fase1_foundation()         # Base arquitectónica
+- ✅ test_fase2_core_patterns()      # BOS, CHoCH, patterns base
+- ✅ test_fase3_memory_integration() # Sistema de memoria
+- ✅ test_fase4_real_data_validation() # Validación datos MT5
+- ✅ test_fase5_advanced_patterns()  # Silver Bullet, Breaker, Liquidity
+- ✅ test_fase6_dashboard_enterprise() # [Próxima fase]
+- ✅ test_faseN_new_functionality()  # Fases futuras
+```
+
+#### **12.3 Detección de Fallos Menores y Performance:**
+```
+🔍 FOCO EN DETECCIÓN PROACTIVA:
+- ✅ Memory leaks en operaciones repetitivas
+- ✅ Performance degradation (<5s enterprise)
+- ✅ Import inconsistencies entre módulos
+- ✅ Type hint errors en nuevas implementaciones
+- ✅ Integration points que puedan fallar
+- ✅ Regression en funcionalidades existentes
+- ✅ Cache invalidation issues
+- ✅ Logging format inconsistencies
+
+🎯 MÉTRICAS OBLIGATORIAS POR FASE:
+- ✅ Execution time: <5s total para fase completa
+- ✅ Memory usage: Sin incremento >10% entre fases
+- ✅ Success rate: >90% global, 100% core modules
+- ✅ Error rate: <0.1% en operaciones críticas
+- ✅ Integration score: >95% entre todos los componentes
+```
+
+#### **12.4 Template de Actualización por Fase:**
+```python
+#!/usr/bin/env python3
+"""
+🧪 TEST FASES ADVANCED PATTERNS ENTERPRISE - v[VERSION]
+========================================================
+Test principal que evoluciona con cada fase completada.
+✅ REGLA #12: Evolución continua del test enterprise
+📊 TARGET: >90% pass rate + 100% core modules
+"""
+
+def test_fase_N_nueva_funcionalidad():
+    """
+    🎯 Test para FASE N completada
+    📋 Valida: [Lista específica de lo implementado]
+    """
+    log_trading_decision_smart_v6("FASE_N_TEST_START", {
+        "fase": "N",
+        "components": ["component1", "component2"],
+        "target_performance": "<5s"
+    })
+    
+    # ✅ REGLA #12: Validación de componentes nuevos
+    for component in new_components:
+        assert validate_component_integration(component)
+        assert validate_component_performance(component) < 5.0
+        assert validate_backward_compatibility(component)
+    
+    # ✅ REGLA #12: Detección de fallos menores
+    memory_baseline = get_memory_usage()
+    performance_metrics = run_performance_suite()
+    integration_results = validate_all_integrations()
+    
+    assert performance_metrics.avg_response_time < 5.0
+    assert integration_results.success_rate > 0.95
+    assert memory_usage_acceptable(memory_baseline)
+```
+
+#### **12.5 Procedimiento de Actualización Obligatorio:**
+```
+📋 AL COMPLETAR CUALQUIER FASE:
+
+1. 🔄 ACTUALIZAR TEST PRINCIPAL:
+   - ✅ Agregar test_fase_N() para nueva fase
+   - ✅ Incluir todos los módulos implementados
+   - ✅ Validar integración con fases anteriores
+   - ✅ Verificar performance acumulada <5s
+
+2. 🧪 EJECUTAR VALIDACIÓN COMPLETA:
+   - ✅ Run test completo (todas las fases)
+   - ✅ Verificar pass rate >90%
+   - ✅ Confirmar 100% core modules passing
+   - ✅ Validar métricas de performance
+
+3. 📝 DOCUMENTAR EVOLUCIÓN:
+   - ✅ Actualizar CHANGELOG del test
+   - ✅ Registrar nuevos componentes validados
+   - ✅ Documentar métricas obtenidas
+   - ✅ Marcar fase como enterprise-ready
+
+4. 🎯 PLANIFICAR PRÓXIMA ITERACIÓN:
+   - ✅ Identificar componentes de siguiente fase
+   - ✅ Preparar estructura de test para fase N+1
+   - ✅ Establecer criterios de éxito específicos
+```
+
+#### **12.6 Criterios de Falla Crítica:**
+```
+🚨 FALLA CRÍTICA SI:
+- ❌ Pass rate <90% global
+- ❌ Cualquier core module falla (0% tolerancia)
+- ❌ Performance >5s en cualquier fase
+- ❌ Memory usage incrementa >10% sin justificación
+- ❌ Integration score <95%
+- ❌ Regression en fases anteriores detectada
+
+✅ ÉXITO ENTERPRISE SI:
+- ✅ Pass rate >90% (target: >95%)
+- ✅ 100% core modules passing
+- ✅ Performance <5s todas las fases
+- ✅ Memory usage estable o mejorada
+- ✅ Integration score >95%
+- ✅ Backward compatibility 100%
+```
+
+#### **12.7 Integración con Otras Reglas:**
+```
+🔗 REGLA #12 SE INTEGRA CON:
+- REGLA #5: Control de progreso (actualizar bitácora post-test)
+- REGLA #7: Tests primero (mantener lógica correcta del test)
+- REGLA #8: Testing crítico SIC/SLUC (usar en test principal)
+- REGLA #10: Verificación documentación (documentar evolución)
+- REGLA #14: Limpieza código (test debe estar libre de warnings)
+```
+
+---
+
 ### 🧪 **REGLA #8: TESTING CRÍTICO CON SIC/SLUC Y POWERSHELL**
 ```
 🎯 TESTING ENTERPRISE CON MÁXIMA RIGUROSIDAD:
@@ -1327,7 +1477,126 @@ class BreakerDetector:
 - REGLA #4: Sistema SIC y SLUC obligatorio (logging de correcciones)
 - REGLA #8: Testing con SLUC (tests limpios sin warnings)
 - REGLA #10: Verificación de documentación (código limpio para commit)
+- REGLA #12: Test principal de fases (tests enterprise evolutivos)
 - REGLA #13: Control de evolución tests (eliminar fallos por imports)
+```
+
+---
+
+### 🔄 **REGLA #13: CONTROL DE EVOLUCIÓN DE TESTS Y NOMENCLATURA ENTERPRISE**
+
+### 🎯 **PRINCIPIO DE EVOLUCIÓN CONTINUA:**
+**"LOS TESTS DEBEN EVOLUCIONAR CON EL SISTEMA Y USAR NOMENCLATURA ENTERPRISE RECONOCIBLE"**
+
+#### **13.1 Nomenclatura Enterprise Obligatoria:**
+```
+📁 ARCHIVOS DE TEST ENTERPRISE - NOMENCLATURA ESTÁNDAR:
+- ✅ test_fases_advanced_patterns_enterprise.py (PRINCIPAL)
+- ✅ test_core_modules_enterprise.py
+- ✅ test_integration_enterprise.py  
+- ✅ test_performance_enterprise.py
+- ✅ test_memory_enterprise.py
+
+🎯 PATRÓN OBLIGATORIO: test_[scope]_[functionality]_enterprise.py
+- scope: fases, core, integration, performance, memory
+- functionality: específica del área (advanced_patterns, sic_sluc, etc.)
+- enterprise: sufijo obligatorio para tests críticos
+```
+
+#### **13.2 Evolución Automática de Tests:**
+```
+🔄 CADA VEZ QUE SE IMPLEMENTE:
+- ✅ Nueva fase → Actualizar test_fases_advanced_patterns_enterprise.py
+- ✅ Nuevo módulo core → Actualizar test_core_modules_enterprise.py
+- ✅ Nueva integración → Actualizar test_integration_enterprise.py
+- ✅ Optimización → Validar en test_performance_enterprise.py
+- ✅ Memoria nueva → Validar en test_memory_enterprise.py
+
+🧪 CRITERIOS DE ACTUALIZACIÓN:
+- ✅ Agregar tests para nueva funcionalidad inmediatamente
+- ✅ Mantener backward compatibility con tests existentes
+- ✅ Incrementar coverage sin degradar performance
+- ✅ Asegurar que tests reflejen estado real del sistema
+```
+
+#### **13.3 Eliminación de Fallos por Imports y Dependencias:**
+```
+🔧 CORRECCIÓN AUTOMÁTICA OBLIGATORIA:
+- ✅ Detectar imports obsoletos automáticamente
+- ✅ Actualizar imports cuando módulos cambien de ubicación
+- ✅ Verificar que todas las dependencias estén disponibles
+- ✅ Corregir type hints inconsistentes en tests
+- ✅ Eliminar referencias a módulos deprecados
+- ✅ Unificar nomenclatura de funciones de test factory
+
+🎯 TEMPLATE IMPORTS ENTERPRISE STANDARD:
+```python
+#!/usr/bin/env python3
+"""
+🧪 TEST [NOMBRE] ENTERPRISE - v[VERSION]
+====================================
+✅ REGLA #13: Nomenclatura y evolución enterprise
+"""
+
+# ✅ REGLA #13: Imports estándar enterprise
+from datetime import datetime
+from typing import Dict, List, Optional, Any
+import sys
+from pathlib import Path
+
+# ✅ REGLA #13: SIC/SLUC enterprise obligatorio
+try:
+    from sistema.sic_bridge import SICBridge
+    from core.smart_trading_logger import log_trading_decision_smart_v6
+    ENTERPRISE_READY = True
+except ImportError:
+    ENTERPRISE_READY = False
+    def log_trading_decision_smart_v6(event, data, **kwargs):
+        print(f"[FALLBACK] {event}: {data}")
+
+# ✅ REGLA #13: Tests factories unificados
+from tests.test_factories.enterprise_test_factories import (
+    create_test_market_data,
+    create_test_trading_context,
+    create_test_memory_state
+)
+```
+
+#### **13.4 Migración de Tests Legacy a Enterprise:**
+```
+🚀 PROCESO DE MIGRACIÓN OBLIGATORIO:
+
+📋 RENOMBRAR ARCHIVOS SEGÚN ESTÁNDAR:
+- test_fase5_advanced_patterns_enterprise.py → test_fases_advanced_patterns_enterprise.py
+- test_old_name.py → test_[scope]_[functionality]_enterprise.py
+- Mantener historial de cambios en CHANGELOG
+
+🔄 ACTUALIZAR CONTENIDO:
+- ✅ Aplicar REGLA #12 (test principal de fases)
+- ✅ Usar nomenclatura enterprise estándar
+- ✅ Integrar con SIC/SLUC obligatoriamente
+- ✅ Validar performance <5s enterprise
+- ✅ Incluir detección de fallos menores
+```
+
+#### **13.5 Validación de Evolución:**
+```
+📊 MÉTRICAS DE EVOLUCIÓN OBLIGATORIAS:
+- ✅ Test coverage no debe decrecer al evolucionar
+- ✅ Performance debe mantenerse <5s al agregar tests
+- ✅ Pass rate debe mantenerse >90% post-evolución
+- ✅ Nuevos tests deben seguir template enterprise
+- ✅ Imports deben estar limpios (sin warnings)
+- ✅ Nomenclatura debe ser consistente enterprise-wide
+
+🔍 VALIDACIÓN PRE-COMMIT:
+- ✅ Ejecutar test_fases_advanced_patterns_enterprise.py completo
+- ✅ Verificar que no hay imports rotos
+- ✅ Confirmar nomenclatura enterprise en archivos nuevos
+- ✅ Validar que tests evolucionaron correctamente
+```
+
+---
 ```
 
 ---
