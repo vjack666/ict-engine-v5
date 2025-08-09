@@ -1619,9 +1619,131 @@ from tests.test_factories.enterprise_test_factories import (
 
 ---
 
+## 🧪 **REGLA #11: TESTING ESTRATÉGICO CON DATOS REALES MT5**
+
+### 🎯 **PRINCIPIO FUNDAMENTAL:**
+```
+🚨 CRÍTICO: Testing con datos reales MT5 SOLO cuando módulos estén 100% completos
+
+📊 ESTRATEGIA DE TESTING FASE A FASE:
+- ✅ Completar 100% implementación del módulo
+- ✅ Validar todos los métodos de detección  
+- ✅ Verificar integración enterprise
+- ✅ ENTONCES ejecutar testing con datos reales MT5
+- ❌ NO testing prematuro con datos parciales
+```
+
+### 📋 **PROTOCOLO DE TESTING MODULAR:**
+
+#### 🔍 **FASE 1: VALIDACIÓN DE COMPLETITUD**
+```python
+# CHECKLIST OBLIGATORIO ANTES DE TESTING REAL:
+✅ Todos los métodos detect_* implementados
+✅ Clases enterprise inicializadas correctamente  
+✅ Integración con UnifiedMemorySystem verificada
+✅ SIC v3.1 + SLUC v2.1 conectados
+✅ Performance <5s enterprise validada
+✅ Zero import errors o dependencias faltantes
+```
+
+#### 🎯 **FASE 2: ESTRATEGIA BOS (Break of Structure)**
+```python
+# MÓDULO BOS - INTEGRACIÓN OBLIGATORIA AL TESTING:
+📦 Detectores a incluir:
+   - ICTPatternDetector (detect_bos_with_memory)
+   - ICTPatternDetector (detect_choch_with_memory) 
+   - BreakerBlockDetectorEnterprise (detect_breaker_blocks)
+   - Displacement + Structure analysis
+
+📊 Métricas BOS específicas:
+   - Precisión detección BOS vs CHOCH
+   - Timeframe validation (H4→M15→M5)
+   - Institutional vs Retail classification
+   - Memory-enhanced detection rate
+   - Multi-pattern confluence con BOS
+```
+
+#### ⚡ **FASE 3: TESTING REAL MT5 - PROTOCOLO**
+```python
+# EJECUTAR SOLO CUANDO 100% COMPLETO:
+def run_enterprise_testing_protocol():
+    """
+    Protocol for real MT5 data testing - Enterprise Grade
+    """
+    # 1. Pre-validation
+    validate_module_completeness()
+    validate_enterprise_integration() 
+    validate_memory_system_active()
+    
+    # 2. BOS-Specific Testing
+    test_bos_detection_accuracy()
+    test_bos_vs_choch_differentiation()
+    test_bos_multi_timeframe_validation()
+    test_bos_institutional_classification()
+    
+    # 3. Real Data Execution
+    execute_detector_performance_dashboard()
+    generate_bos_specific_metrics()
+    validate_enterprise_performance_criteria()
+    
+    # 4. Results Validation
+    ensure_precision_above_75_percent()
+    ensure_coverage_meets_enterprise_standards()
+    ensure_performance_under_5_seconds()
+```
+
+### 🔧 **IMPLEMENTACIÓN INMEDIATA:**
+
+#### 📊 **AÑADIR BOS AL DETECTOR DASHBOARD:**
+```python
+# AGREGAR A detector_performance_dashboard.py:
+
+"BOS Detector": ICTPatternDetector(),  # detect_bos_with_memory
+"CHOCH Detector": ICTPatternDetector(), # detect_choch_with_memory
+
+# Análisis específico BOS:
+elif module_name == "BOS Detector":
+    patterns = detector.detect_bos_with_memory(df, timeframe=timeframe, symbol=symbol)
+    signals = len([p for p in patterns if p.get('bos_strength', 0) > 0.6])
+
+elif module_name == "CHOCH Detector":
+    patterns = detector.detect_choch_with_memory(df, timeframe=timeframe, symbol=symbol)
+    signals = len([p for p in patterns if p.get('choch_confidence', 0) > 0.7])
+```
+
+### 🎯 **REGLAS DE EJECUCIÓN:**
+
+#### ✅ **CUÁNDO EJECUTAR TESTING REAL:**
+- ✅ Módulo 100% implementado y funcional
+- ✅ Todos los detect_* methods operativos
+- ✅ Zero errores de import o dependencias
+- ✅ Integración enterprise verificada
+- ✅ Performance pre-validada en tests unitarios
+
+#### ❌ **CUÁNDO NO EJECUTAR:**
+- ❌ Módulo parcialmente implementado
+- ❌ Métodos detect_* retornando []
+- ❌ Import errors o warnings críticos
+- ❌ Performance >5s en tests básicos
+- ❌ Memoria UnifiedMemorySystem no conectada
+
+### 📈 **MÉTRICAS DE ÉXITO BOS:**
+```yaml
+🎯 BOS Detection Targets:
+  Precisión_BOS: >80%
+  Precisión_CHOCH: >75% 
+  Diferenciación_BOS_vs_CHOCH: >85%
+  Multi_timeframe_accuracy: >70%
+  Institutional_classification: >80%
+  Performance_enterprise: <5s
+  Memory_enhanced_detection: +15% vs basic
+```
+
+---
+
 **Creado por:** ICT Engine v6.0 Enterprise Team  
-**Fecha:** Agosto 8, 2025  
-**Versión:** 1.0  
+**Fecha:** Agosto 9, 2025  
+**Versión:** 1.1 - BOS Testing Strategy Added  
 **Estado:** 📋 **ACTIVO Y OBLIGATORIO PARA COPILOT**
 
 ---
@@ -1635,4 +1757,4 @@ Este archivo debe actualizarse cuando:
 - Se agreguen nuevas reglas de arquitectura
 - Se detecten problemas recurrentes
 
-**Próxima revisión:** Post-implementación memoria trader real
+**Próxima revisión:** Post-implementación testing BOS real
