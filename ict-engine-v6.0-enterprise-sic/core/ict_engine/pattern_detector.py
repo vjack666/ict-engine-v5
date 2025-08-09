@@ -1223,6 +1223,407 @@ class ICTPatternDetector:
             return False
 
     # ===============================
+    # FAIR VALUE GAPS WITH MEMORY
+    # ===============================
+    
+    def detect_fvg_with_memory(self, 
+                              data=None, 
+                              timeframe: str = "M15", 
+                              symbol: str = "EURUSD") -> dict:
+        """
+        💎 FVG Detection con memoria histórica (FASE 1)
+        🔄 MIGRATED: Enhanced version of detectar_fair_value_gaps()
+        ✅ REGLA #2: Memoria crítica aplicada
+        ✅ REGLA #4: SIC/SLUC integration
+        """
+        
+        try:
+            start_time = time.time()
+            self._log_info(f"🔍 INICIANDO FVG detection con memoria - {symbol} {timeframe}")
+            
+            # 1. Preparar datos
+            if data is None:
+                if not self._downloader:
+                    return {
+                        'detected_fvgs': [],
+                        'memory_enhanced': False,
+                        'error': 'No downloader available'
+                    }
+                
+                data = self._downloader.download_candles(
+                    symbol=symbol,
+                    timeframe=timeframe,
+                    bars_count=self.pattern_lookback
+                )
+            
+            if data is None or len(data) < 3:
+                self._log_warning(f"⚠️ Dataset insuficiente para análisis FVG: {len(data) if data is not None else 0} velas")
+                return {
+                    'detected_fvgs': [],
+                    'memory_enhanced': False,
+                    'error': 'Insufficient data'
+                }
+            
+            # 2. Base FVG detection (MIGRATED LOGIC)
+            fvg_candidates = self._detect_fair_value_gaps_enhanced(data, timeframe, symbol)
+            
+            # 3. Memory enhancement si está disponible
+            enhanced_fvgs = fvg_candidates
+            memory_enhanced = False
+            
+            if self._unified_memory_system and hasattr(self._unified_memory_system, 'enhance_fvg_detection'):
+                try:
+                    enhancement_result = self._unified_memory_system.enhance_fvg_detection(
+                        fvg_candidates, symbol, timeframe
+                    )
+                    if enhancement_result:
+                        enhanced_fvgs = enhancement_result.get('enhanced_fvgs', fvg_candidates)
+                        memory_enhanced = True
+                        self._log_info(f"🧠 Memory enhancement aplicado: {len(enhanced_fvgs)} FVGs procesados")
+                except Exception as e:
+                    self._log_warning(f"⚠️ Memory enhancement falló: {e}")
+            
+            # 4. Performance metrics
+            execution_time = time.time() - start_time
+            
+            result = {
+                'detected_fvgs': enhanced_fvgs,
+                'total_detected': len(enhanced_fvgs),
+                'memory_enhanced': memory_enhanced,
+                'execution_time': execution_time,
+                'symbol': symbol,
+                'timeframe': timeframe,
+                'performance_ok': execution_time < 5.0,
+                'timestamp': datetime.now().isoformat()
+            }
+            
+            self._log_info(f"✅ FVG detection completado: {len(enhanced_fvgs)} FVGs en {execution_time:.2f}s")
+            
+            return result
+            
+        except Exception as e:
+            self._log_error(f"❌ Error en FVG detection con memoria: {e}")
+            return {
+                'detected_fvgs': [],
+                'memory_enhanced': False,
+                'error': str(e),
+                'execution_time': time.time() - start_time if 'start_time' in locals() else 0
+            }
+    
+    def _detect_fair_value_gaps_enhanced(self, candles, timeframe: str, symbol: str) -> List[FairValueGap]:
+        """
+        🔄 MIGRATED: Enhanced version of detectar_fair_value_gaps()
+        Migra la lógica completa desde proyecto principal/poi_detector.py
+        """
+        fvgs = []
+        
+        try:
+            if len(candles) < 3:
+                return fvgs
+            
+            self._log_debug(f"Escaneando {len(candles)-2} posiciones para detectar Fair Value Gaps...")
+            
+            bullish_fvg_count = 0
+            bearish_fvg_count = 0
+            
+            for i in range(1, len(candles) - 1):
+                prev_candle = candles.iloc[i-1]
+                current_candle = candles.iloc[i]
+                next_candle = candles.iloc[i+1]
+                
+                # BULLISH FVG: next_low > prev_high (MIGRATED LOGIC)
+                if next_candle['low'] > prev_candle['high']:
+                    gap_size = next_candle['low'] - prev_candle['high']
+                    gap_pips = gap_size * 10000
+                    
+                    # MIGRATED: Usar scoring legacy
+                    score = self._calcular_score_fvg_enhanced(prev_candle, current_candle, next_candle, "BULLISH")
+                    confidence = self._determinar_confianza_fvg_enhanced(prev_candle, next_candle)
+                    
+                    # Crear FVG con estructura enterprise
+                    fvg_bullish = FairValueGap(
+                        fvg_type=FVGType.BULLISH_FVG,
+                        high_price=next_candle['low'],
+                        low_price=prev_candle['high'],
+                        origin_candle_index=i,
+                        origin_timestamp=current_candle.name if hasattr(current_candle.name, 'timestamp') else datetime.now(),
+                        strength=self._classify_pattern_strength(gap_size),
+                        status=PatternStatus.ACTIVE,
+                        probability=min(90.0, score * 1.2),
+                        filled_percentage=0.0,
+                        is_filled=False,
+                        fill_timestamp=None,
+                        gap_size_pips=gap_pips,
+                        volume_confirmation=False,
+                        structure_confluence=False,
+                        timeframe=timeframe,
+                        symbol=symbol,
+                        narrative=f"Bullish FVG - Gap: {gap_pips:.1f} pips | Score: {score} | Confidence: {confidence:.2f}",
+                        sic_stats={
+                            'legacy_score': score,
+                            'legacy_confidence': confidence
+                        }
+                    )
+                    
+                    fvgs.append(fvg_bullish)
+                    bullish_fvg_count += 1
+                    
+                    self._log_debug(f"✅ BULLISH_FVG @ {fvg_bullish.get_middle_price():.5f} | Gap: {gap_pips:.1f} pips | Score: {score}")
+                
+                # BEARISH FVG: next_high < prev_low (MIGRATED LOGIC)
+                elif next_candle['high'] < prev_candle['low']:
+                    gap_size = prev_candle['low'] - next_candle['high']
+                    gap_pips = gap_size * 10000
+                    
+                    # MIGRATED: Usar scoring legacy
+                    score = self._calcular_score_fvg_enhanced(prev_candle, current_candle, next_candle, "BEARISH")
+                    confidence = self._determinar_confianza_fvg_enhanced(prev_candle, next_candle)
+                    
+                    # Crear FVG con estructura enterprise
+                    fvg_bearish = FairValueGap(
+                        fvg_type=FVGType.BEARISH_FVG,
+                        high_price=prev_candle['low'],
+                        low_price=next_candle['high'],
+                        origin_candle_index=i,
+                        origin_timestamp=current_candle.name if hasattr(current_candle.name, 'timestamp') else datetime.now(),
+                        strength=self._classify_pattern_strength(gap_size),
+                        status=PatternStatus.ACTIVE,
+                        probability=min(90.0, score * 1.2),
+                        filled_percentage=0.0,
+                        is_filled=False,
+                        fill_timestamp=None,
+                        gap_size_pips=gap_pips,
+                        volume_confirmation=False,
+                        structure_confluence=False,
+                        timeframe=timeframe,
+                        symbol=symbol,
+                        narrative=f"Bearish FVG - Gap: {gap_pips:.1f} pips | Score: {score} | Confidence: {confidence:.2f}",
+                        sic_stats={
+                            'legacy_score': score,
+                            'legacy_confidence': confidence
+                        }
+                    )
+                    
+                    fvgs.append(fvg_bearish)
+                    bearish_fvg_count += 1
+                    
+                    self._log_debug(f"✅ BEARISH_FVG @ {fvg_bearish.get_middle_price():.5f} | Gap: {gap_pips:.1f} pips | Score: {score}")
+            
+            self._log_info(f"🎯 DETECCIÓN FVG COMPLETADA: {len(fvgs)} total ({bullish_fvg_count} alcistas, {bearish_fvg_count} bajistas)")
+            
+            return fvgs
+            
+        except Exception as e:
+            self._log_error(f"❌ ERROR en detección de Fair Value Gaps enhanced: {e}")
+            return []
+    
+    # ===============================
+    # FASE 2: MEMORY ENHANCEMENT METHODS
+    # ===============================
+    
+    def _enhance_fvg_with_memory_v2(self, fvg: FairValueGap, historical_context: dict, market_context: dict) -> FairValueGap:
+        """
+        🧠 FASE 2: Mejora FVG individual con memoria histórica y contexto de mercado
+        ✅ REGLA #2: Aplica experiencia histórica para mejorar detección
+        """
+        try:
+            enhanced_fvg = fvg
+            
+            # 1. Ajuste de probabilidad basado en contexto histórico
+            if historical_context and historical_context.get('success_rate'):
+                historical_success = historical_context['success_rate']
+                confidence_multiplier = 0.7 + 0.3 * historical_success
+                enhanced_fvg.probability = min(0.95, fvg.probability * confidence_multiplier)
+            
+            # 2. Evaluación de confluence con estructura de mercado
+            if market_context:
+                structure_bias = market_context.get('structure_bias', 'neutral')
+                fvg_direction = 'bullish' if fvg.fvg_type == FVGType.BULLISH_FVG else 'bearish'
+                
+                if structure_bias == fvg_direction:
+                    enhanced_fvg.structure_confluence = True
+                    enhanced_fvg.probability = min(0.95, enhanced_fvg.probability * 1.2)
+                elif structure_bias != 'neutral' and structure_bias != fvg_direction:
+                    enhanced_fvg.probability *= 0.8
+            
+            # 3. Análisis de volumen si está disponible
+            if market_context.get('volume_analysis'):
+                volume_confirmation = market_context['volume_analysis'].get('above_average', False)
+                enhanced_fvg.volume_confirmation = volume_confirmation
+                if volume_confirmation:
+                    enhanced_fvg.probability = min(0.95, enhanced_fvg.probability * 1.1)
+            
+            # 4. Actualizar métricas SIC
+            enhanced_fvg.sic_stats.update({
+                'memory_enhanced': True,
+                'historical_success_rate': historical_context.get('success_rate', 0.5) if historical_context else 0.5,
+                'structure_confluence': enhanced_fvg.structure_confluence,
+                'fase_2_applied': True
+            })
+            
+            return enhanced_fvg
+            
+        except Exception as e:
+            self._log_error(f"Error en enhancement FVG con memoria: {e}")
+            return fvg
+    
+    def _filter_fvgs_by_quality(self, fvgs: List[FairValueGap], historical_context: dict) -> List[FairValueGap]:
+        """
+        🔍 FASE 2: Filtra FVGs basado en calidad y experiencia histórica
+        ✅ REGLA #2: Usa memoria para eliminar falsos positivos
+        """
+        try:
+            if not fvgs:
+                return fvgs
+            
+            # Parámetros de filtrado basados en memoria
+            min_probability = 0.6  # Default
+            min_gap_size = 3.0     # pips
+            
+            if historical_context:
+                # Ajustar filtros basado en experiencia histórica
+                avg_success_rate = historical_context.get('success_rate', 0.6)
+                if avg_success_rate > 0.8:
+                    min_probability = 0.5  # Relajar filtros si históricamente exitoso
+                elif avg_success_rate < 0.4:
+                    min_probability = 0.7  # Endurecer filtros si históricamente fallido
+            
+            filtered_fvgs = []
+            for fvg in fvgs:
+                # Filtro de probabilidad
+                if fvg.probability < min_probability:
+                    continue
+                
+                # Filtro de tamaño de gap
+                if fvg.gap_size_pips < min_gap_size:
+                    continue
+                
+                # Filtro de falsos positivos conocidos
+                if self._is_known_false_positive_fvg(fvg, historical_context):
+                    continue
+                
+                filtered_fvgs.append(fvg)
+            
+            self._log_debug(f"🔍 FVGs filtrados: {len(fvgs)} → {len(filtered_fvgs)} (quality threshold: {min_probability})")
+            return filtered_fvgs
+            
+        except Exception as e:
+            self._log_error(f"Error en filtrado de FVGs: {e}")
+            return fvgs
+    
+    def _apply_fvg_confluence_analysis(self, fvgs: List[FairValueGap], market_context: dict) -> List[FairValueGap]:
+        """
+        🎯 FASE 2: Aplica análisis de confluence entre FVGs y otros patterns
+        ✅ REGLA #2: Mejora detección mediante confluence con OBs, estructura, etc.
+        """
+        try:
+            if not fvgs or not market_context:
+                return fvgs
+            
+            confluence_fvgs = []
+            
+            for fvg in fvgs:
+                confluence_score = 0
+                confluence_factors = []
+                
+                # 1. Confluence con Order Blocks
+                nearby_obs = market_context.get('nearby_order_blocks', [])
+                for ob in nearby_obs:
+                    distance = abs(fvg.get_middle_price() - ob.get('middle_price', 0))
+                    if distance < 50 * 0.0001:  # ~50 pips
+                        confluence_score += 1
+                        confluence_factors.append('order_block_proximity')
+                
+                # 2. Confluence con niveles de estructura
+                structure_levels = market_context.get('structure_levels', [])
+                for level in structure_levels:
+                    distance = abs(fvg.get_middle_price() - level.get('price', 0))
+                    if distance < 20 * 0.0001:  # ~20 pips
+                        confluence_score += 1
+                        confluence_factors.append('structure_level')
+                
+                # 3. Confluence con trend direction
+                trend_direction = market_context.get('trend_direction', 'neutral')
+                fvg_direction = 'bullish' if fvg.fvg_type == FVGType.BULLISH_FVG else 'bearish'
+                
+                if trend_direction == fvg_direction:
+                    confluence_score += 1
+                    confluence_factors.append('trend_alignment')
+                
+                # 4. Aplicar confluence score
+                if confluence_score > 0:
+                    confluence_multiplier = 1.0 + (confluence_score * 0.1)
+                    fvg.probability = min(0.95, fvg.probability * confluence_multiplier)
+                    fvg.structure_confluence = confluence_score >= 2
+                    
+                    # Actualizar SIC stats
+                    fvg.sic_stats.update({
+                        'confluence_score': confluence_score,
+                        'confluence_factors': confluence_factors
+                    })
+                
+                confluence_fvgs.append(fvg)
+            
+            self._log_debug(f"🎯 Confluence analysis aplicado a {len(fvgs)} FVGs")
+            return confluence_fvgs
+            
+        except Exception as e:
+            self._log_error(f"Error en confluence analysis: {e}")
+            return fvgs
+    
+    def _is_known_false_positive_fvg(self, fvg: FairValueGap, historical_context: dict) -> bool:
+        """
+        🚫 FASE 2: Detecta si el FVG es similar a falsos positivos históricos
+        ✅ REGLA #2: Usa memoria para evitar errores repetitivos
+        """
+        try:
+            if not historical_context:
+                return False
+            
+            failed_patterns = historical_context.get('failed_patterns', [])
+            
+            for failed_pattern in failed_patterns:
+                # Comparar características similares
+                gap_size_similar = abs(fvg.gap_size_pips - failed_pattern.get('gap_size_pips', 0)) < 5
+                probability_similar = abs(fvg.probability - failed_pattern.get('probability', 0)) < 0.2
+                same_type = str(fvg.fvg_type.value) == failed_pattern.get('fvg_type', '')
+                
+                if gap_size_similar and probability_similar and same_type:
+                    self._log_debug(f"🚫 FVG similar a falso positivo histórico detectado")
+                    return True
+            
+            return False
+            
+        except Exception as e:
+            self._log_error(f"Error en detección de falsos positivos: {e}")
+            return False
+    
+    def _calcular_score_fvg_enhanced(self, prev_candle, current_candle, next_candle, direction):
+        """🔄 MIGRATED: Calcula score específico para Fair Value Gaps desde legacy"""
+        base_score = 55
+        
+        # Size del gap
+        if direction == "BULLISH":
+            gap_size = next_candle['low'] - prev_candle['high']
+        else:
+            gap_size = prev_candle['low'] - next_candle['high']
+        
+        # Normalizar gap size a pips
+        gap_pips = gap_size * 10000
+        gap_bonus = min(gap_pips * 2, 25)  # Max 25 puntos bonus
+        
+        return int(base_score + gap_bonus)
+    
+    def _determinar_confianza_fvg_enhanced(self, prev_candle, next_candle):
+        """🔄 MIGRATED: Determina confianza del Fair Value Gap desde legacy"""
+        # Mayor confianza para gaps más grandes
+        gap_size = abs(next_candle['low'] - prev_candle['high']) if next_candle['low'] > prev_candle['high'] else abs(prev_candle['low'] - next_candle['high'])
+        gap_pips = gap_size * 10000
+        
+        confidence = 0.4 + min(gap_pips * 0.05, 0.4)  # 0.4 a 0.8
+        return min(confidence, 0.9)
+
+    # ===============================
     # MÉTODOS DE LOGGING
     # ===============================
     
