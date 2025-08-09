@@ -297,7 +297,121 @@ docs/components/ (TODOS LOS .md)
 
 ---
 
-## 📝 **REGLA #10: CONTROL DE VERSIONES EN BITÁCORAS**
+## � **REGLA #10: VERIFICACIÓN DE DOCUMENTACIÓN CRÍTICA AL FINALIZAR**
+
+### 🎯 **PRINCIPIO DE DOCUMENTACIÓN SINCRONIZADA:**
+**"NUNCA FINALIZAR SIN CONFIRMAR QUE TODOS LOS ARCHIVOS CRÍTICOS ESTÉN ACTUALIZADOS CON LOS LOGROS"**
+
+### �📝 **ARCHIVOS CRÍTICOS QUE SIEMPRE DEBEN REVISARSE:**
+
+#### **10.1 Archivos de Documentación Obligatorios:**
+```
+📋 LISTA DE ARCHIVOS CRÍTICOS A VERIFICAR:
+
+📊 Development Logs:
+- C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\docs\04-development-logs\BITACORA_DESARROLLO_SMART_MONEY_v6.md
+- C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\docs\04-development-logs\QUE_SIGUE_WEEKEND_PLAN.md
+
+🏗️ Architecture:
+- C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\docs\02-architecture\roadmap_v6.md
+
+📋 Integration Plans:
+- C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\docs\03-integration-plans\PLAN_FAIR_VALUE_GAPS_FVG.md
+```
+
+#### **10.2 Proceso de Verificación Obligatorio:**
+```
+🔍 AL FINALIZAR CUALQUIER FASE/COMPONENTE:
+
+1. ✅ LEER cada archivo de la lista crítica
+2. ✅ VERIFICAR que los logros estén documentados
+3. ✅ CONFIRMAR que el status está actualizado
+4. ✅ ASEGURAR que los próximos pasos sean claros
+5. ✅ VALIDAR que las fechas sean correctas
+6. ✅ COMPROBAR que no haya información obsoleta
+
+❌ NO FINALIZAR hasta que TODOS los archivos estén al día
+```
+
+#### **10.3 Checklist de Verificación:**
+```markdown
+### ✅ CHECKLIST REGLA #10 - VERIFICACIÓN DE DOCUMENTACIÓN:
+
+#### 📊 BITACORA_DESARROLLO_SMART_MONEY_v6.md:
+□ ✅ Nuevo logro agregado al inicio del archivo
+□ ✅ Fecha y timestamp actualizados
+□ ✅ Componentes implementados listados
+□ ✅ Resultados de testing documentados
+□ ✅ Métricas de performance incluidas
+
+#### 📅 QUE_SIGUE_WEEKEND_PLAN.md:
+□ ✅ Estado general actualizado (COMPLETADO)
+□ ✅ Nuevo logro agregado al resumen
+□ ✅ Cronograma actualizado para próximas sesiones
+□ ✅ Próximos pasos claramente definidos
+
+#### 🛣️ roadmap_v6.md:
+□ ✅ Gantt chart actualizado (done/active status)
+□ ✅ Timeline refleja progreso real
+□ ✅ Próximos hitos claramente definidos
+
+#### 📋 PLAN_FAIR_VALUE_GAPS_FVG.md:
+□ ✅ Status de fases actualizado
+□ ✅ Tiempos reales de implementación documentados
+□ ✅ Resultados y métricas incluidas
+□ ✅ Próximas fases definidas
+
+#### 🎯 VALIDACIÓN FINAL:
+□ ✅ TODOS los archivos críticos revisados
+□ ✅ NINGÚN archivo obsoleto o desactualizado
+□ ✅ Consistencia entre TODOS los documentos
+□ ✅ Próximos pasos alineados en TODOS los archivos
+```
+
+#### **10.4 Template de Confirmación:**
+```markdown
+## ✅ [FECHA] - REGLA #10 APLICADA
+
+### 📋 **VERIFICACIÓN DE DOCUMENTACIÓN COMPLETADA:**
+
+#### 📊 Archivos Verificados:
+- ✅ BITACORA_DESARROLLO_SMART_MONEY_v6.md: AL DÍA
+- ✅ QUE_SIGUE_WEEKEND_PLAN.md: AL DÍA  
+- ✅ roadmap_v6.md: AL DÍA
+- ✅ PLAN_FAIR_VALUE_GAPS_FVG.md: AL DÍA
+
+#### 🎯 Logros Documentados:
+- ✅ [Fase/Componente completado]
+- ✅ [Métricas de performance]
+- ✅ [Resultados de testing]
+- ✅ [Próximos pasos definidos]
+
+#### 📝 Estado de Sincronización:
+- ✅ TODOS los archivos críticos al día
+- ✅ Consistencia verificada entre documentos
+- ✅ Timeline y cronogramas actualizados
+- ✅ Próximos objetivos alineados
+
+**🎉 DOCUMENTACIÓN ENTERPRISE GRADE - 100% SINCRONIZADA**
+```
+
+### 🚨 **CRÍTICO - NO PROCEDER SIN:**
+```
+❌ NO FINALIZAR fase/componente sin aplicar REGLA #10
+❌ NO MARCAR como "completado" sin verificar los 4 archivos críticos
+❌ NO PROCEDER a próxima fase sin documentación al día
+❌ NO DECLARAR "éxito" sin confirmation de sincronización
+
+✅ SOLO PROCEDER cuando:
+- ✅ Los 4 archivos críticos estén verificados
+- ✅ TODOS los logros estén documentados
+- ✅ Próximos pasos estén claramente definidos
+- ✅ No haya información obsoleta o inconsistente
+```
+
+---
+
+## 📝 **REGLA #11: CONTROL DE VERSIONES EN BITÁCORAS**
 
 ### 🎯 **PRINCIPIO DE VERSIONADO:**
 **"CADA ACTUALIZACIÓN IMPORTANTE DEBE INCREMENTAR LA VERSIÓN EN BITÁCORAS"**
@@ -1078,9 +1192,147 @@ logger.info("Mensaje")  # ❌ NO usar logging básico
 □ ✅ Setup inicial y estado final validados
 ```
 
+📋 VERIFICACIÓN REGLA #10 - DOCUMENTACIÓN CRÍTICA:
+```
+□ ✅ BITACORA_DESARROLLO_SMART_MONEY_v6.md actualizada
+□ ✅ QUE_SIGUE_WEEKEND_PLAN.md actualizada  
+□ ✅ roadmap_v6.md actualizada
+□ ✅ PLAN_FAIR_VALUE_GAPS_FVG.md actualizada
+□ ✅ TODOS los logros documentados correctamente
+□ ✅ Próximos pasos claramente definidos
+□ ✅ Consistencia entre TODOS los documentos verificada
+□ ✅ NO proceder sin documentación 100% al día
+```
+
 ---
 
-## 📞 **CONTACTO Y ESCALACIÓN**
+## � **REGLA #14: LIMPIEZA Y ESTILO DE CÓDIGO AUTOMÁTICO**
+
+### 🎯 **OBJETIVO:**
+**Mantener el código libre de advertencias de linting y siguiendo estándares de estilo enterprise automáticamente.**
+
+### ✅ **COPILOT DEBE DETECTAR Y CORREGIR AUTOMÁTICAMENTE:**
+
+#### **14.1 Detección Automática Obligatoria:**
+```
+🔍 DETECTAR INMEDIATAMENTE:
+- ✅ Unused imports (W0611:unused-import)
+- ✅ Wrong import order (C0411:wrong-import-order)  
+- ✅ Trailing whitespace (C0303:trailing-whitespace)
+- ✅ Variables in type expressions (reportInvalidTypeForm)
+- ✅ Otros errores/advertencias de Pylint o Pylance
+- ✅ Imports no usados por refactoring
+- ✅ Definiciones duplicadas con nombres diferentes
+```
+
+#### **14.2 Correcciones Automáticas Requeridas:**
+```
+🛠️ APLICAR CORRECCIONES INMEDIATAS:
+1. ✅ Eliminar imports no usados completamente
+2. ✅ Ordenar imports correctamente:
+   - Estándar (datetime, os, sys)
+   - Terceros (pandas, numpy)  
+   - Internos (core.*, sistema.*)
+3. ✅ Eliminar espacios al final de líneas
+4. ✅ Corregir type hints con variables por tipos válidos
+5. ✅ Unificar nomenclatura inconsistente detectada
+6. ✅ Registrar cambios en SLUC si son estructurales
+```
+
+#### **14.3 Orden de Imports Enterprise Standard:**
+```python
+# ✅ ORDEN CORRECTO OBLIGATORIO:
+
+# 1. Estándar
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional, Tuple, Any
+from dataclasses import dataclass
+from enum import Enum
+import os
+import sys
+
+# 2. Terceros
+import pandas as pd
+import numpy as np
+
+# 3. Internos - SIC/SLUC Enterprise
+from core.smart_trading_logger import SmartTradingLogger
+from core.data_management.unified_memory_system import UnifiedMemorySystem
+from core.ict_engine.ict_types import TradingDirection
+```
+
+#### **14.4 Integración con SLUC para Cambios Estructurales:**
+```python
+# 📝 TEMPLATE DE LOGGING PARA CORRECCIONES AUTOMÁTICAS:
+
+if self.logger:
+    self.logger.log_info(f"🧹 Auto-corrección aplicada: eliminados {removed_imports} imports no usados", "auto_lint")
+    self.logger.log_debug(f"📐 Orden de imports corregido en {filename}", "auto_lint")
+    if unified_names:
+        self.logger.log_warning(f"🔗 Nomenclatura unificada: {old_name} → {new_name}", "auto_lint")
+```
+
+### 🚨 **REGLAS CRÍTICAS:**
+
+#### **14.5 Prohibiciones Absolutas:**
+```
+❌ NUNCA HACER:
+- ❌ Dejar warnings activos antes de commit
+- ❌ Ignorar mensajes de Pylint/Pylance sin corregir
+- ❌ Mezclar imports estándar con terceros sin separar
+- ❌ Crear nuevas funciones con nombres diferentes para el mismo propósito
+- ❌ Usar variables en type annotations en lugar de tipos
+- ❌ Dejar espacios en blanco al final de líneas
+```
+
+#### **14.6 Validación Pre-Commit Obligatoria:**
+```bash
+# 🔍 COMANDO OBLIGATORIO ANTES DE CUALQUIER COMMIT:
+pylint core/ tests/ --disable=C0103,R0913,R0914,R0915 --score=y
+```
+
+#### **14.7 Detección de Nomenclatura Inconsistente:**
+```
+🔗 UNIFICACIÓN DE DEFINICIONES CRÍTICA:
+- ✅ Buscar funciones duplicadas con nombres diferentes
+- ✅ Detectar clases que hacen lo mismo con nomenclatura distinta  
+- ✅ Identificar variables/métodos que referencian el mismo concepto
+- ✅ Proponer unificación siguiendo el patrón enterprise
+- ✅ Mantener glosario central en DEFINICIONES_CLAVE.md
+```
+
+### 📋 **EJEMPLO DE CORRECCIÓN AUTOMÁTICA:**
+```python
+# ❌ ANTES (CON PROBLEMAS):
+import pandas as pd
+import numpy as np  # No usado
+from datetime import datetime  # Mal ordenado
+
+class BreakerDetector:
+    def detect(self, data: precio_data):  # Variable en type hint
+        pass    # Espacio al final
+
+# ✅ DESPUÉS (CORREGIDO POR COPILOT):
+from datetime import datetime
+import pandas as pd
+
+class BreakerDetector:
+    def detect(self, data: pd.DataFrame):
+        pass
+```
+
+### 🎯 **INTEGRACIÓN CON REGLAS EXISTENTES:**
+```
+🔗 ESTA REGLA SE INTEGRA CON:
+- REGLA #4: Sistema SIC y SLUC obligatorio (logging de correcciones)
+- REGLA #8: Testing con SLUC (tests limpios sin warnings)
+- REGLA #10: Verificación de documentación (código limpio para commit)
+- REGLA #13: Control de evolución tests (eliminar fallos por imports)
+```
+
+---
+
+## �📞 **CONTACTO Y ESCALACIÓN**
 
 ### 🚨 **CUANDO ESCALAR:**
 - Si encuentras lógica duplicada

@@ -85,6 +85,10 @@ class TradingDirection(Enum):
     BEARISH = "bearish" 
     NEUTRAL = "neutral"
     UNKNOWN = "unknown"
+    
+    # Aliases para compatibilidad con patrones enterprise
+    BUY = "bullish"
+    SELL = "bearish"
 
 
 class SessionType(Enum):
