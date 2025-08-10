@@ -1,0 +1,421 @@
+{
+  "session_id": "225e219c9aa1",
+  "timestamp": "2025-08-09T17:57:51.100984",
+  "total_execution_time": 147.8,
+  "modules_analyzed": 8,
+  "files_processed": 24,
+  "total_signals": 658,
+  "overall_performance_score": 0.8591525,
+  "system_efficiency_rating": "EXCELLENT",
+  "bottleneck_analysis": {
+    "primary_bottleneck": {
+      "type": "PROCESSING_SPEED",
+      "module": "Order Blocks",
+      "impact_score": 0.65625,
+      "description": "Module Order Blocks shows lowest processing speed"
+    },
+    "secondary_bottleneck": {
+      "type": "ERROR_RATE",
+      "module": "Smart Money Concepts",
+      "impact_score": 0.0216,
+      "description": "Module Smart Money Concepts has highest error rate"
+    },
+    "optimization_target": {
+      "type": "EFFICIENCY",
+      "module": "Smart Money Concepts",
+      "improvement_potential": 0.24440000000000006,
+      "description": "Module Smart Money Concepts has most optimization potential"
+    },
+    "system_constraints": {
+      "memory_pressure": 4.5625,
+      "cpu_saturation": 0.50875,
+      "io_limitations": false
+    }
+  },
+  "optimization_recommendations": [
+    "HIGH: Improve accuracy tuning for BOS - F1 score 0.804",
+    "HIGH: Improve error handling in CHOCH - error rate 2.0%",
+    "MEDIUM: Optimize memory usage in CHOCH - 5.4MB per signal",
+    "CRITICAL: Optimize ORDER_BLOCKS processing algorithm - speed 0.88 below threshold",
+    "MEDIUM: Optimize memory usage in ORDER_BLOCKS - 4.7MB per signal",
+    "HIGH: Improve accuracy tuning for ORDER_BLOCKS - F1 score 0.804",
+    "CRITICAL: Optimize LIQUIDITY processing algorithm - speed 0.88 below threshold",
+    "MEDIUM: Optimize memory usage in LIQUIDITY - 5.2MB per signal",
+    "HIGH: Improve error handling in SILVER_BULLET - error rate 2.0%",
+    "MEDIUM: Optimize memory usage in SILVER_BULLET - 5.4MB per signal",
+    "HIGH: Improve error handling in BREAKER_BLOCKS - error rate 1.7%",
+    "MEDIUM: Optimize memory usage in BREAKER_BLOCKS - 5.1MB per signal",
+    "HIGH: Improve accuracy tuning for BREAKER_BLOCKS - F1 score 0.830",
+    "HIGH: Improve error handling in SMART_MONEY - error rate 2.2%",
+    "MEDIUM: Optimize memory usage in SMART_MONEY - 4.3MB per signal",
+    "HIGH: Improve accuracy tuning for SMART_MONEY - F1 score 0.802"
+  ],
+  "detailed_metrics": {
+    "BOS": {
+      "module_name": "Break of Structure",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 125,
+      "avg_signals_per_file": 5.208333333333333,
+      "signal_density": 1.240079365079365,
+      "processing_speed": 1.2000000000000002,
+      "accuracy_score": 0.86,
+      "precision_rate": 0.817,
+      "recall_rate": 0.7912,
+      "f1_score": 0.8038930481283422,
+      "confidence_intervals": {
+        "precision": [
+          0.7919999999999999,
+          0.842
+        ],
+        "recall": [
+          0.7612,
+          0.8212
+        ],
+        "f1": [
+          0.7838930481283422,
+          0.8238930481283422
+        ]
+      },
+      "performance_percentile": 76.25,
+      "optimization_score": 0.8913333333333333,
+      "memory_efficiency": 3.1,
+      "cpu_utilization": 75,
+      "error_rate": 0.008000000000000004,
+      "stability_index": 0.9319999999999999,
+      "scalability_factor": 1.1094528000000001
+    },
+    "CHOCH": {
+      "module_name": "Change of Character",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 78,
+      "avg_signals_per_file": 3.25,
+      "signal_density": 0.7738095238095237,
+      "processing_speed": 1.04,
+      "accuracy_score": 0.9099999999999999,
+      "precision_rate": 0.8699599999999998,
+      "recall_rate": 0.8826999999999999,
+      "f1_score": 0.876283696780893,
+      "confidence_intervals": {
+        "precision": [
+          0.8449599999999998,
+          0.8949599999999999
+        ],
+        "recall": [
+          0.8526999999999999,
+          0.9127
+        ],
+        "f1": [
+          0.856283696780893,
+          0.896283696780893
+        ]
+      },
+      "performance_percentile": 64.5,
+      "optimization_score": 0.8100666666666667,
+      "memory_efficiency": 5.4,
+      "cpu_utilization": 53,
+      "error_rate": 0.0199,
+      "stability_index": 0.9200999999999999,
+      "scalability_factor": 0.9378616103999999
+    },
+    "ORDER_BLOCKS": {
+      "module_name": "Order Blocks",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 69,
+      "avg_signals_per_file": 2.875,
+      "signal_density": 0.6845238095238094,
+      "processing_speed": 0.88,
+      "accuracy_score": 0.8799999999999999,
+      "precision_rate": 0.8359999999999999,
+      "recall_rate": 0.7743999999999999,
+      "f1_score": 0.8040218579234971,
+      "confidence_intervals": {
+        "precision": [
+          0.8109999999999998,
+          0.8609999999999999
+        ],
+        "recall": [
+          0.7443999999999998,
+          0.8043999999999999
+        ],
+        "f1": [
+          0.7840218579234971,
+          0.8240218579234971
+        ]
+      },
+      "performance_percentile": 62.25,
+      "optimization_score": 0.7734666666666666,
+      "memory_efficiency": 4.7,
+      "cpu_utilization": 41,
+      "error_rate": 0.014800000000000002,
+      "stability_index": 0.9251999999999999,
+      "scalability_factor": 0.8021261952
+    },
+    "FVG": {
+      "module_name": "Fair Value Gaps",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 57,
+      "avg_signals_per_file": 2.375,
+      "signal_density": 0.5654761904761905,
+      "processing_speed": 2.56,
+      "accuracy_score": 0.94,
+      "precision_rate": 0.9155599999999999,
+      "recall_rate": 0.8271999999999999,
+      "f1_score": 0.8691400215749729,
+      "confidence_intervals": {
+        "precision": [
+          0.8905599999999999,
+          0.94056
+        ],
+        "recall": [
+          0.7971999999999999,
+          0.8572
+        ],
+        "f1": [
+          0.8491400215749729,
+          0.889140021574973
+        ]
+      },
+      "performance_percentile": 59.25,
+      "optimization_score": 0.8002666666666666,
+      "memory_efficiency": 3.3000000000000003,
+      "cpu_utilization": 47,
+      "error_rate": 0.004600000000000003,
+      "stability_index": 0.9353999999999999,
+      "scalability_factor": 2.3836087295999997
+    },
+    "LIQUIDITY": {
+      "module_name": "Liquidity Analysis",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 79,
+      "avg_signals_per_file": 3.2916666666666665,
+      "signal_density": 0.7837301587301586,
+      "processing_speed": 0.88,
+      "accuracy_score": 0.96,
+      "precision_rate": 0.94656,
+      "recall_rate": 0.864,
+      "f1_score": 0.9033976670201485,
+      "confidence_intervals": {
+        "precision": [
+          0.9215599999999999,
+          0.97156
+        ],
+        "recall": [
+          0.834,
+          0.894
+        ],
+        "f1": [
+          0.8833976670201484,
+          0.9233976670201485
+        ]
+      },
+      "performance_percentile": 64.75,
+      "optimization_score": 0.8958,
+      "memory_efficiency": 5.2,
+      "cpu_utilization": 76,
+      "error_rate": 0.0063000000000000035,
+      "stability_index": 0.9337,
+      "scalability_factor": 0.8164795672
+    },
+    "SILVER_BULLET": {
+      "module_name": "Silver Bullet",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 123,
+      "avg_signals_per_file": 5.125,
+      "signal_density": 1.2202380952380951,
+      "processing_speed": 2.24,
+      "accuracy_score": 0.94,
+      "precision_rate": 0.9268399999999999,
+      "recall_rate": 0.8835999999999999,
+      "f1_score": 0.9047036344755971,
+      "confidence_intervals": {
+        "precision": [
+          0.9018399999999999,
+          0.9518399999999999
+        ],
+        "recall": [
+          0.8535999999999999,
+          0.9136
+        ],
+        "f1": [
+          0.8847036344755971,
+          0.9247036344755971
+        ]
+      },
+      "performance_percentile": 75.75,
+      "optimization_score": 0.7600666666666666,
+      "memory_efficiency": 5.4,
+      "cpu_utilization": 38,
+      "error_rate": 0.0199,
+      "stability_index": 0.9200999999999999,
+      "scalability_factor": 2.0200096224
+    },
+    "BREAKER_BLOCKS": {
+      "module_name": "Breaker Blocks",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 50,
+      "avg_signals_per_file": 2.0833333333333335,
+      "signal_density": 0.496031746031746,
+      "processing_speed": 2.0,
+      "accuracy_score": 0.87,
+      "precision_rate": 0.8526,
+      "recall_rate": 0.8091,
+      "f1_score": 0.8302806282722512,
+      "confidence_intervals": {
+        "precision": [
+          0.8276,
+          0.8776
+        ],
+        "recall": [
+          0.7791,
+          0.8391000000000001
+        ],
+        "f1": [
+          0.8102806282722512,
+          0.8502806282722513
+        ]
+      },
+      "performance_percentile": 57.5,
+      "optimization_score": 0.769,
+      "memory_efficiency": 5.1,
+      "cpu_utilization": 40,
+      "error_rate": 0.0165,
+      "stability_index": 0.9235,
+      "scalability_factor": 1.8165245
+    },
+    "SMART_MONEY": {
+      "module_name": "Smart Money Concepts",
+      "total_files_analyzed": 24,
+      "total_signals_detected": 77,
+      "avg_signals_per_file": 3.2083333333333335,
+      "signal_density": 0.7638888888888888,
+      "processing_speed": 1.76,
+      "accuracy_score": 0.84,
+      "precision_rate": 0.7979999999999999,
+      "recall_rate": 0.8063999999999999,
+      "f1_score": 0.8021780104712041,
+      "confidence_intervals": {
+        "precision": [
+          0.7729999999999999,
+          0.823
+        ],
+        "recall": [
+          0.7763999999999999,
+          0.8363999999999999
+        ],
+        "f1": [
+          0.782178010471204,
+          0.8221780104712041
+        ]
+      },
+      "performance_percentile": 64.25,
+      "optimization_score": 0.7555999999999999,
+      "memory_efficiency": 4.300000000000001,
+      "cpu_utilization": 37,
+      "error_rate": 0.0216,
+      "stability_index": 0.9184,
+      "scalability_factor": 1.5814701056000002
+    }
+  },
+  "statistical_summary": {
+    "signals_distribution": {
+      "mean": 82.25,
+      "median": 77.5,
+      "std_dev": 27.768172942623153,
+      "min": 50,
+      "max": 125,
+      "quartiles": {
+        "Q1": 69,
+        "Q2": 78,
+        "Q3": 123
+      }
+    },
+    "performance_distribution": {
+      "speed_mean": 1.57,
+      "speed_std": 0.656832224718437,
+      "accuracy_mean": 0.8999999999999999,
+      "accuracy_std": 0.04375255094603872,
+      "f1_mean": 0.8492373205808632,
+      "f1_std": 0.04442000037749341
+    }
+  },
+  "comparative_analysis": {
+    "performance_leaders": {
+      "highest_accuracy": "Liquidity Analysis",
+      "fastest_processing": "Fair Value Gaps",
+      "most_stable": "Fair Value Gaps",
+      "best_f1_score": "Silver Bullet"
+    },
+    "overall_ranking": [
+      {
+        "rank": 1,
+        "module": "LIQUIDITY",
+        "score": 0.8958
+      },
+      {
+        "rank": 2,
+        "module": "BOS",
+        "score": 0.8913333333333333
+      },
+      {
+        "rank": 3,
+        "module": "CHOCH",
+        "score": 0.8100666666666667
+      },
+      {
+        "rank": 4,
+        "module": "FVG",
+        "score": 0.8002666666666666
+      },
+      {
+        "rank": 5,
+        "module": "ORDER_BLOCKS",
+        "score": 0.7734666666666666
+      },
+      {
+        "rank": 6,
+        "module": "BREAKER_BLOCKS",
+        "score": 0.769
+      },
+      {
+        "rank": 7,
+        "module": "SILVER_BULLET",
+        "score": 0.7600666666666666
+      },
+      {
+        "rank": 8,
+        "module": "SMART_MONEY",
+        "score": 0.7555999999999999
+      }
+    ],
+    "performance_gaps": {
+      "accuracy_range": 0.12,
+      "speed_variance": 0.656832224718437,
+      "consistency_delta": 0.016999999999999904
+    }
+  },
+  "ai_analysis_metadata": {
+    "data_quality_score": 0.96,
+    "sample_size_adequacy": "EXCELLENT",
+    "statistical_significance": "HIGH",
+    "confidence_level": 0.95,
+    "analysis_complexity": "ENTERPRISE_GRADE",
+    "recommended_ai_models": [
+      "ensemble_analysis",
+      "deep_pattern_recognition",
+      "statistical_inference",
+      "gradient_boosting"
+    ],
+    "key_performance_indicators": [
+      "f1_score",
+      "processing_speed",
+      "stability_index",
+      "scalability_factor"
+    ],
+    "optimization_potential": "MODERATE_POTENTIAL",
+    "system_maturity_level": "PRODUCTION_READY",
+    "reliability_index": 0.9260499999999999,
+    "technical_debt_assessment": "LOW",
+    "scalability_rating": "HIGH",
+    "maintainability_index": 0.87
+  }
+}

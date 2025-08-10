@@ -1,0 +1,18 @@
+[2025-08-09 16:11:39.920] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | app | initialization | State: {'engine_ready': True}
+[2025-08-09 16:11:39.932] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | compose | start | State: {'action': 'creating_interface'}
+[2025-08-09 16:11:39.934] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | compose | success | State: {'tabs_created': 5, 'buttons_created': 5}
+[2025-08-09 16:11:39.998] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | mount | timer_set | State: {'interval': '2.0s'}
+[2025-08-09 16:11:40.632] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | refresh | start | State: {'action': 'refresh_all_displays'}
+[2025-08-09 16:11:40.632] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | refresh | completed | State: {'all_displays': 'updated'}
+[2025-08-09 16:11:40.632] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | app | ready | State: {'content_loaded': True}
+[2025-08-09 16:11:40.633] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | header_display | update | State: {'status': 'success'}
+[2025-08-09 16:11:40.635] [ICT_Dashboard_BlackBox_ui] [INFO] [log_tab_content_attempt:326] TAB_CONTENT_SUCCESS | overview | render_overview_enterprise | Length: 1759
+[2025-08-09 16:11:40.635] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | overview_display | update | State: {'status': 'success', 'length': 1759}
+[2025-08-09 16:11:40.638] [ICT_Dashboard_BlackBox_ui] [INFO] [log_tab_content_attempt:326] TAB_CONTENT_SUCCESS | detectors | render_ict_detectors | Length: 2237
+[2025-08-09 16:11:40.638] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | detectors_display | update | State: {'status': 'success', 'length': 2237}
+[2025-08-09 16:11:40.640] [ICT_Dashboard_BlackBox_ui] [INFO] [log_tab_content_attempt:326] TAB_CONTENT_SUCCESS | performance | render_performance_metrics | Length: 1851
+[2025-08-09 16:11:40.640] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | performance_display | update | State: {'status': 'success', 'length': 1851}
+[2025-08-09 16:11:40.642] [ICT_Dashboard_BlackBox_ui] [INFO] [log_tab_content_attempt:326] TAB_CONTENT_SUCCESS | analysis | render_technical_analysis | Length: 1621
+[2025-08-09 16:11:40.642] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | analysis_display | update | State: {'status': 'success', 'length': 1621}
+[2025-08-09 16:11:40.644] [ICT_Dashboard_BlackBox_ui] [INFO] [log_tab_content_attempt:326] TAB_CONTENT_SUCCESS | reports | render_reports_export | Length: 1984
+[2025-08-09 16:11:40.645] [ICT_Dashboard_BlackBox_ui] [INFO] [track_ui_component:229] UI_SUCCESS | reports_display | update | State: {'status': 'success', 'length': 1984}

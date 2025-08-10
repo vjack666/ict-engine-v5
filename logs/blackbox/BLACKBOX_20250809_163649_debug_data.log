@@ -1,0 +1,4 @@
+[2025-08-09 16:36:49.947] [ICT_BlackBox_data] [INFO] [log_data_processing:187] DATA_PROCESSING | overview_data_check | Input: dict(10) | Output: str(17) | Time: None
+[2025-08-09 16:36:51.572] [ICT_BlackBox_data] [INFO] [log_data_processing:187] DATA_PROCESSING | detectors_modules_check | Input: dict(10) | Output: str(188) | Time: None
+[2025-08-09 16:36:58.872] [ICT_BlackBox_data] [INFO] [log_data_processing:187] DATA_PROCESSING | overview_data_check | Input: dict(10) | Output: str(17) | Time: None
+[2025-08-09 16:37:00.361] [ICT_BlackBox_data] [INFO] [log_data_processing:187] DATA_PROCESSING | detectors_modules_check | Input: dict(10) | Output: str(188) | Time: None

@@ -1,0 +1,17 @@
+[2025-08-09 16:11:40.633] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_header_info | Length: 195 | Preview: [bold cyan]ICT ENGINE v6.1 ENTERPRISE DASHBOARD[/bold cyan]
+Session: ICT_ENTERPRISE_20250809_161139 
+[2025-08-09 16:11:40.634] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_overview_enterprise | Length: 1759 | Preview: [bold cyan]📊 OVERVIEW ENTERPRISE - ICT ENGINE v6.1[/bold cyan]
+
+[bold white]RESUMEN EJECUTIVO:[/bold
+[2025-08-09 16:11:40.636] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_ict_detectors | Length: 2237 | Preview: [bold cyan]🔍 DETECTORES ICT - ANÁLISIS DETALLADO[/bold cyan]
+
+[bold white]ESTADO DE MÓDULOS ICT:[/bo
+[2025-08-09 16:11:40.638] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_performance_metrics | Length: 1851 | Preview: [bold cyan]⚡ PERFORMANCE & MÉTRICAS DEL SISTEMA[/bold cyan]
+
+[bold white]VELOCIDAD DE PROCESAMIENTO:
+[2025-08-09 16:11:40.640] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_technical_analysis | Length: 1621 | Preview: [bold cyan]📈 ANÁLISIS TÉCNICO AVANZADO[/bold cyan]
+
+[bold white]ESTADÍSTICAS DE PATTERNS DETECTADOS:
+[2025-08-09 16:11:40.642] [ICT_Dashboard_BlackBox_render] [INFO] [track_render_method:204] RENDER_SUCCESS | render_reports_export | Length: 1984 | Preview: [bold cyan]📋 REPORTES & EXPORTACIÓN ENTERPRISE[/bold cyan]
+
+[bold white]INFORMACIÓN DE SESIÓN:[/bold

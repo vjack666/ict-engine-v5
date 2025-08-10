@@ -1,0 +1,68 @@
+{
+  "session_info": {
+    "timestamp": "2025-08-09T17:33:45.792605",
+    "duration_seconds": 3.627472,
+    "total_patterns_found": 2596,
+    "regla10_compliance_count": 1
+  },
+  "modules_results": {
+    "ORDER_BLOCKS": {
+      "patterns_found": 2596,
+      "precision": 100.0,
+      "rule10_status": "✅",
+      "progress": 100.0
+    },
+    "FAIR_VALUE_GAPS": {
+      "patterns_found": 0,
+      "precision": 0.0,
+      "rule10_status": "🔄",
+      "progress": 0.0
+    },
+    "BREAKER_BLOCKS": {
+      "patterns_found": 0,
+      "precision": 0.0,
+      "rule10_status": "⏳",
+      "progress": 0.0
+    },
+    "SILVER_BULLET": {
+      "patterns_found": 0,
+      "precision": 0.0,
+      "rule10_status": "⏳",
+      "progress": 0.0
+    },
+    "LIQUIDITY_POOLS": {
+      "patterns_found": 0,
+      "precision": 0.0,
+      "rule10_status": "⏳",
+      "progress": 0.0
+    },
+    "DISPLACEMENT": {
+      "patterns_found": 0,
+      "precision": 0.0,
+      "rule10_status": "⏳",
+      "progress": 0.0
+    }
+  },
+  "detailed_execution_log": [
+    {
+      "module": "ORDER_BLOCKS",
+      "patterns_detected": 2596,
+      "signals_generated": 218,
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.09961199760437012,
+      "data_points_analyzed": 40240,
+      "errors": 0,
+      "status": "SUCCESS",
+      "regla10_compliant": true,
+      "timestamp": "2025-08-09T17:33:43.388278"
+    }
+  ],
+  "regla10_final_evaluation": {
+    "total_modules": 6,
+    "passed_modules": 1,
+    "failed_modules": 0,
+    "compliance_percentage": 16.666666666666664,
+    "overall_status": "NON_COMPLIANT"
+  }
+}

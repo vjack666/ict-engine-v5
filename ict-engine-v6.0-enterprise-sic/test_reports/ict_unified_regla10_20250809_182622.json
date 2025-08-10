@@ -1,0 +1,46 @@
+{
+  "session_id": "eb4b6f88033b",
+  "timestamp": "2025-08-09T18:26:19.226844",
+  "regla10_compliance_score": 6,
+  "overall_system_status": "ENTERPRISE_COMPLIANT",
+  "total_patterns_detected": 47130,
+  "ict_modules_analysis": {
+    "ORDER_BLOCKS": {
+      "patterns_detected": 9426,
+      "precision_percentage": 100.0,
+      "regla10_compliance": "✅",
+      "completion_status": 100.0
+    },
+    "FAIR_VALUE_GAPS": {
+      "patterns_detected": 15710,
+      "precision_percentage": 100.0,
+      "regla10_compliance": "✅",
+      "completion_status": 100.0
+    },
+    "BREAKER_BLOCKS": {
+      "patterns_detected": 0,
+      "precision_percentage": 100.0,
+      "regla10_compliance": "✅",
+      "completion_status": 100.0
+    },
+    "SILVER_BULLET": {
+      "patterns_detected": 0,
+      "precision_percentage": 100.0,
+      "regla10_compliance": "✅",
+      "completion_status": 100.0
+    },
+    "LIQUIDITY": {
+      "patterns_detected": 5388,
+      "precision_percentage": 100.0,
+      "regla10_compliance": "✅",
+      "completion_status": 100.0
+    }
+  },
+  "dashboard_session": {
+    "execution_timestamp": "2025-08-09T18:26:22.472174",
+    "total_duration_seconds": 15.812716,
+    "total_patterns_detected": 47130,
+    "regla10_compliance_score": 6,
+    "overall_system_status": "ENTERPRISE_COMPLIANT"
+  }
+}

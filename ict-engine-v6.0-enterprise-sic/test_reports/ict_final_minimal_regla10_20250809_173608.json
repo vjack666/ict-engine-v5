@@ -1,0 +1,89 @@
+{
+  "dashboard_summary": {
+    "execution_timestamp": "2025-08-09T17:36:08.455723",
+    "total_duration_seconds": 13.640201,
+    "total_patterns_found": 21944,
+    "regla10_compliance_score": 2,
+    "overall_regla10_status": "NON_COMPLIANT"
+  },
+  "modules_detailed_results": {
+    "ORDER_BLOCKS": {
+      "patterns_found": 2596,
+      "precision_percentage": 100.0,
+      "regla10_status": "✅",
+      "final_progress": 100.0
+    },
+    "FAIR_VALUE_GAPS": {
+      "patterns_found": 19348,
+      "precision_percentage": 100.0,
+      "regla10_status": "✅",
+      "final_progress": 100.0
+    },
+    "BREAKER_BLOCKS": {
+      "patterns_found": 0,
+      "precision_percentage": 0.0,
+      "regla10_status": "🔄",
+      "final_progress": 100
+    },
+    "SILVER_BULLET": {
+      "patterns_found": 0,
+      "precision_percentage": 0.0,
+      "regla10_status": "⏳",
+      "final_progress": 0.0
+    },
+    "LIQUIDITY_POOLS": {
+      "patterns_found": 0,
+      "precision_percentage": 0.0,
+      "regla10_status": "⏳",
+      "final_progress": 0.0
+    },
+    "DISPLACEMENT": {
+      "patterns_found": 0,
+      "precision_percentage": 0.0,
+      "regla10_status": "⏳",
+      "final_progress": 0.0
+    }
+  },
+  "complete_execution_log": [
+    {
+      "module": "ORDER_BLOCKS",
+      "patterns_detected": 2596,
+      "signals_generated": 218,
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.12513494491577148,
+      "data_points_analyzed": 40240,
+      "errors": 0,
+      "status": "SUCCESS",
+      "regla10_compliant": true,
+      "timestamp": "2025-08-09T17:35:56.159045"
+    },
+    {
+      "module": "FAIR_VALUE_GAPS",
+      "patterns_detected": 19348,
+      "signals_generated": 13674,
+      "success_rate": 100.0,
+      "avg_confidence": 70.0,
+      "execution_time": 8.800176858901978,
+      "data_points_analyzed": 86552,
+      "errors": 0,
+      "status": "SUCCESS",
+      "regla10_compliant": true,
+      "timestamp": "2025-08-09T17:36:06.663647"
+    }
+  ],
+  "regla10_detailed_evaluation": {
+    "total_modules_analyzed": 6,
+    "modules_passed_regla10": 2,
+    "modules_failed_regla10": 0,
+    "regla10_compliance_percentage": 33.33333333333333,
+    "system_overall_status": "REQUIRES_REVIEW"
+  },
+  "technical_details": {
+    "backtester_used": "ModularICTBacktester",
+    "data_source": "Real historical data",
+    "analysis_mode": "Live real-time analysis",
+    "regla10_threshold": "80% success rate minimum",
+    "dashboard_version": "Final Minimal v1.0"
+  }
+}

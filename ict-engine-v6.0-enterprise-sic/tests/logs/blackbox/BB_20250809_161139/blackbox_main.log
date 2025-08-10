@@ -1,0 +1,13 @@
+[2025-08-09 16:11:39.901] [ICT_Dashboard_BlackBox_main] [INFO] [log_session_start:133] BLACKBOX_SESSION_START | {
+  "session_id": "BB_20250809_161139",
+  "start_time": "2025-08-09T16:11:39.901872",
+  "purpose": "Diagnosticar problemas de pesta\u00f1as y contenido en ICT Dashboard",
+  "log_directory": "logs\\blackbox\\BB_20250809_161139",
+  "expected_issues": [
+    "Pesta\u00f1as no muestran contenido",
+    "Errores en m\u00e9todos render_*",
+    "Problemas con datos de velas",
+    "Fallos en carga de archivos CSV"
+  ]
+}
+[2025-08-09 16:11:53.767] [ICT_Dashboard_BlackBox_main] [INFO] [generate_comprehensive_report:375] COMPREHENSIVE_REPORT_GENERATED | logs\blackbox\BB_20250809_161139\COMPREHENSIVE_DEBUG_REPORT.json

@@ -1,0 +1,87 @@
+{
+  "regla10_strategies": {
+    "CONFLUENCE_CORE": {
+      "pattern_name": "Order Blocks + FVG + Liquidity",
+      "icon": "🎯",
+      "confluence_score": 100.0,
+      "historical_validation": 100.0,
+      "signal_efficiency": 57.6226627679266,
+      "data_points": 188344,
+      "patterns_detected": "37277",
+      "signals_generated": "21480",
+      "true_positives": 21480,
+      "false_positives": "0",
+      "regla10_compliant": "False",
+      "confidence_level": 95.0,
+      "status": "FAILED"
+    },
+    "MOMENTUM_CONFIRM": {
+      "pattern_name": "Displacement + Silver Bullet",
+      "icon": "⚡",
+      "confluence_score": 100.0,
+      "historical_validation": 100.0,
+      "signal_efficiency": 408.813160987074,
+      "data_points": 158104,
+      "patterns_detected": "7659",
+      "signals_generated": "31311",
+      "true_positives": 31311,
+      "false_positives": "0",
+      "regla10_compliant": "True",
+      "confidence_level": 95.0,
+      "status": "PASSED"
+    },
+    "BREAKER_ADVANCED": {
+      "pattern_name": "Breaker Blocks Enterprise",
+      "icon": "🧱",
+      "confluence_score": 0.0,
+      "historical_validation": 100.0,
+      "signal_efficiency": 0.0,
+      "data_points": 35120,
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "regla10_compliant": false,
+      "confidence_level": 0.0,
+      "status": "FAILED"
+    }
+  },
+  "backtest_summary": {
+    "total_execution_time": 9.773807,
+    "total_data_points": 435538,
+    "total_patterns": "47130",
+    "total_signals": "53888",
+    "overall_success_rate": 98.57142857142857,
+    "modules_analyzed": 7,
+    "symbols_processed": [
+      "EURUSD",
+      "USDJPY",
+      "USDCHF",
+      "AUDUSD",
+      "XAUUSD",
+      "GBPUSD"
+    ],
+    "timeframes_processed": [
+      "M5",
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "date_range": {
+      "start": "2023-08-30",
+      "end": "2025-08-08"
+    },
+    "performance_grade": "A+ (EXCELLENT)"
+  },
+  "metadata": {
+    "timestamp": "20250809_170351",
+    "version": "regla10-enterprise-1.0",
+    "data_path": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\data\\candles",
+    "test_criteria": {
+      "min_confluence_score": 75.0,
+      "min_historical_validation": 85.0,
+      "min_signal_efficiency": 75.0,
+      "min_strategies_passed": 2
+    }
+  }
+}

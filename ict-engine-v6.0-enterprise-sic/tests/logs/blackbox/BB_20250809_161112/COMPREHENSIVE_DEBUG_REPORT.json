@@ -1,0 +1,93 @@
+{
+  "session_info": {
+    "session_id": "BB_20250809_161112",
+    "start_time": "2025-08-09T16:11:12.070459",
+    "end_time": "2025-08-09T16:11:12.313371",
+    "duration_seconds": 0.24290013313293457,
+    "purpose": "Diagnosticar problemas de pestañas en ICT Dashboard"
+  },
+  "summary_counters": {
+    "function_calls": 2,
+    "ui_events": 1,
+    "data_operations": 1,
+    "errors": 0,
+    "warnings": 0,
+    "renders_success": 0,
+    "renders_failed": 0
+  },
+  "success_rates": {
+    "render_success_rate": 0.0,
+    "error_rate": 0.0
+  },
+  "recent_events": [
+    {
+      "timestamp": "2025-08-09T16:11:12.082044",
+      "session_time": 0.011596918106079102,
+      "function": "ICTEnterpriseApp.__init__",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 1
+    },
+    {
+      "timestamp": "2025-08-09T16:11:12.092115",
+      "session_time": 0.021665334701538086,
+      "function": "ICTEngineSimulated.__init__",
+      "caller": "C:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 2
+    }
+  ],
+  "critical_errors": [],
+  "ui_events": [
+    {
+      "timestamp": "2025-08-09T16:11:12.092485",
+      "component": "app",
+      "action": "initialization",
+      "state": {
+        "engine_ready": true
+      },
+      "success": true,
+      "error": null,
+      "event_number": 1
+    }
+  ],
+  "data_operations": [
+    {
+      "timestamp": "2025-08-09T16:11:12.092327",
+      "operation": "ict_engine_init",
+      "input_type": "dict",
+      "input_size": 8,
+      "output_type": "str",
+      "output_size": 39,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 1
+    }
+  ],
+  "log_files": {
+    "main": "logs\\blackbox\\BB_20250809_161112\\blackbox_main.log",
+    "ui": "logs\\blackbox\\BB_20250809_161112\\blackbox_ui.log",
+    "data": "logs\\blackbox\\BB_20250809_161112\\blackbox_data.log",
+    "render": "logs\\blackbox\\BB_20250809_161112\\blackbox_render.log",
+    "errors": "logs\\blackbox\\BB_20250809_161112\\blackbox_errors.log",
+    "performance": "logs\\blackbox\\BB_20250809_161112\\blackbox_performance.log",
+    "functions": "logs\\blackbox\\BB_20250809_161112\\blackbox_functions.log"
+  },
+  "recommendations": [
+    "✅ No se detectaron problemas críticos en esta sesión."
+  ]
+}

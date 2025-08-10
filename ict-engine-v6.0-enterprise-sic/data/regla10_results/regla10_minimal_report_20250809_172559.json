@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-08-09T17:25:59.477240",
+  "session_duration": 6.042123,
+  "total_patterns": 589,
+  "regla10_compliance": {
+    "ORDER_BLOCKS": {
+      "patterns": 57,
+      "precision": 91.5,
+      "status": "FAILED"
+    },
+    "FVG": {
+      "patterns": 130,
+      "precision": 93.10000000000001,
+      "status": "PASSED"
+    },
+    "LIQUIDITY": {
+      "patterns": 86,
+      "precision": 82.3,
+      "status": "FAILED"
+    },
+    "CHOCH": {
+      "patterns": 86,
+      "precision": 83.1,
+      "status": "FAILED"
+    },
+    "SILVER_BULLET": {
+      "patterns": 86,
+      "precision": 94.6,
+      "status": "FAILED"
+    },
+    "BREAKER_BLOCKS": {
+      "patterns": 144,
+      "precision": 83.3,
+      "status": "FAILED"
+    }
+  },
+  "summary": {
+    "modules_passed": 1,
+    "modules_total": 6,
+    "overall_compliance": false
+  }
+}

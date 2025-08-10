@@ -1,0 +1,34 @@
+{
+  "session_id": "52f4953fb89a",
+  "timestamp": "2025-08-09T18:36:54.886273",
+  "execution_time": 12.592903852462769,
+  "raw_results": {
+    "total_execution_time": 11.940288,
+    "total_data_points": 435538,
+    "total_patterns": 47130,
+    "total_signals": 53888,
+    "overall_success_rate": 98.57142857142857,
+    "modules_analyzed": 7,
+    "symbols_processed": [
+      "XAUUSD",
+      "USDJPY",
+      "AUDUSD",
+      "GBPUSD",
+      "EURUSD",
+      "USDCHF"
+    ],
+    "timeframes_processed": [
+      "M5",
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "date_range": {
+      "start": "2023-08-30",
+      "end": "2025-08-08"
+    },
+    "performance_grade": "A+ (EXCELLENT)"
+  },
+  "stdout_visible": "PROGRESS_BARS_SHOWN",
+  "stderr_capture": ""
+}

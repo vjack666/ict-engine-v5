@@ -1,0 +1,905 @@
+{
+  "session_info": {
+    "session_id": "BB_20250809_162129",
+    "start_time": "2025-08-09T16:21:29.939426",
+    "end_time": "2025-08-09T16:21:35.061764",
+    "duration_seconds": 5.122322082519531,
+    "purpose": "Diagnosticar problemas de pestañas en ICT Dashboard"
+  },
+  "summary_counters": {
+    "function_calls": 162,
+    "ui_events": 115,
+    "data_operations": 1,
+    "errors": 36,
+    "warnings": 0,
+    "renders_success": 45,
+    "renders_failed": 0
+  },
+  "success_rates": {
+    "render_success_rate": 100.0,
+    "error_rate": 22.22222222222222
+  },
+  "recent_events": [
+    {
+      "timestamp": "2025-08-09T16:21:34.051113",
+      "session_time": 4.111690044403076,
+      "function": "render_header_info",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 148
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.051214",
+      "method": "render_header_info",
+      "status": "SUCCESS",
+      "content_length": 196,
+      "content_preview": "[bold cyan]ICT ENGINE v6.1 ENTERPRISE DASHBOARD[/bold cyan]\nSession: ICT_ENTERPRISE_20250809_162129 ",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.051302",
+      "session_time": 4.1118786334991455,
+      "function": "render_header_info",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 2.3365020751953125e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 149
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.052108",
+      "session_time": 4.112685441970825,
+      "function": "_update_overview",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 150
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.153260",
+      "session_time": 4.213835954666138,
+      "function": "_update_detectors",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 151
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.153344",
+      "session_time": 4.213918924331665,
+      "function": "render_ict_detectors",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 152
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.153420",
+      "method": "render_ict_detectors",
+      "status": "SUCCESS",
+      "content_length": 2237,
+      "content_preview": "[bold cyan]🔍 DETECTORES ICT - ANÁLISIS DETALLADO[/bold cyan]\n\n[bold white]ESTADO DE MÓDULOS ICT:[/bold white]\n┌──────────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐\n│ Detecto",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.153465",
+      "session_time": 4.214040279388428,
+      "function": "render_ict_detectors",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 4.4345855712890625e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 153
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.154961",
+      "session_time": 4.21553635597229,
+      "function": "_update_performance",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 154
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.155029",
+      "session_time": 4.215604782104492,
+      "function": "render_performance_metrics",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 155
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.155094",
+      "method": "render_performance_metrics",
+      "status": "SUCCESS",
+      "content_length": 1847,
+      "content_preview": "[bold cyan]⚡ PERFORMANCE & MÉTRICAS DEL SISTEMA[/bold cyan]\n\n[bold white]VELOCIDAD DE PROCESAMIENTO:[/bold white]\n┌─────────────────────────────────────────────────────────────────┐\n│ • Tiempo total: ",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.155135",
+      "session_time": 4.215710163116455,
+      "function": "render_performance_metrics",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 2.9325485229492188e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 156
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156522",
+      "session_time": 4.217097520828247,
+      "function": "_update_analysis",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 157
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156576",
+      "session_time": 4.217151403427124,
+      "function": "render_technical_analysis",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 158
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156638",
+      "method": "render_technical_analysis",
+      "status": "SUCCESS",
+      "content_length": 1621,
+      "content_preview": "[bold cyan]📈 ANÁLISIS TÉCNICO AVANZADO[/bold cyan]\n\n[bold white]ESTADÍSTICAS DE PATTERNS DETECTADOS:[/bold white]\n• Total patterns detectados: [bold green]94[/bold green]\n• Módulos con alta precisión ",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156677",
+      "session_time": 4.217252492904663,
+      "function": "render_technical_analysis",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 3.0040740966796875e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 159
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157825",
+      "session_time": 4.2183997631073,
+      "function": "_update_reports",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 160
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157884",
+      "session_time": 4.2184600830078125,
+      "function": "render_reports_export",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": null,
+      "result_type": null,
+      "result_size": null,
+      "error": null,
+      "call_count": 161
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157938",
+      "method": "render_reports_export",
+      "status": "SUCCESS",
+      "content_length": 1987,
+      "content_preview": "[bold cyan]📋 REPORTES & EXPORTACIÓN ENTERPRISE[/bold cyan]\n\n[bold white]INFORMACIÓN DE SESIÓN:[/bold white]\n┌─────────────────────────────────────────────────────────────────┐\n│ • Session ID: [bold]IC",
+      "error_message": null,
+      "success_rate": 100.0
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157975",
+      "session_time": 4.218549966812134,
+      "function": "render_reports_export",
+      "caller": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_dashboard_blackbox_logger.py:465",
+      "args_type": null,
+      "args_str": null,
+      "kwargs_type": null,
+      "kwargs_str": null,
+      "execution_time": 2.0742416381835938e-05,
+      "result_type": "str",
+      "result_size": 7,
+      "error": null,
+      "call_count": 162
+    }
+  ],
+  "critical_errors": [
+    {
+      "timestamp": "2025-08-09T16:21:30.129263",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 1
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.155652",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 2
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.175639",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 3
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.201252",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 4
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.244021",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 5
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.274966",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 6
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.303083",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 7
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.332877",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 8
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.469498",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 9
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.499974",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 10
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.518617",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 11
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.537185",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 12
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.669187",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 13
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.700066",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 14
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.726410",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 15
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.744919",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 16
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.884865",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 17
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.917457",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 18
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.946548",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 19
+    },
+    {
+      "timestamp": "2025-08-09T16:21:30.973462",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 20
+    },
+    {
+      "timestamp": "2025-08-09T16:21:31.052136",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 21
+    },
+    {
+      "timestamp": "2025-08-09T16:21:31.074392",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 22
+    },
+    {
+      "timestamp": "2025-08-09T16:21:31.093445",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 23
+    },
+    {
+      "timestamp": "2025-08-09T16:21:31.111766",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 24
+    },
+    {
+      "timestamp": "2025-08-09T16:21:32.051890",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 25
+    },
+    {
+      "timestamp": "2025-08-09T16:21:32.086152",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 26
+    },
+    {
+      "timestamp": "2025-08-09T16:21:32.106020",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 27
+    },
+    {
+      "timestamp": "2025-08-09T16:21:32.124644",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 28
+    },
+    {
+      "timestamp": "2025-08-09T16:21:33.086300",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 29
+    },
+    {
+      "timestamp": "2025-08-09T16:21:33.107620",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 30
+    },
+    {
+      "timestamp": "2025-08-09T16:21:33.127592",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 31
+    },
+    {
+      "timestamp": "2025-08-09T16:21:33.147453",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 32
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.052270",
+      "context": "_update_overview_rich_attempt_1",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_1"
+      },
+      "error_number": 33
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.085939",
+      "context": "_update_overview_rich_attempt_2",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_2"
+      },
+      "error_number": 34
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.106828",
+      "context": "_update_overview_rich_attempt_3",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich_attempt_3"
+      },
+      "error_number": 35
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.134730",
+      "context": "_update_overview_rich",
+      "error_type": "AttributeError",
+      "error_message": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+      "stack_trace": "Traceback (most recent call last):\n  File \"c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\tests\\ict_enterprise_dashboard_fixed.py\", line 464, in _update_overview\n    system_stats = self._get_system_stats()\n                   ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ICTEnterpriseApp' object has no attribute '_get_system_stats'\n",
+      "local_variables": {
+        "error": "'ICTEnterpriseApp' object has no attribute '_get_system_stats'",
+        "context": "_update_overview_rich"
+      },
+      "error_number": 36
+    }
+  ],
+  "ui_events": [
+    {
+      "timestamp": "2025-08-09T16:21:34.153217",
+      "component": "refresh",
+      "action": "overview_done",
+      "state": {},
+      "success": true,
+      "error": null,
+      "event_number": 105
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.154830",
+      "tab_name": "detectors",
+      "render_method": "render_ict_detectors",
+      "success": true,
+      "content_length": 2237,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.154886",
+      "component": "detectors_display",
+      "action": "update",
+      "state": {
+        "status": "success",
+        "length": 2237
+      },
+      "success": true,
+      "error": null,
+      "event_number": 106
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.154921",
+      "component": "refresh",
+      "action": "detectors_done",
+      "state": {},
+      "success": true,
+      "error": null,
+      "event_number": 107
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156401",
+      "tab_name": "performance",
+      "render_method": "render_performance_metrics",
+      "success": true,
+      "content_length": 1847,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156455",
+      "component": "performance_display",
+      "action": "update",
+      "state": {
+        "status": "success",
+        "length": 1847
+      },
+      "success": true,
+      "error": null,
+      "event_number": 108
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.156492",
+      "component": "refresh",
+      "action": "performance_done",
+      "state": {},
+      "success": true,
+      "error": null,
+      "event_number": 109
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157720",
+      "tab_name": "analysis",
+      "render_method": "render_technical_analysis",
+      "success": true,
+      "content_length": 1621,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157763",
+      "component": "analysis_display",
+      "action": "update",
+      "state": {
+        "status": "success",
+        "length": 1621
+      },
+      "success": true,
+      "error": null,
+      "event_number": 110
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.157795",
+      "component": "refresh",
+      "action": "analysis_done",
+      "state": {},
+      "success": true,
+      "error": null,
+      "event_number": 111
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.158945",
+      "tab_name": "reports",
+      "render_method": "render_reports_export",
+      "success": true,
+      "content_length": 1987,
+      "error_details": null
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.158992",
+      "component": "reports_display",
+      "action": "update",
+      "state": {
+        "status": "success",
+        "length": 1987
+      },
+      "success": true,
+      "error": null,
+      "event_number": 112
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.159025",
+      "component": "refresh",
+      "action": "reports_done",
+      "state": {},
+      "success": true,
+      "error": null,
+      "event_number": 113
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.159151",
+      "component": "refresh",
+      "action": "completed",
+      "state": {
+        "all_displays": "updated",
+        "forced_refresh": true
+      },
+      "success": true,
+      "error": null,
+      "event_number": 114
+    },
+    {
+      "timestamp": "2025-08-09T16:21:34.159188",
+      "component": "auto_refresh",
+      "action": "executed",
+      "state": {
+        "forced": true,
+        "interval": "1s"
+      },
+      "success": true,
+      "error": null,
+      "event_number": 115
+    }
+  ],
+  "data_operations": [
+    {
+      "timestamp": "2025-08-09T16:21:29.961816",
+      "operation": "ict_engine_init",
+      "input_type": "dict",
+      "input_size": 8,
+      "output_type": "str",
+      "output_size": 39,
+      "processing_time": null,
+      "metadata": null,
+      "operation_number": 1
+    }
+  ],
+  "log_files": {
+    "main": "logs\\blackbox\\BB_20250809_162129\\blackbox_main.log",
+    "ui": "logs\\blackbox\\BB_20250809_162129\\blackbox_ui.log",
+    "data": "logs\\blackbox\\BB_20250809_162129\\blackbox_data.log",
+    "render": "logs\\blackbox\\BB_20250809_162129\\blackbox_render.log",
+    "errors": "logs\\blackbox\\BB_20250809_162129\\blackbox_errors.log",
+    "performance": "logs\\blackbox\\BB_20250809_162129\\blackbox_performance.log",
+    "functions": "logs\\blackbox\\BB_20250809_162129\\blackbox_functions.log"
+  },
+  "recommendations": [
+    "⚠️ 36 errores detectados. Sistema inestable, revisar errores críticos.",
+    "🚨 Tasa de errores alta: 22.2%. Revisar robustez del código."
+  ]
+}

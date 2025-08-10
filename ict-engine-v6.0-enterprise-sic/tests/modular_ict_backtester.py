@@ -36,6 +36,48 @@ import json
 import time
 from dataclasses import dataclass, asdict
 from pathlib import Path
+import logging
+import contextlib
+from io import StringIO
+
+# 🔇 BLACKBOX CONFIGURATION - SILENCIAR TODOS LOS LOGS
+import logging
+import os
+
+# Configurar logging para silenciar TODO
+logging.basicConfig(
+    level=logging.CRITICAL,
+    format='',
+    handlers=[]
+)
+
+# Silenciar TODOS los loggers posibles
+for name in ['', 'root', '__main__', 'ict_engine', 'poi_detector', 'smart_money', 
+             'liquidity', 'ict_detector', 'displacement', 'fair_value_gaps']:
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.CRITICAL)
+    logger.disabled = True
+    # Remover todos los handlers
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+
+# Suprimir warnings
+import warnings
+warnings.filterwarnings('ignore')
+
+# Silenciar prints si viene de otros módulos
+_original_print = print
+def silent_print(*args, **kwargs):
+    # Solo permitir prints que contengan barras de progreso
+    if args and any(char in str(args[0]) for char in ['█', '░', '▓', '▒', '■', '□', '%', '🎯']):
+        _original_print(*args, **kwargs)
+    elif 'PROGRESO' in str(args) or 'PATTERNS' in str(args):
+        _original_print(*args, **kwargs)
+
+# NO sobrescribir print por ahora, solo configurar logging
+
+# 🖤 Crear directorio blackbox para datos
+Path("blackbox").mkdir(exist_ok=True)
 
 # Progress bar imports
 try:

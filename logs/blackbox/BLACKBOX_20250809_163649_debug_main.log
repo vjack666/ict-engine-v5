@@ -1,0 +1,36 @@
+[2025-08-09 16:36:49.807] [ICT_BlackBox_main] [INFO] [log_info:222] BLACKBOX_INICIO | BlackBox Logger iniciado - Session: BLACKBOX_20250809_163649
+[2025-08-09 16:36:49.944] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_header_info | Args: None | Result: NoneType
+[2025-08-09 16:36:49.946] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_overview_enterprise | Args: None | Result: NoneType
+[2025-08-09 16:36:49.947] [ICT_BlackBox_main] [INFO] [log_info:222] OVERVIEW_METRICS | Modules: 10, Completed: 0, Processing: 0
+[2025-08-09 16:36:51.570] [ICT_BlackBox_main] [INFO] [log_info:222] OVERVIEW_SUCCESS | Content generated: 1311 chars
+[2025-08-09 16:36:51.572] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_ict_detectors | Args: None | Result: NoneType
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Pattern Detector: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing BOS Detector: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing CHOCH Detector: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Breaker Blocks: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Silver Bullet: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Liquidity Zones: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Displacement: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Multi-Confluence: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Smart Money: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Order Blocks: PENDING
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [INFO] [log_info:222] DETECTORS_MODULES | Processed 10 modules successfully
+[2025-08-09 16:36:51.573] [ICT_BlackBox_main] [INFO] [log_info:222] DETECTORS_SUCCESS | Content generated: 2423 chars
+[2025-08-09 16:36:58.863] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_header_info | Args: None | Result: NoneType
+[2025-08-09 16:36:58.866] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_header_info | Args: None | Result: NoneType
+[2025-08-09 16:36:58.872] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_overview_enterprise | Args: None | Result: NoneType
+[2025-08-09 16:36:58.872] [ICT_BlackBox_main] [INFO] [log_info:222] OVERVIEW_METRICS | Modules: 10, Completed: 0, Processing: 0
+[2025-08-09 16:37:00.358] [ICT_BlackBox_main] [INFO] [log_info:222] OVERVIEW_SUCCESS | Content generated: 1303 chars
+[2025-08-09 16:37:00.360] [ICT_BlackBox_main] [DEBUG] [log_function_call:152] FUNCTION_CALL | render_ict_detectors | Args: None | Result: NoneType
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Pattern Detector: PROCESSING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing BOS Detector: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing CHOCH Detector: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Breaker Blocks: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Silver Bullet: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Liquidity Zones: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Displacement: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Multi-Confluence: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Smart Money: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [DEBUG] [log_debug:226] MODULE_PROCESSING | Processing Order Blocks: PENDING
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [INFO] [log_info:222] DETECTORS_MODULES | Processed 10 modules successfully
+[2025-08-09 16:37:00.363] [ICT_BlackBox_main] [INFO] [log_info:222] DETECTORS_SUCCESS | Content generated: 2439 chars
