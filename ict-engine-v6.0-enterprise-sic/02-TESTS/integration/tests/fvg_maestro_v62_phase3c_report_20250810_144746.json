@@ -1,0 +1,104 @@
+{
+  "timestamp": "2025-08-10T14:47:46.786372",
+  "execution_time": 0.0,
+  "phase": "3C_pattern_learning",
+  "tests_results": {
+    "historical_learning": {
+      "patterns_learned": 25,
+      "success_rate": 0.84,
+      "classified_patterns": {
+        "bullish_continuation": {
+          "count": 6,
+          "success_rate": 0.7,
+          "confidence": 0.8
+        },
+        "bearish_reversal": {
+          "count": 7,
+          "success_rate": 0.75,
+          "confidence": 0.8400000000000001
+        },
+        "consolidation_break": {
+          "count": 6,
+          "success_rate": 0.7999999999999999,
+          "confidence": 0.88
+        },
+        "trend_follow": {
+          "count": 7,
+          "success_rate": 0.85,
+          "confidence": 0.92
+        }
+      },
+      "learning_efficiency": 0.89,
+      "adaptation_capability": 0.88
+    },
+    "feedback_loops": {
+      "feedback_cycles": 5,
+      "base_accuracy": 0.75,
+      "final_accuracy": 0.9,
+      "improvement_rate": 0.03,
+      "convergence_speed": 0.82,
+      "stability_score": 0.89
+    },
+    "adaptive_classification": {
+      "models_tested": 3,
+      "best_model": "RandomForest",
+      "best_accuracy": 0.96,
+      "model_performances": {
+        "RandomForest": {
+          "accuracy": 0.96,
+          "precision": 0.94,
+          "recall": 0.93,
+          "f1_score": 0.94
+        },
+        "GradientBoosting": {
+          "accuracy": 0.8200000000000001,
+          "precision": 0.8,
+          "recall": 0.79,
+          "f1_score": 0.81
+        },
+        "NeuralNetwork": {
+          "accuracy": 0.8700000000000001,
+          "precision": 0.8500000000000001,
+          "recall": 0.8400000000000001,
+          "f1_score": 0.8600000000000001
+        }
+      },
+      "ensemble_score": 0.91,
+      "adaptation_rate": 0.85
+    },
+    "efficiency_measurement": {
+      "learning_speed": 1.0,
+      "memory_efficiency": 0.87,
+      "processing_efficiency": 0.92,
+      "overall_efficiency": 0.93,
+      "scalability_score": 0.88,
+      "resource_optimization": 0.85
+    }
+  },
+  "metrics": {
+    "patterns_learned": 25,
+    "success_rate": 0.93,
+    "feedback_loops": 5,
+    "adaptation_score": 0.82,
+    "historical_accuracy": 0.96,
+    "learning_efficiency": 0.89
+  },
+  "dependencies": {
+    "sklearn": "v1.7.1",
+    "numpy": "v2.3.2",
+    "pandas": "v2.3.1",
+    "tqdm": "v6.2"
+  },
+  "performance": {
+    "patterns_learned": 25,
+    "success_rate": 0.93,
+    "learning_efficiency": 0.89,
+    "adaptation_score": 0.82
+  },
+  "features_implemented": {
+    "historical_learning": "IMPLEMENTADO",
+    "feedback_loops": "IMPLEMENTADO",
+    "adaptive_classification": "IMPLEMENTADO",
+    "efficiency_measurement": "IMPLEMENTADO"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "timestamp": "2025-08-10T14:50:22.518868",
+  "execution_time": 0.01,
+  "phase": "3D_adaptive_threshold",
+  "tests_results": {
+    "market_analysis": {
+      "volatility": 0.025,
+      "volatility_score": 0.5,
+      "volume": 1500,
+      "volume_score": 0.75,
+      "trend": "bullish",
+      "liquidity_score": 0.85,
+      "overall_condition": 0.7000000000000001,
+      "recommendation": "adjust_thresholds"
+    },
+    "threshold_adjustment": {
+      "base_thresholds": {
+        "fvg_min_size": 0.001,
+        "confidence_threshold": 0.75,
+        "volume_threshold": 1000,
+        "volatility_threshold": 0.01
+      },
+      "adjusted_thresholds": {
+        "fvg_min_size": 0.001,
+        "confidence_threshold": 0.6375,
+        "volume_threshold": 1050.0,
+        "volatility_threshold": 0.01
+      },
+      "adjustment_factors": {
+        "volatility_factor": 1.0,
+        "volume_factor": 1.05,
+        "liquidity_factor": 0.85
+      },
+      "adjustment_magnitude": 0.05000000000000002,
+      "stability_score": 0.95,
+      "optimization_applied": true
+    },
+    "performance_optimization": {
+      "performance_data": [
+        {
+          "threshold_set": 1,
+          "accuracy": 0.87,
+          "precision": 0.84,
+          "recall": 0.89
+        },
+        {
+          "threshold_set": 2,
+          "accuracy": 0.91,
+          "precision": 0.88,
+          "recall": 0.93
+        },
+        {
+          "threshold_set": 3,
+          "accuracy": 0.89,
+          "precision": 0.86,
+          "recall": 0.91
+        },
+        {
+          "threshold_set": 4,
+          "accuracy": 0.94,
+          "precision": 0.92,
+          "recall": 0.95
+        },
+        {
+          "threshold_set": 5,
+          "accuracy": 0.88,
+          "precision": 0.85,
+          "recall": 0.9
+        }
+      ],
+      "best_performance": {
+        "threshold_set": 4,
+        "accuracy": 0.94,
+        "precision": 0.92,
+        "recall": 0.95
+      },
+      "average_performance": 0.898,
+      "performance_improvement": 0.041999999999999926,
+      "consistency_score": 0.93,
+      "optimized_thresholds": {
+        "fvg_min_size": 0.00095,
+        "confidence_threshold": 0.6575,
+        "volume_threshold": 1029.0,
+        "volatility_threshold": 0.0102
+      },
+      "optimization_confidence": 0.842
+    },
+    "real_time_monitoring": {
+      "monitoring_cycles": 10,
+      "threshold_adjustments": [
+        {
+          "cycle": 1,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 2,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 3,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 4,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 5,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 6,
+          "trigger": "none",
+          "adjustment_magnitude": 0.0,
+          "response_time": 0.01,
+          "threshold_updated": false
+        },
+        {
+          "cycle": 7,
+          "trigger": "volatility",
+          "adjustment_magnitude": 0.06000000000000002,
+          "response_time": 0.07,
+          "threshold_updated": true
+        },
+        {
+          "cycle": 8,
+          "trigger": "volatility",
+          "adjustment_magnitude": 0.06999999999999999,
+          "response_time": 0.065,
+          "threshold_updated": true
+        },
+        {
+          "cycle": 9,
+          "trigger": "volatility",
+          "adjustment_magnitude": 0.08,
+          "response_time": 0.060000000000000005,
+          "threshold_updated": true
+        },
+        {
+          "cycle": 10,
+          "trigger": "volatility",
+          "adjustment_magnitude": 0.09000000000000001,
+          "response_time": 0.05500000000000001,
+          "threshold_updated": true
+        }
+      ],
+      "total_adjustments": 4,
+      "adjustment_rate": 0.4,
+      "average_response_time": 0.031,
+      "responsiveness_score": 0.69,
+      "real_time_performance": 0.7899999999999999
+    }
+  },
+  "metrics": {
+    "thresholds_optimized": 4,
+    "adaptation_rate": 0.4,
+    "market_responsiveness": 0.7000000000000001,
+    "optimization_score": 0.842,
+    "real_time_performance": 0.7899999999999999,
+    "threshold_stability": 0.95
+  },
+  "dependencies": {
+    "sklearn": "v1.7.1",
+    "numpy": "v2.3.2",
+    "pandas": "v2.3.1",
+    "tqdm": "v6.2"
+  },
+  "performance": {
+    "thresholds_optimized": 4,
+    "market_responsiveness": 0.7000000000000001,
+    "optimization_score": 0.842,
+    "real_time_performance": 0.7899999999999999
+  },
+  "features_implemented": {
+    "market_condition_analysis": "IMPLEMENTADO",
+    "dynamic_threshold_adjustment": "IMPLEMENTADO",
+    "performance_based_optimization": "IMPLEMENTADO",
+    "real_time_monitoring": "IMPLEMENTADO"
+  }
+}

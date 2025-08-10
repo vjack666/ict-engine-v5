@@ -1,0 +1,264 @@
+{
+  "timestamp": "2025-08-10T14:57:02.014039",
+  "execution_time": 3.48,
+  "phase": "4A_realtime_data",
+  "tests_results": {
+    "websocket_streaming": {
+      "connections": [
+        {
+          "connection_id": "MT5_FundedNext_EURUSD_1754855818",
+          "broker": "MT5_FundedNext",
+          "symbol": "EURUSD",
+          "status": "connected",
+          "established_at": "2025-08-10T14:56:58.550965",
+          "latency_ms": 12.18,
+          "heartbeat_interval": 30,
+          "data_format": "JSON",
+          "compression": "gzip"
+        },
+        {
+          "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+          "broker": "MT5_FundedNext",
+          "symbol": "GBPUSD",
+          "status": "connected",
+          "established_at": "2025-08-10T14:56:58.573547",
+          "latency_ms": 21.86,
+          "heartbeat_interval": 30,
+          "data_format": "JSON",
+          "compression": "gzip"
+        }
+      ],
+      "streaming_result": {
+        "streaming_duration": 3.4315643310546875,
+        "total_messages": 60,
+        "throughput_tps": 17.48,
+        "active_streams": 2,
+        "data_points": [
+          {
+            "timestamp": "2025-08-10T14:57:01.721821",
+            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "symbol": "GBPUSD",
+            "bid": 1.09525,
+            "ask": 1.09545,
+            "volume": 350,
+            "sequence": 56
+          },
+          {
+            "timestamp": "2025-08-10T14:57:01.775505",
+            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "symbol": "GBPUSD",
+            "bid": 1.09526,
+            "ask": 1.09546,
+            "volume": 360,
+            "sequence": 57
+          },
+          {
+            "timestamp": "2025-08-10T14:57:01.839566",
+            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "symbol": "GBPUSD",
+            "bid": 1.09527,
+            "ask": 1.09547,
+            "volume": 370,
+            "sequence": 58
+          },
+          {
+            "timestamp": "2025-08-10T14:57:01.889862",
+            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "symbol": "GBPUSD",
+            "bid": 1.09528,
+            "ask": 1.09548,
+            "volume": 380,
+            "sequence": 59
+          },
+          {
+            "timestamp": "2025-08-10T14:57:01.951810",
+            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "symbol": "GBPUSD",
+            "bid": 1.09529,
+            "ask": 1.09549,
+            "volume": 390,
+            "sequence": 60
+          }
+        ],
+        "average_latency": 17.02,
+        "status": "streaming_completed"
+      }
+    },
+    "multi_broker_integration": {
+      "broker_integration": {
+        "adapters_initialized": 4,
+        "broker_adapters": [
+          {
+            "broker_name": "MT5_FundedNext",
+            "adapter_type": "MT5_NATIVE",
+            "status": "initialized",
+            "capabilities": [
+              "historical_data",
+              "real_time_ticks",
+              "symbol_info"
+            ],
+            "rate_limits": {
+              "requests_per_second": 100,
+              "max_symbols": 20
+            },
+            "failover_priority": 1,
+            "health_score": 0.95
+          },
+          {
+            "broker_name": "MT5_Backup",
+            "adapter_type": "MT5_NATIVE",
+            "status": "initialized",
+            "capabilities": [
+              "historical_data",
+              "real_time_ticks",
+              "symbol_info"
+            ],
+            "rate_limits": {
+              "requests_per_second": 100,
+              "max_symbols": 20
+            },
+            "failover_priority": 2,
+            "health_score": 0.85
+          },
+          {
+            "broker_name": "TradingView",
+            "adapter_type": "MT5_NATIVE",
+            "status": "initialized",
+            "capabilities": [
+              "historical_data",
+              "real_time_ticks",
+              "symbol_info"
+            ],
+            "rate_limits": {
+              "requests_per_second": 50,
+              "max_symbols": 10
+            },
+            "failover_priority": 3,
+            "health_score": 0.85
+          },
+          {
+            "broker_name": "AlphaVantage",
+            "adapter_type": "MT5_NATIVE",
+            "status": "initialized",
+            "capabilities": [
+              "historical_data",
+              "real_time_ticks",
+              "symbol_info"
+            ],
+            "rate_limits": {
+              "requests_per_second": 50,
+              "max_symbols": 10
+            },
+            "failover_priority": 4,
+            "health_score": 0.85
+          }
+        ],
+        "active_brokers": [
+          "MT5_FundedNext"
+        ],
+        "primary_broker": "MT5_FundedNext",
+        "failover_chain": [
+          "MT5_Backup",
+          "TradingView",
+          "AlphaVantage"
+        ],
+        "integration_status": "completed"
+      },
+      "failover_test": {
+        "scenarios_tested": 3,
+        "failover_tests": [
+          {
+            "scenario": "primary_broker_down",
+            "primary_broker": "MT5_FundedNext",
+            "fallback_broker": "MT5_Backup",
+            "failover_time_ms": 0.0,
+            "status": "success",
+            "data_continuity": true,
+            "performance_impact": "minimal"
+          },
+          {
+            "scenario": "high_latency",
+            "primary_broker": "MT5_FundedNext",
+            "fallback_broker": "TradingView",
+            "failover_time_ms": 0.0,
+            "status": "success",
+            "data_continuity": true,
+            "performance_impact": "minimal"
+          },
+          {
+            "scenario": "rate_limit_exceeded",
+            "primary_broker": "MT5_FundedNext",
+            "fallback_broker": "AlphaVantage",
+            "failover_time_ms": 0.0,
+            "status": "success",
+            "data_continuity": true,
+            "performance_impact": "minimal"
+          }
+        ],
+        "average_failover_time_ms": 0.0,
+        "success_rate": 100.0,
+        "data_continuity": true,
+        "failover_status": "operational"
+      }
+    },
+    "data_validation": {
+      "validation_pipeline": {
+        "validation_rules": 4,
+        "rule_categories": [
+          "price_validation",
+          "timestamp_validation",
+          "volume_validation",
+          "data_integrity"
+        ],
+        "validation_frequency": "real_time",
+        "error_handling": "log_and_quarantine",
+        "performance_target": "<1ms_per_validation",
+        "pipeline_status": "configured"
+      },
+      "validation_result": {
+        "total_records": 50,
+        "valid_records": 50,
+        "invalid_records": 0,
+        "quality_score": 100.0,
+        "validation_duration_ms": 0.2,
+        "validation_rate_per_second": 253279.23,
+        "error_summary": {},
+        "validation_status": "completed"
+      }
+    },
+    "integration_performance": {
+      "overall_latency_ms": 17.02,
+      "overall_throughput_tps": 17.48,
+      "data_quality_score": 100.0,
+      "integration_score": 68.9,
+      "real_time_capability": true,
+      "enterprise_ready": false
+    }
+  },
+  "metrics": {
+    "websocket_connections": 2,
+    "data_streams_active": 2,
+    "latency_ms": 17.02,
+    "throughput_tps": 17.48,
+    "failover_triggers": 3,
+    "data_quality_score": 100.0
+  },
+  "dependencies": {
+    "asyncio": "AVAILABLE",
+    "threading": "AVAILABLE",
+    "websockets": "v15.0.1",
+    "pandas": "v2.3.1"
+  },
+  "performance": {
+    "websocket_connections": 2,
+    "latency_ms": 17.02,
+    "throughput_tps": 17.48,
+    "data_quality_score": 100.0
+  },
+  "features_implemented": {
+    "websocket_data_streaming": "IMPLEMENTADO",
+    "multi_broker_integration": "IMPLEMENTADO",
+    "real_time_data_validation": "IMPLEMENTADO",
+    "failover_mechanism": "IMPLEMENTADO"
+  }
+}

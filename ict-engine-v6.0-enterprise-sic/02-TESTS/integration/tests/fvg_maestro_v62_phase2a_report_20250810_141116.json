@@ -1,0 +1,26 @@
+{
+  "execution_timestamp": "2025-08-10T14:11:16.838207",
+  "total_execution_time": 0.662161111831665,
+  "optimization_results": [
+    {
+      "test_name": "vectorized_performance",
+      "original_performance": 50.0,
+      "optimized_performance": 9548.076607116345,
+      "improvement_factor": 190.96153214232692,
+      "fvgs_detected": 46,
+      "execution_time": 0.0048177242279052734,
+      "dynamic_threshold_used": 0.00394581406709442,
+      "volatility_calculated": 0.0015783256268377679,
+      "vectorization_applied": true,
+      "performance_target_achieved": true
+    }
+  ],
+  "performance_summary": {
+    "total_detections": 274,
+    "total_time": 0.04558873176574707,
+    "fvgs_per_second": 6010.257126868989,
+    "target_achieved": true,
+    "performance_grade": "EXCELLENT"
+  },
+  "next_phase": "FASE_2B_CACHING"
+}

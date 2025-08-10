@@ -1,0 +1,48 @@
+{
+  "execution_timestamp": "2025-08-10T14:27:03.513399",
+  "total_execution_time": 2.830500841140747,
+  "integration_results": [],
+  "performance_benchmark": {
+    "detection": {
+      "name": "detection_benchmark",
+      "start_time": 1754854022.5827045,
+      "start_memory": 67.8046875,
+      "start_cpu": 2.8,
+      "end_time": 1754854022.849789,
+      "duration": 0.26708436012268066,
+      "end_memory": 67.8046875,
+      "memory_delta": 0.0,
+      "end_cpu": 4.7,
+      "cpu_avg": 3.75
+    },
+    "caching": {
+      "name": "caching_benchmark",
+      "start_time": 1754854022.952583,
+      "start_memory": 67.8046875,
+      "start_cpu": 8.5,
+      "end_time": 1754854023.183715,
+      "duration": 0.23113203048706055,
+      "end_memory": 67.80859375,
+      "memory_delta": 0.00390625,
+      "end_cpu": 2.8,
+      "cpu_avg": 5.65
+    },
+    "multi_tf": {
+      "name": "multi_tf_benchmark",
+      "start_time": 1754854023.2864745,
+      "start_memory": 67.80859375,
+      "start_cpu": 13.0,
+      "end_time": 1754854023.410592,
+      "duration": 0.12411761283874512,
+      "end_memory": 67.80859375,
+      "memory_delta": 0.0,
+      "end_cpu": 1.6,
+      "cpu_avg": 7.3
+    },
+    "aggregate": {
+      "total_latency": 0.6223340034484863,
+      "total_memory_mb": 0.00390625,
+      "avg_cpu_percent": 5.566666666666666,
+      "meets_latency_target": false,
+      "meets_memory_target": true,
+      "meets_cpu_target": 

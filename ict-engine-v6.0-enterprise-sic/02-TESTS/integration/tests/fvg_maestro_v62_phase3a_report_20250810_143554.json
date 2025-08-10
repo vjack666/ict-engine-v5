@@ -1,0 +1,12 @@
+{
+  "execution_timestamp": "2025-08-10T14:35:54.210192",
+  "total_execution_time": 0.8194923400878906,
+  "ml_results": [],
+  "ml_performance": {
+    "ml_statistics": {
+      "training_samples": 1000,
+      "model_accuracy": {
+        "random_forest": {
+          "r2_score": 0.9371000216971149,
+          "mse": 0.0013607303249637815,
+          "feature_importance": 

@@ -1,0 +1,546 @@
+{
+  "timestamp": "2025-08-10T15:00:58.487197",
+  "execution_time": 0.68,
+  "phase": "4B_scalability",
+  "tests_results": {
+    "multi_symbol_processing": {
+      "processor_init": {
+        "symbols_initialized": 15,
+        "processors_created": 15,
+        "active_symbols": [
+          "EURUSD",
+          "GBPUSD",
+          "USDJPY",
+          "AUDUSD",
+          "USDCHF",
+          "NZDUSD",
+          "USDCAD",
+          "EURGBP",
+          "EURJPY",
+          "GBPJPY",
+          "AUDCAD",
+          "EURCHF",
+          "XAUUSD",
+          "XAGUSD",
+          "BTCUSD"
+        ],
+        "total_capacity": 1500,
+        "initialization_time_ms": 0.12,
+        "memory_allocated_mb": 750,
+        "status": "completed"
+      },
+      "concurrent_result": {
+        "symbols_processed": 15,
+        "successful_symbols": 15,
+        "total_fvgs_processed": 1500,
+        "concurrent_processing_time_ms": 436.27,
+        "avg_processing_rate_per_second": 643.17,
+        "max_workers_used": 8,
+        "active_threads": 8,
+        "resource_usage": {
+          "initial": {
+            "timestamp": "2025-08-10T15:00:57.921357",
+            "cpu_percent": 6.7,
+            "memory_mb": 14153.46,
+            "memory_percent": 88.4,
+            "process_memory_mb": 25.73,
+            "available_memory_mb": 1860.61,
+            "cpu_cores": 20,
+            "threads_count": 4
+          },
+          "final": {
+            "timestamp": "2025-08-10T15:00:58.351308",
+            "cpu_percent": 10.4,
+            "memory_mb": 14154.03,
+            "memory_percent": 88.4,
+            "process_memory_mb": 26.23,
+            "available_memory_mb": 1860.04,
+            "cpu_cores": 20,
+            "threads_count": 4
+          },
+          "cpu_increase": 3.7,
+          "memory_increase_mb": 0.570000000001528
+        },
+        "processing_results": [
+          {
+            "symbol": "EURUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 154.46,
+            "processing_rate_per_second": 647.4,
+            "thread_id": 22084,
+            "last_fvg_sample": {
+              "symbol": "EURUSD",
+              "fvg_id": "EURUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.081064",
+              "thread_id": 22084,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "GBPUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 153.05,
+            "processing_rate_per_second": 653.36,
+            "thread_id": 16264,
+            "last_fvg_sample": {
+              "symbol": "GBPUSD",
+              "fvg_id": "GBPUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.078941",
+              "thread_id": 16264,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "USDJPY",
+            "processed_fvgs": 100,
+            "processing_time_ms": 152.26,
+            "processing_rate_per_second": 656.76,
+            "thread_id": 26972,
+            "last_fvg_sample": {
+              "symbol": "USDJPY",
+              "fvg_id": "USDJPY_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.078984",
+              "thread_id": 26972,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "AUDUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 156.14,
+            "processing_rate_per_second": 640.45,
+            "thread_id": 17748,
+            "last_fvg_sample": {
+              "symbol": "AUDUSD",
+              "fvg_id": "AUDUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.082897",
+              "thread_id": 17748,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "USDCHF",
+            "processed_fvgs": 100,
+            "processing_time_ms": 155.22,
+            "processing_rate_per_second": 644.25,
+            "thread_id": 3564,
+            "last_fvg_sample": {
+              "symbol": "USDCHF",
+              "fvg_id": "USDCHF_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.082702",
+              "thread_id": 3564,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "NZDUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 155.17,
+            "processing_rate_per_second": 644.46,
+            "thread_id": 15940,
+            "last_fvg_sample": {
+              "symbol": "NZDUSD",
+              "fvg_id": "NZDUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.082766",
+              "thread_id": 15940,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "USDCAD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 155.33,
+            "processing_rate_per_second": 643.81,
+            "thread_id": 15184,
+            "last_fvg_sample": {
+              "symbol": "USDCAD",
+              "fvg_id": "USDCAD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.083099",
+              "thread_id": 15184,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "EURGBP",
+            "processed_fvgs": 100,
+            "processing_time_ms": 152.95,
+            "processing_rate_per_second": 653.83,
+            "thread_id": 29124,
+            "last_fvg_sample": {
+              "symbol": "EURGBP",
+              "fvg_id": "EURGBP_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.081009",
+              "thread_id": 29124,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "EURJPY",
+            "processed_fvgs": 100,
+            "processing_time_ms": 158.84,
+            "processing_rate_per_second": 629.57,
+            "thread_id": 26972,
+            "last_fvg_sample": {
+              "symbol": "EURJPY",
+              "fvg_id": "EURJPY_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.238045",
+              "thread_id": 26972,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "GBPJPY",
+            "processed_fvgs": 100,
+            "processing_time_ms": 158.25,
+            "processing_rate_per_second": 631.93,
+            "thread_id": 16264,
+            "last_fvg_sample": {
+              "symbol": "GBPJPY",
+              "fvg_id": "GBPJPY_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.237953",
+              "thread_id": 16264,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "AUDCAD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 153.43,
+            "processing_rate_per_second": 651.78,
+            "thread_id": 22084,
+            "last_fvg_sample": {
+              "symbol": "AUDCAD",
+              "fvg_id": "AUDCAD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.234312",
+              "thread_id": 22084,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "EURCHF",
+            "processed_fvgs": 100,
+            "processing_time_ms": 157.41,
+            "processing_rate_per_second": 635.28,
+            "thread_id": 29124,
+            "last_fvg_sample": {
+              "symbol": "EURCHF",
+              "fvg_id": "EURCHF_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.237908",
+              "thread_id": 29124,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "XAUUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 157.14,
+            "processing_rate_per_second": 636.39,
+            "thread_id": 3564,
+            "last_fvg_sample": {
+              "symbol": "XAUUSD",
+              "fvg_id": "XAUUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.239913",
+              "thread_id": 3564,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "XAGUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 156.35,
+            "processing_rate_per_second": 639.58,
+            "thread_id": 15940,
+            "last_fvg_sample": {
+              "symbol": "XAGUSD",
+              "fvg_id": "XAGUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.239009",
+              "thread_id": 15940,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          },
+          {
+            "symbol": "BTCUSD",
+            "processed_fvgs": 100,
+            "processing_time_ms": 156.57,
+            "processing_rate_per_second": 638.7,
+            "thread_id": 15184,
+            "last_fvg_sample": {
+              "symbol": "BTCUSD",
+              "fvg_id": "BTCUSD_fvg_99",
+              "timestamp": "2025-08-10T15:00:58.239989",
+              "thread_id": 15184,
+              "processing_order": 100,
+              "confidence": 0.898,
+              "timeframe": "M15",
+              "type": "bearish"
+            },
+            "status": "completed"
+          }
+        ],
+        "status": "completed"
+      }
+    },
+    "resource_optimization": {
+      "current_usage": {
+        "timestamp": "2025-08-10T15:00:58.473519",
+        "cpu_percent": 2.8,
+        "memory_mb": 14154.19,
+        "memory_percent": 88.4,
+        "process_memory_mb": 25.54,
+        "available_memory_mb": 1859.88,
+        "cpu_cores": 20,
+        "threads_count": 4
+      },
+      "cpu_efficiency": 97.2,
+      "memory_efficiency": 97.51,
+      "overall_efficiency": 97.35,
+      "optimization_status": "optimal"
+    },
+    "load_balancing": {
+      "balancer_init": {
+        "workers_initialized": 4,
+        "symbols_distributed": 15,
+        "load_distribution": {
+          "worker_0": 26.67,
+          "worker_1": 26.67,
+          "worker_2": 26.67,
+          "worker_3": 20.0
+        },
+        "balancing_strategy": "round_robin",
+        "load_variance": 8.34,
+        "balancing_efficiency": 91.66,
+        "worker_details": [
+          {
+            "worker_id": "worker_0",
+            "capacity": 100,
+            "current_load": 4,
+            "assigned_symbols": [
+              "EURUSD",
+              "USDCHF",
+              "EURJPY",
+              "XAUUSD"
+            ],
+            "performance_score": 1.0,
+            "status": "ready"
+          },
+          {
+            "worker_id": "worker_1",
+            "capacity": 100,
+            "current_load": 4,
+            "assigned_symbols": [
+              "GBPUSD",
+              "NZDUSD",
+              "GBPJPY",
+              "XAGUSD"
+            ],
+            "performance_score": 1.0,
+            "status": "ready"
+          },
+          {
+            "worker_id": "worker_2",
+            "capacity": 100,
+            "current_load": 4,
+            "assigned_symbols": [
+              "USDJPY",
+              "USDCAD",
+              "AUDCAD",
+              "BTCUSD"
+            ],
+            "performance_score": 1.0,
+            "status": "ready"
+          },
+          {
+            "worker_id": "worker_3",
+            "capacity": 100,
+            "current_load": 3,
+            "assigned_symbols": [
+              "AUDUSD",
+              "EURGBP",
+              "EURCHF"
+            ],
+            "performance_score": 1.0,
+            "status": "ready"
+          }
+        ],
+        "status": "initialized"
+      },
+      "performance": {
+        "scenarios_tested": 3,
+        "scenario_results": [
+          {
+            "scenario_name": "light_load",
+            "load_intensity": 1,
+            "total_work_units": 1000,
+            "workload_distribution": {
+              "worker_0": 250,
+              "worker_1": 250,
+              "worker_2": 250,
+              "worker_3": 250
+            },
+            "work_variance": 0.0,
+            "balancing_score": 100.0,
+            "processing_time_ms": 0.03,
+            "throughput_units_per_second": 38836148.15
+          },
+          {
+            "scenario_name": "medium_load",
+            "load_intensity": 3,
+            "total_work_units": 3000,
+            "workload_distribution": {
+              "worker_0": 750,
+              "worker_1": 750,
+              "worker_2": 750,
+              "worker_3": 750
+            },
+            "work_variance": 0.0,
+            "balancing_score": 100.0,
+            "processing_time_ms": 0.03,
+            "throughput_units_per_second": 106634847.46
+          },
+          {
+            "scenario_name": "heavy_load",
+            "load_intensity": 5,
+            "total_work_units": 5000,
+            "workload_distribution": {
+              "worker_0": 1250,
+              "worker_1": 1250,
+              "worker_2": 1250,
+              "worker_3": 1250
+            },
+            "work_variance": 0.0,
+            "balancing_score": 100.0,
+            "processing_time_ms": 0.01,
+            "throughput_units_per_second": 748982857.14
+          }
+        ],
+        "avg_balancing_score": 100.0,
+        "avg_throughput": 298151284.25,
+        "load_balancing_status": "optimal",
+        "performance_status": "completed"
+      }
+    },
+    "horizontal_scaling": {
+      "scenarios_tested": 4,
+      "scaling_results": [
+        {
+          "workers": 2,
+          "symbols": 5,
+          "theoretical_throughput": 200,
+          "actual_throughput": 170.0,
+          "scaling_efficiency": 85.0,
+          "scenario_time_ms": 0.0
+        },
+        {
+          "workers": 4,
+          "symbols": 10,
+          "theoretical_throughput": 400,
+          "actual_throughput": 340.0,
+          "scaling_efficiency": 85.0,
+          "scenario_time_ms": 0.0
+        },
+        {
+          "workers": 8,
+          "symbols": 15,
+          "theoretical_throughput": 800,
+          "actual_throughput": 680.0,
+          "scaling_efficiency": 85.0,
+          "scenario_time_ms": 0.0
+        },
+        {
+          "workers": 12,
+          "symbols": 15,
+          "theoretical_throughput": 1200,
+          "actual_throughput": 1020.0,
+          "scaling_efficiency": 85.0,
+          "scenario_time_ms": 0.0
+        }
+      ],
+      "max_throughput": 1020.0,
+      "avg_scaling_efficiency": 85.0,
+      "horizontal_scaling_capability": true,
+      "scaling_status": "excellent"
+    }
+  },
+  "metrics": {
+    "symbols_processed": 15,
+    "concurrent_threads": 8,
+    "cpu_usage_percent": 2.8,
+    "memory_usage_mb": 25.54,
+    "processing_throughput": 643.17,
+    "load_balancing_efficiency": 100.0
+  },
+  "dependencies": {
+    "threading": "AVAILABLE",
+    "multiprocessing": "cores_20",
+    "psutil": "v7.0.0",
+    "concurrent_futures": "AVAILABLE"
+  },
+  "performance": {
+    "symbols_processed": 15,
+    "processing_throughput": 643.17,
+    "resource_efficiency": 97.32300000000001,
+    "load_balancing_efficiency": 100.0
+  },
+  "features_implemented": {
+    "multi_symbol_processing": "IMPLEMENTADO",
+    "resource_optimization": "IMPLEMENTADO",
+    "load_balancing": "IMPLEMENTADO",
+    "horizontal_scaling": "IMPLEMENTADO"
+  }
+}
