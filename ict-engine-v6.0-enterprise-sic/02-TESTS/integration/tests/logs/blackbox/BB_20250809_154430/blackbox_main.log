@@ -1,0 +1,22 @@
+
+---
+**🔄 ACTUALIZACIÓN POST-REORGANIZACIÓN**
+**Fecha:** 2025-08-10 12:45:20
+**Proceso:** Actualización automática de rutas tras reorganización enterprise
+**Nueva estructura:** 01-CORE/, 02-TESTS/, 03-DOCUMENTATION/, 04-DATA/, 05-LOGS/, 06-TOOLS/, 07-DEPLOYMENT/, 08-ARCHIVE/
+**Script:** update_bitacoras_post_reorganization.py
+---
+
+
+[2025-08-09 15:44:30.189] [ICT_Dashboard_BlackBox_main] [INFO] [log_session_start:133] BLACKBOX_SESSION_START | {
+  "session_id": "BB_20250809_154430",
+  "start_time": "2025-08-09T15:44:30.189840",
+  "purpose": "Diagnosticar problemas de pesta\u00f1as y contenido en ICT Dashboard",
+  "log_directory": "logs\\blackbox\\BB_20250809_154430",
+  "expected_issues": [
+    "Pesta\u00f1as no muestran contenido",
+    "Errores en m\u00e9todos render_*",
+    "Problemas con datos de velas",
+    "Fallos en carga de archivos CSV"
+  ]
+}

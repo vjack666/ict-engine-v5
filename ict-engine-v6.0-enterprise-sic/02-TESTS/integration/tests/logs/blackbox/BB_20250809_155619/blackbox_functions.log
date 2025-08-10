@@ -1,0 +1,27 @@
+
+---
+**🔄 ACTUALIZACIÓN POST-REORGANIZACIÓN**
+**Fecha:** 2025-08-10 12:45:21
+**Proceso:** Actualización automática de rutas tras reorganización enterprise
+**Nueva estructura:** 01-CORE/, 02-TESTS/, 03-DOCUMENTATION/, 04-DATA/, 05-LOGS/, 06-TOOLS/, 07-DEPLOYMENT/, 08-ARCHIVE/
+**Script:** update_bitacoras_post_reorganization.py
+---
+
+
+[2025-08-09 15:56:19.673] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | ProgressDashboardApp.__init__ | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.683] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | ProgressDashboard.__init__ | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.693] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | compose | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.736] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | on_mount | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.738] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | refresh_all_displays | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.738] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_overview | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.738] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | get_overall_stats | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.738] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | get_overall_stats | Args: NoneType | Result: str | Time: 1.5020370483398438e-05
+[2025-08-09 15:56:19.738] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_overview | Args: NoneType | Result: str | Time: 0.0003058910369873047
+[2025-08-09 15:56:19.740] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_modules | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.740] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_modules | Args: NoneType | Result: str | Time: 0.00011610984802246094
+[2025-08-09 15:56:19.743] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_performance | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.743] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | get_overall_stats | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.743] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | get_overall_stats | Args: NoneType | Result: str | Time: 1.8358230590820312e-05
+[2025-08-09 15:56:19.744] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_performance | Args: NoneType | Result: str | Time: 0.0008800029754638672
+[2025-08-09 15:56:19.746] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_reports | Args: NoneType | Result: NoneType | Time: None
+[2025-08-09 15:56:19.746] [ICT_Dashboard_BlackBox_func] [DEBUG] [track_function_call:177] FUNC_CALL | render_reports | Args: NoneType | Result: str | Time: 2.5987625122070312e-05

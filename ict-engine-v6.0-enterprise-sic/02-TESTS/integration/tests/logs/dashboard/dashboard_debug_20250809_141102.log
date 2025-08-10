@@ -1,0 +1,28 @@
+
+---
+**🔄 ACTUALIZACIÓN POST-REORGANIZACIÓN**
+**Fecha:** 2025-08-10 12:45:21
+**Proceso:** Actualización automática de rutas tras reorganización enterprise
+**Nueva estructura:** 01-CORE/, 02-TESTS/, 03-DOCUMENTATION/, 04-DATA/, 05-LOGS/, 06-TOOLS/, 07-DEPLOYMENT/, 08-ARCHIVE/
+**Script:** update_bitacoras_post_reorganization.py
+---
+
+
+2025-08-09 14:11:02,197 - INFO - setup_logging:105 - 🎯 Sistema de logging inicializado
+2025-08-09 14:11:02,197 - INFO - setup_logging:106 - 📁 Archivo de log: logs\dashboard\dashboard_debug_20250809_141102.log
+2025-08-09 14:11:02,202 - INFO - log_info:126 - ℹ️ INFO en __init__: Inicializando OrganizedProgressDashboard
+2025-08-09 14:11:02,213 - DEBUG - log_debug:138 - 🔍 DEBUG en __init__: Creando ProgressDashboard interno
+2025-08-09 14:11:02,214 - ERROR - log_error:111 - ❌ ERROR en __init__: ModuleProgress() takes no arguments
+2025-08-09 14:11:02,215 - ERROR - log_error:112 - 📍 Traceback completo:
+Traceback (most recent call last):
+  File "C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\tests\progress_dashboard_clean.py", line 1140, in __init__
+    self.progress_dashboard = ProgressDashboard()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\tests\progress_dashboard_clean.py", line 223, in __init__
+    self.modules = self._initialize_modules()
+                   ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\v_jac\Desktop\itc engine v5.0\ict-engine-v6.0-enterprise-sic\tests\progress_dashboard_clean.py", line 254, in _initialize_modules
+    "BOS": ModuleProgress("Break of Structure", "ðŸ“ˆ", 0, 0, "", "WAITING"),
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ModuleProgress() takes no arguments
+

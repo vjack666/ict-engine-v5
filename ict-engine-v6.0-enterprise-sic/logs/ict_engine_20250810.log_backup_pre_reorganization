@@ -1,13 +1,3 @@
-
----
-**🔄 ACTUALIZACIÓN POST-REORGANIZACIÓN**
-**Fecha:** 2025-08-10 12:45:21
-**Proceso:** Actualización automática de rutas tras reorganización enterprise
-**Nueva estructura:** 01-CORE/, 02-TESTS/, 03-DOCUMENTATION/, 04-DATA/, 05-LOGS/, 06-TOOLS/, 07-DEPLOYMENT/, 08-ARCHIVE/
-**Script:** update_bitacoras_post_reorganization.py
----
-
-
 [2025-08-10 12:40:52] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
 [2025-08-10 12:40:52] [ICT_Engine] [INFO] [init] ✅ Multi-Timeframe Analyzer Enterprise v6.0 cargándose
 [2025-08-10 12:40:52] [ICT_Engine] [INFO] [init] ✅ Enterprise logging habilitado

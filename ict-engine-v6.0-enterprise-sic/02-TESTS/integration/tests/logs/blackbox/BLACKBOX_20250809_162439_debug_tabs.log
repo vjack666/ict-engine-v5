@@ -1,0 +1,22 @@
+
+---
+**🔄 ACTUALIZACIÓN POST-REORGANIZACIÓN**
+**Fecha:** 2025-08-10 12:45:20
+**Proceso:** Actualización automática de rutas tras reorganización enterprise
+**Nueva estructura:** 01-CORE/, 02-TESTS/, 03-DOCUMENTATION/, 04-DATA/, 05-LOGS/, 06-TOOLS/, 07-DEPLOYMENT/, 08-ARCHIVE/
+**Script:** update_bitacoras_post_reorganization.py
+---
+
+
+[2025-08-09 16:24:39.467] [ICT_BlackBox_tabs] [INFO] [log_tab_content:169] TAB_CONTENT | header | Success: True | Length: 144 | Preview: [bold cyan]ICT ENGINE v6.1 ENTERPRISE DASHBOARD[/bold cyan]
+Session: ICT_ENTERPRISE_20250809_162439 
+[2025-08-09 16:24:41.050] [ICT_BlackBox_tabs] [INFO] [log_tab_content:169] TAB_CONTENT | overview | Success: True | Length: 1311 | Preview: [bold cyan]📊 OVERVIEW ENTERPRISE - ICT ENGINE v6.1[/bold cyan]
+
+[bold white]RESUMEN EJECUTIVO:[/bold white]
+┌─────────────────────────────────────────────────────────────────┐
+│ • Módulos ICT: [bold]1
+[2025-08-09 16:24:41.057] [ICT_BlackBox_tabs] [INFO] [log_tab_content:169] TAB_CONTENT | detectors | Success: True | Length: 2423 | Preview: [bold cyan]🔍 DETECTORES ICT - ANÁLISIS DETALLADO[/bold cyan]
+
+[bold white]ESTADO DE MÓDULOS ICT:[/bold white]
+┌──────────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
+│ Detecto
