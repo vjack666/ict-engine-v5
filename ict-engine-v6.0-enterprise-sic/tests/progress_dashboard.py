@@ -591,25 +591,17 @@ if TEXTUAL_AVAILABLE:
         
         def render_executive_summary(self) -> str:
             """PESTAÑA 1 - RESUMEN EJECUTIVO"""
-            try:
-                dashboard_logger.log_debug("Iniciando render_executive_summary", "render_executive_summary")
-                
-                # Verificar que progress_dashboard existe
-                if not hasattr(self, 'progress_dashboard') or self.progress_dashboard is None:
-                    dashboard_logger.log_warning("progress_dashboard no inicializado", "render_executive_summary")
-                    return "[bold red]⚠️ DASHBOARD NO INICIALIZADO[/bold red]\n\nProgress dashboard no está disponible aún."
-                
-                completed = len([m for m in self.progress_dashboard.modules.values() if m.status == "COMPLETED"])
-                processing = len([m for m in self.progress_dashboard.modules.values() if m.status == "PROCESSING"])
-                total_signals = sum(m.signals_found for m in self.progress_dashboard.modules.values())
-                
-                total_modules = len(self.progress_dashboard.modules)
-                progress_pct = (completed / total_modules) * 100 if total_modules > 0 else 0
-                
-                avg_signals = total_signals / max(1, completed) if completed > 0 else 0
-                grade = "A+" if progress_pct >= 90 else "A" if progress_pct >= 80 else "B+" if progress_pct >= 70 else "B"
-                
-                content = f"""[bold cyan]RESUMEN EJECUTIVO - VISTA ENTERPRISE[/bold cyan]
+            completed = len([m for m in self.progress_dashboard.modules.values() if m.status == "COMPLETED"])
+            processing = len([m for m in self.progress_dashboard.modules.values() if m.status == "PROCESSING"])
+            total_signals = sum(m.signals_found for m in self.progress_dashboard.modules.values())
+            
+            total_modules = len(self.progress_dashboard.modules)
+            progress_pct = (completed / total_modules) * 100 if total_modules > 0 else 0
+            
+            avg_signals = total_signals / max(1, completed) if completed > 0 else 0
+            grade = "A+" if progress_pct >= 90 else "A" if progress_pct >= 80 else "B+" if progress_pct >= 70 else "B"
+            
+            content = f"""[bold cyan]RESUMEN EJECUTIVO - VISTA ENTERPRISE[/bold cyan]
 
 STATUS GENERAL:
 • Archivos: [bold]{self.progress_dashboard.total_files}[/bold]
@@ -626,23 +618,15 @@ MÉTRICAS LIVE:
 • Promedio por módulo: [bold blue]{avg_signals:.1f}[/bold blue]
 • Grade del sistema: [bold yellow]{grade}[/bold yellow]
 
-ESTADO DEL SISTEMA:
-• Dashboard: [bold green]✅ Operativo[/bold green]
-• Logging: [bold green]✅ Funcional[/bold green]
-• Rendering: [bold green]✅ Activo[/bold green]
-
 INSTRUCCIONES:
 • Presiona "Iniciar Análisis" para comenzar
-• Usa teclas 1-5 para navegar pestañas
+• Usa teclas 1-4 para navegar pestañas
 • Presiona R para refrescar datos
 • Presiona E para exportar reporte final
 
-                dashboard_logger.log_success("render_executive_summary completado", "render_executive_summary")
-                return content
-                
-            except Exception as e:
-                dashboard_logger.log_error(e, "render_executive_summary")
-                return f"[bold red]❌ ERROR EN RESUMEN EJECUTIVO[/bold red]\n\nError: {str(e)}\n\nVerificar logs para más detalles."
+[bold green]DASHBOARD ENTERPRISE LISTO - TODOS LOS MÓDULOS VISIBLES[/bold green]"""
+            
+            return content
         
         def render_modules_detailed(self) -> str:
             """PESTAÑA 2 - MÓDULOS ICT DETALLADOS"""

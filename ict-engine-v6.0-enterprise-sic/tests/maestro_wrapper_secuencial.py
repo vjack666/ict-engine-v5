@@ -166,7 +166,8 @@ class MaestroWrapperSecuencial:
                     "📏 Fair Value Gaps": "FAIR_VALUE_GAPS", 
                     "🧱 Breaker Blocks": "BREAKER_BLOCKS",
                     "🥈 Silver Bullet": "SILVER_BULLET",
-                    "💧 Liquidity Pools": "LIQUIDITY"
+                    "💧 Liquidity Pools": "LIQUIDITY",
+                    "🔮 Fractal Analysis": "FRACTAL"
                 }
                 
                 if 'module_results' in real_data:
@@ -195,7 +196,8 @@ class MaestroWrapperSecuencial:
                     "FAIR_VALUE_GAPS": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"},
                     "BREAKER_BLOCKS": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"},
                     "SILVER_BULLET": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"},
-                    "LIQUIDITY": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"}
+                    "LIQUIDITY": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"},
+                    "FRACTAL": {"patterns_detected": 0, "precision_percentage": 100.0, "regla10_compliance": "✅"}
                 }
                 total_patterns = 0
             

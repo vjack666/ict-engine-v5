@@ -1,39 +1,30 @@
 #!/usr/bin/env python3
 """
-🔮 FRACTAL ANALYZER ENTERPRISE - ICT ENGINE v6.2
+🔮 FRACTAL ANALYZER ENTERPRISE - ICT ENGINE v6.1
 =================================================
 
-EVOLUCIÓN v6.1 → v6.2: Performance + AI-Enhanced + Circuit Breaker
+MIGRACIÓN COMPLETA: Legacy → Enterprise v6.0 siguiendo REGLAS COPILOT
 
 Análisis profesional de rangos fractales ICT para identificación de niveles
 de equilibrium, swing highs/lows y validación de estructura de mercado.
 
-✅ NUEVAS CARACTERÍSTICAS v6.2:
-- 🚀 Performance <2s (vs <5s anterior) - Vectorización + Object Pooling
-- 🧠 AI-Enhanced Detection - Hooks para ML futuros
-- 🛡️ Circuit Breaker Pattern - Tolerancia a fallos enterprise
-- 📊 Performance Telemetry - Monitoreo en tiempo real
-- ⚡ Intelligent Caching - TTL + Memory cleanup automático
-- 🔄 Auto-Recovery - Graceful degradation en errores
-
-✅ CARACTERÍSTICAS HEREDADAS v6.1:
+Implementa metodología ICT estándar para cálculo de fractales con:
 - ✅ Detección automática de swing points significativos
 - ✅ Cálculo de equilibrium dinámico  
 - ✅ Validación temporal y de fuerza
 - ✅ Integración SIC v3.1 + SLUC v2.1
 - ✅ UnifiedMemorySystem v6.1 integration
+- ✅ Performance enterprise <5s
 
 **REGLAS COPILOT APLICADAS:**
 - REGLA #2: Memoria persistente con UnifiedMemorySystem
-- REGLA #3: Performance enterprise <2s target
+- REGLA #3: Arquitectura enterprise v6.0 SIC/SLUC
 - REGLA #4: Sistema SIC y SLUC obligatorio
 - REGLA #5: Documentación y bitácoras actualizadas
-- REGLA #11: Tests evolutivos (no breaking changes)
 
-Versión: v6.2.0-enterprise-optimized
+Versión: v6.1.0-enterprise
 Autor: ICT Engine Enterprise Team  
-Fecha: 10 Agosto 2025
-Evolución: v6.1 → v6.2 (Backward Compatible)
+Fecha: 09 Agosto 2025
 """
 
 import os
@@ -42,13 +33,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple, Union, TypedDict
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
-import threading
-import time
-import weakref
-from collections import defaultdict
-import gc
 
 # ✅ REGLA #4: Sistema SIC y SLUC obligatorio
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -59,14 +45,6 @@ try:
     from core.data_management.unified_memory_system import UnifiedMemorySystem
 except ImportError:
     UnifiedMemorySystem = None
-
-# ✅ v6.2 NEW: Performance imports
-try:
-    from concurrent.futures import ThreadPoolExecutor
-    import multiprocessing
-    CONCURRENT_AVAILABLE = True
-except ImportError:
-    CONCURRENT_AVAILABLE = False
 
 # =============================================================================
 # CONFIGURACIÓN FRACTAL ENTERPRISE
@@ -96,49 +74,6 @@ FRACTAL_CONFIG_ENTERPRISE = {
     'volume_confirmation_weight': 0.15,    # Peso de confirmación por volumen
     'session_context_weight': 0.10,        # Peso del contexto de sesión
     'memory_enhancement_factor': 0.25      # Factor memoria enterprise
-}
-
-# =============================================================================
-# ✅ v6.2 NEW: CONFIGURACIÓN AVANZADA PERFORMANCE + AI
-# =============================================================================
-
-FRACTAL_CONFIG_V62 = {
-    # 🚀 Performance Layer
-    'max_execution_time_seconds': 2.0,         # Target <2s (vs 5s anterior)
-    'enable_vectorized_calculations': True,     # NumPy vectorization
-    'enable_async_processing': True,            # Threading para operaciones pesadas
-    'enable_memory_pooling': True,              # Object pooling para performance
-    'enable_intelligent_cache': True,           # Cache con TTL
-    'cache_ttl_seconds': 3600,                  # 1 hora cache TTL
-    'cache_max_size': 1000,                     # Máximo objetos en cache
-    'garbage_collection_threshold': 500,        # GC automático
-    
-    # 🧠 AI-Enhanced Detection
-    'ai_enhanced_detection': True,              # AI-enhanced swing detection
-    'adaptive_thresholds': True,                # Thresholds dinámicos por mercado
-    'pattern_learning_enabled': True,           # Aprendizaje de patrones exitosos
-    'confidence_ml_model_enabled': False,       # ML model (preparado para futuro)
-    'success_probability_scoring': True,        # Scoring probabilístico
-    
-    # 🛡️ Enterprise Reliability
-    'circuit_breaker_enabled': True,           # Circuit breaker para robustez
-    'circuit_breaker_failure_threshold': 5,    # Fallos antes de abrir circuito
-    'circuit_breaker_recovery_timeout': 60,    # Segundos para recovery
-    'auto_recovery_enabled': True,             # Auto-recovery de errores
-    'fallback_calculation_enabled': True,      # Fallback a cálculos simples
-    'health_check_interval_seconds': 30,       # Health monitoring
-    
-    # 📊 Performance Telemetry
-    'enable_real_time_metrics': True,          # Métricas en tiempo real
-    'enable_performance_logging': True,        # Log de performance detallado
-    'enable_memory_tracking': True,            # Tracking de memoria
-    'performance_alert_threshold': 1.5,        # Alert si >1.5s execution
-    
-    # 🔄 Advanced Features
-    'liquidity_zone_detection': True,          # Detección zonas liquidez
-    'order_block_integration': True,           # Integración order blocks
-    'multi_timeframe_validation_async': True,  # Multi-TF paralelo
-    'dynamic_configuration_reload': True       # Hot-reload config
 }
 
 class FractalStatusEnterprise(Enum):
@@ -246,236 +181,16 @@ class FractalRangeEnterprise:
         }
 
 # =============================================================================
-# ✅ v6.2 NEW: PERFORMANCE & RELIABILITY CLASSES
-# =============================================================================
-
-@dataclass
-class PerformanceMetrics:
-    """Métricas de performance en tiempo real v6.2"""
-    total_executions: int = 0
-    total_execution_time: float = 0.0
-    avg_execution_time: float = 0.0
-    max_execution_time: float = 0.0
-    min_execution_time: float = float('inf')
-    memory_usage_mb: float = 0.0
-    cache_hits: int = 0
-    cache_misses: int = 0
-    errors: int = 0
-    last_execution: Optional[datetime] = None
-    
-    def update_execution(self, execution_time: float, memory_usage: float = 0.0):
-        """Actualiza métricas de ejecución"""
-        self.total_executions += 1
-        self.total_execution_time += execution_time
-        self.avg_execution_time = self.total_execution_time / self.total_executions
-        self.max_execution_time = max(self.max_execution_time, execution_time)
-        self.min_execution_time = min(self.min_execution_time, execution_time)
-        self.memory_usage_mb = memory_usage
-        self.last_execution = datetime.now()
-    
-    def add_operation(self, operation: str, duration: float, success: bool = True):
-        """Añade operación para compatibilidad v6.2"""
-        self.update_execution(duration)
-        if not success:
-            self.errors += 1
-    
-    def get_stats(self) -> dict:
-        """Obtiene estadísticas completas"""
-        return {
-            'total_executions': self.total_executions,
-            'avg_execution_time': self.avg_execution_time,
-            'max_execution_time': self.max_execution_time,
-            'min_execution_time': self.min_execution_time if self.min_execution_time != float('inf') else 0.0,
-            'memory_usage_mb': self.memory_usage_mb,
-            'cache_hits': self.cache_hits,
-            'cache_misses': self.cache_misses,
-            'errors': self.errors,
-            'last_execution': self.last_execution.isoformat() if self.last_execution else None
-        }
-
-class CircuitBreaker:
-    """Circuit Breaker pattern para robustez enterprise v6.2"""
-    
-    def __init__(self, failure_threshold: int = 5, recovery_timeout: int = 60):
-        self.failure_threshold = failure_threshold
-        self.recovery_timeout = recovery_timeout
-        self.failure_count = 0
-        self.last_failure_time = None
-        self.state = 'CLOSED'  # CLOSED, OPEN, HALF_OPEN
-        
-    def call(self, func, *args, **kwargs):
-        """Ejecuta función con circuit breaker protection"""
-        if self.state == 'OPEN':
-            if self._should_attempt_reset():
-                self.state = 'HALF_OPEN'
-            else:
-                raise Exception("Circuit breaker is OPEN - service unavailable")
-        
-        try:
-            result = func(*args, **kwargs)
-            self._on_success()
-            return result
-        except Exception as e:
-            self._on_failure()
-            raise e
-    
-    def should_break(self) -> bool:
-        """Verifica si debe activarse el circuit breaker"""
-        return self.state == 'OPEN' or self.failure_count >= self.failure_threshold
-    
-    def _should_attempt_reset(self) -> bool:
-        """Verifica si es tiempo de intentar reset"""
-        if self.last_failure_time is None:
-            return False
-        return (datetime.now() - self.last_failure_time).seconds >= self.recovery_timeout
-    
-    def _on_success(self):
-        """Maneja éxito de ejecución"""
-        self.failure_count = 0
-        self.state = 'CLOSED'
-    
-    def _on_failure(self):
-        """Maneja fallo de ejecución"""
-        self.failure_count += 1
-        self.last_failure_time = datetime.now()
-        if self.failure_count >= self.failure_threshold:
-            self.state = 'OPEN'
-
-class IntelligentCache:
-    """Cache inteligente con TTL y cleanup automático v6.2"""
-    
-    def __init__(self, max_size: int = 1000, ttl_seconds: int = 3600):
-        self.max_size = max_size
-        self.ttl_seconds = ttl_seconds
-        self.cache = {}
-        self.access_times = {}
-        self.creation_times = {}
-        
-    def get(self, key: str) -> Any:
-        """Obtiene valor del cache con validación TTL"""
-        if key not in self.cache:
-            return None
-            
-        # Verificar TTL
-        if self._is_expired(key):
-            self._remove(key)
-            return None
-            
-        self.access_times[key] = datetime.now()
-        return self.cache[key]
-    
-    def set(self, key: str, value: Any):
-        """Almacena valor en cache con gestión de tamaño"""
-        # Cleanup si necesario
-        if len(self.cache) >= self.max_size:
-            self._cleanup_expired()
-            if len(self.cache) >= self.max_size:
-                self._remove_lru()
-        
-        self.cache[key] = value
-        now = datetime.now()
-        self.creation_times[key] = now
-        self.access_times[key] = now
-    
-    def _is_expired(self, key: str) -> bool:
-        """Verifica si entrada está expirada"""
-        if key not in self.creation_times:
-            return True
-        age = (datetime.now() - self.creation_times[key]).seconds
-        return age >= self.ttl_seconds
-    
-    def _cleanup_expired(self):
-        """Limpia entradas expiradas"""
-        expired_keys = [k for k in self.cache.keys() if self._is_expired(k)]
-        for key in expired_keys:
-            self._remove(key)
-    
-    def _remove_lru(self):
-        """Remueve entrada menos recientemente usada"""
-        if not self.access_times:
-            return
-        lru_key = min(self.access_times.keys(), key=lambda k: self.access_times[k])
-        self._remove(lru_key)
-    
-    def _remove(self, key: str):
-        """Remueve entrada del cache"""
-        self.cache.pop(key, None)
-        self.access_times.pop(key, None)
-        self.creation_times.pop(key, None)
-    
-    def clear(self):
-        """Limpia todo el cache"""
-        self.cache.clear()
-        self.access_times.clear()
-        self.creation_times.clear()
-    
-    def get_stats(self) -> dict:
-        """Obtiene estadísticas del cache"""
-        total_accesses = len(self.access_times)
-        return {
-            'size': len(self.cache),
-            'max_size': self.max_size,
-            'hit_ratio': 0.8 if total_accesses > 0 else 0.0,  # Estimación
-            'total_keys': total_accesses
-        }
-
-class ObjectPool:
-    """Object pool para optimización de memoria v6.2"""
-    
-    def __init__(self, create_func, max_size: int = 100):
-        self.create_func = create_func
-        self.max_size = max_size
-        self.available = []
-        self.in_use = set()
-        
-    def acquire(self):
-        """Obtiene objeto del pool"""
-        if self.available:
-            obj = self.available.pop()
-        else:
-            obj = self.create_func()
-        
-        self.in_use.add(id(obj))
-        return obj
-    
-    def release(self, obj):
-        """Devuelve objeto al pool"""
-        obj_id = id(obj)
-        if obj_id in self.in_use:
-            self.in_use.remove(obj_id)
-            if len(self.available) < self.max_size:
-                # Reset objeto si tiene método reset
-                if hasattr(obj, 'reset'):
-                    obj.reset()
-                self.available.append(obj)
-    
-    def cleanup(self):
-        """Limpia objetos no utilizados del pool"""
-        # Mantener solo la mitad del pool disponible
-        target_size = max(1, self.max_size // 2)
-        if len(self.available) > target_size:
-            self.available = self.available[:target_size]
-
-# =============================================================================
 # CLASE PRINCIPAL - FRACTAL ANALYZER ENTERPRISE
 # =============================================================================
 
 class FractalAnalyzerEnterprise:
     """
-    🔮 FRACTAL ANALYZER ENTERPRISE v6.2
+    🔮 FRACTAL ANALYZER ENTERPRISE v6.1
 
-    ✅ EVOLUCIÓN v6.1 → v6.2 CON NUEVAS CARACTERÍSTICAS:
-    - 🚀 Performance <2s (vs <5s anterior) con vectorización
-    - 🧠 AI-Enhanced Detection con hooks para ML
-    - 🛡️ Circuit Breaker Pattern para tolerancia a fallos
-    - 📊 Performance Telemetry con métricas en tiempo real
-    - ⚡ Intelligent Caching con TTL y cleanup automático
-    - 🔄 Auto-Recovery con graceful degradation
-    - 💾 Object Pooling para optimización de memoria
-
-    ✅ CARACTERÍSTICAS HEREDADAS v6.1:
+    ✅ MIGRACIÓN COMPLETA SIGUIENDO REGLAS COPILOT:
     - REGLA #2: Memoria persistente UnifiedMemorySystem
-    - REGLA #3: Arquitectura enterprise v6.0 SIC/SLUC
+    - REGLA #3: Arquitectura enterprise v6.0
     - REGLA #4: SIC v3.1 + SLUC v2.1 integrado
     - REGLA #5: Documentación y testing enterprise
 
@@ -483,7 +198,7 @@ class FractalAnalyzerEnterprise:
     - 🧠 Memory-aware fractal detection
     - 📊 Multi-timeframe validation
     - 🏛️ Institutional vs retail classification
-    - ⚡ Performance <2s enterprise target
+    - ⚡ Performance <5s enterprise
     - 🔗 SIC/SLUC integration completa
     """
 
@@ -520,44 +235,8 @@ class FractalAnalyzerEnterprise:
                 self.logger.warning(f"UnifiedMemorySystem no disponible: {e}", 
                                   component="FRACTAL")
         
-        # ✅ v6.2 NEW: Inicialización componentes v6.2
-        self.config_v62 = FRACTAL_CONFIG_V62.copy()
-        
-        # 🚀 Performance layer
-        self.performance_metrics = PerformanceMetrics()
-        self.intelligent_cache = IntelligentCache(
-            max_size=self.config_v62['cache_max_size'],
-            ttl_seconds=self.config_v62['cache_ttl_seconds']
-        ) if self.config_v62['enable_intelligent_cache'] else None
-        
-        # 🛡️ Reliability layer
-        self.circuit_breaker = CircuitBreaker(
-            failure_threshold=self.config_v62['circuit_breaker_failure_threshold'],
-            recovery_timeout=self.config_v62['circuit_breaker_recovery_timeout']
-        ) if self.config_v62['circuit_breaker_enabled'] else None
-        
-        # 💾 Object pooling (preparado para uso futuro)
-        self.object_pool = None
-        if self.config_v62['enable_memory_pooling']:
-            self.object_pool = ObjectPool(
-                create_func=lambda: {'temp_swings': [], 'temp_data': {}},
-                max_size=100
-            )
-        
-        # 🧠 AI enhancement flags
-        self.ai_enhanced = self.config_v62['ai_enhanced_detection']
-        self.pattern_learning = self.config_v62['pattern_learning_enabled']
-        
-        # 📊 Performance tracking
-        self.start_time = datetime.now()
-        self.last_health_check = datetime.now()
-        
-        self.logger.info("🔮 FractalAnalyzerEnterprise v6.2 inicializado con mejoras", 
-                       component="FRACTAL",
-                       version="v6.2.0-enterprise-optimized",
-                       ai_enhanced=self.ai_enhanced,
-                       circuit_breaker=self.circuit_breaker is not None,
-                       intelligent_cache=self.intelligent_cache is not None)
+        self.logger.info("🔮 FractalAnalyzerEnterprise inicializado", 
+                       component="FRACTAL")
 
     def detect_fractal_with_memory(self, df: pd.DataFrame, current_price: float) -> Optional[FractalRangeEnterprise]:
         """
@@ -1378,159 +1057,6 @@ class FractalAnalyzerEnterprise:
         except Exception as e:
             self.logger.error(f"Error creando fractal de emergencia: {e}", component="FRACTAL")
             raise Exception("No se pudo crear fractal de emergencia")
-    
-    # =============================================================================
-    # MÉTODOS DE PERFORMANCE V6.2
-    # =============================================================================
-    
-    def _log_performance_telemetry(self, operation: str, duration: float, success: bool = True):
-        """
-        📊 Telemetría de performance v6.2
-        
-        ✅ REGLA #4: Logging SLUC obligatorio
-        ✅ REGLA #12: Performance telemetry enterprise
-        """
-        try:
-            self.performance_metrics.add_operation(operation, duration, success)
-            
-            # Log performance con threshold dinámico
-            threshold = self.config.get('performance_threshold', 0.1)
-            if duration > threshold:
-                self.logger.warning(
-                    f"🐌 Performance degradation detectada: {operation} tomó {duration:.3f}s",
-                    component="FRACTAL"
-                )
-            
-            # Trigger circuit breaker si hay muchos fallos
-            if not success and hasattr(self, 'circuit_breaker') and self.circuit_breaker:
-                self.circuit_breaker._on_failure()
-                if self.circuit_breaker.should_break():
-                    self.logger.error(
-                        f"🔴 Circuit breaker activado por múltiples fallos en {operation}",
-                        component="FRACTAL"
-                    )
-            elif success and hasattr(self, 'circuit_breaker') and self.circuit_breaker:
-                self.circuit_breaker._on_success()
-                    
-        except Exception as e:
-            self.logger.error(f"Error en telemetría de performance: {e}", component="FRACTAL")
-    
-    def _optimize_memory_usage(self):
-        """
-        🧠 Optimización de memoria v6.2
-        
-        ✅ REGLA #6: Memory management enterprise
-        """
-        try:
-            # Limpiar cache si es necesario
-            if hasattr(self, 'intelligent_cache') and self.intelligent_cache:
-                cache_stats = self.intelligent_cache.get_stats()
-                if cache_stats['hit_ratio'] < 0.3:  # Low hit ratio
-                    self.intelligent_cache.clear()
-                    self.logger.info("🧹 Cache limpiado por low hit ratio", component="FRACTAL")
-            
-            # Optimizar object pool
-            if hasattr(self, 'object_pool') and self.object_pool:
-                self.object_pool.cleanup()
-            
-            # Memory-enhanced cleanup en fractals
-            if hasattr(self, 'memory_system') and self.memory_system:
-                old_count = len(getattr(self, '_fractal_levels', {}))
-                # Mantener solo fractals recientes y relevantes
-                recent_threshold = datetime.now() - timedelta(hours=24)
-                
-                for key, level in list(getattr(self, '_fractal_levels', {}).items()):
-                    if hasattr(level, 'high_timestamp') and level.high_timestamp < recent_threshold:
-                        if not getattr(level, 'institutional_level', False):  # Keep institutional levels
-                            delattr(self, key) if hasattr(self, key) else None
-                
-                new_count = len(getattr(self, '_fractal_levels', {}))
-                if old_count != new_count:
-                    self.logger.info(
-                        f"🧠 Memory optimization: {old_count} -> {new_count} fractals",
-                        component="FRACTAL"
-                    )
-                    
-        except Exception as e:
-            self.logger.error(f"Error en optimización de memoria: {e}", component="FRACTAL")
-    
-    def _ai_enhanced_validation(self, fractal: 'FractalRangeEnterprise') -> bool:
-        """
-        🤖 Validación AI-enhanced v6.2
-        
-        ✅ REGLA #9: AI enhancements enterprise
-        """
-        try:
-            if not getattr(self, 'ai_enhanced', False):
-                return True  # Bypass si AI no está habilitado
-            
-            # AI validation score
-            ai_score = 0.0
-            
-            # Factor 1: Confluence con otros timeframes
-            if hasattr(fractal, 'confidence') and fractal.confidence > 80:
-                ai_score += 0.3
-            
-            # Factor 2: Volume confirmation (si está disponible)
-            if hasattr(fractal, 'volume_confirmed') and getattr(fractal, 'volume_confirmed', False):
-                ai_score += 0.25
-            
-            # Factor 3: Historical significance
-            if hasattr(fractal, 'institutional_level') and fractal.institutional_level:
-                ai_score += 0.25
-            
-            # Factor 4: Market structure alignment (futuro)
-            if hasattr(fractal, 'market_structure_aligned') and getattr(fractal, 'market_structure_aligned', False):
-                ai_score += 0.2
-            
-            # Threshold AI
-            ai_threshold = self.config.get('ai_validation_threshold', 0.6)
-            is_valid = ai_score >= ai_threshold
-            
-            if is_valid:
-                self.logger.info(
-                    f"🤖 AI validation passed: score {ai_score:.2f}",
-                    component="FRACTAL"
-                )
-            else:
-                self.logger.warning(
-                    f"🤖 AI validation failed: score {ai_score:.2f} < {ai_threshold}",
-                    component="FRACTAL"
-                )
-            
-            return is_valid
-            
-        except Exception as e:
-            self.logger.error(f"Error en AI validation: {e}", component="FRACTAL")
-            return True  # Default to true en caso de error
-    
-    def get_performance_metrics(self) -> dict:
-        """
-        📊 Obtener métricas de performance v6.2
-        
-        ✅ REGLA #12: Performance monitoring enterprise
-        """
-        try:
-            metrics = {
-                'performance': self.performance_metrics.get_stats() if hasattr(self, 'performance_metrics') else {},
-                'cache': self.intelligent_cache.get_stats() if hasattr(self, 'intelligent_cache') and self.intelligent_cache else {},
-                'circuit_breaker': {
-                    'state': self.circuit_breaker.state if hasattr(self, 'circuit_breaker') and self.circuit_breaker else 'unknown',
-                    'failure_count': getattr(self.circuit_breaker, 'failure_count', 0) if hasattr(self, 'circuit_breaker') and self.circuit_breaker else 0
-                },
-                'memory': {
-                    'fractal_count': len(getattr(self, '_fractal_levels', {})),
-                    'ai_enhanced': getattr(self, 'ai_enhanced', False),
-                    'session_id': self.session_id
-                }
-            }
-            
-            self.logger.info("📊 Performance metrics generadas", component="FRACTAL")
-            return metrics
-            
-        except Exception as e:
-            self.logger.error(f"Error obteniendo métricas: {e}", component="FRACTAL")
-            return {}
 
 # =============================================================================
 # FUNCIONES DE UTILIDAD ENTERPRISE

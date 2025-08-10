@@ -1,0 +1,124 @@
+{
+  "summary": {
+    "total_execution_time": 25.642752,
+    "total_data_points": 460538,
+    "total_patterns": "47135",
+    "total_signals": "53888",
+    "overall_success_rate": 98.75,
+    "modules_analyzed": 8,
+    "symbols_processed": [
+      "USDJPY",
+      "USDCHF",
+      "GBPUSD",
+      "XAUUSD",
+      "AUDUSD",
+      "EURUSD"
+    ],
+    "timeframes_processed": [
+      "M5",
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "date_range": {
+      "start": "2023-08-30",
+      "end": "2025-08-08"
+    },
+    "performance_grade": "A+ (EXCELLENT)"
+  },
+  "module_results": {
+    "📦 Order Blocks": {
+      "module_name": "Order Blocks",
+      "patterns_detected": 2596,
+      "signals_generated": 218,
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.10965514183044434,
+      "data_points_analyzed": 40240,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "📏 Fair Value Gaps": {
+      "module_name": "Fair Value Gaps",
+      "patterns_detected": 19348,
+      "signals_generated": 13674,
+      "success_rate": 100.0,
+      "avg_confidence": 70.0,
+      "execution_time": 10.002021074295044,
+      "data_points_analyzed": 86552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "🧱 Breaker Blocks": {
+      "module_name": "Breaker Blocks",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "success_rate": 100.0,
+      "avg_confidence": 0.0,
+      "execution_time": 0.23787283897399902,
+      "data_points_analyzed": 35120,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "🥈 Silver Bullet": {
+      "module_name": "Silver Bullet",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "success_rate": 100.0,
+      "avg_confidence": 0.0,
+      "execution_time": 0.18838286399841309,
+      "data_points_analyzed": 71552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "💧 Liquidity Pools": {
+      "module_name": "Liquidity Pools",
+      "patterns_detected": "15333",
+      "signals_generated": "7588",
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.8142139911651611,
+      "data_points_analyzed": 61552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "⚡ Displacement": {
+      "module_name": "Displacement",
+      "patterns_detected": "7659",
+      "signals_generated": "31311",
+      "success_rate": 100.0,
+      "avg_confidence": 80.0,
+      "execution_time": 0.2061159610748291,
+      "data_points_analyzed": 86552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "� Fractal Analysis": {
+      "module_name": "Fractal Analysis",
+      "patterns_detected": 5,
+      "signals_generated": 0,
+      "success_rate": 100.0,
+      "avg_confidence": 85.0,
+      "execution_time": 13.987791061401367,
+      "data_points_analyzed": 25000,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "�🔄 Multi-Pattern": {
+      "module_name": "Multi-Pattern",
+      "patterns_detected": 2194,
+      "signals_generated": 1097,
+      "success_rate": 90.0,
+      "avg_confidence": 90.0,
+      "execution_time": 5.9604644775390625e-06,
+      "data_points_analyzed": 53970,
+      "errors": 0,
+      "status": "SUCCESS"
+    }
+  },
+  "metadata": {
+    "timestamp": "20250809_194445",
+    "version": "1.0-enterprise",
+    "data_path": "c:\\Users\\v_jac\\Desktop\\itc engine v5.0\\ict-engine-v6.0-enterprise-sic\\data\\candles"
+  }
+}

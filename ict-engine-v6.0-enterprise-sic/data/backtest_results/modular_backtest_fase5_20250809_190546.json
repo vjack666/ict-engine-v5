@@ -1,0 +1,113 @@
+{
+  "summary": {
+    "total_execution_time": 9.775389,
+    "total_data_points": 435538,
+    "total_patterns": "47130",
+    "total_signals": "53888",
+    "overall_success_rate": 98.57142857142857,
+    "modules_analyzed": 7,
+    "symbols_processed": [
+      "XAUUSD",
+      "USDCHF",
+      "EURUSD",
+      "AUDUSD",
+      "USDJPY",
+      "GBPUSD"
+    ],
+    "timeframes_processed": [
+      "M5",
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "date_range": {
+      "start": "2023-08-30",
+      "end": "2025-08-08"
+    },
+    "performance_grade": "A+ (EXCELLENT)"
+  },
+  "module_results": {
+    "📦 Order Blocks": {
+      "module_name": "Order Blocks",
+      "patterns_detected": 2596,
+      "signals_generated": 218,
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.11502957344055176,
+      "data_points_analyzed": 40240,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "📏 Fair Value Gaps": {
+      "module_name": "Fair Value Gaps",
+      "patterns_detected": 19348,
+      "signals_generated": 13674,
+      "success_rate": 100.0,
+      "avg_confidence": 70.0,
+      "execution_time": 8.365567922592163,
+      "data_points_analyzed": 86552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "🧱 Breaker Blocks": {
+      "module_name": "Breaker Blocks",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "success_rate": 100.0,
+      "avg_confidence": 0.0,
+      "execution_time": 0.34017300605773926,
+      "data_points_analyzed": 35120,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "🥈 Silver Bullet": {
+      "module_name": "Silver Bullet",
+      "patterns_detected": 0,
+      "signals_generated": 0,
+      "success_rate": 100.0,
+      "avg_confidence": 0.0,
+      "execution_time": 0.13108134269714355,
+      "data_points_analyzed": 71552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "💧 Liquidity Pools": {
+      "module_name": "Liquidity Pools",
+      "patterns_detected": "15333",
+      "signals_generated": "7588",
+      "success_rate": 100.0,
+      "avg_confidence": 75.0,
+      "execution_time": 0.650092363357544,
+      "data_points_analyzed": 61552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "⚡ Displacement": {
+      "module_name": "Displacement",
+      "patterns_detected": "7659",
+      "signals_generated": "31311",
+      "success_rate": 100.0,
+      "avg_confidence": 80.0,
+      "execution_time": 0.15523171424865723,
+      "data_points_analyzed": 86552,
+      "errors": 0,
+      "status": "SUCCESS"
+    },
+    "🔄 Multi-Pattern": {
+      "module_name": "Multi-Pattern",
+      "patterns_detected": 2194,
+      "signals_generated": 1097,
+      "success_rate": 90.0,
+      "avg_confidence": 90.0,
+      "execution_time": 3.5762786865234375e-06,
+      "data_points_analyzed": 53970,
+      "errors": 0,
+      "status": "SUCCESS"
+    }
+  },
+  "metadata": {
+    "timestamp": "20250809_190546",
+    "version": "1.0-enterprise",
+    "data_path": "../data/candles"
+  }
+}

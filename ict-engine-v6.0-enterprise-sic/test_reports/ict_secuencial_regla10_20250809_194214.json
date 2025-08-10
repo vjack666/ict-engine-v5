@@ -1,0 +1,41 @@
+{
+  "dashboard_session": {
+    "execution_timestamp": "2025-08-09T19:42:14.319474",
+    "total_duration_seconds": 31.429314,
+    "total_patterns_detected": 37277,
+    "regla10_compliance_score": 6,
+    "overall_system_status": "ENTERPRISE_COMPLIANT_SEQUENTIAL"
+  },
+  "modules_summary": {
+    "ORDER_BLOCKS": {
+      "patterns_found": 2596,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    },
+    "FAIR_VALUE_GAPS": {
+      "patterns_found": 19348,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    },
+    "BREAKER_BLOCKS": {
+      "patterns_found": 0,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    },
+    "SILVER_BULLET": {
+      "patterns_found": 0,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    },
+    "LIQUIDITY": {
+      "patterns_found": 15333,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    },
+    "FRACTAL": {
+      "patterns_found": 0,
+      "precision": 100.0,
+      "rule10_status": "✅"
+    }
+  }
+}
