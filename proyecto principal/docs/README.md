@@ -10,6 +10,9 @@ Sistema avanzado de análisis y trading basado en patrones ICT (Inner Circle Tra
 - **🌙 Sistema de Hibernación**: Operación inteligente según horarios de mercado
 - **📱 Notificaciones**: Alertas por Telegram, email y push notifications
 - **🔧 Debug Tools**: Herramientas profesionales de debugging y desarrollo
+- **🐼 Sistema Pandas Thread-Safe**: Gestión híbrida async/sync con 148,518 velas/segundo *(NUEVO 11/08/2025)*
+- **⚡ Auto-Detección Performance**: Cambio automático entre sync/async según errores y velocidad
+- **🔒 Thread-Safety Enterprise**: RLock + instance isolation para operaciones concurrentes
 
 ## 📁 Estructura del Proyecto
 
@@ -28,7 +31,8 @@ ICT Engine v5.0/
 │   ├── ict_engine/               # Análisis ICT
 │   ├── poi_system/               # Sistema POI
 │   ├── risk_management/          # Gestión de riesgo
-│   ├── data_management/          # ✨ Gestión de datos y velas
+│   ├── data_management/          # ✨ Gestión de datos y velas (Thread-Safe Pandas)
+│   │   └── advanced_candle_downloader.py # Sistema híbrido async/sync 148K velas/s
 │   ├── integrations/             # ✨ Integraciones del sistema
 │   └── ...
 │

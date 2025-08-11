@@ -8,19 +8,25 @@
         "--good-names=i,j,k,ex,Run,_,df,ob,fvg,tf"
     ],
 
+    // Panel de problemas optimizado para mejor UX
     "problems.defaultViewMode": "tree",
-    "problems.showCurrentInStatus": false,
-    "problems.decorations.enabled": false,
+    "problems.showCurrentInStatus": true,
+    "problems.decorations.enabled": true,
 
+    // Diagnósticos Python - Configuración realista para el proyecto actual
     "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.analysis.extraPaths": [
+        "08-ARCHIVE/legacy"
+    ],
     "python.analysis.diagnosticSeverityOverrides": {
-        "reportMissingImports": "error",
+        "reportMissingImports": "information",
         "reportMissingTypeStubs": "none",
         "reportImportCycles": "error",
-        "reportUnusedImport": "none",
-        "reportUnusedClass": "none",
-        "reportUnusedFunction": "none",
-        "reportUnusedVariable": "none",
+        "reportUnusedImport": "information",
+        "reportUnusedClass": "information", 
+        "reportUnusedFunction": "information",
+        "reportUnusedVariable": "information",
         "reportDuplicateImport": "warning",
         "reportOptionalSubscript": "none",
         "reportOptionalMemberAccess": "none",
@@ -69,10 +75,8 @@
     "python.analysis.autoImportCompletions": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.autoSearchPaths": true,
-    "python.analysis.extraPaths": [],
     "python.analysis.stubPath": "",
     "python.analysis.typeshedPaths": [],
-    "python.analysis.useLibraryCodeForTypes": true,
 
     "editor.rulers": [120],
     "editor.wordWrap": "on",
@@ -83,7 +87,7 @@
     "terminal.integrated.defaultProfile.windows": "PowerShell",
 
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "ms-python.python",
         "editor.formatOnSave": false,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"

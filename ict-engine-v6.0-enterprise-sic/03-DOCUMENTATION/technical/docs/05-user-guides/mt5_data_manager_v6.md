@@ -48,6 +48,9 @@ El **MT5DataManager v6.0 Enterprise** es el componente más crítico del ICT Eng
 
 ### ⚡ Optimizaciones
 - 📦 **Lazy Loading de Pandas**: Carga solo cuando es necesario
+- 🔄 **Thread-Safe Pandas**: Sistema híbrido para operaciones concurrentes
+- 🚀 **Fallback Automático**: Modo síncrono para tiempo real
+- 📈 **AsyncSyncManager**: Gestión inteligente de recursos pandas
 - 🔮 **Cache Predictivo**: Pre-carga datos frecuentes
 - 🧵 **Thread Safety**: Operaciones concurrentes seguras
 - 📊 **Métricas de Performance**: Análisis continuo de rendimiento

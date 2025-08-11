@@ -1,0 +1,61 @@
+{
+  "fvg": {
+    "fvg_gaps": [
+      {
+        "type": "bullish_fvg",
+        "start_index": 10,
+        "end_index": 12,
+        "gap_size": 25.5,
+        "confidence": 0.85,
+        "modular_component": "FVG_MODULE"
+      }
+    ],
+    "performance_ms": 2.231597900390625,
+    "memory_enhanced": true,
+    "modular_component": "FVG_MODULE_v1.0",
+    "copilot_compliant": true,
+    "timestamp": "2025-08-11T13:23:11.268855"
+  },
+  "order_blocks": {
+    "order_blocks": [
+      {
+        "type": "bullish_ob",
+        "start_index": 15,
+        "end_index": 18,
+        "strength": 0.78,
+        "confidence": 0.82,
+        "modular_component": "OB_MODULE"
+      }
+    ],
+    "performance_ms": 1.8668174743652344,
+    "memory_enhanced": true,
+    "modular_component": "OB_MODULE_v1.0",
+    "copilot_compliant": true,
+    "timestamp": "2025-08-11T13:23:11.268990"
+  },
+  "confluence": {
+    "confluence_points": [
+      {
+        "fvg_index": 10,
+        "ob_index": 15,
+        "distance": 5.5,
+        "confluence_strength": 0.9839999999999999,
+        "pattern_types": [
+          "bullish_fvg",
+          "bullish_ob"
+        ],
+        "enterprise_grade": true
+      }
+    ],
+    "correlation_strength": 0.9839999999999999,
+    "performance_ms": 0.15163421630859375,
+    "modular_component": "CONFLUENCE_MODULE_v1.0",
+    "enterprise_grade": true,
+    "timestamp": "2025-08-11T13:23:11.271143"
+  },
+  "total_performance_ms": 18.310070037841797,
+  "modular_architecture": true,
+  "copilot_compliance": true,
+  "enterprise_features": true,
+  "timestamp": "2025-08-11T13:23:11.271691"
+}

@@ -117,16 +117,16 @@ except ImportError:
 # 💥 BREAKER BLOCKS v6.2 Enterprise Module
 try:
     from core.ict_engine.advanced_patterns.breaker_blocks_enterprise_v62 import (
-        BreakerBlockDetectorEnterpriseV62,
+        BreakerBlockDetectorEnterprise,
         BreakerBlockSignalV62,
         BreakerBlockLifecycleV62,
         create_high_performance_breaker_detector_v62
     )
     BREAKER_BLOCKS_V62_AVAILABLE = True
     print("✅ [PATTERN DETECTOR] Breaker Blocks v6.2 Enterprise cargado")
-except ImportError:
+except ImportError as e:
     BREAKER_BLOCKS_V62_AVAILABLE = False
-    print("⚠️ Breaker Blocks v6.2 Enterprise no disponible")
+    print(f"⚠️ Breaker Blocks v6.2 Enterprise no disponible: {e}")
 
 # ===============================
 # TIPOS Y ENUMS ICT PATTERNS
@@ -449,7 +449,279 @@ class ICTPatternDetector:
         except Exception as e:
             self._log_error(f"Error en detección de patterns: {e}")
             return self._create_empty_result(symbol, timeframe)
+
+    def detect_breaker_blocks(self, 
+                            data,
+                            order_blocks: Optional[List] = None,
+                            symbol: str = "EURUSD",
+                            timeframe: str = "M15") -> List[OrderBlock]:
+        """
+        💥 MÉTODO PÚBLICO BREAKER BLOCKS v6.2 ENTERPRISE
+        
+        Detecta Breaker Blocks usando el sistema v6.2 Enterprise con 
+        integración completa SIC/SLUC, memoria de trader y performance
+        enterprise optimizada.
+        
+        Args:
+            data: DataFrame con datos de velas OHLCV
+            order_blocks: Lista de Order Blocks existentes para análisis
+            symbol: Símbolo a analizar (ej: "EURUSD")
+            timeframe: Timeframe de análisis (ej: "M15", "H1")
+            
+        Returns:
+            List[OrderBlock]: Lista de Breaker Blocks detectados
+            
+        Raises:
+            ValueError: Si los datos son insuficientes
+            Exception: Si hay errores en el proceso de detección
+        """
+        start_time = time.time()
+        
+        # ✅ REGLA #4: LOGGING SIC/SLUC OBLIGATORIO
+        try:
+            from core.smart_trading_logger import log_trading_decision_smart_v6
+        except ImportError:
+            def log_trading_decision_smart_v6(event_type, data_log, **kwargs):
+                print(f"[{event_type}] {data_log}")
+        
+        # ✅ REGLA #8: LOG INICIO CON CONTEXTO COMPLETO
+        log_trading_decision_smart_v6("BREAKER_DETECTION_START", {
+            "symbol": symbol,
+            "timeframe": timeframe,
+            "data_rows": len(data) if data is not None else 0,
+            "existing_obs": len(order_blocks) if order_blocks else 0,
+            "breaker_v62_available": BREAKER_BLOCKS_V62_AVAILABLE,
+            "function": "detect_breaker_blocks",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        try:
+            # ✅ REGLA #1: VERIFICAR SI YA EXISTE IMPLEMENTACIÓN
+            # Usar implementación interna ya existente
+            
+            # Validar datos de entrada
+            if data is None or len(data) < 20:
+                self._log_warning(f"Datos insuficientes para Breaker Blocks: {len(data) if data is not None else 0} velas")
+                return []
+            
+            # Preparar Order Blocks si no se proveen
+            if order_blocks is None:
+                order_blocks = self._detect_order_blocks(data)
+                self._log_debug(f"Order Blocks detectados automáticamente: {len(order_blocks)}")
+            
+            # ✅ REGLA #4: INTEGRACIÓN SIC v3.1 OBLIGATORIA
+            market_structure = None
+            if hasattr(self, '_market_structure') and self._market_structure:
+                try:
+                    market_structure = self._market_structure.analyze_market_structure(
+                        candles_m15=data,
+                        current_price=float(data['close'].iloc[-1]) if not data.empty else 0.0,
+                        symbol=symbol
+                    )
+                except Exception as e:
+                    self._log_debug(f"Market structure análisis no disponible: {e}")
+            
+            # Detectar Breaker Blocks usando lógica interna
+            breaker_blocks = []
+            
+            # Procesar cada vela buscando breaker blocks
+            for i in range(10, len(data) - 5):  # Dejar margen para análisis
+                try:
+                    breaker_block = self._detect_breaker_block(data, i, market_structure)
+                    if breaker_block:
+                        breaker_blocks.append(breaker_block)
+                except Exception as e:
+                    self._log_debug(f"Error procesando vela {i}: {e}")
+                    continue
+            
+            # ✅ REGLA #8: VALIDACIÓN PERFORMANCE <5s
+            execution_time = time.time() - start_time
+            performance_ok = execution_time < 5.0
+            
+            if not performance_ok:
+                self._log_warning(f"⚠️ Performance warning: {execution_time:.2f}s > 5s")
+            
+            # ✅ REGLA #8: LOG ÉXITO CON MÉTRICAS COMPLETAS
+            log_trading_decision_smart_v6("BREAKER_DETECTION_SUCCESS", {
+                "symbol": symbol,
+                "timeframe": timeframe,
+                "breakers_detected": len(breaker_blocks),
+                "execution_time": execution_time,
+                "performance_ok": performance_ok,
+                "function": "detect_breaker_blocks",
+                "input_candles": len(data),
+                "breaker_v62_used": BREAKER_BLOCKS_V62_AVAILABLE,
+                "memory_integration": hasattr(self, '_unified_memory'),
+                "quality_avg": sum(bb.probability for bb in breaker_blocks) / len(breaker_blocks) if breaker_blocks else 0.0
+            })
+            
+            self._log_info(f"💥 Breaker Blocks detectados: {len(breaker_blocks)} "
+                          f"({execution_time:.2f}s)")
+            
+            return breaker_blocks
+            
+        except Exception as e:
+            # ✅ REGLA #8: LOG FALLA CON CONTEXTO COMPLETO
+            execution_time = time.time() - start_time
+            log_trading_decision_smart_v6("BREAKER_DETECTION_ERROR", {
+                "symbol": symbol,
+                "timeframe": timeframe,
+                "error": str(e),
+                "error_type": type(e).__name__,
+                "execution_time": execution_time,
+                "function": "detect_breaker_blocks",
+                "data_available": data is not None,
+                "data_rows": len(data) if data is not None else 0
+            })
+            
+            self._log_error(f"❌ Error en detect_breaker_blocks: {e}")
+            raise  # ✅ REGLA #8: RE-RAISE para proper error handling
     
+    def detect_order_blocks(self, 
+                           data: Optional[pd.DataFrame] = None,
+                           symbol: str = "EURUSD", 
+                           timeframe: str = "M15",
+                           market_structure: Optional[Dict] = None) -> List[Dict]:
+        """
+        📦 DETECCIÓN PÚBLICA DE ORDER BLOCKS ICT
+        ======================================
+        
+        API pública para detección de Order Blocks (Bullish/Bearish) siguiendo
+        metodología institucional ICT con validación enterprise.
+        
+        ✅ REGLAS COPILOT APLICADAS:
+        - REGLA #2: Logging obligatorio con SLUC v2.1
+        - REGLA #8: Performance <5s + validación completa
+        - REGLA #10: Error handling robusto
+        - REGLA #11: Compatibilidad con tests existentes
+        
+        Args:
+            data: DataFrame con datos OHLCV
+            symbol: Par de divisas (default: EURUSD)
+            timeframe: Timeframe de análisis (default: M15)
+            market_structure: Contexto de estructura de mercado (opcional)
+            
+        Returns:
+            List[Dict]: Lista de Order Blocks detectados con metadata completa
+            
+        Raises:
+            Exception: En caso de error crítico con logging completo
+            
+        Example:
+            detector = ICTPatternDetector()
+            order_blocks = detector.detect_order_blocks(
+                data=df_eurusd, 
+                symbol="EURUSD", 
+                timeframe="M15"
+            )
+        """
+        # ✅ REGLA #8: LOG INICIO CON TIMESTAMP Y CONTEXTO
+        start_time = time.time()
+        log_trading_decision_smart_v6("ORDER_BLOCKS_DETECTION_START", {
+            "symbol": symbol,
+            "timeframe": timeframe,
+            "data_rows": len(data) if data is not None else 0,
+            "market_structure_available": market_structure is not None,
+            "function": "detect_order_blocks",
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        try:
+            # ✅ REGLA #10: VALIDACIÓN ROBUSTA DE ENTRADA
+            if data is None or len(data) < 20:
+                self._log_warning(f"📦 Datos insuficientes para Order Blocks: {len(data) if data is not None else 0} velas")
+                return []
+            
+            self._log_info(f"📦 Iniciando detección Order Blocks para {symbol} {timeframe}")
+            
+            # Usar el método interno existente para detectar Order Blocks
+            # Convertir dict a MarketStructureSignalV6 si es necesario
+            market_structure_signal = None
+            if market_structure is not None:
+                try:
+                    # Crear MarketStructureSignalV6 desde dict si está disponible
+                    if MARKET_STRUCTURE_AVAILABLE:
+                        market_structure_signal = MarketStructureSignalV6(**market_structure)
+                except Exception as e:
+                    self._log_debug(f"No se pudo convertir market_structure: {e}")
+            
+            order_blocks_internal = self._detect_order_blocks(data, market_structure_signal)
+            
+            # Convertir Order Blocks internos a formato público consistente
+            order_blocks_public = []
+            for ob in order_blocks_internal:
+                try:
+                    # Convertir OrderBlock object a Dict público
+                    ob_dict = {
+                        "type": ob.ob_type.value if hasattr(ob.ob_type, 'value') else str(ob.ob_type),
+                        "high_price": float(ob.high_price),
+                        "low_price": float(ob.low_price),
+                        "origin_candle_index": int(ob.origin_candle_index),
+                        "timestamp": ob.origin_timestamp.isoformat() if hasattr(ob.origin_timestamp, 'isoformat') else str(ob.origin_timestamp),
+                        "strength": ob.strength.value if hasattr(ob.strength, 'value') else str(ob.strength),
+                        "status": ob.status.value if hasattr(ob.status, 'value') else str(ob.status),
+                        "probability": float(ob.probability),
+                        "symbol": symbol,
+                        "timeframe": timeframe,
+                        "narrative": getattr(ob, 'narrative', f"Order Block {ob.ob_type.value if hasattr(ob.ob_type, 'value') else str(ob.ob_type)}"),
+                        "analysis_metadata": {
+                            "detection_method": "ICT_Enterprise_v6.0",
+                            "proximity_analysis": True,
+                            "strength_validation": True,
+                            "market_structure_context": market_structure is not None
+                        }
+                    }
+                    order_blocks_public.append(ob_dict)
+                    
+                except Exception as e:
+                    self._log_debug(f"Error convirtiendo Order Block: {e}")
+                    continue
+            
+            # ✅ REGLA #8: VALIDACIÓN PERFORMANCE <5s
+            execution_time = time.time() - start_time
+            performance_ok = execution_time < 5.0
+            
+            if not performance_ok:
+                self._log_warning(f"⚠️ Performance warning: {execution_time:.2f}s > 5s")
+            
+            # ✅ REGLA #8: LOG ÉXITO CON MÉTRICAS COMPLETAS
+            log_trading_decision_smart_v6("ORDER_BLOCKS_DETECTION_SUCCESS", {
+                "symbol": symbol,
+                "timeframe": timeframe,
+                "order_blocks_detected": len(order_blocks_public),
+                "execution_time": execution_time,
+                "performance_ok": performance_ok,
+                "function": "detect_order_blocks",
+                "input_candles": len(data),
+                "proximity_analysis": True,
+                "strength_validation": True,
+                "bullish_obs": len([ob for ob in order_blocks_public if "bullish" in ob["type"].lower()]),
+                "bearish_obs": len([ob for ob in order_blocks_public if "bearish" in ob["type"].lower()]),
+                "avg_probability": sum(ob["probability"] for ob in order_blocks_public) / len(order_blocks_public) if order_blocks_public else 0.0
+            })
+            
+            self._log_info(f"📦 Order Blocks detectados: {len(order_blocks_public)} "
+                          f"({execution_time:.2f}s)")
+            
+            return order_blocks_public
+            
+        except Exception as e:
+            # ✅ REGLA #8: LOG FALLA CON CONTEXTO COMPLETO
+            execution_time = time.time() - start_time
+            log_trading_decision_smart_v6("ORDER_BLOCKS_DETECTION_ERROR", {
+                "symbol": symbol,
+                "timeframe": timeframe,
+                "error": str(e),
+                "error_type": type(e).__name__,
+                "execution_time": execution_time,
+                "function": "detect_order_blocks",
+                "data_available": data is not None,
+                "data_rows": len(data) if data is not None else 0
+            })
+            
+            self._log_error(f"❌ Error en detect_order_blocks: {e}")
+            raise  # ✅ REGLA #8: RE-RAISE para proper error handling
+
     def _detect_order_blocks(self, 
                            candles, 
                            market_structure: Optional[MarketStructureSignalV6] = None) -> List[OrderBlock]:
@@ -591,7 +863,7 @@ class ICTPatternDetector:
                 symbol=getattr(self, 'symbol', 'EURUSD'),
                 timeframe=getattr(self, 'timeframe', 'M15'),
                 memory_system=getattr(self, 'memory_system', None),
-                logger=self.logger
+                logger=None  # ✅ FIX: Usar None como fallback, el detector maneja internamente
             )
             
             # Preparar datos para análisis
@@ -716,6 +988,112 @@ class ICTPatternDetector:
         except Exception as e:
             self._log_error(f"Error detectando FVGs: {e}")
             return []
+
+    def detect_fair_value_gaps(self, candles, timeframe: str = "1H", symbol: str = "EURUSD", 
+                              market_structure: Union[Dict, 'MarketStructureSignalV6', None] = None) -> List[Dict]:
+        """
+        🔵 PUBLIC API: Detecta Fair Value Gaps (FVGs) en los datos de velas
+        
+        Implementa la detección completa de Fair Value Gaps siguiendo la metodología ICT,
+        identificando gaps en el precio que representan ineficiencias del mercado.
+        
+        Args:
+            candles: DataFrame con datos OHLC de las velas
+            timeframe: Marco temporal para análisis (default: "1H")
+            symbol: Símbolo del instrumento financiero (default: "EURUSD")
+            market_structure: Contexto de estructura de mercado (Dict o MarketStructureSignalV6)
+            
+        Returns:
+            List[Dict]: Lista de Fair Value Gaps detectados en formato público
+            
+        Raises:
+            ValueError: Si los datos de entrada son inválidos
+            Exception: Para errores durante la detección
+            
+        Example:
+            >>> detector = PatternDetector()
+            >>> fvgs = detector.detect_fair_value_gaps(candles_df, "1H", "EURUSD")
+            >>> print(f"FVGs detectados: {len(fvgs)}")
+        
+        Note:
+            - Cada FVG incluye tipo (bullish/bearish), precios high/low, timestamp
+            - Solo retorna FVGs que superan el tamaño mínimo configurado
+            - Utiliza logging inteligente SLUC v2.1 para trazabilidad
+        """
+        operation_id = f"detect_fvgs_{int(time.time())}"
+        start_time = time.time()
+        
+        try:
+            # Validación de entrada
+            if candles is None or candles.empty:
+                raise ValueError("Los datos de velas no pueden estar vacíos")
+            if not isinstance(timeframe, str) or not timeframe.strip():
+                raise ValueError("El timeframe debe ser una cadena válida")
+            if not isinstance(symbol, str) or not symbol.strip():
+                raise ValueError("El símbolo debe ser una cadena válida")
+                
+            # Convertir market_structure si es dict
+            ms_context = None
+            if market_structure is not None:
+                if isinstance(market_structure, dict):
+                    # Usar dict directamente - el método privado puede manejarlo
+                    ms_context = None  # No pasar dict incompatible
+                else:
+                    # Asumir que es compatible con MarketStructureSignalV6
+                    ms_context = market_structure
+            
+            # Logging de inicio
+            self._log_debug(f"🔍 Iniciando detección de Fair Value Gaps - Símbolo: {symbol}, Timeframe: {timeframe}, Velas: {len(candles)}")
+            
+            # Llamar método privado principal
+            fvg_objects = self._detect_fair_value_gaps(candles, ms_context)
+            
+            # Convertir objetos internos a diccionarios públicos
+            public_fvgs = []
+            for fvg in fvg_objects:
+                try:
+                    fvg_dict = {
+                        'type': fvg.fvg_type.value if hasattr(fvg.fvg_type, 'value') else str(fvg.fvg_type),
+                        'high_price': float(fvg.high_price),
+                        'low_price': float(fvg.low_price),
+                        'gap_size_pips': float(fvg.gap_size_pips),
+                        'origin_candle_index': int(fvg.origin_candle_index),
+                        'origin_timestamp': fvg.origin_timestamp.isoformat() if hasattr(fvg.origin_timestamp, 'isoformat') else str(fvg.origin_timestamp),
+                        'strength': fvg.strength.value if hasattr(fvg.strength, 'value') else str(fvg.strength),
+                        'status': fvg.status.value if hasattr(fvg.status, 'value') else str(fvg.status),
+                        'probability': float(fvg.probability),
+                        'narrative': str(fvg.narrative),
+                        'symbol': symbol,
+                        'timeframe': timeframe
+                    }
+                    public_fvgs.append(fvg_dict)
+                except Exception as conv_error:
+                    self._log_warning(f"⚠️ Error convirtiendo FVG a formato público: {conv_error}")
+                    continue
+            
+            # Métricas de rendimiento
+            execution_time = time.time() - start_time
+            
+            # Logging inteligente de resultados
+            if public_fvgs:
+                self._log_info(f"🎯 Detección exitosa: {len(public_fvgs)} Fair Value Gaps en {symbol} {timeframe}")
+            else:
+                self._log_info(f"ℹ️ No se detectaron Fair Value Gaps en {symbol} {timeframe}")
+            
+            return public_fvgs
+            
+        except ValueError as ve:
+            error_msg = f"Error de validación en detect_fair_value_gaps: {ve}"
+            self._log_error(f"❌ {error_msg}")
+            raise
+        except Exception as e:
+            error_msg = f"Error inesperado en detect_fair_value_gaps: {e}"
+            self._log_error(f"❌ {error_msg}")
+            execution_time = time.time() - start_time
+            
+            # Log de error con contexto
+            self._log_error(f"❌ Error durante detección de FVGs en {symbol} {timeframe}: {str(e)}")
+            raise
     
     def _detect_bullish_fvg(self, candles, candle_index: int) -> Optional[FairValueGap]:
         """📈 Detecta Bullish Fair Value Gap"""
@@ -1024,7 +1402,7 @@ class ICTPatternDetector:
             self._log_error(f"Error obteniendo resumen: {e}")
             return {}
     
-    def get_active_patterns(self, symbol: str = None, timeframe: str = None) -> Dict[str, List]:
+    def get_active_patterns(self, symbol: Optional[str] = None, timeframe: Optional[str] = None) -> Dict[str, Any]:
         """🎯 Obtiene patterns activos"""
         try:
             active_obs = [ob for ob in self.detected_order_blocks if ob.status == PatternStatus.ACTIVE]

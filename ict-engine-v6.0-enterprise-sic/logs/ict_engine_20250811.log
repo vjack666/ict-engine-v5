@@ -1,0 +1,144 @@
+[2025-08-11 13:23:11] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 13:31:55] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:31:55] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 13:31:55] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:31:55] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 13:32:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:32:18] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 13:32:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "data_rows": 100, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:32:18.451250"}
+[2025-08-11 13:32:18] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_SUCCESS EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "breakers_detected": 0, "execution_time": 0.12169051170349121, "performance_ok": true, "function": "detect_breaker_blocks", "input_candles": 100, "breaker_v62_used": true, "memory_integration": true, "quality_avg": 0.0}
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 13:34:56] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 13:34:56] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 13:34:56] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 13:34:56] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "data_rows": 150, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:34:56.882019"}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_SUCCESS EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "breakers_detected": 0, "execution_time": 0.38838815689086914, "performance_ok": true, "function": "detect_breaker_blocks", "input_candles": 150, "breaker_v62_used": true, "memory_integration": true, "quality_avg": 0.0}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "GBPUSD", "timeframe": "H1", "data_rows": 150, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:34:57.271305"}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_SUCCESS EURUSD: {"symbol": "GBPUSD", "timeframe": "H1", "breakers_detected": 0, "execution_time": 0.43265867233276367, "performance_ok": true, "function": "detect_breaker_blocks", "input_candles": 150, "breaker_v62_used": true, "memory_integration": true, "quality_avg": 0.0}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "USDJPY", "timeframe": "M5", "data_rows": 150, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:34:57.705119"}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_SUCCESS EURUSD: {"symbol": "USDJPY", "timeframe": "M5", "breakers_detected": 0, "execution_time": 0.1636672019958496, "performance_ok": true, "function": "detect_breaker_blocks", "input_candles": 150, "breaker_v62_used": true, "memory_integration": true, "quality_avg": 0.0}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "data_rows": 0, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:34:57.870203"}
+[2025-08-11 13:34:57] [ICT_Engine] [INFO] [trading_decision] 📈 BREAKER_DETECTION_START EURUSD: {"symbol": "EURUSD", "timeframe": "M15", "data_rows": 5, "existing_obs": 0, "breaker_v62_available": true, "function": "detect_breaker_blocks", "timestamp": "2025-08-11T13:34:57.871723"}
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:30:53] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:30:53] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:30:53] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:30:53] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:34:19] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:34:19] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:34:19] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:34:19] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:36:38] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:36:38] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:36:38] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:36:38] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:38:44] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:38:44] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:38:44] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:38:44] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:39:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:39:18] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:39:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:39:18] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:40:12] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:40:12] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:40:12] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:40:12] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:41:02] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:41:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:41:18] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:41:18] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:41:18] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:41:34] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:41:34] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:41:34] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:41:34] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [unified_memory] 🧠 Inicializando Unified Market Memory v6.0 Enterprise
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [market_memory] 🧠 Inicializando Market Context v6.0 Enterprise
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [market_memory] ✅ Market Context v6.0 Enterprise inicializado - Retención: 50 periodos, Max POIs: 200, Cache: cache/memory
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [historical_memory] 📈 Inicializando ICT Historical Analyzer v6.0 Enterprise
+[2025-08-11 15:42:06] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [historical_memory] ✅ ICT Historical Analyzer v6.0 Enterprise inicializado - Cache: cache\memory, TTL: 24.0h, Timeframes: 7
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [decision_cache] 💾 TradingDecisionCacheV6 inicializado - Intelligent: True, Cleanup: 24h
+[2025-08-11 15:42:06] [ICT_Engine] [WARNING] [market_memory] No se encontró estado de memoria previo
+[2025-08-11 15:42:06] [ICT_Engine] [WARNING] [historical_memory] No se encontró cache de memoria previo
+[2025-08-11 15:42:06] [ICT_Engine] [INFO] [unified_memory] ✅ Unified Market Memory inicializado - Components: 3/3, Quality: ACTIVE, Coherence: 1.000

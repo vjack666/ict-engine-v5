@@ -257,24 +257,34 @@ class ICTDataManager:
         """📥 Ejecutar una descarga individual"""
         
         try:
+            # Extraer datos del task con fallbacks seguros
+            symbol = task.get('symbol', 'UNKNOWN')
+            timeframe = task.get('timeframe', 'H4')
+            bars_count = task.get('bars', task.get('bars_count', 240))  # Fallback para diferentes formatos
+            
             result = self.downloader.download_candles(
-                symbol=task['symbol'],
-                timeframe=task['timeframe'],
-                bars_count=task['bars'],
+                symbol=symbol,
+                timeframe=timeframe,
+                bars_count=bars_count,
                 use_ict_optimal=True,
                 save_to_file=None  # Decisión automática
             )
             
             # Agregar metadatos del task
-            if result.get('success', False):
+            if result and result.get('success', False):
                 result['task_info'] = {
                     'priority': task.get('priority', 'NORMAL'),
                     'mode': mode,
-                    'bars_requested': task['bars'],
+                    'bars_requested': bars_count,
                     'bars_received': len(result.get('data', [])) if result.get('data') is not None else 0
                 }
             
-            return result
+            return result or {
+                'success': False,
+                'error': 'Downloader returned None',
+                'task_info': task,
+                'timestamp': datetime.now()
+            }
             
         except Exception as e:
             return {
@@ -464,6 +474,245 @@ class ICTDataManager:
             readiness['recommendations'].append("Datos insuficientes para análisis confiable")
         
         return readiness
+    
+    def auto_detect_multi_tf_data(self, symbols: List[str], required_timeframes: List[str]) -> Dict[str, Any]:
+        """
+        🔍 AUTO-DETECCIÓN DE DATOS MULTI-TIMEFRAME
+        
+        Detecta automáticamente disponibilidad de datos en múltiples timeframes
+        y sincroniza la información para análisis cross-timeframe.
+        
+        Args:
+            symbols: Lista de símbolos a verificar
+            required_timeframes: Timeframes requeridos para análisis
+            
+        Returns:
+            Dict con estado de disponibilidad multi-timeframe
+        """
+        print(f"🔍 AUTO-DETECCIÓN MULTI-TF: {len(symbols)} símbolos x {len(required_timeframes)} timeframes")
+        
+        detection_results = {
+            'symbols_analyzed': len(symbols),
+            'timeframes_required': len(required_timeframes),
+            'detection_matrix': {},
+            'readiness_summary': {},
+            'recommendations': [],
+            'sync_status': 'PENDING'
+        }
+        
+        # Analizar cada símbolo
+        for symbol in symbols:
+            symbol_readiness = self.get_data_readiness(symbol, required_timeframes)
+            detection_results['detection_matrix'][symbol] = symbol_readiness
+            
+            # Categorizar por disponibilidad
+            if symbol_readiness['analysis_capability'] == 'FULL':
+                detection_results['readiness_summary'][symbol] = 'READY'
+            elif symbol_readiness['analysis_capability'] == 'PARTIAL':
+                detection_results['readiness_summary'][symbol] = 'PARTIAL'
+            else:
+                detection_results['readiness_summary'][symbol] = 'NOT_READY'
+        
+        # Generar recomendaciones inteligentes
+        ready_count = sum(1 for status in detection_results['readiness_summary'].values() if status == 'READY')
+        partial_count = sum(1 for status in detection_results['readiness_summary'].values() if status == 'PARTIAL')
+        
+        if ready_count >= len(symbols) * 0.8:
+            detection_results['recommendations'].append("✅ Análisis multi-TF recomendado - datos suficientes")
+            detection_results['sync_status'] = 'OPTIMAL'
+        elif ready_count + partial_count >= len(symbols) * 0.6:
+            detection_results['recommendations'].append("⚠️ Análisis parcial posible - completar datos faltantes")
+            detection_results['sync_status'] = 'ACCEPTABLE'
+        else:
+            detection_results['recommendations'].append("❌ Datos insuficientes - iniciar warm-up antes de análisis")
+            detection_results['sync_status'] = 'INSUFFICIENT'
+        
+        # Log de SLUC v2.1 para auditoría
+        self._log_multitf_detection(detection_results)
+        
+        print(f"   ✅ Auto-detección completada: {ready_count}/{len(symbols)} símbolos listos")
+        return detection_results
+    
+    def sync_multi_tf_data(self, symbol: str, timeframes: List[str], force_download: bool = False) -> Dict[str, Any]:
+        """
+        🔄 SINCRONIZACIÓN MULTI-TIMEFRAME
+        
+        Sincroniza y alinea datos entre múltiples timeframes para un símbolo.
+        Detecta gaps y descarga datos faltantes automáticamente.
+        
+        Args:
+            symbol: Símbolo a sincronizar
+            timeframes: Lista de timeframes a alinear
+            force_download: Forzar descarga aunque existan datos
+            
+        Returns:
+            Dict con resultado de sincronización
+        """
+        print(f"🔄 SINCRONIZANDO {symbol} en {len(timeframes)} timeframes...")
+        
+        sync_result = {
+            'symbol': symbol,
+            'timeframes_processed': 0,
+            'sync_tasks': [],
+            'gaps_detected': [],
+            'downloads_executed': 0,
+            'alignment_status': 'PENDING'
+        }
+        
+        # Detectar gaps en cada timeframe
+        for tf in timeframes:
+            if not self._has_minimal_data(symbol, tf) or force_download:
+                # Programar descarga
+                sync_task = {
+                    'symbol': symbol,
+                    'timeframe': tf,
+                    'bars': self.config['bars_optimal'][tf],
+                    'priority': 'SYNC_CRITICAL',
+                    'reason': 'gap_detected' if not self._has_minimal_data(symbol, tf) else 'forced_update'
+                }
+                sync_result['sync_tasks'].append(sync_task)
+                sync_result['gaps_detected'].append(f"{symbol}_{tf}")
+        
+        # Ejecutar descargas de sincronización si hay gaps
+        if sync_result['sync_tasks']:
+            print(f"   📥 Ejecutando {len(sync_result['sync_tasks'])} descargas de sincronización...")
+            download_results = self._execute_parallel_downloads(sync_result['sync_tasks'], mode='sync')
+            
+            # Procesar resultados
+            successful_downloads = sum(1 for r in download_results.values() if r.get('success', False))
+            sync_result['downloads_executed'] = successful_downloads
+            
+            # Actualizar estado de datos
+            self._update_data_status(download_results)
+            
+            print(f"   ✅ Sincronización: {successful_downloads}/{len(sync_result['sync_tasks'])} exitosas")
+        else:
+            print(f"   ✅ {symbol} ya sincronizado - no se requieren descargas")
+        
+        # Evaluar alineación final
+        final_readiness = self.get_data_readiness(symbol, timeframes)
+        if final_readiness['analysis_capability'] in ['FULL', 'PARTIAL']:
+            sync_result['alignment_status'] = 'SYNCHRONIZED'
+        else:
+            sync_result['alignment_status'] = 'FAILED'
+        
+        sync_result['timeframes_processed'] = len(timeframes)
+        
+        # Log de SLUC v2.1
+        self._log_sync_operation(sync_result)
+        
+        return sync_result
+    
+    def get_multi_tf_cache_status(self) -> Dict[str, Any]:
+        """
+        📊 ESTADO DEL CACHE MULTI-TIMEFRAME
+        
+        Analiza el estado del cache desde perspectiva multi-timeframe,
+        identificando patrones de uso y optimizaciones posibles.
+        
+        Returns:
+            Dict con análisis del cache multi-TF
+        """
+        cache_analysis = {
+            'total_symbols': len(self.data_status),
+            'timeframe_coverage': {},
+            'cache_efficiency': {},
+            'recommendations': [],
+            'optimization_opportunities': []
+        }
+        
+        # Analizar cobertura por timeframe
+        for tf in ['H4', 'M15', 'M5', 'H1', 'D1', 'M30']:
+            symbols_with_tf = 0
+            for symbol_data in self.data_status.values():
+                if tf in symbol_data and symbol_data[tf]['available']:
+                    symbols_with_tf += 1
+            
+            coverage_pct = (symbols_with_tf / len(self.data_status) * 100) if self.data_status else 0
+            cache_analysis['timeframe_coverage'][tf] = {
+                'symbols_count': symbols_with_tf,
+                'coverage_percentage': coverage_pct,
+                'status': 'GOOD' if coverage_pct >= 70 else 'NEEDS_IMPROVEMENT'
+            }
+        
+        # Calcular eficiencia de cache
+        total_data_points = 0
+        optimal_data_points = 0
+        
+        for symbol, timeframes in self.data_status.items():
+            for tf, data_info in timeframes.items():
+                if data_info['available']:
+                    total_data_points += data_info['bars_count']
+                    if self._has_optimal_data(symbol, tf):
+                        optimal_data_points += data_info['bars_count']
+        
+        efficiency = (optimal_data_points / total_data_points * 100) if total_data_points > 0 else 0
+        cache_analysis['cache_efficiency'] = {
+            'total_bars': total_data_points,
+            'optimal_bars': optimal_data_points,
+            'efficiency_percentage': efficiency,
+            'status': 'EXCELLENT' if efficiency >= 80 else 'GOOD' if efficiency >= 60 else 'NEEDS_OPTIMIZATION'
+        }
+        
+        # Generar recomendaciones
+        if efficiency < 60:
+            cache_analysis['recommendations'].append("🔧 Ejecutar enhancement para optimizar datos")
+        
+        low_coverage_tfs = [tf for tf, data in cache_analysis['timeframe_coverage'].items() 
+                           if data['coverage_percentage'] < 50]
+        if low_coverage_tfs:
+            cache_analysis['recommendations'].append(f"📈 Mejorar cobertura en: {', '.join(low_coverage_tfs)}")
+        
+        return cache_analysis
+    
+    def _log_multitf_detection(self, detection_results: Dict[str, Any]):
+        """📝 Log estructurado para detección multi-TF (SLUC v2.1)"""
+        try:
+            # Integración SLUC v2.1 para eventos de detección
+            if UNIFIED_MEMORY_AVAILABLE and self.unified_memory:
+                event_data = {
+                    'event_type': 'multi_tf_detection',
+                    'symbols_analyzed': detection_results['symbols_analyzed'],
+                    'timeframes_required': detection_results['timeframes_required'],
+                    'sync_status': detection_results['sync_status'],
+                    'ready_symbols': len([s for s, status in detection_results['readiness_summary'].items() if status == 'READY']),
+                    'timestamp': datetime.now()
+                }
+                
+                # Log con SLUC v2.1
+                update_market_memory(
+                    'multi_tf_detection',
+                    event_data,
+                    context_type='data_management'
+                )
+                
+        except Exception as e:
+            print(f"⚠️ Error logging detección multi-TF: {e}")
+    
+    def _log_sync_operation(self, sync_result: Dict[str, Any]):
+        """📝 Log estructurado para sincronización (SLUC v2.1)"""
+        try:
+            # Integración SLUC v2.1 para eventos de sincronización
+            if UNIFIED_MEMORY_AVAILABLE and self.unified_memory:
+                event_data = {
+                    'event_type': 'multi_tf_sync',
+                    'symbol': sync_result['symbol'],
+                    'timeframes_processed': sync_result['timeframes_processed'],
+                    'downloads_executed': sync_result['downloads_executed'],
+                    'alignment_status': sync_result['alignment_status'],
+                    'gaps_detected': len(sync_result['gaps_detected']),
+                    'timestamp': datetime.now()
+                }
+                
+                # Log con SLUC v2.1
+                update_market_memory(
+                    'multi_tf_sync',
+                    event_data,
+                    context_type='data_management'
+                )
+                
+        except Exception as e:
+            print(f"⚠️ Error logging sincronización multi-TF: {e}")
     
     def get_performance_summary(self) -> Dict[str, Any]:
         """📈 Obtener resumen de performance del data manager"""
