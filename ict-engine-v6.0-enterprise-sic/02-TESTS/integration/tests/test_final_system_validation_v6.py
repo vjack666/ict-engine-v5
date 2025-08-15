@@ -141,7 +141,7 @@ class FinalSystemValidator:
             
             detector = PatternDetector()
             
-            # Test con datos reales FundedNext
+            # Test con datos reales FTMO Global Markets
             symbol = "EURUSD"
             timeframe = "M15"
             days = 2

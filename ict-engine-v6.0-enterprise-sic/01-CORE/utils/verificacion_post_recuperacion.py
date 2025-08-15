@@ -160,7 +160,7 @@ class SystemVerifier:
         
         # Test 4: Market Structure Analyzer
         try:
-            from core.analysis.market_structure_analyzer_v6 import MarketStructureAnalyzerV6
+            from core.analysis.market_structure_analyzer import MarketStructureAnalyzer as MarketStructureAnalyzerV6
             ms_analyzer = MarketStructureAnalyzerV6()
             tests['market_structure'] = True
             print("✅ Market Structure Analyzer v6")

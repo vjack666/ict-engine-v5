@@ -67,7 +67,7 @@ Estado: ✅ COMPLETADO
 Archivo: utils/mt5_data_manager.py
 Tests: 20/20 PASANDO
 Funcionalidades:
-  - Conexión exclusiva FundedNext MT5
+  - Conexión exclusiva FTMO Global Markets MT5
   - Cache predictivo inteligente
   - Lazy loading de dependencias
   - Thread safety completo
@@ -114,7 +114,7 @@ Calidad: Enterprise documentation standards
 ```
 
 ### 🏆 **Logros Fase 1**
-- 🔒 **Seguridad Máxima**: Solo FundedNext MT5
+- 🔒 **Seguridad Máxima**: Solo FTMO Global Markets MT5
 - ⚡ **Performance**: Cache predictivo + lazy loading
 - 🧪 **Calidad**: 100% test coverage en críticos
 - 📚 **Documentación**: Guías profesionales completas
@@ -632,7 +632,7 @@ Requirements:
   - Input validation en todas las funciones
   - Error handling sin exposición de datos
   - Logging de seguridad completo
-  - Conexión exclusiva FundedNext
+  - Conexión exclusiva FTMO Global Markets
   - Auditoría de operaciones críticas
 ```
 
@@ -751,7 +751,7 @@ OBLIGATORIO para v6.0:
 OBLIGATORIO para release:
   - Tests: 90%+ coverage en todos los módulos
   - Performance: < 100ms operaciones críticas
-  - Seguridad: Solo FundedNext, sin vulnerabilidades
+  - Seguridad: Solo FTMO Global Markets, sin vulnerabilidades
   - Documentación: Guías completas
   - Estabilidad: 99% uptime en testing
 ```

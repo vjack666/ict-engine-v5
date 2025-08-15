@@ -38,7 +38,7 @@
 ### 📊 **RESULTADOS VALIDADOS:**
 - **Threshold:** 60% adaptativo
 - **Analyzer:** MarketStructureAnalyzerV6
-- **Data Source:** MT5 FundedNext real data
+- **Data Source:** MT5 FTMO Global Markets real data
 - **Detection Rate:** Liquidity Grabs confirmados
 
 ---

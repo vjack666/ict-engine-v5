@@ -9,7 +9,7 @@
 
 ## 🎯 **RESUMEN EJECUTIVO**
 
-El **TODO #2 (multi_tf_data_manager)** ha sido completado exitosamente con validación completa en entorno real FundedNext MT5. El sistema ahora cuenta con capacidades multi-timeframe avanzadas, cache robusto y análisis de confluencias operativo.
+El **TODO #2 (multi_tf_data_manager)** ha sido completado exitosamente con validación completa en entorno real FTMO Global Markets MT5. El sistema ahora cuenta con capacidades multi-timeframe avanzadas, cache robusto y análisis de confluencias operativo.
 
 ### 📈 **MÉTRICAS DE ÉXITO:**
 - **Score Total:** 80% en entorno real ✅
@@ -93,7 +93,7 @@ key = task.get('key', f"{task.get('symbol', 'UNKNOWN')}_{task.get('timeframe', '
 ```
 
 ### **Entorno de Validación:**
-- **Terminal:** FundedNext MT5 Terminal
+- **Terminal:** FTMO Global Markets MT5 Terminal
 - **Broker:** FTMO Global Markets Ltd
 - **Cuenta:** 1511236436 (Demo)
 - **Símbolos:** EURUSD, GBPUSD, USDJPY
@@ -198,7 +198,7 @@ COMPLIANCE:
 ### **✅ Logros Principales:**
 1. **Cache Bug Resuelto:** Sistema robusto implementado
 2. **Multi-TF Operational:** Detección y sincronización funcionando
-3. **Real Data Validated:** Testing con FundedNext MT5 exitoso
+3. **Real Data Validated:** Testing con FTMO Global Markets MT5 exitoso
 4. **Confluence Analysis:** Sistema de análisis operativo
 5. **Enterprise Ready:** Performance y calidad validados
 

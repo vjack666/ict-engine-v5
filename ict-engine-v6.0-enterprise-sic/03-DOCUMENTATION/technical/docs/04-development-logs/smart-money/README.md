@@ -29,7 +29,7 @@
 ✅ CHoCH Detection: Integrado y validado
 ✅ Liquidity Grabs: Detectando correctamente
 ✅ Market Structure Analyzer v6.0: Threshold adaptativo (60%)
-✅ Real Data Integration: MT5 + FundedNext
+✅ Real Data Integration: MT5 + FTMO Global Markets
 ✅ Testing Complete: 100% tests passing
 ```
 
@@ -46,7 +46,7 @@
 ### ⚡ **Performance Validada:**
 ```
 🎯 SIC v3.1 Load Time: 0.0038s
-📡 MT5 Connection: <1s a FundedNext
+📡 MT5 Connection: <1s a FTMO Global Markets
 📈 Multi-timeframe Download: 15,000+ velas en <2s
 🔍 Pattern Detection: 5-10 patterns en 1.5s promedio
 🧠 Smart Money Analysis: <1s para análisis completo

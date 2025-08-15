@@ -25,11 +25,11 @@ def test_summary():
     
     # Tests críticos que sabemos que funcionan
     working_tests = [
-        {'name': 'test_simple_poi.py', 'description': '🎯 POI System + FundedNext Real Data', 'critical': True},
+        {'name': 'test_simple_poi.py', 'description': '🎯 POI System + FTMO Global Markets Real Data', 'critical': True},
         {'name': 'test_advanced_candle_downloader.py', 'description': '📥 Advanced Candle Downloader', 'critical': True},
         {'name': 'test_critical_timeframes.py', 'description': '⏰ Critical H1/H4 Timeframes', 'critical': True},
         {'name': 'test_enterprise_performance.py', 'description': '🚀 Enterprise Performance', 'critical': True},
-        {'name': 'test_fundednext_system.py', 'description': '💰 FundedNext System', 'critical': True}
+        {'name': 'test_ftmo_system.py', 'description': '💰 FTMO Global Markets System', 'critical': True}
     ]
     
     # Tests adicionales disponibles
@@ -174,7 +174,7 @@ def test_summary():
     print("\n" + "="*70)
     print("🎉 ESTADO GENERAL DEL SISTEMA")
     print("="*70)
-    print("✅ CONEXIÓN MT5 FUNDEDNEXT: FUNCIONANDO")
+    print("✅ CONEXIÓN MT5 FTMO: FUNCIONANDO")
     print("✅ DESCARGA DATOS REALES: FUNCIONANDO") 
     print("✅ POI SYSTEM v6.0: FUNCIONANDO")
     print("✅ SIC v3.1 ENTERPRISE: FUNCIONANDO")

@@ -32,7 +32,7 @@ El **MT5DataManager v6.0 Enterprise** es el componente más crítico del ICT Eng
 ## ✨ Características v6.0 Enterprise
 
 ### 🔧 Funcionalidades Core
-- ✅ **Conexión Exclusiva FundedNext MT5**: Solo permite terminal FundedNext
+- ✅ **Conexión Exclusiva FTMO Global Markets MT5**: Solo permite terminal FTMO Global Markets
 - ✅ **Integración SIC v3.1**: Debugging avanzado y lazy loading
 - ✅ **Cache Predictivo**: Optimización inteligente de descargas
 - ✅ **Lazy Loading**: Carga diferida de pandas y otros módulos pesados
@@ -41,7 +41,7 @@ El **MT5DataManager v6.0 Enterprise** es el componente más crítico del ICT Eng
 - ✅ **Monitoreo de Performance**: Métricas completas de rendimiento
 
 ### 🛡️ Características de Seguridad
-- 🔒 **Solo FundedNext**: Bloquea cualquier otro terminal MT5
+- 🔒 **Solo FTMO Global Markets**: Bloquea cualquier otro terminal MT5
 - 🔒 **Validación Continua**: Verifica terminal correcto constantemente  
 - 🔒 **Desconexión Automática**: Desconecta terminales no autorizados
 - 🔒 **Logging de Seguridad**: Auditoría completa de actividad
@@ -101,9 +101,9 @@ manager = get_mt5_manager(config)
 ### 2. Conectar a MT5
 
 ```python
-# Conectar (SOLO a FundedNext)
+# Conectar (SOLO a FTMO Global Markets)
 if manager.connect():
-    print("✅ Conectado exitosamente a FundedNext MT5")
+    print("✅ Conectado exitosamente a FTMO Global Markets MT5")
 else:
     print("❌ Error de conexión")
 ```
@@ -151,26 +151,26 @@ report = manager.get_performance_report()
 print(f"Cache hit ratio: {report['cache_performance']['hit_ratio']:.2%}")
 ```
 
-## 🔒 Configuración de Seguridad FundedNext
+## 🔒 Configuración de Seguridad FTMO Global Markets
 
 ### Ruta del Terminal
 
 ```python
-FUNDEDNEXT_MT5_PATH = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
+FTMO_MT5_PATH = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
 ```
 
 ### Verificaciones de Seguridad
 
-1. **Validación de Instalación**: Verifica que FundedNext esté instalado
-2. **Verificación de Terminal**: Confirma que el terminal activo es FundedNext
+1. **Validación de Instalación**: Verifica que FTMO Global Markets esté instalado
+2. **Verificación de Terminal**: Confirma que el terminal activo es FTMO Global Markets
 3. **Desconexión Automática**: Desconecta terminales no autorizados
 4. **Logging de Seguridad**: Registra todas las actividades de seguridad
 
-### Configuración FUNDEDNEXT_CONFIG
+### Configuración FTMO_CONFIG
 
 ```python
-FUNDEDNEXT_CONFIG = {
-    "executable_path": FUNDEDNEXT_MT5_PATH,
+FTMO_CONFIG = {
+    "executable_path": FTMO_MT5_PATH,
     "max_bars": 50000,
     "symbols": ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "XAUUSD", "XAGUSD"],
     "timeframes": ["M1", "M3", "M5", "M15", "H1", "H4", "D1"],
@@ -279,7 +279,7 @@ python -m pytest tests/test_mt5_data_manager.py -v
 ### Categorías de Tests
 
 1. **Básicos**: Inicialización y configuración
-2. **Seguridad**: Validaciones FundedNext
+2. **Seguridad**: Validaciones FTMO Global Markets
 3. **Tipos de Datos**: Estructuras y enums
 4. **Timeframes**: Mapeo y constantes
 5. **Estado**: Status y métricas
@@ -326,8 +326,8 @@ manager = get_mt5_manager(config)
 ### Diagnóstico de Problemas
 
 1. **MT5 no disponible**: Verificar instalación MetaTrader5
-2. **FundedNext no encontrado**: Verificar ruta en FUNDEDNEXT_MT5_PATH
-3. **Conexión falla**: Verificar terminal FundedNext activo
+2. **FTMO Global Markets no encontrado**: Verificar ruta en FTMO_MT5_PATH
+3. **Conexión falla**: Verificar terminal FTMO Global Markets activo
 4. **Datos no llegan**: Verificar símbolos habilitados en MT5
 5. **Performance lenta**: Revisar cache y lazy loading
 
@@ -372,7 +372,7 @@ El diseño modular permite:
 ### Issues y Bugs
 - Reportar en el sistema de tickets del proyecto
 - Incluir logs de debug completos
-- Especificar configuración de FundedNext
+- Especificar configuración de FTMO Global Markets
 
 ---
 

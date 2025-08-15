@@ -170,7 +170,7 @@ def test_fix_velas_insuficientes():
         else:
             print("❌ No se pudieron realizar descargas. Verificar:")
             print("   1. MT5 Terminal abierto y conectado")
-            print("   2. Símbolos disponibles en FundedNext")
+            print("   2. Símbolos disponibles en FTMO Global Markets")
             print("   3. Conexión a internet estable")
         
         print()

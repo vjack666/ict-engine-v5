@@ -1,8 +1,60 @@
 # 🛡️ RISK MANAGEMENT - ICT ENGINE v5.0 ✅ ACTUALIZADA
 
-**Última Actualización:** 01 Agosto 2025 - 17:42 hrs
-**Estado:** ✅ **RISKBOT MT5 INTEGRADO CON MULTI-POI**
-**Sistema:** ✅ **GESTIÓN DE RIESGO AVANZADA OPERATIVA**
+**Última Actualización:** 14 Agosto 2025 - 18:45 hrs  
+**Estado:** ✅ **RISKBOT MT5 + RISK MANAGER v6.0 ENTERPRISE**  
+**Sistema:** ✅ **GESTIÓN DE RIESGO AVANZADA + SISTEMA ADAPTATIVO**
+
+---
+
+## 🚀 **ACTUALIZACIÓN 14 AGOSTO 2025 - RISK MANAGER v6.0 ENTERPRISE**
+
+### ✅ **NUEVO COMPONENTE INTEGRADO**
+- 🎯 **Risk Manager v6.0 Enterprise:** Sistema adaptativo de gestión de riesgo
+- 📍 **Ubicación:** `ict-engine-v6.0-enterprise-sic/06-TOOLS/backtest-original/engines/risk_manager.py`
+- 🔄 **Modo Dual:** Compatible con backtesting y trading live
+- 🎛️ **Integración ICT:** POI system + Smart Money Concepts
+
+### 🎯 **CARACTERÍSTICAS NUEVAS**
+```python
+# Inicialización adaptativa
+risk_manager = RiskManager(
+    mode='live',                    # 'backtest' o 'live'
+    ict_config=ICTRiskConfig(       # Configuración ICT específica
+        poi_weight_factor=1.2,      # Factor peso POI
+        smart_money_factor=1.1,     # Factor Smart Money
+        correlation_threshold=0.7   # Umbral correlación
+    )
+)
+
+# Position sizing con factores ICT
+position_size = risk_manager.calculate_ict_position_size(
+    account_balance=25000,
+    entry_price=1.0850,
+    stop_loss=1.0820,
+    poi_quality='A',              # A, B, C, D
+    smart_money_signal=True,      # Confirmación SMC
+    session='overlap'             # london, new_york, asian, overlap
+)
+```
+
+### 🚨 **SISTEMA DE ALERTAS AVANZADO**
+```python
+# Alertas automáticas implementadas
+ALERT_TYPES = {
+    'MAX_POSITIONS_REACHED': 'CRITICAL',
+    'MAX_DRAWDOWN_EXCEEDED': 'CRITICAL', 
+    'DAILY_LOSS_EXCEEDED': 'CRITICAL',
+    'HIGH_CORRELATION_RISK': 'WARNING'
+}
+
+# Verificación completa
+risk_status = risk_manager.check_risk_limits(
+    current_positions=2,
+    current_drawdown=0.12,
+    daily_loss=0.03,
+    open_positions=current_positions_list
+)
+```
 
 ---
 

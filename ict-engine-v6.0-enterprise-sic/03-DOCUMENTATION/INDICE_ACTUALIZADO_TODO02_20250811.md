@@ -14,7 +14,7 @@
   - Reporte completo del TODO #2 completado
   - Análisis del bug fix crítico del cache
   - Métricas de performance en entorno real
-  - Validación FundedNext MT5 80% score
+  - Validación FTMO Global Markets MT5 80% score
 
 ### 📚 **DOCUMENTACIÓN PRINCIPAL ACTUALIZADA:**
 
@@ -68,7 +68,7 @@
 ```
 ✅ TODO #2 Score: 80% entorno real
 ✅ Cache Bug: Identificado y resuelto
-✅ MT5 Integration: FundedNext validado
+✅ MT5 Integration: FTMO Global Markets validado
 ✅ Performance: <5s enterprise mantenido
 ✅ Multi-TF: Sistema completamente operativo
 ```

@@ -96,7 +96,7 @@ from core.smart_trading_logger import SmartTradingLogger
 3. **Implementar** interfaz unificada
 
 ### **FASE 6: TESTING Y VALIDACIÓN (1 hora)**
-1. **Test** con datos reales FundedNext
+1. **Test** con datos reales FTMO Global Markets
 2. **Validar** detección BOS bullish/bearish
 3. **Verificar** swing points detection
 4. **Confirmar** integración con SIC v3.1
@@ -149,7 +149,7 @@ sic = get_sic_bridge()
 2. **Reducción 80% tiempo desarrollo** - De 2-3 semanas a 1 día
 3. **Algoritmo ICT correcto** - Ya validado en sistema principal
 4. **Compatibilidad SIC v3.1** - Infraestructura enterprise lista
-5. **Testing inmediato** - Con datos FundedNext reales
+5. **Testing inmediato** - Con datos FTMO Global Markets reales
 
 ## 🎯 **RESULTADO ESPERADO**
 

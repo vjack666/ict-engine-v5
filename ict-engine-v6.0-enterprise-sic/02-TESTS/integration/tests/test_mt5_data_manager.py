@@ -9,7 +9,7 @@ del ICT Engine v6.1.0 Enterprise SIC.
 Tests incluidos:
 - Inicialización y configuración
 - Integración SIC v3.1
-- Validaciones de seguridad FundedNext
+- Validaciones de seguridad FTMO Global Markets
 - Lazy loading y cache predictivo
 - Conexión y desconexión
 - Operaciones de datos
@@ -42,9 +42,9 @@ try:
         MT5TickData,
         MT5HistoricalData,
         AccountType,
-        validate_fundednext_installation,
-        ensure_only_fundednext_connection,
-        FUNDEDNEXT_CONFIG,
+        validate_ftmo_installation,
+        ensure_only_ftmo_connection,
+        FTMO_CONFIG,
         TIMEFRAME_MAPPING
     )
     MT5_MANAGER_AVAILABLE = True
@@ -113,41 +113,41 @@ class TestMT5DataManagerBasics(unittest.TestCase):
         print("✅ Test creación ConnectionInfo: PASSED")
 
 class TestMT5DataManagerSecurity(unittest.TestCase):
-    """🛡️ Tests de seguridad y validaciones FundedNext"""
+    """🛡️ Tests de seguridad y validaciones FTMO Global Markets"""
 
     @unittest.skipUnless(MT5_MANAGER_AVAILABLE, "MT5DataManager no disponible")
-    def test_fundednext_config(self):
-        """✅ Test configuración FundedNext"""
-        self.assertIn("executable_path", FUNDEDNEXT_CONFIG)
-        self.assertIn("fundednext", FUNDEDNEXT_CONFIG["executable_path"].lower())
-        self.assertEqual(FUNDEDNEXT_CONFIG["security_level"], "MAXIMUM")
-        self.assertEqual(FUNDEDNEXT_CONFIG["version"], "v6.0-enterprise")
+    def test_ftmo_config(self):
+        """✅ Test configuración FTMO Global Markets"""
+        self.assertIn("executable_path", FTMO_CONFIG)
+        self.assertIn("ftmo", FTMO_CONFIG["executable_path"].lower())
+        self.assertEqual(FTMO_CONFIG["security_level"], "MAXIMUM")
+        self.assertEqual(FTMO_CONFIG["version"], "v6.0-enterprise")
         
-        print("✅ Test configuración FundedNext: PASSED")
+        print("✅ Test configuración FTMO Global Markets: PASSED")
 
     @unittest.skipUnless(MT5_MANAGER_AVAILABLE, "MT5DataManager no disponible")
     @patch('utils.mt5_data_manager.os.path.exists')
     @patch('utils.mt5_data_manager.os.path.isfile')
-    def test_validate_fundednext_installation_success(self, mock_isfile, mock_exists):
-        """✅ Test validación exitosa de instalación FundedNext"""
+    def test_validate_ftmo_installation_success(self, mock_isfile, mock_exists):
+        """✅ Test validación exitosa de instalación FTMO Global Markets"""
         mock_exists.return_value = True
         mock_isfile.return_value = True
         
-        result = validate_fundednext_installation()
+        result = validate_ftmo_installation()
         self.assertTrue(result)
         
-        print("✅ Test validación FundedNext exitosa: PASSED")
+        print("✅ Test validación FTMO Global Markets exitosa: PASSED")
 
     @unittest.skipUnless(MT5_MANAGER_AVAILABLE, "MT5DataManager no disponible")
     @patch('utils.mt5_data_manager.os.path.exists')
-    def test_validate_fundednext_installation_failure(self, mock_exists):
-        """✅ Test validación fallida de instalación FundedNext"""
+    def test_validate_ftmo_installation_failure(self, mock_exists):
+        """✅ Test validación fallida de instalación FTMO Global Markets"""
         mock_exists.return_value = False
         
-        result = validate_fundednext_installation()
+        result = validate_ftmo_installation()
         self.assertFalse(result)
         
-        print("✅ Test validación FundedNext fallida: PASSED")
+        print("✅ Test validación FTMO Global Markets fallida: PASSED")
 
 class TestMT5DataManagerDataTypes(unittest.TestCase):
     """📊 Tests de tipos de datos y estructuras"""
@@ -313,16 +313,16 @@ class TestMT5DataManagerFunctionality(unittest.TestCase):
     @unittest.skipUnless(MT5_MANAGER_AVAILABLE, "MT5DataManager no disponible")
     @patch('utils.mt5_data_manager.MT5_AVAILABLE', True)
     @patch('utils.mt5_data_manager.mt5')
-    @patch('utils.mt5_data_manager.validate_fundednext_installation')
-    def test_connect_without_fundednext(self, mock_validate, mock_mt5):
-        """✅ Test conexión sin FundedNext instalado"""
+    @patch('utils.mt5_data_manager.validate_ftmo_installation')
+    def test_connect_without_ftmo(self, mock_validate, mock_mt5):
+        """✅ Test conexión sin FTMO Global Markets instalado"""
         mock_validate.return_value = False
         
         manager = MT5DataManager()
         result = manager.connect()
         
         self.assertFalse(result)
-        print("✅ Test conexión sin FundedNext: PASSED")
+        print("✅ Test conexión sin FTMO Global Markets: PASSED")
 
     @unittest.skipUnless(MT5_MANAGER_AVAILABLE, "MT5DataManager no disponible")
     def test_disconnect_without_connection(self):

@@ -82,7 +82,7 @@
 #### 🔍 **Detalles Técnicos**
 1. **📡 MT5 Integration** - En mt5_data_manager_v6.md
 2. **⚡ Performance** - En mt5_data_manager_v6.md
-3. **🔒 Security FundedNext** - En mt5_data_manager_v6.md
+3. **🔒 Security FTMO Global Markets** - En mt5_data_manager_v6.md
 4. **🧪 Validation** - En todos los docs técnicos
 
 ---

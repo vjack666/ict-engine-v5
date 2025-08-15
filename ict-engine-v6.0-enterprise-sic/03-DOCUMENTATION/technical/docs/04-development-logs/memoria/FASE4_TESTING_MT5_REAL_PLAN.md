@@ -105,7 +105,7 @@
 def test_mt5_real_connection():
     """✅ REGLA #7: Test conexión MT5 real funcionando"""
     # 1. Verificar AdvancedCandleDownloader
-    # 2. Conectar a FundedNext MT5 terminal
+    # 2. Conectar a FTMO Global Markets MT5 terminal
     # 3. Validar cuenta y balance reales
     # 4. Test descarga datos múltiples timeframes
     

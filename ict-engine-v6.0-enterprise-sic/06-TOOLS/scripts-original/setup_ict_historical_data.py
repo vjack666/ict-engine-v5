@@ -295,12 +295,12 @@ if __name__ == "__main__":
         verify_ict_data_integrity()
         
         print(f"\n🎯 PRÓXIMOS PASOS:")
-        print(f"   1. Verificar que FundedNext MT5 esté conectado")
+        print(f"   1. Verificar que FTMO Global Markets MT5 esté conectado")
         print(f"   2. Ejecutar análisis ICT con datos históricos")
         print(f"   3. Configurar alertas para nuevas oportunidades")
         print(f"   4. Iniciar backtesting con datos reales")
     else:
         print(f"\n⚠️ CONFIGURACIÓN INCOMPLETA:")
         print(f"   - Verificar conexión MT5")
-        print(f"   - Asegurar que FundedNext esté corriendo")
+        print(f"   - Asegurar que FTMO Global Markets esté corriendo")
         print(f"   - Revisar disponibilidad de símbolos")

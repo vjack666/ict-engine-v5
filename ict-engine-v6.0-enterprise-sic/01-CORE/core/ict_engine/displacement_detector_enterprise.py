@@ -21,14 +21,15 @@ from dataclasses import dataclass, field
 import logging
 
 try:
-    from ..smart_trading_logger import log_trading_decision_smart_v6
+    from ..smart_trading_logger import log_trading_decision_smart_v6  # type: ignore
     from ..analysis.unified_memory_system import UnifiedMemorySystem
-    from ..analysis.market_structure_analyzer_v6 import MarketStructureAnalyzerV6
+    from ..analysis.market_structure_analyzer import MarketStructureAnalyzer as MarketStructureAnalyzerV6
     from ..data_management.advanced_candle_downloader import AdvancedCandleDownloader
 except ImportError:
     # Fallback logging para desarrollo
-    def log_trading_decision_smart_v6(event_type, symbol, data, **kwargs):
+    def log_trading_decision_smart_v6(event_type, data, level="INFO", force_important=False, symbol="EURUSD") -> bool:
         print(f"📈 {event_type} {symbol}: {data}")
+        return True
 
 @dataclass
 class DisplacementSignal:
@@ -83,12 +84,12 @@ class DisplacementDetectorEnterprise:
         self.momentum_threshold = 0.7  # Minimum momentum score
         
         log_trading_decision_smart_v6(
-            "DISPLACEMENT_DETECTOR_INIT", "SYSTEM", {
+            "DISPLACEMENT_DETECTOR_INIT", {
                 "version": self.version,
                 "memory_enabled": self.memory_enabled,
                 "min_displacement_pips": self.min_displacement_pips,
                 "ict_compliance": "FULL"
-            }
+            }, symbol="SYSTEM"
         )
     
     def detect_displacement(self, data: pd.DataFrame, symbol: str = "EURUSD", 
@@ -96,11 +97,11 @@ class DisplacementDetectorEnterprise:
         """🎯 Detectar Displacement con criterios ICT enterprise"""
         
         log_trading_decision_smart_v6(
-            "DISPLACEMENT_DETECTION_START", symbol, {
+            "DISPLACEMENT_DETECTION_START", {
                 "data_points": len(data),
                 "timeframe": timeframe,
                 "detection_method": "ICT_ENTERPRISE_v6.0"
-            }
+            }, symbol=symbol
         )
         
         displacement_signals = []
@@ -131,22 +132,22 @@ class DisplacementDetectorEnterprise:
                 displacement_signals.append(displacement_signal)
                 
                 log_trading_decision_smart_v6(
-                    "DISPLACEMENT_DETECTED", symbol, {
+                    "DISPLACEMENT_DETECTED", {
                         "displacement_type": displacement_signal.displacement_type,
                         "displacement_pips": displacement_signal.displacement_pips,
                         "momentum_score": displacement_signal.momentum_score,
                         "institutional_signature": displacement_signal.institutional_signature,
                         "memory_enhanced": displacement_signal.memory_enhanced
-                    }
+                    }, symbol=symbol
                 )
         
         log_trading_decision_smart_v6(
-            "DISPLACEMENT_DETECTION_COMPLETE", symbol, {
+            "DISPLACEMENT_DETECTION_COMPLETE", {
                 "total_displacements": len(displacement_signals),
                 "bullish_count": len([d for d in displacement_signals if d.displacement_type == "BULLISH_DISPLACEMENT"]),
                 "bearish_count": len([d for d in displacement_signals if d.displacement_type == "BEARISH_DISPLACEMENT"]),
                 "avg_displacement_pips": sum(d.displacement_pips for d in displacement_signals) / max(len(displacement_signals), 1)
-            }
+            }, symbol=symbol
         )
         
         return displacement_signals
@@ -215,7 +216,10 @@ class DisplacementDetectorEnterprise:
             volume_score = 0.5  # Default score
         
         # Consistency análisis
-        directional_moves = (price_changes > 0).sum() if (window.iloc[-1]['close'] > window.iloc[0]['open']) else (price_changes < 0).sum()
+        if window.iloc[-1]['close'] > window.iloc[0]['open']:
+            directional_moves = (price_changes.astype(float) > 0).sum()
+        else:
+            directional_moves = (price_changes.astype(float) < 0).sum()
         consistency = directional_moves / len(price_changes) if len(price_changes) > 0 else 0.5
         
         # Combined momentum score
@@ -245,7 +249,7 @@ class DisplacementDetectorEnterprise:
         lower_wicks = window[['open', 'close']].min(axis=1) - window['low']
         significant_wicks = (upper_wicks > candle_sizes).any() or (lower_wicks > candle_sizes).any()
         
-        return volume_spike and (large_candle or significant_wicks)
+        return bool(volume_spike and (large_candle or significant_wicks))
     
     def _calculate_ict_target(self, start_price: float, end_price: float, price_movement: float) -> float:
         """🎯 Calcular target estimation ICT methodology"""
@@ -330,7 +334,7 @@ class DisplacementDetectorEnterprise:
         try:
             # Query historical success rate
             memory_key = f"displacement_{signal.displacement_type}_{symbol}"
-            historical_data = self.memory_system.get_smart_memory(memory_key)
+            historical_data = self.memory_system.get_historical_insight(memory_key, "M15")
             
             if historical_data:
                 signal.memory_enhanced = True
@@ -403,7 +407,7 @@ class DisplacementDetectorEnterprise:
     
     def _analyze_volume_profile(self, window: pd.DataFrame) -> str:
         """📊 Analyze volume profile"""
-        volumes = window['volume'].values
+        volumes = window['volume'].astype(float)
         avg_vol = volumes.mean()
         
         if volumes[-1] > avg_vol * 2:

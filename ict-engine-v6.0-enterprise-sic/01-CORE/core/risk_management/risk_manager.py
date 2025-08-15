@@ -1,10 +1,10 @@
 """
-🎯 Risk Manager v6.0 Enterprise - Sistema Adaptativo
-===================================================
+🎯 Risk Manager v6.0 Enterprise - Sistema Principal ICT
+=====================================================
 
-Gestor de riesgo avanzado compatible con Backtest Engine v6.0 y Trading Live.
-Implementa múltiples estrategias de gestión de riesgo y capital con adaptación
-al sistema ICT Engine v6.0 Enterprise.
+Gestor de riesgo avanzado para ICT Engine v6.0 Enterprise.
+Implementa múltiples estrategias de gestión de riesgo y capital optimizado
+para trading live en sistema de producción.
 
 Features:
 - Position sizing basado en riesgo (Kelly, Fixed, Volatility-adjusted)
@@ -14,13 +14,15 @@ Features:
 - Máximo de posiciones concurrentes
 - Stop Loss dinámicos con ATR
 - Integración con POI system y Smart Money Concepts
-- Compatible con trading live y backtesting
+- Sistema de alertas automático
+- Optimizado para trading live en producción
 
 Integración Sistema:
 - Compatible con RiskBot MT5 para trading live
 - Soporte para Multi-POI Dashboard
 - Métricas de riesgo ICT personalizadas
 - Alertas y notificaciones avanzadas
+- Exportación de reportes JSON
 """
 
 from typing import Dict, List, Optional, Tuple, Union, Any, Callable
@@ -76,30 +78,30 @@ class RiskAlert:
 
 class RiskManager:
     """
-    🎯 Risk Manager v6.0 Enterprise - Sistema Adaptativo
+    🎯 Risk Manager v6.0 Enterprise - Sistema Principal ICT
     
     Gestiona el riesgo de manera avanzada con integración ICT:
     - Position sizing inteligente con POI weighting
     - Límites de drawdown dinámicos
     - Gestión de correlaciones multi-símbolo
     - Ajustes por volatilidad y Smart Money Concepts
-    - Compatible con trading live y backtesting
-    - Integración con sistema de alertas
+    - Sistema de alertas automático
+    - Optimizado para trading live en producción
     """
     
-    def __init__(self, max_risk_per_trade: float = 0.02, max_positions: int = 5,
-                 max_drawdown_percent: float = 0.15, max_daily_loss_percent: float = 0.05,
-                 ict_config: Optional[ICTRiskConfig] = None, mode: str = 'backtest'):
+    def __init__(self, max_risk_per_trade: float = 0.015, max_positions: int = 3,
+                 max_drawdown_percent: float = 0.12, max_daily_loss_percent: float = 0.04,
+                 ict_config: Optional[ICTRiskConfig] = None, mode: str = 'live'):
         """
         Inicializar Risk Manager
         
         Args:
-            max_risk_per_trade: Máximo riesgo por trade (como decimal, ej: 0.02 = 2%)
-            max_positions: Máximo número de posiciones concurrentes
-            max_drawdown_percent: Máximo drawdown permitido
-            max_daily_loss_percent: Máxima pérdida diaria permitida
+            max_risk_per_trade: Máximo riesgo por trade (default 1.5% para live)
+            max_positions: Máximo número de posiciones concurrentes (default 3 para live)
+            max_drawdown_percent: Máximo drawdown permitido (default 12% para live)
+            max_daily_loss_percent: Máxima pérdida diaria permitida (default 4% para live)
             ict_config: Configuración específica para ICT Engine
-            mode: 'backtest' o 'live' para adaptar comportamiento
+            mode: 'live' para trading en producción, 'test' para pruebas
         """
         self.metrics = RiskMetrics(
             max_risk_per_trade=max_risk_per_trade,
@@ -113,7 +115,7 @@ class RiskManager:
         
         # ICT Configuration
         self.ict_config = ict_config or ICTRiskConfig()
-        self.mode = mode  # 'backtest' or 'live'
+        self.mode = mode  # 'live' or 'test'
         
         # Track risk metrics
         self.daily_pnl_history: List[float] = []
@@ -327,79 +329,6 @@ class RiskManager:
             'sharpe_ratio': float(np.mean(daily_returns) / np.std(daily_returns)) if np.std(daily_returns) > 0 else 0.0
         }
     
-    def _calculate_kelly_size(self, account_balance: float, entry_price: float, 
-                             stop_loss: float) -> float:
-        """
-        Calcular tamaño usando criterio de Kelly
-        
-        Args:
-            account_balance: Balance de cuenta
-            entry_price: Precio de entrada
-            stop_loss: Stop loss
-            
-        Returns:
-            float: Tamaño de posición en lotes
-        """
-        # Simplified Kelly calculation
-        # In practice, this would use historical win rate and average win/loss
-        
-        # Assume historical metrics (these would be calculated from trade history)
-        win_rate = 0.6  # 60% win rate
-        avg_win = 0.015  # 1.5% average win
-        avg_loss = 0.01  # 1% average loss
-        
-        # Kelly fraction = (bp - q) / b
-        # where b = odds received (avg_win/avg_loss), p = win probability, q = loss probability
-        b = avg_win / avg_loss
-        p = win_rate
-        q = 1 - win_rate
-        
-        kelly_fraction = (b * p - q) / b
-        kelly_fraction = max(0, min(kelly_fraction, 0.25))  # Cap at 25%
-        
-        # Convert to position size
-        risk_amount = account_balance * kelly_fraction
-        risk_per_unit = abs(entry_price - stop_loss)
-        
-        if risk_per_unit > 0:
-            position_value = risk_amount / risk_per_unit
-            return position_value / 100000  # Convert to lots
-        
-        return 0.1  # Default size
-    
-    def _calculate_volatility_adjusted_size(self, account_balance: float, entry_price: float,
-                                          stop_loss: float, base_risk_amount: float) -> float:
-        """
-        Calcular tamaño ajustado por volatilidad
-        
-        Args:
-            account_balance: Balance de cuenta
-            entry_price: Precio de entrada
-            stop_loss: Stop loss
-            base_risk_amount: Cantidad base en riesgo
-            
-        Returns:
-            float: Tamaño ajustado de posición
-        """
-        # Simplified volatility adjustment
-        # In practice, this would use recent volatility measurements
-        
-        # Assume current volatility vs normal volatility
-        current_volatility = 0.012  # 1.2% daily volatility
-        normal_volatility = 0.010   # 1.0% normal volatility
-        
-        volatility_ratio = normal_volatility / current_volatility
-        volatility_ratio = max(0.5, min(volatility_ratio, 2.0))  # Cap adjustment
-        
-        adjusted_risk = base_risk_amount * volatility_ratio
-        risk_per_unit = abs(entry_price - stop_loss)
-        
-        if risk_per_unit > 0:
-            position_value = adjusted_risk / risk_per_unit
-            return position_value / 100000  # Convert to lots
-        
-        return 0.1  # Default size
-    
     def calculate_ict_position_size(self, account_balance: float, entry_price: float,
                                    stop_loss: float, poi_quality: str = 'B',
                                    smart_money_signal: bool = False,
@@ -522,6 +451,79 @@ class RiskManager:
         except Exception as e:
             self.logger.error(f"Error exportando reporte: {e}")
             return ""
+    
+    def _calculate_kelly_size(self, account_balance: float, entry_price: float, 
+                             stop_loss: float) -> float:
+        """
+        Calcular tamaño usando criterio de Kelly
+        
+        Args:
+            account_balance: Balance de cuenta
+            entry_price: Precio de entrada
+            stop_loss: Stop loss
+            
+        Returns:
+            float: Tamaño de posición en lotes
+        """
+        # Simplified Kelly calculation
+        # In practice, this would use historical win rate and average win/loss
+        
+        # Assume historical metrics (these would be calculated from trade history)
+        win_rate = 0.6  # 60% win rate
+        avg_win = 0.015  # 1.5% average win
+        avg_loss = 0.01  # 1% average loss
+        
+        # Kelly fraction = (bp - q) / b
+        # where b = odds received (avg_win/avg_loss), p = win probability, q = loss probability
+        b = avg_win / avg_loss
+        p = win_rate
+        q = 1 - win_rate
+        
+        kelly_fraction = (b * p - q) / b
+        kelly_fraction = max(0, min(kelly_fraction, 0.25))  # Cap at 25%
+        
+        # Convert to position size
+        risk_amount = account_balance * kelly_fraction
+        risk_per_unit = abs(entry_price - stop_loss)
+        
+        if risk_per_unit > 0:
+            position_value = risk_amount / risk_per_unit
+            return position_value / 100000  # Convert to lots
+        
+        return 0.1  # Default size
+    
+    def _calculate_volatility_adjusted_size(self, account_balance: float, entry_price: float,
+                                          stop_loss: float, base_risk_amount: float) -> float:
+        """
+        Calcular tamaño ajustado por volatilidad
+        
+        Args:
+            account_balance: Balance de cuenta
+            entry_price: Precio de entrada
+            stop_loss: Stop loss
+            base_risk_amount: Cantidad base en riesgo
+            
+        Returns:
+            float: Tamaño ajustado de posición
+        """
+        # Simplified volatility adjustment
+        # In practice, this would use recent volatility measurements
+        
+        # Assume current volatility vs normal volatility
+        current_volatility = 0.012  # 1.2% daily volatility
+        normal_volatility = 0.010   # 1.0% normal volatility
+        
+        volatility_ratio = normal_volatility / current_volatility
+        volatility_ratio = max(0.5, min(volatility_ratio, 2.0))  # Cap adjustment
+        
+        adjusted_risk = base_risk_amount * volatility_ratio
+        risk_per_unit = abs(entry_price - stop_loss)
+        
+        if risk_per_unit > 0:
+            position_value = adjusted_risk / risk_per_unit
+            return position_value / 100000  # Convert to lots
+        
+        return 0.1  # Default size
     
     def _get_poi_multiplier(self, poi_quality: str) -> float:
         """Obtener multiplicador basado en calidad POI"""

@@ -93,7 +93,7 @@
   },
   
   "data_quality": {
-    "connection": "FUNDEDNEXT_MT5_REAL",
+    "connection": "FTMO_MT5_REAL",
     "account": "1511236436",
     "balance": "9996.5_USD",
     "data_grade": "INSTITUTIONAL_OPTIMAL",

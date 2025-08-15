@@ -31,7 +31,7 @@
 - **Propósito:** Bitácora de integración con MT5 y datos reales
 - **Estado:** ✅ **INTEGRACIÓN COMPLETADA**
 - **Contenido:** 
-  - Conexión MT5 con FundedNext
+  - Conexión MT5 con FTMO Global Markets
   - Integración de datos reales
   - Validación de pipeline completo
 
@@ -41,7 +41,7 @@
 
 ### ✅ **MT5 DATA INTEGRATION:**
 ```
-📡 Conexión MT5: FundedNext Server
+📡 Conexión MT5: FTMO Global Markets Server
 📈 Datos Reales: EURUSD, GBPUSD, USDJPY
 ⏰ Timeframes: M1, M5, M15, M30, H1, H4, D1, W1, MN1
 📊 Historial: Hasta 10,000 velas por timeframe
@@ -50,7 +50,7 @@
 
 ### 🔌 **SISTEMAS EXTERNOS:**
 ```
-🏦 Broker: FundedNext MT5 Real Account
+🏦 Broker: FTMO Global Markets MT5 Real Account
 📡 Data Feed: Real-time market data
 🧠 Smart Money: ICT Analysis integrado
 🎯 Pattern Detection: BOS/CHoCH operativo
@@ -115,7 +115,7 @@ ICTDataManager v6.0
 ### ✅ **IMPLEMENTADO:**
 ```
 🎯 MT5 API: Conexión nativa Python
-📡 Real Data API: FundedNext integration
+📡 Real Data API: FTMO Global Markets integration
 🧠 ICT Analysis API: Smart Money integration
 📝 Logging API: SLUC v2.1 structured logging
 ```

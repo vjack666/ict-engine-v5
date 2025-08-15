@@ -461,7 +461,7 @@ class ICTHistoricalAnalyzerV6:
     
     # === MÉTODOS HELPER ===
     
-    def _load_historical_poi_data(self, symbol: str, timeframe: str, poi_type: str = None) -> List[Dict]:
+    def _load_historical_poi_data(self, symbol: str, timeframe: str, poi_type: Optional[str] = None) -> List[Dict]:
         """Carga datos históricos de POIs."""
         # Implementación simplificada - en producción cargaría de logs reales
         return []
@@ -615,7 +615,7 @@ class ICTHistoricalAnalyzerV6:
         else:
             return "LOW"
     
-    def _calculate_timeframe_correlations(self, analyses: Dict) -> Dict[str, float]:
+    def _calculate_timeframe_correlations(self, analyses: Dict) -> Dict[str, Any]:
         """Calcula correlaciones entre timeframes."""
         return {"correlation_analysis": "pending"}
     
@@ -626,3 +626,262 @@ class ICTHistoricalAnalyzerV6:
     def _generate_unified_recommendations(self, analyses: Dict) -> List[str]:
         """Genera recomendaciones unificadas."""
         return ["Unified analysis pending implementation"]
+
+    # === FUNCIONES MIGRADAS DESDE LEGACY v6.0 ===
+    
+    def analyze_bos_performance(self, symbol: str = "EURUSD") -> Dict[str, Any]:
+        """
+        Analiza efectividad histórica de patrones BOS.
+        Migrado desde legacy ICTHistoricalAnalyzer.
+        
+        Args:
+            symbol: Símbolo del mercado
+            
+        Returns:
+            Dict con análisis de performance BOS
+        """
+        self.logger.info(f"📈 Analizando performance BOS: {symbol}")
+        
+        try:
+            # Obtener eventos BOS del contexto de mercado o cache
+            bos_events = self._get_bos_events_from_cache(symbol)
+            
+            if len(bos_events) < 10:  # Mínimo para análisis confiable
+                self.logger.warning(f"⚠️ Pocos eventos BOS para análisis: {len(bos_events)}")
+                return {
+                    'symbol': symbol,
+                    'total_events': len(bos_events),
+                    'success_rate': 0.5,  # Neutral
+                    'confidence': 0.3,
+                    'weight_factor': 1.0,
+                    'status': 'insufficient_data'
+                }
+            
+            # Calcular métricas de performance
+            successful_events = sum(1 for event in bos_events if event.get('success', False))
+            success_rate = successful_events / len(bos_events)
+            
+            # Análisis por timeframe
+            by_timeframe = {}
+            for event in bos_events:
+                tf = event.get('timeframe', 'unknown')
+                if tf not in by_timeframe:
+                    by_timeframe[tf] = {'total': 0, 'successful': 0}
+                by_timeframe[tf]['total'] += 1
+                if event.get('success', False):
+                    by_timeframe[tf]['successful'] += 1
+            
+            # Calcular confidence basado en cantidad de datos
+            confidence = min(1.0, len(bos_events) / 100.0)
+            
+            result = {
+                'symbol': symbol,
+                'pattern_type': 'BOS',
+                'total_events': len(bos_events),
+                'successful_events': successful_events,
+                'success_rate': success_rate,
+                'confidence': confidence,
+                'weight_factor': self._success_rate_to_weight(success_rate, 'BOS'),
+                'by_timeframe': by_timeframe,
+                'status': 'analyzed'
+            }
+            
+            self.logger.info(f"✅ BOS Performance: {success_rate:.2%} éxito en {len(bos_events)} eventos")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error analizando BOS performance: {e}")
+            return {
+                'symbol': symbol,
+                'error': str(e),
+                'status': 'error'
+            }
+
+    def analyze_choch_performance(self, symbol: str = "EURUSD") -> Dict[str, Any]:
+        """
+        Analiza efectividad histórica de patrones CHoCH.
+        Migrado desde legacy ICTHistoricalAnalyzer.
+        
+        Args:
+            symbol: Símbolo del mercado
+            
+        Returns:
+            Dict con análisis de performance CHoCH
+        """
+        self.logger.info(f"🔄 Analizando performance CHoCH: {symbol}")
+        
+        try:
+            # Obtener eventos CHoCH del contexto de mercado o cache
+            choch_events = self._get_choch_events_from_cache(symbol)
+            
+            if len(choch_events) < 10:
+                self.logger.warning(f"⚠️ Pocos eventos CHoCH para análisis: {len(choch_events)}")
+                return {
+                    'symbol': symbol,
+                    'total_events': len(choch_events),
+                    'success_rate': 0.5,  # Neutral
+                    'confidence': 0.3,
+                    'weight_factor': 1.0,
+                    'status': 'insufficient_data'
+                }
+            
+            # Calcular métricas similares a BOS
+            successful_events = sum(1 for event in choch_events if event.get('success', False))
+            success_rate = successful_events / len(choch_events)
+            
+            # Análisis por timeframe
+            by_timeframe = {}
+            for event in choch_events:
+                tf = event.get('timeframe', 'unknown')
+                if tf not in by_timeframe:
+                    by_timeframe[tf] = {'total': 0, 'successful': 0}
+                by_timeframe[tf]['total'] += 1
+                if event.get('success', False):
+                    by_timeframe[tf]['successful'] += 1
+            
+            confidence = min(1.0, len(choch_events) / 100.0)
+            
+            result = {
+                'symbol': symbol,
+                'pattern_type': 'CHoCH',
+                'total_events': len(choch_events),
+                'successful_events': successful_events,
+                'success_rate': success_rate,
+                'confidence': confidence,
+                'weight_factor': self._success_rate_to_weight(success_rate, 'CHoCH'),
+                'by_timeframe': by_timeframe,
+                'status': 'analyzed'
+            }
+            
+            self.logger.info(f"✅ CHoCH Performance: {success_rate:.2%} éxito en {len(choch_events)} eventos")
+            return result
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error analizando CHoCH performance: {e}")
+            return {
+                'symbol': symbol,
+                'error': str(e),
+                'status': 'error'
+            }
+
+    def get_adaptive_threshold(self, pattern_type: str, symbol: str = "EURUSD") -> float:
+        """
+        Calcula threshold adaptativo basado en performance histórica.
+        Migrado desde legacy ICTHistoricalAnalyzer.
+        
+        Args:
+            pattern_type: Tipo de patrón (BOS, CHoCH, etc.)
+            symbol: Símbolo del mercado
+            
+        Returns:
+            Threshold adaptativo optimizado
+        """
+        base_threshold = 0.6  # Threshold base
+        
+        try:
+            # Obtener performance histórica del patrón
+            if pattern_type == "BOS":
+                performance = self.analyze_bos_performance(symbol)
+            elif pattern_type == "CHoCH":
+                performance = self.analyze_choch_performance(symbol)
+            else:
+                self.logger.warning(f"⚠️ Tipo de patrón no soportado: {pattern_type}")
+                return base_threshold
+            
+            if performance.get('status') != 'analyzed':
+                return base_threshold
+            
+            success_rate = performance.get('success_rate', 0.5)
+            confidence = performance.get('confidence', 0.5)
+            
+            # Ajustar threshold basado en performance
+            if success_rate > 0.8 and confidence > 0.7:
+                # Alta performance -> reducir threshold para más detecciones
+                adaptive_threshold = base_threshold * 0.85
+            elif success_rate < 0.4 and confidence > 0.5:
+                # Baja performance -> aumentar threshold para mayor selectividad
+                adaptive_threshold = base_threshold * 1.2
+            else:
+                # Performance normal -> ajuste ligero
+                adaptive_threshold = base_threshold + (success_rate - 0.5) * 0.2
+            
+            # Clamp entre límites razonables
+            adaptive_threshold = max(0.3, min(0.9, adaptive_threshold))
+            
+            self.logger.debug(f"🎯 Threshold adaptativo {pattern_type}: {adaptive_threshold:.2f} (base: {base_threshold:.2f})")
+            return adaptive_threshold
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error calculando threshold adaptativo: {e}")
+            return base_threshold
+
+    def assess_pattern_quality(self, pattern_data: Dict[str, Any], pattern_type: str) -> float:
+        """
+        Evalúa calidad de pattern contra histórico.
+        Migrado desde legacy ICTHistoricalAnalyzer.
+        
+        Args:
+            pattern_data: Datos del patrón actual
+            pattern_type: Tipo de patrón
+            
+        Returns:
+            Score de calidad (0.0 - 1.0)
+        """
+        base_quality = pattern_data.get('confidence', 0.5)
+        
+        try:
+            # Obtener contexto histórico
+            if pattern_type == "BOS":
+                historical = self.analyze_bos_performance()
+            elif pattern_type == "CHoCH":
+                historical = self.analyze_choch_performance()
+            else:
+                return base_quality
+            
+            if historical.get('status') != 'analyzed':
+                return base_quality
+            
+            # Factores de calidad histórica
+            historical_success = historical.get('success_rate', 0.5)
+            confidence_factor = historical.get('confidence', 0.5)
+            
+            # Ajustar calidad basado en histórico
+            quality_adjustment = (historical_success - 0.5) * confidence_factor * 0.3
+            final_quality = base_quality + quality_adjustment
+            
+            # Clamp entre 0 y 1
+            final_quality = max(0.0, min(1.0, final_quality))
+            
+            return final_quality
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error evaluando calidad de pattern: {e}")
+            return base_quality
+
+    # === MÉTODOS AUXILIARES PARA LAS FUNCIONES MIGRADAS ===
+    
+    def _get_bos_events_from_cache(self, symbol: str) -> List[Dict]:
+        """Obtiene eventos BOS desde cache o memoria persistente."""
+        try:
+            cache_key = f"bos_events_{symbol}"
+            cached_events = self._get_valid_cache(cache_key)
+            if cached_events:
+                return cached_events
+            
+            # Si no hay cache, retornar lista vacía (implementar carga real después)
+            return []
+        except Exception:
+            return []
+    
+    def _get_choch_events_from_cache(self, symbol: str) -> List[Dict]:
+        """Obtiene eventos CHoCH desde cache o memoria persistente."""
+        try:
+            cache_key = f"choch_events_{symbol}"
+            cached_events = self._get_valid_cache(cache_key)
+            if cached_events:
+                return cached_events
+            
+            # Si no hay cache, retornar lista vacía (implementar carga real después)
+            return []
+        except Exception:
+            return []

@@ -1,6 +1,0 @@
-2025-08-09 14:40:22,166 - INFO - setup_logging:100 - Sistema de logging inicializado
-2025-08-09 14:40:22,166 - INFO - setup_logging:101 - Archivo de log: logs\dashboard\dashboard_debug_20250809_144022.log
-2025-08-09 14:40:24,306 - INFO - log_info:121 - INFO en __init__: Inicializando OrganizedProgressDashboard
-2025-08-09 14:40:24,318 - DEBUG - log_debug:133 - DEBUG en __init__: Creando ProgressDashboard interno
-2025-08-09 14:40:24,318 - INFO - log_success:127 - SUCCESS en __init__: Dashboard inicializado correctamente
-2025-08-09 14:40:24,320 - DEBUG - __init__:631 - Using proactor: IocpProactor

@@ -4,7 +4,7 @@
 =========================================================
 
 Script de investigación que:
-1. Descarga datos reales de FundedNext MT5
+1. Descarga datos reales de FTMO Global Markets MT5
 2. Ejecuta análisis BOS DIRECTO sin simulaciones
 3. Analiza por qué no se detectan BOS en datos reales
 4. Proporciona diagnósticos detallados y recomendaciones
@@ -251,7 +251,7 @@ def main():
                     symbol=symbol,
                     timeframe='M15',
                     bars=data_periods,
-                    source_priority=['fundednext_mt5']
+                    source_priority=['ftmo_mt5']
                 )
             
             data = asyncio.run(download_data())

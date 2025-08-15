@@ -137,7 +137,7 @@ Verificación: v0.6.5 sin warnings
 📁 ICT ENGINE v6.0 ENTERPRISE-SIC/
 ├─ 🔒 core/data_management/
 │   ├─ ✅ advanced_candle_downloader.py     # ENTERPRISE config
-│   ├─ ✅ mt5_data_manager.py              # FundedNext exclusivo
+│   ├─ ✅ mt5_data_manager.py              # FTMO Global Markets exclusivo
 │   └─ ✅ mt5_connection_manager.py        # Connection handling
 ├─ 🧠 core/analysis/  
 │   ├─ ✅ market_structure_analyzer_v6.py  # Migrado v2.0→v6.0
@@ -161,7 +161,7 @@ Verificación: v0.6.5 sin warnings
 
 ### 🚀 **Tiempos de Respuesta ACTUALIZADOS:**
 - **SIC v3.1 Load:** 0.0038s
-- **MT5 Connection:** <1s a FundedNext
+- **MT5 Connection:** <1s a FTMO Global Markets
 - **ICT Data Manager Warm-up:** 0.2s (datos críticos)
 - **Multi-timeframe BOS Analysis:** 0.029s (live_ready) - 0.257s (minimal)
 - **Real Data Download:** 15,000+ velas en <2s
@@ -189,7 +189,7 @@ Verificación: v0.6.5 sin warnings
 - **Multi-Timeframe BOS:** ✅ H4 Authority + M15 Structure + M5 Timing
 - **Swing Points Analysis:** ✅ Identificación automática
 - **BOS Validation:** ✅ Momentum + Confirmation
-- **Real Data Integration:** ✅ MT5 FundedNext + Cache inteligente
+- **Real Data Integration:** ✅ MT5 FTMO Global Markets + Cache inteligente
 - **Multiple Modes:** ✅ minimal/live_ready/full/auto
 
 ### ⏳ **PRÓXIMAS FUNCIONALIDADES ICT:**

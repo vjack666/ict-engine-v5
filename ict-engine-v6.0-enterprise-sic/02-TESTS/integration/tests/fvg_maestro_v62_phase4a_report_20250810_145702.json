@@ -6,8 +6,8 @@
     "websocket_streaming": {
       "connections": [
         {
-          "connection_id": "MT5_FundedNext_EURUSD_1754855818",
-          "broker": "MT5_FundedNext",
+          "connection_id": "MT5_FTMO Global Markets_EURUSD_1754855818",
+          "broker": "MT5_FTMO Global Markets",
           "symbol": "EURUSD",
           "status": "connected",
           "established_at": "2025-08-10T14:56:58.550965",
@@ -17,8 +17,8 @@
           "compression": "gzip"
         },
         {
-          "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
-          "broker": "MT5_FundedNext",
+          "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
+          "broker": "MT5_FTMO Global Markets",
           "symbol": "GBPUSD",
           "status": "connected",
           "established_at": "2025-08-10T14:56:58.573547",
@@ -36,7 +36,7 @@
         "data_points": [
           {
             "timestamp": "2025-08-10T14:57:01.721821",
-            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
             "symbol": "GBPUSD",
             "bid": 1.09525,
             "ask": 1.09545,
@@ -45,7 +45,7 @@
           },
           {
             "timestamp": "2025-08-10T14:57:01.775505",
-            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
             "symbol": "GBPUSD",
             "bid": 1.09526,
             "ask": 1.09546,
@@ -54,7 +54,7 @@
           },
           {
             "timestamp": "2025-08-10T14:57:01.839566",
-            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
             "symbol": "GBPUSD",
             "bid": 1.09527,
             "ask": 1.09547,
@@ -63,7 +63,7 @@
           },
           {
             "timestamp": "2025-08-10T14:57:01.889862",
-            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
             "symbol": "GBPUSD",
             "bid": 1.09528,
             "ask": 1.09548,
@@ -72,7 +72,7 @@
           },
           {
             "timestamp": "2025-08-10T14:57:01.951810",
-            "connection_id": "MT5_FundedNext_GBPUSD_1754855818",
+            "connection_id": "MT5_FTMO Global Markets_GBPUSD_1754855818",
             "symbol": "GBPUSD",
             "bid": 1.09529,
             "ask": 1.09549,
@@ -89,7 +89,7 @@
         "adapters_initialized": 4,
         "broker_adapters": [
           {
-            "broker_name": "MT5_FundedNext",
+            "broker_name": "MT5_FTMO Global Markets",
             "adapter_type": "MT5_NATIVE",
             "status": "initialized",
             "capabilities": [
@@ -154,9 +154,9 @@
           }
         ],
         "active_brokers": [
-          "MT5_FundedNext"
+          "MT5_FTMO Global Markets"
         ],
-        "primary_broker": "MT5_FundedNext",
+        "primary_broker": "MT5_FTMO Global Markets",
         "failover_chain": [
           "MT5_Backup",
           "TradingView",
@@ -169,7 +169,7 @@
         "failover_tests": [
           {
             "scenario": "primary_broker_down",
-            "primary_broker": "MT5_FundedNext",
+            "primary_broker": "MT5_FTMO Global Markets",
             "fallback_broker": "MT5_Backup",
             "failover_time_ms": 0.0,
             "status": "success",
@@ -178,7 +178,7 @@
           },
           {
             "scenario": "high_latency",
-            "primary_broker": "MT5_FundedNext",
+            "primary_broker": "MT5_FTMO Global Markets",
             "fallback_broker": "TradingView",
             "failover_time_ms": 0.0,
             "status": "success",
@@ -187,7 +187,7 @@
           },
           {
             "scenario": "rate_limit_exceeded",
-            "primary_broker": "MT5_FundedNext",
+            "primary_broker": "MT5_FTMO Global Markets",
             "fallback_broker": "AlphaVantage",
             "failover_time_ms": 0.0,
             "status": "success",

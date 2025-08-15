@@ -4,7 +4,7 @@
 ===================================
 
 Test de integración completo del POI System v6.0 Enterprise
-con datos reales de FundedNext MT5 Terminal.
+con datos reales de FTMO Global Markets MT5 Terminal.
 
 Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 7, 2025

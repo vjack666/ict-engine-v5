@@ -13,12 +13,12 @@ Características v6.0 Enterprise:
 - Lazy loading de MetaTrader5 y pandas  
 - Cache predictivo de datos históricos
 - Debug avanzado con AdvancedDebugger
-- Conexión EXCLUSIVA a FundedNext MT5
+- Conexión EXCLUSIVA a FTMO Global Markets MT5
 - Validación de seguridad robusta
 - Monitoreo en tiempo real
 
 Funcionalidades Core:
-- Conexión segura SOLO a FundedNext MT5
+- Conexión segura SOLO a FTMO Global Markets MT5
 - Descarga de datos históricos optimizada
 - Gestión de ticks en tiempo real
 - Validación de cuenta y permisos
@@ -46,8 +46,8 @@ from enum import Enum
 
 # Imports SIC v3.1 Enterprise (usando try/except para desarrollo)
 try:
-    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface
-    from sistema.sic_v3_1.advanced_debug import AdvancedDebugger
+    from sistema.sic_v3_1.enterprise_interface import SICEnterpriseInterface  # type: ignore
+    from sistema.sic_v3_1.advanced_debug import AdvancedDebugger  # type: ignore
     SIC_V3_1_AVAILABLE = True
 except ImportError:
     SIC_V3_1_AVAILABLE = False
@@ -73,7 +73,7 @@ MT5_AVAILABLE = False
 mt5 = None
 
 try:
-    import MetaTrader5 as mt5_module
+    import MetaTrader5 as mt5_module  # type: ignore
     mt5 = mt5_module
     MT5_AVAILABLE = True
 except ImportError:
@@ -91,20 +91,20 @@ debugger = AdvancedDebugger({
 })
 
 # ===============================
-# CONFIGURACIÓN FUNDEDNEXT
+# CONFIGURACIÓN FTMO GLOBAL MARKETS
 # ===============================
 
-# Configuración específica y EXCLUSIVA para FundedNext MT5
-FUNDEDNEXT_MT5_PATH = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
+# Configuración específica y EXCLUSIVA para FTMO Global Markets MT5
+FTMO_MT5_PATH = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
 
-FUNDEDNEXT_CONFIG = {
-    "executable_path": FUNDEDNEXT_MT5_PATH,
+FTMO_CONFIG = {
+    "executable_path": FTMO_MT5_PATH,
     "max_bars": 50000,
     "symbols": ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "XAUUSD", "XAGUSD"],
     "timeframes": ["M1", "M3", "M5", "M15", "H1", "H4", "D1"],
-    "magic_number": 20250807,  # Actualizado para v6.0
+    "magic_number": 20250814,  # Actualizado para FTMO 
     "security_level": "MAXIMUM",
-    "version": "v6.0-enterprise"
+    "version": "v6.0-enterprise-ftmo"
 }
 
 # Configuración de timeframes optimizada
@@ -189,25 +189,25 @@ class MT5HistoricalData:
 # FUNCIONES DE VALIDACIÓN
 # ===============================
 
-def validate_fundednext_installation() -> bool:
+def validate_ftmo_installation() -> bool:
     """
-    🔒 Valida que el terminal FundedNext esté instalado EXCLUSIVAMENTE.
-    SEGURIDAD MÁXIMA: Solo permite el uso del terminal FundedNext.
+    🔒 Valida que el terminal FTMO Global Markets esté instalado EXCLUSIVAMENTE.
+    SEGURIDAD MÁXIMA: Solo permite el uso del terminal FTMO Global Markets.
     """
-    if not os.path.exists(FUNDEDNEXT_MT5_PATH):
+    if not os.path.exists(FTMO_MT5_PATH):
         return False
-    if not os.path.isfile(FUNDEDNEXT_MT5_PATH):
+    if not os.path.isfile(FTMO_MT5_PATH):
         return False
 
     # Verificación adicional del nombre del archivo
-    if "fundednext" not in FUNDEDNEXT_MT5_PATH.lower():
+    if "ftmo" not in FTMO_MT5_PATH.lower():
         return False
 
     return True
 
-def ensure_only_fundednext_connection() -> bool:
+def ensure_only_ftmo_connection() -> bool:
     """
-    🛡️ Garantiza que solo se use el terminal FundedNext MT5.
+    🛡️ Garantiza que solo se use el terminal FTMO Global Markets MT5.
     Desconecta cualquier otra conexión MT5 activa.
     """
     if not MT5_AVAILABLE or mt5 is None:
@@ -216,17 +216,17 @@ def ensure_only_fundednext_connection() -> bool:
     try:
         # Verificar si hay alguna conexión activa
         if hasattr(mt5, 'terminal_info'):
-            terminal_info = mt5.terminal_info()
+            terminal_info = mt5.terminal_info()  # type: ignore
             if terminal_info:
                 terminal_path = str(terminal_info.path).lower()
-                if "fundednext" not in terminal_path:
-                    # Hay una conexión a un terminal que NO es FundedNext
+                if "ftmo" not in terminal_path:
+                    # Hay una conexión a un terminal que NO es FTMO Global Markets
                     _log_warning(f"🚨 TERMINAL INCORRECTO DETECTADO: {terminal_info.path}")
                     _log_warning("🔒 Desconectando terminal no autorizado...")
-                    mt5.shutdown()
+                    mt5.shutdown()  # type: ignore
                     return False
                 else:
-                    _log_info("✅ Terminal FundedNext verificado como activo")
+                    _log_info("✅ Terminal FTMO Global Markets verificado como activo")
                     return True
     except Exception as e:
         _log_error(f"Error verificando terminal activo: {e}")
@@ -250,13 +250,13 @@ class MT5DataManager:
     - Lazy loading inteligente de dependencias
     - Cache predictivo de datos históricos
     - Debug avanzado con análisis de dependencias
-    - Conexión EXCLUSIVA a FundedNext MT5
+    - Conexión EXCLUSIVA a FTMO Global Markets MT5
     - Validación de seguridad de nivel enterprise
     - Monitoreo en tiempo real de conexiones
     - Gestión optimizada de memoria y performance
     
     🛡️ **Seguridad:**
-    - SOLO permite conexión a FundedNext MT5
+    - SOLO permite conexión a FTMO Global Markets MT5
     - Validación continua de terminal correcto
     - Desconexión automática de terminales no autorizados
     - Logging completo de actividad de seguridad
@@ -349,7 +349,7 @@ class MT5DataManager:
             self.connection_info.sic_integration = True
             self.connection_info.lazy_loading_enabled = self._enable_lazy_loading
             self.connection_info.cache_enabled = self._use_predictive_cache
-            self.connection_info.debug_level = debugger._debug_level
+            self.connection_info.debug_level = getattr(debugger, "_debug_level", "INFO")  # type: ignore
             
             _log_info("✅ Integración SIC v3.1 configurada - MT5DataManager preparado")
             
@@ -404,14 +404,14 @@ class MT5DataManager:
     def _initial_security_check(self):
         """🛡️ Verificación de seguridad inicial crítica"""
         try:
-            # Verificar que SOLO esté disponible FundedNext
-            if not validate_fundednext_installation():
-                _log_error("🚨 CRÍTICO: FundedNext MT5 no encontrado en ubicación esperada")
-                _log_error(f"🚨 Ruta requerida: {FUNDEDNEXT_MT5_PATH}")
+            # Verificar que SOLO esté disponible FTMO Global Markets
+            if not validate_ftmo_installation():
+                _log_error("🚨 CRÍTICO: FTMO Global Markets MT5 no encontrado en ubicación esperada")
+                _log_error(f"🚨 Ruta requerida: {FTMO_MT5_PATH}")
                 return False
             
             # Verificar que no haya conexiones a otros terminales
-            if not ensure_only_fundednext_connection():
+            if not ensure_only_ftmo_connection():
                 _log_warning("⚠️ Se detectaron terminales MT5 no autorizados - Sistema en modo seguro")
             
             _log_info("✅ Verificación de seguridad inicial completada")
@@ -449,7 +449,7 @@ class MT5DataManager:
 
     def connect(self) -> bool:
         """
-        🔗 Conecta EXCLUSIVAMENTE al terminal FundedNext MT5
+        🔗 Conecta EXCLUSIVAMENTE al terminal FTMO Global Markets MT5
         
         SEGURIDAD MÁXIMA: NUNCA permite conexión a otros terminales MT5.
         
@@ -463,31 +463,31 @@ class MT5DataManager:
             _log_error("❌ MetaTrader5 no está disponible")
             return False
 
-        if not validate_fundednext_installation():
-            _log_error(f"❌ Terminal FundedNext MT5 no encontrado en: {FUNDEDNEXT_MT5_PATH}")
-            _log_error("🚨 SEGURIDAD: Solo se permite conexión a FundedNext MT5")
+        if not validate_ftmo_installation():
+            _log_error(f"❌ Terminal FTMO Global Markets MT5 no encontrado en: {FTMO_MT5_PATH}")
+            _log_error("🚨 SEGURIDAD: Solo se permite conexión a FTMO Global Markets MT5")
             return False
 
         try:
             # 🔒 VERIFICACIÓN DE SEGURIDAD: Desconectar cualquier terminal previo
             try:
                 if hasattr(mt5, 'shutdown'):
-                    mt5.shutdown()
+                    mt5.shutdown()  # type: ignore
                     _log_info("🔒 Desconectado cualquier terminal MT5 previo")
             except Exception:
                 pass
 
             if self.available_functions.get('initialize', False):
-                _log_info(f"🔗 Conectando EXCLUSIVAMENTE a FundedNext MT5")
-                _log_info(f"📁 Ruta obligatoria: {FUNDEDNEXT_MT5_PATH}")
+                _log_info(f"🔗 Conectando EXCLUSIVAMENTE a FTMO Global Markets MT5")
+                _log_info(f"📁 Ruta obligatoria: {FTMO_MT5_PATH}")
 
-                # 🛡️ CONEXIÓN EXCLUSIVA con ruta específica de FundedNext
-                self.is_connected = mt5.initialize(path=FUNDEDNEXT_MT5_PATH)
+                # 🛡️ CONEXIÓN EXCLUSIVA con ruta específica de FTMO Global Markets
+                self.is_connected = mt5.initialize(path=FTMO_MT5_PATH)  # type: ignore
 
                 if self.is_connected:
                     # 🔍 VALIDACIÓN CRÍTICA: Verificar que estamos conectados al terminal correcto
-                    if not self._verify_fundednext_connection():
-                        _log_error("🚨 ALERTA: No se conectó al terminal FundedNext correcto")
+                    if not self._verify_ftmo_connection():
+                        _log_error("🚨 ALERTA: No se conectó al terminal FTMO Global Markets correcto")
                         self.disconnect()
                         return False
 
@@ -516,17 +516,17 @@ class MT5DataManager:
                             duration=connection_duration,
                             success=True,
                             details={
-                                'terminal_path': FUNDEDNEXT_MT5_PATH,
+                                'terminal_path': FTMO_MT5_PATH,
                                 'connection_attempt': self._connection_attempts,
                                 'account_type': self.account_type.value,
                                 'security_verified': True
                             }
                         )
 
-                    _log_info("✅ CONEXIÓN SEGURA ESTABLECIDA - Solo FundedNext MT5")
+                    _log_info("✅ CONEXIÓN SEGURA ESTABLECIDA - Solo FTMO Global Markets MT5")
                     return True
                 else:
-                    _log_error("❌ Error al conectar con FundedNext MT5")
+                    _log_error("❌ Error al conectar con FTMO Global Markets MT5")
                     
                     # Debug de error
                     if self._enable_debug:
@@ -548,22 +548,22 @@ class MT5DataManager:
 
         return False
 
-    def _verify_fundednext_connection(self) -> bool:
+    def _verify_ftmo_connection(self) -> bool:
         """
-        🔍 Verifica que estamos conectados específicamente al terminal FundedNext
+        🔍 Verifica que estamos conectados específicamente al terminal FTMO Global Markets
         
         Returns:
-            True si la conexión es al terminal FundedNext correcto
+            True si la conexión es al terminal FTMO Global Markets correcto
         """
         try:
-            terminal_info = mt5.terminal_info()
+            terminal_info = mt5.terminal_info()  # type: ignore
             if terminal_info:
                 terminal_path = str(terminal_info.path).lower()
-                expected_path = FUNDEDNEXT_MT5_PATH.lower()
+                expected_path = FTMO_MT5_PATH.lower()
 
-                # Verificar que la ruta coincida con FundedNext
-                if "fundednext" in terminal_path or terminal_path == expected_path:
-                    _log_info(f"✅ Verificado: Conectado a FundedNext MT5")
+                # Verificar que la ruta coincida con FTMO Global Markets
+                if "ftmo" in terminal_path or terminal_path == expected_path:
+                    _log_info(f"✅ Verificado: Conectado a FTMO Global Markets MT5")
                     _log_info(f"   Terminal: {terminal_info.name}")
                     _log_info(f"   Empresa: {terminal_info.company}")
                     _log_info(f"   Ruta: {terminal_info.path}")
@@ -576,7 +576,7 @@ class MT5DataManager:
                     return True
                 else:
                     _log_error(f"🚨 TERMINAL INCORRECTO: {terminal_info.path}")
-                    _log_error(f"🚨 SE ESPERABA: {FUNDEDNEXT_MT5_PATH}")
+                    _log_error(f"🚨 SE ESPERABA: {FTMO_MT5_PATH}")
                     return False
             else:
                 _log_error("❌ No se pudo obtener información del terminal")
@@ -594,7 +594,7 @@ class MT5DataManager:
             
             # Obtener información de cuenta
             if hasattr(mt5, 'account_info'):
-                account_info = mt5.account_info()
+                account_info = mt5.account_info()  # type: ignore
                 if account_info:
                     self.connection_info.account_number = account_info.login
                     self.connection_info.server = account_info.server
@@ -645,7 +645,7 @@ class MT5DataManager:
             else:
                 _log_warning("⚠️ Validador de cuenta no disponible")
                 # Fallback: usar información básica de MT5
-                account_info = mt5.account_info()
+                account_info = mt5.account_info()  # type: ignore
                 if account_info:
                     trade_modes = {0: AccountType.DEMO, 1: AccountType.CONTEST, 2: AccountType.REAL}
                     self.account_type = trade_modes.get(account_info.trade_mode, AccountType.UNKNOWN)
@@ -680,7 +680,7 @@ class MT5DataManager:
                 _log_error("Función symbol_info_tick no disponible en MT5")
                 return None
 
-            tick = mt5.symbol_info_tick(symbol)
+            tick = mt5.symbol_info_tick(symbol)  # type: ignore
             if tick is None:
                 _log_warning(f"No se pudo obtener tick para {symbol}")
                 return None
@@ -809,7 +809,7 @@ class MT5DataManager:
             # Descargar datos de MT5
             _log_info(f"📥 Descargando {symbol} {timeframe} ({count} velas)...")
             
-            rates = mt5.copy_rates_from_pos(symbol, tf_constant, 0, count)
+            rates = mt5.copy_rates_from_pos(symbol, tf_constant, 0, count)  # type: ignore
             if rates is None or len(rates) == 0:
                 _log_error(f"No se pudieron obtener datos para {symbol} {timeframe}")
                 return None
@@ -916,7 +916,7 @@ class MT5DataManager:
 
         try:
             # Obtener información del símbolo
-            info = mt5.symbol_info(symbol)
+            info = mt5.symbol_info(symbol)  # type: ignore
             if info is None:
                 _log_error(f"Símbolo {symbol} no encontrado en MT5")
                 return False
@@ -924,7 +924,7 @@ class MT5DataManager:
             # Verificar si el símbolo está visible/habilitado
             if not info.visible:
                 _log_warning(f"Símbolo {symbol} no visible, intentando habilitarlo...")
-                if not mt5.symbol_select(symbol, True):
+                if not mt5.symbol_select(symbol, True):  # type: ignore
                     _log_error(f"No se pudo habilitar el símbolo {symbol}")
                     return False
 
@@ -969,7 +969,7 @@ class MT5DataManager:
 
         try:
             # Obtener información de cuenta directamente de MT5
-            account_info = mt5.account_info()
+            account_info = mt5.account_info()  # type: ignore
             if account_info is None:
                 return {"error": "No se pudo obtener información de la cuenta"}
 
@@ -1019,7 +1019,7 @@ class MT5DataManager:
         """🔌 Desconecta de MetaTrader5 con cleanup completo"""
         if self.is_connected and self.available_functions.get('shutdown', False):
             try:
-                mt5.shutdown()
+                mt5.shutdown()  # type: ignore
                 self.is_connected = False
                 self.connection_info.is_connected = False
                 
@@ -1282,7 +1282,7 @@ if __name__ == "__main__":
     print("\n📋 RESUMEN:")
     print("   • MT5DataManager v6.0 Enterprise: COMPONENTE FUNDAMENTAL")
     print("   • Integración SIC v3.1: COMPLETA")
-    print("   • Seguridad FundedNext: MÁXIMA")
+    print("   • Seguridad FTMO Global Markets: MÁXIMA")
     print("   • Lazy Loading: HABILITADO") 
     print("   • Cache Predictivo: HABILITADO")
     print("   • Debug Avanzado: HABILITADO")

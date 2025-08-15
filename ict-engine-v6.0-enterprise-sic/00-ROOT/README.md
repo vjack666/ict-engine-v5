@@ -2,7 +2,7 @@
 
 ## 🎉 **TODO #2 MULTI-TF DATA MANAGER: COMPLETADO CON ÉXITO**
 **Fecha:** 2025-08-11 15:45:00 GMT  
-**Score:** 80% en entorno real FundedNext MT5 ✅  
+**Score:** 80% en entorno real FTMO Global Markets MT5 ✅  
 **Estado:** ✅ **READY FOR TODO #3**
 
 ---

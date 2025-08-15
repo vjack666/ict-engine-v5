@@ -3,13 +3,13 @@
 🚀 TEST REAL TODO #2: MULTI_TF_DATA_MANAGER CON MT5 REAL
 =========================================================
 
-Test en entorno REAL con FundedNext MT5 para verificar:
+Test en entorno REAL con FTMO Global Markets MT5 para verificar:
 1. ✅ Detección automática multi-timeframe con datos reales
 2. ✅ Sincronización entre timeframes reales
 3. ✅ Confluencias ICT con datos de mercado real
 4. ✅ Performance en condiciones de producción
 
-ENTORNO: FundedNext MT5 Terminal (C:\Program Files\FundedNext MT5 Terminal\terminal64.exe)
+ENTORNO: FTMO Global Markets MT5 Terminal (C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe)
 DATOS: Mercado real EURUSD, GBPUSD
 TIMEFRAMES: H4, M15, M5 (critical ICT analysis)
 
@@ -35,7 +35,7 @@ def main():
     print("🚀 TEST REAL TODO #2: MULTI_TF_DATA_MANAGER CON MT5 REAL")
     print("=" * 70)
     print(f"⏰ Inicio: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"🖥️ Entorno: FundedNext MT5 Terminal")
+    print(f"🖥️ Entorno: FTMO Global Markets MT5 Terminal")
     print(f"📊 Símbolos: EURUSD, GBPUSD")
     print(f"📈 Timeframes: H4, M15, M5")
     
@@ -45,7 +45,7 @@ def main():
     
     if not mt5_status['connected']:
         print(f"❌ MT5 no disponible - Test abortado")
-        print(f"💡 Asegúrate de que FundedNext MT5 esté ejecutándose")
+        print(f"💡 Asegúrate de que FTMO Global Markets MT5 esté ejecutándose")
         return
     
     # Test 2: Test detección automática real
@@ -70,7 +70,7 @@ def main():
                               confluence_results, performance_results)
 
 def test_real_mt5_connection() -> Dict[str, Any]:
-    """📡 Test conexión real con FundedNext MT5"""
+    """📡 Test conexión real con FTMO Global Markets MT5"""
     
     connection_status = {
         'connected': False,
@@ -83,16 +83,16 @@ def test_real_mt5_connection() -> Dict[str, Any]:
     try:
         start_time = time.time()
         
-        # Verificar proceso FundedNext MT5
+        # Verificar proceso FTMO Global Markets MT5
         import subprocess
         result = subprocess.run(['tasklist', '/FI', 'IMAGENAME eq terminal64.exe'], 
                               capture_output=True, text=True)
         
         if 'terminal64.exe' in result.stdout:
             connection_status['terminal_detected'] = True
-            print("   ✅ FundedNext MT5 Terminal: DETECTADO EN EJECUCIÓN")
+            print("   ✅ FTMO Global Markets MT5 Terminal: DETECTADO EN EJECUCIÓN")
         else:
-            print("   ❌ FundedNext MT5 Terminal: NO EJECUTÁNDOSE")
+            print("   ❌ FTMO Global Markets MT5 Terminal: NO EJECUTÁNDOSE")
             return connection_status
         
         # Intentar importar MT5
@@ -105,7 +105,7 @@ def test_real_mt5_connection() -> Dict[str, Any]:
             return connection_status
         
         # Intentar conexión real
-        if mt5.initialize(path="C:\\Program Files\\FundedNext MT5 Terminal\\terminal64.exe"):
+        if mt5.initialize(path="C:\\Program Files\\FTMO Global Markets MT5 Terminal\\terminal64.exe"):
             connection_status['connected'] = True
             connection_status['connection_time'] = time.time() - start_time
             print(f"   ✅ Conexión MT5: EXITOSA ({connection_status['connection_time']:.2f}s)")
@@ -445,7 +445,7 @@ def generate_real_test_summary(mt5_status, detection_results, sync_results,
     # Información de entorno
     if mt5_status['connected']:
         print(f"\n   🖥️ ENTORNO VERIFICADO:")
-        print(f"     📡 FundedNext MT5: CONECTADO")
+        print(f"     📡 FTMO Global Markets MT5: CONECTADO")
         if mt5_status['account_info']:
             account = mt5_status['account_info']
             print(f"     🏢 Broker: {account.get('company', 'N/A')}")

@@ -14,7 +14,7 @@
 - **EURUSD H1:** 5000 velas reales (0.07s)
 - **GBPUSD M15:** 5000 velas reales (0.08s)
 - **GBPUSD H1:** 5000 velas reales (0.08s)
-- **Conexión:** FundedNext MT5 Terminal
+- **Conexión:** FTMO Global Markets MT5 Terminal
 - **Cuenta:** 1511236436 (Balance: 9996.5 USD)
 - **Broker:** FTMO Global Markets Ltd
 

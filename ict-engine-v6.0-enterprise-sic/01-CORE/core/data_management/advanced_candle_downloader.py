@@ -625,70 +625,70 @@ class AdvancedCandleDownloader:
             return self._force_mt5_connection()
 
     def _force_mt5_connection(self) -> bool:
-        """🚀 FUERZA la conexión MT5 para FundedNext Terminal"""
+        """🚀 FUERZA la conexión MT5 para FTMO Global Markets Terminal"""
         try:
-            self._log_info("🚀 FORZANDO conexión FUNDEDNEXT MT5 TERMINAL")
+            self._log_info("🚀 FORZANDO conexión FTMO MT5 TERMINAL")
             
-            # PATH ESPECÍFICO para FundedNext
-            fundednext_path = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
+            # PATH ESPECÍFICO para FTMO Global Markets
+            ftmo_path = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
             
-            # Verificar si FundedNext está instalado
+            # Verificar si FTMO Global Markets está instalado
             import os
-            if not os.path.exists(fundednext_path):
-                self._log_error(f"❌ FundedNext Terminal no encontrado en: {fundednext_path}")
-                self._log_error("   Verificar instalación de FundedNext MT5 Terminal")
+            if not os.path.exists(ftmo_path):
+                self._log_error(f"❌ FTMO Global Markets Terminal no encontrado en: {ftmo_path}")
+                self._log_error("   Verificar instalación de FTMO Global Markets MT5 Terminal")
                 return False
             
             # Importar MT5 directamente
             import MetaTrader5 as mt5
             
-            # Intentar inicializar MT5 con FundedNext path
-            if not mt5.initialize(path=fundednext_path):
+            # Intentar inicializar MT5 con FTMO Global Markets path
+            if not mt5.initialize(path=ftmo_path):
                 self._log_warning("❌ No se pudo inicializar con path específico, intentando automático...")
                 
-                # Verificar si FundedNext está corriendo
-                if not self._is_fundednext_running():
-                    self._log_info("🚀 FundedNext no está corriendo, intentando abrir...")
-                    if self._start_fundednext():
+                # Verificar si FTMO Global Markets está corriendo
+                if not self._is_ftmo_running():
+                    self._log_info("🚀 FTMO Global Markets no está corriendo, intentando abrir...")
+                    if self._start_ftmo():
                         # Esperar a que se inicie
                         import time
                         time.sleep(3)
                         
                         # Reintentar inicialización
                         if not mt5.initialize():
-                            self._log_error("❌ No se pudo inicializar MT5 después de abrir FundedNext")
+                            self._log_error("❌ No se pudo inicializar MT5 después de abrir FTMO Global Markets")
                             return False
                     else:
-                        self._log_error("❌ No se pudo abrir FundedNext Terminal")
+                        self._log_error("❌ No se pudo abrir FTMO Global Markets Terminal")
                         return False
                 else:
-                    # FundedNext está corriendo pero MT5 no conecta
+                    # FTMO Global Markets está corriendo pero MT5 no conecta
                     if not mt5.initialize():
-                        self._log_error("❌ FundedNext corriendo pero MT5 no conecta")
-                        self._log_error("   ABRIR FUNDEDNEXT Y CONECTAR CUENTA")
+                        self._log_error("❌ FTMO Global Markets corriendo pero MT5 no conecta")
+                        self._log_error("   ABRIR FTMO Y CONECTAR CUENTA")
                         return False
             
             # Verificar conexión de cuenta
             account_info = mt5.account_info()
             if not account_info:
-                self._log_error("❌ FundedNext abierto pero sin cuenta conectada")
-                self._log_error("   CONECTAR CUENTA EN FUNDEDNEXT MT5 TERMINAL")
+                self._log_error("❌ FTMO Global Markets abierto pero sin cuenta conectada")
+                self._log_error("   CONECTAR CUENTA EN FTMO MT5 TERMINAL")
                 mt5.shutdown()
                 return False
             
             # Verificar símbolo de prueba
             symbol_info = mt5.symbol_info("EURUSD")
             if not symbol_info:
-                self._log_error("❌ EURUSD no disponible en FundedNext")
+                self._log_error("❌ EURUSD no disponible en FTMO Global Markets")
                 self._log_error("   Verificar símbolos disponibles en broker")
                 mt5.shutdown()
                 return False
             
-            # ✅ CONEXIÓN FUNDEDNEXT ESTABLECIDA
-            self._log_info(f"✅ FUNDEDNEXT MT5 REAL conectado - Cuenta: {account_info.login}")
+            # ✅ CONEXIÓN FTMO ESTABLECIDA
+            self._log_info(f"✅ FTMO MT5 REAL conectado - Cuenta: {account_info.login}")
             self._log_info(f"   Broker: {account_info.company}")
             self._log_info(f"   Balance: {account_info.balance} {account_info.currency}")
-            self._log_info(f"   Terminal: FundedNext MT5 Terminal")
+            self._log_info(f"   Terminal: FTMO Global Markets MT5 Terminal")
             
             # Actualizar MT5DataManager con conexión real
             if self._mt5_manager:
@@ -698,62 +698,62 @@ class AdvancedCandleDownloader:
             return True
             
         except Exception as e:
-            self._log_error(f"❌ Error forzando conexión FundedNext: {e}")
-            self._log_error("   SISTEMA REQUIERE FUNDEDNEXT MT5 TERMINAL")
+            self._log_error(f"❌ Error forzando conexión FTMO Global Markets: {e}")
+            self._log_error("   SISTEMA REQUIERE FTMO MT5 TERMINAL")
             return False
 
-    def _is_fundednext_running(self) -> bool:
-        """🔍 Verifica si FundedNext MT5 Terminal está corriendo"""
+    def _is_ftmo_running(self) -> bool:
+        """🔍 Verifica si FTMO Global Markets MT5 Terminal está corriendo"""
         try:
             import psutil
             
             for proc in psutil.process_iter(['pid', 'name', 'exe']):
                 try:
                     if proc.info['name'] and 'terminal64.exe' in proc.info['name'].lower():
-                        if proc.info['exe'] and 'fundednext' in proc.info['exe'].lower():
-                            self._log_info(f"✅ FundedNext encontrado corriendo: PID {proc.info['pid']}")
+                        if proc.info['exe'] and 'ftmo' in proc.info['exe'].lower():
+                            self._log_info(f"✅ FTMO Global Markets encontrado corriendo: PID {proc.info['pid']}")
                             return True
                 except (psutil.NoSuchProcess, psutil.AccessDenied):
                     continue
             
-            self._log_info("❌ FundedNext MT5 Terminal no está corriendo")
+            self._log_info("❌ FTMO Global Markets MT5 Terminal no está corriendo")
             return False
             
         except Exception as e:
             self._log_error(f"Error verificando procesos: {e}")
             return False
 
-    def _start_fundednext(self) -> bool:
-        """🚀 Inicia FundedNext MT5 Terminal"""
+    def _start_ftmo(self) -> bool:
+        """🚀 Inicia FTMO Global Markets MT5 Terminal"""
         try:
             import subprocess
             import os
             
-            fundednext_path = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
+            ftmo_path = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
             
-            if not os.path.exists(fundednext_path):
-                self._log_error(f"❌ FundedNext no encontrado: {fundednext_path}")
+            if not os.path.exists(ftmo_path):
+                self._log_error(f"❌ FTMO Global Markets no encontrado: {ftmo_path}")
                 return False
             
-            self._log_info("🚀 Iniciando FundedNext MT5 Terminal...")
+            self._log_info("🚀 Iniciando FTMO Global Markets MT5 Terminal...")
             
-            # Abrir FundedNext
-            subprocess.Popen([fundednext_path], shell=True)
+            # Abrir FTMO Global Markets
+            subprocess.Popen([ftmo_path], shell=True)
             
             # Esperar un momento
             import time
             time.sleep(2)
             
             # Verificar que se haya iniciado
-            if self._is_fundednext_running():
-                self._log_info("✅ FundedNext MT5 Terminal iniciado")
+            if self._is_ftmo_running():
+                self._log_info("✅ FTMO Global Markets MT5 Terminal iniciado")
                 return True
             else:
-                self._log_error("❌ No se pudo iniciar FundedNext")
+                self._log_error("❌ No se pudo iniciar FTMO Global Markets")
                 return False
                 
         except Exception as e:
-            self._log_error(f"Error iniciando FundedNext: {e}")
+            self._log_error(f"Error iniciando FTMO Global Markets: {e}")
             return False
 
     def _get_mt5_manager(self):
@@ -846,7 +846,7 @@ class AdvancedCandleDownloader:
                 error_msg = f"❌ SISTEMA ICT REQUIERE MT5 REAL - NO HAY DATOS SIMULADOS"
                 self._log_error(error_msg)
                 self._log_error("   ANÁLISIS ICT NECESITA DATOS INSTITUCIONALES REALES")
-                self._log_error("   1. Abrir FundedNext MT5 Terminal")
+                self._log_error("   1. Abrir FTMO Global Markets MT5 Terminal")
                 self._log_error("   2. Conectar cuenta")
                 self._log_error("   3. Verificar símbolos ICT principales")
                 
@@ -857,7 +857,7 @@ class AdvancedCandleDownloader:
                     'message': error_msg,
                     'ict_requirement': 'DATOS_INSTITUCIONALES_REALES',
                     'instructions': [
-                        'Abrir FundedNext MT5 Terminal',
+                        'Abrir FTMO Global Markets MT5 Terminal',
                         'Conectar cuenta demo o real',
                         'Verificar símbolos ICT: EURUSD, GBPUSD, XAUUSD, etc.'
                     ]
@@ -954,9 +954,9 @@ class AdvancedCandleDownloader:
             
             # Verificar que MT5 esté inicializado
             if not mt5.initialize():
-                # Intentar con FundedNext path específico
-                fundednext_path = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
-                if not mt5.initialize(path=fundednext_path):
+                # Intentar con FTMO Global Markets path específico
+                ftmo_path = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
+                if not mt5.initialize(path=ftmo_path):
                     raise Exception("No se pudo inicializar MT5")
             
             # Convertir timeframe a formato MT5
@@ -1072,7 +1072,7 @@ class AdvancedCandleDownloader:
                 'data': data,
                 'message': f"Descargadas {len(data)} velas reales",
                 'source': 'mt5_direct',
-                'broker': 'FundedNext',
+                'broker': 'FTMO Global Markets',
                 'timeframe_method': 'copy_rates_from' if timeframe in ['H1', 'H4', 'D1'] else 'copy_rates_range'
             }
                 
@@ -1461,7 +1461,7 @@ class AdvancedCandleDownloader:
                     return utils_mt5.MT5DataManager()
             
             # Sin MT5DataManager - usar conexión directa MT5
-            self._log_warning("⚠️ MT5DataManager no disponible - usando conexión directa FundedNext")
+            self._log_warning("⚠️ MT5DataManager no disponible - usando conexión directa FTMO Global Markets")
             return None
             
         except Exception as e:

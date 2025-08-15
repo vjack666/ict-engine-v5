@@ -16,7 +16,7 @@ Tests incluidos:
 - Critical Timeframes H1/H4
 - Enterprise Performance
 - Storage Inteligente
-- Sistema FundedNext
+- Sistema FTMO Global Markets
 - Y todos los demás...
 
 Autor: ICT Engine v6.1.0 Team
@@ -216,7 +216,7 @@ class TestRunner:
         # Tests críticos que deben ejecutarse primero
         priority_tests = [
             'test_critical_timeframes',
-            'test_fundednext_system', 
+            'test_ftmo_system', 
             'test_enterprise_performance',
             'test_advanced_candle_downloader'
         ]

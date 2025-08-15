@@ -32,7 +32,7 @@ Soportado:
   - Windows Server 2019/2022
   
 Requerido:
-  - FundedNext MT5 Terminal instalado
+  - FTMO Global Markets MT5 Terminal instalado
   - Python 3.11+ (Recomendado 3.13)
   - Visual Studio Code (Recomendado)
   - Git para control de versiones
@@ -494,7 +494,7 @@ ICT_ENGINE_VERSION=6.0.0-enterprise
 ICT_ENGINE_ENV=development
 
 # MT5 Configuration
-FUNDEDNEXT_MT5_PATH=C:\Program Files\FundedNext MT5 Terminal\terminal64.exe
+FTMO_MT5_PATH=C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe
 MT5_MAGIC_NUMBER=20250807
 MT5_MAX_BARS=50000
 
@@ -701,7 +701,7 @@ if __name__ == "__main__":
 #### 🔧 **Entorno Base**
 ```yaml
 - [x] Python 3.11+ instalado y configurado (Python 3.13.2 ✅)
-- [x] FundedNext MT5 Terminal instalado y funcionando
+- [x] FTMO Global Markets MT5 Terminal instalado y funcionando
 - [x] VS Code con extensions requeridas
 - [x] Git configurado para control de versiones  
 - [x] Ambiente virtual creado y activado

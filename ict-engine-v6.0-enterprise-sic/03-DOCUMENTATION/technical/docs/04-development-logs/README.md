@@ -8,7 +8,7 @@
 ## 🎉 **PROGRESO ACTUAL - AGOSTO 11, 2025**
 
 ### ✅ **COMPLETADO HOY:**
-- **TODO #1: CANDLE DOWNLOADER REAL** - ✅ **COMPLETADO** (FundedNext MT5)
+- **TODO #1: CANDLE DOWNLOADER REAL** - ✅ **COMPLETADO** (FTMO Global Markets MT5)
 - **SLUC v2.1 Logging Estructurado** - ✅ **IMPLEMENTADO**
 - **Imports Enterprise Corregidos** - ✅ **FUNCIONANDO**
 - **Tests Exhaustivos** - ✅ **100% COMPLETITUD**
@@ -78,7 +78,7 @@
 #### 🔗 **[integration/](./integration/)**
 **Integración con sistemas externos y MT5**
 - `BITACORA_INTEGRACION_SISTEMA_REAL.md` - Integración con datos reales
-- Conexiones MT5 y FundedNext
+- Conexiones MT5 y FTMO Global Markets
 - APIs y webhooks
 
 ---
@@ -130,7 +130,7 @@
 
 ### 🔗 **INTEGRACIÓN EXTERNA:**
 - **Carpeta:** [integration/](./integration/)
-- **Focus:** MT5, FundedNext, APIs
+- **Focus:** MT5, FTMO Global Markets, APIs
 
 ---
 

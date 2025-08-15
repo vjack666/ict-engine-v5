@@ -1,0 +1,9 @@
+{
+  "dashboard_session": {
+    "execution_timestamp": "2025-08-14T10:32:56.440857",
+    "total_duration_seconds": 0.821184,
+    "total_patterns_detected": 0,
+    "regla10_compliance_score": 0,
+    "overall_system_status": "FALLBACK_MODE"
+  }
+}

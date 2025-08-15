@@ -1178,7 +1178,7 @@ ict-engine-v6.0-enterprise-sic/
 ```
 ✅ SIEMPRE INTEGRAR CON:
 ├── SIC v3.1               # Sistema base obligatorio
-├── MT5 Real Data          # Solo datos reales FundedNext
+├── MT5 Real Data          # Solo datos reales FTMO Global Markets
 ├── SLUC v2.1 Logging      # Logging estructurado
 ├── UnifiedMarketMemory    # Memoria de trader
 ├── Smart Trading Logger   # Logger inteligente

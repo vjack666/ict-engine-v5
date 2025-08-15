@@ -28,7 +28,7 @@
 - cargar_datos_historicos_unificado() → Función unificada de carga
 - Support completo para timeframes: M1, M5, M15, H1, H4, D1
 - Cache automático en archivos CSV para optimización
-- Configuración integrada con FundedNext MT5
+- Configuración integrada con FTMO Global Markets MT5
 - Retorna MT5HistoricalData con DataFrame real
 ```
 
@@ -461,7 +461,7 @@ REAL_ICT_BACKTEST_CONFIG = {
     
     # Configuración específica del MT5DataManager del usuario
     'mt5_config': {
-        'account_type': 'FundedNext',            # Configuración del usuario
+        'account_type': 'FTMO Global Markets',            # Configuración del usuario
         'default_symbol': 'EURUSD',              # Símbolo principal del usuario
         'cache_enabled': True,                   # Usar cache CSV del usuario
         'data_source': 'MT5_REAL'               # Marcar fuente real

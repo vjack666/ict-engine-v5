@@ -36,7 +36,7 @@ DETALLES TÉCNICOS IMPLEMENTADOS
    - Market context preservation
 
 📊 3. MT5 REAL DATA CONNECTION:
-   - MT5 Terminal: FundedNext MT5 Terminal conectado ✅
+   - MT5 Terminal: FTMO Global Markets MT5 Terminal conectado ✅
    - Account: FTMO Demo (USD) - Balance: $9,996.5
    - Data source: EURUSD M15 real (300 períodos)
    - Rango: 2025-08-05 21:00:00 hasta 2025-08-08 23:45:00
@@ -190,7 +190,7 @@ migration y trading automation real con institutional-grade detection.
 ═══════════════════════════════════════════════════════════════════════
 
 🏆 FASE 4 COMPLETADA CON ÉXITO - ENTERPRISE GRADE IMPLEMENTATION
-📊 Data Source: MT5 Real (FundedNext Terminal)
+📊 Data Source: MT5 Real (FTMO Global Markets Terminal)
 🧠 Memory: UnifiedMemorySystem v6.1 Enterprise
 🎯 Detection: DisplacementDetectorEnterprise v6.0
 ✅ Compliance: REGLAS_COPILOT.md #7 #8 FULL

@@ -55,11 +55,10 @@
 ├── 📂 06-TOOLS/                         ✅ Herramientas organizadas
 │   ├── scripts/                         ✅ Scripts nuevos
 │   ├── dashboard/                       ✅ Dashboard nuevo
-│   ├── backtest/                        ✅ Backtest nuevo
+│   ├── backtest/                        ✅ Backtest nuevo (vacío - no requerido)
 │   ├── utilities/                       ✅ Utilidades nuevas
 │   ├── scripts-original/                ✅ Scripts migrados
-│   ├── dashboard-original/              ✅ Dashboard migrado
-│   └── backtest-original/               ✅ Backtest migrado
+│   └── dashboard-original/              ✅ Dashboard migrado
 │
 ├── 📂 07-DEPLOYMENT/                    ✅ Listo para despliegue
 │   ├── docker/                          ✅ Para contenedores

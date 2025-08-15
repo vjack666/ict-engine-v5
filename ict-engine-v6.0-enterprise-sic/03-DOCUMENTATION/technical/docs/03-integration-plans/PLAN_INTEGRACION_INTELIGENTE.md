@@ -150,7 +150,7 @@ ICT Engine v6.0 Enterprise
 
 #### ✅ **Enterprise Features**
 - SIC v3.1 Enterprise para nuevas funcionalidades ✅
-- Datos reales FundedNext MT5 ✅
+- Datos reales FTMO Global Markets MT5 ✅
 - Performance optimizado ✅
 - Logging avanzado ✅
 
@@ -185,7 +185,7 @@ ICT Engine v6.0 Enterprise
 - ✅ **Smart Money Concepts v6.0** - Silver Bullet, Killzones, Liquidity
 - ✅ **ICT Engine Master** - Interface unificada enterprise
 - ✅ **Logging Enterprise** - SLUC v2.1 + nuevo sistema
-- ✅ **Datos Reales** - FundedNext MT5 integrado
+- ✅ **Datos Reales** - FTMO Global Markets MT5 integrado
 - ✅ **Performance Enterprise** - Optimizado para producción
 
 **¿Procedemos con FASE 1: BRIDGE INTELIGENTE?** 🚀

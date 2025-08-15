@@ -235,7 +235,7 @@ class MultiBrokerIntegration:
     
     def __init__(self):
         self.broker_adapters = {}
-        self.broker_priorities = ['MT5_FundedNext', 'MT5_Backup', 'TradingView', 'AlphaVantage']
+        self.broker_priorities = ['MT5_FTMO Global Markets', 'MT5_Backup', 'TradingView', 'AlphaVantage']
         self.active_brokers = []
         self.failover_history = []
         
@@ -257,14 +257,14 @@ class MultiBrokerIntegration:
                         'max_symbols': 20 if 'MT5' in broker else 10
                     },
                     'failover_priority': self.broker_priorities.index(broker) + 1,
-                    'health_score': 0.95 if broker == 'MT5_FundedNext' else 0.85
+                    'health_score': 0.95 if broker == 'MT5_FTMO Global Markets' else 0.85
                 }
                 
                 self.broker_adapters[broker] = adapter_info
                 adapters_initialized.append(adapter_info)
                 
                 # Mark primary broker as active
-                if broker == 'MT5_FundedNext':
+                if broker == 'MT5_FTMO Global Markets':
                     self.active_brokers.append(broker)
             
             integration_result = {
@@ -315,7 +315,7 @@ class MultiBrokerIntegration:
                 # Execute failover
                 failover_result = {
                     'scenario': trigger,
-                    'primary_broker': 'MT5_FundedNext',
+                    'primary_broker': 'MT5_FTMO Global Markets',
                     'fallback_broker': fallback_broker,
                     'failover_time_ms': round((time.time() - failover_start) * 1000, 2),
                     'status': 'success',
@@ -583,7 +583,7 @@ async def run_fase4a_realtime_data_test():
         connections = []
         
         for symbol in symbols:
-            connection = await websocket_streamer.establish_websocket_connection('MT5_FundedNext', symbol)
+            connection = await websocket_streamer.establish_websocket_connection('MT5_FTMO Global Markets', symbol)
             connections.append(connection)
             
         print("🌐 Establishing WebSocket connections...")

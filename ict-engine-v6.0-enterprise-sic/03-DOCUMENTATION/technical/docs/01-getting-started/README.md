@@ -22,7 +22,7 @@ El **ICT Engine v6.0 Enterprise SIC** es la evolución definitiva del sistema de
 
 ### 🏆 **VISIÓN v6.0**
 
-- **🔒 Seguridad Enterprise**: Conexión exclusiva FundedNext MT5
+- **🔒 Seguridad Enterprise**: Conexión exclusiva FTMO Global Markets MT5
 - **⚡ Performance Superior**: Cache predictivo y lazy loading
 - **🧠 Análisis ICT Avanzado**: Detección automática de patterns
 - **📊 Dashboard Profesional**: Interface moderna y intuitiva
@@ -52,7 +52,7 @@ El **ICT Engine v6.0 Enterprise SIC** es la evolución definitiva del sistema de
 - [ ] 🔄 **Backtesting Engine**: Sistema de pruebas históricas
 
 ### 🏢 **Objetivos Empresariales**
-- [x] ✅ **MT5 Real Connection**: FundedNext exclusivo operativo
+- [x] ✅ **MT5 Real Connection**: FTMO Global Markets exclusivo operativo
 - [x] ✅ **Performance Enterprise**: Sub-segundo BOS analysis
 - [x] ✅ **Cache Intelligence**: Predictivo + enhancement background
 - [ ] 🔄 **Escalabilidad**: Soporte para múltiples usuarios
@@ -91,7 +91,7 @@ ict-engine-v6.0-enterprise-sic/
 ├── 📁 core/
 │   ├── 📁 data_management/             # Gestión de Datos ✅ COMPLETADO
 │   │   ├── 📄 advanced_candle_downloader.py  # [✅ ENTERPRISE CONFIG]
-│   │   ├── 📄 mt5_data_manager.py      # [✅ FUNDEDNEXT EXCLUSIVO]
+│   │   ├── 📄 mt5_data_manager.py      # [✅ FTMO EXCLUSIVO]
 │   │   └── 📄 mt5_connection_manager.py # [✅ ROBUSTO CONNECTION]
 │   │
 │   ├── 📁 analysis/                    # Análisis ICT ✅ COMPLETADO
@@ -370,7 +370,7 @@ Cada componente debe cumplir:
 ### 📊 **Conceptos Core Implementados/Planeados**
 
 #### ✅ **YA DISPONIBLES**
-- [x] 🔗 **Conexión MT5 Segura**: Solo FundedNext
+- [x] 🔗 **Conexión MT5 Segura**: Solo FTMO Global Markets
 - [x] 📈 **Descarga de Datos**: Multi-timeframe optimizada
 - [x] 🧪 **Testing Infrastructure**: Calidad asegurada
 
@@ -537,7 +537,7 @@ El proyecto se considerará **COMPLETO** cuando:
 
 **ICT Engine v6.0 Enterprise SIC será considerado exitoso cuando:**
 
-1. 🔒 **Seguridad**: Solo FundedNext MT5, sin vulnerabilidades
+1. 🔒 **Seguridad**: Solo FTMO Global Markets MT5, sin vulnerabilidades
 2. ⚡ **Performance**: < 100ms para operaciones críticas
 3. 🎯 **Precisión**: 90%+ accuracy en pattern detection
 4. 🛡️ **Estabilidad**: 99.9% uptime en producción
@@ -557,7 +557,7 @@ El proyecto se considerará **COMPLETO** cuando:
 - 📚 **Documentation**: Guías técnicas profesionales
 - 🔧 **SIC v3.1**: Base del sistema integrada
 - ⚡ **Performance**: Cache predictivo y lazy loading funcional
-- 🔒 **Seguridad**: Conexión exclusiva FundedNext
+- 🔒 **Seguridad**: Conexión exclusiva FTMO Global Markets
 
 ### 📊 **MÉTRICAS ACTUALES**
 

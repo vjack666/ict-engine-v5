@@ -9,7 +9,7 @@ funcionando de manera óptima según las leyes ICT institucionales.
 - Verificación de configuración ICT
 - Test de descarga con cantidades correctas
 - Validación de cumplimiento institucional
-- Confirmación de datos reales FundedNext
+- Confirmación de datos reales FTMO Global Markets
 
 Autor: ICT Engine v6.1.0 Enterprise Team
 Fecha: Agosto 2025
@@ -193,7 +193,7 @@ def display_ict_optimal_summary():
    M1  (1 min):     2,000 velas (500 mínimo) - Scalping institucional
 
 🚀 FUENTE DE DATOS:
-   - FundedNext MT5 Terminal (datos institucionales reales)
+   - FTMO Global Markets MT5 Terminal (datos institucionales reales)
    - Sin simulaciones ni datos falsos
    - Conexión directa a liquidez institucional
    - Spreads reales del mercado
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         print(f"\n🏆 CERTIFICACIÓN ICT ENGINE v6.0 ENTERPRISE")
         print(f"   ✅ Sistema verificado y listo para trading institucional")
         print(f"   ✅ Configuración ICT óptima implementada")
-        print(f"   ✅ Datos reales FundedNext MT5 conectados")
+        print(f"   ✅ Datos reales FTMO Global Markets MT5 conectados")
         print(f"   ✅ Cumplimiento de leyes ICT validado")
         
         print(f"\n🚀 RECOMENDACIÓN:")

@@ -20,19 +20,19 @@ class TestCandleDownloaderReal(unittest.TestCase):
     def setUp(self):
         """Configuración inicial del test"""
         self.core_path = project_root
-        self.fundednext_path = r"C:\Program Files\FundedNext MT5 Terminal\terminal64.exe"
+        self.ftmo_path = r"C:\Program Files\FTMO Global Markets MT5 Terminal\terminal64.exe"
         
-    def test_01_verificar_fundednext_path(self):
-        """✅ Verificar que FundedNext MT5 está instalado"""
-        print(f"\n🔍 === VERIFICACIÓN FUNDEDNEXT MT5 ===")
+    def test_01_verificar_ftmo_path(self):
+        """✅ Verificar que FTMO Global Markets MT5 está instalado"""
+        print(f"\n🔍 === VERIFICACIÓN FTMO MT5 ===")
         
-        exists = os.path.exists(self.fundednext_path)
-        print(f"📁 Ruta: {self.fundednext_path}")
+        exists = os.path.exists(self.ftmo_path)
+        print(f"📁 Ruta: {self.ftmo_path}")
         print(f"✅ Existe: {exists}")
         
         if exists:
             try:
-                size = os.path.getsize(self.fundednext_path) / (1024*1024)  # MB
+                size = os.path.getsize(self.ftmo_path) / (1024*1024)  # MB
                 print(f"📊 Tamaño: {size:.1f} MB")
             except:
                 print("📊 Tamaño: No disponible")
@@ -79,9 +79,9 @@ class TestCandleDownloaderReal(unittest.TestCase):
             from core.data_management.mt5_data_manager import MT5DataManager
             print("✅ MT5DataManager importado correctamente")
             
-            # Verificar configuración FundedNext
-            from core.data_management.mt5_data_manager import FUNDEDNEXT_MT5_PATH
-            print(f"📁 Ruta configurada: {FUNDEDNEXT_MT5_PATH}")
+            # Verificar configuración FTMO Global Markets
+            from core.data_management.mt5_data_manager import FTMO_MT5_PATH
+            print(f"📁 Ruta configurada: {FTMO_MT5_PATH}")
             
             # Crear instancia de prueba
             manager = MT5DataManager()
@@ -98,15 +98,15 @@ class TestCandleDownloaderReal(unittest.TestCase):
         
         # Checklist de completitud
         checklist = {
-            "✅ FundedNext Path configurado": False,
+            "✅ FTMO Global Markets Path configurado": False,
             "✅ Imports corregidos": False, 
             "✅ SLUC logging implementado": False,
             "✅ MT5DataManager disponible": False,
             "✅ TODO comentario removido": False
         }
         
-        # Verificar FundedNext
-        checklist["✅ FundedNext Path configurado"] = os.path.exists(self.fundednext_path)
+        # Verificar FTMO Global Markets
+        checklist["✅ FTMO Global Markets Path configurado"] = os.path.exists(self.ftmo_path)
         
         # Verificar imports y código
         downloader_file = os.path.join(self.core_path, 'core', 'data_management', 'advanced_candle_downloader.py')

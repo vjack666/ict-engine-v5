@@ -9,7 +9,7 @@
 **[2025-08-11] - v6.0.3 → v6.0.4-enterprise-multitf-validated**
 - ✅ TODO #2: Multi-TF Data Manager completamente implementado
 - ✅ Cache Bug Crítico: Resuelto con manejo robusto de missing keys
-- ✅ Real MT5 Integration: Validado con FundedNext Terminal
+- ✅ Real MT5 Integration: Validado con FTMO Global Markets Terminal
 - ✅ Confluence Analysis: Sistema multi-timeframe operativo
 - ✅ Performance Enterprise: 80% score en entorno real
 - ✅ Documentation: Actualizada con TODO #2 completo
@@ -168,13 +168,13 @@
 - ICTDataManager con capacidades multi-timeframe completas
 - Cache system robusto con bug crítico resuelto
 - MarketStructureAnalyzer con análisis de confluencias
-- Integración real MT5 validada con FundedNext Terminal
+- Integración real MT5 validada con FTMO Global Markets Terminal
 - Sistema preparado para market structure analysis avanzado
 
 ### 📋 **CHECKLIST TODO #2 - COMPLETADO:**
 - [x] ✅ ICTDataManager multi-timeframe implementado
 - [x] ✅ Cache bug crítico resuelto ('key' missing)
-- [x] ✅ Real MT5 integration con FundedNext Terminal
+- [x] ✅ Real MT5 integration con FTMO Global Markets Terminal
 - [x] ✅ MarketStructureAnalyzer con confluencias
 - [x] ✅ Tests exhaustivos en entorno real (80% score)
 - [x] ✅ Performance enterprise validada (<5s)

@@ -29,7 +29,7 @@
 
 ### ✅ **VENTAJAS ESTABLECIDAS:**
 - **TODO #1 y #2 Completados:** Base sólida y metodología probada
-- **Real MT5 Integration:** FundedNext Terminal funcionando perfectamente
+- **Real MT5 Integration:** FTMO Global Markets Terminal funcionando perfectamente
 - **Cache System:** Robusto y battle-tested (TODO #2 bug crítico resuelto)
 - **Performance:** <5s mantenido consistentemente en todos los módulos
 - **Documentation:** Completa y actualizada para guidance
@@ -54,7 +54,7 @@
 ### **🧪 TESTING & VALIDATION:**
 - [ ] Unit tests para nuevos métodos
 - [ ] Integration tests con ICTDataManager
-- [ ] Real environment tests FundedNext MT5
+- [ ] Real environment tests FTMO Global Markets MT5
 - [ ] Performance validation <5s enterprise
 - [ ] Edge cases y error scenarios
 

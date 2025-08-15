@@ -816,7 +816,7 @@ OBLIGATORIO antes de merge:
 ```yaml
 NUNCA HACER:
   - Machine Learning imports o código
-  - Conexión a MT5 sin validar FundedNext
+  - Conexión a MT5 sin validar FTMO Global Markets
   - Código sin integración SIC v3.1
   - Funciones sin type hints
   - Módulos sin tests

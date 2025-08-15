@@ -76,7 +76,7 @@
 
 ### ✅ **Mejoras Enterprise**
 - Integración con SIC v3.1 Enterprise
-- Datos reales de FundedNext MT5
+- Datos reales de FTMO Global Markets MT5
 - Logging avanzado con SmartTradingLogger
 - Performance optimizado
 - Documentación enterprise
@@ -135,7 +135,7 @@
 - ✅ Market Structure Analysis completo (CHoCH, BOS, FVG, OB)
 - ✅ Advanced Patterns (Judas Swing, Silver Bullet)
 - ✅ Smart Money Concepts
-- ✅ Datos reales FundedNext MT5
+- ✅ Datos reales FTMO Global Markets MT5
 - ✅ Performance enterprise
 - ✅ Testing y validación completos
 

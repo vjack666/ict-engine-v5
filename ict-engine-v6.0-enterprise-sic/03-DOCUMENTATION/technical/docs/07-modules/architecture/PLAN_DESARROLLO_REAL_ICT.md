@@ -66,7 +66,7 @@ Siguiendo **REGLA #9 (Manual Review)**, se ha verificado manualmente el estado r
 **4️⃣ Infraestructura Enterprise - ✅ FUNCIONANDO**
 - ✅ SIC v3.1 Enterprise ✅ Cache predictivo + lazy loading
 - ✅ SLUC v2.1 ✅ Logging estructurado completo
-- ✅ MT5DataManager ✅ Conexión FundedNext real
+- ✅ MT5DataManager ✅ Conexión FTMO Global Markets real
 - ✅ AdvancedCandleDownloader ✅ Enterprise storage
 - ✅ TA-Lib Integration ✅ v0.6.5 150+ indicadores
 
@@ -105,7 +105,7 @@ Siguiendo **REGLA #9 (Manual Review)**, se ha verificado manualmente el estado r
 **Revisión:** Manual exhaustiva archivo por archivo  
 **Estado:** Información corregida y verificada ✅# ✅ **LO QUE SÍ FUNCIONA (Infraestructura + ICT Core)**
 - **SIC v3.1 Enterprise:** ✅ Cache predictivo, lazy loading, debugging
-- **MT5DataManager:** ✅ Conexión FundedNext MT5, 20/20 tests
+- **MT5DataManager:** ✅ Conexión FTMO Global Markets MT5, 20/20 tests
 - **Advanced Candle Downloader:** ✅ Enterprise storage, datos reales
 - **TA-Lib Integration:** ✅ v0.6.5, 150+ indicadores técnicos
 - **UnifiedMemorySystem:** ✅ FASE 2 completado, trader real
@@ -356,7 +356,7 @@ class SmartMoneyAnalyzer:
 
 #### **Día 9-10: Validación & Tests**
 - Tests de integración completos
-- Validación con datos reales FundedNext
+- Validación con datos reales FTMO Global Markets
 - Performance optimization
 
 ### 🚨 **FASE 2: PATTERNS AVANZADOS (5-7 días)**

@@ -17,7 +17,7 @@ def test_real_multi_timeframe_download():
     🔍 TEST CON DATOS REALES: Multi-Timeframe Download
     """
     print("🎯 Testing REAL Multi-Timeframe Download...")
-    print("   Conectando a FundedNext MT5...")
+    print("   Conectando a FTMO Global Markets MT5...")
     
     # Crear detector con downloader real
     detector = PatternDetector()

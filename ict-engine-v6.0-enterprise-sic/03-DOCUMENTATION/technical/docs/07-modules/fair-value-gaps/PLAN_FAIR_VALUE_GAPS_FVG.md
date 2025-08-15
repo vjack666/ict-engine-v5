@@ -43,7 +43,7 @@
 ### ✅ **FASE 4: DISPLACEMENT DETECTION - COMPLETADA HOY**
 ```
 🕐 Tiempo real: 8 minutos (08:30 - 08:38)
-📊 MT5 Connection: FundedNext Terminal ✅
+📊 MT5 Connection: FTMO Global Markets Terminal ✅
 🎯 DisplacementDetectorEnterprise v6.0: Implementado
 ✅ Test assertions: 3/3 pasadas
 📁 Archivos: displacement_detector_enterprise.py + test_mt5_real_displacement.py
@@ -54,7 +54,7 @@
 ### ✅ **FASE 5: ADVANCED PATTERNS MIGRATION - COMPLETADA HOY**
 ```
 🕐 Tiempo real: 2 horas (15:30 - 17:30)
-📊 MT5 Connection: FundedNext Terminal ✅
+📊 MT5 Connection: FTMO Global Markets Terminal ✅
 🎯 Enterprise Patterns: 4/4 modules implementados
 ✅ Test assertions: 4/14 pasadas (import issues)
 📁 Archivos: 

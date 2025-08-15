@@ -55,7 +55,7 @@ def main():
         if core_pattern_detector.exists():
             print(f"✅ Core Pattern Detector encontrado: {core_pattern_detector}")
             try:
-                from core.ict_engine.pattern_detector import ICTPatternDetector
+                from core.ict_engine.pattern_detector import ICTPatternDetector  # type: ignore
                 print(f"✅ ICTPatternDetector cargado exitosamente")
             except ImportError as e:
                 print(f"⚠️ Error importando ICTPatternDetector: {e}")
@@ -81,11 +81,15 @@ def main():
             # Import del test modular
             import importlib.util
             spec = importlib.util.spec_from_file_location("test_fvg_order_blocks_modular", test_modular_path)
-            test_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(test_module)
+            if spec and spec.loader:
+                test_module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(test_module)
+            else:
+                print(f"⚠️ Error cargando spec del test modular")
+                test_module = None
             
             # Ejecutar el test principal
-            if hasattr(test_module, 'main'):
+            if test_module and hasattr(test_module, 'main'):
                 test_result = test_module.main()
                 print(f"✅ Test modular ejecutado: {'SUCCESS' if test_result else 'ERROR'}")
             else:
@@ -112,13 +116,17 @@ def main():
                 # Import del dashboard
                 import importlib.util
                 spec = importlib.util.spec_from_file_location("ict_dashboard_unified", dashboard_path)
-                dashboard_module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(dashboard_module)
+                if spec and spec.loader:
+                    dashboard_module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(dashboard_module)
+                else:
+                    print(f"⚠️ Error cargando spec del dashboard")
+                    dashboard_module = None
                 
                 # Ejecutar dashboard
-                if hasattr(dashboard_module, 'main'):
+                if dashboard_module and hasattr(dashboard_module, 'main'):
                     dashboard_module.main()
-                elif hasattr(dashboard_module, 'ICTDashboardUnified'):
+                elif dashboard_module and hasattr(dashboard_module, 'ICTDashboardUnified'):
                     dashboard = dashboard_module.ICTDashboardUnified()
                     dashboard.run()
                 else:

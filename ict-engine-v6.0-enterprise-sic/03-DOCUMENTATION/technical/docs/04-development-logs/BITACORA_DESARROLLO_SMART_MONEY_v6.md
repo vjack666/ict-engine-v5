@@ -5,7 +5,7 @@
 **🎉 HITO MAJOR: TODO #2 COMPLETADO CON ÉXITO**
 **Fecha:** 2025-08-11 15:45:00
 **Componente:** Multi-TF Data Manager + Cache Fix Critical
-**Validación:** Entorno real FundedNext MT5 - Score 80%
+**Validación:** Entorno real FTMO Global Markets MT5 - Score 80%
 **Performance:** <5s enterprise mantenido
 ---
 
@@ -24,7 +24,7 @@
 ### 🧪 **TESTS REALIZADOS:**
 - ✅ Test unitario: ICTDataManager multi-TF - PASS ✅
 - ✅ Test integración: Cache + Downloads reales - PASS ✅
-- ✅ Test entorno real: FundedNext MT5 80% score ✅
+- ✅ Test entorno real: FTMO Global Markets MT5 80% score ✅
 - ✅ Test diagnóstico: Cache fix validation - PASS ✅
 - ✅ Test confluence: MarketStructureAnalyzer - PASS ✅
 
@@ -203,7 +203,7 @@
 
 ### 🎯 **FUNCIONALIDADES IMPLEMENTADAS:**
 - ✅ **DisplacementDetectorEnterprise v6.0** - >50 pips institutional movements
-- ✅ **MT5 Real Connection** - FundedNext Terminal conectado exitosamente
+- ✅ **MT5 Real Connection** - FTMO Global Markets Terminal conectado exitosamente
 - ✅ **Institutional Signatures** - Volume spikes + large candles + wicks
 - ✅ **Memory Integration** - UnifiedMemorySystem v6.1 TRADER_READY
 - ✅ **SIC v3.1 Bridge** - Enterprise imports + predictive cache
@@ -224,7 +224,7 @@
 - `_calculate_ict_target()` - 2-5x displacement range estimation
 
 ### 📊 **MT5 CONNECTION DETAILS:**
-- **Terminal:** FundedNext MT5 Terminal ✅
+- **Terminal:** FTMO Global Markets MT5 Terminal ✅
 - **Account:** FTMO Demo (USD) - Balance: $9,996.5
 - **Data:** EURUSD real (300 períodos M15, 2025-08-05 al 2025-08-08)
 - **Range:** O=1.15781, H=1.16989, L=1.15641, C=1.16400
@@ -400,7 +400,7 @@
 - **🔄 Multi-Timeframe BOS:** H4 Authority + M15 Structure + M5 Timing
 - **🔍 Swing Points Analysis:** Identificación automática de swing highs/lows
 - **✅ BOS Validation:** Momentum + confirmación sostenida
-- **📈 Real Data Integration:** MT5 FundedNext + cache inteligente
+- **📈 Real Data Integration:** MT5 FTMO Global Markets + cache inteligente
 - **⚡ Performance Optimizado:** Sub-segundo analysis + múltiples modos
 
 ### 🎯 **CHoCH Detection v6.0 Enterprise**
@@ -409,7 +409,7 @@
 - **🔄 Multi-Timeframe CHoCH:** H4 Authority + M15 Structure + M5 Timing
 - **🔍 Character Change Analysis:** Identificación de cambios de carácter de mercado
 - **✅ CHoCH Validation:** Momentum reversal + confirmación sostenida
-- **📈 Real Data Integration:** MT5 FundedNext + cache inteligente
+- **📈 Real Data Integration:** MT5 FTMO Global Markets + cache inteligente
 - **⚡ Performance Optimizado:** Sub-segundo analysis + detección precisa
 
 #### 🎯 **Algoritmos BOS + CHoCH Implementados:**ALES
@@ -463,8 +463,8 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 
 #### 🧪 **PRUEBA EXITOSA EURUSD (8 Agosto 2025 - 16:56 GMT)**
 ```bash
-✅ Descargadas 3000 velas REALES H4 de MT5 FundedNext
-✅ Descargadas 5000 velas REALES M15 de MT5 FundedNext  
+✅ Descargadas 3000 velas REALES H4 de MT5 FTMO Global Markets
+✅ Descargadas 5000 velas REALES M15 de MT5 FTMO Global Markets  
 ✅ H4 Bias detectado: BULLISH (0.501%, strength: 1.000)
 ✅ M15 Structure detectada: BULLISH break at 1.16486 > 1.16550
 ✅ BOS Detection OPERACIONAL con datos reales únicamente
@@ -472,14 +472,14 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 
 #### 📊 **CONEXIÓN MT5 CONFIRMADA:**
 - **Broker:** FTMO Global Markets Ltd
-- **Terminal:** FundedNext MT5 Terminal  
+- **Terminal:** FTMO Global Markets MT5 Terminal  
 - **Cuenta:** 1511236436
 - **Balance:** 9996.5 USD
 - **Status:** ✅ CONECTADO Y OPERACIONAL
 
 ### 🎯 **GARANTÍA DE CALIDAD:**
 - **Origen de Datos:** 🚨 **SOLO REALES** - Prohibidos datos demo/simulados
-- **Fuente Primaria:** MT5 FundedNext Terminal (datos institucionales)
+- **Fuente Primaria:** MT5 FTMO Global Markets Terminal (datos institucionales)
 - **Fuente Secundaria:** `04-DATA/04-DATA/04-DATA/data/04-DATA/data/04-DATA/data/04-DATA/data/candles/` (datos históricos guardados)
 - **Auto-Request:** Sistema solicita datos a MT5 si faltan automáticamente
 - **Detección BOS/CHoCH:** ✅ **TOTALMENTE FUNCIONAL** con datos reales
@@ -493,7 +493,7 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 #### ✅ **FASE 1: FUNDACIÓN ENTERPRISE (COMPLETADA)**
 - **SIC v3.1 Enterprise:** Implementado y validado (0.0038s performance)
 - **Advanced Candle Downloader:** ENTERPRISE config con cache predictivo
-- **MT5 Data Manager:** Conexión exclusiva FundedNext MT5
+- **MT5 Data Manager:** Conexión exclusiva FTMO Global Markets MT5
 - **Smart Trading Logger:** Sistema centralizado SLUC v2.1
 - **Testing Infrastructure:** Suite completa de tests automatizados
 
@@ -514,14 +514,14 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 #### ✅ **VALIDACIÓN BOS COMPLETADA**
 - **test_datos_reales_integration.py:** ✅ 6/6 tests exitosos (100%)
 - **Performance BOS:** ✅ 0.029s (live_ready) - 0.257s (minimal)
-- **Real data MT5:** ✅ FundedNext connection + 15,000+ velas
+- **Real data MT5:** ✅ FTMO Global Markets connection + 15,000+ velas
 - **ICT Data Manager:** ✅ Warm-up 0.2s + background enhancement
 - **Multi-timeframe BOS:** ✅ H4 authority + M15 structure + M5 timing
 
 #### ✅ **VALIDACIÓN CHoCH COMPLETADA**
 - **test_choch_integration.py:** ✅ Ejecutado exitosamente (100%)
 - **Performance CHoCH:** ✅ Multi-timeframe detection operativo
-- **Real data CHoCH:** ✅ Datos MT5 EURUSD + FundedNext connection
+- **Real data CHoCH:** ✅ Datos MT5 EURUSD + FTMO Global Markets connection
 - **ICT Integration:** ✅ CHoCH integrado con pipeline H4→M15→M5
 - **Pattern Detection:** ✅ 9/9 patrones ICT en PatternDetector v6.0
 
@@ -535,7 +535,7 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 📁 ICT ENGINE v6.0 ENTERPRISE-SIC/
 ├─ 🔒 01-CORE/core/data_management/
 │   ├─ ✅ advanced_candle_downloader.py     # ENTERPRISE config
-│   ├─ ✅ mt5_data_manager.py              # FundedNext exclusivo
+│   ├─ ✅ mt5_data_manager.py              # FTMO Global Markets exclusivo
 │   ├─ ✅ ict_data_manager.py              # NUEVO: Híbrido warm-up/enhancement
 │   └─ ✅ mt5_connection_manager.py        # Robusto connection handling
 ├─ 🧠 01-CORE/01-CORE/01-CORE/core/analysis/
@@ -570,7 +570,7 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 | **Smart Money Analyzer** | ⚠️ PARTIAL | <1s análisis | 17% implementado |
 | **Market Structure Analyzer v6.0** | ✅ INFRASTRUCTURE | READY | Base para expansión ICT |
 | **POI System** | ✅ OPERATIONAL | VALIDATED | Points of Interest |
-| **MT5 Data Manager** | ✅ OPERATIONAL | REAL-TIME | FundedNext exclusivo |
+| **MT5 Data Manager** | ✅ OPERATIONAL | REAL-TIME | FTMO Global Markets exclusivo |
 
 ---
 
@@ -582,7 +582,7 @@ def _get_real_data(self, symbol: str, timeframe: str, periods: int = 240) -> pd.
 - **� Multi-Timeframe BOS:** H4 Authority + M15 Structure + M5 Timing
 - **🔍 Swing Points Analysis:** Identificación automática de swing highs/lows
 - **✅ BOS Validation:** Momentum + confirmación sostenida
-- **📈 Real Data Integration:** MT5 FundedNext + cache inteligente
+- **📈 Real Data Integration:** MT5 FTMO Global Markets + cache inteligente
 - **⚡ Performance Optimizado:** Sub-segundo analysis + múltiples modos
 
 #### 🎯 **Algoritmos BOS Implementados:**
@@ -693,7 +693,7 @@ def enhance_patterns_with_smart_money(self, patterns: List[PatternSignal]) -> Li
 
 ### ⚡ **Performance Metrics:**
 - **SIC v3.1 Load Time:** 0.0038s
-- **MT5 Connection:** <1s a FundedNext
+- **MT5 Connection:** <1s a FTMO Global Markets
 - **Multi-timeframe Download:** 15,000+ velas en <2s
 - **Pattern Detection:** 5-10 patterns en 1.5s promedio
 - **Smart Money Analysis:** <1s para análisis completo
@@ -720,7 +720,7 @@ def enhance_patterns_with_smart_money(self, patterns: List[PatternSignal]) -> Li
 
 ### 🚀 **READY FOR:**
 1. **Production Deployment** → Sistema operacional completo con BOS + CHoCH
-2. **Live Trading** → Conexión real a FundedNext MT5
+2. **Live Trading** → Conexión real a FTMO Global Markets MT5
 3. **Multi-Symbol Analysis** → Escalable a múltiples pares
 4. **Enterprise Integration** → APIs y webhooks para integración
 5. **Next ICT Protocols** → Order Blocks, FVG, Displacement ready
@@ -741,7 +741,7 @@ def enhance_patterns_with_smart_money(self, patterns: List[PatternSignal]) -> Li
 ### 🏆 **LOGROS TÉCNICOS DESTACADOS:**
 - **Arquitectura Enterprise:** Modular, escalable, maintainable
 - **Performance Optimized:** Sub-5s para análisis completo
-- **Real Data Integration:** Exclusivo FundedNext MT5
+- **Real Data Integration:** Exclusivo FTMO Global Markets MT5
 - **Smart Money Implementation:** Primer sistema ICT con análisis institucional
 - **Multi-Timeframe Logic:** Análisis correlacionado M15-W1
 - **Test Coverage:** 100% validation con tests automatizados

@@ -4,7 +4,7 @@
 
 El **POI System v6.0 Enterprise** es un sistema avanzado de detección y gestión de **Points of Interest (POIs)** que identifica zonas clave en el mercado utilizando metodología ICT (Inner Circle Trader) combinada con tecnología moderna de análisis.
 
-Este sistema opera con **datos reales de FundedNext MT5** y proporciona análisis en tiempo real de niveles críticos donde el precio podría reaccionar.
+Este sistema opera con **datos reales de FTMO Global Markets MT5** y proporciona análisis en tiempo real de niveles críticos donde el precio podría reaccionar.
 
 ## 🏗️ Architecture
 
@@ -179,7 +179,7 @@ print(f"POIs created: {metrics['total_pois_created']}")
 
 ## ⚡ Performance Metrics
 
-### Real-time Performance (FundedNext MT5)
+### Real-time Performance (FTMO Global Markets MT5)
 - **M5 Timeframe**: 30 POIs en 0.881s
 - **M15 Timeframe**: 30 POIs en 0.332s
 - **Average Processing**: ~0.5s per analysis
@@ -327,7 +327,7 @@ python tests/test_poi_system_integration.py
 
 El **POI System v6.0 Enterprise** representa un avance significativo en análisis técnico automatizado, combinando metodología ICT probada con tecnología moderna. El sistema:
 
-- ✅ **Funciona con datos reales** de FundedNext MT5
+- ✅ **Funciona con datos reales** de FTMO Global Markets MT5
 - ✅ **Detecta 9 tipos de POIs** diferentes
 - ✅ **Proporciona análisis detallado** con métricas de calidad
 - ✅ **Se integra perfectamente** con otros componentes del engine

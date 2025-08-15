@@ -11,7 +11,7 @@
     "debug_performance_report.py",
     "final_ict_verification.py",
     "ict_optimal_config.py",
-    "test_fundednext_system.py",
+    "test_ftmo_system.py",
     "test_ict_optimal_downloader.py",
     "test_real_system.py",
     "test_sic_complete.py",

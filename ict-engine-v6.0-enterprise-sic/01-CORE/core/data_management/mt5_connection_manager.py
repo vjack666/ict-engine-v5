@@ -1,6 +1,6 @@
 """
 MT5 Connection Manager v6.0 Enterprise
-Gestor de conexiones robustas a MetaTrader5 con FundedNext
+Gestor de conexiones robustas a MetaTrader5 con FTMO Global Markets
 
 Dependencias:
 - MetaTrader5
@@ -17,7 +17,7 @@ from utils.smart_trading_logger import SmartTradingLogger
 class MT5ConnectionManager:
     """
     Gestor de conexiones MT5 enterprise con reconexión automática
-    y validación de cuenta FundedNext
+    y validación de cuenta FTMO Global Markets
     """
     
     def __init__(self):
@@ -58,12 +58,12 @@ class MT5ConnectionManager:
                         self.is_connected = True
                         self.connection_attempts = 0
                         
-                        # Validar que es una cuenta FundedNext
-                        if self._validate_fundednext_account():
-                            self.logger.info(f"✅ Conectado a FundedNext - Cuenta: {self.account_info.login}")
+                        # Validar que es una cuenta FTMO Global Markets
+                        if self._validate_ftmo_account():
+                            self.logger.info(f"✅ Conectado a FTMO Global Markets - Cuenta: {self.account_info.login}")
                             return True
                         else:
-                            self.logger.warning("⚠️ Cuenta no validada como FundedNext")
+                            self.logger.warning("⚠️ Cuenta no validada como FTMO Global Markets")
                             return False
                     else:
                         self.logger.error("❌ No se pudo obtener información de la cuenta")
@@ -77,33 +77,33 @@ class MT5ConnectionManager:
                 self.logger.error(f"❌ Excepción en conexión MT5: {e}")
                 return False
     
-    def _validate_fundednext_account(self) -> bool:
+    def _validate_ftmo_account(self) -> bool:
         """
-        Validar que la cuenta conectada es de FundedNext
+        Validar que la cuenta conectada es de FTMO Global Markets
         
         Returns:
-            bool: True si es cuenta FundedNext válida
+            bool: True si es cuenta FTMO Global Markets válida
         """
         if not self.account_info:
             return False
             
-        # Validaciones específicas de FundedNext
+        # Validaciones específicas de FTMO Global Markets
         server_name = self.account_info.server.lower() if self.account_info.server else ""
         company_name = self.account_info.company.lower() if self.account_info.company else ""
         
-        fundednext_indicators = [
-            "fundednext" in server_name,
-            "fundednext" in company_name,
+        ftmo_indicators = [
+            "ftmo" in server_name,
+            "ftmo" in company_name,
             "fn-" in server_name,
             "funded" in server_name
         ]
         
-        is_valid = any(fundednext_indicators)
+        is_valid = any(ftmo_indicators)
         
         if is_valid:
-            self.logger.info(f"✅ Cuenta FundedNext validada: {self.account_info.server}")
+            self.logger.info(f"✅ Cuenta FTMO Global Markets validada: {self.account_info.server}")
         else:
-            self.logger.warning(f"⚠️ Cuenta no identificada como FundedNext: {self.account_info.server}")
+            self.logger.warning(f"⚠️ Cuenta no identificada como FTMO Global Markets: {self.account_info.server}")
             
         return is_valid
     
